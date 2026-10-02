@@ -131,7 +131,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Cancel accepted (idempotent when already cancelled). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Porting order not found |  -  |
 | **409** | Port already completed (release the number instead), or the carrier rejected the cancel (reason included) |  -  |
 
@@ -237,7 +237,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
 | **400** | Country not offerable, or the inventory provider rejected the lookup (its 4xx status is forwarded as-is). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | The inventory provider was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -338,7 +338,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Per-number portability. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Keyless calls only. The per-IP limit or the shared daily budget is spent; &#x60;Retry-After&#x60; says when to try again. Send an API key to skip both. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -439,7 +439,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Hosted KYC link created. |  -  |
 | **400** | Country does not require KYC (not a regulated country). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -539,7 +539,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Port submitted. Top-level fields mirror the first successfully submitted order; per-order truth (including failures) is in &#x60;orders&#x60;. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | A number is already provisioned, or already in an in-flight port |  -  |
 | **422** | A number is not portable (reason included), numbers span multiple non-US/CA countries, or every split order failed to submit |  -  |
 
@@ -642,7 +642,7 @@ catch (ApiException e)
 | **200** | A watch for this country and type already existed; returned unchanged. |  -  |
 | **201** | Watch created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | The country (or the watched area) is in stock right now (buy instead of watching), or the 20-watch limit is reached (code invalid_resource_state). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -741,7 +741,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Watch deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Stock watch not found (code stock_watch_not_found). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -841,7 +841,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone number retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -942,7 +942,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The claimed selection. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The claim expired (after 7 days), is invalid, or its country or type is no longer sold. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1045,7 +1045,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
 | **400** | Country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1145,7 +1145,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The claimed number. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The claim expired (after 7 days) or is invalid. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1246,7 +1246,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The order&#39;s requirements with statuses. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Porting order not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1349,7 +1349,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Requirement fields for the country/type combination. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Country not supported for port-in |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1450,7 +1450,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The declined requirements to fix. |  -  |
 | **400** | Number is not awaiting remediation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1635,7 +1635,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Porting orders |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1727,7 +1727,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The caller&#39;s active watches, oldest first. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1828,7 +1828,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone numbers retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2034,7 +2034,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Phone number released successfully |  -  |
 | **400** | Phone number is already released or being released |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The number is attached to a SIP trunk (detach it first), or it changed state while a pending order was being cancelled (code invalid_resource_state). |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -2139,7 +2139,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Re-submitted for approval. |  -  |
 | **400** | Number is not awaiting remediation / nothing to remediate |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2242,7 +2242,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Reply posted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
 
@@ -2346,7 +2346,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Code requested, or the number was already verified, or a never-live number was replaced. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The number cannot be verified for WhatsApp right now. &#x60;code&#x60; says why: - &#x60;number_not_whatsapp_eligible&#x60;: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp. - &#x60;whatsapp_number_in_use&#x60;: Meta reports the number is registered to another WhatsApp account. - &#x60;META_INVALID_NUMBER&#x60;: Meta refused a never-live number and no replacement could be sourced. - &#x60;PENDING_REGULATORY&#x60;: the number is still in carrier regulatory review.  |  -  |
 | **429** | Meta paused verification for this number. &#x60;retryAt&#x60; says when it lifts. |  -  |
@@ -2452,7 +2452,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Response sent. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **409** | Number&#39;s registration is held under our own carrier registration; nothing for you to correct. |  -  |
 | **502** | Couldn&#39;t deliver your response to the reviewer; retry. |  -  |
@@ -2554,7 +2554,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Advisories (empty when the packet looks fine or the review was unavailable). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2672,7 +2672,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Available numbers. |  -  |
 | **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Keyless rate limit reached. Retry later or send an API key. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2773,7 +2773,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2876,7 +2876,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Document uploaded. |  -  |
 | **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2978,7 +2978,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Document uploaded. |  -  |
 | **400** | Missing file, file too large, or unsupported type |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3078,7 +3078,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
 | **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3178,7 +3178,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The document, streamed inline. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No such document for this account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

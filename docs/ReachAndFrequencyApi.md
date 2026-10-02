@@ -105,7 +105,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **200** | Reservation cancelled |  -  |
 | **400** | Invalid input, or Meta rejected the cancel |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -208,7 +208,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Prediction created (usually ready within seconds) |  -  |
 | **400** | Invalid input, or Meta rejected the prediction; the message carries Meta&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
@@ -314,7 +314,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Prediction status and estimates |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -419,7 +419,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
 | **400** | Invalid input, or Meta rejected the reserve |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |

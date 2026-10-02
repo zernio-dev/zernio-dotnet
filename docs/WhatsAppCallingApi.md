@@ -115,7 +115,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Phone number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -214,7 +214,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -317,7 +317,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
 | **400** | Invalid request (including forwardTo set to the number itself), or Meta refused enablement (platform_api_error with platformError.code 138015, for example a production number below the 2,000-recipient messaging tier; Meta public test numbers and Sandbox accounts are exempt) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Phone number not found |  -  |
 | **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | Not eligible to enable calling: not on usage-based billing. |  -  |
@@ -422,7 +422,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
 | **400** | Invalid request (including forwardTo set to the number itself), or Meta refused enablement (platform_api_error with platformError.code 138015, for example a production number below the 2,000-recipient messaging tier; Meta public test numbers and Sandbox accounts are exempt) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 | **422** | Not eligible to enable calling: not on usage-based billing. |  -  |
 
@@ -523,7 +523,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -629,7 +629,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Estimate |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -730,7 +730,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Permission state |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -835,7 +835,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |
 | **502** | Recording provider lookup failed |  -  |
 
@@ -937,7 +937,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Calling config |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1037,7 +1037,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling config |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp phone number not found for this account |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1139,7 +1139,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | No active call permission. Send a permission request first. |  -  |
 | **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
@@ -1253,7 +1253,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calls |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1355,7 +1355,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Code sent (or the number was already verified) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **429** | Too many verification attempts for this number; wait before retrying |  -  |
 
@@ -1455,7 +1455,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |
 
@@ -1555,7 +1555,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |
 
@@ -1659,7 +1659,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Verified |  -  |
 | **400** | Invalid or expired code, or malformed request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **429** | Attempt lockout from the carrier; wait a few minutes, then request a fresh code |  -  |
 

@@ -110,7 +110,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated list of mentions |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -211,7 +211,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
 | **400** | Platform does not support replying to mentions (code: platform_not_supported), or missing mediaId/message. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
 | **502** | Instagram was unreachable or returned an unclassified error. Instagram 4xx statuses are forwarded as-is. |  -  |

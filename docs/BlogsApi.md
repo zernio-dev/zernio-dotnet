@@ -113,7 +113,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Blog created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **405** | Platform does not support creating blogs. |  -  |
@@ -221,7 +221,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Article created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support creating articles. |  -  |
@@ -324,7 +324,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **204** | Blog deleted (no content). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support deleting a blog. |  -  |
@@ -428,7 +428,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **204** | Article deleted (no content). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support deleting an article. |  -  |
@@ -535,7 +535,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Blog fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support fetching a blog. |  -  |
@@ -644,7 +644,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Article fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support fetching an article. |  -  |
@@ -755,7 +755,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Articles listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support listing articles. |  -  |
@@ -864,7 +864,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Blogs listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **405** | Platform does not support listing blogs. |  -  |
@@ -973,7 +973,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Blog updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support updating a blog. |  -  |
@@ -1083,7 +1083,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Article updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support updating an article. |  -  |

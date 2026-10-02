@@ -120,7 +120,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Batch opened. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity or phone number not found |  -  |
 | **409** | The identity is not verified yet, or a number already belongs to an identity (code invalid_resource_state). |  -  |
 | **422** | A number is not a US number or not active, or the carrier refused the batch (the message names the number). |  -  |
@@ -225,7 +225,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The identity, now in carrier vetting. |  -  |
 | **400** | The code is wrong or expired (param code), or the body is invalid. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity is not waiting for a code (code invalid_resource_state). |  -  |
 
@@ -329,7 +329,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Business stored. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | The business is not registered in the US or Canada (code feature_not_available), or the Idempotency-Key was reused with a different body (code idempotency_key_reused). |  -  |
 
@@ -433,7 +433,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Identity created, in review. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Usage-based billing is required (code usage_billing_required). |  -  |
 | **404** | Business not found |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
@@ -537,7 +537,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Business not found |  -  |
 | **409** | The business still has caller identities (code invalid_resource_state). |  -  |
 
@@ -639,7 +639,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found |  -  |
 | **409** | An infringement claim is open on this identity (code invalid_resource_state). |  -  |
 
@@ -743,7 +743,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Numbers detached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found, or none of the numbers is attached to it |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -842,7 +842,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The business. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Business not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -943,7 +943,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The identity with its numbers. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1038,7 +1038,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The catalogue. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1130,7 +1130,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The workspace&#39;s businesses. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1222,7 +1222,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The workspace&#39;s identities with their numbers. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1320,7 +1320,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Attached numbers with their vetting status. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1421,7 +1421,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The findings; nothing was created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Business not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1522,7 +1522,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Code sent. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity is not waiting for a code (code invalid_resource_state). |  -  |
 
@@ -1624,7 +1624,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Share link created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Business or identity not found, or the identity is not in review |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1727,7 +1727,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The updated identity. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity cannot be edited in its current status (code invalid_resource_state). |  -  |
 | **422** | reviewAnswers names a point id that is not on the open change request, or there is no open request (code invalid_field_value, param reviewAnswers). |  -  |

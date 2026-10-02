@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Type** | **string** | Error class for programmatic handling. | 
 **Code** | **string** |  | 
 **Param** | **string** | The request field that caused the error, when applicable. | [optional] 
+**DocUrl** | **string** | Documentation page for resolving the error, when one applies. | [optional] 
 **Platform** | **string** |  | 
 **PlatformError** | [**WhatsAppTemplateLookupErrorPlatformError**](WhatsAppTemplateLookupErrorPlatformError.md) |  | [optional] 
 **Details** | [**WhatsAppTemplateLookupErrorDetails**](WhatsAppTemplateLookupErrorDetails.md) |  | 

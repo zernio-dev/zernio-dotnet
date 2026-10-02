@@ -132,7 +132,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Logs retrieved successfully |  -  |
 | **400** | Invalid filter value. Unknown parameters are ignored on this list; the histogram, facets and export routes reject them. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

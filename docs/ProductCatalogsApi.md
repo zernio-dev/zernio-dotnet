@@ -122,7 +122,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **202** | Accepted by Meta |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -224,7 +224,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Catalog created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
@@ -329,7 +329,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Feed created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -435,7 +435,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **202** | Fetch started |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -539,7 +539,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Product created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -643,7 +643,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Product set created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -749,7 +749,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -855,7 +855,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -961,7 +961,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1065,7 +1065,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Catalog |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1171,7 +1171,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Batch status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1277,7 +1277,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1383,7 +1383,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Uploads, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1487,7 +1487,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Feeds |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1593,7 +1593,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product sets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1705,7 +1705,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Products |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1813,7 +1813,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Catalogs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
@@ -1920,7 +1920,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2024,7 +2024,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product set updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 

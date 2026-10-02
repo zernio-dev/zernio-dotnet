@@ -101,7 +101,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Billing snapshot |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -210,7 +210,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Usage totals (+ breakdown when groupBy is set). |  -  |
 | **400** | since must be before until |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -316,7 +316,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Volume totals (+ breakdown when groupBy is set). |  -  |
 | **400** | since must be before until |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | &#x60;number&#x60; doesn&#39;t match any of your SMS-enabled numbers |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -431,7 +431,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Snapshot (no metering params) or billed spend by product over the window (with metering params).  |  -  |
 | **400** | Invalid query parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
@@ -533,7 +533,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Usage stats |  -  |
 | **400** | Invalid query parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
@@ -629,7 +629,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | X pricing table |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

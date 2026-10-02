@@ -1293,8 +1293,7 @@ docs/InlineObject.md
 docs/InlineObject1.md
 docs/InlineObject2.md
 docs/InlineObject3.md
-docs/InlineObject4.md
-docs/InlineObject4Details.md
+docs/InlineObject3Details.md
 docs/InstagramAccountInsightsResponse.md
 docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
@@ -4026,9 +4025,8 @@ src/Zernio.Test/Model/InitiateWhatsAppCall200ResponseTests.cs
 src/Zernio.Test/Model/InitiateWhatsAppCallRequestTests.cs
 src/Zernio.Test/Model/InlineObject1Tests.cs
 src/Zernio.Test/Model/InlineObject2Tests.cs
+src/Zernio.Test/Model/InlineObject3DetailsTests.cs
 src/Zernio.Test/Model/InlineObject3Tests.cs
-src/Zernio.Test/Model/InlineObject4DetailsTests.cs
-src/Zernio.Test/Model/InlineObject4Tests.cs
 src/Zernio.Test/Model/InlineObjectTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseDateRangeTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueBreakdownsInnerTests.cs
@@ -6742,8 +6740,7 @@ src/Zernio/Model/InlineObject.cs
 src/Zernio/Model/InlineObject1.cs
 src/Zernio/Model/InlineObject2.cs
 src/Zernio/Model/InlineObject3.cs
-src/Zernio/Model/InlineObject4.cs
-src/Zernio/Model/InlineObject4Details.cs
+src/Zernio/Model/InlineObject3Details.cs
 src/Zernio/Model/InstagramAccountInsightsResponse.cs
 src/Zernio/Model/InstagramAccountInsightsResponseDateRange.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValue.cs

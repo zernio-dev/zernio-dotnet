@@ -177,7 +177,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **202** | Codes queued |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -282,7 +282,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Engagement recorded |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -387,7 +387,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product after the change |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -492,7 +492,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Publication changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -597,7 +597,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Membership changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found (code account_not_found) or collection not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -702,7 +702,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Stock changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -807,7 +807,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Publication changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -910,7 +910,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Action applied |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -1012,7 +1012,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Tags changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1115,7 +1115,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **202** | Sync created; the first run is queued |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login cannot manage the catalog (code insufficient_permissions). |  -  |
 | **404** | Account or catalog not found (code account_not_found or resource_not_found). |  -  |
 | **409** | The store already syncs to that catalog (code catalog_sync_conflict). |  -  |
@@ -1218,7 +1218,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Collection created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found (code account_not_found) or collection not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1321,7 +1321,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Discount created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1424,7 +1424,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Menu created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1527,7 +1527,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Metaobject created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1630,7 +1630,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Page created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1733,7 +1733,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Product created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1838,7 +1838,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product after the change |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -1943,7 +1943,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product after the change |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2046,7 +2046,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Redirect created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2149,7 +2149,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Catalog sync stopped |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Catalog sync not found (code resource_not_found). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2252,7 +2252,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Collection deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found (code account_not_found) or collection not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2359,7 +2359,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metafields deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2464,7 +2464,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Discount deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2569,7 +2569,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Activity deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2674,7 +2674,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Menu deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2779,7 +2779,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metaobject deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2884,7 +2884,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Page deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -2991,7 +2991,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Prices removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3098,7 +3098,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metafields deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3205,7 +3205,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product after the change |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3312,7 +3312,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product after the change |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3417,7 +3417,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Redirect deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3522,7 +3522,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Product duplicated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3625,7 +3625,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Catalog sync fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Catalog sync not found (code resource_not_found). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3728,7 +3728,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Collection fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found (code account_not_found) or collection not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3833,7 +3833,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Discount fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -3938,7 +3938,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Menu fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4043,7 +4043,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metaobject fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4148,7 +4148,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Page fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4253,7 +4253,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found (code account_not_found) or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -4355,7 +4355,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Store fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4458,7 +4458,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Catalog syncs listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4559,7 +4559,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Channels listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4664,7 +4664,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metafields listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4773,7 +4773,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Collections listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found (code account_not_found) or collection not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4882,7 +4882,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Discounts listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -4987,7 +4987,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Stock fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5090,7 +5090,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Locations listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5193,7 +5193,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Markets listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5296,7 +5296,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Menus listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5399,7 +5399,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Definitions listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5508,7 +5508,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metaobjects listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5617,7 +5617,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Pages listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5720,7 +5720,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Price lists listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5825,7 +5825,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metafields listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -5938,7 +5938,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Products listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). A Shopify store connected before product access was added must be reconnected through GET /v1/connect/shopify. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6047,7 +6047,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Redirects listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6154,7 +6154,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product after the change |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6259,7 +6259,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Reorder accepted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6364,7 +6364,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Reorder accepted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6467,7 +6467,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **202** | Run queued |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Catalog sync not found (code resource_not_found). |  -  |
 | **409** | A run is already in progress (code catalog_sync_conflict). |  -  |
 
@@ -6571,7 +6571,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metafields set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6676,7 +6676,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Discount state changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6781,7 +6781,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Prices set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6886,7 +6886,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metafields set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -6991,7 +6991,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Collection updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found (code account_not_found) or collection not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -7096,7 +7096,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Discount updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -7201,7 +7201,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Menu updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -7306,7 +7306,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Metaobject updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -7411,7 +7411,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Page updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -7516,7 +7516,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Product updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found (code account_not_found) or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -7620,7 +7620,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Prices updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found (code account_not_found) or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -7724,7 +7724,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Redirect updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
@@ -7827,7 +7827,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Activity recorded |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |

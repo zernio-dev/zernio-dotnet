@@ -120,7 +120,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment deleted |  -  |
 | **400** | Platform rejected the operation (e.g., comment already deleted) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to delete this comment on the platform (code platform_api_error, type platform_error) |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
@@ -227,7 +227,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment edited |  -  |
 | **400** | Platform does not support editing comments (code: platform_not_supported), or content missing. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
@@ -340,7 +340,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
 | **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT; the response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;), or the upstream platform rejected the request (type platform_error, code platform_api_error; the provider&#39;s own payload is in platformError). Meta returns code 100 with error_subcode 33 both for a story past its 24h life and for a deleted post, so the two are indistinguishable from the response.  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to read this post on the platform (code platform_api_error, type platform_error) |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **502** | Upstream platform error (code platform_api_error, type platform_error) |  -  |
@@ -447,7 +447,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment hidden |  -  |
 | **400** | Platform does not support hiding comments (code PLATFORM_LIMITATION), or the platform rejected the call (code PLATFORM_API_ERROR with the upstream status, for example a comment that no longer exists; the platform&#39;s own error code and subcode are in platformError). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -552,7 +552,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment liked |  -  |
 | **400** | Platform does not support liking comments |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the account is missing the platform permission |  -  |
 | **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
@@ -656,7 +656,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Post liked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
 | **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
@@ -774,7 +774,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated posts with comments |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -879,7 +879,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment pinned |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -984,7 +984,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
 | **400** | Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the connected account is not permitted to comment on this post on the platform (code platform_api_error, type platform_error) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
@@ -1093,7 +1093,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Private reply sent successfully |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
 
@@ -1199,7 +1199,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Moderation status applied |  -  |
 | **400** | Platform does not support comment moderation (code: platform_not_supported), or banAuthor was set without moderationStatus&#x3D;rejected. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
 | **502** | YouTube rejected the request (e.g. the account does not own the video). |  -  |
@@ -1306,7 +1306,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment unhidden |  -  |
 | **400** | Platform does not support unhiding comments (code PLATFORM_LIMITATION), or the platform rejected the call (code PLATFORM_API_ERROR with the upstream status, for example a comment that no longer exists; the platform&#39;s own error code and subcode are in platformError). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1413,7 +1413,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment unliked |  -  |
 | **400** | Platform does not support unliking comments |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the account is missing the platform permission |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1518,7 +1518,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Post unliked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
 
@@ -1624,7 +1624,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Comment unpinned |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

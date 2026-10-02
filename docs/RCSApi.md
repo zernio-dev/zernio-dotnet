@@ -116,7 +116,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Invite sent. |  -  |
 | **400** | Invalid phone number, or the carrier refused it as a test phone |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 | **409** | The agent does not exist with the carriers yet |  -  |
@@ -221,7 +221,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Agent requested. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | No payment method on file (payment_method_required). Add a card and retry. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Profile or brand not found |  -  |
@@ -326,7 +326,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The deactivated agent. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 | **409** | The agent is already rejected or deactivated |  -  |
@@ -427,7 +427,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The agent with its brand, carrier approvals and test devices. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 
@@ -531,7 +531,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | One entry per number, in input order. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 | **409** | The agent does not exist with the carriers yet |  -  |
@@ -632,7 +632,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Agents, newest first. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -727,7 +727,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Brands, newest first. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -826,7 +826,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Invited test phones. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 
@@ -928,7 +928,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Removed. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent or test phone not found |  -  |
 
@@ -1032,7 +1032,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The agent, now in launch_review. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 | **409** | The agent is not in testing |  -  |
@@ -1137,7 +1137,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Message accepted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The plan does not include the inbox, the recipient is not an accepted test phone before launch, or usage billing is not enabled |  -  |
 | **404** | Agent not found |  -  |
 | **409** | The agent cannot send yet, the recipient opted out (replied STOP), or the Idempotency-Key is still in flight |  -  |
@@ -1244,7 +1244,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The updated agent. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Agent not found |  -  |
 | **409** | The filing is locked because it is already with the carriers |  -  |
@@ -1349,7 +1349,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Hosted URL. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **422** | The image is unreadable, too small, or could not be compressed under the limit |  -  |
 
