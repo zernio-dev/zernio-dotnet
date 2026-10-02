@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PostId** | **string** |  | [optional] 
 **LatePostId** | **string** | Original Zernio post ID if scheduled via Zernio | [optional] 
-**Status** | **string** | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. While any platform is still pending or processing, the post&#39;s own status is returned instead (usually scheduled or publishing), even if another platform already published. | [optional] 
+**Status** | **string** | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. While any platform is still pending or processing, the post&#39;s own status is returned instead (usually scheduled or publishing), even if another platform already published. A post with no published or failed platform (for example every platform cancelled) returns its own status with syncStatus unavailable and no platformAnalytics. | [optional] 
 **Content** | **string** |  | [optional] 
 **ScheduledFor** | **DateTime** |  | [optional] 
 **PublishedAt** | **DateTime** |  | [optional] 
