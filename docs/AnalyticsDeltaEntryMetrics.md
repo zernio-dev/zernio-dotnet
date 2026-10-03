@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **Clicks** | **int** |  | 
 **Views** | **int** |  | 
 **Follows** | **int** | Follows attributed to this post (Instagram) | 
-**IgReelsAvgWatchTime** | **int** | Instagram Reels average watch time, in milliseconds | 
-**IgReelsVideoViewTotalTime** | **int** | Instagram Reels total watch time, in milliseconds | 
+**IgReelsAvgWatchTime** | **int** | Average watch time per play, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) | 
+**IgReelsVideoViewTotalTime** | **int** | Total watch time including replays, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) | 
 **Reposts** | **int** |  | 
 **ReelsSkipRate** | **decimal** | Instagram Reels skip rate, 0 to 1 | 
 **CompletionRate** | **decimal** | TikTok business lane: share of viewers who watched to the end, 0 to 1 | 
