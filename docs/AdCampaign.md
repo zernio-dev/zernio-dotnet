@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **ReviewStatus** | **AdReviewStatus** |  | [optional] 
 **PlatformCampaignStatus** | **string** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;; ChatGPT (OpenAI): the campaign&#39;s own switch, active / paused / archived; TikTok: the campaign&#39;s own switch &#x60;operation_status&#x60;, ENABLE / DISABLE). | [optional] 
 **StatusReadAt** | **DateTime?** | Only on GET /v1/ads/campaigns with &#x60;live&#x3D;true&#x60;. When &#x60;platformCampaignStatus&#x60; was read from the platform; null when this campaign could not be read live. | [optional] 
+**NativeSettings** | **Dictionary&lt;string, Object&gt;** | TikTok only, only on GET /v1/ads/campaigns with &#x60;live&#x3D;true&#x60; and only on campaigns read live. TikTok&#39;s campaign/get record verbatim: operation_status, objective_type, budget_mode (BUDGET_MODE_INFINITE means no campaign budget, so budget lives on the ad groups), budget, and budget_optimize_on when TikTok returns it. Plus advertiser_currency and advertiser_timezone from TikTok&#39;s advertiser/info. | [optional] 
+**ConfigReadAt** | **DateTime?** | Only on GET /v1/ads/campaigns with &#x60;live&#x3D;true&#x60;. When &#x60;nativeSettings&#x60; was read from the platform. Null whenever native settings were not read now. | [optional] 
 **CampaignIssuesInfo** | **List&lt;Object&gt;** | Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). | [optional] 
 **AdCount** | **int** |  | [optional] 
 **Budget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  | [optional] 
