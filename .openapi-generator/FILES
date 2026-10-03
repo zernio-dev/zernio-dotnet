@@ -182,6 +182,7 @@ docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestPromoCodesInner.md
 docs/BoostPostRequestPromotedObject.md
 docs/BoostPostRequestSchedule.md
+docs/BoostPostRequestSmartTargeting.md
 docs/BoostPostRequestSparkPostsInner.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
@@ -2251,6 +2252,7 @@ docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetRequestPlatformSpecificData.md
 docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
+docs/UpdateAdSetRequestSmartTargeting.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
 docs/UpdateAdTrackingTags200Response.md
@@ -2946,6 +2948,7 @@ src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/BoostPostRequestPromoCodesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
+src/Zernio.Test/Model/BoostPostRequestSmartTargetingTests.cs
 src/Zernio.Test/Model/BoostPostRequestSparkPostsInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCitiesInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingCustomLocationsInnerTests.cs
@@ -4965,6 +4968,7 @@ src/Zernio.Test/Model/UpdateAdSet200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObjectTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataTests.cs
+src/Zernio.Test/Model/UpdateAdSetRequestSmartTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdStatus200ResponseTests.cs
@@ -5666,6 +5670,7 @@ src/Zernio/Model/BoostPostRequestPlatformSpecificData.cs
 src/Zernio/Model/BoostPostRequestPromoCodesInner.cs
 src/Zernio/Model/BoostPostRequestPromotedObject.cs
 src/Zernio/Model/BoostPostRequestSchedule.cs
+src/Zernio/Model/BoostPostRequestSmartTargeting.cs
 src/Zernio/Model/BoostPostRequestSparkPostsInner.cs
 src/Zernio/Model/BoostPostRequestTargeting.cs
 src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
@@ -7685,6 +7690,7 @@ src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs
 src/Zernio/Model/UpdateAdSetRequestPlatformSpecificData.cs
 src/Zernio/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.cs
+src/Zernio/Model/UpdateAdSetRequestSmartTargeting.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
 src/Zernio/Model/UpdateAdStatus200Response.cs
 src/Zernio/Model/UpdateAdTrackingTags200Response.cs
