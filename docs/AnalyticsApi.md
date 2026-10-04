@@ -10,6 +10,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetBestTimeToPost**](AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post |
 | [**GetContentDecay**](AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay |
 | [**GetDailyMetrics**](AnalyticsApi.md#getdailymetrics) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
+| [**GetFacebookDemographics**](AnalyticsApi.md#getfacebookdemographics) | **GET** /v1/analytics/facebook/demographics | Get Facebook Page demographics |
 | [**GetFacebookPageInsights**](AnalyticsApi.md#getfacebookpageinsights) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights |
 | [**GetFacebookPostEarnings**](AnalyticsApi.md#getfacebookpostearnings) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings |
 | [**GetFacebookPostReactions**](AnalyticsApi.md#getfacebookpostreactions) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions |
@@ -705,6 +706,110 @@ catch (ApiException e)
 | **200** | Daily metrics and platform breakdown |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getfacebookdemographics"></a>
+# **GetFacebookDemographics**
+> GetFacebookDemographics200Response GetFacebookDemographics (string accountId, string? breakdown = null)
+
+Get Facebook Page demographics
+
+Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta's latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \"City, Region, Country\" strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetFacebookDemographicsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the Facebook account
+            var breakdown = "breakdown_example";  // string? | Comma-separated list of demographic dimensions: country, city. Defaults to both if omitted.  (optional) 
+
+            try
+            {
+                // Get Facebook Page demographics
+                GetFacebookDemographics200Response result = apiInstance.GetFacebookDemographics(accountId, breakdown);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetFacebookDemographics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetFacebookDemographicsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Facebook Page demographics
+    ApiResponse<GetFacebookDemographics200Response> response = apiInstance.GetFacebookDemographicsWithHttpInfo(accountId, breakdown);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetFacebookDemographicsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The Zernio SocialAccount ID for the Facebook account |  |
+| **breakdown** | **string?** | Comma-separated list of demographic dimensions: country, city. Defaults to both if omitted.  | [optional]  |
+
+### Return type
+
+[**GetFacebookDemographics200Response**](GetFacebookDemographics200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the Page |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

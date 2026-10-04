@@ -226,7 +226,7 @@ catch (ApiException e)
 
 Delete custom audience
 
-Deletes the audience from both the platform and the local database. `saved_targeting` audiences exist only on Zernio, so only the local record is removed.
+Removes the audience on its ad platform, then deletes the Zernio record. Meta, Google, TikTok, LinkedIn list and engagement segments, and X are deleted; Pinterest audiences and LinkedIn `website_retargeting` segments are archived, which is how those platforms remove them. `saved_targeting` audiences exist only on Zernio, so only the local record is removed.  If the platform refuses, the error is returned and the Zernio record is kept, so a retry is safe. An audience the platform no longer has counts as removed. Google Ads does not allow removing lookalike lists through its API, so those return 422 `FEATURE_NOT_AVAILABLE`. 
 
 ### Example
 ```csharp
@@ -318,6 +318,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+| **422** | The platform does not allow removing this audience through its API (Google lookalike lists), or refused the removal. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

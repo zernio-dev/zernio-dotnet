@@ -918,6 +918,9 @@ docs/GetDiscordSettings200ResponseAccount.md
 docs/GetDsaDefaults200Response.md
 docs/GetDsaDefaults200ResponseDsaDefaults.md
 docs/GetDsaRecommendations200Response.md
+docs/GetFacebookDemographics200Response.md
+docs/GetFacebookDemographics200ResponseDemographics.md
+docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
 docs/GetFacebookPostReactions200Response.md
@@ -3662,6 +3665,9 @@ src/Zernio.Test/Model/GetDiscordSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetDsaDefaults200ResponseDsaDefaultsTests.cs
 src/Zernio.Test/Model/GetDsaDefaults200ResponseTests.cs
 src/Zernio.Test/Model/GetDsaRecommendations200ResponseTests.cs
+src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsCountryInnerTests.cs
+src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsTests.cs
+src/Zernio.Test/Model/GetFacebookDemographics200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPostReactions200ResponseBreakdownTests.cs
@@ -6383,6 +6389,9 @@ src/Zernio/Model/GetDiscordSettings200ResponseAccount.cs
 src/Zernio/Model/GetDsaDefaults200Response.cs
 src/Zernio/Model/GetDsaDefaults200ResponseDsaDefaults.cs
 src/Zernio/Model/GetDsaRecommendations200Response.cs
+src/Zernio/Model/GetFacebookDemographics200Response.cs
+src/Zernio/Model/GetFacebookDemographics200ResponseDemographics.cs
+src/Zernio/Model/GetFacebookDemographics200ResponseDemographicsCountryInner.cs
 src/Zernio/Model/GetFacebookPages200Response.cs
 src/Zernio/Model/GetFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/GetFacebookPostReactions200Response.cs
