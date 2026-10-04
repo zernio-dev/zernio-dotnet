@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **ImpressionSources** | **Dictionary&lt;string, decimal&gt;** | TikTok business lane: share of views by surface (forYou, follow, search, personalProfile, sound, directMessage, other), fractions 0 to 1. Empty object elsewhere. | 
 **AudienceTypes** | **Dictionary&lt;string, decimal&gt;** | TikTok business lane: follower / nonFollower and newViewer / returnViewer shares, fractions 0 to 1. Empty object elsewhere. | 
 **AudienceCountries** | **Dictionary&lt;string, decimal&gt;** | TikTok business lane: viewer-country shares keyed by ISO-3166 alpha-2, fractions 0 to 1, top 20 with the tail in &#x60;other&#x60;. Empty object elsewhere. | 
+**Replays** | **int** | Facebook Reels only: plays that were replays. 0 elsewhere. | [optional] 
+**RetentionCurve** | **Dictionary&lt;string, decimal&gt;** | Facebook Reels only: share of plays still watching at each second, keyed by the second, fractions 0 to 1. Empty object elsewhere. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
