@@ -64,28 +64,40 @@ namespace Zernio.Model
             MetaEngagement = 4,
 
             /// <summary>
+            /// Enum TiktokEngagement for value: tiktok_engagement
+            /// </summary>
+            [EnumMember(Value = "tiktok_engagement")]
+            TiktokEngagement = 5,
+
+            /// <summary>
+            /// Enum PinterestEngagement for value: pinterest_engagement
+            /// </summary>
+            [EnumMember(Value = "pinterest_engagement")]
+            PinterestEngagement = 6,
+
+            /// <summary>
             /// Enum Website for value: website
             /// </summary>
             [EnumMember(Value = "website")]
-            Website = 5,
+            Website = 7,
 
             /// <summary>
             /// Enum WebsiteRetargeting for value: website_retargeting
             /// </summary>
             [EnumMember(Value = "website_retargeting")]
-            WebsiteRetargeting = 6,
+            WebsiteRetargeting = 8,
 
             /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 7,
+            Lookalike = 9,
 
             /// <summary>
             /// Enum SavedTargeting for value: saved_targeting
             /// </summary>
             [EnumMember(Value = "saved_targeting")]
-            SavedTargeting = 8
+            SavedTargeting = 10
         }
 
 

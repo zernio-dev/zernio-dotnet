@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// customer_list, website, or lookalike audience (uploaded or derived from a source).
+    /// customer_list, website, lookalike or engagement audience (uploaded or derived from a source).
     /// </summary>
     [DataContract(Name = "UploadedOrDerivedAudience")]
     public partial class UploadedOrDerivedAudience : IValidatableObject
@@ -64,22 +64,34 @@ namespace Zernio.Model
             MetaEngagement = 4,
 
             /// <summary>
+            /// Enum TiktokEngagement for value: tiktok_engagement
+            /// </summary>
+            [EnumMember(Value = "tiktok_engagement")]
+            TiktokEngagement = 5,
+
+            /// <summary>
+            /// Enum PinterestEngagement for value: pinterest_engagement
+            /// </summary>
+            [EnumMember(Value = "pinterest_engagement")]
+            PinterestEngagement = 6,
+
+            /// <summary>
             /// Enum Website for value: website
             /// </summary>
             [EnumMember(Value = "website")]
-            Website = 5,
+            Website = 7,
 
             /// <summary>
             /// Enum WebsiteRetargeting for value: website_retargeting
             /// </summary>
             [EnumMember(Value = "website_retargeting")]
-            WebsiteRetargeting = 6,
+            WebsiteRetargeting = 8,
 
             /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 7
+            Lookalike = 9
         }
 
 
@@ -206,6 +218,174 @@ namespace Zernio.Model
         [DataMember(Name = "engagementSource", EmitDefaultValue = false)]
         public EngagementSourceEnum? EngagementSource { get; set; }
         /// <summary>
+        /// lookalike on TikTok and Google: audience breadth. Rejected on Meta and Pinterest.
+        /// </summary>
+        /// <value>lookalike on TikTok and Google: audience breadth. Rejected on Meta and Pinterest.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SizeEnum
+        {
+            /// <summary>
+            /// Enum Narrow for value: narrow
+            /// </summary>
+            [EnumMember(Value = "narrow")]
+            Narrow = 1,
+
+            /// <summary>
+            /// Enum Balanced for value: balanced
+            /// </summary>
+            [EnumMember(Value = "balanced")]
+            Balanced = 2,
+
+            /// <summary>
+            /// Enum Broad for value: broad
+            /// </summary>
+            [EnumMember(Value = "broad")]
+            Broad = 3
+        }
+
+
+        /// <summary>
+        /// lookalike on TikTok and Google: audience breadth. Rejected on Meta and Pinterest.
+        /// </summary>
+        /// <value>lookalike on TikTok and Google: audience breadth. Rejected on Meta and Pinterest.</value>
+        [DataMember(Name = "size", EmitDefaultValue = false)]
+        public SizeEnum? Size { get; set; }
+        /// <summary>
+        /// Required for tiktok_engagement: what people engaged with.
+        /// </summary>
+        /// <value>Required for tiktok_engagement: what people engaged with.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SourceEnum
+        {
+            /// <summary>
+            /// Enum Ads for value: ads
+            /// </summary>
+            [EnumMember(Value = "ads")]
+            Ads = 1,
+
+            /// <summary>
+            /// Enum OrganicVideo for value: organic_video
+            /// </summary>
+            [EnumMember(Value = "organic_video")]
+            OrganicVideo = 2,
+
+            /// <summary>
+            /// Enum LiveVideo for value: live_video
+            /// </summary>
+            [EnumMember(Value = "live_video")]
+            LiveVideo = 3,
+
+            /// <summary>
+            /// Enum BusinessAccount for value: business_account
+            /// </summary>
+            [EnumMember(Value = "business_account")]
+            BusinessAccount = 4
+        }
+
+
+        /// <summary>
+        /// Required for tiktok_engagement: what people engaged with.
+        /// </summary>
+        /// <value>Required for tiktok_engagement: what people engaged with.</value>
+        [DataMember(Name = "source", EmitDefaultValue = false)]
+        public SourceEnum? Source { get; set; }
+        /// <summary>
+        /// tiktok_engagement: type of &#x60;identityId&#x60;.
+        /// </summary>
+        /// <value>tiktok_engagement: type of &#x60;identityId&#x60;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum IdentityTypeEnum
+        {
+            /// <summary>
+            /// Enum TTUSER for value: TT_USER
+            /// </summary>
+            [EnumMember(Value = "TT_USER")]
+            TTUSER = 1,
+
+            /// <summary>
+            /// Enum BCAUTHTT for value: BC_AUTH_TT
+            /// </summary>
+            [EnumMember(Value = "BC_AUTH_TT")]
+            BCAUTHTT = 2
+        }
+
+
+        /// <summary>
+        /// tiktok_engagement: type of &#x60;identityId&#x60;.
+        /// </summary>
+        /// <value>tiktok_engagement: type of &#x60;identityId&#x60;.</value>
+        [DataMember(Name = "identityType", EmitDefaultValue = false)]
+        public IdentityTypeEnum? IdentityType { get; set; }
+        /// <summary>
+        /// pinterest_engagement: Pinterest&#39;s &#x60;engager_type&#x60;, passed through when set.
+        /// </summary>
+        /// <value>pinterest_engagement: Pinterest&#39;s &#x60;engager_type&#x60;, passed through when set.</value>
+        public enum EngagerTypeEnum
+        {
+            /// <summary>
+            /// Enum NUMBER_1 for value: 1
+            /// </summary>
+            NUMBER_1 = 1,
+
+            /// <summary>
+            /// Enum NUMBER_2 for value: 2
+            /// </summary>
+            NUMBER_2 = 2
+        }
+
+
+        /// <summary>
+        /// pinterest_engagement: Pinterest&#39;s &#x60;engager_type&#x60;, passed through when set.
+        /// </summary>
+        /// <value>pinterest_engagement: Pinterest&#39;s &#x60;engager_type&#x60;, passed through when set.</value>
+        [DataMember(Name = "engagerType", EmitDefaultValue = false)]
+        public EngagerTypeEnum? EngagerType { get; set; }
+        /// <summary>
+        /// pinterest_engagement: limit to one engagement action.
+        /// </summary>
+        /// <value>pinterest_engagement: limit to one engagement action.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum EngagementTypeEnum
+        {
+            /// <summary>
+            /// Enum Click for value: click
+            /// </summary>
+            [EnumMember(Value = "click")]
+            Click = 1,
+
+            /// <summary>
+            /// Enum Save for value: save
+            /// </summary>
+            [EnumMember(Value = "save")]
+            Save = 2,
+
+            /// <summary>
+            /// Enum Closeup for value: closeup
+            /// </summary>
+            [EnumMember(Value = "closeup")]
+            Closeup = 3,
+
+            /// <summary>
+            /// Enum Comment for value: comment
+            /// </summary>
+            [EnumMember(Value = "comment")]
+            Comment = 4,
+
+            /// <summary>
+            /// Enum Like for value: like
+            /// </summary>
+            [EnumMember(Value = "like")]
+            Like = 5
+        }
+
+
+        /// <summary>
+        /// pinterest_engagement: limit to one engagement action.
+        /// </summary>
+        /// <value>pinterest_engagement: limit to one engagement action.</value>
+        [DataMember(Name = "engagementType", EmitDefaultValue = false)]
+        public EngagementTypeEnum? EngagementType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UploadedOrDerivedAudience" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -224,18 +404,30 @@ namespace Zernio.Model
         /// <param name="lookbackDays">Required for engagement audiences. Rolling window..</param>
         /// <param name="engagementSources">Required for engagement audiences. Campaign URNs for the ad source types, organization URNs for pages and events. LinkedIn creates one rule per source, all sharing the same trigger and lookbackDays. .</param>
         /// <param name="companies">Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. Not hashed, LinkedIn matches these against its own company graph. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. Replace the list later with POST /v1/ads/audiences/{audienceId}/companies. .</param>
-        /// <param name="pixelId">Required for website audiences.</param>
-        /// <param name="retentionDays">Required for website (max 180) and meta_engagement (max 365) audiences..</param>
+        /// <param name="pixelId">website: the Meta pixel, TikTok pixel or Pinterest tag id. Required on those three, rejected on Google..</param>
+        /// <param name="retentionDays">Required for website (Meta max 180, TikTok 7/14/30/60/90/180, Pinterest and Google max 540), meta_engagement (max 365) and tiktok_engagement (7/14/30/60/90/180; organic and live video and most business-account events only 7/14/30)..</param>
         /// <param name="engagementSource">Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. .</param>
         /// <param name="sourceId">Required for meta_engagement: the Page / IG account / video id..</param>
-        /// <param name="varEvent">meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. .</param>
+        /// <param name="varEvent">meta_engagement: the engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided.  website on TikTok: the pixel event (default &#x60;PAGE BROWSE&#x60;). website on Pinterest: the tag event (&#x60;pagevisit&#x60;, &#x60;signup&#x60;, &#x60;checkout&#x60;, &#x60;viewcategory&#x60;, &#x60;search&#x60;, &#x60;addtocart&#x60;, &#x60;watchvideo&#x60;, &#x60;lead&#x60;, &#x60;custom&#x60; or a partner-defined event).  tiktok_engagement (required): the TikTok engagement event, validated per &#x60;source&#x60; (TikTok&#39;s filter values, spaces included): - ads: &#x60;CLICK&#x60;, &#x60;IMPRESSION&#x60;, &#x60;PLAY 2S&#x60;, &#x60;PLAY 6S&#x60;, &#x60;PLAY 25&#x60;, &#x60;PLAY 50&#x60;, &#x60;PLAY 75&#x60;,   &#x60;PLAY OVER&#x60;, and the &#x60;ENGAGEMENT APP PROFILE&#x60; / &#x60;ENGAGEMENT TIKTOK INSTANT&#x60; /   &#x60;ENGAGEMENT COLLECTION ADS&#x60; &#x60;CLICK&#x60; and &#x60;IMPRESSION&#x60; events. - organic_video: &#x60;ORGANIC VIDEO PLAY 2S&#x60;, &#x60;ORGANIC VIDEO PLAY 6S&#x60;,   &#x60;ORGANIC VIDEO PLAY OVER&#x60;, &#x60;ORGANIC VIDEO ENGAGEMENT&#x60;. - live_video: &#x60;LIVE VIDEO VIEW&#x60;, &#x60;LIVE VIDEO ENGAGEMENT&#x60;. - business_account: &#x60;BUSINESS ACCOUNT PROFILE FOLLOW&#x60;, &#x60;BUSINESS ACCOUNT PROFILE VISIT&#x60;,   &#x60;BUSINESS ACCOUNT ENGAGEMENT&#x60;, &#x60;BUSINESS ACCOUNT PLAY 2S&#x60;, &#x60;BUSINESS ACCOUNT PLAY 6S&#x60;,   &#x60;BUSINESS ACCOUNT PLAY OVER&#x60; and the rest of TikTok&#39;s business-account events. An unknown value is a 400 that lists the valid ones. .</param>
         /// <param name="sourceAudienceId">Required for lookalike audiences.</param>
         /// <param name="country">2-letter code, required for lookalike audiences.</param>
-        /// <param name="ratio">Required for lookalike audiences.</param>
-        /// <param name="urlContains">website only. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. .</param>
-        /// <param name="rule">Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. .</param>
+        /// <param name="ratio">lookalike on Meta (0.01-0.20) and Pinterest (0.01-0.10, whole percents). Rejected on TikTok and Google..</param>
+        /// <param name="size">lookalike on TikTok and Google: audience breadth. Rejected on Meta and Pinterest..</param>
+        /// <param name="source">Required for tiktok_engagement: what people engaged with..</param>
+        /// <param name="sourceIds">tiktok_engagement: ad group / campaign ids for &#x60;ads&#x60;, video ids for &#x60;organic_video&#x60; and &#x60;live_video&#x60; (max 10). Required except for &#x60;business_account&#x60;..</param>
+        /// <param name="identityId">tiktok_engagement: the TikTok identity that owns the videos or business account. Required for organic_video, live_video and business_account..</param>
+        /// <param name="identityType">tiktok_engagement: type of &#x60;identityId&#x60;..</param>
+        /// <param name="identityAuthorizedBcId">tiktok_engagement: required when identityType is BC_AUTH_TT..</param>
+        /// <param name="engagerType">pinterest_engagement: Pinterest&#39;s &#x60;engager_type&#x60;, passed through when set..</param>
+        /// <param name="engagementType">pinterest_engagement: limit to one engagement action..</param>
+        /// <param name="engagementDomains">pinterest_engagement: people who engaged with Pins from these domains. The domain must be claimed on the Pinterest account or Pinterest rejects it..</param>
+        /// <param name="campaignIds">pinterest_engagement: people who engaged with these campaigns&#39; ads..</param>
+        /// <param name="adIds">pinterest_engagement: people who engaged with these ads..</param>
+        /// <param name="pinIds">pinterest_engagement: people who engaged with these Pins. At least one of engagementDomains, campaignIds, adIds or pinIds is required..</param>
+        /// <param name="urlContains">website on Meta, TikTok and Google. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. A 400 on Pinterest, which only matches exact URLs. .</param>
+        /// <param name="rule">Meta only (a 400 elsewhere). Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. .</param>
         /// <param name="customerFileSource">Data source declaration for GDPR compliance (customer_list only).</param>
-        public UploadedOrDerivedAudience(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, List<UploadedOrDerivedAudienceMatchRulesInner> matchRules = default, SourceTypeEnum? sourceType = default, string trigger = default, LookbackDaysEnum? lookbackDays = default, List<string> engagementSources = default, List<UploadedOrDerivedAudienceCompaniesInner> companies = default, string pixelId = default, int retentionDays = default, EngagementSourceEnum? engagementSource = default, string sourceId = default, string varEvent = default, string sourceAudienceId = default, string country = default, decimal ratio = default, string urlContains = default, Object rule = default, string customerFileSource = default)
+        public UploadedOrDerivedAudience(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, List<UploadedOrDerivedAudienceMatchRulesInner> matchRules = default, SourceTypeEnum? sourceType = default, string trigger = default, LookbackDaysEnum? lookbackDays = default, List<string> engagementSources = default, List<UploadedOrDerivedAudienceCompaniesInner> companies = default, string pixelId = default, int retentionDays = default, EngagementSourceEnum? engagementSource = default, string sourceId = default, string varEvent = default, string sourceAudienceId = default, string country = default, decimal ratio = default, SizeEnum? size = default, SourceEnum? source = default, List<string> sourceIds = default, string identityId = default, IdentityTypeEnum? identityType = default, string identityAuthorizedBcId = default, EngagerTypeEnum? engagerType = default, EngagementTypeEnum? engagementType = default, List<string> engagementDomains = default, List<string> campaignIds = default, List<string> adIds = default, List<string> pinIds = default, string urlContains = default, Object rule = default, string customerFileSource = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -271,6 +463,18 @@ namespace Zernio.Model
             this.SourceAudienceId = sourceAudienceId;
             this.Country = country;
             this.Ratio = ratio;
+            this.Size = size;
+            this.Source = source;
+            this.SourceIds = sourceIds;
+            this.IdentityId = identityId;
+            this.IdentityType = identityType;
+            this.IdentityAuthorizedBcId = identityAuthorizedBcId;
+            this.EngagerType = engagerType;
+            this.EngagementType = engagementType;
+            this.EngagementDomains = engagementDomains;
+            this.CampaignIds = campaignIds;
+            this.AdIds = adIds;
+            this.PinIds = pinIds;
             this.UrlContains = urlContains;
             this.Rule = rule;
             this.CustomerFileSource = customerFileSource;
@@ -330,16 +534,16 @@ namespace Zernio.Model
         public List<UploadedOrDerivedAudienceCompaniesInner> Companies { get; set; }
 
         /// <summary>
-        /// Required for website audiences
+        /// website: the Meta pixel, TikTok pixel or Pinterest tag id. Required on those three, rejected on Google.
         /// </summary>
-        /// <value>Required for website audiences</value>
+        /// <value>website: the Meta pixel, TikTok pixel or Pinterest tag id. Required on those three, rejected on Google.</value>
         [DataMember(Name = "pixelId", EmitDefaultValue = false)]
         public string PixelId { get; set; }
 
         /// <summary>
-        /// Required for website (max 180) and meta_engagement (max 365) audiences.
+        /// Required for website (Meta max 180, TikTok 7/14/30/60/90/180, Pinterest and Google max 540), meta_engagement (max 365) and tiktok_engagement (7/14/30/60/90/180; organic and live video and most business-account events only 7/14/30).
         /// </summary>
-        /// <value>Required for website (max 180) and meta_engagement (max 365) audiences.</value>
+        /// <value>Required for website (Meta max 180, TikTok 7/14/30/60/90/180, Pinterest and Google max 540), meta_engagement (max 365) and tiktok_engagement (7/14/30/60/90/180; organic and live video and most business-account events only 7/14/30).</value>
         [DataMember(Name = "retentionDays", EmitDefaultValue = false)]
         public int RetentionDays { get; set; }
 
@@ -351,9 +555,9 @@ namespace Zernio.Model
         public string SourceId { get; set; }
 
         /// <summary>
-        /// meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. 
+        /// meta_engagement: the engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided.  website on TikTok: the pixel event (default &#x60;PAGE BROWSE&#x60;). website on Pinterest: the tag event (&#x60;pagevisit&#x60;, &#x60;signup&#x60;, &#x60;checkout&#x60;, &#x60;viewcategory&#x60;, &#x60;search&#x60;, &#x60;addtocart&#x60;, &#x60;watchvideo&#x60;, &#x60;lead&#x60;, &#x60;custom&#x60; or a partner-defined event).  tiktok_engagement (required): the TikTok engagement event, validated per &#x60;source&#x60; (TikTok&#39;s filter values, spaces included): - ads: &#x60;CLICK&#x60;, &#x60;IMPRESSION&#x60;, &#x60;PLAY 2S&#x60;, &#x60;PLAY 6S&#x60;, &#x60;PLAY 25&#x60;, &#x60;PLAY 50&#x60;, &#x60;PLAY 75&#x60;,   &#x60;PLAY OVER&#x60;, and the &#x60;ENGAGEMENT APP PROFILE&#x60; / &#x60;ENGAGEMENT TIKTOK INSTANT&#x60; /   &#x60;ENGAGEMENT COLLECTION ADS&#x60; &#x60;CLICK&#x60; and &#x60;IMPRESSION&#x60; events. - organic_video: &#x60;ORGANIC VIDEO PLAY 2S&#x60;, &#x60;ORGANIC VIDEO PLAY 6S&#x60;,   &#x60;ORGANIC VIDEO PLAY OVER&#x60;, &#x60;ORGANIC VIDEO ENGAGEMENT&#x60;. - live_video: &#x60;LIVE VIDEO VIEW&#x60;, &#x60;LIVE VIDEO ENGAGEMENT&#x60;. - business_account: &#x60;BUSINESS ACCOUNT PROFILE FOLLOW&#x60;, &#x60;BUSINESS ACCOUNT PROFILE VISIT&#x60;,   &#x60;BUSINESS ACCOUNT ENGAGEMENT&#x60;, &#x60;BUSINESS ACCOUNT PLAY 2S&#x60;, &#x60;BUSINESS ACCOUNT PLAY 6S&#x60;,   &#x60;BUSINESS ACCOUNT PLAY OVER&#x60; and the rest of TikTok&#39;s business-account events. An unknown value is a 400 that lists the valid ones. 
         /// </summary>
-        /// <value>meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. </value>
+        /// <value>meta_engagement: the engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided.  website on TikTok: the pixel event (default &#x60;PAGE BROWSE&#x60;). website on Pinterest: the tag event (&#x60;pagevisit&#x60;, &#x60;signup&#x60;, &#x60;checkout&#x60;, &#x60;viewcategory&#x60;, &#x60;search&#x60;, &#x60;addtocart&#x60;, &#x60;watchvideo&#x60;, &#x60;lead&#x60;, &#x60;custom&#x60; or a partner-defined event).  tiktok_engagement (required): the TikTok engagement event, validated per &#x60;source&#x60; (TikTok&#39;s filter values, spaces included): - ads: &#x60;CLICK&#x60;, &#x60;IMPRESSION&#x60;, &#x60;PLAY 2S&#x60;, &#x60;PLAY 6S&#x60;, &#x60;PLAY 25&#x60;, &#x60;PLAY 50&#x60;, &#x60;PLAY 75&#x60;,   &#x60;PLAY OVER&#x60;, and the &#x60;ENGAGEMENT APP PROFILE&#x60; / &#x60;ENGAGEMENT TIKTOK INSTANT&#x60; /   &#x60;ENGAGEMENT COLLECTION ADS&#x60; &#x60;CLICK&#x60; and &#x60;IMPRESSION&#x60; events. - organic_video: &#x60;ORGANIC VIDEO PLAY 2S&#x60;, &#x60;ORGANIC VIDEO PLAY 6S&#x60;,   &#x60;ORGANIC VIDEO PLAY OVER&#x60;, &#x60;ORGANIC VIDEO ENGAGEMENT&#x60;. - live_video: &#x60;LIVE VIDEO VIEW&#x60;, &#x60;LIVE VIDEO ENGAGEMENT&#x60;. - business_account: &#x60;BUSINESS ACCOUNT PROFILE FOLLOW&#x60;, &#x60;BUSINESS ACCOUNT PROFILE VISIT&#x60;,   &#x60;BUSINESS ACCOUNT ENGAGEMENT&#x60;, &#x60;BUSINESS ACCOUNT PLAY 2S&#x60;, &#x60;BUSINESS ACCOUNT PLAY 6S&#x60;,   &#x60;BUSINESS ACCOUNT PLAY OVER&#x60; and the rest of TikTok&#39;s business-account events. An unknown value is a 400 that lists the valid ones. </value>
         [DataMember(Name = "event", EmitDefaultValue = false)]
         public string Event { get; set; }
 
@@ -372,23 +576,72 @@ namespace Zernio.Model
         public string Country { get; set; }
 
         /// <summary>
-        /// Required for lookalike audiences
+        /// lookalike on Meta (0.01-0.20) and Pinterest (0.01-0.10, whole percents). Rejected on TikTok and Google.
         /// </summary>
-        /// <value>Required for lookalike audiences</value>
+        /// <value>lookalike on Meta (0.01-0.20) and Pinterest (0.01-0.10, whole percents). Rejected on TikTok and Google.</value>
         [DataMember(Name = "ratio", EmitDefaultValue = false)]
         public decimal Ratio { get; set; }
 
         /// <summary>
-        /// website only. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. 
+        /// tiktok_engagement: ad group / campaign ids for &#x60;ads&#x60;, video ids for &#x60;organic_video&#x60; and &#x60;live_video&#x60; (max 10). Required except for &#x60;business_account&#x60;.
         /// </summary>
-        /// <value>website only. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. </value>
+        /// <value>tiktok_engagement: ad group / campaign ids for &#x60;ads&#x60;, video ids for &#x60;organic_video&#x60; and &#x60;live_video&#x60; (max 10). Required except for &#x60;business_account&#x60;.</value>
+        [DataMember(Name = "sourceIds", EmitDefaultValue = false)]
+        public List<string> SourceIds { get; set; }
+
+        /// <summary>
+        /// tiktok_engagement: the TikTok identity that owns the videos or business account. Required for organic_video, live_video and business_account.
+        /// </summary>
+        /// <value>tiktok_engagement: the TikTok identity that owns the videos or business account. Required for organic_video, live_video and business_account.</value>
+        [DataMember(Name = "identityId", EmitDefaultValue = false)]
+        public string IdentityId { get; set; }
+
+        /// <summary>
+        /// tiktok_engagement: required when identityType is BC_AUTH_TT.
+        /// </summary>
+        /// <value>tiktok_engagement: required when identityType is BC_AUTH_TT.</value>
+        [DataMember(Name = "identityAuthorizedBcId", EmitDefaultValue = false)]
+        public string IdentityAuthorizedBcId { get; set; }
+
+        /// <summary>
+        /// pinterest_engagement: people who engaged with Pins from these domains. The domain must be claimed on the Pinterest account or Pinterest rejects it.
+        /// </summary>
+        /// <value>pinterest_engagement: people who engaged with Pins from these domains. The domain must be claimed on the Pinterest account or Pinterest rejects it.</value>
+        [DataMember(Name = "engagementDomains", EmitDefaultValue = false)]
+        public List<string> EngagementDomains { get; set; }
+
+        /// <summary>
+        /// pinterest_engagement: people who engaged with these campaigns&#39; ads.
+        /// </summary>
+        /// <value>pinterest_engagement: people who engaged with these campaigns&#39; ads.</value>
+        [DataMember(Name = "campaignIds", EmitDefaultValue = false)]
+        public List<string> CampaignIds { get; set; }
+
+        /// <summary>
+        /// pinterest_engagement: people who engaged with these ads.
+        /// </summary>
+        /// <value>pinterest_engagement: people who engaged with these ads.</value>
+        [DataMember(Name = "adIds", EmitDefaultValue = false)]
+        public List<string> AdIds { get; set; }
+
+        /// <summary>
+        /// pinterest_engagement: people who engaged with these Pins. At least one of engagementDomains, campaignIds, adIds or pinIds is required.
+        /// </summary>
+        /// <value>pinterest_engagement: people who engaged with these Pins. At least one of engagementDomains, campaignIds, adIds or pinIds is required.</value>
+        [DataMember(Name = "pinIds", EmitDefaultValue = false)]
+        public List<string> PinIds { get; set; }
+
+        /// <summary>
+        /// website on Meta, TikTok and Google. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. A 400 on Pinterest, which only matches exact URLs. 
+        /// </summary>
+        /// <value>website on Meta, TikTok and Google. Narrows the audience from all visitors to visitors of URLs containing this substring. Ignored when &#x60;rule&#x60; is supplied. A 400 on Pinterest, which only matches exact URLs. </value>
         [DataMember(Name = "urlContains", EmitDefaultValue = false)]
         public string UrlContains { get; set; }
 
         /// <summary>
-        /// Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. 
+        /// Meta only (a 400 elsewhere). Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. 
         /// </summary>
-        /// <value>Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. </value>
+        /// <value>Meta only (a 400 elsewhere). Optional raw Meta rule, replacing the one we build. Omit it for all visitors of &#x60;pixelId&#x60;, or use &#x60;urlContains&#x60; for the common page-match case.  For &#x60;website&#x60; this is Meta&#39;s Flexible Audience Rule and is VALIDATED before we call Meta: every entry in &#x60;inclusions.rules&#x60; (and &#x60;exclusions.rules&#x60;) must carry &#x60;event_sources&#x60;, &#x60;retention_seconds&#x60; AND &#x60;filter&#x60;. Meta rejects a rule missing any of the three with code 100 / subcode 1713098 (\&quot;Invalid rule JSON format\&quot;), so a bad shape is a 400 here instead. The pre-2018 flat shapes (&#x60;{url: ...}&#x60;, &#x60;{event: ...}&#x60;) are not accepted by Meta at all (subcode 1870029).  Example, visitors of /checkout in the last 30 days: &#x60;{\&quot;inclusions\&quot;:{\&quot;operator\&quot;:\&quot;or\&quot;,\&quot;rules\&quot;:[{\&quot;event_sources\&quot;:[{\&quot;id\&quot;:\&quot;&lt;pixelId&gt;\&quot;,\&quot;type\&quot;:\&quot;pixel\&quot;}],\&quot;retention_seconds\&quot;:2592000,\&quot;filter\&quot;:{\&quot;operator\&quot;:\&quot;and\&quot;,\&quot;filters\&quot;:[{\&quot;field\&quot;:\&quot;url\&quot;,\&quot;operator\&quot;:\&quot;i_contains\&quot;,\&quot;value\&quot;:\&quot;/checkout\&quot;}]}}]}}&#x60;  Note Meta DERIVES &#x60;retention_days&#x60; from &#x60;retention_seconds&#x60; and stores &#x60;event_sources[].id&#x60; as a number, so a rule read back will not be byte-identical to the one you sent.  For &#x60;meta_engagement&#x60; the rule is forwarded verbatim and NOT validated: that type has two dialects (the &#x60;video&#x60; source uses a legacy flat array), so no single schema covers both. </value>
         [DataMember(Name = "rule", EmitDefaultValue = false)]
         public Object Rule { get; set; }
 
@@ -426,6 +679,18 @@ namespace Zernio.Model
             sb.Append("  SourceAudienceId: ").Append(SourceAudienceId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Ratio: ").Append(Ratio).Append("\n");
+            sb.Append("  Size: ").Append(Size).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
+            sb.Append("  SourceIds: ").Append(SourceIds).Append("\n");
+            sb.Append("  IdentityId: ").Append(IdentityId).Append("\n");
+            sb.Append("  IdentityType: ").Append(IdentityType).Append("\n");
+            sb.Append("  IdentityAuthorizedBcId: ").Append(IdentityAuthorizedBcId).Append("\n");
+            sb.Append("  EngagerType: ").Append(EngagerType).Append("\n");
+            sb.Append("  EngagementType: ").Append(EngagementType).Append("\n");
+            sb.Append("  EngagementDomains: ").Append(EngagementDomains).Append("\n");
+            sb.Append("  CampaignIds: ").Append(CampaignIds).Append("\n");
+            sb.Append("  AdIds: ").Append(AdIds).Append("\n");
+            sb.Append("  PinIds: ").Append(PinIds).Append("\n");
             sb.Append("  UrlContains: ").Append(UrlContains).Append("\n");
             sb.Append("  Rule: ").Append(Rule).Append("\n");
             sb.Append("  CustomerFileSource: ").Append(CustomerFileSource).Append("\n");
@@ -456,15 +721,21 @@ namespace Zernio.Model
             }
 
             // RetentionDays (int) maximum
-            if (this.RetentionDays > (int)365)
+            if (this.RetentionDays > (int)540)
             {
-                yield return new ValidationResult("Invalid value for RetentionDays, must be a value less than or equal to 365.", new [] { "RetentionDays" });
+                yield return new ValidationResult("Invalid value for RetentionDays, must be a value less than or equal to 540.", new [] { "RetentionDays" });
             }
 
             // RetentionDays (int) minimum
             if (this.RetentionDays < (int)1)
             {
                 yield return new ValidationResult("Invalid value for RetentionDays, must be a value greater than or equal to 1.", new [] { "RetentionDays" });
+            }
+
+            // Event (string) maxLength
+            if (this.Event != null && this.Event.Length > 100)
+            {
+                yield return new ValidationResult("Invalid value for Event, length must be less than 100.", new [] { "Event" });
             }
 
             // Ratio (decimal) maximum

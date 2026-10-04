@@ -227,6 +227,114 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Size'
+        /// </summary>
+        [Fact]
+        public void SizeTest()
+        {
+            // TODO unit test for the property 'Size'
+        }
+
+        /// <summary>
+        /// Test the property 'Source'
+        /// </summary>
+        [Fact]
+        public void SourceTest()
+        {
+            // TODO unit test for the property 'Source'
+        }
+
+        /// <summary>
+        /// Test the property 'SourceIds'
+        /// </summary>
+        [Fact]
+        public void SourceIdsTest()
+        {
+            // TODO unit test for the property 'SourceIds'
+        }
+
+        /// <summary>
+        /// Test the property 'IdentityId'
+        /// </summary>
+        [Fact]
+        public void IdentityIdTest()
+        {
+            // TODO unit test for the property 'IdentityId'
+        }
+
+        /// <summary>
+        /// Test the property 'IdentityType'
+        /// </summary>
+        [Fact]
+        public void IdentityTypeTest()
+        {
+            // TODO unit test for the property 'IdentityType'
+        }
+
+        /// <summary>
+        /// Test the property 'IdentityAuthorizedBcId'
+        /// </summary>
+        [Fact]
+        public void IdentityAuthorizedBcIdTest()
+        {
+            // TODO unit test for the property 'IdentityAuthorizedBcId'
+        }
+
+        /// <summary>
+        /// Test the property 'EngagerType'
+        /// </summary>
+        [Fact]
+        public void EngagerTypeTest()
+        {
+            // TODO unit test for the property 'EngagerType'
+        }
+
+        /// <summary>
+        /// Test the property 'EngagementType'
+        /// </summary>
+        [Fact]
+        public void EngagementTypeTest()
+        {
+            // TODO unit test for the property 'EngagementType'
+        }
+
+        /// <summary>
+        /// Test the property 'EngagementDomains'
+        /// </summary>
+        [Fact]
+        public void EngagementDomainsTest()
+        {
+            // TODO unit test for the property 'EngagementDomains'
+        }
+
+        /// <summary>
+        /// Test the property 'CampaignIds'
+        /// </summary>
+        [Fact]
+        public void CampaignIdsTest()
+        {
+            // TODO unit test for the property 'CampaignIds'
+        }
+
+        /// <summary>
+        /// Test the property 'AdIds'
+        /// </summary>
+        [Fact]
+        public void AdIdsTest()
+        {
+            // TODO unit test for the property 'AdIds'
+        }
+
+        /// <summary>
+        /// Test the property 'PinIds'
+        /// </summary>
+        [Fact]
+        public void PinIdsTest()
+        {
+            // TODO unit test for the property 'PinIds'
+        }
+
+        /// <summary>
         /// Test the property 'UrlContains'
         /// </summary>
         [Fact]
