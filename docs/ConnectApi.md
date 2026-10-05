@@ -1861,7 +1861,7 @@ catch (ApiException e)
 
 List Facebook pages
 
-Returns all Facebook pages the connected account has access to, including the currently selected page.
+Returns all Facebook Pages the connected account has access to, including the currently selected Page and the Instagram professional account linked to each Page. Works on `facebook` accounts and on `metaads` accounts (classic and Facebook Login for Business connections). On a business-login `metaads` connection `selectedPageId` is the default Page ads run as, and every listed Page can be passed as `pageId` on POST /v1/ads/create. A classic `metaads` connection has no default Page, so `selectedPageId` is null there. 
 
 ### Example
 ```csharp
@@ -1952,8 +1952,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pages list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Account not found |  -  |
+| **404** | Account not found, or not a facebook or metaads account |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5316,7 +5317,7 @@ catch (ApiException e)
 
 Update Facebook page
 
-Switch which Facebook Page is active for a connected account.
+Switch which Facebook Page is active for a connected account. On a `facebook` account this changes the Page posts publish to. On a Facebook Login for Business `metaads` connection it changes the default Page ads run as (and the Page whose leads are ingested). A classic `metaads` connection has no default Page and answers 400; pass `pageId` per ad on POST /v1/ads/create instead. The Page must be in the list returned by GET (use refresh=true to pick up newly granted Pages). 
 
 ### Example
 ```csharp
@@ -5407,10 +5408,10 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Page updated |  -  |
-| **400** | Page not in available pages |  -  |
+| **400** | Page not in available pages, missing selectedPageId, or a classic metaads connection (no default Page) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Account not found |  -  |
-| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
+| **404** | Account not found, or not a facebook or metaads account |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict), or the Page has no stored access token (reconnect_required). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

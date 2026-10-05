@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Username** | **string** |  | [optional] 
 **Category** | **string** |  | [optional] 
 **FanCount** | **int** |  | [optional] 
+**InstagramAccount** | [**GetFacebookPages200ResponsePagesInnerInstagramAccount**](GetFacebookPages200ResponsePagesInnerInstagramAccount.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
