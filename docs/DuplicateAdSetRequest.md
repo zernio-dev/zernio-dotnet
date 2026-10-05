@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **StatusOption** | **string** |  | [optional] [default to StatusOptionEnum.PAUSED]
 **StartTime** | **DateTime** | Reschedule the copy&#39;s start (ISO 8601). A value without an offset (&#x60;YYYY-MM-DD&#x60;, &#x60;YYYY-MM-DD HH:MM:SS&#x60; or &#x60;YYYY-MM-DDTHH:MM:SS&#x60;) is read in the ad account timezone. | [optional] 
 **EndTime** | **DateTime** | Reschedule the copy&#39;s end, read like &#x60;startTime&#x60;; a date-only end runs to 23:59:59 local. | [optional] 
-**RenameStrategy** | **string** |  | [optional] 
-**RenamePrefix** | **string** |  | [optional] 
-**RenameSuffix** | **string** |  | [optional] 
+**RenameStrategy** | **string** | Meta&#39;s native &#x60;rename_strategy&#x60; values. &#x60;DEEP_RENAME&#x60; renames the copied ad set and its copied ads with &#x60;renamePrefix&#x60; / &#x60;renameSuffix&#x60;. &#x60;ONLY_TOP_LEVEL_RENAME&#x60; renames only the copied ad set; its ads keep their source names. &#x60;NO_RENAME&#x60; keeps every source name. With no rename option at all, Meta appends its own &#x60; - Copy&#x60; suffix. Ignored on TikTok, where &#x60;renamePrefix&#x60; / &#x60;renameSuffix&#x60; still apply. | [optional] 
+**RenamePrefix** | **string** | Text prepended to each renamed object&#39;s name. | [optional] 
+**RenameSuffix** | **string** | Text appended to each renamed object&#39;s name. | [optional] 
 **SyncAfter** | **bool** |  | [optional] [default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

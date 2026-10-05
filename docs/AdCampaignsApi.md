@@ -1958,7 +1958,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta (facebook/instagram) and TikTok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3277,7 +3277,7 @@ catch (ApiException e)
 
 <a id="listadcampaigns"></a>
 # **ListAdCampaigns**
-> ListAdCampaigns200Response ListAdCampaigns (bool? includeEmpty = null, int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, bool? hasDelivery = null, decimal? minSpend = null, bool? live = null)
+> ListAdCampaigns200Response ListAdCampaigns (bool? includeEmpty = null, int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? campaignId = null, string? pageId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, bool? hasDelivery = null, decimal? minSpend = null, bool? live = null)
 
 List campaigns
 
@@ -3314,6 +3314,7 @@ namespace Example
             var platform = "facebook";  // string? |  (optional) 
             var status = new AdStatus?(); // AdStatus? | Filter by derived campaign status (post-aggregation) (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (e.g. act_123 for Meta) (optional) 
+            var campaignId = "campaignId_example";  // string? | Platform campaign ID (the `platformCampaignId` on each returned campaign). Returns only that campaign, or an empty list when it is not visible to the caller. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional) 
             var pageId = "pageId_example";  // string? | Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. (optional) 
             var accountId = "accountId_example";  // string? | Account ID (optional) 
             var profileId = "profileId_example";  // string? | Profile ID (optional) 
@@ -3326,7 +3327,7 @@ namespace Example
             try
             {
                 // List campaigns
-                ListAdCampaigns200Response result = apiInstance.ListAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, live);
+                ListAdCampaigns200Response result = apiInstance.ListAdCampaigns(includeEmpty, page, limit, source, platform, status, adAccountId, campaignId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, live);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3347,7 +3348,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List campaigns
-    ApiResponse<ListAdCampaigns200Response> response = apiInstance.ListAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, live);
+    ApiResponse<ListAdCampaigns200Response> response = apiInstance.ListAdCampaignsWithHttpInfo(includeEmpty, page, limit, source, platform, status, adAccountId, campaignId, pageId, accountId, profileId, fromDate, toDate, hasDelivery, minSpend, live);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3371,6 +3372,7 @@ catch (ApiException e)
 | **platform** | **string?** |  | [optional]  |
 | **status** | [**AdStatus?**](AdStatus?.md) | Filter by derived campaign status (post-aggregation) | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (e.g. act_123 for Meta) | [optional]  |
+| **campaignId** | **string?** | Platform campaign ID (the &#x60;platformCampaignId&#x60; on each returned campaign). Returns only that campaign, or an empty list when it is not visible to the caller. Mirrors the same filter on /v1/ads and /v1/ads/tree. | [optional]  |
 | **pageId** | **string?** | Meta only: Facebook Page ID. Campaigns have no Page of their own, so this keeps campaigns having at least one ad backed by this Page, with adCount and metrics computed over those ads only. Mirrors the same filter on /v1/ads and /v1/ads/tree. | [optional]  |
 | **accountId** | **string?** | Account ID | [optional]  |
 | **profileId** | **string?** | Profile ID | [optional]  |
@@ -5494,7 +5496,7 @@ catch (ApiException e)
 
 Pause or resume a campaign
 
-Writes the campaign's own on/off switch and nothing else, on every platform (Meta, TikTok, Google, LinkedIn campaign group, Pinterest, X, ChatGPT (OpenAI)). Its ad sets and ads keep their own switches: pausing stops their delivery through the campaign, and resuming lets each of them deliver again only if its own switch is on. An ad set or ad you paused individually stays paused; resume it with PUT /v1/ads/ad-sets/{adSetId}/status or PUT /v1/ads/{adId}/status. See the Status model in the Ad Campaigns tag.  **Live read, then write.** The campaign's switch is read from the platform first. When that live read shows it already in the requested state nothing is written (`updated: 0`, `skipped: 1`, with the reason). Otherwise the switch is written (`updated: 1`), read back and stored, and the delivery status of the ads under it (up to 20) is re-read and stored, so an immediate GET returns what the platform now reports. A stored switch never skips a write, and when the platform cannot be read the write always goes out. 
+Writes the campaign's own on/off switch and nothing else, on every platform (Meta, TikTok, Google, LinkedIn campaign group, Pinterest, X, ChatGPT (OpenAI)). Its ad sets and ads keep their own switches: pausing stops their delivery through the campaign, and resuming lets each of them deliver again only if its own switch is on. An ad set or ad you paused individually stays paused; resume it with PUT /v1/ads/ad-sets/{adSetId}/status or PUT /v1/ads/{adId}/status. See the Status model in the Ad Campaigns tag.  **Live read, then write.** The campaign's switch is read from the platform first. When that live read shows it already in the requested state nothing is written (`updated: 0`, `skipped: 1`, with the reason). Otherwise the switch is written (`updated: 1`), read back and stored, and the delivery status of the ads under it (up to 20) is re-read and stored, so an immediate GET returns what the platform now reports. A stored switch never skips a write, and when the platform cannot be read the write always goes out. On Meta the check reads the campaign's own `status`, so a delivery status such as `IN_PROCESS` or `WITH_ISSUES` does not force a write. 
 
 ### Example
 ```csharp
@@ -5917,7 +5919,7 @@ catch (ApiException e)
 
 Pause or resume a single ad set
 
-Ad-set-scoped pause/resume (doesn't touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  Writes the ad set's own on/off switch and nothing else, on every platform (Meta `configured_status`, TikTok ad group `operation_status`, Google ad group status, LinkedIn campaign, Pinterest ad group, X line item, ChatGPT (OpenAI) ad group). Its ads keep their own switches: an ad you paused individually stays paused when the ad set resumes. The campaign above is not touched either, so an ad set resumed under a paused campaign reads `status: paused` until the campaign is resumed too. See the Status model in the Ad Campaigns tag.  **Live read, then write.** The ad set's switch is read from the platform first. When that live read shows it already in the requested state nothing is written (`updated: 0`, `skipped: 1`, with the reason). Otherwise the switch is written (`updated: 1`), read back and stored, and the delivery status of its ads (up to 20) is re-read and stored, so an immediate GET returns what the platform now reports. A stored switch never skips a write, and when the platform cannot be read the write always goes out. 
+Ad-set-scoped pause/resume (doesn't touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.  Writes the ad set's own on/off switch and nothing else, on every platform (Meta `configured_status`, TikTok ad group `operation_status`, Google ad group status, LinkedIn campaign, Pinterest ad group, X line item, ChatGPT (OpenAI) ad group). Its ads keep their own switches: an ad you paused individually stays paused when the ad set resumes. The campaign above is not touched either, so an ad set resumed under a paused campaign reads `status: paused` until the campaign is resumed too. See the Status model in the Ad Campaigns tag.  **Live read, then write.** The ad set's switch is read from the platform first. When that live read shows it already in the requested state nothing is written (`updated: 0`, `skipped: 1`, with the reason). Otherwise the switch is written (`updated: 1`), read back and stored, and the delivery status of its ads (up to 20) is re-read and stored, so an immediate GET returns what the platform now reports. A stored switch never skips a write, and when the platform cannot be read the write always goes out. On Meta the check reads the ad set's own `status`, so a repeated request skips even while `platformAdSetStatus` reads `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`. 
 
 ### Example
 ```csharp
