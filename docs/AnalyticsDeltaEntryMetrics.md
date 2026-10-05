@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Sends** | **int** |  | 
 **Clicks** | **int** |  | 
 **Views** | **int** |  | 
-**Follows** | **int** | Follows attributed to this post (Instagram) | 
+**Follows** | **int** | Follows attributed to this post (Instagram feed and stories, Facebook Reels, TikTok business lane) | 
 **IgReelsAvgWatchTime** | **int** | Average watch time per play, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) | 
 **IgReelsVideoViewTotalTime** | **int** | Total watch time including replays, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) | 
 **Reposts** | **int** |  | 

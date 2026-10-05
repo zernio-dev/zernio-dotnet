@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest, X).</param>
         /// <param name="clicks">Link clicks where the platform reports them. Always 0 on Facebook Page stories: Meta exposes no link-click metric for stories..</param>
         /// <param name="views">views.</param>
-        /// <param name="follows">Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms..</param>
+        /// <param name="follows">Accounts that started following from this post. Instagram feed posts and stories (organic follows), Facebook Reels (Meta post_video_followers) and the TikTok business lane. Null on Instagram Reels and non-Reels video and on Facebook posts that are not Reels, where Meta does not expose this metric for the media. 0 for other platforms..</param>
         /// <param name="igReelsAvgWatchTime">Average watch time per play, in milliseconds, for Instagram Reels, Facebook Reels and TikTok videos (business accounts). On Facebook it includes replays within a play, so it can exceed the Reel length. 0 for other media and platforms, including regular Facebook videos..</param>
         /// <param name="igReelsVideoViewTotalTime">Total watch time including replays, in milliseconds, for Instagram Reels, Facebook Reels and TikTok videos (business accounts). 0 for other media and platforms, including regular Facebook videos..</param>
         /// <param name="reelsSkipRate">Instagram Reels only: percentage (0-100) of initial views that skipped the reel within its first 3 seconds, as reported by Meta. Meta labels the metric estimated and in development, so it can move between syncs. 0 for non-Reels media and other platforms. When a post is published to several accounts, the aggregate is weighted by views..</param>
@@ -163,9 +163,9 @@ namespace Zernio.Model
         public int Views { get; set; }
 
         /// <summary>
-        /// Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms.
+        /// Accounts that started following from this post. Instagram feed posts and stories (organic follows), Facebook Reels (Meta post_video_followers) and the TikTok business lane. Null on Instagram Reels and non-Reels video and on Facebook posts that are not Reels, where Meta does not expose this metric for the media. 0 for other platforms.
         /// </summary>
-        /// <value>Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms.</value>
+        /// <value>Accounts that started following from this post. Instagram feed posts and stories (organic follows), Facebook Reels (Meta post_video_followers) and the TikTok business lane. Null on Instagram Reels and non-Reels video and on Facebook posts that are not Reels, where Meta does not expose this metric for the media. 0 for other platforms.</value>
         /*
         <example>0</example>
         */

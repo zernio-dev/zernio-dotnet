@@ -47,7 +47,7 @@ namespace Zernio.Model
         /// <param name="saves">Total saves on this date.</param>
         /// <param name="clicks">Total clicks on this date.</param>
         /// <param name="views">Total views on this date.</param>
-        /// <param name="follows">Follows attributed to the post on this date (Instagram feed and stories, TikTok business lane); 0 elsewhere.</param>
+        /// <param name="follows">Follows attributed to the post on this date (Instagram feed and stories, Facebook Reels, TikTok business lane). Null on Instagram Reels and video and on Facebook posts that are not Reels, where Meta has no follows metric; 0 on other platforms..</param>
         /// <param name="completionRate">TikTok business lane: share of viewers who watched to the end on this date, 0 to 1; 0 elsewhere.</param>
         /// <param name="profileViews">TikTok business lane: profile views attributed to the post on this date; 0 elsewhere.</param>
         /// <param name="websiteClicks">TikTok business lane: website-link clicks attributed to the post on this date (also inside clicks); 0 elsewhere.</param>
@@ -56,7 +56,7 @@ namespace Zernio.Model
         /// <param name="audienceCountries">TikTok business lane: viewer-country shares on this date keyed by ISO-3166 alpha-2, fractions 0 to 1, top 20 with the tail in &#x60;other&#x60;; empty object elsewhere.</param>
         /// <param name="replays">Facebook Reels only: plays that were replays, as of this date; 0 elsewhere.</param>
         /// <param name="retentionCurve">Facebook Reels only: share of plays still watching at each second of playback, fractions 0 to 1 (Meta post_video_retention_graph). Keys are whole seconds from the start of a play (\&quot;3\&quot; is the share still watching at 3 s). Loops count as continued playback, so a short Reels curve runs past its length (an 8 s Reel has keys \&quot;0\&quot; to \&quot;12\&quot;); Meta returns at most 41 points, so a long Reel covers only its first 40 s. Values are as of this date; empty object elsewhere..</param>
-        public GetPostTimeline200ResponseTimelineInner(DateOnly date = default, string platform = default, string platformPostId = default, int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int follows = default, decimal completionRate = default, int profileViews = default, int websiteClicks = default, Dictionary<string, decimal> impressionSources = default, Dictionary<string, decimal> audienceTypes = default, Dictionary<string, decimal> audienceCountries = default, int replays = default, Dictionary<string, decimal> retentionCurve = default)
+        public GetPostTimeline200ResponseTimelineInner(DateOnly date = default, string platform = default, string platformPostId = default, int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int? follows = default, decimal completionRate = default, int profileViews = default, int websiteClicks = default, Dictionary<string, decimal> impressionSources = default, Dictionary<string, decimal> audienceTypes = default, Dictionary<string, decimal> audienceCountries = default, int replays = default, Dictionary<string, decimal> retentionCurve = default)
         {
             this.Date = date;
             this.Platform = platform;
@@ -158,11 +158,11 @@ namespace Zernio.Model
         public int Views { get; set; }
 
         /// <summary>
-        /// Follows attributed to the post on this date (Instagram feed and stories, TikTok business lane); 0 elsewhere
+        /// Follows attributed to the post on this date (Instagram feed and stories, Facebook Reels, TikTok business lane). Null on Instagram Reels and video and on Facebook posts that are not Reels, where Meta has no follows metric; 0 on other platforms.
         /// </summary>
-        /// <value>Follows attributed to the post on this date (Instagram feed and stories, TikTok business lane); 0 elsewhere</value>
-        [DataMember(Name = "follows", EmitDefaultValue = false)]
-        public int Follows { get; set; }
+        /// <value>Follows attributed to the post on this date (Instagram feed and stories, Facebook Reels, TikTok business lane). Null on Instagram Reels and video and on Facebook posts that are not Reels, where Meta has no follows metric; 0 on other platforms.</value>
+        [DataMember(Name = "follows", EmitDefaultValue = true)]
+        public int? Follows { get; set; }
 
         /// <summary>
         /// TikTok business lane: share of viewers who watched to the end on this date, 0 to 1; 0 elsewhere

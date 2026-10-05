@@ -50,7 +50,7 @@ namespace Zernio.Model
         /// <param name="sends">sends (required).</param>
         /// <param name="clicks">clicks (required).</param>
         /// <param name="views">views (required).</param>
-        /// <param name="follows">Follows attributed to this post (Instagram) (required).</param>
+        /// <param name="follows">Follows attributed to this post (Instagram feed and stories, Facebook Reels, TikTok business lane) (required).</param>
         /// <param name="igReelsAvgWatchTime">Average watch time per play, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) (required).</param>
         /// <param name="igReelsVideoViewTotalTime">Total watch time including replays, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) (required).</param>
         /// <param name="reposts">reposts (required).</param>
@@ -159,9 +159,9 @@ namespace Zernio.Model
         public int Views { get; set; }
 
         /// <summary>
-        /// Follows attributed to this post (Instagram)
+        /// Follows attributed to this post (Instagram feed and stories, Facebook Reels, TikTok business lane)
         /// </summary>
-        /// <value>Follows attributed to this post (Instagram)</value>
+        /// <value>Follows attributed to this post (Instagram feed and stories, Facebook Reels, TikTok business lane)</value>
         [DataMember(Name = "follows", IsRequired = true, EmitDefaultValue = true)]
         public int Follows { get; set; }
 
