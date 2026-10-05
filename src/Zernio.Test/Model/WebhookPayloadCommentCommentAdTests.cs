@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'OriginalMediaId'
+        /// </summary>
+        [Fact]
+        public void OriginalMediaIdTest()
+        {
+            // TODO unit test for the property 'OriginalMediaId'
+        }
+
+        /// <summary>
         /// Test the property 'PromotionStatus'
         /// </summary>
         [Fact]

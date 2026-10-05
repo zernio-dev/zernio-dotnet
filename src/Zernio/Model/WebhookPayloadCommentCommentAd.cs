@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s value.media.ad_id and value.media.ad_title. Facebook: populated via a Graph API lookup of the parent post&#39;s promotion_status. Absent for comments on organic posts that are not currently promoted. 
+    /// Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s value.media.ad_id, value.media.ad_title and value.media.original_media_id, each only when Meta includes it. Facebook: populated via a Graph API lookup of the parent post&#39;s promotion_status. Absent for comments on organic posts that are not currently promoted. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadComment_comment_ad")]
     public partial class WebhookPayloadCommentCommentAd : IValidatableObject
@@ -38,11 +38,13 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Meta ad ID (Instagram only)..</param>
         /// <param name="title">Ad creative title (Instagram only)..</param>
+        /// <param name="originalMediaId">Original media ID that Meta reports for the ad (Instagram only)..</param>
         /// <param name="promotionStatus">Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). .</param>
-        public WebhookPayloadCommentCommentAd(string id = default, string title = default, string promotionStatus = default)
+        public WebhookPayloadCommentCommentAd(string id = default, string title = default, string originalMediaId = default, string promotionStatus = default)
         {
             this.Id = id;
             this.Title = title;
+            this.OriginalMediaId = originalMediaId;
             this.PromotionStatus = promotionStatus;
         }
 
@@ -61,6 +63,13 @@ namespace Zernio.Model
         public string Title { get; set; }
 
         /// <summary>
+        /// Original media ID that Meta reports for the ad (Instagram only).
+        /// </summary>
+        /// <value>Original media ID that Meta reports for the ad (Instagram only).</value>
+        [DataMember(Name = "originalMediaId", EmitDefaultValue = false)]
+        public string OriginalMediaId { get; set; }
+
+        /// <summary>
         /// Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). 
         /// </summary>
         /// <value>Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). </value>
@@ -77,6 +86,7 @@ namespace Zernio.Model
             sb.Append("class WebhookPayloadCommentCommentAd {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  OriginalMediaId: ").Append(OriginalMediaId).Append("\n");
             sb.Append("  PromotionStatus: ").Append(PromotionStatus).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
