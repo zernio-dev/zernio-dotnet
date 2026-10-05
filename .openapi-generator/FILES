@@ -845,6 +845,8 @@ docs/GetAdReview200ResponseReviewRejectionsInnerContent.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree202Response.md
+docs/GetAdVideoStatus200Response.md
+docs/GetAdVideoStatus200ResponseVideo.md
 docs/GetAdsActivityLog200Response.md
 docs/GetAdsActivityLog200ResponsePaging.md
 docs/GetAdsSearchTerms200Response.md
@@ -2436,6 +2438,8 @@ docs/UploadAdImage201ResponseImage.md
 docs/UploadAdImageRequest.md
 docs/UploadAdVideo201Response.md
 docs/UploadAdVideo201ResponseVideo.md
+docs/UploadAdVideo202Response.md
+docs/UploadAdVideo202ResponseVideo.md
 docs/UploadAdVideoRequest.md
 docs/UploadBusinessAgentFileRequest.md
 docs/UploadMediaDirect200Response.md
@@ -2540,6 +2544,9 @@ docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
 docs/WebhookPayloadAdStatusChangedError.md
 docs/WebhookPayloadAdStatusChangedStatus.md
+docs/WebhookPayloadAdVideoProcessed.md
+docs/WebhookPayloadAdVideoProcessedAccount.md
+docs/WebhookPayloadAdVideoProcessedVideo.md
 docs/WebhookPayloadAnalyticsSynced.md
 docs/WebhookPayloadAnalyticsSyncedAccount.md
 docs/WebhookPayloadAnalyticsSyncedSync.md
@@ -3597,6 +3604,8 @@ src/Zernio.Test/Model/GetAdReview200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree202ResponseTests.cs
+src/Zernio.Test/Model/GetAdVideoStatus200ResponseTests.cs
+src/Zernio.Test/Model/GetAdVideoStatus200ResponseVideoTests.cs
 src/Zernio.Test/Model/GetAdsActivityLog200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdsActivityLog200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsSearchTerms200ResponseDataInnerTests.cs
@@ -5161,6 +5170,8 @@ src/Zernio.Test/Model/UploadAdImage201ResponseTests.cs
 src/Zernio.Test/Model/UploadAdImageRequestTests.cs
 src/Zernio.Test/Model/UploadAdVideo201ResponseTests.cs
 src/Zernio.Test/Model/UploadAdVideo201ResponseVideoTests.cs
+src/Zernio.Test/Model/UploadAdVideo202ResponseTests.cs
+src/Zernio.Test/Model/UploadAdVideo202ResponseVideoTests.cs
 src/Zernio.Test/Model/UploadAdVideoRequestTests.cs
 src/Zernio.Test/Model/UploadBusinessAgentFileRequestTests.cs
 src/Zernio.Test/Model/UploadMediaDirect200ResponseTests.cs
@@ -5258,6 +5269,9 @@ src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedErrorTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedStatusTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdVideoProcessedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdVideoProcessedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdVideoProcessedVideoTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedSyncTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedTests.cs
@@ -6326,6 +6340,8 @@ src/Zernio/Model/GetAdReview200ResponseReviewRejectionsInnerContent.cs
 src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree202Response.cs
+src/Zernio/Model/GetAdVideoStatus200Response.cs
+src/Zernio/Model/GetAdVideoStatus200ResponseVideo.cs
 src/Zernio/Model/GetAdsActivityLog200Response.cs
 src/Zernio/Model/GetAdsActivityLog200ResponsePaging.cs
 src/Zernio/Model/GetAdsSearchTerms200Response.cs
@@ -7890,6 +7906,8 @@ src/Zernio/Model/UploadAdImage201ResponseImage.cs
 src/Zernio/Model/UploadAdImageRequest.cs
 src/Zernio/Model/UploadAdVideo201Response.cs
 src/Zernio/Model/UploadAdVideo201ResponseVideo.cs
+src/Zernio/Model/UploadAdVideo202Response.cs
+src/Zernio/Model/UploadAdVideo202ResponseVideo.cs
 src/Zernio/Model/UploadAdVideoRequest.cs
 src/Zernio/Model/UploadBusinessAgentFileRequest.cs
 src/Zernio/Model/UploadMediaDirect200Response.cs
@@ -7988,6 +8006,9 @@ src/Zernio/Model/WebhookPayloadAdStatusChangedAccount.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAdObject.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedError.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedStatus.cs
+src/Zernio/Model/WebhookPayloadAdVideoProcessed.cs
+src/Zernio/Model/WebhookPayloadAdVideoProcessedAccount.cs
+src/Zernio/Model/WebhookPayloadAdVideoProcessedVideo.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSynced.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSyncedAccount.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSyncedSync.cs

@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdCreative**](AdCreativesApi.md#getadcreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details |
 | [**GetAdMedia**](AdCreativesApi.md#getadmedia) | **GET** /v1/ads/{adId}/media | Direct video and image URLs for an ad |
 | [**GetAdPreviews**](AdCreativesApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad |
+| [**GetAdVideoStatus**](AdCreativesApi.md#getadvideostatus) | **GET** /v1/ads/videos/{videoId} | Get ad video processing status |
 | [**ListAdCreatives**](AdCreativesApi.md#listadcreatives) | **GET** /v1/ads/creatives | Creative library |
 | [**ListAdImages**](AdCreativesApi.md#listadimages) | **GET** /v1/ads/images | Ad image library |
 | [**ListAdVideos**](AdCreativesApi.md#listadvideos) | **GET** /v1/ads/videos | Ad video library |
@@ -754,6 +755,113 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad not found |  -  |
 | **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadvideostatus"></a>
+# **GetAdVideoStatus**
+> GetAdVideoStatus200Response GetAdVideoStatus (string videoId, string accountId, string adAccountId)
+
+Get ad video processing status
+
+Reads a video's processing state live from Meta (`GET /{video-id}?fields=status`). Poll this after `POST /v1/ads/videos` with `async: true` until `status` is `ready`; the video is only usable as `video.id` on the create endpoints from then on.  `status` is normalised: `ready`, `error` (Meta's `error` or `expired`), and `processing` for every other Meta state. `platformStatus` carries Meta's raw `video_status` and `processingProgress` Meta's 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdVideoStatusExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCreativesApi(httpClient, config, httpClientHandler);
+            var videoId = "videoId_example";  // string | Meta ad video id (numeric).
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>) the video was uploaded to.
+
+            try
+            {
+                // Get ad video processing status
+                GetAdVideoStatus200Response result = apiInstance.GetAdVideoStatus(videoId, accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCreativesApi.GetAdVideoStatus: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdVideoStatusWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get ad video processing status
+    ApiResponse<GetAdVideoStatus200Response> response = apiInstance.GetAdVideoStatusWithHttpInfo(videoId, accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCreativesApi.GetAdVideoStatusWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **videoId** | **string** | Meta ad video id (numeric). |  |
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;) the video was uploaded to. |  |
+
+### Return type
+
+[**GetAdVideoStatus200Response**](GetAdVideoStatus200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Processing status |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1731,7 +1839,7 @@ catch (ApiException e)
 
 Upload an ad video
 
-Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via `video.id` on POST /v1/ads/create before an ad exists.  Accepts either an https `videoUrl` we download server-side (SSRF-guarded) or raw `videoBase64` bytes; exactly one is required. `videoBase64` is capped by Vercel's body limit, around 4.5 MB payload in practice, so larger videos must come via `videoUrl`.  Returns the Meta `video.id` (reusable wherever `video.id` is accepted) plus Meta's auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via `video.id` on POST /v1/ads/create before an ad exists.  Accepts either an https `videoUrl` we download server-side (SSRF-guarded) or raw `videoBase64` bytes; exactly one is required. `videoBase64` is capped by Vercel's body limit, around 4.5 MB payload in practice, so larger videos must come via `videoUrl`.  Returns the Meta `video.id` (reusable wherever `video.id` is accepted) plus Meta's auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send `async: true` to get a 202 as soon as Meta has accepted the bytes, with `video.status: processing`. Then either poll `GET /v1/ads/videos/{videoId}` until `status` is `ready`, or subscribe to the `ad.video.processed` webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 `invalid_resource_state` naming the status endpoint. With `videoUrl` the download and byte transfer still happen inside the request; only Meta's transcode is skipped.
 
 ### Example
 ```csharp
@@ -1820,6 +1928,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Video uploaded and ready |  -  |
+| **202** | async: true. Meta accepted the upload and is processing it |  -  |
 | **400** | Invalid input, or Meta rejected the upload |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |

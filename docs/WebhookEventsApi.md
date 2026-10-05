@@ -10,6 +10,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountConnected**](WebhookEventsApi.md#onaccountconnected) | **POST** /account.connected | Account connected event |
 | [**OnAccountDisconnected**](WebhookEventsApi.md#onaccountdisconnected) | **POST** /account.disconnected | Account disconnected event |
 | [**OnAdStatusChanged**](WebhookEventsApi.md#onadstatuschanged) | **POST** /ad.status_changed | Ad status changed event |
+| [**OnAdVideoProcessed**](WebhookEventsApi.md#onadvideoprocessed) | **POST** /ad.video.processed | Ad video processed event |
 | [**OnAnalyticsSynced**](WebhookEventsApi.md#onanalyticssynced) | **POST** /analytics.synced | Analytics synced event |
 | [**OnApiChangelogPublished**](WebhookEventsApi.md#onapichangelogpublished) | **POST** /api.changelog.published | API changelog entry published event |
 | [**OnBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onbrandedcallingidentityactionrequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
@@ -617,6 +618,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAdStatusChanged** | [**WebhookPayloadAdStatusChanged**](WebhookPayloadAdStatusChanged.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onadvideoprocessed"></a>
+# **OnAdVideoProcessed**
+> void OnAdVideoProcessed (WebhookPayloadAdVideoProcessed webhookPayloadAdVideoProcessed)
+
+Ad video processed event
+
+Fired once per `POST /v1/ads/videos` call made with `async: true`, when Meta finishes processing the uploaded video. `video.status` is `ready` (reference it as `video.id` on the create endpoints) or `error` (Meta could not process it; `video.error` carries the reason).  Zernio watches the video for up to about 13 minutes after the upload request. A video still processing after that sends no event, so keep `GET /v1/ads/videos/{videoId}` as the source of truth for long videos. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAdVideoProcessedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAdVideoProcessed = new WebhookPayloadAdVideoProcessed(); // WebhookPayloadAdVideoProcessed | 
+
+            try
+            {
+                // Ad video processed event
+                apiInstance.OnAdVideoProcessed(webhookPayloadAdVideoProcessed);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAdVideoProcessed: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAdVideoProcessedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad video processed event
+    apiInstance.OnAdVideoProcessedWithHttpInfo(webhookPayloadAdVideoProcessed);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAdVideoProcessedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAdVideoProcessed** | [**WebhookPayloadAdVideoProcessed**](WebhookPayloadAdVideoProcessed.md) |  |  |
 
 ### Return type
 
