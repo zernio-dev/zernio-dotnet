@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConversationId** | **string** | The platformConversationId (the same identity used by metadata.conversationId) | [optional] 
-**MongoId** | **string** | The Conversation document _id, when a matching doc exists | [optional] 
+**MongoId** | **string** | The Zernio conversation id, when a matching conversation exists | [optional] 
 **AccountId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **ParticipantName** | **string** |  | [optional] 

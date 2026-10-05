@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListInboxConversationAnalytics200ResponseItemsInner" /> class.
         /// </summary>
         /// <param name="conversationId">The platformConversationId (the same identity used by metadata.conversationId).</param>
-        /// <param name="mongoId">The Conversation document _id, when a matching doc exists.</param>
+        /// <param name="mongoId">The Zernio conversation id, when a matching conversation exists.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="platform">platform.</param>
         /// <param name="participantName">participantName.</param>
@@ -78,9 +78,9 @@ namespace Zernio.Model
         public string ConversationId { get; set; }
 
         /// <summary>
-        /// The Conversation document _id, when a matching doc exists
+        /// The Zernio conversation id, when a matching conversation exists
         /// </summary>
-        /// <value>The Conversation document _id, when a matching doc exists</value>
+        /// <value>The Zernio conversation id, when a matching conversation exists</value>
         [DataMember(Name = "mongoId", EmitDefaultValue = true)]
         public string MongoId { get; set; }
 

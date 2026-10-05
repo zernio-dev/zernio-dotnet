@@ -356,7 +356,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | WhatsAppPhoneNumber Mongo ID
+            var id = "id_example";  // string | WhatsApp phone number id
             var enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
 
             try
@@ -400,7 +400,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **string** | WhatsAppPhoneNumber Mongo ID |  |
+| **id** | **string** | WhatsApp phone number id |  |
 | **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md) |  |  |
 
 ### Return type

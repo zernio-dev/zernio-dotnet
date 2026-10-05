@@ -32,10 +32,10 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <returns>GetInboxConversationAnalytics200Response</returns>
@@ -45,10 +45,10 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <returns>ApiResponse of GetInboxConversationAnalytics200Response</returns>
@@ -156,7 +156,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <returns>GetInboxTopAccounts200Response</returns>
         GetInboxTopAccounts200Response GetInboxTopAccounts(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default);
 
@@ -172,7 +172,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <returns>ApiResponse of GetInboxTopAccounts200Response</returns>
         ApiResponse<GetInboxTopAccounts200Response> GetInboxTopAccountsWithHttpInfo(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default);
         /// <summary>
@@ -258,10 +258,10 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -272,10 +272,10 @@ namespace Zernio.Api
         /// Get conversation analytics
         /// </summary>
         /// <remarks>
-        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -390,7 +390,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxTopAccounts200Response</returns>
         System.Threading.Tasks.Task<GetInboxTopAccounts200Response> GetInboxTopAccountsAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -407,7 +407,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxTopAccounts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetInboxTopAccounts200Response>> GetInboxTopAccountsWithHttpInfoAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -699,10 +699,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <returns>GetInboxConversationAnalytics200Response</returns>
@@ -713,10 +713,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <returns>ApiResponse of GetInboxConversationAnalytics200Response</returns>
@@ -769,10 +769,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -784,10 +784,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="conversationId">Mongo _id or platformConversationId.</param>
+        /// <param name="conversationId">Zernio conversation id or platformConversationId.</param>
         /// <param name="fromDate"></param>
         /// <param name="toDate"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1377,7 +1377,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <returns>GetInboxTopAccounts200Response</returns>
         public GetInboxTopAccounts200Response GetInboxTopAccounts(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default)
         {
@@ -1394,7 +1394,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <returns>ApiResponse of GetInboxTopAccounts200Response</returns>
         public Zernio.Client.ApiResponse<GetInboxTopAccounts200Response> GetInboxTopAccountsWithHttpInfo(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default)
         {
@@ -1464,7 +1464,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetInboxTopAccounts200Response</returns>
         public async System.Threading.Tasks.Task<GetInboxTopAccounts200Response> GetInboxTopAccountsAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1482,7 +1482,7 @@ namespace Zernio.Api
         /// <param name="profileId"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="source"> (optional)</param>
-        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)</param>
+        /// <param name="limit">Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetInboxTopAccounts200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetInboxTopAccounts200Response>> GetInboxTopAccountsWithHttpInfoAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? source = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)

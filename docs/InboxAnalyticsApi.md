@@ -18,7 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get conversation analytics
 
-Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo `_id` of the Conversation document OR its `platformConversationId` (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller's team before the Tinybird query fires.  Max date range is 365 days. 
+Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its `platformConversationId` (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller's team before the Tinybird query fires.  Max date range is 365 days. 
 
 ### Example
 ```csharp
@@ -44,7 +44,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new InboxAnalyticsApi(httpClient, config, httpClientHandler);
-            var conversationId = "conversationId_example";  // string | Mongo _id or platformConversationId.
+            var conversationId = "conversationId_example";  // string | Zernio conversation id or platformConversationId.
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
 
@@ -89,7 +89,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **conversationId** | **string** | Mongo _id or platformConversationId. |  |
+| **conversationId** | **string** | Zernio conversation id or platformConversationId. |  |
 | **fromDate** | **DateOnly** |  |  |
 | **toDate** | **DateOnly?** |  | [optional]  |
 
@@ -486,7 +486,7 @@ namespace Example
             var profileId = "profileId_example";  // string? |  (optional) 
             var platform = "platform_example";  // string? |  (optional) 
             var source = "source_example";  // string? |  (optional) 
-            var limit = 10;  // int? | Cap on returned rows. Lower than the posting listing's 100 because each row triggers a SocialAccount Mongo lookup. (optional)  (default to 10)
+            var limit = 10;  // int? | Cap on returned rows. Lower than the posting listing's 100 because each row triggers a social account lookup. (optional)  (default to 10)
 
             try
             {
@@ -534,7 +534,7 @@ catch (ApiException e)
 | **profileId** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 | **source** | **string?** |  | [optional]  |
-| **limit** | **int?** | Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. | [optional] [default to 10] |
+| **limit** | **int?** | Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. | [optional] [default to 10] |
 
 ### Return type
 

@@ -106,7 +106,7 @@ namespace Zernio.Api
         /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <returns>EnableWhatsAppCallingLegacy200Response</returns>
         [Obsolete]
@@ -119,7 +119,7 @@ namespace Zernio.Api
         /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <returns>ApiResponse of EnableWhatsAppCallingLegacy200Response</returns>
         [Obsolete]
@@ -504,7 +504,7 @@ namespace Zernio.Api
         /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EnableWhatsAppCallingLegacy200Response</returns>
@@ -518,7 +518,7 @@ namespace Zernio.Api
         /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EnableWhatsAppCallingLegacy200Response)</returns>
@@ -1480,7 +1480,7 @@ namespace Zernio.Api
         /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <returns>EnableWhatsAppCallingLegacy200Response</returns>
         [Obsolete]
@@ -1494,7 +1494,7 @@ namespace Zernio.Api
         /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <returns>ApiResponse of EnableWhatsAppCallingLegacy200Response</returns>
         [Obsolete]
@@ -1551,7 +1551,7 @@ namespace Zernio.Api
         /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EnableWhatsAppCallingLegacy200Response</returns>
@@ -1566,7 +1566,7 @@ namespace Zernio.Api
         /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="id">WhatsApp phone number id</param>
         /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EnableWhatsAppCallingLegacy200Response)</returns>
