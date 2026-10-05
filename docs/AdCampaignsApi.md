@@ -3281,7 +3281,7 @@ catch (ApiException e)
 
 List campaigns
 
-Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active > pending_review > paused > error > completed > cancelled > rejected). Google campaign budgets include amountMicros, explicitlyShared, resourceName and deliveryMethod after the next successful sync. This endpoint does not fetch Google live.  **Status freshness.** `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored. Background sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often. Zernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync. Controllers that act on a switch should pass `live=true`, which reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned). With `live=true` (which needs `limit` of 20 or less) each returned campaign's own switch (`platformCampaignStatus`) is read live. Live reads cover TikTok, Meta, Google and OpenAI. The rolled-up `status` is not re-derived by a live read. 
+Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active > pending_review > paused > error > completed > cancelled > rejected). Google campaign budgets include amountMicros, explicitlyShared, resourceName and deliveryMethod after the next successful sync. This endpoint does not fetch Google live.  **Status freshness.** `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored. Background sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often. Zernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync. Controllers that act on a switch should pass `live=true`, which reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned). With `live=true` (which needs `limit` of 20 or less) each returned campaign's own switch (`platformCampaignStatus`) is read live. Live reads cover TikTok, Meta, Google and OpenAI. The rolled-up `status` is not re-derived by a live read.  **Budgets here are SYNCED**, never read live, including with `live=true`. To read the current budgets (and status) of every campaign and ad set of a Meta ad account live in one call, for example as a pre-write spend gate, use GET /v1/ads/accounts/live. 
 
 ### Example
 ```csharp
@@ -3642,11 +3642,11 @@ catch (ApiException e)
 
 <a id="listadsets"></a>
 # **ListAdSets**
-> ListAdSets200Response ListAdSets (string? accountId = null, string? campaignId = null, string? adSetId = null, string? platform = null, bool? live = null)
+> ListAdSets200Response ListAdSets (string? accountId = null, string? adAccountId = null, string? campaignId = null, string? adSetId = null, string? platform = null, bool? live = null)
 
 List ad sets
 
-Ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. Reads the `ad_sets` table directly, independent of the `ads` rollup GET /v1/ads/tree uses, so a newly created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here even though it is invisible in the tree until an ad joins it via `adSetId` on POST /v1/ads/create. Returns at most 500 rows, newest first.  **Status freshness.** `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored. Background sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often. Zernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync. Controllers that act on a switch should pass `live=true`, which reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned). With `live=true` (which needs a `campaignId` or `adSetId` filter) each listed ad set's own switch (`platformAdSetStatus`) is read live, for the first 20 rows; later rows keep their synced value with `statusReadAt: null`. Live reads cover TikTok, Meta, Google and OpenAI. The rolled-up `status` is not re-derived by a live read. On TikTok the same live read also returns the ad group's applied `optimizationGoal` and `billingEvent`, as TikTok's adgroup/get reports them, so you can verify the goal TikTok applied rather than the one you requested. It also returns `nativeSettings`: TikTok's own adgroup/get record for the ad group, verbatim and read in that same call (budget, budget_mode, schedule, placements, locations, ages, gender, languages, interests, actions, audiences and exclusions), plus the advertiser's currency and timezone. TikTok's `schedule_start_time` / `schedule_end_time` are UTC wall clocks (\"YYYY-MM-DD HH:MM:SS\", no offset); Ads Manager displays them in `advertiser_timezone`. `configReadAt` says when it was read; it is null on every row whose native settings were not read now, so never treat a null as a match. These are read, not retained create payloads, and are not stored.
+Ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId. Reads the `ad_sets` table directly, independent of the `ads` rollup GET /v1/ads/tree uses, so a newly created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here even though it is invisible in the tree until an ad joins it via `adSetId` on POST /v1/ads/create. Returns at most 500 rows, newest first.  **This list is SYNCED, not live** (refreshed by background sync, see below). Each row also carries the ad set's config (`targeting`, `bidStrategy`, `bidAmount`, `optimizationGoal`, `billingEvent`, `promotedObject`), so `?accountId=...&adAccountId=act_...` returns the config of every ad set of an ad account in one call, without a `campaignId`. To read budgets, status, targeting, promoted object and bid strategy of every campaign and ad set of a Meta ad account LIVE in one call (for example as a pre-write spend gate), use GET /v1/ads/accounts/live instead.  **Status freshness.** `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored. Background sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often. Zernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync. Controllers that act on a switch should pass `live=true`, which reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned). With `live=true` (which needs a `campaignId` or `adSetId` filter) each listed ad set's own switch (`platformAdSetStatus`) is read live, for the first 20 rows; later rows keep their synced value with `statusReadAt: null`. Live reads cover TikTok, Meta, Google and OpenAI. The rolled-up `status` is not re-derived by a live read. On TikTok the same live read also returns the ad group's applied `optimizationGoal` and `billingEvent`, as TikTok's adgroup/get reports them, so you can verify the goal TikTok applied rather than the one you requested. It also returns `nativeSettings`: TikTok's own adgroup/get record for the ad group, verbatim and read in that same call (budget, budget_mode, schedule, placements, locations, ages, gender, languages, interests, actions, audiences and exclusions), plus the advertiser's currency and timezone. TikTok's `schedule_start_time` / `schedule_end_time` are UTC wall clocks (\"YYYY-MM-DD HH:MM:SS\", no offset); Ads Manager displays them in `advertiser_timezone`. `configReadAt` says when it was read; it is null on every row whose native settings were not read now, so never treat a null as a match. These are read, not retained create payloads, and are not stored.
 
 ### Example
 ```csharp
@@ -3673,6 +3673,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string? | Account ID (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account id (Meta act_<n>). Lists every synced ad set of that ad account; no campaignId needed. (optional) 
             var campaignId = "campaignId_example";  // string? | Platform campaign ID (optional) 
             var adSetId = "adSetId_example";  // string? | Platform ad set ID (optional) 
             var platform = "facebook";  // string? |  (optional) 
@@ -3681,7 +3682,7 @@ namespace Example
             try
             {
                 // List ad sets
-                ListAdSets200Response result = apiInstance.ListAdSets(accountId, campaignId, adSetId, platform, live);
+                ListAdSets200Response result = apiInstance.ListAdSets(accountId, adAccountId, campaignId, adSetId, platform, live);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3702,7 +3703,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ad sets
-    ApiResponse<ListAdSets200Response> response = apiInstance.ListAdSetsWithHttpInfo(accountId, campaignId, adSetId, platform, live);
+    ApiResponse<ListAdSets200Response> response = apiInstance.ListAdSetsWithHttpInfo(accountId, adAccountId, campaignId, adSetId, platform, live);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3720,6 +3721,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string?** | Account ID | [optional]  |
+| **adAccountId** | **string?** | Platform ad account id (Meta act_&lt;n&gt;). Lists every synced ad set of that ad account; no campaignId needed. | [optional]  |
 | **campaignId** | **string?** | Platform campaign ID | [optional]  |
 | **adSetId** | **string?** | Platform ad set ID | [optional]  |
 | **platform** | **string?** |  | [optional]  |
