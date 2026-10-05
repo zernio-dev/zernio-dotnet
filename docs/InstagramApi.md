@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetInstagramAudio**](InstagramApi.md#getinstagramaudio) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata |
+| [**GetInstagramBusinessDiscovery**](InstagramApi.md#getinstagrambusinessdiscovery) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account |
 | [**GetInstagramPublishingLimit**](InstagramApi.md#getinstagrampublishinglimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**GetInstagramStoryInsights**](InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
 | [**ListInstagramStories**](InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
@@ -112,6 +113,112 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **502** | Instagram rejected the request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getinstagrambusinessdiscovery"></a>
+# **GetInstagramBusinessDiscovery**
+> InstagramBusinessDiscovery GetInstagramBusinessDiscovery (string accountId, string username, int? limit = null)
+
+Look up a public Instagram Business account
+
+Returns the public profile and most recent media of any Instagram Business or Creator account, looked up by username through one of your connected Instagram accounts. Useful for competitor and market research. Personal accounts and private accounts cannot be looked up.  Requires an Instagram account connected via **Facebook Login**. Meta serves business discovery on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (`instagram_business_discovery_requires_facebook_login`) and must be reconnected choosing the Facebook option. Any one such account can look up any public Business or Creator handle.  `likeCount` is null when the owner hides like counts. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetInstagramBusinessDiscoveryExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InstagramApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Instagram account (Facebook Login).
+            var username = nike;  // string | Instagram handle to look up, with or without the leading @. Case-insensitive.
+            var limit = 12;  // int? | How many of the most recent media to return. (optional)  (default to 12)
+
+            try
+            {
+                // Look up a public Instagram Business account
+                InstagramBusinessDiscovery result = apiInstance.GetInstagramBusinessDiscovery(accountId, username, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling InstagramApi.GetInstagramBusinessDiscovery: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetInstagramBusinessDiscoveryWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Look up a public Instagram Business account
+    ApiResponse<InstagramBusinessDiscovery> response = apiInstance.GetInstagramBusinessDiscoveryWithHttpInfo(accountId, username, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling InstagramApi.GetInstagramBusinessDiscoveryWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Instagram account (Facebook Login). |  |
+| **username** | **string** | Instagram handle to look up, with or without the leading @. Case-insensitive. |  |
+| **limit** | **int?** | How many of the most recent media to return. | [optional] [default to 12] |
+
+### Return type
+
+[**InstagramBusinessDiscovery**](InstagramBusinessDiscovery.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Public profile and recent media |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or no public Business or Creator account has that username (&#x60;instagram_profile_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
