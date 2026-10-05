@@ -15,6 +15,7 @@ docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
 docs/Ad.md
 docs/AdAccountsApi.md
+docs/AdActivationStatus.md
 docs/AdAnalyticsResponse.md
 docs/AdAnalyticsResponseAd.md
 docs/AdAnalyticsResponseAnalytics.md
@@ -2796,6 +2797,7 @@ src/Zernio.Test/Model/AccountsListResponseTests.cs
 src/Zernio.Test/Model/ActivateSequence200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseWorkflowTests.cs
+src/Zernio.Test/Model/AdActivationStatusTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseAdTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseAnalyticsTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseTests.cs
@@ -5525,6 +5527,7 @@ src/Zernio/Model/ActivateSequence200Response.cs
 src/Zernio/Model/ActivateWorkflow200Response.cs
 src/Zernio/Model/ActivateWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/Ad.cs
+src/Zernio/Model/AdActivationStatus.cs
 src/Zernio/Model/AdAnalyticsResponse.cs
 src/Zernio/Model/AdAnalyticsResponseAd.cs
 src/Zernio/Model/AdAnalyticsResponseAnalytics.cs
