@@ -1737,6 +1737,7 @@ catch (ApiException e)
 | **200** | Message accepted for delivery. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is profile-scoped and &#x60;from&#x60; belongs to a profile outside its scope (alphanumeric sender IDs included) |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
