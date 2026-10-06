@@ -554,7 +554,7 @@ catch (ApiException e)
 | **400** | Platform does not support liking comments |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the account is missing the platform permission |  -  |
-| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
+| **409** | LinkedIn only: the account already holds a reaction on this target, either of a different type or one LinkedIn does not let this account read (code invalid_resource_state); remove it before creating another. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -659,7 +659,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
-| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
+| **409** | LinkedIn only: the account already holds a reaction on this target, either of a different type or one LinkedIn does not let this account read (code invalid_resource_state); remove it before creating another. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
