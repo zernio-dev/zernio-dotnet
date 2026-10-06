@@ -1027,6 +1027,8 @@ docs/GetInboxVolume400Response.md
 docs/GetInstagramAccountInsights404Response.md
 docs/GetInstagramAudio200Response.md
 docs/GetInstagramFollowStatus200Response.md
+docs/GetInstagramOnlineFollowers200Response.md
+docs/GetInstagramOnlineFollowers200ResponseDaysInner.md
 docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
@@ -3795,6 +3797,8 @@ src/Zernio.Test/Model/GetInboxVolume400ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramAudio200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramFollowStatus200ResponseTests.cs
+src/Zernio.Test/Model/GetInstagramOnlineFollowers200ResponseDaysInnerTests.cs
+src/Zernio.Test/Model/GetInstagramOnlineFollowers200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramPublishingLimit200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
@@ -6540,6 +6544,8 @@ src/Zernio/Model/GetInboxVolume400Response.cs
 src/Zernio/Model/GetInstagramAccountInsights404Response.cs
 src/Zernio/Model/GetInstagramAudio200Response.cs
 src/Zernio/Model/GetInstagramFollowStatus200Response.cs
+src/Zernio/Model/GetInstagramOnlineFollowers200Response.cs
+src/Zernio/Model/GetInstagramOnlineFollowers200ResponseDaysInner.cs
 src/Zernio/Model/GetInstagramPublishingLimit200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
