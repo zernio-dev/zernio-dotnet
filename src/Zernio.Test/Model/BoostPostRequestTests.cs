@@ -470,6 +470,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CampaignStatus'
+        /// </summary>
+        [Fact]
+        public void CampaignStatusTest()
+        {
+            // TODO unit test for the property 'CampaignStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'AdSetStatus'
+        /// </summary>
+        [Fact]
+        public void AdSetStatusTest()
+        {
+            // TODO unit test for the property 'AdSetStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'AdStatus'
+        /// </summary>
+        [Fact]
+        public void AdStatusTest()
+        {
+            // TODO unit test for the property 'AdStatus'
+        }
+
+        /// <summary>
         /// Test the property 'BudgetLevel'
         /// </summary>
         [Fact]
