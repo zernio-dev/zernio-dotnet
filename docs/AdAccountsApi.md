@@ -1655,11 +1655,11 @@ catch (ApiException e)
 
 <a id="detachadlabel"></a>
 # **DetachAdLabel**
-> DetachAdLabel200Response DetachAdLabel (string labelId, GoogleAdLabelAssignments googleAdLabelAssignments)
+> DetachAdLabel200Response DetachAdLabel (string labelId, string accountId, string? adAccountId = null, string? customerId = null, List<string>? campaignIds = null, List<string>? adSetIds = null, List<string>? adIds = null, List<string>? keywordIds = null)
 
 Detach a Google Ads label
 
-Removes the label from the given targets. Idempotent; a target without the label is counted in `unchanged`.
+Removes the label from the given targets. Idempotent; a target without the label is counted in `unchanged`. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 ```csharp
@@ -1686,12 +1686,18 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var labelId = "labelId_example";  // string | Google label id
-            var googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+            var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
+            var campaignIds = new List<string>?(); // List<string>? | Google campaign ids. Repeat the parameter or pass a comma-separated list. (optional) 
+            var adSetIds = new List<string>?(); // List<string>? | Google ad group ids. Repeat the parameter or pass a comma-separated list. (optional) 
+            var adIds = new List<string>?(); // List<string>? | Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list. (optional) 
+            var keywordIds = new List<string>?(); // List<string>? | Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list. (optional) 
 
             try
             {
                 // Detach a Google Ads label
-                DetachAdLabel200Response result = apiInstance.DetachAdLabel(labelId, googleAdLabelAssignments);
+                DetachAdLabel200Response result = apiInstance.DetachAdLabel(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1712,7 +1718,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Detach a Google Ads label
-    ApiResponse<DetachAdLabel200Response> response = apiInstance.DetachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+    ApiResponse<DetachAdLabel200Response> response = apiInstance.DetachAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1730,7 +1736,13 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **labelId** | **string** | Google label id |  |
-| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md) |  |  |
+| **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
+| **campaignIds** | [**List&lt;string&gt;?**](string.md) | Google campaign ids. Repeat the parameter or pass a comma-separated list. | [optional]  |
+| **adSetIds** | [**List&lt;string&gt;?**](string.md) | Google ad group ids. Repeat the parameter or pass a comma-separated list. | [optional]  |
+| **adIds** | [**List&lt;string&gt;?**](string.md) | Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list. | [optional]  |
+| **keywordIds** | [**List&lt;string&gt;?**](string.md) | Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list. | [optional]  |
 
 ### Return type
 
@@ -1742,7 +1754,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -5134,11 +5146,11 @@ catch (ApiException e)
 
 <a id="removeaccountcallout"></a>
 # **RemoveAccountCallout**
-> RemoveAccountCallout200Response RemoveAccountCallout (RemoveAccountCalloutRequest removeAccountCalloutRequest)
+> RemoveAccountCallout200Response RemoveAccountCallout (string accountId, string assetId, string? adAccountId = null, string? customerId = null)
 
 Remove account callout
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 ```csharp
@@ -5164,12 +5176,15 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
-            var removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+            var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var assetId = "assetId_example";  // string | Numeric Google Ads asset id.
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove account callout
-                RemoveAccountCallout200Response result = apiInstance.RemoveAccountCallout(removeAccountCalloutRequest);
+                RemoveAccountCallout200Response result = apiInstance.RemoveAccountCallout(accountId, assetId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5190,7 +5205,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove account callout
-    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountCalloutWithHttpInfo(removeAccountCalloutRequest);
+    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountCalloutWithHttpInfo(accountId, assetId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5207,7 +5222,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md) |  |  |
+| **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **assetId** | **string** | Numeric Google Ads asset id. |  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -5219,7 +5237,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -5239,11 +5257,11 @@ catch (ApiException e)
 
 <a id="removeaccountsitelink"></a>
 # **RemoveAccountSitelink**
-> RemoveAccountCallout200Response RemoveAccountSitelink (RemoveAccountCalloutRequest removeAccountCalloutRequest)
+> RemoveAccountCallout200Response RemoveAccountSitelink (string accountId, string assetId, string? adAccountId = null, string? customerId = null)
 
 Remove account sitelink
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 ```csharp
@@ -5269,12 +5287,15 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
-            var removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+            var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var assetId = "assetId_example";  // string | Numeric Google Ads asset id.
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove account sitelink
-                RemoveAccountCallout200Response result = apiInstance.RemoveAccountSitelink(removeAccountCalloutRequest);
+                RemoveAccountCallout200Response result = apiInstance.RemoveAccountSitelink(accountId, assetId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5295,7 +5316,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove account sitelink
-    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountSitelinkWithHttpInfo(removeAccountCalloutRequest);
+    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountSitelinkWithHttpInfo(accountId, assetId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5312,7 +5333,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md) |  |  |
+| **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **assetId** | **string** | Numeric Google Ads asset id. |  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -5324,7 +5348,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -5344,11 +5368,11 @@ catch (ApiException e)
 
 <a id="removeaccountstructuredsnippet"></a>
 # **RemoveAccountStructuredSnippet**
-> RemoveAccountCallout200Response RemoveAccountStructuredSnippet (RemoveAccountCalloutRequest removeAccountCalloutRequest)
+> RemoveAccountCallout200Response RemoveAccountStructuredSnippet (string accountId, string assetId, string? adAccountId = null, string? customerId = null)
 
 Remove account snippet
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 ```csharp
@@ -5374,12 +5398,15 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
-            var removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+            var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var assetId = "assetId_example";  // string | Numeric Google Ads asset id.
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove account snippet
-                RemoveAccountCallout200Response result = apiInstance.RemoveAccountStructuredSnippet(removeAccountCalloutRequest);
+                RemoveAccountCallout200Response result = apiInstance.RemoveAccountStructuredSnippet(accountId, assetId, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5400,7 +5427,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove account snippet
-    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest);
+    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountStructuredSnippetWithHttpInfo(accountId, assetId, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5417,7 +5444,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md) |  |  |
+| **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **assetId** | **string** | Numeric Google Ads asset id. |  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -5429,7 +5459,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

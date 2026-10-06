@@ -3559,7 +3559,7 @@ namespace Example
             var campaignId = "campaignId_example";  // string? | Platform campaign ID (optional) 
             var adSetId = "adSetId_example";  // string? | Platform ad group ID (Google ad group) (optional) 
             var status = "active";  // string? | Keyword criterion status (optional) 
-            var matchType = "exact";  // string? |  (optional) 
+            var matchType = "exact";  // string? | Accepted in any case. (optional) 
             var negative = true;  // bool? | true = negative keywords only, false = positive only. Omit for both. (optional) 
             var search = "search_example";  // string? | Case-insensitive substring match on the keyword text (optional) 
 
@@ -3612,7 +3612,7 @@ catch (ApiException e)
 | **campaignId** | **string?** | Platform campaign ID | [optional]  |
 | **adSetId** | **string?** | Platform ad group ID (Google ad group) | [optional]  |
 | **status** | **string?** | Keyword criterion status | [optional]  |
-| **matchType** | **string?** |  | [optional]  |
+| **matchType** | **string?** | Accepted in any case. | [optional]  |
 | **negative** | **bool?** | true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. | [optional]  |
 | **search** | **string?** | Case-insensitive substring match on the keyword text | [optional]  |
 
@@ -4535,11 +4535,11 @@ catch (ApiException e)
 
 <a id="removeadgroupassets"></a>
 # **RemoveAdGroupAssets**
-> RemoveCampaignAssets200Response RemoveAdGroupAssets (string adSetId, RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest)
+> RemoveCampaignAssets200Response RemoveAdGroupAssets (string adSetId, string accountId, List<string> assetResourceNames, List<string> adGroupAssetResourceNames, string? adAccountId = null, string? customerId = null)
 
 Remove ad-group assets
 
-Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 ```csharp
@@ -4566,12 +4566,16 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Numeric Google platform id.
-            var removeAdGroupAssetsRequest = new RemoveAdGroupAssetsRequest(); // RemoveAdGroupAssetsRequest | 
+            var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var assetResourceNames = new List<string>(); // List<string> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
+            var adGroupAssetResourceNames = new List<string>(); // List<string> | ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove ad-group assets
-                RemoveCampaignAssets200Response result = apiInstance.RemoveAdGroupAssets(adSetId, removeAdGroupAssetsRequest);
+                RemoveCampaignAssets200Response result = apiInstance.RemoveAdGroupAssets(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4592,7 +4596,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove ad-group assets
-    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest);
+    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveAdGroupAssetsWithHttpInfo(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4610,7 +4614,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adSetId** | **string** | Numeric Google platform id. |  |
-| **removeAdGroupAssetsRequest** | [**RemoveAdGroupAssetsRequest**](RemoveAdGroupAssetsRequest.md) |  |  |
+| **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **assetResourceNames** | [**List&lt;string&gt;**](string.md) | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. |  |
+| **adGroupAssetResourceNames** | [**List&lt;string&gt;**](string.md) | ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. |  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -4622,7 +4630,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -4744,11 +4752,11 @@ catch (ApiException e)
 
 <a id="removecampaignassets"></a>
 # **RemoveCampaignAssets**
-> RemoveCampaignAssets200Response RemoveCampaignAssets (string campaignId, RemoveCampaignAssetsRequest removeCampaignAssetsRequest)
+> RemoveCampaignAssets200Response RemoveCampaignAssets (string campaignId, string accountId, List<string> assetResourceNames, List<string> campaignAssetResourceNames, string? adAccountId = null, string? customerId = null)
 
 Remove campaign assets
 
-Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 ```csharp
@@ -4775,12 +4783,16 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Numeric Google platform id.
-            var removeCampaignAssetsRequest = new RemoveCampaignAssetsRequest(); // RemoveCampaignAssetsRequest | 
+            var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var assetResourceNames = new List<string>(); // List<string> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
+            var campaignAssetResourceNames = new List<string>(); // List<string> | campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
+            var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove campaign assets
-                RemoveCampaignAssets200Response result = apiInstance.RemoveCampaignAssets(campaignId, removeCampaignAssetsRequest);
+                RemoveCampaignAssets200Response result = apiInstance.RemoveCampaignAssets(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4801,7 +4813,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove campaign assets
-    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest);
+    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveCampaignAssetsWithHttpInfo(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4819,7 +4831,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **campaignId** | **string** | Numeric Google platform id. |  |
-| **removeCampaignAssetsRequest** | [**RemoveCampaignAssetsRequest**](RemoveCampaignAssetsRequest.md) |  |  |
+| **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **assetResourceNames** | [**List&lt;string&gt;**](string.md) | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. |  |
+| **campaignAssetResourceNames** | [**List&lt;string&gt;**](string.md) | campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. |  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
+| **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
 ### Return type
 
@@ -4831,7 +4847,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
