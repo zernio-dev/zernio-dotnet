@@ -332,6 +332,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ConnectWhatsAppEmbeddedSignup200Response</returns>
         ApiResponse<ConnectWhatsAppEmbeddedSignup200Response> ConnectWhatsAppEmbeddedSignupWithHttpInfo(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default);
         /// <summary>
+        /// Connect a Whop account
+        /// </summary>
+        /// <remarks>
+        /// Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <returns>ConnectWhopAdsCredentials200Response</returns>
+        ConnectWhopAdsCredentials200Response ConnectWhopAdsCredentials(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest);
+
+        /// <summary>
+        /// Connect a Whop account
+        /// </summary>
+        /// <remarks>
+        /// Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <returns>ApiResponse of ConnectWhopAdsCredentials200Response</returns>
+        ApiResponse<ConnectWhopAdsCredentials200Response> ConnectWhopAdsCredentialsWithHttpInfo(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest);
+        /// <summary>
         /// Connect self-hosted WordPress with an application password
         /// </summary>
         /// <remarks>
@@ -1701,6 +1722,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectWhatsAppEmbeddedSignup200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectWhatsAppEmbeddedSignup200Response>> ConnectWhatsAppEmbeddedSignupWithHttpInfoAsync(ConnectWhatsAppEmbeddedSignupRequest connectWhatsAppEmbeddedSignupRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Connect a Whop account
+        /// </summary>
+        /// <remarks>
+        /// Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConnectWhopAdsCredentials200Response</returns>
+        System.Threading.Tasks.Task<ConnectWhopAdsCredentials200Response> ConnectWhopAdsCredentialsAsync(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Connect a Whop account
+        /// </summary>
+        /// <remarks>
+        /// Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConnectWhopAdsCredentials200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConnectWhopAdsCredentials200Response>> ConnectWhopAdsCredentialsWithHttpInfoAsync(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Connect self-hosted WordPress with an application password
         /// </summary>
@@ -4865,6 +4909,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConnectWhatsAppEmbeddedSignup", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect a Whop account Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <returns>ConnectWhopAdsCredentials200Response</returns>
+        public ConnectWhopAdsCredentials200Response ConnectWhopAdsCredentials(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest)
+        {
+            Zernio.Client.ApiResponse<ConnectWhopAdsCredentials200Response> localVarResponse = ConnectWhopAdsCredentialsWithHttpInfo(connectWhopAdsCredentialsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Connect a Whop account Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <returns>ApiResponse of ConnectWhopAdsCredentials200Response</returns>
+        public Zernio.Client.ApiResponse<ConnectWhopAdsCredentials200Response> ConnectWhopAdsCredentialsWithHttpInfo(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest)
+        {
+            // verify the required parameter 'connectWhopAdsCredentialsRequest' is set
+            if (connectWhopAdsCredentialsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectWhopAdsCredentialsRequest' when calling ConnectApi->ConnectWhopAdsCredentials");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectWhopAdsCredentialsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ConnectWhopAdsCredentials200Response>("/v1/connect/whop-ads/credentials", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectWhopAdsCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect a Whop account Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConnectWhopAdsCredentials200Response</returns>
+        public async System.Threading.Tasks.Task<ConnectWhopAdsCredentials200Response> ConnectWhopAdsCredentialsAsync(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ConnectWhopAdsCredentials200Response> localVarResponse = await ConnectWhopAdsCredentialsWithHttpInfoAsync(connectWhopAdsCredentialsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Connect a Whop account Connect a Whop account with an Account API key from the Whop dashboard (Developer &gt; API keys). The key only has to be able to read its own account: Zernio calls &#x60;GET /accounts/me&#x60; once to learn the account id (&#x60;biz_...&#x60;) and name, then stores the key.  What the connection unlocks today is the Whop Pixel through the tracking-tags API: the account id is the pixel, so &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; lists it and &#x60;POST .../tracking-tags/{biz_...}/install&#x60; puts it on a Shopify store or WordPress site. Whop campaigns are not managed through Zernio. One Whop account per profile. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhopAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConnectWhopAdsCredentials200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConnectWhopAdsCredentials200Response>> ConnectWhopAdsCredentialsWithHttpInfoAsync(ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'connectWhopAdsCredentialsRequest' is set
+            if (connectWhopAdsCredentialsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectWhopAdsCredentialsRequest' when calling ConnectApi->ConnectWhopAdsCredentials");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectWhopAdsCredentialsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ConnectWhopAdsCredentials200Response>("/v1/connect/whop-ads/credentials", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectWhopAdsCredentials", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

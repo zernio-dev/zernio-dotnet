@@ -223,6 +223,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ConnectWhopAdsCredentials
+        /// </summary>
+        [Fact]
+        public void ConnectWhopAdsCredentialsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConnectWhopAdsCredentialsRequest connectWhopAdsCredentialsRequest = null;
+            //var response = instance.ConnectWhopAdsCredentials(connectWhopAdsCredentialsRequest);
+            //Assert.IsType<ConnectWhopAdsCredentials200Response>(response);
+        }
+
+        /// <summary>
         /// Test ConnectWordPressWithApplicationPassword
         /// </summary>
         [Fact]

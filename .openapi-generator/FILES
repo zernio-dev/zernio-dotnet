@@ -371,6 +371,8 @@ docs/ConnectWhatsAppCredentialsRequest.md
 docs/ConnectWhatsAppEmbeddedSignup200Response.md
 docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md
 docs/ConnectWhatsAppEmbeddedSignupRequest.md
+docs/ConnectWhopAdsCredentials200Response.md
+docs/ConnectWhopAdsCredentialsRequest.md
 docs/ConnectWordPressWithApplicationPassword200Response.md
 docs/ConnectWordPressWithApplicationPassword200ResponseAccount.md
 docs/ConnectWordPressWithApplicationPasswordRequest.md
@@ -3184,6 +3186,8 @@ src/Zernio.Test/Model/ConnectWhatsAppCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignup200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignup200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppEmbeddedSignupRequestTests.cs
+src/Zernio.Test/Model/ConnectWhopAdsCredentials200ResponseTests.cs
+src/Zernio.Test/Model/ConnectWhopAdsCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectWordPressWithApplicationPassword200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWordPressWithApplicationPassword200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWordPressWithApplicationPasswordRequestTests.cs
@@ -5960,6 +5964,8 @@ src/Zernio/Model/ConnectWhatsAppCredentialsRequest.cs
 src/Zernio/Model/ConnectWhatsAppEmbeddedSignup200Response.cs
 src/Zernio/Model/ConnectWhatsAppEmbeddedSignup200ResponseAccount.cs
 src/Zernio/Model/ConnectWhatsAppEmbeddedSignupRequest.cs
+src/Zernio/Model/ConnectWhopAdsCredentials200Response.cs
+src/Zernio/Model/ConnectWhopAdsCredentialsRequest.cs
 src/Zernio/Model/ConnectWordPressWithApplicationPassword200Response.cs
 src/Zernio/Model/ConnectWordPressWithApplicationPassword200ResponseAccount.cs
 src/Zernio/Model/ConnectWordPressWithApplicationPasswordRequest.cs

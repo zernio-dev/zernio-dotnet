@@ -205,7 +205,13 @@ namespace Zernio.Model
             /// Enum Rcs for value: rcs
             /// </summary>
             [EnumMember(Value = "rcs")]
-            Rcs = 28
+            Rcs = 28,
+
+            /// <summary>
+            /// Enum Whopads for value: whopads
+            /// </summary>
+            [EnumMember(Value = "whopads")]
+            Whopads = 29
         }
 
 

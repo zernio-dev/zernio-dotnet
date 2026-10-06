@@ -594,6 +594,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**ConnectSlackChannel**](docs/ConnectApi.md#connectslackchannel) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**ConnectWhatsAppCredentials**](docs/ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**ConnectWhatsAppEmbeddedSignup**](docs/ConnectApi.md#connectwhatsappembeddedsignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
+*ConnectApi* | [**ConnectWhopAdsCredentials**](docs/ConnectApi.md#connectwhopadscredentials) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account
 *ConnectApi* | [**ConnectWordPressWithApplicationPassword**](docs/ConnectApi.md#connectwordpresswithapplicationpassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
 *ConnectApi* | [**CreatePinterestBoard**](docs/ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**CreateYoutubePlaylist**](docs/ConnectApi.md#createyoutubeplaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
@@ -1458,6 +1459,8 @@ Class | Method | HTTP request | Description
  - [Model.ConnectWhatsAppEmbeddedSignup200Response](docs/ConnectWhatsAppEmbeddedSignup200Response.md)
  - [Model.ConnectWhatsAppEmbeddedSignup200ResponseAccount](docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md)
  - [Model.ConnectWhatsAppEmbeddedSignupRequest](docs/ConnectWhatsAppEmbeddedSignupRequest.md)
+ - [Model.ConnectWhopAdsCredentials200Response](docs/ConnectWhopAdsCredentials200Response.md)
+ - [Model.ConnectWhopAdsCredentialsRequest](docs/ConnectWhopAdsCredentialsRequest.md)
  - [Model.ConnectWordPressWithApplicationPassword200Response](docs/ConnectWordPressWithApplicationPassword200Response.md)
  - [Model.ConnectWordPressWithApplicationPassword200ResponseAccount](docs/ConnectWordPressWithApplicationPassword200ResponseAccount.md)
  - [Model.ConnectWordPressWithApplicationPasswordRequest](docs/ConnectWordPressWithApplicationPasswordRequest.md)

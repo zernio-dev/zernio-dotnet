@@ -79,7 +79,13 @@ namespace Zernio.Model
             /// Enum Pinterestads for value: pinterestads
             /// </summary>
             [EnumMember(Value = "pinterestads")]
-            Pinterestads = 7
+            Pinterestads = 7,
+
+            /// <summary>
+            /// Enum Whopads for value: whopads
+            /// </summary>
+            [EnumMember(Value = "whopads")]
+            Whopads = 8
         }
 
 

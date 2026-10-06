@@ -28,88 +28,51 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// RemoveTrackingTagFromStore200Response
+    /// ConnectWhopAdsCredentials200Response
     /// </summary>
-    [DataContract(Name = "removeTrackingTagFromStore_200_response")]
-    public partial class RemoveTrackingTagFromStore200Response : IValidatableObject
+    [DataContract(Name = "connectWhopAdsCredentials_200_response")]
+    public partial class ConnectWhopAdsCredentials200Response : IValidatableObject
     {
         /// <summary>
-        /// Defines Platform
+        /// Initializes a new instance of the <see cref="ConnectWhopAdsCredentials200Response" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PlatformEnum
+        /// <param name="accountId">The Zernio account id (platform &#x60;whopads&#x60;) to use as &#x60;{accountId}&#x60; on the tracking-tags routes..</param>
+        /// <param name="whopAccountId">The Whop account id (&#x60;biz_...&#x60;), which is also the tracking tag id..</param>
+        /// <param name="accountName">accountName.</param>
+        /// <param name="redirectUrl">redirectUrl.</param>
+        public ConnectWhopAdsCredentials200Response(string accountId = default, string whopAccountId = default, string accountName = default, string redirectUrl = default)
         {
-            /// <summary>
-            /// Enum Metaads for value: metaads
-            /// </summary>
-            [EnumMember(Value = "metaads")]
-            Metaads = 1,
-
-            /// <summary>
-            /// Enum Tiktokads for value: tiktokads
-            /// </summary>
-            [EnumMember(Value = "tiktokads")]
-            Tiktokads = 2,
-
-            /// <summary>
-            /// Enum Googleads for value: googleads
-            /// </summary>
-            [EnumMember(Value = "googleads")]
-            Googleads = 3,
-
-            /// <summary>
-            /// Enum Xads for value: xads
-            /// </summary>
-            [EnumMember(Value = "xads")]
-            Xads = 4,
-
-            /// <summary>
-            /// Enum Openaiads for value: openaiads
-            /// </summary>
-            [EnumMember(Value = "openaiads")]
-            Openaiads = 5,
-
-            /// <summary>
-            /// Enum Linkedinads for value: linkedinads
-            /// </summary>
-            [EnumMember(Value = "linkedinads")]
-            Linkedinads = 6,
-
-            /// <summary>
-            /// Enum Pinterestads for value: pinterestads
-            /// </summary>
-            [EnumMember(Value = "pinterestads")]
-            Pinterestads = 7,
-
-            /// <summary>
-            /// Enum Whopads for value: whopads
-            /// </summary>
-            [EnumMember(Value = "whopads")]
-            Whopads = 8
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Platform
-        /// </summary>
-        [DataMember(Name = "platform", EmitDefaultValue = false)]
-        public PlatformEnum? Platform { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RemoveTrackingTagFromStore200Response" /> class.
-        /// </summary>
-        /// <param name="platform">platform.</param>
-        /// <param name="install">install.</param>
-        public RemoveTrackingTagFromStore200Response(PlatformEnum? platform = default, RemoveTrackingTagFromStore200ResponseInstall install = default)
-        {
-            this.Platform = platform;
-            this.Install = install;
+            this.AccountId = accountId;
+            this.WhopAccountId = whopAccountId;
+            this.AccountName = accountName;
+            this.RedirectUrl = redirectUrl;
         }
 
         /// <summary>
-        /// Gets or Sets Install
+        /// The Zernio account id (platform &#x60;whopads&#x60;) to use as &#x60;{accountId}&#x60; on the tracking-tags routes.
         /// </summary>
-        [DataMember(Name = "install", EmitDefaultValue = false)]
-        public RemoveTrackingTagFromStore200ResponseInstall Install { get; set; }
+        /// <value>The Zernio account id (platform &#x60;whopads&#x60;) to use as &#x60;{accountId}&#x60; on the tracking-tags routes.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
+
+        /// <summary>
+        /// The Whop account id (&#x60;biz_...&#x60;), which is also the tracking tag id.
+        /// </summary>
+        /// <value>The Whop account id (&#x60;biz_...&#x60;), which is also the tracking tag id.</value>
+        [DataMember(Name = "whopAccountId", EmitDefaultValue = false)]
+        public string WhopAccountId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AccountName
+        /// </summary>
+        [DataMember(Name = "accountName", EmitDefaultValue = false)]
+        public string AccountName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RedirectUrl
+        /// </summary>
+        [DataMember(Name = "redirectUrl", EmitDefaultValue = false)]
+        public string RedirectUrl { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -118,9 +81,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RemoveTrackingTagFromStore200Response {\n");
-            sb.Append("  Platform: ").Append(Platform).Append("\n");
-            sb.Append("  Install: ").Append(Install).Append("\n");
+            sb.Append("class ConnectWhopAdsCredentials200Response {\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  WhopAccountId: ").Append(WhopAccountId).Append("\n");
+            sb.Append("  AccountName: ").Append(AccountName).Append("\n");
+            sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
