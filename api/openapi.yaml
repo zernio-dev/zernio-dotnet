@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.223.0
+  version: 1.224.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -74759,6 +74759,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -74861,6 +74876,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -75161,6 +75191,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -75263,6 +75308,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -75590,6 +75650,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -75692,6 +75767,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -76251,6 +76341,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -76353,6 +76458,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -76680,6 +76800,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -76782,6 +76917,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -80105,6 +80255,21 @@ components:
           pageId: pageId
           assetGroup: ""
           googleDescription: googleDescription
+          carouselCards:
+          - imageUrl: imageUrl
+            linkUrl: linkUrl
+            description: description
+            videoId: videoId
+            imageHash: imageHash
+            headline: headline
+            callToAction: SHOP_NOW
+          - imageUrl: imageUrl
+            linkUrl: linkUrl
+            description: description
+            videoId: videoId
+            imageHash: imageHash
+            headline: headline
+            callToAction: SHOP_NOW
           headlines:
           - text: text
             pinnedField: HEADLINE_1
@@ -80477,6 +80642,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -80579,6 +80759,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -81160,6 +81355,21 @@ components:
               pageId: pageId
               assetGroup: ""
               googleDescription: googleDescription
+              carouselCards:
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
               headlines:
               - text: text
                 pinnedField: HEADLINE_1
@@ -81262,6 +81472,21 @@ components:
               pageId: pageId
               assetGroup: ""
               googleDescription: googleDescription
+              carouselCards:
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
               headlines:
               - text: text
                 pinnedField: HEADLINE_1
@@ -81589,6 +81814,21 @@ components:
               pageId: pageId
               assetGroup: ""
               googleDescription: googleDescription
+              carouselCards:
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
               headlines:
               - text: text
                 pinnedField: HEADLINE_1
@@ -81691,6 +81931,21 @@ components:
               pageId: pageId
               assetGroup: ""
               googleDescription: googleDescription
+              carouselCards:
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
+              - imageUrl: imageUrl
+                linkUrl: linkUrl
+                description: description
+                videoId: videoId
+                imageHash: imageHash
+                headline: headline
+                callToAction: SHOP_NOW
               headlines:
               - text: text
                 pinnedField: HEADLINE_1
@@ -119746,6 +120001,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -119848,6 +120118,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -123377,6 +123662,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -123479,6 +123779,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -123806,6 +124121,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -123908,6 +124238,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -124467,6 +124812,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -124569,6 +124929,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -124896,6 +125271,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -124998,6 +125388,21 @@ components:
                 pageId: pageId
                 assetGroup: ""
                 googleDescription: googleDescription
+                carouselCards:
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
+                - imageUrl: imageUrl
+                  linkUrl: linkUrl
+                  description: description
+                  videoId: videoId
+                  imageHash: imageHash
+                  headline: headline
+                  callToAction: SHOP_NOW
                 headlines:
                 - text: text
                   pinnedField: HEADLINE_1
@@ -125436,6 +125841,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -125903,6 +126323,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -134679,6 +135114,21 @@ components:
             pageId: pageId
             assetGroup: ""
             googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
             headlines:
             - text: text
               pinnedField: HEADLINE_1
@@ -153154,6 +153604,40 @@ components:
         product_set_id:
           description: Product catalog set ID
           type: string
+    Ad_creative_carouselCards_inner:
+      example:
+        imageUrl: imageUrl
+        linkUrl: linkUrl
+        description: description
+        videoId: videoId
+        imageHash: imageHash
+        headline: headline
+        callToAction: SHOP_NOW
+      properties:
+        imageUrl:
+          description: "Card image, resolved like the matching `mediaUrls` entry.\
+            \ Absent when Meta returns no resolvable image for the card."
+          type: string
+        imageHash:
+          description: Meta ad image hash of the card image (`image_hash`).
+          type: string
+        headline:
+          description: Card title (Meta `name`).
+          type: string
+        description:
+          description: "Card description, under the title (Meta `description`)."
+          type: string
+        linkUrl:
+          description: Card destination URL (Meta `link`).
+          type: string
+        callToAction:
+          description: "Card call to action type (Meta `call_to_action.type`), e.g.\
+            \ SHOP_NOW or WATCH_MORE."
+          example: SHOP_NOW
+          type: string
+        videoId:
+          description: Meta video id when the card is a video (`video_id`).
+          type: string
     Ad_creative:
       description: Platform-specific creative data. Fields vary by platform.
       example:
@@ -153196,6 +153680,21 @@ components:
         pageId: pageId
         assetGroup: ""
         googleDescription: googleDescription
+        carouselCards:
+        - imageUrl: imageUrl
+          linkUrl: linkUrl
+          description: description
+          videoId: videoId
+          imageHash: imageHash
+          headline: headline
+          callToAction: SHOP_NOW
+        - imageUrl: imageUrl
+          linkUrl: linkUrl
+          description: description
+          videoId: videoId
+          imageHash: imageHash
+          headline: headline
+          callToAction: SHOP_NOW
         headlines:
         - text: text
           pinnedField: HEADLINE_1
@@ -153315,6 +153814,20 @@ components:
             \ display marketing_images), and LinkedIn (multi-image posts)."
           items:
             type: string
+          type: array
+        carouselCards:
+          description: |
+            Meta only today. The carousel's cards in the order the ad shows them, one per
+            Meta `link_data.child_attachments` entry, using the same field names as the
+            `carouselCards` create input. On a carousel synced from Meta, `imageUrl` is resolved
+            exactly like `mediaUrls` (the stable `/adimages` permalink first), so the cards that
+            carry an image line up with `mediaUrls` in order; a card whose image Meta does not
+            resolve keeps its place without `imageUrl`. On a carousel created through Zernio
+            it starts as the cards you sent. Absent on non-carousel ads and on
+            other platforms. Synced carousels stored before this field existed fill it in on
+            their next sync.
+          items:
+            $ref: "#/components/schemas/Ad_creative_carouselCards_inner"
           type: array
         isServing:
           description: "LinkedIn only. Whether LinkedIn is currently serving this\

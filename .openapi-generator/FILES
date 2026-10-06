@@ -28,6 +28,7 @@ docs/AdCampaign.md
 docs/AdCampaignBudget.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
+docs/AdCreativeCarouselCardsInner.md
 docs/AdCreativesApi.md
 docs/AdDailyMetrics.md
 docs/AdEngagementCounts.md
@@ -2856,6 +2857,7 @@ src/Zernio.Test/Model/AdAnalyticsResponseTests.cs
 src/Zernio.Test/Model/AdBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignTests.cs
+src/Zernio.Test/Model/AdCreativeCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/AdCreativeTests.cs
 src/Zernio.Test/Model/AdDailyMetricsTests.cs
 src/Zernio.Test/Model/AdEngagementCountsTests.cs
@@ -5636,6 +5638,7 @@ src/Zernio/Model/AdBudget.cs
 src/Zernio/Model/AdCampaign.cs
 src/Zernio/Model/AdCampaignBudget.cs
 src/Zernio/Model/AdCreative.cs
+src/Zernio/Model/AdCreativeCarouselCardsInner.cs
 src/Zernio/Model/AdDailyMetrics.cs
 src/Zernio/Model/AdEngagementCounts.cs
 src/Zernio/Model/AdFunnelCounts.cs
