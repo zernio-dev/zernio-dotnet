@@ -523,7 +523,7 @@ catch (ApiException e)
 
 Update automation settings
 
-Update an automation's keywords, DM message, inline buttons, comment reply, or active status. Pass `buttons: []` to clear all buttons. When `buttons` is non-empty, `dmMessage` (the new one if you're changing it, otherwise the stored one) must be 640 characters or less. On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields are rejected with a 400 naming the field (`code` invalid_field_value, `param` the field), and `commentReply` cannot be cleared. 
+Update an automation's keywords, DM message, inline buttons, comment reply, post binding, or active status. Pass `buttons: []` to clear all buttons. When `buttons` is non-empty, `dmMessage` (the new one if you're changing it, otherwise the stored one) must be 640 characters or less. On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields are rejected with a 400 naming the field (`code` invalid_field_value, `param` the field), and `commentReply` cannot be cleared. 
 
 ### Example
 ```csharp
@@ -617,6 +617,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | An active automation already exists for the post this request re-binds to |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
