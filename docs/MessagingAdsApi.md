@@ -217,7 +217,7 @@ catch (ApiException e)
 | **403** | Forbidden. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **422** | Page is not connected to a verified WhatsApp number. |  -  |
+| **422** | Page is not connected to a verified WhatsApp number, or code &#x60;ad_account_unusable&#x60; when Meta refuses writes on the ad account (see &#x60;ErrorResponse.details&#x60;). |  -  |
 | **502** | Meta rejected the request (e.g. WABA business verification missing). Inspect &#x60;platformError&#x60; for the upstream Meta payload.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
