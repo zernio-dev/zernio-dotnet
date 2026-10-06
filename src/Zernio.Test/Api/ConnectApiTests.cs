@@ -282,6 +282,8 @@ namespace Zernio.Test.Api
             //string platform = null;
             //string profileId = null;
             //string? reconnectAccountId = null;
+            //string? expectedPlatformUserId = null;
+            //string? expectedUsername = null;
             //string? redirectUrl = null;
             //string? scopes = null;
             //bool? headless = null;
@@ -291,7 +293,7 @@ namespace Zernio.Test.Api
             //string? brandName = null;
             //string? primaryColor = null;
             //string? language = null;
-            //var response = instance.GetConnectUrl(platform, profileId, reconnectAccountId, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, language);
+            //var response = instance.GetConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, language);
             //Assert.IsType<GetConnectUrl200Response>(response);
         }
 

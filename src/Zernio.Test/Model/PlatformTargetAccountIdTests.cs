@@ -101,6 +101,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PlatformUserId'
+        /// </summary>
+        [Fact]
+        public void PlatformUserIdTest()
+        {
+            // TODO unit test for the property 'PlatformUserId'
+        }
+
+        /// <summary>
+        /// Test the property 'TiktokAccountType'
+        /// </summary>
+        [Fact]
+        public void TiktokAccountTypeTest()
+        {
+            // TODO unit test for the property 'TiktokAccountType'
+        }
+
+        /// <summary>
         /// Test the property 'ProfilePicture'
         /// </summary>
         [Fact]
