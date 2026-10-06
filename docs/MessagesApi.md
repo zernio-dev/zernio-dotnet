@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**AcceptConversationRequest**](MessagesApi.md#acceptconversationrequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
 | [**AddMessageReaction**](MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**CreateInboxConversation**](MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation |
 | [**DeleteInboxMessage**](MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
@@ -17,9 +18,114 @@ All URIs are relative to *https://zernio.com/api*
 | [**SearchInboxConversations**](MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations |
 | [**SendInboxMessage**](MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**SendTypingIndicator**](MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
-| [**SetConversationThreadControl**](MessagesApi.md#setconversationthreadcontrol) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent |
+| [**SetConversationThreadControl**](MessagesApi.md#setconversationthreadcontrol) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Change who answers a conversation (handover) |
 | [**UpdateInboxConversation**](MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status |
 | [**UploadMediaDirect**](MessagesApi.md#uploadmediadirect) | **POST** /v1/media/upload-direct | Upload media file |
+
+<a id="acceptconversationrequest"></a>
+# **AcceptConversationRequest**
+> AcceptConversationRequest200Response AcceptConversationRequest (string conversationId, AcceptConversationRequestRequest acceptConversationRequestRequest)
+
+Accept a message request
+
+Accept a Facebook or Instagram Message Request (listed with `GET /v1/inbox/conversations?folder=requests`) by replying to it. Meta has no separate accept call: the first reply is what moves the thread into the inbox, so this sends `message` through the same path, checks and webhooks as `POST /v1/inbox/conversations/{conversationId}/messages`, and answers the same way. Supports the `Idempotency-Key` header. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AcceptConversationRequestExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var conversationId = "conversationId_example";  // string | The `id` of the request item from the requests folder.
+            var acceptConversationRequestRequest = new AcceptConversationRequestRequest(); // AcceptConversationRequestRequest | 
+
+            try
+            {
+                // Accept a message request
+                AcceptConversationRequest200Response result = apiInstance.AcceptConversationRequest(conversationId, acceptConversationRequestRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.AcceptConversationRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AcceptConversationRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Accept a message request
+    ApiResponse<AcceptConversationRequest200Response> response = apiInstance.AcceptConversationRequestWithHttpInfo(conversationId, acceptConversationRequestRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.AcceptConversationRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **conversationId** | **string** | The &#x60;id&#x60; of the request item from the requests folder. |  |
+| **acceptConversationRequestRequest** | [**AcceptConversationRequestRequest**](AcceptConversationRequestRequest.md) |  |  |
+
+### Return type
+
+[**AcceptConversationRequest200Response**](AcceptConversationRequest200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply sent, the request is accepted |  -  |
+| **400** | Invalid body, or an account that is not Facebook or Instagram (PLATFORM_NOT_SUPPORTED) |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required or plan limit reached |  -  |
+| **404** | Account or conversation not found |  -  |
+| **409** | The same Idempotency-Key is still processing, or another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, &#x60;details.ownerAppId&#x60; names it when Meta says). Take control with thread-control first. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="addmessagereaction"></a>
 # **AddMessageReaction**
@@ -772,7 +878,7 @@ catch (ApiException e)
 
 <a id="listinboxconversations"></a>
 # **ListInboxConversations**
-> ListInboxConversations200Response ListInboxConversations (string? profileId = null, string? platform = null, string? status = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null)
+> ListInboxConversations200Response ListInboxConversations (string? profileId = null, string? platform = null, string? status = null, string? folder = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null)
 
 List conversations
 
@@ -805,6 +911,7 @@ namespace Example
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
             var platform = "facebook";  // string? | Filter by platform (optional) 
             var status = "active";  // string? | Filter by conversation status (optional) 
+            var folder = "inbox";  // string? | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with `folder: requests`. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (`accountId`), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. (optional)  (default to inbox)
             var sortOrder = "asc";  // string? | Sort order by updated time (optional)  (default to desc)
             var limit = 50;  // int? | Maximum number of conversations to return (optional)  (default to 50)
             var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
@@ -813,7 +920,7 @@ namespace Example
             try
             {
                 // List conversations
-                ListInboxConversations200Response result = apiInstance.ListInboxConversations(profileId, platform, status, sortOrder, limit, cursor, accountId);
+                ListInboxConversations200Response result = apiInstance.ListInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -834,7 +941,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List conversations
-    ApiResponse<ListInboxConversations200Response> response = apiInstance.ListInboxConversationsWithHttpInfo(profileId, platform, status, sortOrder, limit, cursor, accountId);
+    ApiResponse<ListInboxConversations200Response> response = apiInstance.ListInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -854,6 +961,7 @@ catch (ApiException e)
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
 | **platform** | **string?** | Filter by platform | [optional]  |
 | **status** | **string?** | Filter by conversation status | [optional]  |
+| **folder** | **string?** | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. | [optional] [default to inbox] |
 | **sortOrder** | **string?** | Sort order by updated time | [optional] [default to desc] |
 | **limit** | **int?** | Maximum number of conversations to return | [optional] [default to 50] |
 | **cursor** | **string?** | Pagination cursor for next page | [optional]  |
@@ -877,6 +985,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated conversations |  -  |
+| **400** | Invalid query, a platform without direct messages (PLATFORM_NOT_SUPPORTED), or folder&#x3D;requests on one account Meta will not list the folder for (PLATFORM_LIMITATION). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1306,7 +1415,7 @@ catch (ApiException e)
 | **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send). Meta rejections (e.g. sending outside the messaging window) arrive with code platform_api_error, type platform_error, and platform + platformError set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
-| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **409** | The same Idempotency-Key is still processing (retry after a short backoff), or, on Facebook and Instagram, another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, Meta subcode 2534037 in platformError, &#x60;details.ownerAppId&#x60; names the owner when Meta reports it). Take control with POST /v1/inbox/conversations/{conversationId}/thread-control, then resend. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
@@ -1424,9 +1533,9 @@ catch (ApiException e)
 # **SetConversationThreadControl**
 > SetConversationThreadControl200Response SetConversationThreadControl (string conversationId, SetConversationThreadControlRequest setConversationThreadControlRequest)
 
-Hand a conversation to or from Meta Business Agent
+Change who answers a conversation (handover)
 
-WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta's thread control: - `release`: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - `take`: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number's escalation partner; other apps take control by sending a message. - `pass`: transfer control to the number's configured escalation partner, or to the agent with `target: ai_agent`. Meta's Cloud API currently rejects it (\"Pass action is not supported\", verified 2026-09-08); use `release` to hand a thread back to the agent.  The conversation's `threadControl` follows the result; a `conversation.control_changed` webhook fires when Meta later reports the change. 
+Meta's handover protocol on WhatsApp, Facebook and Instagram.  **WhatsApp**, on numbers with Meta Business Agent enabled: - `release`: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - `take`: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number's escalation partner; other apps take control by sending a message. - `pass`: transfer control to the number's configured escalation partner, or to the agent with `target: ai_agent`. Meta's Cloud API currently rejects it (\"Pass action is not supported\", verified 2026-09-08); use `release` to hand a thread back to the agent.  **Facebook and Instagram** (Messenger Platform handover between the apps on the Page, such as Page Inbox): - `pass` with `targetAppId`: give the thread to another app (`pass_thread_control`). Page Inbox is 263902037430900. - `take`: take the thread back (`take_thread_control`); Meta allows it only to the Page's primary receiver. - `request`: ask the current owner to pass the thread (`request_thread_control`); nothing changes until it does. - `release`: give the thread back to the primary receiver (`release_thread_control`).  While another app owns a Facebook or Instagram thread, inbound arrive with `metadata.standby: true` and a send answers 409 `not_thread_owner`. The conversation's `threadControl` follows the result; a `conversation.control_changed` webhook fires when Meta later reports the change. 
 
 ### Example
 ```csharp
@@ -1457,7 +1566,7 @@ namespace Example
 
             try
             {
-                // Hand a conversation to or from Meta Business Agent
+                // Change who answers a conversation (handover)
                 SetConversationThreadControl200Response result = apiInstance.SetConversationThreadControl(conversationId, setConversationThreadControlRequest);
                 Debug.WriteLine(result);
             }
@@ -1478,7 +1587,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Hand a conversation to or from Meta Business Agent
+    // Change who answers a conversation (handover)
     ApiResponse<SetConversationThreadControl200Response> response = apiInstance.SetConversationThreadControlWithHttpInfo(conversationId, setConversationThreadControlRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1516,7 +1625,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Control transferred |  -  |
+| **200** | Control transferred (or, for request, asked for) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |

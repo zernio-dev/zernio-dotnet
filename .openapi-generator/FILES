@@ -4,6 +4,9 @@ Zernio.sln
 api/openapi.yaml
 appveyor.yml
 docs/APIKeysApi.md
+docs/AcceptConversationRequest200Response.md
+docs/AcceptConversationRequest200ResponseData.md
+docs/AcceptConversationRequestRequest.md
 docs/AccountGroupsApi.md
 docs/AccountSettingsApi.md
 docs/AccountWithFollowerStats.md
@@ -294,8 +297,15 @@ docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
 docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
+docs/CommentAutomationActions.md
 docs/CommentAutomationAudience.md
+docs/CommentAutomationDmMedia.md
 docs/CommentAutomationFollowGate.md
+docs/CommentAutomationLog.md
+docs/CommentAutomationLogPlatformError.md
+docs/CommentAutomationQuickReply.md
+docs/CommentAutomationRepeatPolicy.md
+docs/CommentAutomationStats.md
 docs/CommentAutomationTemplate.md
 docs/CommentAutomationTemplateElement.md
 docs/CommentAutomationTemplateElementButtonsInner.md
@@ -437,7 +447,6 @@ docs/CreateBroadcastRequestTemplateVariableMappingValue.md
 docs/CreateCallAdRequest.md
 docs/CreateCommentAutomation200Response.md
 docs/CreateCommentAutomation200ResponseAutomation.md
-docs/CreateCommentAutomation200ResponseAutomationStats.md
 docs/CreateCommentAutomationRequest.md
 docs/CreateCommerceCatalogSync202Response.md
 docs/CreateCommerceCatalogSyncRequest.md
@@ -878,6 +887,7 @@ docs/GetBlueskySettings200Response.md
 docs/GetBroadcast200Response.md
 docs/GetBroadcast200ResponseBroadcast.md
 docs/GetBroadcast200ResponseBroadcastMessage.md
+docs/GetBroadcast200ResponseBroadcastSegmentFilters.md
 docs/GetBroadcast200ResponseBroadcastTemplate.md
 docs/GetBusinessAgentBudget200Response.md
 docs/GetBusinessAgentConnectorLogs200Response.md
@@ -898,8 +908,6 @@ docs/GetCampaignTargeting200ResponseLanguagesInner.md
 docs/GetCampaignTargeting200ResponseLocationsInner.md
 docs/GetCommentAutomation200Response.md
 docs/GetCommentAutomation200ResponseAutomation.md
-docs/GetCommentAutomation200ResponseLogsInner.md
-docs/GetCommentAutomation200ResponseLogsInnerPlatformError.md
 docs/GetCommerceStore200Response.md
 docs/GetConnectUrl200Response.md
 docs/GetContact200Response.md
@@ -1068,6 +1076,8 @@ docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
 docs/GetMessengerGetStarted200Response.md
 docs/GetMessengerGetStarted200ResponseData.md
+docs/GetMessengerGreeting200Response.md
+docs/GetMessengerIceBreakers200Response.md
 docs/GetMessengerMenu200Response.md
 docs/GetPageWebhookSubscription200Response.md
 docs/GetPendingOAuthData200Response.md
@@ -1168,6 +1178,7 @@ docs/GetWhatsAppCallRecording200Response.md
 docs/GetWhatsAppCalling200Response.md
 docs/GetWhatsAppCallingConfig200Response.md
 docs/GetWhatsAppCommerceSettings200Response.md
+docs/GetWhatsAppConversationalAutomation200Response.md
 docs/GetWhatsAppDataset200Response.md
 docs/GetWhatsAppDisplayName200Response.md
 docs/GetWhatsAppDisplayName200ResponseDisplayName.md
@@ -1470,7 +1481,6 @@ docs/ListCommentAutomationLogs200ResponseMisses.md
 docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
-docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
 docs/ListCommerceCatalogSyncs200Response.md
 docs/ListCommerceChannels200Response.md
 docs/ListCommerceCollections200Response.md
@@ -1681,6 +1691,9 @@ docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
 docs/MessagingCarouselCard.md
+docs/MessengerGreeting.md
+docs/MessengerIceBreakerLocale.md
+docs/MessengerIceBreakerLocaleCallToActionsInner.md
 docs/MetaAdsPlatformData.md
 docs/MetaAssignedUser.md
 docs/MetaBusinessUser.md
@@ -2123,12 +2136,15 @@ docs/SetImessageSubscriptionRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerGetStartedRequest.md
+docs/SetMessengerGreetingRequest.md
+docs/SetMessengerIceBreakersRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SetWhatsAppConversationalAutomationRequest.md
 docs/SetWhatsAppFlowsEncryptionKeyRequest.md
 docs/SetWhatsappBusinessUsername200Response.md
 docs/SetWhatsappBusinessUsernameRequest.md
@@ -2198,6 +2214,8 @@ docs/TrackingTagUser.md
 docs/TrackingTagsApi.md
 docs/TransferVoiceCall200Response.md
 docs/TransferVoiceCallRequest.md
+docs/TriggerApiCallWorkflow201Response.md
+docs/TriggerApiCallWorkflowRequest.md
 docs/TriggerWorkflow200Response.md
 docs/TriggerWorkflow200ResponseExecution.md
 docs/TriggerWorkflowRequest.md
@@ -2582,6 +2600,9 @@ docs/WebhookPayloadCommentPost.md
 docs/WebhookPayloadCommerceProduct.md
 docs/WebhookPayloadCommerceProductResource.md
 docs/WebhookPayloadCommerceProductStore.md
+docs/WebhookPayloadContactFieldChanged.md
+docs/WebhookPayloadContactTag.md
+docs/WebhookPayloadContactTagContact.md
 docs/WebhookPayloadConversationControlChanged.md
 docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
@@ -2636,6 +2657,7 @@ docs/WebhookPayloadReferralSender.md
 docs/WebhookPayloadReviewNew.md
 docs/WebhookPayloadReviewNewAccount.md
 docs/WebhookPayloadReviewUpdated.md
+docs/WebhookPayloadSequenceEnrollment.md
 docs/WebhookPayloadTest.md
 docs/WebhookPayloadWhatsAppAccountAlertReceived.md
 docs/WebhookPayloadWhatsAppAccountAlertReceivedAlert.md
@@ -2653,6 +2675,11 @@ docs/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md
+docs/WebhookPayloadWorkflowRun.md
+docs/WebhookPayloadWorkflowRunConversation.md
+docs/WebhookPayloadWorkflowRunExecution.md
+docs/WebhookPayloadWorkflowRunTrigger.md
+docs/WebhookPayloadWorkflowRunWorkflow.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
 docs/WhatsAppBillingConversation.md
@@ -2665,6 +2692,8 @@ docs/WhatsAppCarouselComponent.md
 docs/WhatsAppCarouselComponentCardsInner.md
 docs/WhatsAppCommerceSettings.md
 docs/WhatsAppContactIdentity.md
+docs/WhatsAppConversationalAutomation.md
+docs/WhatsAppConversationalAutomationCommandsInner.md
 docs/WhatsAppFlowsApi.md
 docs/WhatsAppFooterComponent.md
 docs/WhatsAppHeaderComponent.md
@@ -2809,6 +2838,9 @@ src/Zernio.Test/Api/WhatsAppPhoneNumbersApiTests.cs
 src/Zernio.Test/Api/WhatsAppSandboxApiTests.cs
 src/Zernio.Test/Api/WhatsAppTemplatesApiTests.cs
 src/Zernio.Test/Api/WorkflowsApiTests.cs
+src/Zernio.Test/Model/AcceptConversationRequest200ResponseDataTests.cs
+src/Zernio.Test/Model/AcceptConversationRequest200ResponseTests.cs
+src/Zernio.Test/Model/AcceptConversationRequestRequestTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsAllOfAccountStatsTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsTests.cs
 src/Zernio.Test/Model/AccountsListResponseTests.cs
@@ -3082,8 +3114,15 @@ src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortabilityRequestTests.cs
 src/Zernio.Test/Model/CheckVerification200ResponseTests.cs
 src/Zernio.Test/Model/CheckVerificationRequestTests.cs
+src/Zernio.Test/Model/CommentAutomationActionsTests.cs
 src/Zernio.Test/Model/CommentAutomationAudienceTests.cs
+src/Zernio.Test/Model/CommentAutomationDmMediaTests.cs
 src/Zernio.Test/Model/CommentAutomationFollowGateTests.cs
+src/Zernio.Test/Model/CommentAutomationLogPlatformErrorTests.cs
+src/Zernio.Test/Model/CommentAutomationLogTests.cs
+src/Zernio.Test/Model/CommentAutomationQuickReplyTests.cs
+src/Zernio.Test/Model/CommentAutomationRepeatPolicyTests.cs
+src/Zernio.Test/Model/CommentAutomationStatsTests.cs
 src/Zernio.Test/Model/CommentAutomationTemplateElementButtonsInnerTests.cs
 src/Zernio.Test/Model/CommentAutomationTemplateElementTests.cs
 src/Zernio.Test/Model/CommentAutomationTemplateTests.cs
@@ -3216,7 +3255,6 @@ src/Zernio.Test/Model/CreateBroadcastRequestTemplateTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestTests.cs
 src/Zernio.Test/Model/CreateCallAdRequestTests.cs
-src/Zernio.Test/Model/CreateCommentAutomation200ResponseAutomationStatsTests.cs
 src/Zernio.Test/Model/CreateCommentAutomation200ResponseAutomationTests.cs
 src/Zernio.Test/Model/CreateCommentAutomation200ResponseTests.cs
 src/Zernio.Test/Model/CreateCommentAutomationRequestTests.cs
@@ -3646,6 +3684,7 @@ src/Zernio.Test/Model/GetBestTimeToPost403ResponseTests.cs
 src/Zernio.Test/Model/GetBlog200ResponseTests.cs
 src/Zernio.Test/Model/GetBlueskySettings200ResponseTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastMessageTests.cs
+src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastSegmentFiltersTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastTemplateTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseTests.cs
@@ -3667,8 +3706,6 @@ src/Zernio.Test/Model/GetCampaignTargeting200ResponseLanguagesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseAutomationTests.cs
-src/Zernio.Test/Model/GetCommentAutomation200ResponseLogsInnerPlatformErrorTests.cs
-src/Zernio.Test/Model/GetCommentAutomation200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseTests.cs
 src/Zernio.Test/Model/GetCommerceStore200ResponseTests.cs
 src/Zernio.Test/Model/GetConnectUrl200ResponseTests.cs
@@ -3838,6 +3875,8 @@ src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
 src/Zernio.Test/Model/GetMessageAttachment200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerGetStarted200ResponseDataTests.cs
 src/Zernio.Test/Model/GetMessengerGetStarted200ResponseTests.cs
+src/Zernio.Test/Model/GetMessengerGreeting200ResponseTests.cs
+src/Zernio.Test/Model/GetMessengerIceBreakers200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerMenu200ResponseTests.cs
 src/Zernio.Test/Model/GetPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
@@ -3938,6 +3977,7 @@ src/Zernio.Test/Model/GetWhatsAppCallRecording200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppCalling200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppCallingConfig200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppCommerceSettings200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppConversationalAutomation200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppDataset200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppDisplayName200ResponseDisplayNameTests.cs
 src/Zernio.Test/Model/GetWhatsAppDisplayName200ResponseTests.cs
@@ -4232,7 +4272,6 @@ src/Zernio.Test/Model/ListChangelog200ResponseTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesSamplesInnerTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseTests.cs
-src/Zernio.Test/Model/ListCommentAutomations200ResponseAutomationsInnerStatsTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseAutomationsInnerTests.cs
 src/Zernio.Test/Model/ListCommentAutomations200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceCatalogSyncs200ResponseTests.cs
@@ -4440,6 +4479,9 @@ src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaSubtitleTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MessagingCarouselCardTests.cs
+src/Zernio.Test/Model/MessengerGreetingTests.cs
+src/Zernio.Test/Model/MessengerIceBreakerLocaleCallToActionsInnerTests.cs
+src/Zernio.Test/Model/MessengerIceBreakerLocaleTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
 src/Zernio.Test/Model/MetaAssignedUserTests.cs
 src/Zernio.Test/Model/MetaBusinessUserTests.cs
@@ -4870,12 +4912,15 @@ src/Zernio.Test/Model/SetImessageSubscriptionRequestTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestIceBreakersInnerTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerGetStartedRequestTests.cs
+src/Zernio.Test/Model/SetMessengerGreetingRequestTests.cs
+src/Zernio.Test/Model/SetMessengerIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermission200ResponseTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
+src/Zernio.Test/Model/SetWhatsAppConversationalAutomationRequestTests.cs
 src/Zernio.Test/Model/SetWhatsAppFlowsEncryptionKeyRequestTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsername200ResponseTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsernameRequestTests.cs
@@ -4942,6 +4987,8 @@ src/Zernio.Test/Model/TrackingTagTests.cs
 src/Zernio.Test/Model/TrackingTagUserTests.cs
 src/Zernio.Test/Model/TransferVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/TransferVoiceCallRequestTests.cs
+src/Zernio.Test/Model/TriggerApiCallWorkflow201ResponseTests.cs
+src/Zernio.Test/Model/TriggerApiCallWorkflowRequestTests.cs
 src/Zernio.Test/Model/TriggerWorkflow200ResponseExecutionTests.cs
 src/Zernio.Test/Model/TriggerWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/TriggerWorkflowRequestTests.cs
@@ -5318,6 +5365,9 @@ src/Zernio.Test/Model/WebhookPayloadCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommerceProductResourceTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommerceProductStoreTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommerceProductTests.cs
+src/Zernio.Test/Model/WebhookPayloadContactFieldChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadContactTagContactTests.cs
+src/Zernio.Test/Model/WebhookPayloadContactTagTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedControlTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
@@ -5372,6 +5422,7 @@ src/Zernio.Test/Model/WebhookPayloadReferralTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewNewAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewNewTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewUpdatedTests.cs
+src/Zernio.Test/Model/WebhookPayloadSequenceEnrollmentTests.cs
 src/Zernio.Test/Model/WebhookPayloadTestTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppAccountAlertReceivedAlertTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppAccountAlertReceivedTests.cs
@@ -5389,6 +5440,11 @@ src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplateTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTests.cs
+src/Zernio.Test/Model/WebhookPayloadWorkflowRunConversationTests.cs
+src/Zernio.Test/Model/WebhookPayloadWorkflowRunExecutionTests.cs
+src/Zernio.Test/Model/WebhookPayloadWorkflowRunTests.cs
+src/Zernio.Test/Model/WebhookPayloadWorkflowRunTriggerTests.cs
+src/Zernio.Test/Model/WebhookPayloadWorkflowRunWorkflowTests.cs
 src/Zernio.Test/Model/WebhookTests.cs
 src/Zernio.Test/Model/WhatsAppBillingConversationTests.cs
 src/Zernio.Test/Model/WhatsAppBodyComponentExampleTests.cs
@@ -5399,6 +5455,8 @@ src/Zernio.Test/Model/WhatsAppCarouselComponentCardsInnerTests.cs
 src/Zernio.Test/Model/WhatsAppCarouselComponentTests.cs
 src/Zernio.Test/Model/WhatsAppCommerceSettingsTests.cs
 src/Zernio.Test/Model/WhatsAppContactIdentityTests.cs
+src/Zernio.Test/Model/WhatsAppConversationalAutomationCommandsInnerTests.cs
+src/Zernio.Test/Model/WhatsAppConversationalAutomationTests.cs
 src/Zernio.Test/Model/WhatsAppFooterComponentTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentTests.cs
@@ -5556,6 +5614,9 @@ src/Zernio/Client/RequestOptions.cs
 src/Zernio/Client/RetryConfiguration.cs
 src/Zernio/Client/WebRequestPathBuilder.cs
 src/Zernio/Model/AbstractOpenAPISchema.cs
+src/Zernio/Model/AcceptConversationRequest200Response.cs
+src/Zernio/Model/AcceptConversationRequest200ResponseData.cs
+src/Zernio/Model/AcceptConversationRequestRequest.cs
 src/Zernio/Model/AccountWithFollowerStats.cs
 src/Zernio/Model/AccountWithFollowerStatsAllOfAccountStats.cs
 src/Zernio/Model/AccountsListResponse.cs
@@ -5829,8 +5890,15 @@ src/Zernio/Model/CheckPhoneNumberPortability200ResponseResultsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortabilityRequest.cs
 src/Zernio/Model/CheckVerification200Response.cs
 src/Zernio/Model/CheckVerificationRequest.cs
+src/Zernio/Model/CommentAutomationActions.cs
 src/Zernio/Model/CommentAutomationAudience.cs
+src/Zernio/Model/CommentAutomationDmMedia.cs
 src/Zernio/Model/CommentAutomationFollowGate.cs
+src/Zernio/Model/CommentAutomationLog.cs
+src/Zernio/Model/CommentAutomationLogPlatformError.cs
+src/Zernio/Model/CommentAutomationQuickReply.cs
+src/Zernio/Model/CommentAutomationRepeatPolicy.cs
+src/Zernio/Model/CommentAutomationStats.cs
 src/Zernio/Model/CommentAutomationTemplate.cs
 src/Zernio/Model/CommentAutomationTemplateElement.cs
 src/Zernio/Model/CommentAutomationTemplateElementButtonsInner.cs
@@ -5965,7 +6033,6 @@ src/Zernio/Model/CreateBroadcastRequestTemplateVariableMappingValue.cs
 src/Zernio/Model/CreateCallAdRequest.cs
 src/Zernio/Model/CreateCommentAutomation200Response.cs
 src/Zernio/Model/CreateCommentAutomation200ResponseAutomation.cs
-src/Zernio/Model/CreateCommentAutomation200ResponseAutomationStats.cs
 src/Zernio/Model/CreateCommentAutomationRequest.cs
 src/Zernio/Model/CreateCommerceCatalogSync202Response.cs
 src/Zernio/Model/CreateCommerceCatalogSyncRequest.cs
@@ -6395,6 +6462,7 @@ src/Zernio/Model/GetBlueskySettings200Response.cs
 src/Zernio/Model/GetBroadcast200Response.cs
 src/Zernio/Model/GetBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/GetBroadcast200ResponseBroadcastMessage.cs
+src/Zernio/Model/GetBroadcast200ResponseBroadcastSegmentFilters.cs
 src/Zernio/Model/GetBroadcast200ResponseBroadcastTemplate.cs
 src/Zernio/Model/GetBusinessAgentBudget200Response.cs
 src/Zernio/Model/GetBusinessAgentConnectorLogs200Response.cs
@@ -6415,8 +6483,6 @@ src/Zernio/Model/GetCampaignTargeting200ResponseLanguagesInner.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseLocationsInner.cs
 src/Zernio/Model/GetCommentAutomation200Response.cs
 src/Zernio/Model/GetCommentAutomation200ResponseAutomation.cs
-src/Zernio/Model/GetCommentAutomation200ResponseLogsInner.cs
-src/Zernio/Model/GetCommentAutomation200ResponseLogsInnerPlatformError.cs
 src/Zernio/Model/GetCommerceStore200Response.cs
 src/Zernio/Model/GetConnectUrl200Response.cs
 src/Zernio/Model/GetContact200Response.cs
@@ -6585,6 +6651,8 @@ src/Zernio/Model/GetMediaPresignedUrlRequest.cs
 src/Zernio/Model/GetMessageAttachment200Response.cs
 src/Zernio/Model/GetMessengerGetStarted200Response.cs
 src/Zernio/Model/GetMessengerGetStarted200ResponseData.cs
+src/Zernio/Model/GetMessengerGreeting200Response.cs
+src/Zernio/Model/GetMessengerIceBreakers200Response.cs
 src/Zernio/Model/GetMessengerMenu200Response.cs
 src/Zernio/Model/GetPageWebhookSubscription200Response.cs
 src/Zernio/Model/GetPendingOAuthData200Response.cs
@@ -6685,6 +6753,7 @@ src/Zernio/Model/GetWhatsAppCallRecording200Response.cs
 src/Zernio/Model/GetWhatsAppCalling200Response.cs
 src/Zernio/Model/GetWhatsAppCallingConfig200Response.cs
 src/Zernio/Model/GetWhatsAppCommerceSettings200Response.cs
+src/Zernio/Model/GetWhatsAppConversationalAutomation200Response.cs
 src/Zernio/Model/GetWhatsAppDataset200Response.cs
 src/Zernio/Model/GetWhatsAppDisplayName200Response.cs
 src/Zernio/Model/GetWhatsAppDisplayName200ResponseDisplayName.cs
@@ -6981,7 +7050,6 @@ src/Zernio/Model/ListCommentAutomationLogs200ResponseMisses.cs
 src/Zernio/Model/ListCommentAutomationLogs200ResponseMissesSamplesInner.cs
 src/Zernio/Model/ListCommentAutomations200Response.cs
 src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInner.cs
-src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInnerStats.cs
 src/Zernio/Model/ListCommerceCatalogSyncs200Response.cs
 src/Zernio/Model/ListCommerceChannels200Response.cs
 src/Zernio/Model/ListCommerceCollections200Response.cs
@@ -7187,6 +7255,9 @@ src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaSubtitle.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MessagingCarouselCard.cs
+src/Zernio/Model/MessengerGreeting.cs
+src/Zernio/Model/MessengerIceBreakerLocale.cs
+src/Zernio/Model/MessengerIceBreakerLocaleCallToActionsInner.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
 src/Zernio/Model/MetaAssignedUser.cs
 src/Zernio/Model/MetaBusinessUser.cs
@@ -7617,12 +7688,15 @@ src/Zernio/Model/SetImessageSubscriptionRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerGetStartedRequest.cs
+src/Zernio/Model/SetMessengerGreetingRequest.cs
+src/Zernio/Model/SetMessengerIceBreakersRequest.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetPartnershipAdPermission200Response.cs
 src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
+src/Zernio/Model/SetWhatsAppConversationalAutomationRequest.cs
 src/Zernio/Model/SetWhatsAppFlowsEncryptionKeyRequest.cs
 src/Zernio/Model/SetWhatsappBusinessUsername200Response.cs
 src/Zernio/Model/SetWhatsappBusinessUsernameRequest.cs
@@ -7689,6 +7763,8 @@ src/Zernio/Model/TrackingTagPartner.cs
 src/Zernio/Model/TrackingTagUser.cs
 src/Zernio/Model/TransferVoiceCall200Response.cs
 src/Zernio/Model/TransferVoiceCallRequest.cs
+src/Zernio/Model/TriggerApiCallWorkflow201Response.cs
+src/Zernio/Model/TriggerApiCallWorkflowRequest.cs
 src/Zernio/Model/TriggerWorkflow200Response.cs
 src/Zernio/Model/TriggerWorkflow200ResponseExecution.cs
 src/Zernio/Model/TriggerWorkflowRequest.cs
@@ -8066,6 +8142,9 @@ src/Zernio/Model/WebhookPayloadCommentPost.cs
 src/Zernio/Model/WebhookPayloadCommerceProduct.cs
 src/Zernio/Model/WebhookPayloadCommerceProductResource.cs
 src/Zernio/Model/WebhookPayloadCommerceProductStore.cs
+src/Zernio/Model/WebhookPayloadContactFieldChanged.cs
+src/Zernio/Model/WebhookPayloadContactTag.cs
+src/Zernio/Model/WebhookPayloadContactTagContact.cs
 src/Zernio/Model/WebhookPayloadConversationControlChanged.cs
 src/Zernio/Model/WebhookPayloadConversationControlChangedControl.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
@@ -8120,6 +8199,7 @@ src/Zernio/Model/WebhookPayloadReferralSender.cs
 src/Zernio/Model/WebhookPayloadReviewNew.cs
 src/Zernio/Model/WebhookPayloadReviewNewAccount.cs
 src/Zernio/Model/WebhookPayloadReviewUpdated.cs
+src/Zernio/Model/WebhookPayloadSequenceEnrollment.cs
 src/Zernio/Model/WebhookPayloadTest.cs
 src/Zernio/Model/WebhookPayloadWhatsAppAccountAlertReceived.cs
 src/Zernio/Model/WebhookPayloadWhatsAppAccountAlertReceivedAlert.cs
@@ -8137,6 +8217,11 @@ src/Zernio/Model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdated.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.cs
 src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.cs
+src/Zernio/Model/WebhookPayloadWorkflowRun.cs
+src/Zernio/Model/WebhookPayloadWorkflowRunConversation.cs
+src/Zernio/Model/WebhookPayloadWorkflowRunExecution.cs
+src/Zernio/Model/WebhookPayloadWorkflowRunTrigger.cs
+src/Zernio/Model/WebhookPayloadWorkflowRunWorkflow.cs
 src/Zernio/Model/WhatsAppBillingConversation.cs
 src/Zernio/Model/WhatsAppBodyComponent.cs
 src/Zernio/Model/WhatsAppBodyComponentExample.cs
@@ -8146,6 +8231,8 @@ src/Zernio/Model/WhatsAppCarouselComponent.cs
 src/Zernio/Model/WhatsAppCarouselComponentCardsInner.cs
 src/Zernio/Model/WhatsAppCommerceSettings.cs
 src/Zernio/Model/WhatsAppContactIdentity.cs
+src/Zernio/Model/WhatsAppConversationalAutomation.cs
+src/Zernio/Model/WhatsAppConversationalAutomationCommandsInner.cs
 src/Zernio/Model/WhatsAppFooterComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponentExample.cs

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | **bool** |  | [optional] 
-**Logs** | [**List&lt;GetCommentAutomation200ResponseLogsInner&gt;**](GetCommentAutomation200ResponseLogsInner.md) |  | [optional] 
+**Logs** | [**List&lt;CommentAutomationLog&gt;**](CommentAutomationLog.md) |  | [optional] 
 **Pagination** | [**ListContacts200ResponsePagination**](ListContacts200ResponsePagination.md) |  | [optional] 
 **Misses** | [**ListCommentAutomationLogs200ResponseMisses**](ListCommentAutomationLogs200ResponseMisses.md) |  | [optional] 
 

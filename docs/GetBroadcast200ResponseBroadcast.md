@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **AccountId** | **string** |  | [optional] 
 **Message** | [**GetBroadcast200ResponseBroadcastMessage**](GetBroadcast200ResponseBroadcastMessage.md) |  | [optional] 
 **Template** | [**GetBroadcast200ResponseBroadcastTemplate**](GetBroadcast200ResponseBroadcastTemplate.md) |  | [optional] 
-**SegmentFilters** | [**ListContacts200ResponseFilters**](ListContacts200ResponseFilters.md) |  | [optional] 
+**SegmentFilters** | [**GetBroadcast200ResponseBroadcastSegmentFilters**](GetBroadcast200ResponseBroadcastSegmentFilters.md) |  | [optional] 
 **Status** | **string** |  | [optional] 
 **ScheduledAt** | **DateTime** |  | [optional] 
 **StartedAt** | **DateTime** |  | [optional] 

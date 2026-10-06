@@ -19,7 +19,14 @@ Name | Type | Description | Notes
 **Audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  | [optional] 
 **FollowGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  | [optional] 
 **AlsoMatchInDms** | **bool** | Whether these keywords also fire on a plain inbound DM. | [optional] 
+**RepeatPolicy** | [**CommentAutomationRepeatPolicy**](CommentAutomationRepeatPolicy.md) |  | [optional] 
+**DedupeSameTextHours** | **int** | Same-text dedupe window in hours. Omitted when off. | [optional] 
+**PublicReplyPolicy** | **string** |  | [optional] 
+**Actions** | [**CommentAutomationActions**](CommentAutomationActions.md) |  | [optional] 
+**QuickReplies** | [**List&lt;CommentAutomationQuickReply&gt;**](CommentAutomationQuickReply.md) |  | [optional] 
+**DmMedia** | [**CommentAutomationDmMedia**](CommentAutomationDmMedia.md) |  | [optional] 
 **IsActive** | **bool** |  | [optional] 
+**Stats** | [**CommentAutomationStats**](CommentAutomationStats.md) |  | [optional] 
 **UpdatedAt** | **DateTime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

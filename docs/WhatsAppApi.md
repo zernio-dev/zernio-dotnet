@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateWhatsAppGroupChat**](WhatsAppApi.md#createwhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups | Create group |
 | [**CreateWhatsAppGroupInviteLink**](WhatsAppApi.md#createwhatsappgroupinvitelink) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link |
 | [**CreateWhatsAppTemplate**](WhatsAppApi.md#createwhatsapptemplate) | **POST** /v1/whatsapp/templates | Create template |
+| [**DeleteWhatsAppConversationalAutomation**](WhatsAppApi.md#deletewhatsappconversationalautomation) | **DELETE** /v1/whatsapp/conversational-automation | Clear ice breakers and commands |
 | [**DeleteWhatsAppGroupChat**](WhatsAppApi.md#deletewhatsappgroupchat) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**DeleteWhatsAppTemplate**](WhatsAppApi.md#deletewhatsapptemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
 | [**DeleteWhatsAppTemplateById**](WhatsAppApi.md#deletewhatsapptemplatebyid) | **DELETE** /v1/whatsapp/templates/id/{templateId} | Delete template by id |
@@ -19,6 +20,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppBlockedUsers**](WhatsAppApi.md#getwhatsappblockedusers) | **GET** /v1/whatsapp/block-users | List blocked users |
 | [**GetWhatsAppBusinessProfile**](WhatsAppApi.md#getwhatsappbusinessprofile) | **GET** /v1/whatsapp/business-profile | Get business profile |
 | [**GetWhatsAppCommerceSettings**](WhatsAppApi.md#getwhatsappcommercesettings) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings |
+| [**GetWhatsAppConversationalAutomation**](WhatsAppApi.md#getwhatsappconversationalautomation) | **GET** /v1/whatsapp/conversational-automation | Get ice breakers and commands |
 | [**GetWhatsAppDataset**](WhatsAppApi.md#getwhatsappdataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset |
 | [**GetWhatsAppDisplayName**](WhatsAppApi.md#getwhatsappdisplayname) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status |
 | [**GetWhatsAppGroupChat**](WhatsAppApi.md#getwhatsappgroupchat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info |
@@ -39,6 +41,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**RemoveWhatsAppGroupParticipants**](WhatsAppApi.md#removewhatsappgroupparticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
 | [**RequestWhatsAppVerificationCode**](WhatsAppApi.md#requestwhatsappverificationcode) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number |
 | [**SendWhatsAppConversion**](WhatsAppApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
+| [**SetWhatsAppConversationalAutomation**](WhatsAppApi.md#setwhatsappconversationalautomation) | **POST** /v1/whatsapp/conversational-automation | Set ice breakers and commands |
 | [**SetWhatsappBusinessUsername**](WhatsAppApi.md#setwhatsappbusinessusername) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**UnblockWhatsAppUsers**](WhatsAppApi.md#unblockwhatsappusers) | **DELETE** /v1/whatsapp/block-users | Unblock users |
 | [**UnlinkWhatsAppCatalog**](WhatsAppApi.md#unlinkwhatsappcatalog) | **DELETE** /v1/whatsapp/catalogs | Unlink a catalog from a WhatsApp number |
@@ -762,6 +765,107 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletewhatsappconversationalautomation"></a>
+# **DeleteWhatsAppConversationalAutomation**
+> UpdateYoutubeDefaultPlaylist200Response DeleteWhatsAppConversationalAutomation (string accountId)
+
+Clear ice breakers and commands
+
+Remove every prompt and command and turn the welcome message off.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteWhatsAppConversationalAutomationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp account ID
+
+            try
+            {
+                // Clear ice breakers and commands
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteWhatsAppConversationalAutomation(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.DeleteWhatsAppConversationalAutomation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteWhatsAppConversationalAutomationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Clear ice breakers and commands
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteWhatsAppConversationalAutomationWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.DeleteWhatsAppConversationalAutomationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp account ID |  |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Configuration cleared |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1587,6 +1691,107 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwhatsappconversationalautomation"></a>
+# **GetWhatsAppConversationalAutomation**
+> GetWhatsAppConversationalAutomation200Response GetWhatsAppConversationalAutomation (string accountId)
+
+Get ice breakers and commands
+
+Read the number's conversational automation (Meta's `conversational_automation`): ice breaker prompts, slash commands and the welcome-message flag. A number with none set returns the empty configuration.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppConversationalAutomationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | WhatsApp account ID
+
+            try
+            {
+                // Get ice breakers and commands
+                GetWhatsAppConversationalAutomation200Response result = apiInstance.GetWhatsAppConversationalAutomation(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.GetWhatsAppConversationalAutomation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppConversationalAutomationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get ice breakers and commands
+    ApiResponse<GetWhatsAppConversationalAutomation200Response> response = apiInstance.GetWhatsAppConversationalAutomationWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.GetWhatsAppConversationalAutomationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | WhatsApp account ID |  |
+
+### Return type
+
+[**GetWhatsAppConversationalAutomation200Response**](GetWhatsAppConversationalAutomation200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current configuration |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3651,6 +3856,107 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="setwhatsappconversationalautomation"></a>
+# **SetWhatsAppConversationalAutomation**
+> UpdateYoutubeDefaultPlaylist200Response SetWhatsAppConversationalAutomation (SetWhatsAppConversationalAutomationRequest setWhatsAppConversationalAutomationRequest)
+
+Set ice breakers and commands
+
+Set ice breaker prompts (up to 3, 80 characters each), slash commands (up to 30) and the welcome-message flag on the number. Only the fields you send are changed. A tapped prompt arrives as a normal `message.received` carrying its text.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SetWhatsAppConversationalAutomationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var setWhatsAppConversationalAutomationRequest = new SetWhatsAppConversationalAutomationRequest(); // SetWhatsAppConversationalAutomationRequest | 
+
+            try
+            {
+                // Set ice breakers and commands
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.SetWhatsAppConversationalAutomation(setWhatsAppConversationalAutomationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.SetWhatsAppConversationalAutomation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SetWhatsAppConversationalAutomationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set ice breakers and commands
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.SetWhatsAppConversationalAutomationWithHttpInfo(setWhatsAppConversationalAutomationRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.SetWhatsAppConversationalAutomationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **setWhatsAppConversationalAutomationRequest** | [**SetWhatsAppConversationalAutomationRequest**](SetWhatsAppConversationalAutomationRequest.md) |  |  |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Configuration updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

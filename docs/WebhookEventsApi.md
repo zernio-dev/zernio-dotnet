@@ -24,6 +24,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCommerceProductCreated**](WebhookEventsApi.md#oncommerceproductcreated) | **POST** /commerce.product.created | Commerce product created event |
 | [**OnCommerceProductDeleted**](WebhookEventsApi.md#oncommerceproductdeleted) | **POST** /commerce.product.deleted | Commerce product deleted event |
 | [**OnCommerceProductUpdated**](WebhookEventsApi.md#oncommerceproductupdated) | **POST** /commerce.product.updated | Commerce product updated event |
+| [**OnContactFieldChanged**](WebhookEventsApi.md#oncontactfieldchanged) | **POST** /contact.field_changed | Contact field changed event |
+| [**OnContactTagAdded**](WebhookEventsApi.md#oncontacttagadded) | **POST** /contact.tag_added | Contact tag added event |
+| [**OnContactTagRemoved**](WebhookEventsApi.md#oncontacttagremoved) | **POST** /contact.tag_removed | Contact tag removed event |
 | [**OnConversationControlChanged**](WebhookEventsApi.md#onconversationcontrolchanged) | **POST** /conversation.control_changed | Conversation control changed event |
 | [**OnConversationStarted**](WebhookEventsApi.md#onconversationstarted) | **POST** /conversation.started | Conversation started event |
 | [**OnLeadReceived**](WebhookEventsApi.md#onleadreceived) | **POST** /lead.received | Lead received event |
@@ -54,6 +57,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnReferralReceived**](WebhookEventsApi.md#onreferralreceived) | **POST** /referral.received | Referral received event |
 | [**OnReviewNew**](WebhookEventsApi.md#onreviewnew) | **POST** /review.new | Review new event |
 | [**OnReviewUpdated**](WebhookEventsApi.md#onreviewupdated) | **POST** /review.updated | Review updated event |
+| [**OnSequenceEnrolled**](WebhookEventsApi.md#onsequenceenrolled) | **POST** /sequence.enrolled | Sequence enrolled event |
+| [**OnSequenceExited**](WebhookEventsApi.md#onsequenceexited) | **POST** /sequence.exited | Sequence exited event |
 | [**OnSmsRegistrationActionRequired**](WebhookEventsApi.md#onsmsregistrationactionrequired) | **POST** /sms.registration.action_required | SMS registration action required event |
 | [**OnSmsRegistrationStatusUpdated**](WebhookEventsApi.md#onsmsregistrationstatusupdated) | **POST** /sms.registration.status_updated | SMS registration status updated event |
 | [**OnVerificationApproved**](WebhookEventsApi.md#onverificationapproved) | **POST** /verification.approved | Verification approved event |
@@ -75,6 +80,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnWhatsAppNumberVerificationRequired**](WebhookEventsApi.md#onwhatsappnumberverificationrequired) | **POST** /whatsapp.number.verification_required | WhatsApp number verification-required event |
 | [**OnWhatsAppTemplateCategoryUpdated**](WebhookEventsApi.md#onwhatsapptemplatecategoryupdated) | **POST** /whatsapp.template.category_updated | WhatsApp template category updated event |
 | [**OnWhatsAppTemplateStatusUpdated**](WebhookEventsApi.md#onwhatsapptemplatestatusupdated) | **POST** /whatsapp.template.status_updated | WhatsApp template status updated event |
+| [**OnWorkflowRunCompleted**](WebhookEventsApi.md#onworkflowruncompleted) | **POST** /workflow.run.completed | Workflow run completed event |
+| [**OnWorkflowRunFailed**](WebhookEventsApi.md#onworkflowrunfailed) | **POST** /workflow.run.failed | Workflow run failed event |
+| [**OnWorkflowRunStarted**](WebhookEventsApi.md#onworkflowrunstarted) | **POST** /workflow.run.started | Workflow run started event |
 
 <a id="onaccountadsinitialsynccompleted"></a>
 # **OnAccountAdsInitialSyncCompleted**
@@ -1956,13 +1964,295 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncontactfieldchanged"></a>
+# **OnContactFieldChanged**
+> void OnContactFieldChanged (WebhookPayloadContactFieldChanged webhookPayloadContactFieldChanged)
+
+Contact field changed event
+
+Fired once per custom field whose value a write changed, with the previous and new value.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnContactFieldChangedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadContactFieldChanged = new WebhookPayloadContactFieldChanged(); // WebhookPayloadContactFieldChanged | 
+
+            try
+            {
+                // Contact field changed event
+                apiInstance.OnContactFieldChanged(webhookPayloadContactFieldChanged);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnContactFieldChanged: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnContactFieldChangedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Contact field changed event
+    apiInstance.OnContactFieldChangedWithHttpInfo(webhookPayloadContactFieldChanged);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnContactFieldChangedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadContactFieldChanged** | [**WebhookPayloadContactFieldChanged**](WebhookPayloadContactFieldChanged.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncontacttagadded"></a>
+# **OnContactTagAdded**
+> void OnContactTagAdded (WebhookPayloadContactTag webhookPayloadContactTag)
+
+Contact tag added event
+
+Fired once per tag a write actually added to a contact, whether the API, a workflow add_tag node or a comment-automation click made it.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnContactTagAddedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadContactTag = new WebhookPayloadContactTag(); // WebhookPayloadContactTag | 
+
+            try
+            {
+                // Contact tag added event
+                apiInstance.OnContactTagAdded(webhookPayloadContactTag);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnContactTagAdded: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnContactTagAddedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Contact tag added event
+    apiInstance.OnContactTagAddedWithHttpInfo(webhookPayloadContactTag);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnContactTagAddedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadContactTag** | [**WebhookPayloadContactTag**](WebhookPayloadContactTag.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncontacttagremoved"></a>
+# **OnContactTagRemoved**
+> void OnContactTagRemoved (WebhookPayloadContactTag webhookPayloadContactTag)
+
+Contact tag removed event
+
+Fired once per tag a write actually removed from a contact.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnContactTagRemovedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadContactTag = new WebhookPayloadContactTag(); // WebhookPayloadContactTag | 
+
+            try
+            {
+                // Contact tag removed event
+                apiInstance.OnContactTagRemoved(webhookPayloadContactTag);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnContactTagRemoved: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnContactTagRemovedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Contact tag removed event
+    apiInstance.OnContactTagRemovedWithHttpInfo(webhookPayloadContactTag);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnContactTagRemovedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadContactTag** | [**WebhookPayloadContactTag**](WebhookPayloadContactTag.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onconversationcontrolchanged"></a>
 # **OnConversationControlChanged**
 > void OnConversationControlChanged (WebhookPayloadConversationControlChanged webhookPayloadConversationControlChanged)
 
 Conversation control changed event
 
-WhatsApp only. Fired when control of a conversation moves between Meta Business Agent and your app (Meta's `messaging_handovers`), or when the agent is first seen answering a thread. While `control.owner` is `ai_agent`, inbound messages arrive on `message.received` with `metadata.standby: true` and the agent's replies on `message.sent` with `source: meta_business_agent`. Sending any message takes control back; release it with `POST /v1/inbox/conversations/{conversationId}/thread-control`. 
+Fired on Meta's handover protocol (`messaging_handovers`). WhatsApp: control moves between Meta Business Agent and your app, or the agent is first seen answering a thread; while `control.owner` is `ai_agent`, inbound messages arrive on `message.received` with `metadata.standby: true` and the agent's replies on `message.sent` with `source: meta_business_agent`, and sending any message takes control back. Facebook and Instagram: another app passed you the thread (`owner: app`) or took or received it (`owner: other`, with `ownerAppId`); while you are not the owner, inbound arrive with `metadata.standby: true`, no automation runs, and sends fail with `not_thread_owner`. Change control with `POST /v1/inbox/conversations/{conversationId}/thread-control`. 
 
 ### Example
 ```csharp
@@ -4776,6 +5066,194 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onsequenceenrolled"></a>
+# **OnSequenceEnrolled**
+> void OnSequenceEnrolled (WebhookPayloadSequenceEnrollment webhookPayloadSequenceEnrollment)
+
+Sequence enrolled event
+
+Fired when a contact is enrolled in a sequence.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnSequenceEnrolledExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadSequenceEnrollment = new WebhookPayloadSequenceEnrollment(); // WebhookPayloadSequenceEnrollment | 
+
+            try
+            {
+                // Sequence enrolled event
+                apiInstance.OnSequenceEnrolled(webhookPayloadSequenceEnrollment);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnSequenceEnrolled: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnSequenceEnrolledWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Sequence enrolled event
+    apiInstance.OnSequenceEnrolledWithHttpInfo(webhookPayloadSequenceEnrollment);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnSequenceEnrolledWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadSequenceEnrollment** | [**WebhookPayloadSequenceEnrollment**](WebhookPayloadSequenceEnrollment.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onsequenceexited"></a>
+# **OnSequenceExited**
+> void OnSequenceExited (WebhookPayloadSequenceEnrollment webhookPayloadSequenceEnrollment)
+
+Sequence exited event
+
+Fired when a contact leaves a sequence, finished or not; exitReason says why.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnSequenceExitedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadSequenceEnrollment = new WebhookPayloadSequenceEnrollment(); // WebhookPayloadSequenceEnrollment | 
+
+            try
+            {
+                // Sequence exited event
+                apiInstance.OnSequenceExited(webhookPayloadSequenceEnrollment);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnSequenceExited: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnSequenceExitedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Sequence exited event
+    apiInstance.OnSequenceExitedWithHttpInfo(webhookPayloadSequenceEnrollment);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnSequenceExitedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadSequenceEnrollment** | [**WebhookPayloadSequenceEnrollment**](WebhookPayloadSequenceEnrollment.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onsmsregistrationactionrequired"></a>
 # **OnSmsRegistrationActionRequired**
 > void OnSmsRegistrationActionRequired (OnSmsRegistrationActionRequiredRequest onSmsRegistrationActionRequiredRequest)
@@ -6728,6 +7206,288 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadWhatsAppTemplateStatusUpdated** | [**WebhookPayloadWhatsAppTemplateStatusUpdated**](WebhookPayloadWhatsAppTemplateStatusUpdated.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onworkflowruncompleted"></a>
+# **OnWorkflowRunCompleted**
+> void OnWorkflowRunCompleted (WebhookPayloadWorkflowRun webhookPayloadWorkflowRun)
+
+Workflow run completed event
+
+Fired when a workflow run ends; execution.status is completed, or exited for a run ended on purpose before its last node.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWorkflowRunCompletedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWorkflowRun = new WebhookPayloadWorkflowRun(); // WebhookPayloadWorkflowRun | 
+
+            try
+            {
+                // Workflow run completed event
+                apiInstance.OnWorkflowRunCompleted(webhookPayloadWorkflowRun);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWorkflowRunCompleted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWorkflowRunCompletedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Workflow run completed event
+    apiInstance.OnWorkflowRunCompletedWithHttpInfo(webhookPayloadWorkflowRun);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWorkflowRunCompletedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWorkflowRun** | [**WebhookPayloadWorkflowRun**](WebhookPayloadWorkflowRun.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onworkflowrunfailed"></a>
+# **OnWorkflowRunFailed**
+> void OnWorkflowRunFailed (WebhookPayloadWorkflowRun webhookPayloadWorkflowRun)
+
+Workflow run failed event
+
+Fired when a workflow run fails; error says which node failed and why.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWorkflowRunFailedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWorkflowRun = new WebhookPayloadWorkflowRun(); // WebhookPayloadWorkflowRun | 
+
+            try
+            {
+                // Workflow run failed event
+                apiInstance.OnWorkflowRunFailed(webhookPayloadWorkflowRun);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWorkflowRunFailed: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWorkflowRunFailedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Workflow run failed event
+    apiInstance.OnWorkflowRunFailedWithHttpInfo(webhookPayloadWorkflowRun);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWorkflowRunFailedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWorkflowRun** | [**WebhookPayloadWorkflowRun**](WebhookPayloadWorkflowRun.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onworkflowrunstarted"></a>
+# **OnWorkflowRunStarted**
+> void OnWorkflowRunStarted (WebhookPayloadWorkflowRun webhookPayloadWorkflowRun)
+
+Workflow run started event
+
+Fired when a workflow run starts for a conversation.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWorkflowRunStartedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadWorkflowRun = new WebhookPayloadWorkflowRun(); // WebhookPayloadWorkflowRun | 
+
+            try
+            {
+                // Workflow run started event
+                apiInstance.OnWorkflowRunStarted(webhookPayloadWorkflowRun);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWorkflowRunStarted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWorkflowRunStartedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Workflow run started event
+    apiInstance.OnWorkflowRunStartedWithHttpInfo(webhookPayloadWorkflowRun);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWorkflowRunStartedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadWorkflowRun** | [**WebhookPayloadWorkflowRun**](WebhookPayloadWorkflowRun.md) |  |  |
 
 ### Return type
 

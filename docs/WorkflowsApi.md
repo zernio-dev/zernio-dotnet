@@ -16,6 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWorkflows**](WorkflowsApi.md#listworkflows) | **GET** /v1/workflows | List workflows |
 | [**PauseWorkflow**](WorkflowsApi.md#pauseworkflow) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
 | [**RestoreWorkflowVersion**](WorkflowsApi.md#restoreworkflowversion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
+| [**TriggerApiCallWorkflow**](WorkflowsApi.md#triggerapicallworkflow) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow |
 | [**TriggerWorkflow**](WorkflowsApi.md#triggerworkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**UpdateWorkflow**](WorkflowsApi.md#updateworkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow |
 
@@ -1235,6 +1236,109 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
 | **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="triggerapicallworkflow"></a>
+# **TriggerApiCallWorkflow**
+> TriggerApiCallWorkflow201Response TriggerApiCallWorkflow (string workflowId, TriggerApiCallWorkflowRequest triggerApiCallWorkflowRequest)
+
+Start an API-triggered workflow
+
+Starts a run of an active workflow whose trigger type is `api_call`. Pass exactly one target: `conversationId` (a conversation on the workflow's account), `contactId` (resolved to that contact's conversation on the workflow's account), or `to` (WhatsApp workflows only: a phone number, whose conversation is found or created). `variables` are merged over the standard run variables, so each key is available as `{{key}}`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class TriggerApiCallWorkflowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WorkflowsApi(httpClient, config, httpClientHandler);
+            var workflowId = "workflowId_example";  // string | 
+            var triggerApiCallWorkflowRequest = new TriggerApiCallWorkflowRequest(); // TriggerApiCallWorkflowRequest | 
+
+            try
+            {
+                // Start an API-triggered workflow
+                TriggerApiCallWorkflow201Response result = apiInstance.TriggerApiCallWorkflow(workflowId, triggerApiCallWorkflowRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkflowsApi.TriggerApiCallWorkflow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the TriggerApiCallWorkflowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Start an API-triggered workflow
+    ApiResponse<TriggerApiCallWorkflow201Response> response = apiInstance.TriggerApiCallWorkflowWithHttpInfo(workflowId, triggerApiCallWorkflowRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkflowsApi.TriggerApiCallWorkflowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **workflowId** | **string** |  |  |
+| **triggerApiCallWorkflowRequest** | [**TriggerApiCallWorkflowRequest**](TriggerApiCallWorkflowRequest.md) |  |  |
+
+### Return type
+
+[**TriggerApiCallWorkflow201Response**](TriggerApiCallWorkflow201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Run started |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
