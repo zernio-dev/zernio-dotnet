@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ImageUrl** | **string** | Image asset. Mutually exclusive with this entry&#39;s &#x60;video&#x60;. Required if neither &#x60;video&#x60; nor an existing post reference is supplied.  | [optional] 
 **Video** | [**CtwaAdRequestBodyCreativesInnerVideo**](CtwaAdRequestBodyCreativesInnerVideo.md) |  | [optional] 
 **WelcomeMessage** | [**CtwaAdRequestBodyCreativesInnerWelcomeMessage**](CtwaAdRequestBodyCreativesInnerWelcomeMessage.md) |  | [optional] 
+**CarouselCards** | [**List&lt;MessagingCarouselCard&gt;**](MessagingCarouselCard.md) | A 2-10 card carousel for this entry instead of &#x60;imageUrl&#x60; / &#x60;video&#x60;; &#x60;body&#x60; is required. Same rules as the top-level &#x60;carouselCards&#x60;. Carousel and single-media entries can be mixed on one ad set. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
