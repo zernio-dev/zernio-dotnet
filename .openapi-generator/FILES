@@ -1673,6 +1673,7 @@ docs/MarkConversationRead200Response.md
 docs/MediaApi.md
 docs/MediaContentType.md
 docs/MediaItem.md
+docs/MediaSubtitle.md
 docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
@@ -4432,6 +4433,7 @@ src/Zernio.Test/Model/LookupSmsNumber200ResponseTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
 src/Zernio.Test/Model/MediaContentTypeTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
+src/Zernio.Test/Model/MediaSubtitleTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MessagingCarouselCardTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
@@ -7176,6 +7178,7 @@ src/Zernio/Model/LookupSmsNumber200Response.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
 src/Zernio/Model/MediaContentType.cs
 src/Zernio/Model/MediaItem.cs
+src/Zernio/Model/MediaSubtitle.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MessagingCarouselCard.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
