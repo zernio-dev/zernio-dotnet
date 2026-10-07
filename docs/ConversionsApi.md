@@ -22,7 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**RemoveCustomConversionGoal**](ConversionsApi.md#removecustomconversiongoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**SendConversions**](ConversionsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events |
 | [**UpdateAdConversionGoals**](ConversionsApi.md#updateadconversiongoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
-| [**UpdateConversionAction**](ConversionsApi.md#updateconversionaction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary |
+| [**UpdateConversionAction**](ConversionsApi.md#updateconversionaction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings |
 | [**UpdateConversionDestination**](ConversionsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**UpdateCustomConversionGoal**](ConversionsApi.md#updatecustomconversiongoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
 
@@ -1956,9 +1956,9 @@ catch (ApiException e)
 # **UpdateConversionAction**
 > UpdateConversionAction200Response UpdateConversionAction (string actionId, UpdateConversionActionRequest updateConversionActionRequest)
 
-Set a conversion action primary or secondary
+Update a conversion action's settings
 
-Sets `primary_for_goal` on a Google Ads conversion action. A primary action counts toward its goal's bidding and the Conversions column; a secondary one is observation-only (All conversions).
+Updates a Google Ads conversion action in one mutate, each field sent written on its own update mask leaf so omitted fields keep their value. Send at least one field.  `primaryForGoal` sets `primary_for_goal`: a primary action counts toward its goal's bidding and the Conversions column; a secondary one is observation-only (All conversions). `countingType`, `category`, the value settings (`defaultValue`, `defaultCurrency`, `alwaysUseDefaultValue`) and the click-through / view-through lookback windows map to the same-named conversion_action fields.  `status: REMOVED` removes the action (Google keeps it, with its history, as REMOVED) and must be sent alone; `status: ENABLED` restores a removed action. Google refuses HIDDEN on website actions, so it is not offered.
 
 ### Example
 ```csharp
@@ -1989,7 +1989,7 @@ namespace Example
 
             try
             {
-                // Set a conversion action primary or secondary
+                // Update a conversion action's settings
                 UpdateConversionAction200Response result = apiInstance.UpdateConversionAction(actionId, updateConversionActionRequest);
                 Debug.WriteLine(result);
             }
@@ -2010,7 +2010,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Set a conversion action primary or secondary
+    // Update a conversion action's settings
     ApiResponse<UpdateConversionAction200Response> response = apiInstance.UpdateConversionActionWithHttpInfo(actionId, updateConversionActionRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
