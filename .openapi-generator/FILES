@@ -13,6 +13,7 @@ docs/AccountWithFollowerStats.md
 docs/AccountWithFollowerStatsAllOfAccountStats.md
 docs/AccountsApi.md
 docs/AccountsListResponse.md
+docs/AccountsListResponseStatusCounts.md
 docs/ActivateSequence200Response.md
 docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
@@ -2859,6 +2860,7 @@ src/Zernio.Test/Model/AcceptConversationRequest200ResponseTests.cs
 src/Zernio.Test/Model/AcceptConversationRequestRequestTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsAllOfAccountStatsTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsTests.cs
+src/Zernio.Test/Model/AccountsListResponseStatusCountsTests.cs
 src/Zernio.Test/Model/AccountsListResponseTests.cs
 src/Zernio.Test/Model/ActivateSequence200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseTests.cs
@@ -5652,6 +5654,7 @@ src/Zernio/Model/AcceptConversationRequestRequest.cs
 src/Zernio/Model/AccountWithFollowerStats.cs
 src/Zernio/Model/AccountWithFollowerStatsAllOfAccountStats.cs
 src/Zernio/Model/AccountsListResponse.cs
+src/Zernio/Model/AccountsListResponseStatusCounts.cs
 src/Zernio/Model/ActivateSequence200Response.cs
 src/Zernio/Model/ActivateWorkflow200Response.cs
 src/Zernio/Model/ActivateWorkflow200ResponseWorkflow.cs
