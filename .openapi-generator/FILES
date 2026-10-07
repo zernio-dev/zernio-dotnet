@@ -487,7 +487,6 @@ docs/CreateConversionActionRequest.md
 docs/CreateConversionDestination201Response.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateConversionDestinationRequestValue.md
-docs/CreateCustomConversionGoal201Response.md
 docs/CreateCustomConversionGoalRequest.md
 docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
@@ -581,6 +580,9 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateSharedBudget201Response.md
+docs/CreateSharedBudget201ResponseBudget.md
+docs/CreateSharedBudgetRequest.md
 docs/CreateSipTrunk201Response.md
 docs/CreateSipTrunk201ResponseTermination.md
 docs/CreateSipTrunkRequest.md
@@ -1622,6 +1624,8 @@ docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
+docs/ListSharedBudgets200Response.md
+docs/ListSharedBudgets200ResponseBudgetsInner.md
 docs/ListSipTrunks200Response.md
 docs/ListSipTrunks200ResponseTrunksInner.md
 docs/ListSipTrunks200ResponseTrunksInnerTermination.md
@@ -3308,7 +3312,6 @@ src/Zernio.Test/Model/CreateConversionActionRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestination201ResponseTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestValueTests.cs
-src/Zernio.Test/Model/CreateCustomConversionGoal201ResponseTests.cs
 src/Zernio.Test/Model/CreateCustomConversionGoalRequestTests.cs
 src/Zernio.Test/Model/CreateCustomConversionRequestTests.cs
 src/Zernio.Test/Model/CreateCustomField200ResponseTests.cs
@@ -3402,6 +3405,9 @@ src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestTests.cs
+src/Zernio.Test/Model/CreateSharedBudget201ResponseBudgetTests.cs
+src/Zernio.Test/Model/CreateSharedBudget201ResponseTests.cs
+src/Zernio.Test/Model/CreateSharedBudgetRequestTests.cs
 src/Zernio.Test/Model/CreateSipTrunk201ResponseTerminationTests.cs
 src/Zernio.Test/Model/CreateSipTrunk201ResponseTests.cs
 src/Zernio.Test/Model/CreateSipTrunkRequestTests.cs
@@ -4426,6 +4432,8 @@ src/Zernio.Test/Model/ListSequenceEnrollments200ResponseEnrollmentsInnerTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseSequencesInnerTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseTests.cs
+src/Zernio.Test/Model/ListSharedBudgets200ResponseBudgetsInnerTests.cs
+src/Zernio.Test/Model/ListSharedBudgets200ResponseTests.cs
 src/Zernio.Test/Model/ListSipTrunks200ResponseTests.cs
 src/Zernio.Test/Model/ListSipTrunks200ResponseTrunksInnerTerminationTests.cs
 src/Zernio.Test/Model/ListSipTrunks200ResponseTrunksInnerTests.cs
@@ -6095,7 +6103,6 @@ src/Zernio/Model/CreateConversionActionRequest.cs
 src/Zernio/Model/CreateConversionDestination201Response.cs
 src/Zernio/Model/CreateConversionDestinationRequest.cs
 src/Zernio/Model/CreateConversionDestinationRequestValue.cs
-src/Zernio/Model/CreateCustomConversionGoal201Response.cs
 src/Zernio/Model/CreateCustomConversionGoalRequest.cs
 src/Zernio/Model/CreateCustomConversionRequest.cs
 src/Zernio/Model/CreateCustomField200Response.cs
@@ -6189,6 +6196,9 @@ src/Zernio/Model/CreateSequenceRequest.cs
 src/Zernio/Model/CreateSequenceRequestStepsInner.cs
 src/Zernio/Model/CreateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.cs
+src/Zernio/Model/CreateSharedBudget201Response.cs
+src/Zernio/Model/CreateSharedBudget201ResponseBudget.cs
+src/Zernio/Model/CreateSharedBudgetRequest.cs
 src/Zernio/Model/CreateSipTrunk201Response.cs
 src/Zernio/Model/CreateSipTrunk201ResponseTermination.cs
 src/Zernio/Model/CreateSipTrunkRequest.cs
@@ -7213,6 +7223,8 @@ src/Zernio/Model/ListSequenceEnrollments200Response.cs
 src/Zernio/Model/ListSequenceEnrollments200ResponseEnrollmentsInner.cs
 src/Zernio/Model/ListSequences200Response.cs
 src/Zernio/Model/ListSequences200ResponseSequencesInner.cs
+src/Zernio/Model/ListSharedBudgets200Response.cs
+src/Zernio/Model/ListSharedBudgets200ResponseBudgetsInner.cs
 src/Zernio/Model/ListSipTrunks200Response.cs
 src/Zernio/Model/ListSipTrunks200ResponseTrunksInner.cs
 src/Zernio/Model/ListSipTrunks200ResponseTrunksInnerTermination.cs

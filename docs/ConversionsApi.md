@@ -452,7 +452,7 @@ catch (ApiException e)
 
 <a id="createcustomconversiongoal"></a>
 # **CreateCustomConversionGoal**
-> CreateCustomConversionGoal201Response CreateCustomConversionGoal (CreateCustomConversionGoalRequest createCustomConversionGoalRequest)
+> CreateSharedBudget201ResponseBudget CreateCustomConversionGoal (CreateCustomConversionGoalRequest createCustomConversionGoalRequest)
 
 Create a custom conversion goal
 
@@ -487,7 +487,7 @@ namespace Example
             try
             {
                 // Create a custom conversion goal
-                CreateCustomConversionGoal201Response result = apiInstance.CreateCustomConversionGoal(createCustomConversionGoalRequest);
+                CreateSharedBudget201ResponseBudget result = apiInstance.CreateCustomConversionGoal(createCustomConversionGoalRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -508,7 +508,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a custom conversion goal
-    ApiResponse<CreateCustomConversionGoal201Response> response = apiInstance.CreateCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest);
+    ApiResponse<CreateSharedBudget201ResponseBudget> response = apiInstance.CreateCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -529,7 +529,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateCustomConversionGoal201Response**](CreateCustomConversionGoal201Response.md)
+[**CreateSharedBudget201ResponseBudget**](CreateSharedBudget201ResponseBudget.md)
 
 ### Authorization
 

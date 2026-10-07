@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **NetworkSettings** | [**GoogleNetworkSettings**](GoogleNetworkSettings.md) |  | [optional] 
 **TrackingUrlTemplate** | **string** |  | [optional] 
 **FinalUrlSuffix** | **string** |  | [optional] 
+**SharedBudgetId** | **string** | Google only. Echoed back when the campaign moved budgets; &#x60;budget&#x60; is then the budget it now uses. | [optional] 
 **PlatformSpecificData** | **Object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
