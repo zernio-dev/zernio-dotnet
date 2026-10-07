@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **PlatformCampaignId** | **string** |  | 
 **PlatformAdSetId** | **string** |  | 
 **Message** | **string** |  | 
+**Warnings** | **List&lt;string&gt;** | Present when Meta created the ad set differently from the request. Today: Meta kept the ad set without the requested &#x60;whatsappPhoneNumber&#x60; in its promoted_object (the ads still carry it on their WhatsApp button). | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
