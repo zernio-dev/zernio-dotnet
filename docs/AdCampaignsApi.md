@@ -2392,7 +2392,7 @@ catch (ApiException e)
 
 Read the platform's review verdict for an ad
 
-Reads the ad's review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok's suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  TikTok only (`/ad/review_info/`); every other platform returns 501. Use it alongside the ad's `platformStatus`: TikTok reports `AD_STATUS_AUDIT` while the ad is in review and `AD_STATUS_AD_PRE_ONLINE` once it passed and is about to deliver (both map to `status: pending_review`); `AD_STATUS_AUDIT_DENY` maps to `rejected`.
+Reads the ad's review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok's suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  **Google**: reads `ad_group_ad.policy_summary` live. `approvalStatus` and `reviewStatus` are Google's verbatim (`approvalStatus`: APPROVED, APPROVED_LIMITED, AREA_OF_INTEREST_ONLY, DISAPPROVED, UNKNOWN; `reviewStatus`: REVIEW_IN_PROGRESS, REVIEWED, UNDER_APPEAL, ELIGIBLE_MAY_SERVE); `approved` is true for the three approved statuses, false for DISAPPROVED, null otherwise. `policyTopics` carries every policy topic entry with its `type` (PROHIBITED, LIMITED, ...) and Google's `evidences` and `constraints` verbatim; each PROHIBITED topic is also listed in `rejections` (reason = the topic). The `forbidden*` arrays are TikTok-only and always empty on Google.  TikTok uses `/ad/review_info/`; every other platform returns 501. On TikTok, use it alongside the ad's `platformStatus`: TikTok reports `AD_STATUS_AUDIT` while the ad is in review and `AD_STATUS_AD_PRE_ONLINE` once it passed and is about to deliver (both map to `status: pending_review`); `AD_STATUS_AUDIT_DENY` maps to `rejected`.
 
 ### Example
 ```csharp
@@ -2483,8 +2483,8 @@ catch (ApiException e)
 | **200** | The review verdict |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Ad not found, it has no TikTok ad id yet, or TikTok has no review record for it |  -  |
-| **501** | Only supported on TikTok |  -  |
+| **404** | Ad not found, it has no platform ad id yet, or the platform has no review record for it |  -  |
+| **501** | Only supported on TikTok and Google |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
