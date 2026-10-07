@@ -45,12 +45,14 @@ namespace Zernio.Model
         /// <param name="devices">Devices to include. Devices not listed become excluded (negative) criteria, same contract as the existing devices-only edit..</param>
         /// <param name="locations">locations.</param>
         /// <param name="languages">Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;), e.g. [\&quot;en\&quot;, \&quot;de\&quot;]..</param>
+        /// <param name="excludedLocations">excludedLocations.</param>
         /// <param name="locationTargetingType">locationTargetingType.</param>
-        public UpdateCampaignTargetingRequestTargeting(List<UpdateCampaignTargetingRequestTargetingDevicesInner> devices = default, UpdateCampaignTargetingRequestTargetingLocations locations = default, List<string> languages = default, GoogleLocationTargetingType? locationTargetingType = default)
+        public UpdateCampaignTargetingRequestTargeting(List<UpdateCampaignTargetingRequestTargetingDevicesInner> devices = default, UpdateCampaignTargetingRequestTargetingLocations locations = default, List<string> languages = default, UpdateCampaignTargetingRequestTargetingExcludedLocations excludedLocations = default, GoogleLocationTargetingType? locationTargetingType = default)
         {
             this.Devices = devices;
             this.Locations = locations;
             this.Languages = languages;
+            this.ExcludedLocations = excludedLocations;
             this.LocationTargetingType = locationTargetingType;
         }
 
@@ -75,6 +77,12 @@ namespace Zernio.Model
         public List<string> Languages { get; set; }
 
         /// <summary>
+        /// Gets or Sets ExcludedLocations
+        /// </summary>
+        [DataMember(Name = "excludedLocations", EmitDefaultValue = false)]
+        public UpdateCampaignTargetingRequestTargetingExcludedLocations ExcludedLocations { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -85,6 +93,7 @@ namespace Zernio.Model
             sb.Append("  Devices: ").Append(Devices).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
             sb.Append("  Languages: ").Append(Languages).Append("\n");
+            sb.Append("  ExcludedLocations: ").Append(ExcludedLocations).Append("\n");
             sb.Append("  LocationTargetingType: ").Append(LocationTargetingType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

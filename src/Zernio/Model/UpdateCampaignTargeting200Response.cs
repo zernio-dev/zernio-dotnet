@@ -52,16 +52,22 @@ namespace Zernio.Model
             Locations = 2,
 
             /// <summary>
+            /// Enum ExcludedLocations for value: excludedLocations
+            /// </summary>
+            [EnumMember(Value = "excludedLocations")]
+            ExcludedLocations = 3,
+
+            /// <summary>
             /// Enum Languages for value: languages
             /// </summary>
             [EnumMember(Value = "languages")]
-            Languages = 3,
+            Languages = 4,
 
             /// <summary>
             /// Enum LocationTargetingType for value: locationTargetingType
             /// </summary>
             [EnumMember(Value = "locationTargetingType")]
-            LocationTargetingType = 4
+            LocationTargetingType = 5
         }
 
         /// <summary>
@@ -100,8 +106,9 @@ namespace Zernio.Model
         /// <param name="locationTargetingType">The value read back from Google after the edit..</param>
         /// <param name="devices">devices.</param>
         /// <param name="locations">locations.</param>
+        /// <param name="excludedLocations">The negative (excluded) location criteria read back after the edit, same item shape as &#x60;locations&#x60;..</param>
         /// <param name="languages">languages.</param>
-        public UpdateCampaignTargeting200Response(string campaignId = default, string adGroupId = default, List<UpdatedEnum> updated = default, LocationTargetingTypeEnum? locationTargetingType = default, List<UpdateCampaignTargeting200ResponseDevicesInner> devices = default, List<UpdateCampaignTargeting200ResponseLocationsInner> locations = default, List<UpdateCampaignTargeting200ResponseLanguagesInner> languages = default)
+        public UpdateCampaignTargeting200Response(string campaignId = default, string adGroupId = default, List<UpdatedEnum> updated = default, LocationTargetingTypeEnum? locationTargetingType = default, List<UpdateCampaignTargeting200ResponseDevicesInner> devices = default, List<UpdateCampaignTargeting200ResponseLocationsInner> locations = default, List<UpdateCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations = default, List<UpdateCampaignTargeting200ResponseLanguagesInner> languages = default)
         {
             this.CampaignId = campaignId;
             this.AdGroupId = adGroupId;
@@ -109,6 +116,7 @@ namespace Zernio.Model
             this.LocationTargetingType = locationTargetingType;
             this.Devices = devices;
             this.Locations = locations;
+            this.ExcludedLocations = excludedLocations;
             this.Languages = languages;
         }
 
@@ -145,6 +153,13 @@ namespace Zernio.Model
         public List<UpdateCampaignTargeting200ResponseLocationsInner> Locations { get; set; }
 
         /// <summary>
+        /// The negative (excluded) location criteria read back after the edit, same item shape as &#x60;locations&#x60;.
+        /// </summary>
+        /// <value>The negative (excluded) location criteria read back after the edit, same item shape as &#x60;locations&#x60;.</value>
+        [DataMember(Name = "excludedLocations", EmitDefaultValue = false)]
+        public List<UpdateCampaignTargeting200ResponseExcludedLocationsInner> ExcludedLocations { get; set; }
+
+        /// <summary>
         /// Gets or Sets Languages
         /// </summary>
         [DataMember(Name = "languages", EmitDefaultValue = false)]
@@ -164,6 +179,7 @@ namespace Zernio.Model
             sb.Append("  LocationTargetingType: ").Append(LocationTargetingType).Append("\n");
             sb.Append("  Devices: ").Append(Devices).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  ExcludedLocations: ").Append(ExcludedLocations).Append("\n");
             sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

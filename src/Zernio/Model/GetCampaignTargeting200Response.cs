@@ -65,14 +65,18 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="devices">devices.</param>
         /// <param name="locations">locations.</param>
+        /// <param name="excludedLocations">The negative (excluded) location criteria, same item shape as &#x60;locations&#x60; with &#x60;negative: true&#x60;..</param>
+        /// <param name="excludedLocationsEditable">Whether PUT accepts &#x60;excludedLocations&#x60; for this campaign. False on Demand Gen, which returns 400 for any exclusion..</param>
         /// <param name="languages">languages.</param>
         /// <param name="locationTargetingType">Who the location targeting reaches, see GoogleLocationTargetingType. Null when Google reports a legacy value (SEARCH_INTEREST) this API does not set..</param>
         /// <param name="cachedAt">When this targeting was fetched from Google. Null when it was never served from cache..</param>
         /// <param name="stale">True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read..</param>
-        public GetCampaignTargeting200Response(List<GetCampaignTargeting200ResponseDevicesInner> devices = default, List<GetCampaignTargeting200ResponseLocationsInner> locations = default, List<GetCampaignTargeting200ResponseLanguagesInner> languages = default, LocationTargetingTypeEnum? locationTargetingType = default, DateTime? cachedAt = default, bool stale = default)
+        public GetCampaignTargeting200Response(List<GetCampaignTargeting200ResponseDevicesInner> devices = default, List<GetCampaignTargeting200ResponseLocationsInner> locations = default, List<GetCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations = default, bool excludedLocationsEditable = default, List<GetCampaignTargeting200ResponseLanguagesInner> languages = default, LocationTargetingTypeEnum? locationTargetingType = default, DateTime? cachedAt = default, bool stale = default)
         {
             this.Devices = devices;
             this.Locations = locations;
+            this.ExcludedLocations = excludedLocations;
+            this.ExcludedLocationsEditable = excludedLocationsEditable;
             this.Languages = languages;
             this.LocationTargetingType = locationTargetingType;
             this.CachedAt = cachedAt;
@@ -90,6 +94,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "locations", EmitDefaultValue = false)]
         public List<GetCampaignTargeting200ResponseLocationsInner> Locations { get; set; }
+
+        /// <summary>
+        /// The negative (excluded) location criteria, same item shape as &#x60;locations&#x60; with &#x60;negative: true&#x60;.
+        /// </summary>
+        /// <value>The negative (excluded) location criteria, same item shape as &#x60;locations&#x60; with &#x60;negative: true&#x60;.</value>
+        [DataMember(Name = "excludedLocations", EmitDefaultValue = false)]
+        public List<GetCampaignTargeting200ResponseExcludedLocationsInner> ExcludedLocations { get; set; }
+
+        /// <summary>
+        /// Whether PUT accepts &#x60;excludedLocations&#x60; for this campaign. False on Demand Gen, which returns 400 for any exclusion.
+        /// </summary>
+        /// <value>Whether PUT accepts &#x60;excludedLocations&#x60; for this campaign. False on Demand Gen, which returns 400 for any exclusion.</value>
+        [DataMember(Name = "excludedLocationsEditable", EmitDefaultValue = true)]
+        public bool ExcludedLocationsEditable { get; set; }
 
         /// <summary>
         /// Gets or Sets Languages
@@ -121,6 +139,8 @@ namespace Zernio.Model
             sb.Append("class GetCampaignTargeting200Response {\n");
             sb.Append("  Devices: ").Append(Devices).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  ExcludedLocations: ").Append(ExcludedLocations).Append("\n");
+            sb.Append("  ExcludedLocationsEditable: ").Append(ExcludedLocationsEditable).Append("\n");
             sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("  LocationTargetingType: ").Append(LocationTargetingType).Append("\n");
             sb.Append("  CachedAt: ").Append(CachedAt).Append("\n");

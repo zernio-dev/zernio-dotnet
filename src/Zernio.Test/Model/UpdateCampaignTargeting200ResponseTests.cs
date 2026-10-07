@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ExcludedLocations'
+        /// </summary>
+        [Fact]
+        public void ExcludedLocationsTest()
+        {
+            // TODO unit test for the property 'ExcludedLocations'
+        }
+
+        /// <summary>
         /// Test the property 'Languages'
         /// </summary>
         [Fact]

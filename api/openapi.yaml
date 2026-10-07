@@ -36550,6 +36550,11 @@ paths:
         campaigns also have CONNECTED_TV. `bidModifier` is Google's bid adjustment
         for that device, `null` when it has none, and `0` when the device is
         switched off; `included` is false for exactly that case.
+
+        `excludedLocations` lists the campaign's negative location criteria (the
+        places it never serves in). `locations` still lists every location criterion,
+        each flagged with `negative`, so a client reading the targeted set filters
+        `negative: false`.
       operationId: getCampaignTargeting
       parameters:
       - description: Google platform campaign ID
@@ -36591,7 +36596,8 @@ paths:
           description: Only available on Google Ads campaigns
       security:
       - bearerAuth: []
-      summary: "Read a Google campaign's device, location, and language targeting"
+      summary: "Read a Google campaign's device, location, excluded location, and\
+        \ language targeting"
       tags:
       - Ad Campaigns
       x-resource-group: ads
@@ -36601,7 +36607,7 @@ paths:
       description: |
         Google Ads compliance row M.10: geo and language targeting set at
         creation must stay editable afterwards. Send at least one of `devices`,
-        `locations`, `languages`, `locationTargetingType`; each provided field REPLACES that field's
+        `locations`, `excludedLocations`, `languages`, `locationTargetingType`; each provided field REPLACES that field's
         existing criteria on the campaign (a full set, not a delta). Fields left
         out of the body are untouched. Google only; every other platform returns
         501.
@@ -36613,10 +36619,18 @@ paths:
 
         `locations` accepts the same shapes as campaign creation: a bare array of
         ISO country codes, or an object with `countries`/`regions`/`cities`/`zips`/`metros`
-        key lists (`key` from GET /v1/ads/targeting/search?dimension=geo). Negative
-        (excluded) locations are left untouched by this endpoint. An empty location list
+        key lists (`key` from GET /v1/ads/targeting/search?dimension=geo). Excluded
+        locations are left untouched by `locations`. An empty location list
         returns 400 instead of removing every criterion: a Google campaign with no location
         criteria targets every country, so omit `locations` to leave targeting alone.
+
+        `excludedLocations` takes the same two shapes and replaces the campaign's negative
+        location criteria (the places it never serves in), leaving the targeted `locations`
+        untouched. An empty list (or `{}`) removes every exclusion. Radius exclusions are
+        not supported. A place cannot be both targeted and excluded: a request whose result
+        would leave one on both sides returns 400 before anything is written, and moving a
+        place from one side to the other in the same request is applied atomically. Example:
+        `{ "platform": "google", "targeting": { "excludedLocations": { "countries": ["CA"], "regions": ["21137"] } } }`.
 
         The removes and the creates go out in ONE Google `googleAds:mutate`, so a failed
         edit leaves the campaign's previous set intact rather than a half-applied one.
@@ -36629,7 +36643,7 @@ paths:
         (also people searching for or interested in them). Example:
         `{ "platform": "google", "targeting": { "locationTargetingType": "presence" } }`.
 
-        The response includes the refreshed `devices`/`locations`/`languages` state
+        The response includes the refreshed `devices`/`locations`/`excludedLocations`/`languages` state
         read back from Google after the edit, and invalidates the cached copy
         `GET` on this campaign would otherwise keep serving.
 
@@ -36640,6 +36654,7 @@ paths:
         returns 400 naming them: edit each one with PUT /v1/ads/{adId} `targeting` on an ad of
         that ad group. Campaigns migrated from Discovery that still target on the campaign keep
         being written there. `devices` and `locationTargetingType` stay campaign-level.
+        `excludedLocations` is not available on Demand Gen yet and returns 400.
       operationId: updateCampaignTargeting
       parameters:
       - description: Google platform campaign ID
@@ -36677,7 +36692,8 @@ paths:
           description: Only available on Google Ads campaigns
       security:
       - bearerAuth: []
-      summary: "Edit a Google campaign's device, location, or language targeting"
+      summary: "Edit a Google campaign's device, location, excluded location, or language\
+        \ targeting"
       tags:
       - Ad Campaigns
       x-resource-group: ads
@@ -122741,6 +122757,33 @@ components:
             \ code; null when the id could not be resolved."
           nullable: true
           type: string
+    getCampaignTargeting_200_response_excludedLocations_inner:
+      example:
+        geoTargetId: geoTargetId
+        negative: true
+        countryCode: countryCode
+        name: name
+        type: type
+        canonicalName: canonicalName
+      properties:
+        geoTargetId:
+          description: "Numeric id from Google's geoTargetConstants/{id}."
+          type: string
+        negative:
+          description: Always true here.
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        canonicalName:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
     getCampaignTargeting_200_response_languages_inner:
       example:
         code: code
@@ -122759,6 +122802,19 @@ components:
           type: string
     getCampaignTargeting_200_response:
       example:
+        excludedLocations:
+        - geoTargetId: geoTargetId
+          negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
+        - geoTargetId: geoTargetId
+          negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
         stale: true
         languages:
         - code: code
@@ -122789,6 +122845,7 @@ components:
           canonicalName: canonicalName
         cachedAt: 2000-01-23T04:56:07.000+00:00
         locationTargetingType: presence
+        excludedLocationsEditable: true
       properties:
         devices:
           items:
@@ -122798,6 +122855,16 @@ components:
           items:
             $ref: "#/components/schemas/getCampaignTargeting_200_response_locations_inner"
           type: array
+        excludedLocations:
+          description: "The negative (excluded) location criteria, same item shape\
+            \ as `locations` with `negative: true`."
+          items:
+            $ref: "#/components/schemas/getCampaignTargeting_200_response_excludedLocations_inner"
+          type: array
+        excludedLocationsEditable:
+          description: "Whether PUT accepts `excludedLocations` for this campaign.\
+            \ False on Demand Gen, which returns 400 for any exclusion."
+          type: boolean
         languages:
           items:
             $ref: "#/components/schemas/getCampaignTargeting_200_response_languages_inner"
@@ -122890,6 +122957,39 @@ components:
           type: string
         type: array
       - $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_locations_oneOf"
+    updateCampaignTargeting_request_targeting_excludedLocations_oneOf:
+      additionalProperties: {}
+      properties:
+        countries:
+          items:
+            type: string
+          type: array
+        regions:
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_locations_oneOf_regions_inner"
+          type: array
+        cities:
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_locations_oneOf_regions_inner"
+          type: array
+        zips:
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_locations_oneOf_regions_inner"
+          type: array
+        metros:
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_locations_oneOf_regions_inner"
+          type: array
+    updateCampaignTargeting_request_targeting_excludedLocations:
+      description: "Locations the campaign never serves in, as a bare country-code\
+        \ array or the nested countries/regions/cities/zips/metros shape. Replaces\
+        \ the excluded set; [] removes every exclusion."
+      oneOf:
+      - items:
+          description: ISO 3166-1 alpha-2 country code.
+          type: string
+        type: array
+      - $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_excludedLocations_oneOf"
     updateCampaignTargeting_request_targeting:
       minProperties: 1
       properties:
@@ -122907,6 +123007,8 @@ components:
           items:
             type: string
           type: array
+        excludedLocations:
+          $ref: "#/components/schemas/updateCampaignTargeting_request_targeting_excludedLocations"
         locationTargetingType:
           $ref: "#/components/schemas/GoogleLocationTargetingType"
     updateCampaignTargeting_request:
@@ -122970,6 +123072,31 @@ components:
           description: Google's geo_target_constant.country_code; see GET's description.
           nullable: true
           type: string
+    updateCampaignTargeting_200_response_excludedLocations_inner:
+      example:
+        geoTargetId: geoTargetId
+        negative: true
+        countryCode: countryCode
+        name: name
+        type: type
+        canonicalName: canonicalName
+      properties:
+        geoTargetId:
+          type: string
+        negative:
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        canonicalName:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
     updateCampaignTargeting_200_response_languages_inner:
       example:
         code: code
@@ -122984,6 +123111,19 @@ components:
           type: string
     updateCampaignTargeting_200_response:
       example:
+        excludedLocations:
+        - geoTargetId: geoTargetId
+          negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
+        - geoTargetId: geoTargetId
+          negative: true
+          countryCode: countryCode
+          name: name
+          type: type
+          canonicalName: canonicalName
         languages:
         - code: code
           name: name
@@ -123030,6 +123170,7 @@ components:
             enum:
             - devices
             - locations
+            - excludedLocations
             - languages
             - locationTargetingType
             type: string
@@ -123049,6 +123190,12 @@ components:
         locations:
           items:
             $ref: "#/components/schemas/updateCampaignTargeting_200_response_locations_inner"
+          type: array
+        excludedLocations:
+          description: "The negative (excluded) location criteria read back after\
+            \ the edit, same item shape as `locations`."
+          items:
+            $ref: "#/components/schemas/updateCampaignTargeting_200_response_excludedLocations_inner"
           type: array
         languages:
           items:
@@ -153602,7 +153749,10 @@ components:
     TargetingSpec_excludedLocations:
       description: "Geo to exclude from the audience. Mirrors the inclusion geo shape:\
         \ excluded cities can carry a radius catchment and excluded custom (lat/lng)\
-        \ pins are supported, both on Meta (excluded_geo_locations)."
+        \ pins are supported, both on Meta (excluded_geo_locations). Google (Search,\
+        \ Display, Performance Max) excludes countries, regions, cities and zips as\
+        \ negative location criteria; countryGroups, places, neighborhoods, customLocations\
+        \ and a city radius return 400 there, and Demand Gen returns 400 for any exclusion."
       properties:
         countries:
           items:
