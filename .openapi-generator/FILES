@@ -1120,6 +1120,7 @@ docs/GetProduct200Response.md
 docs/GetRcsCapabilities200Response.md
 docs/GetRedditFlairs200Response.md
 docs/GetRedditFlairs200ResponseFlairsInner.md
+docs/GetRedditPostComments200Response.md
 docs/GetRedditSubreddits200Response.md
 docs/GetRedditSubreddits200ResponseSubredditsInner.md
 docs/GetSequence200Response.md
@@ -1889,6 +1890,7 @@ docs/RcsTestDevice.md
 docs/ReachAndFrequencyApi.md
 docs/RecyclingConfig.md
 docs/RecyclingState.md
+docs/RedditComment.md
 docs/RedditPlatformData.md
 docs/RedditPost.md
 docs/RedditSearchApi.md
@@ -3936,6 +3938,7 @@ src/Zernio.Test/Model/GetProduct200ResponseTests.cs
 src/Zernio.Test/Model/GetRcsCapabilities200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditFlairs200ResponseFlairsInnerTests.cs
 src/Zernio.Test/Model/GetRedditFlairs200ResponseTests.cs
+src/Zernio.Test/Model/GetRedditPostComments200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditSubreddits200ResponseSubredditsInnerTests.cs
 src/Zernio.Test/Model/GetRedditSubreddits200ResponseTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTemplateTests.cs
@@ -4686,6 +4689,7 @@ src/Zernio.Test/Model/RcsSuggestionTests.cs
 src/Zernio.Test/Model/RcsTestDeviceTests.cs
 src/Zernio.Test/Model/RecyclingConfigTests.cs
 src/Zernio.Test/Model/RecyclingStateTests.cs
+src/Zernio.Test/Model/RedditCommentTests.cs
 src/Zernio.Test/Model/RedditPlatformDataTests.cs
 src/Zernio.Test/Model/RedditPostTests.cs
 src/Zernio.Test/Model/RedeliverWebhookEventRequestTests.cs
@@ -6729,6 +6733,7 @@ src/Zernio/Model/GetProduct200Response.cs
 src/Zernio/Model/GetRcsCapabilities200Response.cs
 src/Zernio/Model/GetRedditFlairs200Response.cs
 src/Zernio/Model/GetRedditFlairs200ResponseFlairsInner.cs
+src/Zernio/Model/GetRedditPostComments200Response.cs
 src/Zernio/Model/GetRedditSubreddits200Response.cs
 src/Zernio/Model/GetRedditSubreddits200ResponseSubredditsInner.cs
 src/Zernio/Model/GetSequence200Response.cs
@@ -7479,6 +7484,7 @@ src/Zernio/Model/RcsSuggestionOneOf5.cs
 src/Zernio/Model/RcsTestDevice.cs
 src/Zernio/Model/RecyclingConfig.cs
 src/Zernio/Model/RecyclingState.cs
+src/Zernio/Model/RedditComment.cs
 src/Zernio/Model/RedditPlatformData.cs
 src/Zernio/Model/RedditPost.cs
 src/Zernio/Model/RedeliverWebhookEventRequest.cs
