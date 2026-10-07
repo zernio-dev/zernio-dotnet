@@ -84,8 +84,9 @@ namespace Zernio.Model
         [DataMember(Name = "region", EmitDefaultValue = true)]
         public RegionEnum? Region { get; set; }
         /// <summary>
-        /// Defines Status
+        /// &#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes.
         /// </summary>
+        /// <value>&#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -96,40 +97,47 @@ namespace Zernio.Model
             Ordering = 1,
 
             /// <summary>
+            /// Enum AwaitingPayment for value: awaiting_payment
+            /// </summary>
+            [EnumMember(Value = "awaiting_payment")]
+            AwaitingPayment = 2,
+
+            /// <summary>
             /// Enum Activating for value: activating
             /// </summary>
             [EnumMember(Value = "activating")]
-            Activating = 2,
+            Activating = 3,
 
             /// <summary>
             /// Enum Active for value: active
             /// </summary>
             [EnumMember(Value = "active")]
-            Active = 3,
+            Active = 4,
 
             /// <summary>
             /// Enum Suspended for value: suspended
             /// </summary>
             [EnumMember(Value = "suspended")]
-            Suspended = 4,
+            Suspended = 5,
 
             /// <summary>
             /// Enum Canceled for value: canceled
             /// </summary>
             [EnumMember(Value = "canceled")]
-            Canceled = 5,
+            Canceled = 6,
 
             /// <summary>
             /// Enum Failed for value: failed
             /// </summary>
             [EnumMember(Value = "failed")]
-            Failed = 6
+            Failed = 7
         }
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// &#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes.
         /// </summary>
+        /// <value>&#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -140,7 +148,7 @@ namespace Zernio.Model
         /// <param name="region">region.</param>
         /// <param name="handle">The sender handle once activation assigns it.</param>
         /// <param name="optInLink">imessage:// deep link that opens Messages on this sender with a prefilled text. Share it so contacts message you first (Apple only lets a sender reach contacts who wrote to it first); null until the handle is assigned..</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">&#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes..</param>
         /// <param name="priceCents">Monthly price billed while the sender is active.</param>
         /// <param name="provider">provider.</param>
         /// <param name="profileId">profileId.</param>

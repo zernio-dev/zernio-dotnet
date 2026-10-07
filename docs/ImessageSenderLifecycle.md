@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Region** | **string** |  | [optional] 
 **Handle** | **string** | The sender handle once activation assigns it | [optional] 
 **OptInLink** | **string** | imessage:// deep link that opens Messages on this sender with a prefilled text. Share it so contacts message you first (Apple only lets a sender reach contacts who wrote to it first); null until the handle is assigned. | [optional] 
-**Status** | **string** |  | [optional] 
+**Status** | **string** | &#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes. | [optional] 
 **PriceCents** | **int** | Monthly price billed while the sender is active | [optional] 
 **Provider** | **string** |  | [optional] 
 **ProfileId** | **string** |  | [optional] 
