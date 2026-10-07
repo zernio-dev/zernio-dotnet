@@ -2570,8 +2570,10 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Boards list |  -  |
 | **400** | Not a Pinterest account |  -  |
-| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **401** | Missing or invalid API key (missing_credentials / invalid_credentials), or the stored Pinterest token was revoked or expired (reconnect_required): reconnect the account. |  -  |
 | **404** | Account not found |  -  |
+| **409** | The account has no stored access token (ads_connection_required). Reconnect it. |  -  |
+| **502** | Pinterest rejected or failed the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3508,7 +3510,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Playlists list |  -  |
 | **400** | Not a YouTube account |  -  |
-| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **401** | Missing or invalid API key (missing_credentials / invalid_credentials), or the stored YouTube token was revoked or expired (reconnect_required): reconnect the account. |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
