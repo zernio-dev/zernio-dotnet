@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.236.1
+  version: 1.237.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23950,6 +23950,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createVoiceCall_200_response"
           description: Call originated; lifecycle continues asynchronously.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "422":
@@ -24244,6 +24246,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/dialVoiceWebCall_200_response"
           description: Call originated; answer/bridge continue asynchronously.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "422":
@@ -106932,6 +106936,13 @@ components:
             \ For outbound voicemail drops."
           maxLength: 1000
           type: string
+        ringTimeoutSeconds:
+          default: 30
+          description: Seconds to let the callee's phone ring before the call ends
+            as no_answer. The destination carrier can end it sooner.
+          maximum: 120
+          minimum: 5
+          type: integer
       required:
       - to
     createVoiceCall_200_response:
@@ -107164,6 +107175,13 @@ components:
           type: string
         recordOverride:
           type: boolean
+        ringTimeoutSeconds:
+          default: 30
+          description: Seconds to let the callee's phone ring before the call ends
+            as no_answer. The destination carrier can end it sooner.
+          maximum: 120
+          minimum: 5
+          type: integer
       required:
       - credentialId
       - to

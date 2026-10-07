@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **TranscriptionLanguage** | **string** | &#39;auto&#39; derives from the callee&#39;s country; &#39;en&#39;/&#39;es&#39; force it. | [optional] 
 **Amd** | **bool** | Answering-machine detection; defers the bridge until human vs machine is known. | [optional] 
 **VoicemailDropMessage** | **string** | Spoken to a detected machine, then hang up (implies &#x60;amd&#x60;). For outbound voicemail drops. | [optional] 
+**RingTimeoutSeconds** | **int** | Seconds to let the callee&#39;s phone ring before the call ends as no_answer. The destination carrier can end it sooner. | [optional] [default to 30]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
