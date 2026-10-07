@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Sitelinks** | [**List&lt;ListAdGroupAssets200ResponseSitelinksInner&gt;**](ListAdGroupAssets200ResponseSitelinksInner.md) |  | [optional] 
 **Callouts** | [**List&lt;ListAdGroupAssets200ResponseCalloutsInner&gt;**](ListAdGroupAssets200ResponseCalloutsInner.md) |  | [optional] 
 **StructuredSnippets** | [**List&lt;ListAdGroupAssets200ResponseStructuredSnippetsInner&gt;**](ListAdGroupAssets200ResponseStructuredSnippetsInner.md) |  | [optional] 
+**Images** | [**List&lt;ListAdGroupAssets200ResponseImagesInner&gt;**](ListAdGroupAssets200ResponseImagesInner.md) |  | [optional] 
 **CachedAt** | **DateTime?** | Time of the cached Google read. Null when no cache was used. | [optional] 
 **Stale** | **bool** | True when exhausted quota required returning the last successful read. | [optional] 
 

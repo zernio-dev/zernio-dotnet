@@ -1420,6 +1420,7 @@ docs/ListAdConversionGoals200Response.md
 docs/ListAdCreatives200Response.md
 docs/ListAdGroupAssets200Response.md
 docs/ListAdGroupAssets200ResponseCalloutsInner.md
+docs/ListAdGroupAssets200ResponseImagesInner.md
 docs/ListAdGroupAssets200ResponseSitelinksInner.md
 docs/ListAdGroupAssets200ResponseStructuredSnippetsInner.md
 docs/ListAdImages200Response.md
@@ -1475,6 +1476,7 @@ docs/ListCalls200Response.md
 docs/ListCalls200ResponseCallsInner.md
 docs/ListCampaignAssets200Response.md
 docs/ListCampaignAssets200ResponseCalloutsInner.md
+docs/ListCampaignAssets200ResponseImagesInner.md
 docs/ListCampaignAssets200ResponseSitelinksInner.md
 docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md
 docs/ListCampaignNegativeKeywords200Response.md
@@ -4213,6 +4215,7 @@ src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
 src/Zernio.Test/Model/ListAdConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseCalloutsInnerTests.cs
+src/Zernio.Test/Model/ListAdGroupAssets200ResponseImagesInnerTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListAdGroupAssets200ResponseTests.cs
@@ -4268,6 +4271,7 @@ src/Zernio.Test/Model/ListBusinessPartners200ResponseTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseCallsInnerTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignAssets200ResponseCalloutsInnerTests.cs
+src/Zernio.Test/Model/ListCampaignAssets200ResponseImagesInnerTests.cs
 src/Zernio.Test/Model/ListCampaignAssets200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListCampaignAssets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListCampaignAssets200ResponseTests.cs
@@ -6991,6 +6995,7 @@ src/Zernio/Model/ListAdConversionGoals200Response.cs
 src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdGroupAssets200Response.cs
 src/Zernio/Model/ListAdGroupAssets200ResponseCalloutsInner.cs
+src/Zernio/Model/ListAdGroupAssets200ResponseImagesInner.cs
 src/Zernio/Model/ListAdGroupAssets200ResponseSitelinksInner.cs
 src/Zernio/Model/ListAdGroupAssets200ResponseStructuredSnippetsInner.cs
 src/Zernio/Model/ListAdImages200Response.cs
@@ -7046,6 +7051,7 @@ src/Zernio/Model/ListCalls200Response.cs
 src/Zernio/Model/ListCalls200ResponseCallsInner.cs
 src/Zernio/Model/ListCampaignAssets200Response.cs
 src/Zernio/Model/ListCampaignAssets200ResponseCalloutsInner.cs
+src/Zernio/Model/ListCampaignAssets200ResponseImagesInner.cs
 src/Zernio/Model/ListCampaignAssets200ResponseSitelinksInner.cs
 src/Zernio/Model/ListCampaignAssets200ResponseStructuredSnippetsInner.cs
 src/Zernio/Model/ListCampaignNegativeKeywords200Response.cs

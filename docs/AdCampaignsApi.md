@@ -280,7 +280,7 @@ catch (ApiException e)
 
 Attach ad-group assets
 
-Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+Creates and attaches sitelinks, callouts, structured snippets and image assets in one Google mutation. Google shows images only on accounts it deems eligible (account age, policy history, vertical).
 
 ### Example
 ```csharp
@@ -387,7 +387,7 @@ catch (ApiException e)
 
 Attach campaign assets
 
-Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+Creates and attaches sitelinks, callouts, structured snippets and image assets in one Google mutation. Google shows images only on accounts it deems eligible (account age, policy history, vertical).
 
 ### Example
 ```csharp

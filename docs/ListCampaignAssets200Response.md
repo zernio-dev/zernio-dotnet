@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Sitelinks** | [**List&lt;ListCampaignAssets200ResponseSitelinksInner&gt;**](ListCampaignAssets200ResponseSitelinksInner.md) |  | [optional] 
 **Callouts** | [**List&lt;ListCampaignAssets200ResponseCalloutsInner&gt;**](ListCampaignAssets200ResponseCalloutsInner.md) |  | [optional] 
 **StructuredSnippets** | [**List&lt;ListCampaignAssets200ResponseStructuredSnippetsInner&gt;**](ListCampaignAssets200ResponseStructuredSnippetsInner.md) |  | [optional] 
+**Images** | [**List&lt;ListCampaignAssets200ResponseImagesInner&gt;**](ListCampaignAssets200ResponseImagesInner.md) |  | [optional] 
 **CachedAt** | **DateTime?** | Time of the cached Google read. Null when no cache was used. | [optional] 
 **Stale** | **bool** | True when exhausted quota required returning the last successful read. | [optional] 
 
