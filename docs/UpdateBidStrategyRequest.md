@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Type** | **string** |  | [optional] 
 **TargetCpa** | **decimal** |  | [optional] 
 **TargetRoas** | **decimal** |  | [optional] 
+**TargetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) | Retargets a TARGET_IMPRESSION_SHARE strategy; location, percent and maxCpc are all written. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

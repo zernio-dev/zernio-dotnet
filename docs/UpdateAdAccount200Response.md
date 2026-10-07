@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AdAccountId** | **string** |  | [optional] 
+**UrlTracking** | [**UpdateAdAccount200ResponseUrlTracking**](UpdateAdAccount200ResponseUrlTracking.md) |  | [optional] 
 **DsaDefaults** | [**UpdateAdAccount200ResponseDsaDefaults**](UpdateAdAccount200ResponseDsaDefaults.md) |  | [optional] 
 **Settings** | [**UpdateAdAccount200ResponseSettings**](UpdateAdAccount200ResponseSettings.md) |  | [optional] 
 

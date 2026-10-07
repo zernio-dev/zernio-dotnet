@@ -12,6 +12,11 @@ Name | Type | Description | Notes
 **BidAmount** | **decimal** |  | [optional] 
 **RoasAverageFloor** | **decimal** |  | [optional] 
 **PortfolioBidStrategyId** | **string** | Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet). | [optional] 
+**TargetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) |  | [optional] 
+**ManualCpc** | [**GoogleManualCpc**](GoogleManualCpc.md) |  | [optional] 
+**NetworkSettings** | [**GoogleNetworkSettings**](GoogleNetworkSettings.md) |  | [optional] 
+**TrackingUrlTemplate** | **string** |  | [optional] 
+**FinalUrlSuffix** | **string** |  | [optional] 
 **PlatformSpecificData** | **Object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

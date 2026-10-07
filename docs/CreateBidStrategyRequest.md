@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Type** | **string** |  | 
 **TargetCpa** | **decimal** | Required when type is TARGET_CPA, in the account&#39;s currency units. | [optional] 
 **TargetRoas** | **decimal** | Required when type is TARGET_ROAS; a multiplier (2.0 &#x3D; 2.0x). | [optional] 
+**TargetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) | Required when type is TARGET_IMPRESSION_SHARE, and refused with any other type. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

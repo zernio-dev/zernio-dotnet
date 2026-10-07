@@ -1278,6 +1278,8 @@ docs/GoogleListingGroupFilterNode.md
 docs/GoogleListingGroupNode.md
 docs/GoogleListingGroupTree.md
 docs/GoogleLocationTargetingType.md
+docs/GoogleManualCpc.md
+docs/GoogleNetworkSettings.md
 docs/GooglePmaxAssetGroup.md
 docs/GooglePmaxAssetGroupAssetsInner.md
 docs/GooglePmaxAssetGroupDetail.md
@@ -1293,6 +1295,7 @@ docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
 docs/GoogleStructuredSnippet.md
+docs/GoogleTargetImpressionShare.md
 docs/GrantBusinessPartner200Response.md
 docs/GrantBusinessPartner200ResponsePartner.md
 docs/GrantBusinessPartner201Response.md
@@ -2258,6 +2261,7 @@ docs/UpdateAdAccount200Response.md
 docs/UpdateAdAccount200ResponseDsaDefaults.md
 docs/UpdateAdAccount200ResponseSettings.md
 docs/UpdateAdAccount200ResponseSettingsFundingSource.md
+docs/UpdateAdAccount200ResponseUrlTracking.md
 docs/UpdateAdAccountManagerLinkRequest.md
 docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
@@ -4084,6 +4088,8 @@ src/Zernio.Test/Model/GoogleListingGroupFilterNodeTests.cs
 src/Zernio.Test/Model/GoogleListingGroupNodeTests.cs
 src/Zernio.Test/Model/GoogleListingGroupTreeTests.cs
 src/Zernio.Test/Model/GoogleLocationTargetingTypeTests.cs
+src/Zernio.Test/Model/GoogleManualCpcTests.cs
+src/Zernio.Test/Model/GoogleNetworkSettingsTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupAssetsInnerTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupDetailTests.cs
 src/Zernio.Test/Model/GooglePmaxAssetGroupInputImagesTests.cs
@@ -4099,6 +4105,7 @@ src/Zernio.Test/Model/GoogleRsaDescriptionTests.cs
 src/Zernio.Test/Model/GoogleRsaHeadlineTests.cs
 src/Zernio.Test/Model/GoogleSitelinkTests.cs
 src/Zernio.Test/Model/GoogleStructuredSnippetTests.cs
+src/Zernio.Test/Model/GoogleTargetImpressionShareTests.cs
 src/Zernio.Test/Model/GrantBusinessPartner200ResponsePartnerTests.cs
 src/Zernio.Test/Model/GrantBusinessPartner200ResponseTests.cs
 src/Zernio.Test/Model/GrantBusinessPartner201ResponsePartnerTests.cs
@@ -5037,6 +5044,7 @@ src/Zernio.Test/Model/UpdateAdAccount200ResponseDsaDefaultsTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseSettingsFundingSourceTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseSettingsTests.cs
 src/Zernio.Test/Model/UpdateAdAccount200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdAccount200ResponseUrlTrackingTests.cs
 src/Zernio.Test/Model/UpdateAdAccountManagerLinkRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAccountRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAudienceRequestTests.cs
@@ -6867,6 +6875,8 @@ src/Zernio/Model/GoogleListingGroupFilterNode.cs
 src/Zernio/Model/GoogleListingGroupNode.cs
 src/Zernio/Model/GoogleListingGroupTree.cs
 src/Zernio/Model/GoogleLocationTargetingType.cs
+src/Zernio/Model/GoogleManualCpc.cs
+src/Zernio/Model/GoogleNetworkSettings.cs
 src/Zernio/Model/GooglePmaxAssetGroup.cs
 src/Zernio/Model/GooglePmaxAssetGroupAssetsInner.cs
 src/Zernio/Model/GooglePmaxAssetGroupDetail.cs
@@ -6882,6 +6892,7 @@ src/Zernio/Model/GoogleRsaDescription.cs
 src/Zernio/Model/GoogleRsaHeadline.cs
 src/Zernio/Model/GoogleSitelink.cs
 src/Zernio/Model/GoogleStructuredSnippet.cs
+src/Zernio/Model/GoogleTargetImpressionShare.cs
 src/Zernio/Model/GrantBusinessPartner200Response.cs
 src/Zernio/Model/GrantBusinessPartner200ResponsePartner.cs
 src/Zernio/Model/GrantBusinessPartner201Response.cs
@@ -7820,6 +7831,7 @@ src/Zernio/Model/UpdateAdAccount200Response.cs
 src/Zernio/Model/UpdateAdAccount200ResponseDsaDefaults.cs
 src/Zernio/Model/UpdateAdAccount200ResponseSettings.cs
 src/Zernio/Model/UpdateAdAccount200ResponseSettingsFundingSource.cs
+src/Zernio/Model/UpdateAdAccount200ResponseUrlTracking.cs
 src/Zernio/Model/UpdateAdAccountManagerLinkRequest.cs
 src/Zernio/Model/UpdateAdAccountRequest.cs
 src/Zernio/Model/UpdateAdAudienceRequest.cs
