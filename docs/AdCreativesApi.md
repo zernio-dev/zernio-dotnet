@@ -446,7 +446,7 @@ catch (ApiException e)
 
 <a id="getadcreative"></a>
 # **GetAdCreative**
-> GetAdCreative200Response GetAdCreative (string creativeId, string accountId, string? fields = null)
+> GetAdCreative200Response GetAdCreative (string creativeId, string accountId, string? fields = null, int? thumbnailWidth = null, int? thumbnailHeight = null)
 
 Creative details
 
@@ -479,11 +479,13 @@ namespace Example
             var creativeId = "creativeId_example";  // string | Platform creative id
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
             var fields = id,name,status,object_story_spec{page_id,link_data{link,message}};  // string? | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional) 
+            var thumbnailWidth = 600;  // int? | Width in pixels of the `thumbnail_url` rendering, forwarded to Meta as `thumbnail_width`. Without it Meta returns a 64x64 thumbnail. (optional) 
+            var thumbnailHeight = 600;  // int? | Height in pixels of the `thumbnail_url` rendering, forwarded to Meta as `thumbnail_height`. Without it Meta returns a 64x64 thumbnail. (optional) 
 
             try
             {
                 // Creative details
-                GetAdCreative200Response result = apiInstance.GetAdCreative(creativeId, accountId, fields);
+                GetAdCreative200Response result = apiInstance.GetAdCreative(creativeId, accountId, fields, thumbnailWidth, thumbnailHeight);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -504,7 +506,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Creative details
-    ApiResponse<GetAdCreative200Response> response = apiInstance.GetAdCreativeWithHttpInfo(creativeId, accountId, fields);
+    ApiResponse<GetAdCreative200Response> response = apiInstance.GetAdCreativeWithHttpInfo(creativeId, accountId, fields, thumbnailWidth, thumbnailHeight);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -524,6 +526,8 @@ catch (ApiException e)
 | **creativeId** | **string** | Platform creative id |  |
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
 | **fields** | **string?** | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional]  |
+| **thumbnailWidth** | **int?** | Width in pixels of the &#x60;thumbnail_url&#x60; rendering, forwarded to Meta as &#x60;thumbnail_width&#x60;. Without it Meta returns a 64x64 thumbnail. | [optional]  |
+| **thumbnailHeight** | **int?** | Height in pixels of the &#x60;thumbnail_url&#x60; rendering, forwarded to Meta as &#x60;thumbnail_height&#x60;. Without it Meta returns a 64x64 thumbnail. | [optional]  |
 
 ### Return type
 
