@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.244.2
+  version: 1.245.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -66164,8 +66164,8 @@ components:
             errorCategory: auth_expired
             errorSource: user
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
             publishedUrl: publishedUrl
             error: error
@@ -66176,8 +66176,8 @@ components:
             errorCategory: auth_expired
             errorSource: user
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
             publishedUrl: publishedUrl
             error: error
@@ -66249,8 +66249,8 @@ components:
             errorCategory: auth_expired
             errorSource: user
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
             publishedUrl: publishedUrl
             error: error
@@ -66261,8 +66261,8 @@ components:
             errorCategory: auth_expired
             errorSource: user
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
             publishedUrl: publishedUrl
             error: error
@@ -70347,10 +70347,12 @@ components:
         errorCategory: auth_expired
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+        publishAttempts: 6
         platformError:
-          code: 6
-          subcode: 1
+          code: 5
+          subcode: 5
           message: message
+        publishRetries: 1
         customMedia:
         - subtitles:
           - language: en
@@ -70483,6 +70485,19 @@ components:
           - MANUAL
           - SS_PERFORMANCE
           type: string
+        publishAttempts:
+          description: "Number of times the publishing pipeline claimed this target\
+            \ to publish it since it was created or last manually retried (a manual\
+            \ retry resets it, except on TikTok). Not the number of retries (see publishRetries)."
+          type: integer
+        publishRetries:
+          description: "Instagram only. Automatic re-sends of media_publish on the\
+            \ same container that Zernio scheduled after Meta answered a transient\
+            \ error (30 min, 2 h and 6 h after each failure, at most 3). While the\
+            \ target is still processing, the latest one may not have been sent yet.\
+            \ Not reset by a manual retry. Independent of publishAttempts, which counts\
+            \ publish-leg claims. Absent when none was scheduled."
+          type: integer
         errorMessage:
           description: Human-readable error message when status is failed. Contains
             platform-specific error details explaining why the publish failed.
@@ -70528,8 +70543,8 @@ components:
         \ Instagram media processing failures carry no code or subcode, only Meta's\
         \ status text in message."
       example:
-        code: 6
-        subcode: 1
+        code: 5
+        subcode: 5
         message: message
       properties:
         code:
@@ -70555,13 +70570,13 @@ components:
         visibility: public
         timezone: timezone
         recycling:
-          recycleCount: 7
-          gap: 5
-          expireCount: 5
+          recycleCount: 3
+          gap: 2
+          expireCount: 7
           lastRecycledAt: 2000-01-23T04:56:07.000+00:00
           expireDate: 2000-01-23T04:56:07.000+00:00
           nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-          contentVariationIndex: 2
+          contentVariationIndex: 9
           gapFreq: week
           enabled: true
           startDate: 2000-01-23T04:56:07.000+00:00
@@ -70586,10 +70601,12 @@ components:
           errorCategory: auth_expired
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+          publishAttempts: 6
           platformError:
-            code: 6
-            subcode: 1
+            code: 5
+            subcode: 5
             message: message
+          publishRetries: 1
           customMedia:
           - subtitles:
             - language: en
@@ -70649,10 +70666,12 @@ components:
           errorCategory: auth_expired
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+          publishAttempts: 6
           platformError:
-            code: 6
-            subcode: 1
+            code: 5
+            subcode: 5
             message: message
+          publishRetries: 1
           customMedia:
           - subtitles:
             - language: en
@@ -70901,13 +70920,13 @@ components:
     RecyclingState:
       description: Current recycling configuration and state on a post
       example:
-        recycleCount: 7
-        gap: 5
-        expireCount: 5
+        recycleCount: 3
+        gap: 2
+        expireCount: 7
         lastRecycledAt: 2000-01-23T04:56:07.000+00:00
         expireDate: 2000-01-23T04:56:07.000+00:00
         nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-        contentVariationIndex: 2
+        contentVariationIndex: 9
         gapFreq: week
         enabled: true
         startDate: 2000-01-23T04:56:07.000+00:00
@@ -72288,10 +72307,10 @@ components:
           type: string
     Pagination:
       example:
-        total: 2
-        pages: 4
-        limit: 3
-        page: 9
+        total: 7
+        pages: 1
+        limit: 4
+        page: 2
       properties:
         page:
           type: integer
@@ -73821,10 +73840,10 @@ components:
     PostsListResponse:
       example:
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         posts:
         - queueId: queueId
           metadata:
@@ -73835,13 +73854,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -73866,10 +73885,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -73929,10 +73950,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74043,13 +74066,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -74074,10 +74097,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74137,10 +74162,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74261,13 +74288,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -74292,10 +74319,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74355,10 +74384,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74505,13 +74536,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -74536,10 +74567,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74599,10 +74632,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74733,13 +74768,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -74764,10 +74799,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74827,10 +74864,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -74960,13 +74999,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -74991,10 +75030,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -75054,10 +75095,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -75214,13 +75257,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -75245,10 +75288,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -75308,10 +75353,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -76129,10 +76176,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         backfillPending: true
       properties:
         ads:
@@ -76147,10 +76194,10 @@ components:
     AdTreeResponse:
       example:
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -90596,13 +90643,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 7
-            gap: 5
-            expireCount: 5
+            recycleCount: 3
+            gap: 2
+            expireCount: 7
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 2
+            contentVariationIndex: 9
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -90627,10 +90674,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -90690,10 +90739,12 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            publishAttempts: 6
             platformError:
-              code: 6
-              subcode: 1
+              code: 5
+              subcode: 5
               message: message
+            publishRetries: 1
             customMedia:
             - subtitles:
               - language: en
@@ -121951,10 +122002,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         backfillPending: true
     getAdsSearchTerms_200_response_data_inner:
       example:
@@ -122713,10 +122764,10 @@ components:
     listAdKeywords_200_response:
       example:
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         keywords:
         - adSetName: adSetName
           adAccountId: adAccountId
@@ -122979,10 +123030,10 @@ components:
     listAdCampaigns_200_response:
       example:
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -125569,10 +125620,10 @@ components:
         - backfillPending
       example:
         pagination:
-          total: 2
-          pages: 4
-          limit: 3
-          page: 9
+          total: 7
+          pages: 1
+          limit: 4
+          page: 2
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -148974,8 +149025,8 @@ components:
         errorCategory: auth_expired
         errorSource: user
         platformError:
-          code: 6
-          subcode: 1
+          code: 5
+          subcode: 5
           message: message
         publishedUrl: publishedUrl
         error: error
@@ -149040,8 +149091,8 @@ components:
           errorCategory: auth_expired
           errorSource: user
           platformError:
-            code: 6
-            subcode: 1
+            code: 5
+            subcode: 5
             message: message
           publishedUrl: publishedUrl
           error: error
@@ -149052,8 +149103,8 @@ components:
           errorCategory: auth_expired
           errorSource: user
           platformError:
-            code: 6
-            subcode: 1
+            code: 5
+            subcode: 5
             message: message
           publishedUrl: publishedUrl
           error: error
@@ -149095,8 +149146,8 @@ components:
         errorCategory: auth_expired
         errorSource: user
         platformError:
-          code: 6
-          subcode: 1
+          code: 5
+          subcode: 5
           message: message
         publishedUrl: publishedUrl
         error: error
@@ -149160,8 +149211,8 @@ components:
           errorCategory: auth_expired
           errorSource: user
           platformError:
-            code: 6
-            subcode: 1
+            code: 5
+            subcode: 5
             message: message
           publishedUrl: publishedUrl
           error: error
@@ -149172,8 +149223,8 @@ components:
           errorCategory: auth_expired
           errorSource: user
           platformError:
-            code: 6
-            subcode: 1
+            code: 5
+            subcode: 5
             message: message
           publishedUrl: publishedUrl
           error: error
