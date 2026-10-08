@@ -3724,7 +3724,7 @@ catch (ApiException e)
 
 <a id="listfacebookpages"></a>
 # **ListFacebookPages**
-> ListFacebookPages200Response ListFacebookPages (string? profileId = null, string? tempToken = null, string? selectionToken = null)
+> ListFacebookPages200Response ListFacebookPages (string? profileId = null, string? tempToken = null, string? xTempToken = null, string? connectFlow = null, string? selectionToken = null)
 
 List Facebook pages
 
@@ -3759,13 +3759,15 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string? | Profile ID from your classic connection flow. Required with tempToken. (optional) 
-            var tempToken = "tempToken_example";  // string? | Temporary Facebook access token from the classic OAuth callback. Required with profileId. (optional) 
+            var tempToken = "tempToken_example";  // string? | Temporary Facebook access token from the classic OAuth callback. Required with profileId unless sent in the X-Temp-Token header. (optional) 
+            var xTempToken = "xTempToken_example";  // string? | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional) 
+            var connectFlow = "connectFlow_example";  // string? | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. (optional) 
             var selectionToken = ENCRYPTED_SELECTION_TOKEN;  // string? | Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes. (optional) 
 
             try
             {
                 // List Facebook pages
-                ListFacebookPages200Response result = apiInstance.ListFacebookPages(profileId, tempToken, selectionToken);
+                ListFacebookPages200Response result = apiInstance.ListFacebookPages(profileId, tempToken, xTempToken, connectFlow, selectionToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3786,7 +3788,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Facebook pages
-    ApiResponse<ListFacebookPages200Response> response = apiInstance.ListFacebookPagesWithHttpInfo(profileId, tempToken, selectionToken);
+    ApiResponse<ListFacebookPages200Response> response = apiInstance.ListFacebookPagesWithHttpInfo(profileId, tempToken, xTempToken, connectFlow, selectionToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3804,7 +3806,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string?** | Profile ID from your classic connection flow. Required with tempToken. | [optional]  |
-| **tempToken** | **string?** | Temporary Facebook access token from the classic OAuth callback. Required with profileId. | [optional]  |
+| **tempToken** | **string?** | Temporary Facebook access token from the classic OAuth callback. Required with profileId unless sent in the X-Temp-Token header. | [optional]  |
+| **xTempToken** | **string?** | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional]  |
+| **connectFlow** | **string?** | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional]  |
 | **selectionToken** | **string?** | Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes. | [optional]  |
 
 ### Return type
@@ -3947,7 +3951,7 @@ catch (ApiException e)
 
 <a id="listinstagrampages"></a>
 # **ListInstagramPages**
-> ListInstagramPages200Response ListInstagramPages (string profileId, string tempToken)
+> ListInstagramPages200Response ListInstagramPages (string profileId, string? tempToken = null, string? xTempToken = null, string? connectFlow = null)
 
 List Pages with a linked Instagram account
 
@@ -3982,12 +3986,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | Profile ID from your connection flow
-            var tempToken = "tempToken_example";  // string | Long-lived Facebook user access token from the OAuth callback redirect
+            var tempToken = "tempToken_example";  // string? | Long-lived Facebook user access token from the OAuth callback redirect. Required unless sent in the X-Temp-Token header. (optional) 
+            var xTempToken = "xTempToken_example";  // string? | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional) 
+            var connectFlow = "connectFlow_example";  // string? | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. (optional) 
 
             try
             {
                 // List Pages with a linked Instagram account
-                ListInstagramPages200Response result = apiInstance.ListInstagramPages(profileId, tempToken);
+                ListInstagramPages200Response result = apiInstance.ListInstagramPages(profileId, tempToken, xTempToken, connectFlow);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4008,7 +4014,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Pages with a linked Instagram account
-    ApiResponse<ListInstagramPages200Response> response = apiInstance.ListInstagramPagesWithHttpInfo(profileId, tempToken);
+    ApiResponse<ListInstagramPages200Response> response = apiInstance.ListInstagramPagesWithHttpInfo(profileId, tempToken, xTempToken, connectFlow);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4026,7 +4032,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string** | Profile ID from your connection flow |  |
-| **tempToken** | **string** | Long-lived Facebook user access token from the OAuth callback redirect |  |
+| **tempToken** | **string?** | Long-lived Facebook user access token from the OAuth callback redirect. Required unless sent in the X-Temp-Token header. | [optional]  |
+| **xTempToken** | **string?** | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional]  |
+| **connectFlow** | **string?** | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional]  |
 
 ### Return type
 
