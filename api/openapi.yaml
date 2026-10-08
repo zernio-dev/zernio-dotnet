@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.241.1
+  version: 1.242.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9391,6 +9391,22 @@ paths:
         schema:
           maxLength: 100
           type: string
+        style: form
+      - description: "Instagram Login only (the default loginMethod); ignored elsewhere.\
+          \ Makes Instagram show its login page and ask for the credentials of the\
+          \ account to connect even when another Instagram account is logged in on\
+          \ the device or in the app, and hides the Facebook login option on that\
+          \ page. Use it when the person connecting manages several Instagram accounts\
+          \ on one phone: Instagram otherwise logs in, and converts to a professional\
+          \ account, whichever account is active, before any consent screen. Pair\
+          \ it with expectedUsername to also refuse a wrong account at the end."
+        explode: true
+        in: query
+        name: forceReauth
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       - description: |
           Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. X (twitter) caps the OAuth `state` at 500 characters and the redirect is carried inside it, so the URL-encoded `redirect_url` must be at most 258 characters for API callers (310 for dashboard sessions; in headless mode the appended `headless=true` counts toward it); a longer one is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected={platform}&profileId=X&accountId=Y&username=Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.
