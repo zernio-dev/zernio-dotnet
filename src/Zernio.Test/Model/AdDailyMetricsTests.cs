@@ -326,6 +326,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Video2SecWatchedActions'
+        /// </summary>
+        [Fact]
+        public void Video2SecWatchedActionsTest()
+        {
+            // TODO unit test for the property 'Video2SecWatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'Video6SecWatchedActions'
+        /// </summary>
+        [Fact]
+        public void Video6SecWatchedActionsTest()
+        {
+            // TODO unit test for the property 'Video6SecWatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'Video6SecFocusedViews'
+        /// </summary>
+        [Fact]
+        public void Video6SecFocusedViewsTest()
+        {
+            // TODO unit test for the property 'Video6SecFocusedViews'
+        }
+
+        /// <summary>
         /// Test the property 'VideoAvgTimeWatchedActions'
         /// </summary>
         [Fact]

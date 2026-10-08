@@ -66,6 +66,9 @@ namespace Zernio.Model
         /// <param name="videoP75WatchedActions">Views reaching 75% of the video&#39;s length. Sources: Meta &#x60;video_p75_watched_actions&#x60;, TikTok &#x60;video_views_p75&#x60;..</param>
         /// <param name="videoP95WatchedActions">Views reaching 95% of the video&#39;s length. Sources: Meta &#x60;video_p95_watched_actions&#x60; (Meta only)..</param>
         /// <param name="videoP100WatchedActions">Views reaching 100% of the video&#39;s length. Sources: Meta &#x60;video_p100_watched_actions&#x60;, TikTok &#x60;video_views_p100&#x60;..</param>
+        /// <param name="video2SecWatchedActions">Plays of at least 2 seconds, replays excluded. Hook rate &#x3D; video2SecWatchedActions / impressions. Sources: TikTok &#x60;video_watched_2s&#x60; (TikTok only; Meta&#39;s closest field, 2-second continuous plays, is not synced). TikTok history note: added 2026-10, and each sync re-fetches only the last 7 days, so older days read 0..</param>
+        /// <param name="video6SecWatchedActions">Plays of at least 6 seconds, replays excluded. Hold rate &#x3D; video6SecWatchedActions / video2SecWatchedActions. Sources: TikTok &#x60;video_watched_6s&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;..</param>
+        /// <param name="video6SecFocusedViews">TikTok&#39;s 6-second focused views: plays of at least 6 seconds (or to the end, for shorter videos) or with an interaction in the first 6 seconds, so it is at least &#x60;video6SecWatchedActions&#x60;. Sources: TikTok &#x60;engaged_view&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;..</param>
         /// <param name="videoAvgTimeWatchedActions">Average seconds watched per play. Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages. Sources: Meta &#x60;video_avg_time_watched_actions&#x60;, TikTok &#x60;average_video_play&#x60;..</param>
         /// <param name="costPerThruplay">Derived &#x60;spend / videoThruplayWatchedActions&#x60;, in ad-account native currency. Rounded to 4 decimals rather than the usual 2 because a ThruPlay routinely costs well under a cent. 0 when the ad has no ThruPlays (ThruPlay is Meta-only)..</param>
         /// <param name="funnel">funnel.</param>
@@ -76,7 +79,7 @@ namespace Zernio.Model
         /// <param name="searchRankLostImpressionShare">Google only. Date-range ratio, not a percentage. Null when unavailable; Google&#39;s threshold sentinel values are preserved..</param>
         /// <param name="searchTopImpressionShare">Google only. Date-range ratio, not a percentage. Null when unavailable; Google&#39;s threshold sentinel values are preserved..</param>
         /// <param name="searchAbsoluteTopImpressionShare">Google only. Date-range ratio, not a percentage. Null when unavailable; Google&#39;s threshold sentinel values are preserved..</param>
-        public CampaignAnalyticsResponseAnalyticsSummary(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal allConversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, Dictionary<string, decimal> costPerAction = default, int outboundClicks = default, decimal outboundClicksCtr = default, int inlineLinkClicks = default, decimal inlineLinkClickCtr = default, int uniqueClicks = default, decimal uniqueCtr = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default, decimal? searchImpressionShare = default, decimal? searchBudgetLostImpressionShare = default, decimal? searchRankLostImpressionShare = default, decimal? searchTopImpressionShare = default, decimal? searchAbsoluteTopImpressionShare = default)
+        public CampaignAnalyticsResponseAnalyticsSummary(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, decimal conversions = default, decimal allConversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, Dictionary<string, decimal> costPerAction = default, int outboundClicks = default, decimal outboundClicksCtr = default, int inlineLinkClicks = default, decimal inlineLinkClickCtr = default, int uniqueClicks = default, decimal uniqueCtr = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, int video2SecWatchedActions = default, int video6SecWatchedActions = default, int video6SecFocusedViews = default, decimal videoAvgTimeWatchedActions = default, decimal costPerThruplay = default, AdFunnelCounts funnel = default, AdEngagementCounts engagementBreakdown = default, DateTime lastSyncedAt = default, decimal? searchImpressionShare = default, decimal? searchBudgetLostImpressionShare = default, decimal? searchRankLostImpressionShare = default, decimal? searchTopImpressionShare = default, decimal? searchAbsoluteTopImpressionShare = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -108,6 +111,9 @@ namespace Zernio.Model
             this.VideoP75WatchedActions = videoP75WatchedActions;
             this.VideoP95WatchedActions = videoP95WatchedActions;
             this.VideoP100WatchedActions = videoP100WatchedActions;
+            this.Video2SecWatchedActions = video2SecWatchedActions;
+            this.Video6SecWatchedActions = video6SecWatchedActions;
+            this.Video6SecFocusedViews = video6SecFocusedViews;
             this.VideoAvgTimeWatchedActions = videoAvgTimeWatchedActions;
             this.CostPerThruplay = costPerThruplay;
             this.Funnel = funnel;
@@ -336,6 +342,27 @@ namespace Zernio.Model
         public int VideoP100WatchedActions { get; set; }
 
         /// <summary>
+        /// Plays of at least 2 seconds, replays excluded. Hook rate &#x3D; video2SecWatchedActions / impressions. Sources: TikTok &#x60;video_watched_2s&#x60; (TikTok only; Meta&#39;s closest field, 2-second continuous plays, is not synced). TikTok history note: added 2026-10, and each sync re-fetches only the last 7 days, so older days read 0.
+        /// </summary>
+        /// <value>Plays of at least 2 seconds, replays excluded. Hook rate &#x3D; video2SecWatchedActions / impressions. Sources: TikTok &#x60;video_watched_2s&#x60; (TikTok only; Meta&#39;s closest field, 2-second continuous plays, is not synced). TikTok history note: added 2026-10, and each sync re-fetches only the last 7 days, so older days read 0.</value>
+        [DataMember(Name = "video2SecWatchedActions", EmitDefaultValue = false)]
+        public int Video2SecWatchedActions { get; set; }
+
+        /// <summary>
+        /// Plays of at least 6 seconds, replays excluded. Hold rate &#x3D; video6SecWatchedActions / video2SecWatchedActions. Sources: TikTok &#x60;video_watched_6s&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;.
+        /// </summary>
+        /// <value>Plays of at least 6 seconds, replays excluded. Hold rate &#x3D; video6SecWatchedActions / video2SecWatchedActions. Sources: TikTok &#x60;video_watched_6s&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;.</value>
+        [DataMember(Name = "video6SecWatchedActions", EmitDefaultValue = false)]
+        public int Video6SecWatchedActions { get; set; }
+
+        /// <summary>
+        /// TikTok&#39;s 6-second focused views: plays of at least 6 seconds (or to the end, for shorter videos) or with an interaction in the first 6 seconds, so it is at least &#x60;video6SecWatchedActions&#x60;. Sources: TikTok &#x60;engaged_view&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;.
+        /// </summary>
+        /// <value>TikTok&#39;s 6-second focused views: plays of at least 6 seconds (or to the end, for shorter videos) or with an interaction in the first 6 seconds, so it is at least &#x60;video6SecWatchedActions&#x60;. Sources: TikTok &#x60;engaged_view&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;.</value>
+        [DataMember(Name = "video6SecFocusedViews", EmitDefaultValue = false)]
+        public int Video6SecFocusedViews { get; set; }
+
+        /// <summary>
         /// Average seconds watched per play. Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages. Sources: Meta &#x60;video_avg_time_watched_actions&#x60;, TikTok &#x60;average_video_play&#x60;.
         /// </summary>
         /// <value>Average seconds watched per play. Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages. Sources: Meta &#x60;video_avg_time_watched_actions&#x60;, TikTok &#x60;average_video_play&#x60;.</value>
@@ -441,6 +468,9 @@ namespace Zernio.Model
             sb.Append("  VideoP75WatchedActions: ").Append(VideoP75WatchedActions).Append("\n");
             sb.Append("  VideoP95WatchedActions: ").Append(VideoP95WatchedActions).Append("\n");
             sb.Append("  VideoP100WatchedActions: ").Append(VideoP100WatchedActions).Append("\n");
+            sb.Append("  Video2SecWatchedActions: ").Append(Video2SecWatchedActions).Append("\n");
+            sb.Append("  Video6SecWatchedActions: ").Append(Video6SecWatchedActions).Append("\n");
+            sb.Append("  Video6SecFocusedViews: ").Append(Video6SecFocusedViews).Append("\n");
             sb.Append("  VideoAvgTimeWatchedActions: ").Append(VideoAvgTimeWatchedActions).Append("\n");
             sb.Append("  CostPerThruplay: ").Append(CostPerThruplay).Append("\n");
             sb.Append("  Funnel: ").Append(Funnel).Append("\n");
