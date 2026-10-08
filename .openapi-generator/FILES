@@ -616,6 +616,9 @@ docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateStandaloneAdRequestZipsInner.md
+docs/CreateSupportRun202Response.md
+docs/CreateSupportRunRequest.md
+docs/CreateSupportRunRequestContext.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
 docs/CreateTestLeadRequest.md
@@ -2202,6 +2205,9 @@ docs/SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.md
 docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
+docs/SupportRun.md
+docs/SupportRunUsage.md
+docs/SupportRunsApi.md
 docs/SyncExternalPosts200Response.md
 docs/SyncExternalPosts200ResponseSynced.md
 docs/SyncExternalPostsRequest.md
@@ -2677,6 +2683,7 @@ docs/WebhookPayloadReviewNew.md
 docs/WebhookPayloadReviewNewAccount.md
 docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadSequenceEnrollment.md
+docs/WebhookPayloadSupportRun.md
 docs/WebhookPayloadTest.md
 docs/WebhookPayloadWhatsAppAccountAlertReceived.md
 docs/WebhookPayloadWhatsAppAccountAlertReceivedAlert.md
@@ -2840,6 +2847,7 @@ src/Zernio.Test/Api/ReviewsApiTests.cs
 src/Zernio.Test/Api/SMSApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
 src/Zernio.Test/Api/SlackApiTests.cs
+src/Zernio.Test/Api/SupportRunsApiTests.cs
 src/Zernio.Test/Api/ToolsApiTests.cs
 src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
@@ -3445,6 +3453,9 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestZipsInnerTests.cs
+src/Zernio.Test/Model/CreateSupportRun202ResponseTests.cs
+src/Zernio.Test/Model/CreateSupportRunRequestContextTests.cs
+src/Zernio.Test/Model/CreateSupportRunRequestTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
@@ -4996,6 +5007,8 @@ src/Zernio.Test/Model/SubmitPhoneNumberKycRequestTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
+src/Zernio.Test/Model/SupportRunTests.cs
+src/Zernio.Test/Model/SupportRunUsageTests.cs
 src/Zernio.Test/Model/SyncExternalPosts200ResponseSyncedTests.cs
 src/Zernio.Test/Model/SyncExternalPosts200ResponseTests.cs
 src/Zernio.Test/Model/SyncExternalPostsRequestTests.cs
@@ -5461,6 +5474,7 @@ src/Zernio.Test/Model/WebhookPayloadReviewNewAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewNewTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadSequenceEnrollmentTests.cs
+src/Zernio.Test/Model/WebhookPayloadSupportRunTests.cs
 src/Zernio.Test/Model/WebhookPayloadTestTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppAccountAlertReceivedAlertTests.cs
 src/Zernio.Test/Model/WebhookPayloadWhatsAppAccountAlertReceivedTests.cs
@@ -5617,6 +5631,7 @@ src/Zernio/Api/ReviewsApi.cs
 src/Zernio/Api/SMSApi.cs
 src/Zernio/Api/SequencesApi.cs
 src/Zernio/Api/SlackApi.cs
+src/Zernio/Api/SupportRunsApi.cs
 src/Zernio/Api/ToolsApi.cs
 src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
@@ -6240,6 +6255,9 @@ src/Zernio/Model/CreateStandaloneAdRequestStructuredSnippetsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestZipsInner.cs
+src/Zernio/Model/CreateSupportRun202Response.cs
+src/Zernio/Model/CreateSupportRunRequest.cs
+src/Zernio/Model/CreateSupportRunRequestContext.cs
 src/Zernio/Model/CreateTestLead200Response.cs
 src/Zernio/Model/CreateTestLead200ResponseTestLead.cs
 src/Zernio/Model/CreateTestLeadRequest.cs
@@ -7791,6 +7809,8 @@ src/Zernio/Model/SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequest.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInner.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.cs
+src/Zernio/Model/SupportRun.cs
+src/Zernio/Model/SupportRunUsage.cs
 src/Zernio/Model/SyncExternalPosts200Response.cs
 src/Zernio/Model/SyncExternalPosts200ResponseSynced.cs
 src/Zernio/Model/SyncExternalPostsRequest.cs
@@ -8257,6 +8277,7 @@ src/Zernio/Model/WebhookPayloadReviewNew.cs
 src/Zernio/Model/WebhookPayloadReviewNewAccount.cs
 src/Zernio/Model/WebhookPayloadReviewUpdated.cs
 src/Zernio/Model/WebhookPayloadSequenceEnrollment.cs
+src/Zernio/Model/WebhookPayloadSupportRun.cs
 src/Zernio/Model/WebhookPayloadTest.cs
 src/Zernio/Model/WebhookPayloadWhatsAppAccountAlertReceived.cs
 src/Zernio/Model/WebhookPayloadWhatsAppAccountAlertReceivedAlert.cs
