@@ -1452,6 +1452,7 @@ catch (ApiException e)
 | **200** | The declined requirements to fix. |  -  |
 | **400** | Number is not awaiting remediation |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2141,6 +2142,7 @@ catch (ApiException e)
 | **200** | Re-submitted for approval. |  -  |
 | **400** | Number is not awaiting remediation / nothing to remediate |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2244,6 +2246,7 @@ catch (ApiException e)
 | **200** | Reply posted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
 
@@ -2348,6 +2351,7 @@ catch (ApiException e)
 | **200** | Code requested, or the number was already verified, or a never-live number was replaced. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The number cannot be verified for WhatsApp right now. &#x60;code&#x60; says why: - &#x60;number_not_whatsapp_eligible&#x60;: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp. - &#x60;whatsapp_number_in_use&#x60;: Meta reports the number is registered to another WhatsApp account. - &#x60;META_INVALID_NUMBER&#x60;: Meta refused a never-live number and no replacement could be sourced. - &#x60;PENDING_REGULATORY&#x60;: the number is still in carrier regulatory review.  |  -  |
 | **429** | Meta paused verification for this number. &#x60;retryAt&#x60; says when it lifts. |  -  |
@@ -2454,6 +2458,7 @@ catch (ApiException e)
 | **200** | Response sent. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **409** | Number&#39;s registration is held under our own carrier registration; nothing for you to correct. |  -  |
 | **502** | Couldn&#39;t deliver your response to the reviewer; retry. |  -  |

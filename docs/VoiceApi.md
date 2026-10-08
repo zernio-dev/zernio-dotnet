@@ -122,7 +122,7 @@ catch (ApiException e)
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
+| **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. Also returned when the API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
@@ -631,6 +631,7 @@ catch (ApiException e)
 | **200** | Number detached. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -834,6 +835,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Voice disabled. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -936,6 +938,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Voice enabled; the full effective voice config is echoed back. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
