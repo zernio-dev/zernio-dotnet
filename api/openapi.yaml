@@ -10548,6 +10548,16 @@ paths:
         "403":
           description: The caller is not the initiating user or no longer has profile
             access.
+        "429":
+          description: Meta is rate limiting Page reads for this Facebook account
+            (code `rate_limited`). Retry after `Retry-After` seconds; the listing
+            stops at the first throttle instead of retrying.
+          headers:
+            Retry-After:
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -10641,6 +10651,16 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: pageIds only. None of the Pages could be connected; `details.failed`
             lists each one with its reason.
+        "429":
+          description: Meta is rate limiting Page reads for this Facebook account
+            (code `rate_limited`). Retry after `Retry-After` seconds; the listing
+            stops at the first throttle instead of retrying.
+          headers:
+            Retry-After:
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           description: Failed to save Facebook connection
       security:
@@ -10721,6 +10741,16 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: User does not have access to the specified profile
+        "429":
+          description: Meta is rate limiting Page reads for this Facebook account
+            (code `rate_limited`). Retry after `Retry-After` seconds; the listing
+            stops at the first throttle instead of retrying.
+          headers:
+            Retry-After:
+              explode: false
+              schema:
+                type: integer
+              style: simple
       security:
       - bearerAuth: []
       - connectToken: []
@@ -10790,6 +10820,16 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: pageIds only. None of the accounts could be connected; `details.failed`
             lists each Page with its reason.
+        "429":
+          description: Meta is rate limiting Page reads for this Facebook account
+            (code `rate_limited`). Retry after `Retry-After` seconds; the listing
+            stops at the first throttle instead of retrying.
+          headers:
+            Retry-After:
+              explode: false
+              schema:
+                type: integer
+              style: simple
       security:
       - bearerAuth: []
       - connectToken: []

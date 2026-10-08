@@ -3834,6 +3834,7 @@ catch (ApiException e)
 | **400** | Invalid or expired selectionToken, no granted Pages, or missing classic profileId and tempToken. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The caller is not the initiating user or no longer has profile access. |  -  |
+| **429** | Meta is rate limiting Page reads for this Facebook account (code &#x60;rate_limited&#x60;). Retry after &#x60;Retry-After&#x60; seconds; the listing stops at the first throttle instead of retrying. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4059,6 +4060,7 @@ catch (ApiException e)
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
+| **429** | Meta is rate limiting Page reads for this Facebook account (code &#x60;rate_limited&#x60;). Retry after &#x60;Retry-After&#x60; seconds; the listing stops at the first throttle instead of retrying. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4798,6 +4800,7 @@ catch (ApiException e)
 | **404** | Selected page not found in available pages |  -  |
 | **409** | Reconnect identity mismatch. The OAuth was initiated as a &#x60;force&#x3D;true&#x60; token-recovery re-auth (&#x60;GET /v1/connect/{platform}/ads&#x60;), but the grant landed on a different Facebook user or page than the connected account. The existing account is left untouched. Returned in the standard error envelope with &#x60;code: reconnect_account_mismatch&#x60; (the same value the OAuth redirect uses in &#x60;error&#x3D;&#x60;). Before 1.79.0 this body was &#x60;{error, code: RECONNECT_ACCOUNT_MISMATCH}&#x60; without &#x60;type&#x60;.  |  -  |
 | **422** | pageIds only. None of the Pages could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
+| **429** | Meta is rate limiting Page reads for this Facebook account (code &#x60;rate_limited&#x60;). Retry after &#x60;Retry-After&#x60; seconds; the listing stops at the first throttle instead of retrying. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **500** | Failed to save Facebook connection |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5016,6 +5019,7 @@ catch (ApiException e)
 | **404** | Selected page not found among the pages this token can manage |  -  |
 | **409** | The connect was started with &#x60;expectedPlatformUserId&#x60; or &#x60;expectedUsername&#x60; (carried on redirect_url) and the selected Page&#39;s Instagram account is not that account. Nothing is written. Standard error envelope with &#x60;code: account_mismatch&#x60;; with pageIds the mismatching Pages are listed in &#x60;failed&#x60; instead. |  -  |
 | **422** | pageIds only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each Page with its reason. |  -  |
+| **429** | Meta is rate limiting Page reads for this Facebook account (code &#x60;rate_limited&#x60;). Retry after &#x60;Retry-After&#x60; seconds; the listing stops at the first throttle instead of retrying. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
