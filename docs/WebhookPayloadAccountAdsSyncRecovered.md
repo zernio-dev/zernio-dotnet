@@ -6,6 +6,7 @@ Webhook payload for `account.ads.sync_recovered` events. Fired once when an ad a
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. | 
+**Test** | **bool** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. | [optional] 
 **Event** | **string** |  | 
 **Account** | [**WebhookAdsSyncAccount**](WebhookAdsSyncAccount.md) |  | 
 **AdAccount** | [**WebhookAdsSyncAdAccount**](WebhookAdsSyncAdAccount.md) |  | 

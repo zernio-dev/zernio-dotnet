@@ -6,6 +6,7 @@ Webhook payload for message sent events (fired when a message is sent via the AP
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. | 
+**Test** | **bool** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. | [optional] 
 **Event** | **string** |  | 
 **Message** | [**WebhookPayloadMessageSentMessage**](WebhookPayloadMessageSentMessage.md) |  | 
 **Pricing** | [**WhatsAppMessagePricing**](WhatsAppMessagePricing.md) |  | [optional] 

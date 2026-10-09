@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **WebhookName** | **string** | Name of the webhook configuration at delivery time | [optional] 
 **EventId** | **string** | Stable webhook event ID: the payload &#x60;id&#x60;, also sent as the X-Zernio-Event-Id header. Shared by every attempt and redelivery of the same event. | [optional] 
 **Event** | **string** | Event type that triggered the delivery (e.g. post.published) | [optional] 
+**Test** | **bool** | true when the delivery was a sample fired by POST /v1/webhooks/test with an event, not a real event. Absent otherwise. | [optional] 
 **Url** | **string** | Destination URL the webhook was delivered to | [optional] 
 **Status** | **string** | Delivery outcome | [optional] 
 **StatusCode** | **int** | HTTP status code returned by the destination endpoint | [optional] 
