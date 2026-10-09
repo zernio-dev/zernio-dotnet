@@ -209,6 +209,8 @@ docs/BrandedCallingIdentityReviewRequestPointsInner.md
 docs/BrandedCallingReference.md
 docs/BrandedCallingReferences.md
 docs/BroadcastsApi.md
+docs/BrowseAdTargeting200Response.md
+docs/BrowseAdTargeting200ResponseNodesInner.md
 docs/BulkCreateContacts200Response.md
 docs/BulkCreateContactsRequest.md
 docs/BulkCreateContactsRequestContactsInner.md
@@ -3056,6 +3058,8 @@ src/Zernio.Test/Model/BrandedCallingIdentityReviewRequestTests.cs
 src/Zernio.Test/Model/BrandedCallingIdentityTests.cs
 src/Zernio.Test/Model/BrandedCallingReferenceTests.cs
 src/Zernio.Test/Model/BrandedCallingReferencesTests.cs
+src/Zernio.Test/Model/BrowseAdTargeting200ResponseNodesInnerTests.cs
+src/Zernio.Test/Model/BrowseAdTargeting200ResponseTests.cs
 src/Zernio.Test/Model/BulkCreateContacts200ResponseTests.cs
 src/Zernio.Test/Model/BulkCreateContactsRequestContactsInnerTests.cs
 src/Zernio.Test/Model/BulkCreateContactsRequestTests.cs
@@ -5858,6 +5862,8 @@ src/Zernio/Model/BrandedCallingIdentityReviewRequest.cs
 src/Zernio/Model/BrandedCallingIdentityReviewRequestPointsInner.cs
 src/Zernio/Model/BrandedCallingReference.cs
 src/Zernio/Model/BrandedCallingReferences.cs
+src/Zernio/Model/BrowseAdTargeting200Response.cs
+src/Zernio/Model/BrowseAdTargeting200ResponseNodesInner.cs
 src/Zernio/Model/BulkCreateContacts200Response.cs
 src/Zernio/Model/BulkCreateContactsRequest.cs
 src/Zernio/Model/BulkCreateContactsRequestContactsInner.cs

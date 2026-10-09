@@ -4,11 +4,124 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**BrowseAdTargeting**](AdTargetingApi.md#browseadtargeting) | **GET** /v1/ads/targeting/browse | Browse targeting categories |
 | [**EstimateAdReach**](AdTargetingApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**GetLinkedInBidPricing**](AdTargetingApi.md#getlinkedinbidpricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds |
 | [**GetLinkedInSupplyForecast**](AdTargetingApi.md#getlinkedinsupplyforecast) | **POST** /v1/ads/targeting/supply-forecast | Forecast ad delivery |
 | [**SearchAdInterests**](AdTargetingApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**SearchAdTargeting**](AdTargetingApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options |
+
+<a id="browseadtargeting"></a>
+# **BrowseAdTargeting**
+> BrowseAdTargeting200Response BrowseAdTargeting (string accountId, string adAccountId, string? type = null, string? parentNodeId = null, bool? selectable = null)
+
+Browse targeting categories
+
+The whole Meta detailed-targeting category tree of one ad account (Meta's `GET /act_{ad_account_id}/targetingbrowse`), as one flat list you can render as a tree. Use it to show what can be targeted without a keyword; use `GET /v1/ads/targeting/search` to find an entry by name.  Every node is one of two kinds:  - **Selectable entity** (`selectable: true`): an interest, behavior or demographic Meta   gives an id. `id` plus `type` is what a targeting spec takes. `interests`, `behaviors`   and `industries` ids go in `TargetingSpec.interests`, `behaviors` and `workIndustries`   on `POST /v1/ads/create`; every other type goes in `rawTargeting.flexible_spec` under   its `type` as the key. `life_events`, `family_statuses` and `income` take objects   (`{ \"flexible_spec\": [{ \"life_events\": [{ \"id\": \"6017476616183\" }] }] }`), while   `education_statuses` and `relationship_statuses` take the bare number   (`{ \"flexible_spec\": [{ \"education_statuses\": [3] }] }`): Meta answers an object   there with a 500. - **Organizational node** (`selectable: false`, `id: null`): a category such as   `Demographics > Financial > Income` that only groups other nodes and cannot be targeted.   A few carry a `type` and have no children (`Schools`, `Employers`, `Job titles`,   `Fields of study`, `Undergrad years`): those are open-ended categories Meta only exposes   through search (`dimension=workEmployer` / `workPosition` on the search endpoint).  `nodeId` identifies a node within this response and `parentNodeId` points at its parent (`null` for the three roots `Demographics`, `Interests`, `Behaviors`). A selectable node's `nodeId` is `{type}:{id}`, because Meta reuses small ids across types (education status 3 and relationship status 3 are different entities). An organizational node's `nodeId` is its full path joined with ` > `. Labels are kept exactly as Meta sends them, including stray leading or trailing spaces, because Meta has sibling nodes that differ only by whitespace.  The interests branch is Meta's curated browse list (a few hundred entries), not every interest Meta can target: search finds the long tail.  **No pagination.** Meta returns the whole catalog in one response (about 770 nodes) and ignores `limit`, so there is no cursor. Narrow it with `type`, `parentNodeId` and `selectable` instead; they are applied by Zernio. The catalog is cached for an hour per ad account and connection. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class BrowseAdTargetingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdTargetingApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | A connected Meta account (metaads, facebook or instagram). Any other ad platform returns 501 platform_not_supported.
+            var adAccountId = "adAccountId_example";  // string | The Meta ad account to browse as, in the form \"act_<digits>\".
+            var type = "type_example";  // string? | Only the nodes of this Meta type (e.g. interests, behaviors, life_events, income), plus the organizational nodes leading to them. A type that is not in the catalog returns 400. (optional) 
+            var parentNodeId = "parentNodeId_example";  // string? | Only the descendants (every depth) of this organizational node, e.g. `Demographics > Financial`. A nodeId that is not an organizational node of the catalog returns 400. (optional) 
+            var selectable = true;  // bool? | `true` for selectable entities only, `false` for organizational nodes only. (optional) 
+
+            try
+            {
+                // Browse targeting categories
+                BrowseAdTargeting200Response result = apiInstance.BrowseAdTargeting(accountId, adAccountId, type, parentNodeId, selectable);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdTargetingApi.BrowseAdTargeting: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the BrowseAdTargetingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Browse targeting categories
+    ApiResponse<BrowseAdTargeting200Response> response = apiInstance.BrowseAdTargetingWithHttpInfo(accountId, adAccountId, type, parentNodeId, selectable);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdTargetingApi.BrowseAdTargetingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | A connected Meta account (metaads, facebook or instagram). Any other ad platform returns 501 platform_not_supported. |  |
+| **adAccountId** | **string** | The Meta ad account to browse as, in the form \&quot;act_&lt;digits&gt;\&quot;. |  |
+| **type** | **string?** | Only the nodes of this Meta type (e.g. interests, behaviors, life_events, income), plus the organizational nodes leading to them. A type that is not in the catalog returns 400. | [optional]  |
+| **parentNodeId** | **string?** | Only the descendants (every depth) of this organizational node, e.g. &#x60;Demographics &gt; Financial&#x60;. A nodeId that is not an organizational node of the catalog returns 400. | [optional]  |
+| **selectable** | **bool?** | &#x60;true&#x60; for selectable entities only, &#x60;false&#x60; for organizational nodes only. | [optional]  |
+
+### Return type
+
+[**BrowseAdTargeting200Response**](BrowseAdTargeting200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The category tree as a flat list, in Meta&#39;s order (parents before their children). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | accountId is not a Meta connection (platform_not_supported). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="estimateadreach"></a>
 # **EstimateAdReach**
