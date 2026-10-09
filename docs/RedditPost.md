@@ -1,26 +1,24 @@
 # Zernio.Model.RedditPost
-A normalized Reddit post returned by the feed and search endpoints
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Reddit post ID (without type prefix) | [optional] 
-**Fullname** | **string** | Reddit fullname (e.g. t3_abc123) | [optional] 
+**Id** | **string** | Reddit post base36 id (e.g. \&quot;1tjtj26\&quot;) | [optional] 
+**Fullname** | **string** | Fullname with type prefix (e.g. \&quot;t3_1tjtj26\&quot;) | [optional] 
 **Title** | **string** |  | [optional] 
-**Author** | **string** |  | [optional] 
-**Subreddit** | **string** |  | [optional] 
-**Url** | **string** | Post URL (may be a gallery URL, external link, or self-post URL) | [optional] 
-**Permalink** | **string** | Full permalink to the Reddit post | [optional] 
-**Selftext** | **string** | Self-post body text (empty string for link posts) | [optional] 
-**CreatedUtc** | **decimal** | Unix timestamp of post creation | [optional] 
-**Score** | **int** |  | [optional] 
+**Selftext** | **string** | Body text for self-posts (empty for link posts) | [optional] 
+**Author** | **string** | Reddit username, without the u/ prefix | [optional] 
+**Subreddit** | **string** | Subreddit name, without the r/ prefix | [optional] 
+**Permalink** | **string** | Absolute URL to the post on reddit.com | [optional] 
+**Url** | **string** | For link posts, the external URL; for self-posts, the Reddit permalink | [optional] 
+**Score** | **int** | Net upvotes (upvotes minus downvotes) | [optional] 
 **NumComments** | **int** |  | [optional] 
-**Over18** | **bool** | Whether the post is marked NSFW | [optional] 
+**CreatedUtc** | **int** | Unix timestamp in seconds | [optional] 
+**Over18** | **bool** |  | [optional] 
 **Stickied** | **bool** |  | [optional] 
-**FlairText** | **string** | Link flair text if set | [optional] 
-**IsGallery** | **bool** | Whether the post is a gallery with multiple images | [optional] 
-**GalleryImages** | **List&lt;string&gt;** | Individual image URLs for gallery posts (only present when isGallery is true) | [optional] 
+**FlairText** | **string** | Link flair text if any | [optional] 
+**IsGallery** | **bool** | True if the post is a Reddit gallery (multiple images) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
