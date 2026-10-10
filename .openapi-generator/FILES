@@ -884,6 +884,7 @@ docs/GetAdsSearchTerms200ResponsePaging.md
 docs/GetAdsTimeline202Response.md
 docs/GetAllAccountsHealth200Response.md
 docs/GetAllAccountsHealth200ResponseAccountsInner.md
+docs/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.md
 docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md
 docs/GetAllAccountsHealth200ResponseSummary.md
 docs/GetAnalytics200Response.md
@@ -3711,6 +3712,7 @@ src/Zernio.Test/Model/GetAdsSearchTerms200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/GetAdsSearchTerms200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdsSearchTerms200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline202ResponseTests.cs
+src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSyncTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestrictionTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseSummaryTests.cs
@@ -6518,6 +6520,7 @@ src/Zernio/Model/GetAdsSearchTerms200ResponsePaging.cs
 src/Zernio/Model/GetAdsTimeline202Response.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInner.cs
+src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseSummary.cs
 src/Zernio/Model/GetAnalytics200Response.cs
