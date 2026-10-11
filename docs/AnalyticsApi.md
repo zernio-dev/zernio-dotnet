@@ -3028,7 +3028,7 @@ catch (ApiException e)
 | **400** | Bad request (invalid parameters or not a YouTube account) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
-| **403** | Access denied to this account |  -  |
+| **403** | Access denied to this account, or the connected YouTube account or channel is suspended |  -  |
 | **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
 | **502** | The platform returned a server error. |  -  |
