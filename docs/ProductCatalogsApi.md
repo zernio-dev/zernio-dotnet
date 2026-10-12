@@ -30,7 +30,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create, update or delete products in bulk
 
-Up to 5000 CREATE / UPDATE / DELETE requests keyed by `retailerId`, processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle} for the outcome and per-item errors. CREATE requests need name, url, imageUrl, price and currency.
+Creates, updates or deletes up to 5,000 catalog products in one request, processed in the background by Meta.  Up to 5000 CREATE / UPDATE / DELETE requests keyed by `retailerId`, processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle} for the outcome and per-item errors. CREATE requests need name, url, imageUrl, price and currency. 
 
 ### Example
 ```csharp
@@ -134,7 +134,7 @@ catch (ApiException e)
 
 Create a Meta product catalog
 
-Creates a Meta Commerce catalog in the business portfolio (resolved like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook Shops and the WhatsApp Business catalog: link it to a WhatsApp number with POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login.
+Creates a Meta product catalog that can power catalog ads, Instagram and Facebook Shops, and a WhatsApp Business catalog.  Creates a Meta Commerce catalog in the business portfolio (resolved like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook Shops and the WhatsApp Business catalog: link it to a WhatsApp number with POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login. 
 
 ### Example
 ```csharp
@@ -237,7 +237,7 @@ catch (ApiException e)
 
 Create a product feed
 
-A feed pulls a CSV/TSV/XML product file from a URL. With `schedule` Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads.
+Creates a product feed that imports a CSV, TSV or XML product file into a Meta catalog, on a schedule or on demand.  A feed pulls a CSV/TSV/XML product file from a URL. With `schedule` Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads. 
 
 ### Example
 ```csharp
@@ -341,7 +341,7 @@ catch (ApiException e)
 
 Fetch a feed file now
 
-Asks Meta to fetch the product file at `url` into the feed. Processing is asynchronous: read the outcome with GET uploads.
+Asks Meta to import a product file into a feed right away instead of waiting for its schedule.  Asks Meta to fetch the product file at `url` into the feed. Processing is asynchronous: read the outcome with GET uploads. 
 
 ### Example
 ```csharp
@@ -447,7 +447,7 @@ catch (ApiException e)
 
 Add a product to a catalog
 
-Adds one product. `retailerId` is your SKU and stays the handle for later lookups and batch updates. For many products at once use POST /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on the Meta login.
+Adds a single product to a Meta catalog, keyed by your own SKU for later lookups and updates.  `retailerId` is your SKU and stays the handle for later lookups and batch updates. For many products at once use POST /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on the Meta login. 
 
 ### Example
 ```csharp
@@ -551,7 +551,7 @@ catch (ApiException e)
 
 Create a product set
 
-A product set is a filter over the catalog, e.g. `{\"retailer_id\": {\"is_any\": [\"sku-1\", \"sku-2\"]}}` or `{\"brand\": {\"i_contains\": \"acme\"}}` (Meta's product set filter syntax).
+Creates a product set, a filtered group of catalog products (by SKU, brand and so on) to promote in catalog ads.  A product set is a filter over the catalog, e.g. `{\"retailer_id\": {\"is_any\": [\"sku-1\", \"sku-2\"]}}` or `{\"brand\": {\"i_contains\": \"acme\"}}` (Meta's product set filter syntax). 
 
 ### Example
 ```csharp
@@ -655,7 +655,7 @@ catch (ApiException e)
 
 Delete a product catalog
 
-Deletes the catalog and every product in it on Meta. Ads and WhatsApp numbers that use it lose their catalog.
+Deletes a Meta product catalog and all its products, removing it from any ads or WhatsApp numbers that use it.  Ads and WhatsApp numbers that use it lose their catalog. 
 
 ### Example
 ```csharp
@@ -760,6 +760,8 @@ catch (ApiException e)
 > DeleteAdCatalogProduct200Response DeleteAdCatalogProduct (string catalogId, string productId, string accountId, string? catalogAccountId = null)
 
 Delete a product
+
+Removes one product from a Meta catalog. 
 
 ### Example
 ```csharp
@@ -867,6 +869,8 @@ catch (ApiException e)
 
 Delete a product set
 
+Deletes a product set from a Meta catalog. 
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -973,6 +977,8 @@ catch (ApiException e)
 
 Get a product catalog
 
+Shows one Meta product catalog and its details. 
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -1076,6 +1082,8 @@ catch (ApiException e)
 > GetAdCatalogBatch200Response GetAdCatalogBatch (string catalogId, string handle, string accountId, string? catalogAccountId = null)
 
 Get a bulk request's status
+
+Shows whether a bulk catalog product request has finished, with any per-product errors. 
 
 ### Example
 ```csharp
@@ -1183,6 +1191,8 @@ catch (ApiException e)
 
 Get a product
 
+Shows one product from a Meta catalog. 
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -1288,6 +1298,8 @@ catch (ApiException e)
 > ListAdCatalogFeedUploads200Response ListAdCatalogFeedUploads (string catalogId, string feedId, string accountId, string? catalogAccountId = null)
 
 List a feed's uploads
+
+Lists a product feed's past file imports so you can check how each one went. 
 
 ### Example
 ```csharp
@@ -1395,6 +1407,8 @@ catch (ApiException e)
 
 List a catalog's product feeds
 
+Lists the product feeds that keep a Meta catalog filled from your product files. 
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -1499,7 +1513,7 @@ catch (ApiException e)
 
 List a catalog's product sets
 
-Lists a Meta product catalog's product sets, the unit a catalog ad promotes. Pass the chosen set id, not the parent catalog id, as `promotedObject.productSetId` on POST /v1/ads/create with `goal: catalog_sales`.
+Lists a Meta catalog's product sets, the groups of products a catalog ad promotes.  Pass the chosen set id, not the parent catalog id, as `promotedObject.productSetId` on POST /v1/ads/create with `goal: catalog_sales`. 
 
 ### Example
 ```csharp
@@ -1605,7 +1619,7 @@ catch (ApiException e)
 
 List a catalog's products
 
-Pages through the catalog's products. Filter by your own `retailerId` to look one up. `price` and `salePrice` come back formatted by Meta (for example \"€49.90\").
+Lists the products in a Meta catalog, or looks one up by your own SKU.  Filter by your own `retailerId` to look one up. `price` and `salePrice` come back formatted by Meta (for example \"€49.90\"). 
 
 ### Example
 ```csharp
@@ -1717,7 +1731,7 @@ catch (ApiException e)
 
 List Meta product catalogs
 
-Lists the Meta Commerce catalogs of a business portfolio (owned + agency-shared). The business comes from `businessId`, else the ad account's owner (`adAccountId`), else the WhatsApp Business Account's owner when `accountId` is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted.
+Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from `businessId`, else the ad account's owner (`adAccountId`), else the WhatsApp Business Account's owner when `accountId` is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted. 
 
 ### Example
 ```csharp
@@ -1826,7 +1840,7 @@ catch (ApiException e)
 
 Update a product
 
-Partial update: only the fields sent change. `retailerId` cannot change.
+Changes some fields of a catalog product, such as its price or image, leaving the rest as they are.  `retailerId` cannot change. 
 
 ### Example
 ```csharp
@@ -1931,6 +1945,8 @@ catch (ApiException e)
 > CreateAdCatalogProductSet201Response UpdateAdCatalogProductSet (string catalogId, string productSetId, UpdateAdCatalogProductSetRequest updateAdCatalogProductSetRequest)
 
 Update a product set
+
+Changes a product set's name or the filter that decides which products it includes. 
 
 ### Example
 ```csharp
