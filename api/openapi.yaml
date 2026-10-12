@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.260.0
+  version: 1.261.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -148571,6 +148571,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - whatsapp.automatic_event
@@ -148704,6 +148714,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - whatsapp.number.action_required
@@ -148738,6 +148758,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - whatsapp.number.verification_required
@@ -148832,6 +148862,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - whatsapp.number.released
@@ -148858,6 +148898,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - whatsapp.number.kyc_submitted
@@ -148968,6 +149018,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - sms.registration.action_required
@@ -149016,6 +149076,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - sms.registration.status_updated
@@ -149189,6 +149259,16 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
         event:
           enum:
           - rcs.agent.status_updated
