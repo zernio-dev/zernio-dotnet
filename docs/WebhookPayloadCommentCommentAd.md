@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadCommentCommentAd
-Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload's value.media.ad_id, value.media.ad_title and value.media.original_media_id, each only when Meta includes it. Facebook: populated via a Graph API lookup of the parent post's promotion_status. Absent for comments on organic posts that are not currently promoted. 
+Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload's value.media.ad_id, value.media.ad_title and value.media.original_media_id, each only when Meta includes it. Facebook: populated from a Graph API lookup of the parent post. Present when the post is an ad dark post (isDarkPost true, whatever its promotionStatus) or an organic post that is or was boosted (promotionStatus \"active\", \"extendable\" or \"finished\"). Meta does not link a dark post back to its ad, so id and title are never set on Facebook. Absent for comments on organic posts that are not promoted. 
 
 ## Properties
 
@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **Id** | **string** | Meta ad ID (Instagram only). | [optional] 
 **Title** | **string** | Ad creative title (Instagram only). | [optional] 
 **OriginalMediaId** | **string** | Original media ID that Meta reports for the ad (Instagram only). | [optional] 
-**PromotionStatus** | **string** | Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad).  | [optional] 
+**PromotionStatus** | **string** | Facebook only. The parent post&#39;s promotion_status as the Graph API returns it, for example \&quot;active\&quot; (organic post currently boosted). Ad dark posts usually report \&quot;inactive\&quot; and sometimes \&quot;ineligible\&quot;, so use isDarkPost, not this value, to tell an ad comment apart.  | [optional] 
+**IsDarkPost** | **bool** | Facebook only: true when the post is an unpublished ad creative (dark post), false for a boosted organic post. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
