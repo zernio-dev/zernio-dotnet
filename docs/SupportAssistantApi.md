@@ -6,6 +6,7 @@ All URIs are relative to *https://zernio.com/api*
 |--------|--------------|-------------|
 | [**AskSupportQuestion**](SupportAssistantApi.md#asksupportquestion) | **POST** /v1/support/runs | Ask a support question |
 | [**GetSupportAnswer**](SupportAssistantApi.md#getsupportanswer) | **GET** /v1/support/runs/{runId} | Get a support answer |
+| [**ListSupportAnswers**](SupportAssistantApi.md#listsupportanswers) | **GET** /v1/support/runs | List a thread&#39;s support answers |
 
 <a id="asksupportquestion"></a>
 # **AskSupportQuestion**
@@ -216,6 +217,113 @@ catch (ApiException e)
 | **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). |  -  |
 | **403** | Code &#x60;insufficient_permissions&#x60;: not an unrestricted API key, or a read-only, restricted or profile-scoped user. |  -  |
 | **404** | Code &#x60;support_run_not_found&#x60;: no such run, or it was not started by your team. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listsupportanswers"></a>
+# **ListSupportAnswers**
+> ListSupportAnswers200Response ListSupportAnswers (string threadId, int? limit = null, string? cursor = null)
+
+List a thread's support answers
+
+Lists the runs of one thread that your team started, with Ana's answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with `limit` and `cursor`: pass `nextCursor` as `cursor` until it is null.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListSupportAnswersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SupportAssistantApi(httpClient, config, httpClientHandler);
+            var threadId = "threadId_example";  // string | The thread to list, as returned by `POST /v1/support/runs`.
+            var limit = 20;  // int? | Runs per page. (optional)  (default to 20)
+            var cursor = "cursor_example";  // string? | Pass `nextCursor` from the previous page. (optional) 
+
+            try
+            {
+                // List a thread's support answers
+                ListSupportAnswers200Response result = apiInstance.ListSupportAnswers(threadId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SupportAssistantApi.ListSupportAnswers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListSupportAnswersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List a thread's support answers
+    ApiResponse<ListSupportAnswers200Response> response = apiInstance.ListSupportAnswersWithHttpInfo(threadId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SupportAssistantApi.ListSupportAnswersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **threadId** | **string** | The thread to list, as returned by &#x60;POST /v1/support/runs&#x60;. |  |
+| **limit** | **int?** | Runs per page. | [optional] [default to 20] |
+| **cursor** | **string?** | Pass &#x60;nextCursor&#x60; from the previous page. | [optional]  |
+
+### Return type
+
+[**ListSupportAnswers200Response**](ListSupportAnswers200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The thread&#39;s runs, oldest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). |  -  |
+| **403** | Code &#x60;insufficient_permissions&#x60;: not an unrestricted API key, or a read-only, restricted or profile-scoped user. |  -  |
+| **404** | Code &#x60;support_thread_not_found&#x60;: no run in this thread was started by your team, or its runs are older than 90 days. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
