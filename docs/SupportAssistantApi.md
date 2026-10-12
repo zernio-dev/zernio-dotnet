@@ -4,16 +4,16 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**AskSupportQuestion**](SupportAssistantApi.md#asksupportquestion) | **POST** /v1/support/runs | Ask a support question (private beta) |
-| [**GetSupportAnswer**](SupportAssistantApi.md#getsupportanswer) | **GET** /v1/support/runs/{runId} | Get a support answer (private beta) |
+| [**AskSupportQuestion**](SupportAssistantApi.md#asksupportquestion) | **POST** /v1/support/runs | Ask a support question |
+| [**GetSupportAnswer**](SupportAssistantApi.md#getsupportanswer) | **GET** /v1/support/runs/{runId} | Get a support answer |
 
 <a id="asksupportquestion"></a>
 # **AskSupportQuestion**
 > AskSupportQuestion202Response AskSupportQuestion (AskSupportQuestionRequest askSupportQuestionRequest, string? idempotencyKey = null)
 
-Ask a support question (private beta)
+Ask a support question
 
-Private beta: returns 403 `feature_not_available` unless enabled for your account. Asks Ana, the Zernio support agent, a question about your workspace. Each question starts a run that answers asynchronously: this returns 202 with a `runId`, and the answer arrives through the `support.run.completed` and `support.run.failed` webhooks. `GET /v1/support/runs/{runId}` is the fallback. Pass `threadId` to continue an earlier conversation, and `context` to point Ana at a post, account or profile. Billed when the run finishes at the model cost plus 20%, never above `maxCostUsd`; failed runs are free. When Ana finds a problem on Zernio's side she opens a support ticket with the team (see `supportTicket` on the run) and the run ends as `needs_human`. Requires an unrestricted API key, usage-based billing and a card on file. Limits per account: 3 active runs and $100 of runs per UTC month. Send an Idempotency-Key header to make retries safe.
+Asks Ana, the Zernio support agent, a question about your workspace. Each question starts a run that answers asynchronously: this returns 202 with a `runId`, and the answer arrives through the `support.run.completed` and `support.run.failed` webhooks. `GET /v1/support/runs/{runId}` is the fallback. Pass `threadId` to continue an earlier conversation, and `context` to point Ana at a post, account or profile. When Ana finds a problem on Zernio's side she opens a support ticket with the team (see `supportTicket` on the run) and the run ends as `needs_human`.  **Pricing.** Each question is billed once, when its run finishes, for the tokens Ana used:  - Input: $6 per million tokens - Output: $30 per million tokens - Cache reads: $0.60 per million tokens - Cache writes: $7.50 per million tokens  Most questions cost between $0.10 and $0.50. A run never bills more than its `maxCostUsd` ($0.50 to $3, $3 by default): near the cap Ana stops investigating and answers with what she found. Runs that end as `needs_human` are billed like any other; failed runs are free. The run's `usage` holds the token counts and `costUsd` the amount billed. Charges appear as \"Support API\" on your invoice.  Requires an unrestricted API key, usage-based billing and a card on file. Limits per account: 3 active runs and $100 of runs per UTC month. Send an Idempotency-Key header to make retries safe. 
 
 ### Example
 ```csharp
@@ -44,7 +44,7 @@ namespace Example
 
             try
             {
-                // Ask a support question (private beta)
+                // Ask a support question
                 AskSupportQuestion202Response result = apiInstance.AskSupportQuestion(askSupportQuestionRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
@@ -65,7 +65,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Ask a support question (private beta)
+    // Ask a support question
     ApiResponse<AskSupportQuestion202Response> response = apiInstance.AskSupportQuestionWithHttpInfo(askSupportQuestionRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -107,7 +107,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). Add or update the card in Billing. |  -  |
-| **403** | Code &#x60;insufficient_permissions&#x60;: the credential is not an unrestricted API key, or the user is read-only, restricted or profile-scoped. Code &#x60;feature_not_available&#x60;: the private beta is not enabled for your account. |  -  |
+| **403** | Code &#x60;insufficient_permissions&#x60;: the credential is not an unrestricted API key, or the user is read-only, restricted or profile-scoped. |  -  |
 | **404** | Code &#x60;support_thread_not_found&#x60; (&#x60;threadId&#x60;), &#x60;post_not_found&#x60;, &#x60;account_not_found&#x60; or &#x60;profile_not_found&#x60; (&#x60;context.*&#x60;). |  -  |
 | **409** | Code &#x60;support_run_in_progress&#x60;: the thread already has a run queued or running, so poll it first. Code &#x60;billing_setup_incomplete&#x60;: no billing customer to attach a card to, contact support. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
 | **422** | Code &#x60;usage_billing_required&#x60;: the Support Assistant needs a usage-based plan. Also returned when an Idempotency-Key is reused with a different request. |  -  |
@@ -120,9 +120,9 @@ catch (ApiException e)
 # **GetSupportAnswer**
 > SupportRun GetSupportAnswer (string runId)
 
-Get a support answer (private beta)
+Get a support answer
 
-Private beta: returns 403 `feature_not_available` unless enabled for your account. Returns a run started by your team, with Ana's answer once it is ready. Prefer the `support.run.completed` and `support.run.failed` webhooks; use this as the fallback, waiting `pollAfterSeconds` between polls. `costUsd` is the amount billed: the model cost plus 20%, never above `maxCostUsd`, and 0 for a failed run.
+Returns a run started by your team, with Ana's answer once it is ready. Prefer the `support.run.completed` and `support.run.failed` webhooks; use this as the fallback, waiting `pollAfterSeconds` between polls. `costUsd` is the amount billed for the question, never above `maxCostUsd`, and 0 for a failed run (rates on Ask a support question).
 
 ### Example
 ```csharp
@@ -152,7 +152,7 @@ namespace Example
 
             try
             {
-                // Get a support answer (private beta)
+                // Get a support answer
                 SupportRun result = apiInstance.GetSupportAnswer(runId);
                 Debug.WriteLine(result);
             }
@@ -173,7 +173,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get a support answer (private beta)
+    // Get a support answer
     ApiResponse<SupportRun> response = apiInstance.GetSupportAnswerWithHttpInfo(runId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -214,7 +214,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). |  -  |
-| **403** | Code &#x60;insufficient_permissions&#x60; (not an unrestricted API key, or a read-only, restricted or profile-scoped user) or &#x60;feature_not_available&#x60; (private beta not enabled). |  -  |
+| **403** | Code &#x60;insufficient_permissions&#x60;: not an unrestricted API key, or a read-only, restricted or profile-scoped user. |  -  |
 | **404** | Code &#x60;support_run_not_found&#x60;: no such run, or it was not started by your team. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
