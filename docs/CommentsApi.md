@@ -999,7 +999,7 @@ catch (ApiException e)
 
 Send private reply
 
-Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: `quickReplies` (chips above the keyboard, max 13) or `buttons` (1-3 inline postback/url buttons rendered in the same bubble via Meta's button_template). Chips do not render in the Instagram Message Requests folder. Instagram can refuse buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so). The refusal is uneven: most accounts do not get it, an affected account gets it on many of its non-followers, and only that account's own past refusals show whether it is affected. The failed call still consumes the comment's single private reply. On an affected account, send plain text to reach non-followers and add buttons once they reply. `quickReplies` and `buttons` are mutually exclusive. When the comment's single private reply is spent (by this call or an earlier one) the 400 carries `details.privateReplyConsumed: true`; never retry it. 
+Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: `quickReplies` (chips above the keyboard, max 13) or `buttons` (1-3 inline postback/url buttons rendered in the same bubble via Meta's button_template). Chips do not render in the Instagram Message Requests folder. Instagram can refuse buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so). The refusal is uneven: most accounts do not get it, an affected account gets it on many of its non-followers, and only that account's own past refusals show whether it is affected. The failed call still consumes the comment's single private reply. On an affected account, send plain text to reach non-followers and add buttons once they reply. `quickReplies` and `buttons` are mutually exclusive. When the comment's single private reply is spent (by this call or an earlier one) the 400 carries `details.privateReplyConsumed: true`; never retry it. A 502 means Meta answered a server error after receiving the reply; it carries `details.privateReplyOutcome: \"unknown\"`, the reply is usually delivered and the comment's private reply spent, so check the conversation before retrying. 
 
 ### Example
 ```csharp
@@ -1096,6 +1096,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
+| **502** | Meta returned a server error after receiving the reply; outcome unknown, usually delivered. Do not retry blindly. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
