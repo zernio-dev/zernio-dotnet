@@ -2210,6 +2210,7 @@ docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
 docs/SupportRun.md
+docs/SupportRunSupportTicket.md
 docs/SupportRunUsage.md
 docs/SupportRunsApi.md
 docs/SyncExternalPosts200Response.md
@@ -5015,6 +5016,7 @@ src/Zernio.Test/Model/SubmitPhoneNumberKycRequestTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
+src/Zernio.Test/Model/SupportRunSupportTicketTests.cs
 src/Zernio.Test/Model/SupportRunTests.cs
 src/Zernio.Test/Model/SupportRunUsageTests.cs
 src/Zernio.Test/Model/SyncExternalPosts200ResponseSyncedTests.cs
@@ -7822,6 +7824,7 @@ src/Zernio/Model/SubmitWhatsAppNumberKycRequest.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInner.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.cs
 src/Zernio/Model/SupportRun.cs
+src/Zernio/Model/SupportRunSupportTicket.cs
 src/Zernio/Model/SupportRunUsage.cs
 src/Zernio/Model/SyncExternalPosts200Response.cs
 src/Zernio/Model/SyncExternalPosts200ResponseSynced.cs
