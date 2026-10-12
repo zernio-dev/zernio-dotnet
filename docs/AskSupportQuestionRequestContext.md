@@ -1,4 +1,4 @@
-# Zernio.Model.CreateSupportRunRequestContext
+# Zernio.Model.AskSupportQuestionRequestContext
 Ids Ana should look at. Each must belong to your workspace.
 
 ## Properties

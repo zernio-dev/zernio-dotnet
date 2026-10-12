@@ -136,6 +136,9 @@ docs/ApplyGoogleRecommendationsRequest.md
 docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md
 docs/ApproveWhatsAppGroupJoinRequestsRequest.md
 docs/ArchiveLeadForm200Response.md
+docs/AskSupportQuestion202Response.md
+docs/AskSupportQuestionRequest.md
+docs/AskSupportQuestionRequestContext.md
 docs/AssignAdAccountUser201Response.md
 docs/AssignAdAccountUserRequest.md
 docs/AssignGoogleBusinessLocation200Response.md
@@ -618,9 +621,6 @@ docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateStandaloneAdRequestZipsInner.md
-docs/CreateSupportRun202Response.md
-docs/CreateSupportRunRequest.md
-docs/CreateSupportRunRequestContext.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
 docs/CreateTestLeadRequest.md
@@ -2210,10 +2210,10 @@ docs/SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.md
 docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
+docs/SupportAssistantApi.md
 docs/SupportRun.md
 docs/SupportRunSupportTicket.md
 docs/SupportRunUsage.md
-docs/SupportRunsApi.md
 docs/SyncExternalPosts200Response.md
 docs/SyncExternalPosts200ResponseSynced.md
 docs/SyncExternalPostsRequest.md
@@ -2853,7 +2853,7 @@ src/Zernio.Test/Api/ReviewsApiTests.cs
 src/Zernio.Test/Api/SMSApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
 src/Zernio.Test/Api/SlackApiTests.cs
-src/Zernio.Test/Api/SupportRunsApiTests.cs
+src/Zernio.Test/Api/SupportAssistantApiTests.cs
 src/Zernio.Test/Api/ToolsApiTests.cs
 src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
@@ -2992,6 +2992,9 @@ src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestRecommendationsInnerTests
 src/Zernio.Test/Model/ApplyGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/ApproveWhatsAppGroupJoinRequestsRequestTests.cs
 src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
+src/Zernio.Test/Model/AskSupportQuestion202ResponseTests.cs
+src/Zernio.Test/Model/AskSupportQuestionRequestContextTests.cs
+src/Zernio.Test/Model/AskSupportQuestionRequestTests.cs
 src/Zernio.Test/Model/AssignAdAccountUser201ResponseTests.cs
 src/Zernio.Test/Model/AssignAdAccountUserRequestTests.cs
 src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
@@ -3461,9 +3464,6 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestZipsInnerTests.cs
-src/Zernio.Test/Model/CreateSupportRun202ResponseTests.cs
-src/Zernio.Test/Model/CreateSupportRunRequestContextTests.cs
-src/Zernio.Test/Model/CreateSupportRunRequestTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
@@ -5643,7 +5643,7 @@ src/Zernio/Api/ReviewsApi.cs
 src/Zernio/Api/SMSApi.cs
 src/Zernio/Api/SequencesApi.cs
 src/Zernio/Api/SlackApi.cs
-src/Zernio/Api/SupportRunsApi.cs
+src/Zernio/Api/SupportAssistantApi.cs
 src/Zernio/Api/ToolsApi.cs
 src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
@@ -5800,6 +5800,9 @@ src/Zernio/Model/ApplyGoogleRecommendationsRequest.cs
 src/Zernio/Model/ApplyGoogleRecommendationsRequestRecommendationsInner.cs
 src/Zernio/Model/ApproveWhatsAppGroupJoinRequestsRequest.cs
 src/Zernio/Model/ArchiveLeadForm200Response.cs
+src/Zernio/Model/AskSupportQuestion202Response.cs
+src/Zernio/Model/AskSupportQuestionRequest.cs
+src/Zernio/Model/AskSupportQuestionRequestContext.cs
 src/Zernio/Model/AssignAdAccountUser201Response.cs
 src/Zernio/Model/AssignAdAccountUserRequest.cs
 src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
@@ -6269,9 +6272,6 @@ src/Zernio/Model/CreateStandaloneAdRequestStructuredSnippetsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestZipsInner.cs
-src/Zernio/Model/CreateSupportRun202Response.cs
-src/Zernio/Model/CreateSupportRunRequest.cs
-src/Zernio/Model/CreateSupportRunRequestContext.cs
 src/Zernio/Model/CreateTestLead200Response.cs
 src/Zernio/Model/CreateTestLead200ResponseTestLead.cs
 src/Zernio/Model/CreateTestLeadRequest.cs

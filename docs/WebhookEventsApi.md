@@ -61,8 +61,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnSequenceExited**](WebhookEventsApi.md#onsequenceexited) | **POST** /sequence.exited | Sequence exited event |
 | [**OnSmsRegistrationActionRequired**](WebhookEventsApi.md#onsmsregistrationactionrequired) | **POST** /sms.registration.action_required | SMS registration action required event |
 | [**OnSmsRegistrationStatusUpdated**](WebhookEventsApi.md#onsmsregistrationstatusupdated) | **POST** /sms.registration.status_updated | SMS registration status updated event |
-| [**OnSupportRunCompleted**](WebhookEventsApi.md#onsupportruncompleted) | **POST** /support.run.completed | Support run completed event |
-| [**OnSupportRunFailed**](WebhookEventsApi.md#onsupportrunfailed) | **POST** /support.run.failed | Support run failed event |
+| [**OnSupportRunCompleted**](WebhookEventsApi.md#onsupportruncompleted) | **POST** /support.run.completed | Support Assistant finished event |
+| [**OnSupportRunFailed**](WebhookEventsApi.md#onsupportrunfailed) | **POST** /support.run.failed | Support Assistant failed event |
 | [**OnVerificationApproved**](WebhookEventsApi.md#onverificationapproved) | **POST** /verification.approved | Verification approved event |
 | [**OnVerificationFailed**](WebhookEventsApi.md#onverificationfailed) | **POST** /verification.failed | Verification failed event |
 | [**OnWebhookTest**](WebhookEventsApi.md#onwebhooktest) | **POST** /webhook.test | Webhook test event |
@@ -5448,9 +5448,9 @@ void (empty response body)
 # **OnSupportRunCompleted**
 > void OnSupportRunCompleted (WebhookPayloadSupportRun webhookPayloadSupportRun)
 
-Support run completed event
+Support Assistant finished event
 
-Fired when an Ana support run finishes (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+Fired when the Support Assistant finishes a question (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
 
 ### Example
 ```csharp
@@ -5480,7 +5480,7 @@ namespace Example
 
             try
             {
-                // Support run completed event
+                // Support Assistant finished event
                 apiInstance.OnSupportRunCompleted(webhookPayloadSupportRun);
             }
             catch (ApiException  e)
@@ -5500,7 +5500,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Support run completed event
+    // Support Assistant finished event
     apiInstance.OnSupportRunCompletedWithHttpInfo(webhookPayloadSupportRun);
 }
 catch (ApiException e)
@@ -5542,9 +5542,9 @@ void (empty response body)
 # **OnSupportRunFailed**
 > void OnSupportRunFailed (WebhookPayloadSupportRun webhookPayloadSupportRun)
 
-Support run failed event
+Support Assistant failed event
 
-Fired when an Ana support run fails or expires (private beta). Failed runs are not billed.
+Fired when a Support Assistant question fails or expires (private beta). Failed runs are not billed.
 
 ### Example
 ```csharp
@@ -5574,7 +5574,7 @@ namespace Example
 
             try
             {
-                // Support run failed event
+                // Support Assistant failed event
                 apiInstance.OnSupportRunFailed(webhookPayloadSupportRun);
             }
             catch (ApiException  e)
@@ -5594,7 +5594,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Support run failed event
+    // Support Assistant failed event
     apiInstance.OnSupportRunFailedWithHttpInfo(webhookPayloadSupportRun);
 }
 catch (ApiException e)

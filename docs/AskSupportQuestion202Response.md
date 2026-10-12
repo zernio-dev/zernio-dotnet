@@ -1,4 +1,4 @@
-# Zernio.Model.CreateSupportRun202Response
+# Zernio.Model.AskSupportQuestion202Response
 
 ## Properties
 
