@@ -5450,7 +5450,7 @@ void (empty response body)
 
 Support Assistant finished event
 
-Fired when the Support Assistant finishes a question. run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+Fired when the Support Assistant finishes a question. run.status is completed, or needs_human when the assistant handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
 
 ### Example
 ```csharp

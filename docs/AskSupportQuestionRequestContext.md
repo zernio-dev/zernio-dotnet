@@ -1,5 +1,5 @@
 # Zernio.Model.AskSupportQuestionRequestContext
-Ids Ana should look at. Each must belong to your workspace.
+Ids the assistant should look at. Each must belong to your workspace.
 
 ## Properties
 
