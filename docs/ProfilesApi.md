@@ -16,7 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create profile
 
-Creates a new profile with a name, optional description, and color. Names are unique per team: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
+Creates a new profile with a name, optional description, and color. Names are unique per team: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Set externalId to your own tenant or client id to find the profile later without storing its Zernio id. A duplicate externalId returns the same kind of 409, with code profile_external_id_conflict. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
 
 ### Example
 ```csharp
@@ -111,7 +111,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | Profile limit exceeded |  -  |
-| **409** | A profile with this name already exists (code: profile_name_conflict); details.existingProfileId carries the id of the existing profile. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
+| **409** | A profile with this name (code: profile_name_conflict) or this externalId (code: profile_external_id_conflict) already exists; details.existingProfileId carries the id of the existing profile. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -320,11 +320,11 @@ catch (ApiException e)
 
 <a id="listprofiles"></a>
 # **ListProfiles**
-> ProfilesListResponse ListProfiles (bool? includeOverLimit = null, string? name = null, int? limit = null, int? skip = null)
+> ProfilesListResponse ListProfiles (bool? includeOverLimit = null, string? name = null, string? externalId = null, int? limit = null, int? skip = null)
 
 List profiles
 
-Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit=true to include profiles that exceed the plan limit.
+Returns profiles sorted default-first, then by creation date. Filter with name or externalId (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit=true to include profiles that exceed the plan limit.
 
 ### Example
 ```csharp
@@ -352,13 +352,14 @@ namespace Example
             var apiInstance = new ProfilesApi(httpClient, config, httpClientHandler);
             var includeOverLimit = false;  // bool? | When true, includes over-limit profiles (marked with isOverLimit: true). (optional)  (default to false)
             var name = "name_example";  // string? | Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional) 
+            var externalId = "externalId_example";  // string? | Exact-match filter on the externalId you set on the profile, to find the profile of one of your tenants without storing its Zernio id. Team members can each own a profile with the same externalId, so the result is a list. (optional) 
             var limit = 56;  // int? | Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional) 
             var skip = 56;  // int? | Number of profiles to skip, applied after sorting and filtering. (optional) 
 
             try
             {
                 // List profiles
-                ProfilesListResponse result = apiInstance.ListProfiles(includeOverLimit, name, limit, skip);
+                ProfilesListResponse result = apiInstance.ListProfiles(includeOverLimit, name, externalId, limit, skip);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -379,7 +380,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List profiles
-    ApiResponse<ProfilesListResponse> response = apiInstance.ListProfilesWithHttpInfo(includeOverLimit, name, limit, skip);
+    ApiResponse<ProfilesListResponse> response = apiInstance.ListProfilesWithHttpInfo(includeOverLimit, name, externalId, limit, skip);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -398,6 +399,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **includeOverLimit** | **bool?** | When true, includes over-limit profiles (marked with isOverLimit: true). | [optional] [default to false] |
 | **name** | **string?** | Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). | [optional]  |
+| **externalId** | **string?** | Exact-match filter on the externalId you set on the profile, to find the profile of one of your tenants without storing its Zernio id. Team members can each own a profile with the same externalId, so the result is a list. | [optional]  |
 | **limit** | **int?** | Page size. When limit or skip is present, the response includes total and skip (and echoes limit). | [optional]  |
 | **skip** | **int?** | Number of profiles to skip, applied after sorting and filtering. | [optional]  |
 
@@ -430,7 +432,7 @@ catch (ApiException e)
 
 Update profile
 
-Updates a profile's name, description, color, default timezone, or default status.
+Updates a profile's name, description, color, default timezone, externalId, or default status.
 
 ### Example
 ```csharp
@@ -521,10 +523,10 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request, including an unknown timezone or a body that carries none of name, description, color, timezone or isDefault (code: missing_required_field). |  -  |
+| **400** | Invalid request, including an unknown timezone or a body that carries none of name, description, color, timezone, externalId or isDefault (code: missing_required_field). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
+| **409** | A profile with this name (code: profile_name_conflict) or this externalId (code: profile_external_id_conflict) already exists. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
