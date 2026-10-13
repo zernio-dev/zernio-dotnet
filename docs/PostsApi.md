@@ -542,7 +542,7 @@ catch (ApiException e)
 
 <a id="listposts"></a>
 # **ListPosts**
-> PostsListResponse ListPosts (int? page = null, int? limit = null, int? offset = null, string? source = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null, string? accountId = null)
+> PostsListResponse ListPosts (int? page = null, int? limit = null, int? offset = null, string? source = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? fromDate = null, DateOnly? toDate = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? tags = null, string? sortBy = null, string? accountId = null)
 
 List posts
 
@@ -586,13 +586,14 @@ namespace Example
             var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var includeHidden = false;  // bool? |  (optional)  (default to false)
             var search = "search_example";  // string? | Search posts by text content. (optional) 
+            var tags = job,engineering;  // string? | Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. `tag` is accepted as an alias. (optional) 
             var sortBy = "scheduled-desc";  // string? | Sort order for results. (optional)  (default to scheduled-desc)
             var accountId = "accountId_example";  // string? | Filter posts to those published via a specific account (24-char hex ObjectId). (optional) 
 
             try
             {
                 // List posts
-                PostsListResponse result = apiInstance.ListPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+                PostsListResponse result = apiInstance.ListPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -613,7 +614,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List posts
-    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -644,6 +645,7 @@ catch (ApiException e)
 | **dateTo** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **includeHidden** | **bool?** |  | [optional] [default to false] |
 | **search** | **string?** | Search posts by text content. | [optional]  |
+| **tags** | **string?** | Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. &#x60;tag&#x60; is accepted as an alias. | [optional]  |
 | **sortBy** | **string?** | Sort order for results. | [optional] [default to scheduled-desc] |
 | **accountId** | **string?** | Filter posts to those published via a specific account (24-char hex ObjectId). | [optional]  |
 
