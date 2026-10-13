@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.273.0
+  version: 1.274.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -30186,6 +30186,8 @@ paths:
             \ the carrier lists failed WhatsApp registration recently and are held\
             \ back, the message names the date the first one clears and details.undeliverableUntil\
             \ carries it as an ISO timestamp."
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Submit KYC
@@ -30479,6 +30481,8 @@ paths:
             number.
         "404":
           description: Number not found
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Resubmit a declined number
