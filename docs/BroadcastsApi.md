@@ -736,7 +736,7 @@ catch (ApiException e)
 
 Schedule broadcast for later
 
-Schedule a draft broadcast to be sent at a future date and time.
+Schedule a draft broadcast, or move the date of an already scheduled one, to a future date and time.
 
 ### Example
 ```csharp
