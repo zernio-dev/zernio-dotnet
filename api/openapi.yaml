@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.269.0
+  version: 1.270.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37693,8 +37693,8 @@ paths:
         The rolled-up `status` is not re-derived by a live read. On TikTok the same live read also
         returns the ad group's applied `optimizationGoal` and `billingEvent`, as TikTok's adgroup/get
         reports them, so you can verify the goal TikTok applied rather than the one you requested.
-        It also returns `nativeSettings`: TikTok's own adgroup/get record for the ad group, verbatim and
-        read in that same call (budget, budget_mode, schedule, placements, locations, ages, gender,
+        It also returns `nativeSettings`: a fixed subset of TikTok's own adgroup/get record for the ad group, with
+        TikTok's own values, read in that same call (budget, budget_mode, schedule, placements, locations, ages, gender,
         languages, interests, actions, audiences and exclusions), plus the advertiser's currency and
         timezone. TikTok's `schedule_start_time` / `schedule_end_time` are UTC wall clocks
         ("YYYY-MM-DD HH:MM:SS", no offset); Ads Manager displays them in `advertiser_timezone`. `configReadAt` says when it was read; it
@@ -77987,6 +77987,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          isSmartPlus: true
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
@@ -78156,6 +78157,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -78624,6 +78626,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -79164,6 +79167,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          isSmartPlus: true
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
@@ -79333,6 +79337,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -79801,6 +79806,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -83856,6 +83862,7 @@ components:
           page_id: page_id
           custom_event_type: custom_event_type
           pixel_id: pixel_id
+        isSmartPlus: true
         ads:
         - bidStrategy: ""
           adSetName: adSetName
@@ -84331,6 +84338,10 @@ components:
           type: string
         adCount:
           type: integer
+        isSmartPlus:
+          description: TikTok only. true when this ad group belongs to an Upgraded
+            Smart+ campaign. See AdTreeCampaign.isSmartPlus.
+          type: boolean
         budget:
           $ref: "#/components/schemas/AdTreeAdSet_budget"
         adSetBudget:
@@ -84415,6 +84426,7 @@ components:
           custom_event_type: custom_event_type
           pixel_id: pixel_id
         isBudgetScheduleEnabled: false
+        isSmartPlus: true
         advertisingChannelType: advertisingChannelType
         createdTime: 2000-01-23T04:56:07.000+00:00
         currency: currency
@@ -84584,6 +84596,7 @@ components:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          isSmartPlus: true
           ads:
           - bidStrategy: ""
             adSetName: adSetName
@@ -85052,6 +85065,7 @@ components:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          isSmartPlus: true
           ads:
           - bidStrategy: ""
             adSetName: adSetName
@@ -85679,6 +85693,15 @@ components:
           type: string
         profileId:
           type: string
+        isSmartPlus:
+          description: "TikTok only. true when the campaign is an Upgraded Smart+\
+            \ campaign (TikTok lists it on /smart_plus/campaign/get/), false when\
+            \ it is not. Set by ads sync, so the key is absent on other platforms\
+            \ and on TikTok campaigns not synced since this field shipped. On Smart+\
+            \ objects Zernio can pause, resume, rename, delete and change the budget\
+            \ of the campaign and ad set, and pause or resume an ad; other edits answer\
+            \ 422 and belong in TikTok Ads Manager."
+          type: boolean
         advertisingChannelType:
           description: "Google-only. Raw campaign.advertising_channel_type (SEARCH,\
             \ PERFORMANCE_MAX, LOCAL_SERVICES, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING,\
@@ -85737,6 +85760,7 @@ components:
           custom_event_type: custom_event_type
           pixel_id: pixel_id
         isBudgetScheduleEnabled: false
+        isSmartPlus: true
         advertisingChannelType: advertisingChannelType
         earliestAd: 2000-01-23T04:56:07.000+00:00
         currency: currency
@@ -85873,11 +85897,13 @@ components:
         nativeSettings:
           additionalProperties: true
           description: "TikTok only, only on GET /v1/ads/campaigns with `live=true`\
-            \ and only on campaigns read live. TikTok's campaign/get record verbatim:\
-            \ operation_status, objective_type, budget_mode (BUDGET_MODE_INFINITE\
-            \ means no campaign budget, so budget lives on the ad groups), budget,\
-            \ and budget_optimize_on when TikTok returns it. Plus advertiser_currency\
-            \ and advertiser_timezone from TikTok's advertiser/info."
+            \ and only on campaigns read live. A fixed subset of TikTok's campaign/get\
+            \ record, not the whole record: campaign_id, operation_status, objective_type,\
+            \ budget_mode (BUDGET_MODE_INFINITE means no campaign budget, so budget\
+            \ lives on the ad groups), budget, and budget_optimize_on, each with TikTok's\
+            \ own value and present only when TikTok returns it. Plus advertiser_currency\
+            \ and advertiser_timezone from TikTok's advertiser/info. Whether the campaign\
+            \ is Upgraded Smart+ is `isSmartPlus`."
           type: object
         configReadAt:
           description: Only on GET /v1/ads/campaigns with `live=true`. When `nativeSettings`
@@ -85931,6 +85957,10 @@ components:
           type: string
         profileId:
           type: string
+        isSmartPlus:
+          description: TikTok only. true when the campaign is an Upgraded Smart+ campaign.
+            See AdTreeCampaign.isSmartPlus.
+          type: boolean
         advertisingChannelType:
           description: Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType.
           nullable: true
@@ -125331,6 +125361,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          isSmartPlus: true
           advertisingChannelType: advertisingChannelType
           earliestAd: 2000-01-23T04:56:07.000+00:00
           currency: currency
@@ -125434,6 +125465,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          isSmartPlus: true
           advertisingChannelType: advertisingChannelType
           earliestAd: 2000-01-23T04:56:07.000+00:00
           currency: currency
@@ -127314,19 +127346,20 @@ components:
         nativeSettings:
           additionalProperties: {}
           description: "TikTok only, only with `live=true` and only on rows read live.\
-            \ TikTok's adgroup/get record verbatim (snake_case, TikTok's own names\
-            \ and enums): operation_status, optimization_goal, optimization_event,\
-            \ billing_event, bid_type, bid_price, budget, budget_mode, pacing, schedule_type,\
-            \ schedule_start_time, schedule_end_time, dayparting, placement_type,\
-            \ placements, location_ids, age_groups, gender, languages, interest_category_ids,\
-            \ interest_keyword_ids, actions, audience_ids, excluded_audience_ids,\
-            \ operating_systems, frequency, frequency_schedule, smart_audience_enabled,\
-            \ smart_interest_behavior_enabled. schedule_start_time and schedule_end_time\
-            \ are UTC wall clocks (YYYY-MM-DD HH:MM:SS). location_ids holds TikTok's\
-            \ native location ids (GeoNames ids for countries); GET /v1/ads/targeting/search?dimension=geo\
-            \ returns them as `platformId` on country results. Plus advertiser_currency\
-            \ and advertiser_timezone from TikTok's advertiser/info. A field TikTok\
-            \ does not return is absent."
+            \ A fixed subset of TikTok's adgroup/get record, not the whole record\
+            \ (snake_case, TikTok's own names, enums and values): adgroup_id, campaign_id,\
+            \ operation_status, optimization_goal, optimization_event, billing_event,\
+            \ bid_type, bid_price, budget, budget_mode, pacing, schedule_type, schedule_start_time,\
+            \ schedule_end_time, dayparting, placement_type, placements, location_ids,\
+            \ age_groups, gender, languages, interest_category_ids, interest_keyword_ids,\
+            \ actions, audience_ids, excluded_audience_ids, operating_systems, frequency,\
+            \ frequency_schedule, smart_audience_enabled, smart_interest_behavior_enabled.\
+            \ schedule_start_time and schedule_end_time are UTC wall clocks (YYYY-MM-DD\
+            \ HH:MM:SS). location_ids holds TikTok's native location ids (GeoNames\
+            \ ids for countries); GET /v1/ads/targeting/search?dimension=geo returns\
+            \ them as `platformId` on country results. Plus advertiser_currency and\
+            \ advertiser_timezone from TikTok's advertiser/info. A field TikTok does\
+            \ not return is absent."
         configReadAt:
           description: "Only with `live=true`. When `nativeSettings` was read from\
             \ the platform. Null on every row whose native settings were not read\
@@ -127969,6 +128002,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          isSmartPlus: true
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
@@ -128138,6 +128172,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -128606,6 +128641,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -129146,6 +129182,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          isSmartPlus: true
           advertisingChannelType: advertisingChannelType
           createdTime: 2000-01-23T04:56:07.000+00:00
           currency: currency
@@ -129315,6 +129352,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
@@ -129783,6 +129821,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            isSmartPlus: true
             ads:
             - bidStrategy: ""
               adSetName: adSetName
