@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Diagnosis'
+        /// </summary>
+        [Fact]
+        public void DiagnosisTest()
+        {
+            // TODO unit test for the property 'Diagnosis'
+        }
+
+        /// <summary>
         /// Test the property 'Usage'
         /// </summary>
         [Fact]

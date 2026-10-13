@@ -149,6 +149,7 @@ namespace Zernio.Model
         /// <param name="stopReason">Why the run stopped. Null while it is in progress. (required).</param>
         /// <param name="question">The question as asked, with leading and trailing whitespace trimmed. Null only on runs created before this field was added. (required).</param>
         /// <param name="answer">The assistant&#39;s answer. Null while the run is in progress or when it failed. (required).</param>
+        /// <param name="diagnosis">diagnosis (required).</param>
         /// <param name="usage">usage (required).</param>
         /// <param name="costUsd">The exact amount charged for the question, in USD, never above &#x60;maxCostUsd&#x60;. 0 for a failed run. (required).</param>
         /// <param name="maxCostUsd">The cost cap this run was started with, in USD. (required).</param>
@@ -157,7 +158,7 @@ namespace Zernio.Model
         /// <param name="finishedAt">finishedAt (required).</param>
         /// <param name="supportTicket">supportTicket (required).</param>
         /// <param name="pollAfterSeconds">Seconds to wait before polling again. Present only while the run is queued or running..</param>
-        public SupportRun(string runId = default, string threadId = default, StatusEnum status = default, StopReasonEnum stopReason = default, string question = default, string answer = default, SupportRunUsage usage = default, decimal costUsd = default, decimal maxCostUsd = default, DateTime createdAt = default, DateTime? startedAt = default, DateTime? finishedAt = default, SupportRunSupportTicket supportTicket = default, int pollAfterSeconds = default)
+        public SupportRun(string runId = default, string threadId = default, StatusEnum status = default, StopReasonEnum stopReason = default, string question = default, string answer = default, SupportRunDiagnosis diagnosis = default, SupportRunUsage usage = default, decimal costUsd = default, decimal maxCostUsd = default, DateTime createdAt = default, DateTime? startedAt = default, DateTime? finishedAt = default, SupportRunSupportTicket supportTicket = default, int pollAfterSeconds = default)
         {
             // to ensure "runId" is required (not null)
             if (runId == null)
@@ -185,6 +186,12 @@ namespace Zernio.Model
                 throw new ArgumentNullException("answer is a required property for SupportRun and cannot be null");
             }
             this.Answer = answer;
+            // to ensure "diagnosis" is required (not null)
+            if (diagnosis == null)
+            {
+                throw new ArgumentNullException("diagnosis is a required property for SupportRun and cannot be null");
+            }
+            this.Diagnosis = diagnosis;
             // to ensure "usage" is required (not null)
             if (usage == null)
             {
@@ -242,6 +249,12 @@ namespace Zernio.Model
         /// <value>The assistant&#39;s answer. Null while the run is in progress or when it failed.</value>
         [DataMember(Name = "answer", IsRequired = true, EmitDefaultValue = true)]
         public string Answer { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Diagnosis
+        /// </summary>
+        [DataMember(Name = "diagnosis", IsRequired = true, EmitDefaultValue = true)]
+        public SupportRunDiagnosis Diagnosis { get; set; }
 
         /// <summary>
         /// Gets or Sets Usage
@@ -308,6 +321,7 @@ namespace Zernio.Model
             sb.Append("  StopReason: ").Append(StopReason).Append("\n");
             sb.Append("  Question: ").Append(Question).Append("\n");
             sb.Append("  Answer: ").Append(Answer).Append("\n");
+            sb.Append("  Diagnosis: ").Append(Diagnosis).Append("\n");
             sb.Append("  Usage: ").Append(Usage).Append("\n");
             sb.Append("  CostUsd: ").Append(CostUsd).Append("\n");
             sb.Append("  MaxCostUsd: ").Append(MaxCostUsd).Append("\n");

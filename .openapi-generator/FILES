@@ -2213,6 +2213,7 @@ docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
 docs/SupportAssistantApi.md
 docs/SupportRun.md
+docs/SupportRunDiagnosis.md
 docs/SupportRunSupportTicket.md
 docs/SupportRunUsage.md
 docs/SyncExternalPosts200Response.md
@@ -5021,6 +5022,7 @@ src/Zernio.Test/Model/SubmitPhoneNumberKycRequestTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
+src/Zernio.Test/Model/SupportRunDiagnosisTests.cs
 src/Zernio.Test/Model/SupportRunSupportTicketTests.cs
 src/Zernio.Test/Model/SupportRunTests.cs
 src/Zernio.Test/Model/SupportRunUsageTests.cs
@@ -7832,6 +7834,7 @@ src/Zernio/Model/SubmitWhatsAppNumberKycRequest.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInner.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.cs
 src/Zernio/Model/SupportRun.cs
+src/Zernio/Model/SupportRunDiagnosis.cs
 src/Zernio/Model/SupportRunSupportTicket.cs
 src/Zernio/Model/SupportRunUsage.cs
 src/Zernio/Model/SyncExternalPosts200Response.cs

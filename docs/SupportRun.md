@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **StopReason** | **string** | Why the run stopped. Null while it is in progress. | 
 **Question** | **string** | The question as asked, with leading and trailing whitespace trimmed. Null only on runs created before this field was added. | 
 **Answer** | **string** | The assistant&#39;s answer. Null while the run is in progress or when it failed. | 
+**Diagnosis** | [**SupportRunDiagnosis**](SupportRunDiagnosis.md) |  | 
 **Usage** | [**SupportRunUsage**](SupportRunUsage.md) |  | 
 **CostUsd** | **decimal** | The exact amount charged for the question, in USD, never above &#x60;maxCostUsd&#x60;. 0 for a failed run. | 
 **MaxCostUsd** | **decimal** | The cost cap this run was started with, in USD. | 
