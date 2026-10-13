@@ -36,7 +36,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="getanalytics"></a>
 # **GetAnalytics**
-> GetAnalytics200Response GetAnalytics (string? postId = null, string? platform = null, string? profileId = null, string? accountId = null, string? source = null, DateOnly? fromDate = null, DateOnly? toDate = null, int? limit = null, int? page = null, string? sortBy = null, string? order = null)
+> GetAnalytics200Response GetAnalytics (string? postId = null, string? platform = null, string? profileId = null, string? accountId = null, string? source = null, DateOnly? fromDate = null, DateOnly? toDate = null, int? limit = null, int? page = null, string? sortBy = null, string? order = null, string? tags = null)
 
 Get post analytics
 
@@ -77,11 +77,12 @@ namespace Example
             var page = 1;  // int? | Page number (default 1) (optional)  (default to 1)
             var sortBy = "date";  // string? | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional)  (default to date)
             var order = "asc";  // string? | Sort order (optional)  (default to desc)
+            var tags = job;  // string? | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional) 
 
             try
             {
                 // Get post analytics
-                GetAnalytics200Response result = apiInstance.GetAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
+                GetAnalytics200Response result = apiInstance.GetAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -102,7 +103,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get post analytics
-    ApiResponse<GetAnalytics200Response> response = apiInstance.GetAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
+    ApiResponse<GetAnalytics200Response> response = apiInstance.GetAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -130,6 +131,7 @@ catch (ApiException e)
 | **page** | **int?** | Page number (default 1) | [optional] [default to 1] |
 | **sortBy** | **string?** | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. | [optional] [default to date] |
 | **order** | **string?** | Sort order | [optional] [default to desc] |
+| **tags** | **string?** | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. | [optional]  |
 
 ### Return type
 
