@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **FinalUrlSuffix** | **string** | **Google only.** campaign.final_url_suffix; an empty string clears it. | [optional] 
 **SharedBudgetId** | **string** | **Google only.** Move the campaign onto this shared budget (id from GET /v1/ads/shared-budgets), or null to move it back onto a budget of its own sized by &#x60;budget&#x60;. | [optional] 
 **Budget** | [**UpdateAdCampaignRequestBudget**](UpdateAdCampaignRequestBudget.md) |  | [optional] 
-**Name** | **string** | **Meta only.** Rename the campaign. | [optional] 
+**Name** | **string** | **Meta and Reddit.** Rename the campaign. | [optional] 
 **PlatformSpecificData** | [**UpdateAdCampaignRequestPlatformSpecificData**](UpdateAdCampaignRequestPlatformSpecificData.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
