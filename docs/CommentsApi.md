@@ -703,7 +703,7 @@ namespace Example
             var sortOrder = "asc";  // string? | Sort order (optional)  (default to desc)
             var limit = 50;  // int? |  (optional)  (default to 50)
             var cursor = "cursor_example";  // string? |  (optional) 
-            var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
+            var accountId = "accountId_example";  // string? | Filter by specific account ID. With `platform=metaads` it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that Meta Ads connection's ad rows. A Facebook or Instagram account with no Meta Ads connection returns no rows; an account on any other platform returns 400. (optional) 
 
             try
             {
@@ -754,7 +754,7 @@ catch (ApiException e)
 | **sortOrder** | **string?** | Sort order | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 50] |
 | **cursor** | **string?** |  | [optional]  |
-| **accountId** | **string?** | Filter by specific account ID | [optional]  |
+| **accountId** | **string?** | Filter by specific account ID. With &#x60;platform&#x3D;metaads&#x60; it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that Meta Ads connection&#39;s ad rows. A Facebook or Instagram account with no Meta Ads connection returns no rows; an account on any other platform returns 400. | [optional]  |
 
 ### Return type
 
@@ -774,6 +774,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated posts with comments |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
