@@ -160,7 +160,7 @@ namespace Zernio.Api
         /// Dial from the browser softphone
         /// </summary>
         /// <remarks>
-        /// Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -171,7 +171,7 @@ namespace Zernio.Api
         /// Dial from the browser softphone
         /// </summary>
         /// <remarks>
-        /// Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -575,7 +575,7 @@ namespace Zernio.Api
         /// Dial from the browser softphone
         /// </summary>
         /// <remarks>
-        /// Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -587,7 +587,7 @@ namespace Zernio.Api
         /// Dial from the browser softphone
         /// </summary>
         /// <remarks>
-        /// Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -1861,7 +1861,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Dial from the browser softphone Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Dial from the browser softphone Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -1873,7 +1873,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Dial from the browser softphone Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Dial from the browser softphone Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -1923,7 +1923,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Dial from the browser softphone Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Dial from the browser softphone Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
@@ -1936,7 +1936,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Dial from the browser softphone Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+        /// Dial from the browser softphone Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dialVoiceWebCallRequest"></param>
