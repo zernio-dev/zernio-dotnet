@@ -81,5 +81,50 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Breakdowns'
         }
+
+        /// <summary>
+        /// Test the property 'UnsupportedBreakdowns'
+        /// </summary>
+        [Fact]
+        public void UnsupportedBreakdownsTest()
+        {
+            // TODO unit test for the property 'UnsupportedBreakdowns'
+        }
+
+        /// <summary>
+        /// Test the property 'BreakdownHints'
+        /// </summary>
+        [Fact]
+        public void BreakdownHintsTest()
+        {
+            // TODO unit test for the property 'BreakdownHints'
+        }
+
+        /// <summary>
+        /// Test the property 'BreakdownErrors'
+        /// </summary>
+        [Fact]
+        public void BreakdownErrorsTest()
+        {
+            // TODO unit test for the property 'BreakdownErrors'
+        }
+
+        /// <summary>
+        /// Test the property 'BreakdownDroppedMetrics'
+        /// </summary>
+        [Fact]
+        public void BreakdownDroppedMetricsTest()
+        {
+            // TODO unit test for the property 'BreakdownDroppedMetrics'
+        }
+
+        /// <summary>
+        /// Test the property 'BreakdownsRange'
+        /// </summary>
+        [Fact]
+        public void BreakdownsRangeTest()
+        {
+            // TODO unit test for the property 'BreakdownsRange'
+        }
     }
 }

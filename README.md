@@ -1366,6 +1366,8 @@ Class | Method | HTTP request | Description
  - [Model.CallRecordTranscriptInner](docs/CallRecordTranscriptInner.md)
  - [Model.CampaignAnalyticsResponse](docs/CampaignAnalyticsResponse.md)
  - [Model.CampaignAnalyticsResponseAnalytics](docs/CampaignAnalyticsResponseAnalytics.md)
+ - [Model.CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner](docs/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.md)
+ - [Model.CampaignAnalyticsResponseAnalyticsBreakdownsRange](docs/CampaignAnalyticsResponseAnalyticsBreakdownsRange.md)
  - [Model.CampaignAnalyticsResponseAnalyticsDailyInner](docs/CampaignAnalyticsResponseAnalyticsDailyInner.md)
  - [Model.CampaignAnalyticsResponseAnalyticsImpressionShareCache](docs/CampaignAnalyticsResponseAnalyticsImpressionShareCache.md)
  - [Model.CampaignAnalyticsResponseAnalyticsSummary](docs/CampaignAnalyticsResponseAnalyticsSummary.md)

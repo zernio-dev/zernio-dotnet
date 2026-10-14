@@ -39,13 +39,23 @@ namespace Zernio.Model
         /// <param name="summary">summary.</param>
         /// <param name="impressionShareCache">impressionShareCache.</param>
         /// <param name="daily">daily.</param>
-        /// <param name="breakdowns">Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series. .</param>
-        public CampaignAnalyticsResponseAnalytics(CampaignAnalyticsResponseAnalyticsSummary summary = default, CampaignAnalyticsResponseAnalyticsImpressionShareCache impressionShareCache = default, List<CampaignAnalyticsResponseAnalyticsDailyInner> daily = default, Dictionary<string, List<Object>> breakdowns = default)
+        /// <param name="breakdowns">Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series.  TikTok rows are keyed by TikTok&#39;s own dimension name (&#x60;country_code&#x60; for &#x60;country&#x60;, &#x60;platform&#x60; for &#x60;publisher_platform&#x60;). &#x60;placement&#x60; rows carry the label TikTok Ads Manager shows (&#x60;TikTok&#x60;, &#x60;TikTok Ad Network&#x60;, &#x60;News Feed App Series&#x60;) in &#x60;placement&#x60; and TikTok&#39;s API value (&#x60;PLACEMENT_TIKTOK&#x60;, &#x60;PLACEMENT_PANGLE&#x60;, &#x60;PLACEMENT_GLOBAL_APP_BUNDLE&#x60;) in &#x60;placementRaw&#x60;; a value without a known label carries the raw value in both.  A requested dimension with no data in the range is an empty array. .</param>
+        /// <param name="unsupportedBreakdowns">Requested breakdowns this platform cannot break down by (e.g. region on TikTok, any breakdown on Google). Absent when every requested breakdown is supported..</param>
+        /// <param name="breakdownHints">Guidance for some names in unsupportedBreakdowns, keyed by that name (e.g. placement on Meta points at publisher_platform and platform_position; platform_position on TikTok points at placement). Absent when no unsupported name has a hint..</param>
+        /// <param name="breakdownErrors">TikTok only: breakdowns the platform failed to return (rate limit, permission, rejected query). Each one is an empty array under breakdowns; summary and daily are unaffected. Absent when every breakdown answered..</param>
+        /// <param name="breakdownDroppedMetrics">TikTok only: TikTok metric names TikTok refused for a breakdown, keyed by the requested breakdown (e.g. total_purchase and total_purchase_value have no relation to platform, ac or language). Every row value derived from a refused metric is null in that breakdown (purchaseValue and roas, or the matching actions and actionValues entries), never a number computed without it. Absent when no metric was refused..</param>
+        /// <param name="breakdownsRange">breakdownsRange.</param>
+        public CampaignAnalyticsResponseAnalytics(CampaignAnalyticsResponseAnalyticsSummary summary = default, CampaignAnalyticsResponseAnalyticsImpressionShareCache impressionShareCache = default, List<CampaignAnalyticsResponseAnalyticsDailyInner> daily = default, Dictionary<string, List<Object>> breakdowns = default, List<string> unsupportedBreakdowns = default, Dictionary<string, string> breakdownHints = default, List<CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner> breakdownErrors = default, Dictionary<string, List<string>> breakdownDroppedMetrics = default, CampaignAnalyticsResponseAnalyticsBreakdownsRange breakdownsRange = default)
         {
             this.Summary = summary;
             this.ImpressionShareCache = impressionShareCache;
             this.Daily = daily;
             this.Breakdowns = breakdowns;
+            this.UnsupportedBreakdowns = unsupportedBreakdowns;
+            this.BreakdownHints = breakdownHints;
+            this.BreakdownErrors = breakdownErrors;
+            this.BreakdownDroppedMetrics = breakdownDroppedMetrics;
+            this.BreakdownsRange = breakdownsRange;
         }
 
         /// <summary>
@@ -67,11 +77,48 @@ namespace Zernio.Model
         public List<CampaignAnalyticsResponseAnalyticsDailyInner> Daily { get; set; }
 
         /// <summary>
-        /// Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series. 
+        /// Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series.  TikTok rows are keyed by TikTok&#39;s own dimension name (&#x60;country_code&#x60; for &#x60;country&#x60;, &#x60;platform&#x60; for &#x60;publisher_platform&#x60;). &#x60;placement&#x60; rows carry the label TikTok Ads Manager shows (&#x60;TikTok&#x60;, &#x60;TikTok Ad Network&#x60;, &#x60;News Feed App Series&#x60;) in &#x60;placement&#x60; and TikTok&#39;s API value (&#x60;PLACEMENT_TIKTOK&#x60;, &#x60;PLACEMENT_PANGLE&#x60;, &#x60;PLACEMENT_GLOBAL_APP_BUNDLE&#x60;) in &#x60;placementRaw&#x60;; a value without a known label carries the raw value in both.  A requested dimension with no data in the range is an empty array. 
         /// </summary>
-        /// <value>Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series. </value>
+        /// <value>Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series.  TikTok rows are keyed by TikTok&#39;s own dimension name (&#x60;country_code&#x60; for &#x60;country&#x60;, &#x60;platform&#x60; for &#x60;publisher_platform&#x60;). &#x60;placement&#x60; rows carry the label TikTok Ads Manager shows (&#x60;TikTok&#x60;, &#x60;TikTok Ad Network&#x60;, &#x60;News Feed App Series&#x60;) in &#x60;placement&#x60; and TikTok&#39;s API value (&#x60;PLACEMENT_TIKTOK&#x60;, &#x60;PLACEMENT_PANGLE&#x60;, &#x60;PLACEMENT_GLOBAL_APP_BUNDLE&#x60;) in &#x60;placementRaw&#x60;; a value without a known label carries the raw value in both.  A requested dimension with no data in the range is an empty array. </value>
         [DataMember(Name = "breakdowns", EmitDefaultValue = false)]
         public Dictionary<string, List<Object>> Breakdowns { get; set; }
+
+        /// <summary>
+        /// Requested breakdowns this platform cannot break down by (e.g. region on TikTok, any breakdown on Google). Absent when every requested breakdown is supported.
+        /// </summary>
+        /// <value>Requested breakdowns this platform cannot break down by (e.g. region on TikTok, any breakdown on Google). Absent when every requested breakdown is supported.</value>
+        [DataMember(Name = "unsupportedBreakdowns", EmitDefaultValue = false)]
+        public List<string> UnsupportedBreakdowns { get; set; }
+
+        /// <summary>
+        /// Guidance for some names in unsupportedBreakdowns, keyed by that name (e.g. placement on Meta points at publisher_platform and platform_position; platform_position on TikTok points at placement). Absent when no unsupported name has a hint.
+        /// </summary>
+        /// <value>Guidance for some names in unsupportedBreakdowns, keyed by that name (e.g. placement on Meta points at publisher_platform and platform_position; platform_position on TikTok points at placement). Absent when no unsupported name has a hint.</value>
+        [DataMember(Name = "breakdownHints", EmitDefaultValue = false)]
+        public Dictionary<string, string> BreakdownHints { get; set; }
+
+        /// <summary>
+        /// TikTok only: breakdowns the platform failed to return (rate limit, permission, rejected query). Each one is an empty array under breakdowns; summary and daily are unaffected. Absent when every breakdown answered.
+        /// </summary>
+        /// <value>TikTok only: breakdowns the platform failed to return (rate limit, permission, rejected query). Each one is an empty array under breakdowns; summary and daily are unaffected. Absent when every breakdown answered.</value>
+        [DataMember(Name = "breakdownErrors", EmitDefaultValue = false)]
+        public List<CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner> BreakdownErrors { get; set; }
+
+        /// <summary>
+        /// TikTok only: TikTok metric names TikTok refused for a breakdown, keyed by the requested breakdown (e.g. total_purchase and total_purchase_value have no relation to platform, ac or language). Every row value derived from a refused metric is null in that breakdown (purchaseValue and roas, or the matching actions and actionValues entries), never a number computed without it. Absent when no metric was refused.
+        /// </summary>
+        /// <value>TikTok only: TikTok metric names TikTok refused for a breakdown, keyed by the requested breakdown (e.g. total_purchase and total_purchase_value have no relation to platform, ac or language). Every row value derived from a refused metric is null in that breakdown (purchaseValue and roas, or the matching actions and actionValues entries), never a number computed without it. Absent when no metric was refused.</value>
+        /*
+        <example>{publisher_platform&#x3D;[total_purchase, total_purchase_value, total_initiate_checkout_value]}</example>
+        */
+        [DataMember(Name = "breakdownDroppedMetrics", EmitDefaultValue = false)]
+        public Dictionary<string, List<string>> BreakdownDroppedMetrics { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BreakdownsRange
+        /// </summary>
+        [DataMember(Name = "breakdownsRange", EmitDefaultValue = false)]
+        public CampaignAnalyticsResponseAnalyticsBreakdownsRange BreakdownsRange { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,6 +132,11 @@ namespace Zernio.Model
             sb.Append("  ImpressionShareCache: ").Append(ImpressionShareCache).Append("\n");
             sb.Append("  Daily: ").Append(Daily).Append("\n");
             sb.Append("  Breakdowns: ").Append(Breakdowns).Append("\n");
+            sb.Append("  UnsupportedBreakdowns: ").Append(UnsupportedBreakdowns).Append("\n");
+            sb.Append("  BreakdownHints: ").Append(BreakdownHints).Append("\n");
+            sb.Append("  BreakdownErrors: ").Append(BreakdownErrors).Append("\n");
+            sb.Append("  BreakdownDroppedMetrics: ").Append(BreakdownDroppedMetrics).Append("\n");
+            sb.Append("  BreakdownsRange: ").Append(BreakdownsRange).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

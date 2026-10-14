@@ -266,6 +266,8 @@ docs/CallRecordTranscriptInner.md
 docs/CallsApi.md
 docs/CampaignAnalyticsResponse.md
 docs/CampaignAnalyticsResponseAnalytics.md
+docs/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.md
+docs/CampaignAnalyticsResponseAnalyticsBreakdownsRange.md
 docs/CampaignAnalyticsResponseAnalyticsDailyInner.md
 docs/CampaignAnalyticsResponseAnalyticsImpressionShareCache.md
 docs/CampaignAnalyticsResponseAnalyticsSummary.md
@@ -3118,6 +3120,8 @@ src/Zernio.Test/Model/CallRecordBillingTests.cs
 src/Zernio.Test/Model/CallRecordCallErrorsInnerTests.cs
 src/Zernio.Test/Model/CallRecordTests.cs
 src/Zernio.Test/Model/CallRecordTranscriptInnerTests.cs
+src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInnerTests.cs
+src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsBreakdownsRangeTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsDailyInnerTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsImpressionShareCacheTests.cs
 src/Zernio.Test/Model/CampaignAnalyticsResponseAnalyticsSummaryTests.cs
@@ -5931,6 +5935,8 @@ src/Zernio/Model/CallRecordCallErrorsInner.cs
 src/Zernio/Model/CallRecordTranscriptInner.cs
 src/Zernio/Model/CampaignAnalyticsResponse.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalytics.cs
+src/Zernio/Model/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.cs
+src/Zernio/Model/CampaignAnalyticsResponseAnalyticsBreakdownsRange.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalyticsDailyInner.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalyticsImpressionShareCache.cs
 src/Zernio/Model/CampaignAnalyticsResponseAnalyticsSummary.cs
