@@ -836,6 +836,7 @@ docs/GetAccountHealth200ResponseTokenStatus.md
 docs/GetAccountPosts200Response.md
 docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
+docs/GetAd200ResponseDarkPost.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHierarchy200Response.md
@@ -3673,6 +3674,7 @@ src/Zernio.Test/Model/GetAccountHealth200ResponseTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseTokenStatusTests.cs
 src/Zernio.Test/Model/GetAccountPosts200ResponsePostsInnerTests.cs
 src/Zernio.Test/Model/GetAccountPosts200ResponseTests.cs
+src/Zernio.Test/Model/GetAd200ResponseDarkPostTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
@@ -6488,6 +6490,7 @@ src/Zernio/Model/GetAccountHealth200ResponseTokenStatus.cs
 src/Zernio/Model/GetAccountPosts200Response.cs
 src/Zernio/Model/GetAccountPosts200ResponsePostsInner.cs
 src/Zernio/Model/GetAd200Response.cs
+src/Zernio/Model/GetAd200ResponseDarkPost.cs
 src/Zernio/Model/GetAdAccountFinance200Response.cs
 src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
 src/Zernio/Model/GetAdAccountHierarchy200Response.cs
