@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **PlatformCriterionId** | **string** | Google ad_group_criterion.criterion_id. Unique only within its ad group (&#x60;adSetId&#x60;), not across the account. | [optional] 
 **ResourceName** | **string** | Google resource name, customers/{adAccountId}/adGroupCriteria/{adSetId}~{platformCriterionId}. | [optional] 
 **AccountId** | **string** | Account ID owning the sync | [optional] 
-**ProfileId** | **string** |  | [optional] 
+**ProfileId** | **string** | Profile the row belongs to: the profile of its owning connection (&#x60;accountId&#x60;); when that connection no longer exists, the requested profile (&#x60;profileId&#x60; filter) that reaches the row ad account, else the profile of the oldest connection of the row owner that reaches it. | [optional] 
 **Platform** | **string** |  | [optional] 
 **AdAccountId** | **string** | Google customer ID | [optional] 
 **CampaignId** | **string** |  | [optional] 

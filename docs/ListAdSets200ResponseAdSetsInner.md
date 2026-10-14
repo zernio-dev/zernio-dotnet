@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **PlatformCampaignId** | **string** |  | [optional] 
 **PlatformAdAccountId** | **string** |  | [optional] 
 **AccountId** | **string** |  | [optional] 
-**ProfileId** | **string** |  | [optional] 
+**ProfileId** | **string** | Profile the row belongs to: the profile of its owning connection (&#x60;accountId&#x60;); when that connection no longer exists, the requested profile (&#x60;profileId&#x60; filter) that reaches the row ad account, else the profile of the oldest connection of the row owner that reaches it. | [optional] 
 **Currency** | **string** |  | [optional] 
 **Budget** | [**ListAdSets200ResponseAdSetsInnerBudget**](ListAdSets200ResponseAdSetsInnerBudget.md) |  | [optional] 
 **Schedule** | [**ListAdSets200ResponseAdSetsInnerSchedule**](ListAdSets200ResponseAdSetsInnerSchedule.md) |  | [optional] 
