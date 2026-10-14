@@ -1358,6 +1358,7 @@ docs/InstagramApi.md
 docs/InstagramAudioAsset.md
 docs/InstagramBusinessDiscovery.md
 docs/InstagramBusinessDiscoveryMediaInner.md
+docs/InstagramBusinessDiscoveryMediaInnerChildrenInner.md
 docs/InstagramBusinessDiscoveryProfile.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
@@ -4190,6 +4191,7 @@ src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueValuesInnerTes
 src/Zernio.Test/Model/InstagramAccountInsightsResponseTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseUnavailableMetricsInnerTests.cs
 src/Zernio.Test/Model/InstagramAudioAssetTests.cs
+src/Zernio.Test/Model/InstagramBusinessDiscoveryMediaInnerChildrenInnerTests.cs
 src/Zernio.Test/Model/InstagramBusinessDiscoveryMediaInnerTests.cs
 src/Zernio.Test/Model/InstagramBusinessDiscoveryProfileTests.cs
 src/Zernio.Test/Model/InstagramBusinessDiscoveryTests.cs
@@ -7005,6 +7007,7 @@ src/Zernio/Model/InstagramAccountInsightsResponseUnavailableMetricsInner.cs
 src/Zernio/Model/InstagramAudioAsset.cs
 src/Zernio/Model/InstagramBusinessDiscovery.cs
 src/Zernio/Model/InstagramBusinessDiscoveryMediaInner.cs
+src/Zernio/Model/InstagramBusinessDiscoveryMediaInnerChildrenInner.cs
 src/Zernio/Model/InstagramBusinessDiscoveryProfile.cs
 src/Zernio/Model/InstagramDemographicsResponse.cs
 src/Zernio/Model/InstagramDemographicsResponseDemographicsValueInner.cs
