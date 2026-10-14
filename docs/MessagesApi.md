@@ -911,9 +911,9 @@ namespace Example
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
             var platform = "facebook";  // string? | Filter by platform (optional) 
             var status = "active";  // string? | Filter by conversation status (optional) 
-            var folder = "inbox";  // string? | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with `folder: requests`. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (`accountId`), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. (optional)  (default to inbox)
+            var folder = "inbox";  // string? | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, each item with `folder: requests`. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (`accountId`), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. Instagram accounts connected with Instagram Login answer PLATFORM_LIMITATION (Meta does not expose the folder on that login); Facebook and Instagram via Facebook Login are served. One page of up to `limit` threads; `pagination.hasMore` is true when threads past `limit` were cut (narrow with `accountId`), `pagination.nextCursor` is always null and a `cursor` answers 400. (optional)  (default to inbox)
             var sortOrder = "asc";  // string? | Sort order by updated time (optional)  (default to desc)
-            var limit = 50;  // int? | Maximum number of conversations to return (optional)  (default to 50)
+            var limit = 50;  // int? | Maximum number of conversations to return; values above 100 are served as 100. (optional)  (default to 50)
             var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
             var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
 
@@ -961,9 +961,9 @@ catch (ApiException e)
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
 | **platform** | **string?** | Filter by platform | [optional]  |
 | **status** | **string?** | Filter by conversation status | [optional]  |
-| **folder** | **string?** | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. | [optional] [default to inbox] |
+| **folder** | **string?** | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. Instagram accounts connected with Instagram Login answer PLATFORM_LIMITATION (Meta does not expose the folder on that login); Facebook and Instagram via Facebook Login are served. One page of up to &#x60;limit&#x60; threads; &#x60;pagination.hasMore&#x60; is true when threads past &#x60;limit&#x60; were cut (narrow with &#x60;accountId&#x60;), &#x60;pagination.nextCursor&#x60; is always null and a &#x60;cursor&#x60; answers 400. | [optional] [default to inbox] |
 | **sortOrder** | **string?** | Sort order by updated time | [optional] [default to desc] |
-| **limit** | **int?** | Maximum number of conversations to return | [optional] [default to 50] |
+| **limit** | **int?** | Maximum number of conversations to return; values above 100 are served as 100. | [optional] [default to 50] |
 | **cursor** | **string?** | Pagination cursor for next page | [optional]  |
 | **accountId** | **string?** | Filter by specific account ID | [optional]  |
 
