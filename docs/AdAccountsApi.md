@@ -3518,7 +3518,7 @@ catch (ApiException e)
 
 <a id="listadaccounts"></a>
 # **ListAdAccounts**
-> ListAdAccounts200Response ListAdAccounts (string accountId, string? adAccountId = null, int? limit = null)
+> ListAdAccounts200Response ListAdAccounts (string accountId, string? adAccountId = null, int? limit = null, bool? inScopeOnly = null)
 
 List ad accounts
 
@@ -3551,11 +3551,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Account ID
             var adAccountId = "adAccountId_example";  // string? | Filter response to a single platform ad account ID (e.g. `act_123` for Meta, advertiser_id for TikTok). Returns at most one item. (optional) 
             var limit = 56;  // int? | Clamp the returned `accounts[]` length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. (optional) 
+            var inScopeOnly = false;  // bool? | Google Ads only. `true` returns only the customers this connection accepts as `adAccountId` (or `customerId`) on the other /v1/ads endpoints, i.e. those inside its ad-account selection. Without it every customer the Google login can reach is listed, including ones selected on another connection of the same login, which those endpoints answer with a 400. Ignored on other platforms. (optional)  (default to false)
 
             try
             {
                 // List ad accounts
-                ListAdAccounts200Response result = apiInstance.ListAdAccounts(accountId, adAccountId, limit);
+                ListAdAccounts200Response result = apiInstance.ListAdAccounts(accountId, adAccountId, limit, inScopeOnly);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3576,7 +3577,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ad accounts
-    ApiResponse<ListAdAccounts200Response> response = apiInstance.ListAdAccountsWithHttpInfo(accountId, adAccountId, limit);
+    ApiResponse<ListAdAccounts200Response> response = apiInstance.ListAdAccountsWithHttpInfo(accountId, adAccountId, limit, inScopeOnly);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3596,6 +3597,7 @@ catch (ApiException e)
 | **accountId** | **string** | Account ID |  |
 | **adAccountId** | **string?** | Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. | [optional]  |
 | **limit** | **int?** | Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. | [optional]  |
+| **inScopeOnly** | **bool?** | Google Ads only. &#x60;true&#x60; returns only the customers this connection accepts as &#x60;adAccountId&#x60; (or &#x60;customerId&#x60;) on the other /v1/ads endpoints, i.e. those inside its ad-account selection. Without it every customer the Google login can reach is listed, including ones selected on another connection of the same login, which those endpoints answer with a 400. Ignored on other platforms. | [optional] [default to false] |
 
 ### Return type
 
