@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.281.0
+  version: 1.282.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -95386,6 +95386,7 @@ components:
       description: The Instagram professional account linked to this Page
       example:
         profile_picture_url: profile_picture_url
+        followers_count: 0
         id: id
         username: username
       properties:
@@ -95396,11 +95397,15 @@ components:
           type: string
         profile_picture_url:
           type: string
+        followers_count:
+          description: Followers of the Instagram account when Meta returns it
+          type: integer
     listInstagramPages_200_response_pages_inner:
       example:
         access_token: access_token
         instagram_business_account:
           profile_picture_url: profile_picture_url
+          followers_count: 0
           id: id
           username: username
         name: name
@@ -95423,6 +95428,7 @@ components:
         - access_token: access_token
           instagram_business_account:
             profile_picture_url: profile_picture_url
+            followers_count: 0
             id: id
             username: username
           name: name
@@ -95430,6 +95436,7 @@ components:
         - access_token: access_token
           instagram_business_account:
             profile_picture_url: profile_picture_url
+            followers_count: 0
             id: id
             username: username
           name: name
