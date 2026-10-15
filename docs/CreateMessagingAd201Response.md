@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AdType** | **string** |  | 
 **Ad** | **Object** | The persisted Ad document. | 
 **Message** | **string** |  | 
-**Warnings** | **List&lt;string&gt;** | Present when Meta created the ad set differently from the request. Today: Meta kept the ad set without the requested &#x60;whatsappPhoneNumber&#x60; in its promoted_object (the ads still carry it on their WhatsApp button). | [optional] 
+**Warnings** | **List&lt;string&gt;** | Present when Meta created the ad set differently from the request: Meta kept the ad set without the requested &#x60;whatsappPhoneNumber&#x60; in its promoted_object (the ads still carry it on their WhatsApp button), or the ad set joined a CBO campaign (&#x60;existingCampaignId&#x60;) whose own bid strategy applies, so a different &#x60;bidStrategy&#x60; or a &#x60;roasAverageFloor&#x60; that strategy cannot take was not applied. | [optional] 
 **Ads** | **List&lt;Object&gt;** | The persisted Ad documents (one per creative), all sharing the same &#x60;platformCampaignId&#x60; and &#x60;platformAdSetId&#x60;.  | 
 **PlatformCampaignId** | **string** |  | 
 **PlatformAdSetId** | **string** |  | 
