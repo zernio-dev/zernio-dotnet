@@ -704,6 +704,8 @@ docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
 docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
+docs/DeleteInboxConversation200Response.md
+docs/DeleteInboxConversation200ResponseData.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
@@ -3553,6 +3555,8 @@ src/Zernio.Test/Model/DeleteGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessPlaceAction200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
+src/Zernio.Test/Model/DeleteInboxConversation200ResponseDataTests.cs
+src/Zernio.Test/Model/DeleteInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
@@ -6368,6 +6372,8 @@ src/Zernio/Model/DeleteGoogleBusinessMedia200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessPlaceAction200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxComment200Response.cs
+src/Zernio/Model/DeleteInboxConversation200Response.cs
+src/Zernio/Model/DeleteInboxConversation200ResponseData.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs

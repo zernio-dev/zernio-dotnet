@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**AcceptConversationRequest**](MessagesApi.md#acceptconversationrequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
 | [**AddMessageReaction**](MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**CreateInboxConversation**](MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation |
+| [**DeleteInboxConversation**](MessagesApi.md#deleteinboxconversation) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation |
 | [**DeleteInboxMessage**](MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
 | [**EditInboxMessage**](MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message |
 | [**GetInboxConversation**](MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation |
@@ -337,6 +338,110 @@ catch (ApiException e)
 | **429** | X API rate limit exceeded, Reddit rate limit reached, Meta rejected the WhatsApp template-definition lookup (a lookup failure sends no message), or an iMessage sender reached its new-contact pacing or warm-up limit (new_contact_limit; the error says when to retry). |  -  |
 | **502** | The WhatsApp account has no Business Account ID, so the template definition cannot be looked up (a template with no approved variant in that language is a 400). No message was sent. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteinboxconversation"></a>
+# **DeleteInboxConversation**
+> DeleteInboxConversation200Response DeleteInboxConversation (string conversationId, string accountId)
+
+Delete conversation
+
+Permanently deletes Zernio's stored copy of one conversation and every message in it, in one transaction, and unlinks the contact channel that pointed at it. Nothing is deleted on the platform (the thread stays in WhatsApp, Messenger or Instagram), and the contact record is kept: call DELETE /v1/contacts/{contactId} to erase the person's name and number as well. A platform re-sync can import the thread again: WhatsApp coexistence numbers receive their messaging history from Meta repeatedly, and a Facebook or Instagram account whose DM history walk has not finished imports it on that walk. Inbound media copies Zernio stored are removed on a best-effort basis.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteInboxConversationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var conversationId = "conversationId_example";  // string | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
+            var accountId = "accountId_example";  // string | Account ID
+
+            try
+            {
+                // Delete conversation
+                DeleteInboxConversation200Response result = apiInstance.DeleteInboxConversation(conversationId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.DeleteInboxConversation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteInboxConversationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete conversation
+    ApiResponse<DeleteInboxConversation200Response> response = apiInstance.DeleteInboxConversationWithHttpInfo(conversationId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.DeleteInboxConversationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **conversationId** | **string** | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. |  |
+| **accountId** | **string** | Account ID |  |
+
+### Return type
+
+[**DeleteInboxConversation200Response**](DeleteInboxConversation200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversation deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
