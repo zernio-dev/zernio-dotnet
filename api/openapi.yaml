@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.288.2
+  version: 1.289.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -46865,7 +46865,7 @@ paths:
         **Meta required fields per shape** (a missing one is a 400 naming it in `param`):
 
         - Every shape that builds a new ad set (no `adSetId`, `existingCampaignId` or `buyingType: "RESERVED"`): `budgetAmount` and `budgetType`, plus `endDate` for a lifetime budget.
-        - Single image or video (the default), also with `adSetId`: `headline` (max 255), `body`, `callToAction`, exactly one of `imageUrl` / `video` (none for goal `catalog_sales`), and `linkUrl` unless the goal is `lead_generation` or `page_visits` or `leadGenFormId` is set.
+        - Single image or video (the default), also with `adSetId`: `headline` (max 255), `body`, `callToAction`, exactly one of `imageUrl` / `video` (none for a catalog template creative, which ignores and does not upload any sent), and `linkUrl` unless the goal is `lead_generation` or `page_visits` or `leadGenFormId` is set.
         - `bodies[]` / `headlines[]` text variations: `body`, one list with 2+ items, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.
         - `placementAssets`: `headline`, `body`, `callToAction`, and `linkUrl` with the same exemptions as the single shape; the media comes from `placementAssets`.
         - `carouselCards`: `body`, `callToAction`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.
@@ -78051,6 +78051,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -78114,6 +78126,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -78169,6 +78182,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -78232,6 +78257,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -78493,6 +78519,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -78556,6 +78594,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -78611,6 +78650,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -78674,6 +78725,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -78964,6 +79016,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -79027,6 +79091,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -79082,6 +79147,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -79145,6 +79222,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -79677,6 +79755,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -79740,6 +79830,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -79795,6 +79886,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -79858,6 +79961,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -80148,6 +80252,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -80211,6 +80327,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -80266,6 +80383,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -80329,6 +80458,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -82552,17 +82682,19 @@ components:
         productSetId:
           description: "Meta product SET ID, for example from GET /v1/ads/catalogs/{catalogId}/product-sets.\
             \ Creating catalog ads needs only ads_management on the Meta login, not\
-            \ catalog_management. Zernio reads the set before creation and returns\
-            \ a 400 naming promotedObject.productSetId when Meta rejects the ID outright.\
-            \ When Meta answers that the login lacks the permission to read it (common\
-            \ without catalog_management, even for a set a live ad set already uses),\
-            \ Zernio leaves the check to Meta's own create validation, which rejects\
-            \ an unusable set or a catalog ID with the same 400. When the login can\
-            \ also read the set's catalog (catalog_management), a mismatch with productCatalogId\
-            \ returns a 400 naming promotedObject.productCatalogId; otherwise Meta\
-            \ judges the catalog match. With validateOnly and a new campaign, Meta\
-            \ cannot dry-run the set inside the ad set, so the adSet result carries\
-            \ a reason; pass existingCampaignId to dry-run it in full."
+            \ catalog_management. With goal catalog_sales the set goes on the ad set's\
+            \ promoted_object and on the template creative; with goal traffic, or\
+            \ with adSetId, only on the creative. Zernio reads the set before creation\
+            \ and returns a 400 naming promotedObject.productSetId when Meta rejects\
+            \ the ID outright. When Meta answers that the login lacks the permission\
+            \ to read it (common without catalog_management, even for a set a live\
+            \ ad set already uses), Zernio leaves the check to Meta's own create validation,\
+            \ which rejects an unusable set or a catalog ID with the same 400. When\
+            \ the login can also read the set's catalog (catalog_management), a mismatch\
+            \ with productCatalogId returns a 400 naming promotedObject.productCatalogId;\
+            \ otherwise Meta judges the catalog match. With validateOnly and a new\
+            \ campaign, Meta cannot dry-run the set inside the ad set, so the adSet\
+            \ result carries a reason; pass existingCampaignId to dry-run it in full."
           type: string
         offlineConversionDataSetId:
           description: "Meta only. Offline event set (dataset) to optimise toward.\
@@ -83854,6 +83986,18 @@ components:
           servingHoldReasons:
           - UNDER_REVIEW
           whatsappPhoneNumber: "+12025550123"
+          catalog:
+            productSetId: productSetId
+            format: single_image
+            formatTransformationSpec:
+            - format: format
+              data_source:
+              - data_source
+              - data_source
+            - format: format
+              data_source:
+              - data_source
+              - data_source
           videoId: videoId
           body: body
           descriptions:
@@ -83917,6 +84061,7 @@ components:
             pinnedField: HEADLINE_1
           isServing: true
           adFormat: adFormat
+          creativeFeatures: ""
           mediaUrls:
           - mediaUrls
           - mediaUrls
@@ -84251,6 +84396,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -84314,6 +84471,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -84369,6 +84527,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -84432,6 +84602,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -84987,6 +85158,18 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
+              catalog:
+                productSetId: productSetId
+                format: single_image
+                formatTransformationSpec:
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
               videoId: videoId
               body: body
               descriptions:
@@ -85050,6 +85233,7 @@ components:
                 pinnedField: HEADLINE_1
               isServing: true
               adFormat: adFormat
+              creativeFeatures: ""
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -85105,6 +85289,18 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
+              catalog:
+                productSetId: productSetId
+                format: single_image
+                formatTransformationSpec:
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
               videoId: videoId
               body: body
               descriptions:
@@ -85168,6 +85364,7 @@ components:
                 pinnedField: HEADLINE_1
               isServing: true
               adFormat: adFormat
+              creativeFeatures: ""
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -85458,6 +85655,18 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
+              catalog:
+                productSetId: productSetId
+                format: single_image
+                formatTransformationSpec:
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
               videoId: videoId
               body: body
               descriptions:
@@ -85521,6 +85730,7 @@ components:
                 pinnedField: HEADLINE_1
               isServing: true
               adFormat: adFormat
+              creativeFeatures: ""
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -85576,6 +85786,18 @@ components:
               servingHoldReasons:
               - UNDER_REVIEW
               whatsappPhoneNumber: "+12025550123"
+              catalog:
+                productSetId: productSetId
+                format: single_image
+                formatTransformationSpec:
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
+                - format: format
+                  data_source:
+                  - data_source
+                  - data_source
               videoId: videoId
               body: body
               descriptions:
@@ -85639,6 +85861,7 @@ components:
                 pinnedField: HEADLINE_1
               isServing: true
               adFormat: adFormat
+              creativeFeatures: ""
               mediaUrls:
               - mediaUrls
               - mediaUrls
@@ -124571,6 +124794,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -124634,6 +124869,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -124689,6 +124925,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -124752,6 +125000,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -128676,6 +128925,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -128739,6 +129000,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -128794,6 +129056,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -128857,6 +129131,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -129147,6 +129422,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -129210,6 +129497,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -129265,6 +129553,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -129328,6 +129628,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -129860,6 +130161,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -129923,6 +130236,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -129978,6 +130292,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -130041,6 +130367,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -130331,6 +130658,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -130394,6 +130733,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -130449,6 +130789,18 @@ components:
                 servingHoldReasons:
                 - UNDER_REVIEW
                 whatsappPhoneNumber: "+12025550123"
+                catalog:
+                  productSetId: productSetId
+                  format: single_image
+                  formatTransformationSpec:
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
+                  - format: format
+                    data_source:
+                    - data_source
+                    - data_source
                 videoId: videoId
                 body: body
                 descriptions:
@@ -130512,6 +130864,7 @@ components:
                   pinnedField: HEADLINE_1
                 isServing: true
                 adFormat: adFormat
+                creativeFeatures: ""
                 mediaUrls:
                 - mediaUrls
                 - mediaUrls
@@ -130981,6 +131334,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -131044,6 +131409,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -131466,6 +131832,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -131529,6 +131907,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -139294,7 +139673,8 @@ components:
             - `lead_conversion`: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT (or `promotedObject.customConversionId` to optimise against a Custom Conversion instead). Meta gates conversion events by objective, so leads-class events are rejected under `conversions`.
             - `lead_generation`: OUTCOME_LEADS with instant forms. Requires `leadGenFormId`. `promotedObject.pageId` is optional and auto-filled from the connected Page.
             - `app_promotion`: requires `promotedObject.applicationId` and `promotedObject.objectStoreUrl`.
-            - `catalog_sales`: Advantage+ catalog ads, for example vehicle inventory. Requires `promotedObject.productSetId`, `promotedObject.pixelId` and `promotedObject.customEventType`. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets.
+            - `catalog_sales`: Advantage+ catalog ads, for example vehicle inventory. Requires `promotedObject.productSetId`, `promotedObject.pixelId` and `promotedObject.customEventType`. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], dynamicCreative, placementAssets, existingCreativeId or carouselCards; an imageUrl or video sent with it is ignored and not uploaded. Works with `existingCampaignId`, and with `adSetId` to add a catalog ad to an existing ad set (then only `promotedObject.productSetId` is required; pixel and event stay on the ad set). Pick the format with `catalogFormat`.
+            - `traffic` with `promotedObject.productSetId`: a catalog ad without a pixel (OUTCOME_TRAFFIC, `optimizationGoal` LINK_CLICKS by default or LANDING_PAGE_VIEWS). The product set goes on the template creative only, never on the ad set's promoted_object, and no `pixelId` or `customEventType` is needed. Same creative rules as `catalog_sales`.
             - `page_likes`: Page Likes conversion location under OUTCOME_ENGAGEMENT (destination_type ON_PAGE, optimization PAGE_LIKES). `promotedObject.pageId` is optional and auto-filled from the connected Page. The creative CTA is fixed to LIKE_PAGE targeting that Page; headline / body / linkUrl / callToAction / imageUrl / video are all optional (Meta derives the link and the Like button from the Page).
             - `page_visits`: Meta's "Page visits and followers" under OUTCOME_TRAFFIC (destination_type FACEBOOK_PAGE, optimization PROFILE_VISIT). `promotedObject.pageId` is optional and auto-filled from the connected Page, and `linkUrl` defaults to the Page. Meta enables Profile Visit ads per ad account: one it has not enabled is refused with Meta's "This account isn't eligible to use Profile Visit ads yet".
 
@@ -139377,10 +139757,31 @@ components:
         creativeFeatures:
           allOf:
           - $ref: "#/components/schemas/MetaCreativeFeatures"
-          description: "Meta only. Applied to each new creative, including standalone\
-            \ and attach shapes. With creatives[], these are defaults; an item replaces\
-            \ the whole feature map, including an empty map. auto_promotion_tag is\
-            \ an Advantage+ enhancement, not the Ads Manager Promotion setting."
+          description: "Meta only. Applied to each new creative, including standalone,\
+            \ attach and catalog template shapes. With creatives[], these are defaults;\
+            \ an item replaces the whole feature map, including an empty map. auto_promotion_tag\
+            \ is an Advantage+ enhancement, not the Ads Manager Promotion setting.\
+            \ On catalog ads, the catalog enhancements are keys of this same map,\
+            \ for example `{ \"product_extensions\": \"OPT_OUT\", \"media_type_automation\"\
+            : \"OPT_OUT\", \"standard_enhancements_catalog\": \"OPT_OUT\", \"multi_creative_post_carousel\"\
+            : \"OPT_OUT\" }`."
+        catalogFormat:
+          description: "Meta catalog template creatives only (goal `catalog_sales`,\
+            \ goal `traffic` with `promotedObject.productSetId`, or `adSetId` with\
+            \ `promotedObject.productSetId`); a 400 otherwise. Sent as `object_story_spec.template_data.format_option`.\
+            \ `force_single_link` is never sent with it (Meta rejects the pair, subcode\
+            \ 1443051). `single_image` also sends `format_transformation_spec` with\
+            \ `carousel` and `da_collection` set to `data_source: [\"none\"]`, so\
+            \ Meta keeps the single image instead of turning it into a carousel or\
+            \ collection. `carousel_images_single_item` also sends `template_data.multi_share_end_card:\
+            \ false`, which Meta requires for that format (subcode 1443167). Omit\
+            \ it to let Meta pick the format."
+          enum:
+          - single_image
+          - carousel_images_multi_items
+          - carousel_images_single_item
+          - carousel_slideshows
+          type: string
         multiAdvertiser:
           description: "Meta only. Multi-advertiser ads: whether Meta may show this\
             \ ad alongside other advertisers' in one unit. Meta auto-enrols since\
@@ -140636,6 +141037,18 @@ components:
             servingHoldReasons:
             - UNDER_REVIEW
             whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
             videoId: videoId
             body: body
             descriptions:
@@ -140699,6 +141112,7 @@ components:
               pinnedField: HEADLINE_1
             isServing: true
             adFormat: adFormat
+            creativeFeatures: ""
             mediaUrls:
             - mediaUrls
             - mediaUrls
@@ -160049,6 +160463,52 @@ components:
         product_set_id:
           description: Product catalog set ID
           type: string
+    Ad_creative_catalog_formatTransformationSpec_inner:
+      example:
+        format: format
+        data_source:
+        - data_source
+        - data_source
+      properties:
+        format:
+          type: string
+        data_source:
+          items:
+            type: string
+          type: array
+    Ad_creative_catalog:
+      description: Meta catalog template ads created through Zernio only (absent on
+        ads synced from Meta).
+      example:
+        productSetId: productSetId
+        format: single_image
+        formatTransformationSpec:
+        - format: format
+          data_source:
+          - data_source
+          - data_source
+        - format: format
+          data_source:
+          - data_source
+          - data_source
+      properties:
+        productSetId:
+          description: The creative's product_set_id.
+          type: string
+        format:
+          description: "object_story_spec.template_data.format_option, from catalogFormat."
+          enum:
+          - single_image
+          - carousel_images_multi_items
+          - carousel_images_single_item
+          - carousel_slideshows
+          type: string
+        formatTransformationSpec:
+          description: "The format_transformation_spec sent on the creative, as Meta's\
+            \ raw objects. Present for single_image."
+          items:
+            $ref: "#/components/schemas/Ad_creative_catalog_formatTransformationSpec_inner"
+          type: array
     Ad_creative_carouselCards_inner:
       example:
         imageUrl: imageUrl
@@ -160090,6 +160550,18 @@ components:
         servingHoldReasons:
         - UNDER_REVIEW
         whatsappPhoneNumber: "+12025550123"
+        catalog:
+          productSetId: productSetId
+          format: single_image
+          formatTransformationSpec:
+          - format: format
+            data_source:
+            - data_source
+            - data_source
+          - format: format
+            data_source:
+            - data_source
+            - data_source
         videoId: videoId
         body: body
         descriptions:
@@ -160153,6 +160625,7 @@ components:
           pinnedField: HEADLINE_1
         isServing: true
         adFormat: adFormat
+        creativeFeatures: ""
         mediaUrls:
         - mediaUrls
         - mediaUrls
@@ -160212,6 +160685,13 @@ components:
             on POST /v1/ads/create.
           nullable: true
           type: string
+        creativeFeatures:
+          allOf:
+          - $ref: "#/components/schemas/MetaCreativeFeatures"
+          description: Meta only. The creativeFeatures map sent at creation (degrees_of_freedom_spec.creative_features_spec).
+            Absent on ads synced from Meta.
+        catalog:
+          $ref: "#/components/schemas/Ad_creative_catalog"
         objectType:
           description: "Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL,\
             \ POST_DELETED). Use this to render state-aware previews: when Meta moderation\
