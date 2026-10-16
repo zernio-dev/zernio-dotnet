@@ -1092,6 +1092,7 @@ catch (ApiException e)
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
+| **429** | YouTube rate-limited the thumbnail upload for the channel (uploadRateLimitExceeded). Retry later, not immediately. |  -  |
 | **500** | Platform API update failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
