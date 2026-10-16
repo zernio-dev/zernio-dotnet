@@ -8,7 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="listlogs"></a>
 # **ListLogs**
-> ListLogs200Response ListLogs (string? type = null, string? status = null, string? platform = null, string? action = null, string? search = null, int? days = null, int? limit = null, int? skip = null, string? accountId = null, string? varEvent = null, string? requestId = null, DateTime? from = null, DateTime? to = null, int? statusCode = null, string? apiKeyId = null, bool? includeReadReceipts = null)
+> ListLogs200Response ListLogs (string? type = null, string? status = null, string? platform = null, string? action = null, string? search = null, int? days = null, int? limit = null, int? skip = null, string? accountId = null, string? varEvent = null, string? requestId = null, DateTime? from = null, DateTime? to = null, int? statusCode = null, string? apiKeyId = null, string? profileId = null, bool? includeReadReceipts = null)
 
 List activity logs
 
@@ -53,12 +53,13 @@ namespace Example
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Precise end instant (ISO 8601) (optional) 
             var statusCode = 56;  // int? | Filter by exact HTTP status code (api_request logs) (optional) 
             var apiKeyId = "apiKeyId_example";  // string? | Filter by the API key that made the request (api_request logs) (optional) 
+            var profileId = "profileId_example";  // string? | Filter by profile: every log type carries the profile it belongs to, and an API request log carries the profileId the call named (optional) 
             var includeReadReceipts = false;  // bool? | Include message.read / message.delivered events (hidden by default for messaging logs) (optional)  (default to false)
 
             try
             {
                 // List activity logs
-                ListLogs200Response result = apiInstance.ListLogs(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
+                ListLogs200Response result = apiInstance.ListLogs(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, profileId, includeReadReceipts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -79,7 +80,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List activity logs
-    ApiResponse<ListLogs200Response> response = apiInstance.ListLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
+    ApiResponse<ListLogs200Response> response = apiInstance.ListLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, profileId, includeReadReceipts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -111,6 +112,7 @@ catch (ApiException e)
 | **to** | **DateTime?** | Precise end instant (ISO 8601) | [optional]  |
 | **statusCode** | **int?** | Filter by exact HTTP status code (api_request logs) | [optional]  |
 | **apiKeyId** | **string?** | Filter by the API key that made the request (api_request logs) | [optional]  |
+| **profileId** | **string?** | Filter by profile: every log type carries the profile it belongs to, and an API request log carries the profileId the call named | [optional]  |
 | **includeReadReceipts** | **bool?** | Include message.read / message.delivered events (hidden by default for messaging logs) | [optional] [default to false] |
 
 ### Return type
