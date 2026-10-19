@@ -3358,7 +3358,7 @@ catch (ApiException e)
 | **200** | Sync result. When &#x60;url&#x60; or &#x60;postId&#x60; is provided, returns the matched post (or &#x60;found: false&#x60;). When neither is provided, returns the account&#39;s freshly-synced recent posts.  |  -  |
 | **400** | Invalid request (e.g. &#x60;accountId&#x60; missing or malformed) |  -  |
 | **401** | The platform authorization has expired. Reconnect the account. |  -  |
-| **403** | The API key lacks access to this account or the platform denied access. |  -  |
+| **403** | The API key lacks access to this account or the platform denied access. For X accounts it returns X_ANALYTICS_NOT_ENABLED when X analytics is not enabled for the account, or PAYMENT_REQUIRED when X access is paused for failed billing. |  -  |
 | **404** | Account not found (or not owned by the authenticated user) |  -  |
 | **409** | The account is inactive or needs reconnection. Stop scheduled retries until it is reconnected. |  -  |
 | **502** | The platform returned a server error. |  -  |
