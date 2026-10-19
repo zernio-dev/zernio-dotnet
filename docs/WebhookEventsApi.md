@@ -21,6 +21,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCallPermissionRequest**](WebhookEventsApi.md#oncallpermissionrequest) | **POST** /call.permission_request | Call permission request reply event |
 | [**OnCallReceived**](WebhookEventsApi.md#oncallreceived) | **POST** /call.received | Call received event |
 | [**OnCommentReceived**](WebhookEventsApi.md#oncommentreceived) | **POST** /comment.received | Comment received event |
+| [**OnCommerceOrderCreated**](WebhookEventsApi.md#oncommerceordercreated) | **POST** /commerce.order.created | Commerce order created event |
+| [**OnCommerceOrderRefunded**](WebhookEventsApi.md#oncommerceorderrefunded) | **POST** /commerce.order.refunded | Commerce order refunded event |
+| [**OnCommerceOrderUpdated**](WebhookEventsApi.md#oncommerceorderupdated) | **POST** /commerce.order.updated | Commerce order updated event |
 | [**OnCommerceProductCreated**](WebhookEventsApi.md#oncommerceproductcreated) | **POST** /commerce.product.created | Commerce product created event |
 | [**OnCommerceProductDeleted**](WebhookEventsApi.md#oncommerceproductdeleted) | **POST** /commerce.product.deleted | Commerce product deleted event |
 | [**OnCommerceProductUpdated**](WebhookEventsApi.md#oncommerceproductupdated) | **POST** /commerce.product.updated | Commerce product updated event |
@@ -1662,6 +1665,288 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadComment** | [**WebhookPayloadComment**](WebhookPayloadComment.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncommerceordercreated"></a>
+# **OnCommerceOrderCreated**
+> void OnCommerceOrderCreated (WebhookPayloadCommerceOrder webhookPayloadCommerceOrder)
+
+Commerce order created event
+
+Fired when an order is placed on a connected store. The payload carries identifiers only; read the order with `GET /v1/commerce/orders/{orderId}?accountId=...`. Fired once per Zernio account connected to the store. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCommerceOrderCreatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+
+            try
+            {
+                // Commerce order created event
+                apiInstance.OnCommerceOrderCreated(webhookPayloadCommerceOrder);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCommerceOrderCreated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCommerceOrderCreatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Commerce order created event
+    apiInstance.OnCommerceOrderCreatedWithHttpInfo(webhookPayloadCommerceOrder);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCommerceOrderCreatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncommerceorderrefunded"></a>
+# **OnCommerceOrderRefunded**
+> void OnCommerceOrderRefunded (WebhookPayloadCommerceOrder webhookPayloadCommerceOrder)
+
+Commerce order refunded event
+
+Fired when a refund is issued on an order of a connected store. A commerce.order.updated usually follows for the same change. The payload carries identifiers only; read the order with `GET /v1/commerce/orders/{orderId}?accountId=...`. Fired once per Zernio account connected to the store. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCommerceOrderRefundedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+
+            try
+            {
+                // Commerce order refunded event
+                apiInstance.OnCommerceOrderRefunded(webhookPayloadCommerceOrder);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCommerceOrderRefunded: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCommerceOrderRefundedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Commerce order refunded event
+    apiInstance.OnCommerceOrderRefundedWithHttpInfo(webhookPayloadCommerceOrder);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCommerceOrderRefundedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncommerceorderupdated"></a>
+# **OnCommerceOrderUpdated**
+> void OnCommerceOrderUpdated (WebhookPayloadCommerceOrder webhookPayloadCommerceOrder)
+
+Commerce order updated event
+
+Fired when an order on a connected store changes: payment, fulfilment, cancellation, edits, and refunds too. The payload carries identifiers only; read the order with `GET /v1/commerce/orders/{orderId}?accountId=...`. Fired once per Zernio account connected to the store. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCommerceOrderUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+
+            try
+            {
+                // Commerce order updated event
+                apiInstance.OnCommerceOrderUpdated(webhookPayloadCommerceOrder);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCommerceOrderUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCommerceOrderUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Commerce order updated event
+    apiInstance.OnCommerceOrderUpdatedWithHttpInfo(webhookPayloadCommerceOrder);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCommerceOrderUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md) |  |  |
 
 ### Return type
 

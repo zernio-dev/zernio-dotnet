@@ -42,6 +42,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetCommerceDiscount**](CommerceApi.md#getcommercediscount) | **GET** /v1/commerce/discounts/{discountId} | Get a discount |
 | [**GetCommerceMenu**](CommerceApi.md#getcommercemenu) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu |
 | [**GetCommerceMetaobject**](CommerceApi.md#getcommercemetaobject) | **GET** /v1/commerce/metaobjects/{metaobjectId} | Get a metaobject |
+| [**GetCommerceOrder**](CommerceApi.md#getcommerceorder) | **GET** /v1/commerce/orders/{orderId} | Get an order |
 | [**GetCommercePage**](CommerceApi.md#getcommercepage) | **GET** /v1/commerce/pages/{pageId} | Get a page |
 | [**GetCommerceProduct**](CommerceApi.md#getcommerceproduct) | **GET** /v1/commerce/products/{productId} | Get a product |
 | [**GetCommerceStore**](CommerceApi.md#getcommercestore) | **GET** /v1/commerce/store | Get a store |
@@ -56,6 +57,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListCommerceMenus**](CommerceApi.md#listcommercemenus) | **GET** /v1/commerce/menus | List navigation menus |
 | [**ListCommerceMetaobjectDefinitions**](CommerceApi.md#listcommercemetaobjectdefinitions) | **GET** /v1/commerce/metaobject-definitions | List metaobject definitions |
 | [**ListCommerceMetaobjects**](CommerceApi.md#listcommercemetaobjects) | **GET** /v1/commerce/metaobjects | List metaobjects of a type |
+| [**ListCommerceOrders**](CommerceApi.md#listcommerceorders) | **GET** /v1/commerce/orders | List orders |
 | [**ListCommercePages**](CommerceApi.md#listcommercepages) | **GET** /v1/commerce/pages | List pages |
 | [**ListCommercePriceLists**](CommerceApi.md#listcommercepricelists) | **GET** /v1/commerce/price-lists | List price lists |
 | [**ListCommerceProductMetafields**](CommerceApi.md#listcommerceproductmetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
@@ -4050,6 +4052,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getcommerceorder"></a>
+# **GetCommerceOrder**
+> GetCommerceOrder200Response GetCommerceOrder (string orderId, string accountId)
+
+Get an order
+
+One order with every line item, tax line and refund. Needs orders.read.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCommerceOrderExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var orderId = "orderId_example";  // string | Platform-native order id.
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+
+            try
+            {
+                // Get an order
+                GetCommerceOrder200Response result = apiInstance.GetCommerceOrder(orderId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.GetCommerceOrder: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCommerceOrderWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get an order
+    ApiResponse<GetCommerceOrder200Response> response = apiInstance.GetCommerceOrderWithHttpInfo(orderId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.GetCommerceOrderWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orderId** | **string** | Platform-native order id. |  |
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+
+### Return type
+
+[**GetCommerceOrder200Response**](GetCommerceOrder200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The order |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getcommercepage"></a>
 # **GetCommercePage**
 > CreateCommercePage201Response GetCommercePage (string pageId, string accountId)
@@ -5511,6 +5618,119 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listcommerceorders"></a>
+# **ListCommerceOrders**
+> ListCommerceOrders200Response ListCommerceOrders (string accountId, int? limit = null, string? cursor = null, DateTime? createdAfter = null, DateTime? createdBefore = null, DateTime? updatedAfter = null)
+
+List orders
+
+The store's orders in one format for every platform, with what an invoice needs: line items with unit prices, discounts and tax per line, shipping and fee lines, billing details, payment status and refunds. Newest order first; with `updatedAfter`, oldest change first, so a sync can page forward from its last seen `updatedAt`. Start each sync a few minutes before the last `updatedAt` you saw and drop duplicates by `id`, since an order edited while you page can shift the list. Shopify returns at most 25 orders per page and, unless the store was granted access to all orders, only the last 60 days. Buyer fields (`customer` and addresses) are null when the store's approval does not cover buyer data. Needs orders.read.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCommerceOrdersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+            var limit = 20;  // int? |  (optional)  (default to 20)
+            var cursor = "cursor_example";  // string? |  (optional) 
+            var createdAfter = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
+            var createdBefore = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
+            var updatedAfter = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only orders changed after this time, oldest change first. (optional) 
+
+            try
+            {
+                // List orders
+                ListCommerceOrders200Response result = apiInstance.ListCommerceOrders(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.ListCommerceOrders: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCommerceOrdersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List orders
+    ApiResponse<ListCommerceOrders200Response> response = apiInstance.ListCommerceOrdersWithHttpInfo(accountId, limit, cursor, createdAfter, createdBefore, updatedAfter);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.ListCommerceOrdersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+| **limit** | **int?** |  | [optional] [default to 20] |
+| **cursor** | **string?** |  | [optional]  |
+| **createdAfter** | **DateTime?** |  | [optional]  |
+| **createdBefore** | **DateTime?** |  | [optional]  |
+| **updatedAfter** | **DateTime?** | Only orders changed after this time, oldest change first. | [optional]  |
+
+### Return type
+
+[**ListCommerceOrders200Response**](ListCommerceOrders200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Orders listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
