@@ -1077,6 +1077,9 @@ docs/GetLinkedInBidPricing200ResponsePricing.md
 docs/GetLinkedInBidPricing200ResponsePricingBidLimits.md
 docs/GetLinkedInBidPricing200ResponsePricingSuggestedBid.md
 docs/GetLinkedInBidPricingRequest.md
+docs/GetLinkedInDemographics200Response.md
+docs/GetLinkedInDemographics200ResponseDemographicsValueInner.md
+docs/GetLinkedInDemographics412Response.md
 docs/GetLinkedInMentions200Response.md
 docs/GetLinkedInOrganizations200Response.md
 docs/GetLinkedInOrganizations200ResponseOrganizationsInner.md
@@ -3921,6 +3924,9 @@ src/Zernio.Test/Model/GetLinkedInBidPricing200ResponsePricingSuggestedBidTests.c
 src/Zernio.Test/Model/GetLinkedInBidPricing200ResponsePricingTests.cs
 src/Zernio.Test/Model/GetLinkedInBidPricing200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInBidPricingRequestTests.cs
+src/Zernio.Test/Model/GetLinkedInDemographics200ResponseDemographicsValueInnerTests.cs
+src/Zernio.Test/Model/GetLinkedInDemographics200ResponseTests.cs
+src/Zernio.Test/Model/GetLinkedInDemographics412ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInMentions200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInOrganizations200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/GetLinkedInOrganizations200ResponseTests.cs
@@ -6741,6 +6747,9 @@ src/Zernio/Model/GetLinkedInBidPricing200ResponsePricing.cs
 src/Zernio/Model/GetLinkedInBidPricing200ResponsePricingBidLimits.cs
 src/Zernio/Model/GetLinkedInBidPricing200ResponsePricingSuggestedBid.cs
 src/Zernio/Model/GetLinkedInBidPricingRequest.cs
+src/Zernio/Model/GetLinkedInDemographics200Response.cs
+src/Zernio/Model/GetLinkedInDemographics200ResponseDemographicsValueInner.cs
+src/Zernio/Model/GetLinkedInDemographics412Response.cs
 src/Zernio/Model/GetLinkedInMentions200Response.cs
 src/Zernio/Model/GetLinkedInOrganizations200Response.cs
 src/Zernio/Model/GetLinkedInOrganizations200ResponseOrganizationsInner.cs

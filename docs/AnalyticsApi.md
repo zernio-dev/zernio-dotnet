@@ -22,6 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInstagramFollowerHistory**](AnalyticsApi.md#getinstagramfollowerhistory) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history |
 | [**GetInstagramOnlineFollowers**](AnalyticsApi.md#getinstagramonlinefollowers) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers |
 | [**GetLinkedInAggregateAnalytics**](AnalyticsApi.md#getlinkedinaggregateanalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
+| [**GetLinkedInDemographics**](AnalyticsApi.md#getlinkedindemographics) | **GET** /v1/analytics/linkedin/demographics | Get LinkedIn organization follower demographics |
 | [**GetLinkedInOrgAggregateAnalytics**](AnalyticsApi.md#getlinkedinorgaggregateanalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics |
 | [**GetLinkedInPostAnalytics**](AnalyticsApi.md#getlinkedinpostanalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
 | [**GetLinkedInPostReactions**](AnalyticsApi.md#getlinkedinpostreactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
@@ -2026,6 +2027,111 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getlinkedindemographics"></a>
+# **GetLinkedInDemographics**
+> GetLinkedInDemographics200Response GetLinkedInDemographics (string accountId, string? breakdown = null)
+
+Get LinkedIn organization follower demographics
+
+Returns the lifetime follower breakdown of a connected LinkedIn organization page by job function, seniority, industry and company size. Function, seniority and industry are labelled with LinkedIn's standardized names (English) and keep the LinkedIn URN in `id`. Company size is labelled as a range such as `2-10` or `10001+`. LinkedIn returns at most the top 100 values per breakdown and leaves out followers whose profile lacks that field, so a breakdown does not add up to the follower count. Organization accounts only: a personal LinkedIn account answers 400 `personal_account_not_supported`. Requires the r_organization_social, r_organization_followers and r_organization_admin scopes (412 otherwise) and the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetLinkedInDemographicsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The Zernio SocialAccount ID of the LinkedIn organization account
+            var breakdown = "breakdown_example";  // string? | Comma-separated list of demographic dimensions: function, seniority, industry, company_size. Defaults to all four if omitted.  (optional) 
+
+            try
+            {
+                // Get LinkedIn organization follower demographics
+                GetLinkedInDemographics200Response result = apiInstance.GetLinkedInDemographics(accountId, breakdown);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetLinkedInDemographics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetLinkedInDemographicsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get LinkedIn organization follower demographics
+    ApiResponse<GetLinkedInDemographics200Response> response = apiInstance.GetLinkedInDemographicsWithHttpInfo(accountId, breakdown);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetLinkedInDemographicsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The Zernio SocialAccount ID of the LinkedIn organization account |  |
+| **breakdown** | **string?** | Comma-separated list of demographic dimensions: function, seniority, industry, company_size. Defaults to all four if omitted.  | [optional]  |
+
+### Return type
+
+[**GetLinkedInDemographics200Response**](GetLinkedInDemographics200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the organization page |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The LinkedIn connection is missing the organization analytics scopes. Reconnect the account to grant them. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
