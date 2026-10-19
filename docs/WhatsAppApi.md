@@ -1279,6 +1279,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Username deleted successfully |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Meta has not granted username management for this WhatsApp Business Account (code insufficient_permissions) |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2527,7 +2528,7 @@ catch (ApiException e)
 
 Get business username
 
-Fetch the current WhatsApp Business username and its approval status. Username status can be `approved` (active), `reserved` (pending activation), or `none` (no username set). 
+Fetch the current WhatsApp Business username and its approval status. Username status can be `approved` (active), `reserved` (pending activation), or `none` (no username set). If Meta has not granted username management for the WhatsApp Business Account, the API returns the standard error envelope with code `insufficient_permissions`. 
 
 ### Example
 ```csharp
@@ -2617,6 +2618,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Business username retrieved successfully |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Meta has not granted username management for this WhatsApp Business Account (code insufficient_permissions) |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3966,7 +3968,7 @@ catch (ApiException e)
 
 Set business username
 
-Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no `www` prefix, no domain TLD suffix (e.g. `.com`).  If the desired username is currently held by another account, pass `transferAction: \"force_transfer\"` to request a transfer. On failure the API returns a standard error envelope with one of these codes: `whatsapp_username_unavailable` (already taken and transfer not requested), `whatsapp_username_ineligible` (account not eligible to claim a username), or `whatsapp_username_transfer_required` (username is held elsewhere; retry with `force_transfer`). 
+Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no `www` prefix, no domain TLD suffix (e.g. `.com`).  If the desired username is currently held by another account, pass `transferAction: \"force_transfer\"` to request a transfer. On failure the API returns a standard error envelope with one of these codes: `whatsapp_username_unavailable` (already taken and transfer not requested), `whatsapp_username_ineligible` (account not eligible to claim a username), `whatsapp_username_transfer_required` (username is held elsewhere; retry with `force_transfer`), or `insufficient_permissions` (Meta has not granted username management for this WhatsApp Business Account). 
 
 ### Example
 ```csharp
@@ -4057,6 +4059,7 @@ catch (ApiException e)
 | **200** | Username claimed successfully |  -  |
 | **400** | Validation error or username unavailable (see error code in response) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Meta has not granted username management for this WhatsApp Business Account (code insufficient_permissions) |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
