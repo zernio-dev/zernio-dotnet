@@ -2327,6 +2327,7 @@ docs/UpdateAdRequestTargetingLocationsOneOf.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
+docs/UpdateAdSetRequestPlacements.md
 docs/UpdateAdSetRequestPlatformSpecificData.md
 docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetRequestSmartTargeting.md
@@ -5141,6 +5142,7 @@ src/Zernio.Test/Model/UpdateAdRequestTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSet200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestBudgetTests.cs
+src/Zernio.Test/Model/UpdateAdSetRequestPlacementsTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObjectTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestSmartTargetingTests.cs
@@ -7961,6 +7963,7 @@ src/Zernio/Model/UpdateAdRequestTargetingLocationsOneOf.cs
 src/Zernio/Model/UpdateAdSet200Response.cs
 src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs
+src/Zernio/Model/UpdateAdSetRequestPlacements.cs
 src/Zernio/Model/UpdateAdSetRequestPlatformSpecificData.cs
 src/Zernio/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.cs
 src/Zernio/Model/UpdateAdSetRequestSmartTargeting.cs
