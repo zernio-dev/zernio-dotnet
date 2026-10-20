@@ -87,7 +87,7 @@ namespace Zernio.Model
         /// <param name="callToAction">Image and carousel ads only..</param>
         /// <param name="images">images.</param>
         /// <param name="youtubeVideoIds">Video ads only..</param>
-        /// <param name="channels">Replaces the ad group&#39;s channel controls; only the listed channels serve..</param>
+        /// <param name="channels">Replaces the ad group&#39;s channel controls. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to leave the ad group&#39;s channel controls unchanged..</param>
         /// <param name="audience">audience.</param>
         /// <param name="audienceId">Attach an existing Google Audience by numeric id instead of audience..</param>
         public GoogleDemandGenUpdate(string finalUrl = default, string businessName = default, List<string> headlines = default, List<string> longHeadlines = default, List<string> descriptions = default, string callToAction = default, GoogleDemandGenUpdateImages images = default, List<string> youtubeVideoIds = default, List<ChannelsEnum> channels = default, GoogleDemandGenAudience audience = default, string audienceId = default)
@@ -158,9 +158,9 @@ namespace Zernio.Model
         public List<string> YoutubeVideoIds { get; set; }
 
         /// <summary>
-        /// Replaces the ad group&#39;s channel controls; only the listed channels serve.
+        /// Replaces the ad group&#39;s channel controls. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to leave the ad group&#39;s channel controls unchanged.
         /// </summary>
-        /// <value>Replaces the ad group&#39;s channel controls; only the listed channels serve.</value>
+        /// <value>Replaces the ad group&#39;s channel controls. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to leave the ad group&#39;s channel controls unchanged.</value>
         [DataMember(Name = "channels", EmitDefaultValue = false)]
         public List<GoogleDemandGenUpdate.ChannelsEnum> Channels { get; set; }
 

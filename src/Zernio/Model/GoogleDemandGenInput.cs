@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// <param name="images">images (required).</param>
         /// <param name="youtubeVideoIds">Makes the ad a video responsive ad..</param>
         /// <param name="carouselCards">Makes the ad a carousel ad. Each card needs its own image (no two cards may share one); use the same image shape on every card. Card images are uploaded to the account&#39;s asset library before the campaign is created, validateOnly included (Google checks cards against existing images; identical images are reused, not duplicated)..</param>
-        /// <param name="channels">Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them..</param>
+        /// <param name="channels">Channel controls on the new ad group. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to send no channel controls, so Google applies its default for a new ad group: all Demand Gen channels, Google Maps included..</param>
         /// <param name="audience">audience.</param>
         /// <param name="audienceId">Attach an existing Google Audience by numeric id instead of audience..</param>
         public GoogleDemandGenInput(string adGroupName = default, string finalUrl = default, string businessName = default, List<string> headlines = default, List<string> longHeadlines = default, List<string> descriptions = default, string callToAction = default, GoogleDemandGenInputImages images = default, List<string> youtubeVideoIds = default, List<GoogleDemandGenInputCarouselCardsInner> carouselCards = default, List<ChannelsEnum> channels = default, GoogleDemandGenAudience audience = default, string audienceId = default)
@@ -211,9 +211,9 @@ namespace Zernio.Model
         public List<GoogleDemandGenInputCarouselCardsInner> CarouselCards { get; set; }
 
         /// <summary>
-        /// Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them.
+        /// Channel controls on the new ad group. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to send no channel controls, so Google applies its default for a new ad group: all Demand Gen channels, Google Maps included.
         /// </summary>
-        /// <value>Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them.</value>
+        /// <value>Channel controls on the new ad group. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to send no channel controls, so Google applies its default for a new ad group: all Demand Gen channels, Google Maps included.</value>
         [DataMember(Name = "channels", EmitDefaultValue = false)]
         public List<GoogleDemandGenInput.ChannelsEnum> Channels { get; set; }
 

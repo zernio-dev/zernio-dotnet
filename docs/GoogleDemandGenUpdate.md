@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **CallToAction** | **string** | Image and carousel ads only. | [optional] 
 **Images** | [**GoogleDemandGenUpdateImages**](GoogleDemandGenUpdateImages.md) |  | [optional] 
 **YoutubeVideoIds** | **List&lt;string&gt;** | Video ads only. | [optional] 
-**Channels** | **List&lt;GoogleDemandGenUpdate.ChannelsEnum&gt;** | Replaces the ad group&#39;s channel controls; only the listed channels serve. | [optional] 
+**Channels** | **List&lt;GoogleDemandGenUpdate.ChannelsEnum&gt;** | Replaces the ad group&#39;s channel controls. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to leave the ad group&#39;s channel controls unchanged. | [optional] 
 **Audience** | [**GoogleDemandGenAudience**](GoogleDemandGenAudience.md) |  | [optional] 
 **AudienceId** | **string** | Attach an existing Google Audience by numeric id instead of audience. | [optional] 
 
