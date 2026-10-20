@@ -8,6 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInstagramBusinessDiscovery**](InstagramApi.md#getinstagrambusinessdiscovery) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account |
 | [**GetInstagramPublishingLimit**](InstagramApi.md#getinstagrampublishinglimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**GetInstagramStoryInsights**](InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
+| [**ListInstagramMediaCollaborators**](InstagramApi.md#listinstagrammediacollaborators) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post |
 | [**ListInstagramStories**](InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
 | [**SearchInstagramAudio**](InstagramApi.md#searchinstagramaudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
 
@@ -427,6 +428,110 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **502** | Instagram rejected the request. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listinstagrammediacollaborators"></a>
+# **ListInstagramMediaCollaborators**
+> ListInstagramMediaCollaborators200Response ListInstagramMediaCollaborators (string accountId, string mediaId)
+
+List the collaborators of an Instagram post
+
+Returns the accounts invited as collaborators on one of the connected account's own posts (feed image, Reel or carousel), with whether each invitation was accepted or is still pending. Use it to check who accepted a collab post after publishing it.  Requires an Instagram account connected via **Facebook Login**. Meta serves this edge on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (`instagram_collaborators_require_facebook_login`) and must be reconnected choosing the Facebook option.  Meta returns at most 5 collaborators and only those who allow collaborator tagging. A post without collaborators returns an empty list. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListInstagramMediaCollaboratorsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InstagramApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Instagram account (Facebook Login).
+            var mediaId = 18063237463112345;  // string | Instagram media ID of a post published by this account (digits only, e.g. the platformPostId of a published post).
+
+            try
+            {
+                // List the collaborators of an Instagram post
+                ListInstagramMediaCollaborators200Response result = apiInstance.ListInstagramMediaCollaborators(accountId, mediaId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling InstagramApi.ListInstagramMediaCollaborators: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListInstagramMediaCollaboratorsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the collaborators of an Instagram post
+    ApiResponse<ListInstagramMediaCollaborators200Response> response = apiInstance.ListInstagramMediaCollaboratorsWithHttpInfo(accountId, mediaId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling InstagramApi.ListInstagramMediaCollaboratorsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Instagram account (Facebook Login). |  |
+| **mediaId** | **string** | Instagram media ID of a post published by this account (digits only, e.g. the platformPostId of a published post). |  |
+
+### Return type
+
+[**ListInstagramMediaCollaborators200Response**](ListInstagramMediaCollaborators200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Collaborators of the post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not belong to this account (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
