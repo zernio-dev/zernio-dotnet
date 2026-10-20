@@ -24,194 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// CreateAdAccountRequest
     /// </summary>
+    [JsonConverter(typeof(CreateAdAccountRequestJsonConverter))]
     [DataContract(Name = "createAdAccount_request")]
-    public partial class CreateAdAccountRequest : IValidatableObject
+    public partial class CreateAdAccountRequest : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAdAccountRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateAdAccountRequest" /> class
+        /// with the <see cref="CreateMetaAdAccountRequest" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateAdAccountRequest()
+        /// <param name="actualInstance">An instance of CreateMetaAdAccountRequest.</param>
+        public CreateAdAccountRequest(CreateMetaAdAccountRequest actualInstance)
         {
-            this.AdditionalProperties = new Dictionary<string, object>();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAdAccountRequest" /> class.
-        /// </summary>
-        /// <param name="accountId">Zernio metaads SocialAccount ID. (required).</param>
-        /// <param name="businessId">Business portfolio that will own the account. (required).</param>
-        /// <param name="name">Ad account name. Whitespace is trimmed. (required).</param>
-        /// <param name="currency">Uppercase ISO 4217 currency supported by Meta. (required).</param>
-        /// <param name="timezoneId">Numeric Meta timezone ID from the linked timezone list. For example 1 is America/Los_Angeles. (required).</param>
-        /// <param name="endAdvertiser">End advertiser business or page ID. NONE uses the owning business. (default to &quot;NONE&quot;).</param>
-        /// <param name="mediaAgency">Media agency business or page ID. NONE for self-serve customers. (default to &quot;NONE&quot;).</param>
-        /// <param name="partner">Partner business or page ID. NONE for self-serve customers. (default to &quot;NONE&quot;).</param>
-        /// <param name="invoice">Request Meta invoicing. Eligibility is determined by Meta..</param>
-        /// <param name="invoiceGroupId">Existing Meta invoice group ID..</param>
-        /// <param name="invoicingEmails">Addresses for Meta invoices..</param>
-        /// <param name="io">Meta insertion-order invoicing option..</param>
-        /// <param name="poNumber">Purchase order number..</param>
-        /// <param name="fundingId">Existing Meta funding reference. Does not add a payment method..</param>
-        /// <param name="adAccountCreatedFromBmFlag">Meta Business Manager creation flag..</param>
-        public CreateAdAccountRequest(string accountId = default, string businessId = default, string name = default, string currency = default, int timezoneId = default, string endAdvertiser = @"NONE", string mediaAgency = @"NONE", string partner = @"NONE", bool invoice = default, string invoiceGroupId = default, List<string> invoicingEmails = default, bool io = default, string poNumber = default, string fundingId = default, bool adAccountCreatedFromBmFlag = default)
-        {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for CreateAdAccountRequest and cannot be null");
-            }
-            this.AccountId = accountId;
-            // to ensure "businessId" is required (not null)
-            if (businessId == null)
-            {
-                throw new ArgumentNullException("businessId is a required property for CreateAdAccountRequest and cannot be null");
-            }
-            this.BusinessId = businessId;
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for CreateAdAccountRequest and cannot be null");
-            }
-            this.Name = name;
-            // to ensure "currency" is required (not null)
-            if (currency == null)
-            {
-                throw new ArgumentNullException("currency is a required property for CreateAdAccountRequest and cannot be null");
-            }
-            this.Currency = currency;
-            this.TimezoneId = timezoneId;
-            // use default value if no "endAdvertiser" provided
-            this.EndAdvertiser = endAdvertiser ?? @"NONE";
-            // use default value if no "mediaAgency" provided
-            this.MediaAgency = mediaAgency ?? @"NONE";
-            // use default value if no "partner" provided
-            this.Partner = partner ?? @"NONE";
-            this.Invoice = invoice;
-            this.InvoiceGroupId = invoiceGroupId;
-            this.InvoicingEmails = invoicingEmails;
-            this.Io = io;
-            this.PoNumber = poNumber;
-            this.FundingId = fundingId;
-            this.AdAccountCreatedFromBmFlag = adAccountCreatedFromBmFlag;
-            this.AdditionalProperties = new Dictionary<string, object>();
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Zernio metaads SocialAccount ID.
+        /// Initializes a new instance of the <see cref="CreateAdAccountRequest" /> class
+        /// with the <see cref="CreateGoogleAdAccountRequest" /> class
         /// </summary>
-        /// <value>Zernio metaads SocialAccount ID.</value>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountId { get; set; }
+        /// <param name="actualInstance">An instance of CreateGoogleAdAccountRequest.</param>
+        public CreateAdAccountRequest(CreateGoogleAdAccountRequest actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// Business portfolio that will own the account.
+        /// Gets or Sets ActualInstance
         /// </summary>
-        /// <value>Business portfolio that will own the account.</value>
-        [DataMember(Name = "businessId", IsRequired = true, EmitDefaultValue = true)]
-        public string BusinessId { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(CreateGoogleAdAccountRequest) || value is CreateGoogleAdAccountRequest)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(CreateMetaAdAccountRequest) || value is CreateMetaAdAccountRequest)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CreateGoogleAdAccountRequest, CreateMetaAdAccountRequest");
+                }
+            }
+        }
 
         /// <summary>
-        /// Ad account name. Whitespace is trimmed.
+        /// Get the actual instance of `CreateMetaAdAccountRequest`. If the actual instance is not `CreateMetaAdAccountRequest`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>Ad account name. Whitespace is trimmed.</value>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
-        public string Name { get; set; }
+        /// <returns>An instance of CreateMetaAdAccountRequest</returns>
+        public CreateMetaAdAccountRequest GetCreateMetaAdAccountRequest()
+        {
+            return (CreateMetaAdAccountRequest)this.ActualInstance;
+        }
 
         /// <summary>
-        /// Uppercase ISO 4217 currency supported by Meta.
+        /// Get the actual instance of `CreateGoogleAdAccountRequest`. If the actual instance is not `CreateGoogleAdAccountRequest`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>Uppercase ISO 4217 currency supported by Meta.</value>
-        [DataMember(Name = "currency", IsRequired = true, EmitDefaultValue = true)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// Numeric Meta timezone ID from the linked timezone list. For example 1 is America/Los_Angeles.
-        /// </summary>
-        /// <value>Numeric Meta timezone ID from the linked timezone list. For example 1 is America/Los_Angeles.</value>
-        [DataMember(Name = "timezoneId", IsRequired = true, EmitDefaultValue = true)]
-        public long TimezoneId { get; set; }
-
-        /// <summary>
-        /// End advertiser business or page ID. NONE uses the owning business.
-        /// </summary>
-        /// <value>End advertiser business or page ID. NONE uses the owning business.</value>
-        [DataMember(Name = "endAdvertiser", EmitDefaultValue = false)]
-        public string EndAdvertiser { get; set; }
-
-        /// <summary>
-        /// Media agency business or page ID. NONE for self-serve customers.
-        /// </summary>
-        /// <value>Media agency business or page ID. NONE for self-serve customers.</value>
-        [DataMember(Name = "mediaAgency", EmitDefaultValue = false)]
-        public string MediaAgency { get; set; }
-
-        /// <summary>
-        /// Partner business or page ID. NONE for self-serve customers.
-        /// </summary>
-        /// <value>Partner business or page ID. NONE for self-serve customers.</value>
-        [DataMember(Name = "partner", EmitDefaultValue = false)]
-        public string Partner { get; set; }
-
-        /// <summary>
-        /// Request Meta invoicing. Eligibility is determined by Meta.
-        /// </summary>
-        /// <value>Request Meta invoicing. Eligibility is determined by Meta.</value>
-        [DataMember(Name = "invoice", EmitDefaultValue = true)]
-        public bool Invoice { get; set; }
-
-        /// <summary>
-        /// Existing Meta invoice group ID.
-        /// </summary>
-        /// <value>Existing Meta invoice group ID.</value>
-        [DataMember(Name = "invoiceGroupId", EmitDefaultValue = false)]
-        public string InvoiceGroupId { get; set; }
-
-        /// <summary>
-        /// Addresses for Meta invoices.
-        /// </summary>
-        /// <value>Addresses for Meta invoices.</value>
-        [DataMember(Name = "invoicingEmails", EmitDefaultValue = false)]
-        public List<string> InvoicingEmails { get; set; }
-
-        /// <summary>
-        /// Meta insertion-order invoicing option.
-        /// </summary>
-        /// <value>Meta insertion-order invoicing option.</value>
-        [DataMember(Name = "io", EmitDefaultValue = true)]
-        public bool Io { get; set; }
-
-        /// <summary>
-        /// Purchase order number.
-        /// </summary>
-        /// <value>Purchase order number.</value>
-        [DataMember(Name = "poNumber", EmitDefaultValue = false)]
-        public string PoNumber { get; set; }
-
-        /// <summary>
-        /// Existing Meta funding reference. Does not add a payment method.
-        /// </summary>
-        /// <value>Existing Meta funding reference. Does not add a payment method.</value>
-        [DataMember(Name = "fundingId", EmitDefaultValue = false)]
-        public string FundingId { get; set; }
-
-        /// <summary>
-        /// Meta Business Manager creation flag.
-        /// </summary>
-        /// <value>Meta Business Manager creation flag.</value>
-        [DataMember(Name = "adAccountCreatedFromBmFlag", EmitDefaultValue = true)]
-        public bool AdAccountCreatedFromBmFlag { get; set; }
-
-        /// <summary>
-        /// Gets or Sets additional properties
-        /// </summary>
-        [JsonExtensionData]
-        public IDictionary<string, object> AdditionalProperties { get; set; }
+        /// <returns>An instance of CreateGoogleAdAccountRequest</returns>
+        public CreateGoogleAdAccountRequest GetCreateGoogleAdAccountRequest()
+        {
+            return (CreateGoogleAdAccountRequest)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -219,24 +114,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CreateAdAccountRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  BusinessId: ").Append(BusinessId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  TimezoneId: ").Append(TimezoneId).Append("\n");
-            sb.Append("  EndAdvertiser: ").Append(EndAdvertiser).Append("\n");
-            sb.Append("  MediaAgency: ").Append(MediaAgency).Append("\n");
-            sb.Append("  Partner: ").Append(Partner).Append("\n");
-            sb.Append("  Invoice: ").Append(Invoice).Append("\n");
-            sb.Append("  InvoiceGroupId: ").Append(InvoiceGroupId).Append("\n");
-            sb.Append("  InvoicingEmails: ").Append(InvoicingEmails).Append("\n");
-            sb.Append("  Io: ").Append(Io).Append("\n");
-            sb.Append("  PoNumber: ").Append(PoNumber).Append("\n");
-            sb.Append("  FundingId: ").Append(FundingId).Append("\n");
-            sb.Append("  AdAccountCreatedFromBmFlag: ").Append(AdAccountCreatedFromBmFlag).Append("\n");
-            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -245,127 +125,137 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, CreateAdAccountRequest.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of CreateAdAccountRequest
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CreateAdAccountRequest</returns>
+        public static CreateAdAccountRequest FromJson(string jsonString)
+        {
+            CreateAdAccountRequest newCreateAdAccountRequest = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCreateAdAccountRequest;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CreateGoogleAdAccountRequest).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateAdAccountRequest = new CreateAdAccountRequest(JsonConvert.DeserializeObject<CreateGoogleAdAccountRequest>(jsonString, CreateAdAccountRequest.SerializerSettings));
+                }
+                else
+                {
+                    newCreateAdAccountRequest = new CreateAdAccountRequest(JsonConvert.DeserializeObject<CreateGoogleAdAccountRequest>(jsonString, CreateAdAccountRequest.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CreateGoogleAdAccountRequest");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreateGoogleAdAccountRequest: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CreateMetaAdAccountRequest).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateAdAccountRequest = new CreateAdAccountRequest(JsonConvert.DeserializeObject<CreateMetaAdAccountRequest>(jsonString, CreateAdAccountRequest.SerializerSettings));
+                }
+                else
+                {
+                    newCreateAdAccountRequest = new CreateAdAccountRequest(JsonConvert.DeserializeObject<CreateMetaAdAccountRequest>(jsonString, CreateAdAccountRequest.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CreateMetaAdAccountRequest");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreateMetaAdAccountRequest: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newCreateAdAccountRequest;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.AccountId != null) {
-                // AccountId (string) pattern
-                Regex regexAccountId = new Regex(@"^[a-fA-F0-9]{24}$", RegexOptions.CultureInvariant);
-                if (!regexAccountId.Match(this.AccountId).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
-                }
-            }
-
-            if (this.BusinessId != null) {
-                // BusinessId (string) pattern
-                Regex regexBusinessId = new Regex(@"^[1-9][0-9]*$", RegexOptions.CultureInvariant);
-                if (!regexBusinessId.Match(this.BusinessId).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BusinessId, must match a pattern of " + regexBusinessId, new [] { "BusinessId" });
-                }
-            }
-
-            // Name (string) maxLength
-            if (this.Name != null && this.Name.Length > 255)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
-            }
-
-            // Name (string) minLength
-            if (this.Name != null && this.Name.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
-            }
-
-            if (this.Currency != null) {
-                // Currency (string) pattern
-                Regex regexCurrency = new Regex(@"^[A-Z]{3}$", RegexOptions.CultureInvariant);
-                if (!regexCurrency.Match(this.Currency).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, must match a pattern of " + regexCurrency, new [] { "Currency" });
-                }
-            }
-
-            // TimezoneId (long) maximum
-            if (this.TimezoneId > (long)4294967295)
-            {
-                yield return new ValidationResult("Invalid value for TimezoneId, must be a value less than or equal to 4294967295.", new [] { "TimezoneId" });
-            }
-
-            // TimezoneId (long) minimum
-            if (this.TimezoneId < (long)0)
-            {
-                yield return new ValidationResult("Invalid value for TimezoneId, must be a value greater than or equal to 0.", new [] { "TimezoneId" });
-            }
-
-            if (this.EndAdvertiser != null) {
-                // EndAdvertiser (string) pattern
-                Regex regexEndAdvertiser = new Regex(@"^(NONE|[1-9][0-9]*)$", RegexOptions.CultureInvariant);
-                if (!regexEndAdvertiser.Match(this.EndAdvertiser).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EndAdvertiser, must match a pattern of " + regexEndAdvertiser, new [] { "EndAdvertiser" });
-                }
-            }
-
-            if (this.MediaAgency != null) {
-                // MediaAgency (string) pattern
-                Regex regexMediaAgency = new Regex(@"^(NONE|[1-9][0-9]*)$", RegexOptions.CultureInvariant);
-                if (!regexMediaAgency.Match(this.MediaAgency).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MediaAgency, must match a pattern of " + regexMediaAgency, new [] { "MediaAgency" });
-                }
-            }
-
-            if (this.Partner != null) {
-                // Partner (string) pattern
-                Regex regexPartner = new Regex(@"^(NONE|[1-9][0-9]*)$", RegexOptions.CultureInvariant);
-                if (!regexPartner.Match(this.Partner).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Partner, must match a pattern of " + regexPartner, new [] { "Partner" });
-                }
-            }
-
-            if (this.InvoiceGroupId != null) {
-                // InvoiceGroupId (string) pattern
-                Regex regexInvoiceGroupId = new Regex(@"^[1-9][0-9]*$", RegexOptions.CultureInvariant);
-                if (!regexInvoiceGroupId.Match(this.InvoiceGroupId).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for InvoiceGroupId, must match a pattern of " + regexInvoiceGroupId, new [] { "InvoiceGroupId" });
-                }
-            }
-
-            // PoNumber (string) maxLength
-            if (this.PoNumber != null && this.PoNumber.Length > 255)
-            {
-                yield return new ValidationResult("Invalid value for PoNumber, length must be less than 255.", new [] { "PoNumber" });
-            }
-
-            // PoNumber (string) minLength
-            if (this.PoNumber != null && this.PoNumber.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for PoNumber, length must be greater than 1.", new [] { "PoNumber" });
-            }
-
-            if (this.FundingId != null) {
-                // FundingId (string) pattern
-                Regex regexFundingId = new Regex(@"^[1-9][0-9]*$", RegexOptions.CultureInvariant);
-                if (!regexFundingId.Match(this.FundingId).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FundingId, must match a pattern of " + regexFundingId, new [] { "FundingId" });
-                }
-            }
-
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CreateAdAccountRequest
+    /// </summary>
+    public class CreateAdAccountRequestJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CreateAdAccountRequest).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return CreateAdAccountRequest.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreateAdAccountRequest.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

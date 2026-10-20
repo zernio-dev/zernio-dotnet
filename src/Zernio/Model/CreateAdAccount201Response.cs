@@ -24,114 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// CreateAdAccount201Response
     /// </summary>
+    [JsonConverter(typeof(CreateAdAccount201ResponseJsonConverter))]
     [DataContract(Name = "createAdAccount_201_response")]
-    public partial class CreateAdAccount201Response : IValidatableObject
+    public partial class CreateAdAccount201Response : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAdAccount201Response" /> class.
+        /// Initializes a new instance of the <see cref="CreateAdAccount201Response" /> class
+        /// with the <see cref="CreatedMetaAdAccount" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateAdAccount201Response() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAdAccount201Response" /> class.
-        /// </summary>
-        /// <param name="adAccountId">New Meta ad account ID for subsequent ads calls. (required).</param>
-        /// <param name="businessId">Owning business portfolio ID. (required).</param>
-        /// <param name="connectionUpdated">Whether the connection scope and discovery schedule were updated. (required).</param>
-        /// <param name="paymentMethodRequired">Always true as a delivery prerequisite. This is not a live funding-source check. Confirm payment or invoicing in Ads Manager. (required).</param>
-        /// <param name="adsManagerUrl">Open the created account in Ads Manager. (required).</param>
-        /// <param name="nextSteps">Payment setup instructions for the user. (required).</param>
-        /// <param name="warnings">Recovery instructions if the account could not be attached to the connection. (required).</param>
-        public CreateAdAccount201Response(string adAccountId = default, string businessId = default, bool connectionUpdated = default, bool paymentMethodRequired = default, string adsManagerUrl = default, string nextSteps = default, List<string> warnings = default)
+        /// <param name="actualInstance">An instance of CreatedMetaAdAccount.</param>
+        public CreateAdAccount201Response(CreatedMetaAdAccount actualInstance)
         {
-            // to ensure "adAccountId" is required (not null)
-            if (adAccountId == null)
-            {
-                throw new ArgumentNullException("adAccountId is a required property for CreateAdAccount201Response and cannot be null");
-            }
-            this.AdAccountId = adAccountId;
-            // to ensure "businessId" is required (not null)
-            if (businessId == null)
-            {
-                throw new ArgumentNullException("businessId is a required property for CreateAdAccount201Response and cannot be null");
-            }
-            this.BusinessId = businessId;
-            this.ConnectionUpdated = connectionUpdated;
-            this.PaymentMethodRequired = paymentMethodRequired;
-            // to ensure "adsManagerUrl" is required (not null)
-            if (adsManagerUrl == null)
-            {
-                throw new ArgumentNullException("adsManagerUrl is a required property for CreateAdAccount201Response and cannot be null");
-            }
-            this.AdsManagerUrl = adsManagerUrl;
-            // to ensure "nextSteps" is required (not null)
-            if (nextSteps == null)
-            {
-                throw new ArgumentNullException("nextSteps is a required property for CreateAdAccount201Response and cannot be null");
-            }
-            this.NextSteps = nextSteps;
-            // to ensure "warnings" is required (not null)
-            if (warnings == null)
-            {
-                throw new ArgumentNullException("warnings is a required property for CreateAdAccount201Response and cannot be null");
-            }
-            this.Warnings = warnings;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// New Meta ad account ID for subsequent ads calls.
+        /// Initializes a new instance of the <see cref="CreateAdAccount201Response" /> class
+        /// with the <see cref="CreatedGoogleAdAccount" /> class
         /// </summary>
-        /// <value>New Meta ad account ID for subsequent ads calls.</value>
-        [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AdAccountId { get; set; }
+        /// <param name="actualInstance">An instance of CreatedGoogleAdAccount.</param>
+        public CreateAdAccount201Response(CreatedGoogleAdAccount actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// Owning business portfolio ID.
+        /// Gets or Sets ActualInstance
         /// </summary>
-        /// <value>Owning business portfolio ID.</value>
-        [DataMember(Name = "businessId", IsRequired = true, EmitDefaultValue = true)]
-        public string BusinessId { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(CreatedGoogleAdAccount) || value is CreatedGoogleAdAccount)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(CreatedMetaAdAccount) || value is CreatedMetaAdAccount)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CreatedGoogleAdAccount, CreatedMetaAdAccount");
+                }
+            }
+        }
 
         /// <summary>
-        /// Whether the connection scope and discovery schedule were updated.
+        /// Get the actual instance of `CreatedMetaAdAccount`. If the actual instance is not `CreatedMetaAdAccount`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>Whether the connection scope and discovery schedule were updated.</value>
-        [DataMember(Name = "connectionUpdated", IsRequired = true, EmitDefaultValue = true)]
-        public bool ConnectionUpdated { get; set; }
+        /// <returns>An instance of CreatedMetaAdAccount</returns>
+        public CreatedMetaAdAccount GetCreatedMetaAdAccount()
+        {
+            return (CreatedMetaAdAccount)this.ActualInstance;
+        }
 
         /// <summary>
-        /// Always true as a delivery prerequisite. This is not a live funding-source check. Confirm payment or invoicing in Ads Manager.
+        /// Get the actual instance of `CreatedGoogleAdAccount`. If the actual instance is not `CreatedGoogleAdAccount`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>Always true as a delivery prerequisite. This is not a live funding-source check. Confirm payment or invoicing in Ads Manager.</value>
-        [DataMember(Name = "paymentMethodRequired", IsRequired = true, EmitDefaultValue = true)]
-        public bool PaymentMethodRequired { get; set; }
-
-        /// <summary>
-        /// Open the created account in Ads Manager.
-        /// </summary>
-        /// <value>Open the created account in Ads Manager.</value>
-        [DataMember(Name = "adsManagerUrl", IsRequired = true, EmitDefaultValue = true)]
-        public string AdsManagerUrl { get; set; }
-
-        /// <summary>
-        /// Payment setup instructions for the user.
-        /// </summary>
-        /// <value>Payment setup instructions for the user.</value>
-        [DataMember(Name = "nextSteps", IsRequired = true, EmitDefaultValue = true)]
-        public string NextSteps { get; set; }
-
-        /// <summary>
-        /// Recovery instructions if the account could not be attached to the connection.
-        /// </summary>
-        /// <value>Recovery instructions if the account could not be attached to the connection.</value>
-        [DataMember(Name = "warnings", IsRequired = true, EmitDefaultValue = true)]
-        public List<string> Warnings { get; set; }
+        /// <returns>An instance of CreatedGoogleAdAccount</returns>
+        public CreatedGoogleAdAccount GetCreatedGoogleAdAccount()
+        {
+            return (CreatedGoogleAdAccount)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,15 +114,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CreateAdAccount201Response {\n");
-            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
-            sb.Append("  BusinessId: ").Append(BusinessId).Append("\n");
-            sb.Append("  ConnectionUpdated: ").Append(ConnectionUpdated).Append("\n");
-            sb.Append("  PaymentMethodRequired: ").Append(PaymentMethodRequired).Append("\n");
-            sb.Append("  AdsManagerUrl: ").Append(AdsManagerUrl).Append("\n");
-            sb.Append("  NextSteps: ").Append(NextSteps).Append("\n");
-            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -156,28 +125,137 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, CreateAdAccount201Response.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of CreateAdAccount201Response
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CreateAdAccount201Response</returns>
+        public static CreateAdAccount201Response FromJson(string jsonString)
+        {
+            CreateAdAccount201Response newCreateAdAccount201Response = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCreateAdAccount201Response;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CreatedGoogleAdAccount).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateAdAccount201Response = new CreateAdAccount201Response(JsonConvert.DeserializeObject<CreatedGoogleAdAccount>(jsonString, CreateAdAccount201Response.SerializerSettings));
+                }
+                else
+                {
+                    newCreateAdAccount201Response = new CreateAdAccount201Response(JsonConvert.DeserializeObject<CreatedGoogleAdAccount>(jsonString, CreateAdAccount201Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CreatedGoogleAdAccount");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreatedGoogleAdAccount: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CreatedMetaAdAccount).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateAdAccount201Response = new CreateAdAccount201Response(JsonConvert.DeserializeObject<CreatedMetaAdAccount>(jsonString, CreateAdAccount201Response.SerializerSettings));
+                }
+                else
+                {
+                    newCreateAdAccount201Response = new CreateAdAccount201Response(JsonConvert.DeserializeObject<CreatedMetaAdAccount>(jsonString, CreateAdAccount201Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CreatedMetaAdAccount");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreatedMetaAdAccount: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newCreateAdAccount201Response;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.AdAccountId != null) {
-                // AdAccountId (string) pattern
-                Regex regexAdAccountId = new Regex(@"^act_[0-9]+$", RegexOptions.CultureInvariant);
-                if (!regexAdAccountId.Match(this.AdAccountId).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AdAccountId, must match a pattern of " + regexAdAccountId, new [] { "AdAccountId" });
-                }
-            }
-
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CreateAdAccount201Response
+    /// </summary>
+    public class CreateAdAccount201ResponseJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CreateAdAccount201Response).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return CreateAdAccount201Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreateAdAccount201Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

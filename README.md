@@ -202,7 +202,7 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**AssignAdAccountUser**](docs/AdAccountsApi.md#assignadaccountuser) | **POST** /v1/ads/accounts/users | Assign a user to an ad account
 *AdAccountsApi* | [**AssignPageUser**](docs/AdAccountsApi.md#assignpageuser) | **POST** /v1/ads/page-users | Assign a user to a Page
 *AdAccountsApi* | [**AttachAdLabel**](docs/AdAccountsApi.md#attachadlabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
-*AdAccountsApi* | [**CreateAdAccount**](docs/AdAccountsApi.md#createadaccount) | **POST** /v1/ads/accounts | Create Meta ad account
+*AdAccountsApi* | [**CreateAdAccount**](docs/AdAccountsApi.md#createadaccount) | **POST** /v1/ads/accounts | Create ad account
 *AdAccountsApi* | [**CreateAdLabel**](docs/AdAccountsApi.md#createadlabel) | **POST** /v1/ads/labels | Create a Google Ads label
 *AdAccountsApi* | [**CreateAdNegativeKeywordList**](docs/AdAccountsApi.md#createadnegativekeywordlist) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list
 *AdAccountsApi* | [**CreateCustomConversion**](docs/AdAccountsApi.md#createcustomconversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create custom conversion
@@ -1516,6 +1516,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateAccountGroup201Response](docs/CreateAccountGroup201Response.md)
  - [Model.CreateAccountGroup201ResponseGroup](docs/CreateAccountGroup201ResponseGroup.md)
  - [Model.CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
+ - [Model.CreateAdAccount200Response](docs/CreateAdAccount200Response.md)
  - [Model.CreateAdAccount201Response](docs/CreateAdAccount201Response.md)
  - [Model.CreateAdAccountRequest](docs/CreateAdAccountRequest.md)
  - [Model.CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
@@ -1625,6 +1626,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateDiscordThread200Response](docs/CreateDiscordThread200Response.md)
  - [Model.CreateDiscordThread200ResponseData](docs/CreateDiscordThread200ResponseData.md)
  - [Model.CreateDiscordThreadRequest](docs/CreateDiscordThreadRequest.md)
+ - [Model.CreateGoogleAdAccountRequest](docs/CreateGoogleAdAccountRequest.md)
  - [Model.CreateGoogleAssetGroup200Response](docs/CreateGoogleAssetGroup200Response.md)
  - [Model.CreateGoogleAssetGroup201Response](docs/CreateGoogleAssetGroup201Response.md)
  - [Model.CreateGoogleAssetGroup201ResponseAssetGroup](docs/CreateGoogleAssetGroup201ResponseAssetGroup.md)
@@ -1668,6 +1670,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateMessagingAd200ResponseResultsInner](docs/CreateMessagingAd200ResponseResultsInner.md)
  - [Model.CreateMessagingAd201Response](docs/CreateMessagingAd201Response.md)
  - [Model.CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
+ - [Model.CreateMetaAdAccountRequest](docs/CreateMetaAdAccountRequest.md)
  - [Model.CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [Model.CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
  - [Model.CreatePhoneNumberKycLinkRequestBranding](docs/CreatePhoneNumberKycLinkRequestBranding.md)
@@ -1774,6 +1777,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateYoutubePlaylist201Response](docs/CreateYoutubePlaylist201Response.md)
  - [Model.CreateYoutubePlaylist201ResponsePlaylist](docs/CreateYoutubePlaylist201ResponsePlaylist.md)
  - [Model.CreateYoutubePlaylistRequest](docs/CreateYoutubePlaylistRequest.md)
+ - [Model.CreatedGoogleAdAccount](docs/CreatedGoogleAdAccount.md)
+ - [Model.CreatedMetaAdAccount](docs/CreatedMetaAdAccount.md)
  - [Model.CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [Model.CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
  - [Model.CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)

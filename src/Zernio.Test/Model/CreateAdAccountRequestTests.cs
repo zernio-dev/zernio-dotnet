@@ -56,6 +56,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Platform'
+        /// </summary>
+        [Fact]
+        public void PlatformTest()
+        {
+            // TODO unit test for the property 'Platform'
+        }
+
+        /// <summary>
         /// Test the property 'AccountId'
         /// </summary>
         [Fact]
@@ -188,6 +197,33 @@ namespace Zernio.Test.Model
         public void AdAccountCreatedFromBmFlagTest()
         {
             // TODO unit test for the property 'AdAccountCreatedFromBmFlag'
+        }
+
+        /// <summary>
+        /// Test the property 'ManagerCustomerId'
+        /// </summary>
+        [Fact]
+        public void ManagerCustomerIdTest()
+        {
+            // TODO unit test for the property 'ManagerCustomerId'
+        }
+
+        /// <summary>
+        /// Test the property 'VarTimeZone'
+        /// </summary>
+        [Fact]
+        public void VarTimeZoneTest()
+        {
+            // TODO unit test for the property 'VarTimeZone'
+        }
+
+        /// <summary>
+        /// Test the property 'ValidateOnly'
+        /// </summary>
+        [Fact]
+        public void ValidateOnlyTest()
+        {
+            // TODO unit test for the property 'ValidateOnly'
         }
     }
 }

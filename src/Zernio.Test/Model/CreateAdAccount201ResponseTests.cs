@@ -117,5 +117,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Warnings'
         }
+
+        /// <summary>
+        /// Test the property 'Platform'
+        /// </summary>
+        [Fact]
+        public void PlatformTest()
+        {
+            // TODO unit test for the property 'Platform'
+        }
+
+        /// <summary>
+        /// Test the property 'ManagerCustomerId'
+        /// </summary>
+        [Fact]
+        public void ManagerCustomerIdTest()
+        {
+            // TODO unit test for the property 'ManagerCustomerId'
+        }
+
+        /// <summary>
+        /// Test the property 'ValidateOnly'
+        /// </summary>
+        [Fact]
+        public void ValidateOnlyTest()
+        {
+            // TODO unit test for the property 'ValidateOnly'
+        }
     }
 }

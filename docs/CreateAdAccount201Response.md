@@ -4,13 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdAccountId** | **string** | New Meta ad account ID for subsequent ads calls. | 
+**AdAccountId** | **string** | New Google Ads customer id for subsequent ads calls. | 
 **BusinessId** | **string** | Owning business portfolio ID. | 
-**ConnectionUpdated** | **bool** | Whether the connection scope and discovery schedule were updated. | 
-**PaymentMethodRequired** | **bool** | Always true as a delivery prerequisite. This is not a live funding-source check. Confirm payment or invoicing in Ads Manager. | 
+**ConnectionUpdated** | **bool** | Whether the customer was added to the connection and discovery was scheduled. When false the account exists: reconnect Google Ads instead of creating it again. | 
+**PaymentMethodRequired** | **bool** | Always true. The account has no billing until it is set up in Google Ads. | 
 **AdsManagerUrl** | **string** | Open the created account in Ads Manager. | 
-**NextSteps** | **string** | Payment setup instructions for the user. | 
+**NextSteps** | **string** | Billing setup instructions for the user. | 
 **Warnings** | **List&lt;string&gt;** | Recovery instructions if the account could not be attached to the connection. | 
+**Platform** | **string** |  | 
+**ManagerCustomerId** | **string** | Manager the account was created under. | 
+**ValidateOnly** | **bool** | Always false on a 201. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

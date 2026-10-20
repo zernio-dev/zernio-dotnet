@@ -416,6 +416,7 @@ docs/ConversionsApi.md
 docs/CreateAccountGroup201Response.md
 docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
+docs/CreateAdAccount200Response.md
 docs/CreateAdAccount201Response.md
 docs/CreateAdAccountRequest.md
 docs/CreateAdAudience201Response.md
@@ -525,6 +526,7 @@ docs/CreateDiscordScheduledEventRequestEntityOneOf2.md
 docs/CreateDiscordThread200Response.md
 docs/CreateDiscordThread200ResponseData.md
 docs/CreateDiscordThreadRequest.md
+docs/CreateGoogleAdAccountRequest.md
 docs/CreateGoogleAssetGroup200Response.md
 docs/CreateGoogleAssetGroup201Response.md
 docs/CreateGoogleAssetGroup201ResponseAssetGroup.md
@@ -568,6 +570,7 @@ docs/CreateMessagingAd200Response.md
 docs/CreateMessagingAd200ResponseResultsInner.md
 docs/CreateMessagingAd201Response.md
 docs/CreateMessagingAdRequest.md
+docs/CreateMetaAdAccountRequest.md
 docs/CreatePhoneNumberKycLink200Response.md
 docs/CreatePhoneNumberKycLinkRequest.md
 docs/CreatePhoneNumberKycLinkRequestBranding.md
@@ -674,6 +677,8 @@ docs/CreateWorkflowRequest.md
 docs/CreateYoutubePlaylist201Response.md
 docs/CreateYoutubePlaylist201ResponsePlaylist.md
 docs/CreateYoutubePlaylistRequest.md
+docs/CreatedGoogleAdAccount.md
+docs/CreatedMetaAdAccount.md
 docs/CrosspostDiscordMessage200Response.md
 docs/CtwaAdRequestBody.md
 docs/CtwaAdRequestBodyCitiesInner.md
@@ -3300,6 +3305,7 @@ src/Zernio.Test/Model/ConversionEventUserTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseGroupTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroupRequestTests.cs
+src/Zernio.Test/Model/CreateAdAccount200ResponseTests.cs
 src/Zernio.Test/Model/CreateAdAccount201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdAccountRequestTests.cs
 src/Zernio.Test/Model/CreateAdAudience201ResponseTests.cs
@@ -3409,6 +3415,7 @@ src/Zernio.Test/Model/CreateDiscordScheduledEventRequestTests.cs
 src/Zernio.Test/Model/CreateDiscordThread200ResponseDataTests.cs
 src/Zernio.Test/Model/CreateDiscordThread200ResponseTests.cs
 src/Zernio.Test/Model/CreateDiscordThreadRequestTests.cs
+src/Zernio.Test/Model/CreateGoogleAdAccountRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup201ResponseAssetGroupTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup201ResponseTests.cs
@@ -3452,6 +3459,7 @@ src/Zernio.Test/Model/CreateMessagingAd200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/CreateMessagingAd200ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAdRequestTests.cs
+src/Zernio.Test/Model/CreateMetaAdAccountRequestTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLink200ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLinkRequestBrandingTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLinkRequestTests.cs
@@ -3558,6 +3566,8 @@ src/Zernio.Test/Model/CreateWorkflowRequestTests.cs
 src/Zernio.Test/Model/CreateYoutubePlaylist201ResponsePlaylistTests.cs
 src/Zernio.Test/Model/CreateYoutubePlaylist201ResponseTests.cs
 src/Zernio.Test/Model/CreateYoutubePlaylistRequestTests.cs
+src/Zernio.Test/Model/CreatedGoogleAdAccountTests.cs
+src/Zernio.Test/Model/CreatedMetaAdAccountTests.cs
 src/Zernio.Test/Model/CrosspostDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCitiesInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCreativesInnerTests.cs
@@ -6149,6 +6159,7 @@ src/Zernio/Model/ConversionEventUserClickIds.cs
 src/Zernio/Model/CreateAccountGroup201Response.cs
 src/Zernio/Model/CreateAccountGroup201ResponseGroup.cs
 src/Zernio/Model/CreateAccountGroupRequest.cs
+src/Zernio/Model/CreateAdAccount200Response.cs
 src/Zernio/Model/CreateAdAccount201Response.cs
 src/Zernio/Model/CreateAdAccountRequest.cs
 src/Zernio/Model/CreateAdAudience201Response.cs
@@ -6258,6 +6269,7 @@ src/Zernio/Model/CreateDiscordScheduledEventRequestEntityOneOf2.cs
 src/Zernio/Model/CreateDiscordThread200Response.cs
 src/Zernio/Model/CreateDiscordThread200ResponseData.cs
 src/Zernio/Model/CreateDiscordThreadRequest.cs
+src/Zernio/Model/CreateGoogleAdAccountRequest.cs
 src/Zernio/Model/CreateGoogleAssetGroup200Response.cs
 src/Zernio/Model/CreateGoogleAssetGroup201Response.cs
 src/Zernio/Model/CreateGoogleAssetGroup201ResponseAssetGroup.cs
@@ -6301,6 +6313,7 @@ src/Zernio/Model/CreateMessagingAd200Response.cs
 src/Zernio/Model/CreateMessagingAd200ResponseResultsInner.cs
 src/Zernio/Model/CreateMessagingAd201Response.cs
 src/Zernio/Model/CreateMessagingAdRequest.cs
+src/Zernio/Model/CreateMetaAdAccountRequest.cs
 src/Zernio/Model/CreatePhoneNumberKycLink200Response.cs
 src/Zernio/Model/CreatePhoneNumberKycLinkRequest.cs
 src/Zernio/Model/CreatePhoneNumberKycLinkRequestBranding.cs
@@ -6407,6 +6420,8 @@ src/Zernio/Model/CreateWorkflowRequest.cs
 src/Zernio/Model/CreateYoutubePlaylist201Response.cs
 src/Zernio/Model/CreateYoutubePlaylist201ResponsePlaylist.cs
 src/Zernio/Model/CreateYoutubePlaylistRequest.cs
+src/Zernio/Model/CreatedGoogleAdAccount.cs
+src/Zernio/Model/CreatedMetaAdAccount.cs
 src/Zernio/Model/CrosspostDiscordMessage200Response.cs
 src/Zernio/Model/CtwaAdRequestBody.cs
 src/Zernio/Model/CtwaAdRequestBodyCitiesInner.cs

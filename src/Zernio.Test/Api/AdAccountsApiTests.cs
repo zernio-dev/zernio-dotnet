@@ -136,7 +136,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //CreateAdAccountRequest createAdAccountRequest = null;
             //var response = instance.CreateAdAccount(createAdAccountRequest);
-            //Assert.IsType<CreateAdAccount201Response>(response);
+            //Assert.IsType<CreateAdAccount200Response>(response);
         }
 
         /// <summary>
