@@ -1252,6 +1252,7 @@ docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
 docs/GetWhatsappBusinessUsername200Response.md
 docs/GetWhatsappBusinessUsernameSuggestions200Response.md
+docs/GetWixConnectUrl200Response.md
 docs/GetWordPressAuthUrl200Response.md
 docs/GetWorkflow200Response.md
 docs/GetWorkflow200ResponseWorkflow.md
@@ -4113,6 +4114,7 @@ src/Zernio.Test/Model/GetWhatsAppTemplates200ResponseTemplatesInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplates200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsappBusinessUsername200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsappBusinessUsernameSuggestions200ResponseTests.cs
+src/Zernio.Test/Model/GetWixConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetWordPressAuthUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/GetWorkflow200ResponseWorkflowTests.cs
@@ -6950,6 +6952,7 @@ src/Zernio/Model/GetWhatsAppTemplates200Response.cs
 src/Zernio/Model/GetWhatsAppTemplates200ResponseTemplatesInner.cs
 src/Zernio/Model/GetWhatsappBusinessUsername200Response.cs
 src/Zernio/Model/GetWhatsappBusinessUsernameSuggestions200Response.cs
+src/Zernio/Model/GetWixConnectUrl200Response.cs
 src/Zernio/Model/GetWordPressAuthUrl200Response.cs
 src/Zernio/Model/GetWorkflow200Response.cs
 src/Zernio/Model/GetWorkflow200ResponseWorkflow.cs
