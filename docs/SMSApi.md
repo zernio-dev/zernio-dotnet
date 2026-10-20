@@ -126,6 +126,7 @@ catch (ApiException e)
 | **200** | Appeal submitted; the registration is pending again. |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -331,6 +332,7 @@ catch (ApiException e)
 | **200** | Registration deactivated. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -736,6 +738,7 @@ catch (ApiException e)
 | **200** | Registration |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -936,6 +939,7 @@ catch (ApiException e)
 | **200** | Registrations, newest first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1430,6 +1434,7 @@ catch (ApiException e)
 | **200** | A new code was sent |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
@@ -1534,6 +1539,7 @@ catch (ApiException e)
 | **200** | Reply recorded; the registration is back in review. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 | **409** | The registration is not waiting on changes, or &#x60;requestId&#x60; is no longer the open request (reload it). |  -  |
 
@@ -1946,6 +1952,7 @@ catch (ApiException e)
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 
@@ -2253,6 +2260,7 @@ catch (ApiException e)
 | **200** | OTP result |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

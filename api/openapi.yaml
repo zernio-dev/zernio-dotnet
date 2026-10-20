@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.301.0
+  version: 1.301.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22470,6 +22470,8 @@ paths:
         A 502 means Meta answered a server error after receiving the reply; it carries
         `details.privateReplyOutcome: "unknown"`, the reply is usually delivered and the comment's
         private reply spent, so check the conversation before retrying.
+        The reply is recorded in the inbox conversation with the commenter (`sentVia` `api` for
+        key auth, `human` for a session) and fires `message.sent` once.
       operationId: sendPrivateReplyToComment
       parameters:
       - description: The media/post ID (Instagram media ID or Facebook post ID)
@@ -27198,6 +27200,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
       security:
       - bearerAuth: []
       summary: List carrier registrations
@@ -27238,6 +27243,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "409":
           description: "The brand already exists at the carrier and failed identity\
             \ verification (a rejected registration of yours with the same EIN or\
@@ -27314,6 +27322,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "404":
           description: Registration not found
       security:
@@ -27344,6 +27355,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "404":
           description: Registration not found
       security:
@@ -27384,6 +27398,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "404":
           description: Registration not found
       security:
@@ -27420,6 +27437,9 @@ paths:
             \ code."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "404":
           description: Registration not found
         "429":
@@ -27471,6 +27491,9 @@ paths:
             \ (fix the brand and re-verify instead)."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "404":
           description: Registration not found
       security:
@@ -27518,6 +27541,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller is a team member limited to specific profiles; registrations
+            cover the whole account.
         "404":
           description: Registration not found
         "409":
