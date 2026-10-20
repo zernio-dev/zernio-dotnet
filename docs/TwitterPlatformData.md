@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **PaidPartnership** | **bool** | When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier. | [optional] [default to false]
 **MadeWithAi** | **bool** | When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only. | [optional] [default to false]
 **SensitiveMedia** | [**TwitterPlatformDataSensitiveMedia**](TwitterPlatformDataSensitiveMedia.md) |  | [optional] 
+**MediaTaggedUsers** | **List&lt;string&gt;** | X usernames (with or without @) to tag on the photos of the post, up to 10. Photos only, not video or GIF. Applied to the media of every tweet in a thread. An unknown username fails the post. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
