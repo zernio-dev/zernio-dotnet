@@ -1029,6 +1029,8 @@ docs/GetGoogleBusinessVerifications200Response.md
 docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md
+docs/GetHubSpotConnectUrl200Response.md
+docs/GetHubSpotSettings200Response.md
 docs/GetImessageGroup200Response.md
 docs/GetImessageGroup200ResponseGroup.md
 docs/GetImessageSender200Response.md
@@ -1344,6 +1346,7 @@ docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
+docs/HubSpotSettings.md
 docs/IMessageApi.md
 docs/ImessageAudienceContact.md
 docs/ImessageAudienceContactOptIn.md
@@ -2473,6 +2476,8 @@ docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md
+docs/UpdateHubSpotSettings200Response.md
+docs/UpdateHubSpotSettingsRequest.md
 docs/UpdateImessageGroup200Response.md
 docs/UpdateImessageGroupRequest.md
 docs/UpdateImessageSenderRequest.md
@@ -3897,6 +3902,8 @@ src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVerificationsInnerTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerifyTests.cs
+src/Zernio.Test/Model/GetHubSpotConnectUrl200ResponseTests.cs
+src/Zernio.Test/Model/GetHubSpotSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetImessageGroup200ResponseGroupTests.cs
 src/Zernio.Test/Model/GetImessageGroup200ResponseTests.cs
 src/Zernio.Test/Model/GetImessageSender200ResponseHealthTests.cs
@@ -4212,6 +4219,7 @@ src/Zernio.Test/Model/HideAdComment200ResponseTests.cs
 src/Zernio.Test/Model/HideAdCommentRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
+src/Zernio.Test/Model/HubSpotSettingsTests.cs
 src/Zernio.Test/Model/ImessageAudienceContactOptInTests.cs
 src/Zernio.Test/Model/ImessageAudienceContactTests.cs
 src/Zernio.Test/Model/ImessageSandboxContactTests.cs
@@ -5313,6 +5321,8 @@ src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPriceT
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItemTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestTests.cs
+src/Zernio.Test/Model/UpdateHubSpotSettings200ResponseTests.cs
+src/Zernio.Test/Model/UpdateHubSpotSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateImessageGroup200ResponseTests.cs
 src/Zernio.Test/Model/UpdateImessageGroupRequestTests.cs
 src/Zernio.Test/Model/UpdateImessageSenderRequestContactTests.cs
@@ -6741,6 +6751,8 @@ src/Zernio/Model/GetGoogleBusinessVerifications200Response.cs
 src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVerificationsInner.cs
 src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.cs
 src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.cs
+src/Zernio/Model/GetHubSpotConnectUrl200Response.cs
+src/Zernio/Model/GetHubSpotSettings200Response.cs
 src/Zernio/Model/GetImessageGroup200Response.cs
 src/Zernio/Model/GetImessageGroup200ResponseGroup.cs
 src/Zernio/Model/GetImessageSender200Response.cs
@@ -7056,6 +7068,7 @@ src/Zernio/Model/HideAdComment200Response.cs
 src/Zernio/Model/HideAdCommentRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
+src/Zernio/Model/HubSpotSettings.cs
 src/Zernio/Model/ImessageAudienceContact.cs
 src/Zernio/Model/ImessageAudienceContactOptIn.cs
 src/Zernio/Model/ImessageSandboxContact.cs
@@ -8157,6 +8170,8 @@ src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormSer
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.cs
+src/Zernio/Model/UpdateHubSpotSettings200Response.cs
+src/Zernio/Model/UpdateHubSpotSettingsRequest.cs
 src/Zernio/Model/UpdateImessageGroup200Response.cs
 src/Zernio/Model/UpdateImessageGroupRequest.cs
 src/Zernio/Model/UpdateImessageSenderRequest.cs

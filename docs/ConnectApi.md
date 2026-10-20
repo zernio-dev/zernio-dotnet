@@ -24,6 +24,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetConnectUrl**](ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**GetFacebookPages**](ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**GetGmbLocations**](ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
+| [**GetHubSpotConnectUrl**](ConnectApi.md#gethubspotconnecturl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**GetLinkedInOrganizations**](ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**GetPageWebhookSubscription**](ConnectApi.md#getpagewebhooksubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
 | [**GetPendingOAuthData**](ConnectApi.md#getpendingoauthdata) | **GET** /v1/connect/pending-data | Get pending OAuth data |
@@ -2179,6 +2180,116 @@ catch (ApiException e)
 | **400** | Invalid query parameter (e.g. limit out of range) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gethubspotconnecturl"></a>
+# **GetHubSpotConnectUrl**
+> GetHubSpotConnectUrl200Response GetHubSpotConnectUrl (string profileId, string? redirectUrl = null)
+
+Get HubSpot OAuth connect URL
+
+Initiates OAuth for a HubSpot portal. HubSpot is a connect-only CRM platform: the connected account does not post, read analytics or run ads. One HubSpot portal can be connected per profile; connecting a different portal to a profile that already has one redirects with `error=hubspot_profile_has_portal`. Redirect the user to `authUrl`; after authorization, HubSpot returns the browser to Zernio's internal callback and Zernio redirects to `redirect_url` (or the dashboard when omitted). On success the redirect carries `connected=hubspot`, `profileId`, `accountId` and `username` (the portal domain); on failure it carries `error`, `platform=hubspot` and `error_message`. Reconnecting the same portal and profile updates the stored connection in place and keeps its settings. Requested scopes: `crm.objects.contacts.read`, `crm.objects.contacts.write`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetHubSpotConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
+            var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+
+            try
+            {
+                // Get HubSpot OAuth connect URL
+                GetHubSpotConnectUrl200Response result = apiInstance.GetHubSpotConnectUrl(profileId, redirectUrl);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetHubSpotConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetHubSpotConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get HubSpot OAuth connect URL
+    ApiResponse<GetHubSpotConnectUrl200Response> response = apiInstance.GetHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetHubSpotConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
+| **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+
+### Return type
+
+[**GetHubSpotConnectUrl200Response**](GetHubSpotConnectUrl200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | HubSpot OAuth is not configured. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

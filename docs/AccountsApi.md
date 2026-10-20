@@ -10,6 +10,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAllAccountsHealth**](AccountsApi.md#getallaccountshealth) | **GET** /v1/accounts/health | Check accounts health |
 | [**GetBlueskySettings**](AccountsApi.md#getblueskysettings) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings |
 | [**GetFollowerStats**](AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**GetHubSpotSettings**](AccountsApi.md#gethubspotsettings) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings |
 | [**GetInstagramFollowStatus**](AccountsApi.md#getinstagramfollowstatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account |
 | [**GetSlackSettings**](AccountsApi.md#getslacksettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**GetTikTokCreatorInfo**](AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
@@ -22,6 +23,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SearchTikTokLocations**](AccountsApi.md#searchtiktoklocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
 | [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**UpdateBlueskySettings**](AccountsApi.md#updateblueskysettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
+| [**UpdateHubSpotSettings**](AccountsApi.md#updatehubspotsettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
 | [**UpdateSlackSettings**](AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 
 <a id="deleteaccount"></a>
@@ -642,6 +644,107 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="gethubspotsettings"></a>
+# **GetHubSpotSettings**
+> GetHubSpotSettings200Response GetHubSpotSettings (string accountId)
+
+Get HubSpot account settings
+
+Read a connected HubSpot portal and what Zernio syncs to it.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetHubSpotSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Get HubSpot account settings
+                GetHubSpotSettings200Response result = apiInstance.GetHubSpotSettings(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.GetHubSpotSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetHubSpotSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get HubSpot account settings
+    ApiResponse<GetHubSpotSettings200Response> response = apiInstance.GetHubSpotSettingsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.GetHubSpotSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**GetHubSpotSettings200Response**](GetHubSpotSettings200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | HubSpot settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getinstagramfollowstatus"></a>
 # **GetInstagramFollowStatus**
 > GetInstagramFollowStatus200Response GetInstagramFollowStatus (string accountId, string userId, bool? refresh = null)
@@ -1095,7 +1198,7 @@ namespace Example
             var platform = "platform_example";  // string? | Filter accounts by platform (e.g. \"instagram\", \"twitter\"). (optional) 
             var status = "connected";  // string? | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional) 
             var search = "search_example";  // string? | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. (optional) 
-            var category = "social";  // string? | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, social = every other platform. (optional) 
+            var category = "social";  // string? | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, crm = HubSpot, social = every other platform. (optional) 
             var sort = "account";  // string? | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. (optional) 
             var order = "asc";  // string? | Direction for `sort`. (optional)  (default to asc)
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
@@ -1152,7 +1255,7 @@ catch (ApiException e)
 | **platform** | **string?** | Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional]  |
 | **status** | **string?** | Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional]  |
 | **search** | **string?** | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. | [optional]  |
-| **category** | **string?** | Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, social &#x3D; every other platform. | [optional]  |
+| **category** | **string?** | Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot, social &#x3D; every other platform. | [optional]  |
 | **sort** | **string?** | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional]  |
 | **order** | **string?** | Direction for &#x60;sort&#x60;. | [optional] [default to asc] |
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
@@ -1887,6 +1990,109 @@ catch (ApiException e)
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatehubspotsettings"></a>
+# **UpdateHubSpotSettings**
+> UpdateHubSpotSettings200Response UpdateHubSpotSettings (string accountId, UpdateHubSpotSettingsRequest updateHubSpotSettingsRequest)
+
+Update HubSpot account settings
+
+Turn contact sync or message logging on or off for a connected HubSpot portal. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same portal.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateHubSpotSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var updateHubSpotSettingsRequest = new UpdateHubSpotSettingsRequest(); // UpdateHubSpotSettingsRequest | 
+
+            try
+            {
+                // Update HubSpot account settings
+                UpdateHubSpotSettings200Response result = apiInstance.UpdateHubSpotSettings(accountId, updateHubSpotSettingsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.UpdateHubSpotSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateHubSpotSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update HubSpot account settings
+    ApiResponse<UpdateHubSpotSettings200Response> response = apiInstance.UpdateHubSpotSettingsWithHttpInfo(accountId, updateHubSpotSettingsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.UpdateHubSpotSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **updateHubSpotSettingsRequest** | [**UpdateHubSpotSettingsRequest**](UpdateHubSpotSettingsRequest.md) |  |  |
+
+### Return type
+
+[**UpdateHubSpotSettings200Response**](UpdateHubSpotSettings200Response.md)
 
 ### Authorization
 
