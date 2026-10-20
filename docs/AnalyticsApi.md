@@ -1365,11 +1365,11 @@ catch (ApiException e)
 
 <a id="getgooglebusinesssearchkeywords"></a>
 # **GetGoogleBusinessSearchKeywords**
-> GetGoogleBusinessSearchKeywords200Response GetGoogleBusinessSearchKeywords (string accountId, string? startMonth = null, string? endMonth = null)
+> GetGoogleBusinessSearchKeywords200Response GetGoogleBusinessSearchKeywords (string accountId, string? startMonth = null, string? endMonth = null, string? pageToken = null)
 
 Get Google Business Profile search keywords
 
-Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have `impressions` 0 and `impressionsThreshold` set to that threshold. Returns up to 100 keywords per page. When `nextPageToken` is not null, pass it as `pageToken` with the same `startMonth` and `endMonth` to get the next page. Max 18 months of historical data. Requires the Analytics add-on. 
 
 ### Example
 ```csharp
@@ -1398,11 +1398,12 @@ namespace Example
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the Google Business Profile account.
             var startMonth = "startMonth_example";  // string? | Start month (YYYY-MM). Defaults to 3 months ago. (optional) 
             var endMonth = "endMonth_example";  // string? | End month (YYYY-MM). Defaults to current month. (optional) 
+            var pageToken = "pageToken_example";  // string? | The nextPageToken from the previous page. Valid only with the same startMonth and endMonth as the request that returned it. (optional) 
 
             try
             {
                 // Get Google Business Profile search keywords
-                GetGoogleBusinessSearchKeywords200Response result = apiInstance.GetGoogleBusinessSearchKeywords(accountId, startMonth, endMonth);
+                GetGoogleBusinessSearchKeywords200Response result = apiInstance.GetGoogleBusinessSearchKeywords(accountId, startMonth, endMonth, pageToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1423,7 +1424,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Google Business Profile search keywords
-    ApiResponse<GetGoogleBusinessSearchKeywords200Response> response = apiInstance.GetGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth);
+    ApiResponse<GetGoogleBusinessSearchKeywords200Response> response = apiInstance.GetGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth, pageToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1443,6 +1444,7 @@ catch (ApiException e)
 | **accountId** | **string** | The Zernio SocialAccount ID for the Google Business Profile account. |  |
 | **startMonth** | **string?** | Start month (YYYY-MM). Defaults to 3 months ago. | [optional]  |
 | **endMonth** | **string?** | End month (YYYY-MM). Defaults to current month. | [optional]  |
+| **pageToken** | **string?** | The nextPageToken from the previous page. Valid only with the same startMonth and endMonth as the request that returned it. | [optional]  |
 
 ### Return type
 
