@@ -1282,8 +1282,11 @@ docs/GetYoutubePlaylists200Response.md
 docs/GetYoutubePlaylists200ResponsePlaylistsInner.md
 docs/GoogleAdLabel.md
 docs/GoogleAdLabelAssignments.md
+docs/GoogleAdsAccessRole.md
 docs/GoogleAdsHierarchyClient.md
 docs/GoogleAdsManagerLink.md
+docs/GoogleAdsUserAccessInvitation.md
+docs/GoogleAdsUserAccessInvitationResult.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
@@ -1405,6 +1408,7 @@ docs/InstallTrackingTagOnStore422Response.md
 docs/InstallTrackingTagOnStore422ResponseDetails.md
 docs/InstallTrackingTagOnStoreRequest.md
 docs/InviteAdAccountToManagerRequest.md
+docs/InviteAdAccountUserRequest.md
 docs/InvitesApi.md
 docs/KeywordEntry.md
 docs/KeywordEntryOneOf.md
@@ -1456,6 +1460,7 @@ docs/ListAccountSitelinks200Response.md
 docs/ListAccountSitelinks200ResponseSitelinksInner.md
 docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
+docs/ListAdAccountUserInvitations200Response.md
 docs/ListAdAccountUsers200Response.md
 docs/ListAdAccounts200Response.md
 docs/ListAdAccounts200ResponseAccountsInner.md
@@ -2032,6 +2037,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/RevokeAdAccountUserInvitation200Response.md
 docs/RevokeBusinessPartner200Response.md
 docs/RevokeConnectedApp200Response.md
 docs/RfPrediction.md
@@ -4163,8 +4169,11 @@ src/Zernio.Test/Model/GetYoutubePlaylists200ResponsePlaylistsInnerTests.cs
 src/Zernio.Test/Model/GetYoutubePlaylists200ResponseTests.cs
 src/Zernio.Test/Model/GoogleAdLabelAssignmentsTests.cs
 src/Zernio.Test/Model/GoogleAdLabelTests.cs
+src/Zernio.Test/Model/GoogleAdsAccessRoleTests.cs
 src/Zernio.Test/Model/GoogleAdsHierarchyClientTests.cs
 src/Zernio.Test/Model/GoogleAdsManagerLinkTests.cs
+src/Zernio.Test/Model/GoogleAdsUserAccessInvitationResultTests.cs
+src/Zernio.Test/Model/GoogleAdsUserAccessInvitationTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetUnlinkTests.cs
 src/Zernio.Test/Model/GoogleAssetUpdateTests.cs
@@ -4283,6 +4292,7 @@ src/Zernio.Test/Model/InstallTrackingTagOnStore422ResponseDetailsTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore422ResponseTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStoreRequestTests.cs
 src/Zernio.Test/Model/InviteAdAccountToManagerRequestTests.cs
+src/Zernio.Test/Model/InviteAdAccountUserRequestTests.cs
 src/Zernio.Test/Model/KeywordEntryOneOfTests.cs
 src/Zernio.Test/Model/KeywordEntryTests.cs
 src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
@@ -4331,6 +4341,7 @@ src/Zernio.Test/Model/ListAccountSitelinks200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListAccountSitelinks200ResponseTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseTests.cs
+src/Zernio.Test/Model/ListAdAccountUserInvitations200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccountUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerFundingSourceDetailsTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerTests.cs
@@ -4892,6 +4903,7 @@ src/Zernio.Test/Model/ReviewPhoneNumberKycPacketRequestTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReplyTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReviewerTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewTests.cs
+src/Zernio.Test/Model/RevokeAdAccountUserInvitation200ResponseTests.cs
 src/Zernio.Test/Model/RevokeBusinessPartner200ResponseTests.cs
 src/Zernio.Test/Model/RevokeConnectedApp200ResponseTests.cs
 src/Zernio.Test/Model/RfPredictionTests.cs
@@ -7020,8 +7032,11 @@ src/Zernio/Model/GetYoutubePlaylists200Response.cs
 src/Zernio/Model/GetYoutubePlaylists200ResponsePlaylistsInner.cs
 src/Zernio/Model/GoogleAdLabel.cs
 src/Zernio/Model/GoogleAdLabelAssignments.cs
+src/Zernio/Model/GoogleAdsAccessRole.cs
 src/Zernio/Model/GoogleAdsHierarchyClient.cs
 src/Zernio/Model/GoogleAdsManagerLink.cs
+src/Zernio/Model/GoogleAdsUserAccessInvitation.cs
+src/Zernio/Model/GoogleAdsUserAccessInvitationResult.cs
 src/Zernio/Model/GoogleAssetGroupAssetLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetUnlink.cs
 src/Zernio/Model/GoogleAssetUpdate.cs
@@ -7140,6 +7155,7 @@ src/Zernio/Model/InstallTrackingTagOnStore422Response.cs
 src/Zernio/Model/InstallTrackingTagOnStore422ResponseDetails.cs
 src/Zernio/Model/InstallTrackingTagOnStoreRequest.cs
 src/Zernio/Model/InviteAdAccountToManagerRequest.cs
+src/Zernio/Model/InviteAdAccountUserRequest.cs
 src/Zernio/Model/KeywordEntry.cs
 src/Zernio/Model/KeywordEntryOneOf.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
@@ -7188,6 +7204,7 @@ src/Zernio/Model/ListAccountSitelinks200Response.cs
 src/Zernio/Model/ListAccountSitelinks200ResponseSitelinksInner.cs
 src/Zernio/Model/ListAccountStructuredSnippets200Response.cs
 src/Zernio/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.cs
+src/Zernio/Model/ListAdAccountUserInvitations200Response.cs
 src/Zernio/Model/ListAdAccountUsers200Response.cs
 src/Zernio/Model/ListAdAccounts200Response.cs
 src/Zernio/Model/ListAdAccounts200ResponseAccountsInner.cs
@@ -7749,6 +7766,7 @@ src/Zernio/Model/ReviewPhoneNumberKycPacketRequest.cs
 src/Zernio/Model/ReviewWebhookReview.cs
 src/Zernio/Model/ReviewWebhookReviewReply.cs
 src/Zernio/Model/ReviewWebhookReviewReviewer.cs
+src/Zernio/Model/RevokeAdAccountUserInvitation200Response.cs
 src/Zernio/Model/RevokeBusinessPartner200Response.cs
 src/Zernio/Model/RevokeConnectedApp200Response.cs
 src/Zernio/Model/RfPrediction.cs
