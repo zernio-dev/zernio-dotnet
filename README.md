@@ -2917,6 +2917,7 @@ Class | Method | HTTP request | Description
  - [Model.PostUpdateResponse](docs/PostUpdateResponse.md)
  - [Model.PostUserId](docs/PostUserId.md)
  - [Model.PostsListResponse](docs/PostsListResponse.md)
+ - [Model.PostsListResponsePagination](docs/PostsListResponsePagination.md)
  - [Model.PreflightBrandedCallingIdentity200Response](docs/PreflightBrandedCallingIdentity200Response.md)
  - [Model.PreflightBrandedCallingIdentity200ResponseFindingsInner](docs/PreflightBrandedCallingIdentity200ResponseFindingsInner.md)
  - [Model.PreflightBrandedCallingIdentityRequest](docs/PreflightBrandedCallingIdentityRequest.md)

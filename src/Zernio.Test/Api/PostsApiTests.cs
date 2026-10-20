@@ -128,6 +128,8 @@ namespace Zernio.Test.Api
             //int? page = null;
             //int? limit = null;
             //int? offset = null;
+            //string? cursor = null;
+            //string? fields = null;
             //string? source = null;
             //string? status = null;
             //string? platform = null;
@@ -142,7 +144,7 @@ namespace Zernio.Test.Api
             //string? tags = null;
             //string? sortBy = null;
             //string? accountId = null;
-            //var response = instance.ListPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId);
+            //var response = instance.ListPosts(page, limit, offset, cursor, fields, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId);
             //Assert.IsType<PostsListResponse>(response);
         }
 

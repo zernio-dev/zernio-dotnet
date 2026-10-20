@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="posts">posts.</param>
         /// <param name="pagination">pagination.</param>
-        public PostsListResponse(List<Post> posts = default, Pagination pagination = default)
+        public PostsListResponse(List<Post> posts = default, PostsListResponsePagination pagination = default)
         {
             this.Posts = posts;
             this.Pagination = pagination;
@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Gets or Sets Pagination
         /// </summary>
         [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public Pagination Pagination { get; set; }
+        public PostsListResponsePagination Pagination { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
