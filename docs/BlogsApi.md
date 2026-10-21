@@ -127,7 +127,7 @@ catch (ApiException e)
 
 Create a blog article
 
-Creates an article on the blog. Publishing behavior:  - WordPress and Wix default to a draft when both publishing fields are   omitted. - `isPublished: false` keeps the article as a draft and takes priority   over a future `publishDate`. - A future `publishDate` schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - `isPublished: true` publishes immediately when there is no future   `publishDate`. - `seo.title` / `seo.description` map to Shopify's global `title_tag`   and `description_tag` metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post's SEO   title and meta description. WordPress rejects `seo`; SEO plugin and   custom-field writes are not supported. - Wix stores rich content: `bodyHtml` is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site's Media Manager.  Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). WordPress native scheduling depends on the site's scheduler/WP-Cron. 
+Creates an article on the blog. Publishing behavior:  - WordPress, Wix and Webflow default to a draft when both publishing   fields are omitted. - `isPublished: false` keeps the article as a draft and takes priority   over a future `publishDate`. - A future `publishDate` schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - `isPublished: true` publishes immediately when there is no future   `publishDate`. - `seo.title` / `seo.description` map to Shopify's global `title_tag`   and `description_tag` metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post's SEO   title and meta description. WordPress and Webflow reject `seo`; SEO   plugin and custom-field writes are not supported. - Webflow has no scheduling API: a future `publishDate` returns 400   unless `isPublished: false` keeps a draft. Fields map to the   collection's own fields by type and slug (the body to its rich text   field, `excerpt` to a summary field, `image` to an image field, `tags`   and `author` to tag and author reference fields); sending a field the   collection does not have returns 400, as does a collection that   requires a field the Blogs API cannot fill. - Wix stores rich content: `bodyHtml` is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site's Media Manager.  Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress native scheduling depends on the site's scheduler/WP-Cron. 
 
 ### Example
 ```csharp
@@ -153,7 +153,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
             var createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
 
@@ -198,7 +198,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md) |  |  |
 
@@ -338,7 +338,7 @@ void (empty response body)
 
 Delete a blog article
 
-Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site's media library and taxonomy.  Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). 
+Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site's media library and taxonomy. On Webflow the item is unpublished from the live site, then deleted from the collection.  Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). 
 
 ### Example
 ```csharp
@@ -364,9 +364,9 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
-            var articleId = "articleId_example";  // string | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+            var articleId = "articleId_example";  // string | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
 
             try
             {
@@ -405,9 +405,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
-| **articleId** | **string** | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. |  |
+| **articleId** | **string** | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. |  |
 
 ### Return type
 
@@ -469,7 +469,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
 
             try
@@ -513,7 +513,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
 
 ### Return type
@@ -550,7 +550,7 @@ catch (ApiException e)
 
 Get a blog article
 
-Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). WordPress returns its native `status`; `publishedAt` is present only for a published post and `publishDate` only for a scheduled post. 
+Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress returns its native `status`; `publishedAt` is present only for a published post and `publishDate` only for a scheduled post. 
 
 ### Example
 ```csharp
@@ -576,9 +576,9 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
-            var articleId = "articleId_example";  // string | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+            var articleId = "articleId_example";  // string | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
 
             try
             {
@@ -621,9 +621,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
-| **articleId** | **string** | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. |  |
+| **articleId** | **string** | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. |  |
 
 ### Return type
 
@@ -659,7 +659,7 @@ catch (ApiException e)
 
 List blog articles
 
-Lists the articles of a blog. Cursor-paginated: pass `limit` (1-50, default 20) and the `cursor` from a previous response's `nextCursor`; `nextCursor` is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). WordPress and Wix results include `status` and include `publishDate` only for scheduled (`future`) posts. Wix lists return `bodyHtml: null`; get the article for its body. 
+Lists the articles of a blog. Cursor-paginated: pass `limit` (1-50, default 20) and the `cursor` from a previous response's `nextCursor`; `nextCursor` is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress and Wix results include `status` and include `publishDate` only for scheduled (`future`) posts. Wix lists return `bodyHtml: null`; get the article for its body. Webflow results report `status` as `publish` or `draft` only. 
 
 ### Example
 ```csharp
@@ -685,7 +685,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
             var limit = 20;  // int? | Page size (1-50). (optional)  (default to 20)
             var cursor = "cursor_example";  // string? | Opaque cursor from a previous response. Omit for the first page. (optional) 
@@ -731,7 +731,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
 | **limit** | **int?** | Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **string?** | Opaque cursor from a previous response. Omit for the first page. | [optional]  |
@@ -770,7 +770,7 @@ catch (ApiException e)
 
 List blogs
 
-Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress or Wix account represents one site and always returns exactly that one blog with `nextCursor: null`.  `limit` is 1-50 (default 20). Treat `nextCursor` as opaque; pass it unchanged on the next request. Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). 
+Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress or Wix account represents one site and always returns exactly that one blog with `nextCursor: null`. A Webflow site returns each CMS collection that has a rich text field (its blog id is the collection id), with `nextCursor: null`.  `limit` is 1-50 (default 20). Treat `nextCursor` as opaque; pass it unchanged on the next request. Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). 
 
 ### Example
 ```csharp
@@ -796,7 +796,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var limit = 20;  // int? | Page size (1-50). (optional)  (default to 20)
             var cursor = "cursor_example";  // string? | Opaque cursor from a previous response. Omit for the first page. (optional) 
 
@@ -841,7 +841,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **limit** | **int?** | Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **string?** | Opaque cursor from a previous response. Omit for the first page. | [optional]  |
 
@@ -987,7 +987,7 @@ catch (ApiException e)
 
 Update a blog article
 
-Partial-updates an article. Send any subset of the create fields (`title`, `bodyHtml`, `handle`, `tags`, `author`, `excerpt`, `image`, `seo`, `isPublished`, `publishDate`); at least one field is required (an empty body returns 400). `isPublished` and `publishDate` behave as on create: `isPublished: false` unpublishes back to a draft and a future `publishDate` schedules publication natively on the platform. Omitting both fields preserves the current WordPress or Wix status. Omitting `image` preserves the current featured image; removal is not supported. WordPress rejects `seo` and does not support SEO-plugin/custom-field, category, or custom-post-type writes.  Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). 
+Partial-updates an article. Send any subset of the create fields (`title`, `bodyHtml`, `handle`, `tags`, `author`, `excerpt`, `image`, `seo`, `isPublished`, `publishDate`); at least one field is required (an empty body returns 400). `isPublished` and `publishDate` behave as on create: `isPublished: false` unpublishes back to a draft and a future `publishDate` schedules publication natively on the platform. Omitting both fields preserves the current WordPress or Wix status. Omitting `image` preserves the current featured image; removal is not supported. WordPress rejects `seo` and does not support SEO-plugin/custom-field, category, or custom-post-type writes. On Webflow, an edit to a published item goes live immediately, `isPublished: false` unpublishes it, and a future `publishDate` returns 400.  Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). 
 
 ### Example
 ```csharp
@@ -1013,9 +1013,9 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BlogsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Shopify, WordPress or Wix account id.
+            var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
-            var articleId = "articleId_example";  // string | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+            var articleId = "articleId_example";  // string | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
             var updateBlogArticleRequest = new UpdateBlogArticleRequest(); // UpdateBlogArticleRequest | 
 
             try
@@ -1059,9 +1059,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Shopify, WordPress or Wix account id. |  |
+| **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
-| **articleId** | **string** | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. |  |
+| **articleId** | **string** | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. |  |
 | **updateBlogArticleRequest** | [**UpdateBlogArticleRequest**](UpdateBlogArticleRequest.md) |  |  |
 
 ### Return type

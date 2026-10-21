@@ -5,7 +5,7 @@ An article inside a blog on the connected platform.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Platform-native article/post id: numeric on Shopify and WordPress, a GUID on Wix. | [optional] 
+**Id** | **string** | Platform-native article/post id: numeric on Shopify and WordPress, a GUID on Wix, a hex item id on Webflow. | [optional] 
 **BlogId** | **string** | Platform-native id of the blog the article belongs to. | [optional] 
 **Platform** | **string** |  | [optional] 
 **Title** | **string** |  | [optional] 

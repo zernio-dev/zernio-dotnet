@@ -22,11 +22,11 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.321.1
+  version: 1.323.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
-    Zernio is the social media API that replaces 27 integrations. Schedule posts, retrieve analytics,
+    Zernio is the social media API that replaces 28 integrations. Schedule posts, retrieve analytics,
     manage DMs, comments, and reviews across X, Instagram, WhatsApp, TikTok, LinkedIn,
     Facebook, YouTube, Threads, Pinterest, Bluesky, Telegram, Google Business Profile, Snapchat,
     Discord, Slack, and iMessage, all from a single REST API. Run paid ads on Meta (Facebook + Instagram), Google,
@@ -8515,6 +8515,7 @@ paths:
           - redditads
           - whopads
           - hubspot
+          - webflow
           type: string
         style: form
       - description: Filter by health status
@@ -10816,6 +10817,52 @@ paths:
       - bearerAuth: []
       - connectToken: []
       summary: Get Wix site install URL
+      tags:
+      - Connect
+      x-resource-group: accounts
+  /v1/connect/webflow/token:
+    post:
+      description: |
+        Connects one Webflow site using a site API token, created in the
+        site's Site settings > Apps & integrations > API access with Sites
+        read-only and CMS read and write access. Zernio checks the token's
+        scopes, reads its site, and stores the token encrypted. Webflow is a
+        connect-only blog platform: each CMS collection with a rich text field
+        is a blog in the Blogs API (`/v1/accounts/{accountId}/blogs`); it does
+        not support social posts, inbox, analytics or ads. Publishing an
+        article needs a site that has been published once. Reconnecting the
+        same site and profile updates the connection in place.
+      operationId: connectWebflowWithSiteToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/connectWebflowWithSiteToken_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/connectWebflowWithSiteToken_200_response"
+          description: Webflow site connected as a platform account
+        "400":
+          description: "Malformed body, or a token Webflow rejects, that is not scoped\
+            \ to one site, or that lacks Sites read or CMS write access."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: API key does not have access to this profile.
+        "404":
+          description: Profile not found or access denied.
+        "502":
+          description: Webflow returned an unclassified upstream error.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Connect Webflow with a site API token
       tags:
       - Connect
       x-resource-group: accounts
@@ -57538,14 +57585,16 @@ paths:
       description: |
         Lists blogs on the connected account. Shopify returns its store blogs
         with cursor pagination. A WordPress or Wix account represents one site
-        and always returns exactly that one blog with `nextCursor: null`.
+        and always returns exactly that one blog with `nextCursor: null`. A
+        Webflow site returns each CMS collection that has a rich text field
+        (its blog id is the collection id), with `nextCursor: null`.
 
         `limit` is 1-50 (default 20). Treat `nextCursor` as opaque; pass it
         unchanged on the next request. Supported on Shopify (`shopify`),
-        WordPress (`wordpress`) and Wix (`wix`).
+        WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`).
       operationId: listBlogs
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -57604,6 +57653,7 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
     post:
       description: |
         Creates a blog on the connected store. The platform generates the URL
@@ -57716,7 +57766,7 @@ paths:
         Wix site. That `1` is scoped to its connected account.
       operationId: getBlog
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -57766,6 +57816,7 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
     patch:
       description: |
         Partial-updates a blog. Send any subset of `title` and `handle`; at
@@ -57835,13 +57886,14 @@ paths:
         default 20) and the `cursor` from a previous response's `nextCursor`;
         `nextCursor` is null when there are no more pages. Treat cursors as
         opaque and pass them unchanged. Supported on Shopify (`shopify`),
-        WordPress (`wordpress`) and Wix (`wix`). WordPress and Wix results
+        WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress and Wix results
         include `status` and include `publishDate` only for scheduled
         (`future`) posts. Wix lists return `bodyHtml: null`; get the article
-        for its body.
+        for its body. Webflow results report `status` as `publish` or
+        `draft` only.
       operationId: listBlogArticles
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -57910,12 +57962,13 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
     post:
       description: |
         Creates an article on the blog. Publishing behavior:
 
-        - WordPress and Wix default to a draft when both publishing fields are
-          omitted.
+        - WordPress, Wix and Webflow default to a draft when both publishing
+          fields are omitted.
         - `isPublished: false` keeps the article as a draft and takes priority
           over a future `publishDate`.
         - A future `publishDate` schedules publication natively on the
@@ -57926,17 +57979,24 @@ paths:
         - `seo.title` / `seo.description` map to Shopify's global `title_tag`
           and `description_tag` metafields (the fields Shopify themes read for
           the page title and meta description), and on Wix to the post's SEO
-          title and meta description. WordPress rejects `seo`; SEO plugin and
-          custom-field writes are not supported.
+          title and meta description. WordPress and Webflow reject `seo`; SEO
+          plugin and custom-field writes are not supported.
+        - Webflow has no scheduling API: a future `publishDate` returns 400
+          unless `isPublished: false` keeps a draft. Fields map to the
+          collection's own fields by type and slug (the body to its rich text
+          field, `excerpt` to a summary field, `image` to an image field, `tags`
+          and `author` to tag and author reference fields); sending a field the
+          collection does not have returns 400, as does a collection that
+          requires a field the Blogs API cannot fill.
         - Wix stores rich content: `bodyHtml` is converted on write (each
           top-level HTML element must fit 30,000 characters), and images in
           the body are imported into the site's Media Manager.
 
-        Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). WordPress
+        Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress
         native scheduling depends on the site's scheduler/WP-Cron.
       operationId: createBlogArticle
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -57993,18 +58053,20 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
   /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId}:
     delete:
       description: |
         Deletes the article. The delete happens on the platform and is
         permanent; Zernio stores nothing to restore it from. On WordPress the
         post is force-deleted, while uploaded attachments and tags remain in
-        the site's media library and taxonomy.
+        the site's media library and taxonomy. On Webflow the item is
+        unpublished from the live site, then deleted from the collection.
 
-        Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`).
+        Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`).
       operationId: deleteBlogArticle
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -58022,7 +58084,8 @@ paths:
           type: string
         style: simple
       - description: "Platform-native article id: numeric on Shopify and WordPress,\
-          \ a GUID on Wix. Other formats return 400."
+          \ a GUID on Wix, a 24-character hex item id on Webflow. Other formats return\
+          \ 400."
         explode: false
         in: path
         name: articleId
@@ -58061,17 +58124,18 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
     get:
       description: |
         Fetches a single article. An article addressed through a blog it does
         not belong to is a 404 (code blog_article_not_found).
 
-        Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`). WordPress
+        Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress
         returns its native `status`; `publishedAt` is present only for a
         published post and `publishDate` only for a scheduled post.
       operationId: getBlogArticle
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -58089,7 +58153,8 @@ paths:
           type: string
         style: simple
       - description: "Platform-native article id: numeric on Shopify and WordPress,\
-          \ a GUID on Wix. Other formats return 400."
+          \ a GUID on Wix, a 24-character hex item id on Webflow. Other formats return\
+          \ 400."
         explode: false
         in: path
         name: articleId
@@ -58131,6 +58196,7 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
     patch:
       description: |
         Partial-updates an article. Send any subset of the create fields
@@ -58142,12 +58208,14 @@ paths:
         Omitting both fields preserves the current WordPress or Wix status. Omitting
         `image` preserves the current featured image; removal is not supported.
         WordPress rejects `seo` and does not support SEO-plugin/custom-field,
-        category, or custom-post-type writes.
+        category, or custom-post-type writes. On Webflow, an edit to a
+        published item goes live immediately, `isPublished: false` unpublishes
+        it, and a future `publishDate` returns 400.
 
-        Supported on Shopify (`shopify`), WordPress (`wordpress`) and Wix (`wix`).
+        Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`).
       operationId: updateBlogArticle
       parameters:
-      - description: "Connected Shopify, WordPress or Wix account id."
+      - description: "Connected Shopify, WordPress, Wix or Webflow account id."
         explode: false
         in: path
         name: accountId
@@ -58165,7 +58233,8 @@ paths:
           type: string
         style: simple
       - description: "Platform-native article id: numeric on Shopify and WordPress,\
-          \ a GUID on Wix. Other formats return 400."
+          \ a GUID on Wix, a 24-character hex item id on Webflow. Other formats return\
+          \ 400."
         explode: false
         in: path
         name: articleId
@@ -58214,6 +58283,7 @@ paths:
       - shopify
       - wordpress
       - wix
+      - webflow
   /v1/accounts/{accountId}/products:
     get:
       deprecated: true
@@ -76696,6 +76766,7 @@ components:
           - rcs
           - whopads
           - hubspot
+          - webflow
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
@@ -89883,18 +89954,20 @@ components:
         id:
           description: "Platform-native blog id. Shopify uses a numeric blog id. WordPress.com\
             \ uses the numeric site id; self-hosted WordPress and Wix use `1`, scoped\
-            \ to the connected account."
+            \ to the connected account. Webflow uses the CMS collection id."
           type: string
         platform:
           enum:
           - shopify
           - wordpress
           - wix
+          - webflow
           type: string
         title:
           type: string
         handle:
-          description: URL slug on Shopify; site hostname on WordPress and Wix.
+          description: URL slug on Shopify and Webflow (the collection slug); site
+            hostname on WordPress and Wix.
           type: string
     BlogArticle:
       description: An article inside a blog on the connected platform.
@@ -89922,7 +89995,7 @@ components:
       properties:
         id:
           description: "Platform-native article/post id: numeric on Shopify and WordPress,\
-            \ a GUID on Wix."
+            \ a GUID on Wix, a hex item id on Webflow."
           type: string
         blogId:
           description: Platform-native id of the blog the article belongs to.
@@ -89932,6 +90005,7 @@ components:
           - shopify
           - wordpress
           - wix
+          - webflow
           type: string
         title:
           type: string
@@ -98595,6 +98669,63 @@ components:
       required:
       - authUrl
       - state
+    connectWebflowWithSiteToken_request:
+      additionalProperties: {}
+      properties:
+        profileId:
+          description: Your Zernio profile ID (get from /v1/profiles).
+          type: string
+        siteToken:
+          description: Webflow site API token with Sites read and CMS read and write
+            access.
+          maxLength: 512
+          minLength: 1
+          type: string
+          writeOnly: true
+      required:
+      - profileId
+      - siteToken
+    connectWebflowWithSiteToken_200_response_account:
+      example:
+        displayName: displayName
+        profileId: profileId
+        _id: _id
+        platform: webflow
+        username: username
+      properties:
+        _id:
+          type: string
+        platform:
+          enum:
+          - webflow
+          type: string
+        username:
+          description: Hostname of the connected Webflow site.
+          type: string
+        displayName:
+          description: Webflow site name.
+          type: string
+        profileId:
+          type: string
+      required:
+      - _id
+      - displayName
+      - platform
+      - profileId
+      - username
+    connectWebflowWithSiteToken_200_response:
+      example:
+        account:
+          displayName: displayName
+          profileId: profileId
+          _id: _id
+          platform: webflow
+          username: username
+      properties:
+        account:
+          $ref: "#/components/schemas/connectWebflowWithSiteToken_200_response_account"
+      required:
+      - account
     connectWordPressWithApplicationPassword_request:
       additionalProperties: {}
       properties:
@@ -151243,6 +151374,7 @@ components:
           - shopify
           - wordpress
           - wix
+          - webflow
           type: string
         blogs:
           items:
@@ -151292,6 +151424,7 @@ components:
           - shopify
           - wordpress
           - wix
+          - webflow
           type: string
         blog:
           $ref: "#/components/schemas/Blog"
@@ -151356,6 +151489,7 @@ components:
           - shopify
           - wordpress
           - wix
+          - webflow
           type: string
         articles:
           items:
@@ -151428,6 +151562,15 @@ components:
             publication natively on the platform.
           format: date-time
           type: string
+        fieldData:
+          additionalProperties: {}
+          description: "Webflow only. The collection's own fields that the Blogs API\
+            \ does not map, keyed by field slug, in Webflow's value format (a Reference\
+            \ is an item id, an Image is { url, alt }). Required by collections with\
+            \ required fields of their own; a create that leaves one empty answers\
+            \ 400 listing them. A slug the API already fills (name, slug, body, summary,\
+            \ image, tags, author, date) or one the collection lacks answers 400.\
+            \ Other platforms answer 400."
       required:
       - title
     createBlogArticle_201_response:
@@ -151460,6 +151603,7 @@ components:
           - shopify
           - wordpress
           - wix
+          - webflow
           type: string
         article:
           $ref: "#/components/schemas/BlogArticle"
@@ -151520,6 +151664,16 @@ components:
             publication natively on the platform.
           format: date-time
           type: string
+        fieldData:
+          additionalProperties: true
+          description: "Webflow only. The collection's own fields that the Blogs API\
+            \ does not map, keyed by field slug, in Webflow's value format (a Reference\
+            \ is an item id, an Image is { url, alt }). Required by collections with\
+            \ required fields of their own; a create that leaves one empty answers\
+            \ 400 listing them. A slug the API already fills (name, slug, body, summary,\
+            \ image, tags, author, date) or one the collection lacks answers 400.\
+            \ Other platforms answer 400."
+          type: object
     listProducts_200_response:
       example:
         nextCursor: nextCursor
@@ -166984,7 +167138,7 @@ x-documentation:
   readme: |
     # Zernio API
 
-    The social media API that replaces 27 integrations. Build social media and blog publishing features into your app in minutes, not months.
+    The social media API that replaces 28 integrations. Build social media and blog publishing features into your app in minutes, not months.
 
     ## Quick Start
 
