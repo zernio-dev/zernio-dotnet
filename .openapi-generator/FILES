@@ -389,6 +389,7 @@ docs/ConnectShopifyWithToken200Response.md
 docs/ConnectShopifyWithToken200ResponseAccount.md
 docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
+docs/ConnectWelcomeScreen.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
@@ -2430,6 +2431,7 @@ docs/UpdateCommerceProductPricesRequestVariantsInner.md
 docs/UpdateCommerceProductPricesRequestVariantsInnerPrice.md
 docs/UpdateCommerceProductRequest.md
 docs/UpdateCommerceRedirectRequest.md
+docs/UpdateConnectWelcomeScreenRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
@@ -3290,6 +3292,7 @@ src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithTokenRequestTests.cs
 src/Zernio.Test/Model/ConnectSlackChannelRequestTests.cs
+src/Zernio.Test/Model/ConnectWelcomeScreenTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentialsRequestTests.cs
@@ -5289,6 +5292,7 @@ src/Zernio.Test/Model/UpdateCommerceProductPricesRequestVariantsInnerPriceTests.
 src/Zernio.Test/Model/UpdateCommerceProductPricesRequestVariantsInnerTests.cs
 src/Zernio.Test/Model/UpdateCommerceProductRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceRedirectRequestTests.cs
+src/Zernio.Test/Model/UpdateConnectWelcomeScreenRequestTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseTests.cs
 src/Zernio.Test/Model/UpdateContactRequestTests.cs
@@ -6153,6 +6157,7 @@ src/Zernio/Model/ConnectShopifyWithToken200Response.cs
 src/Zernio/Model/ConnectShopifyWithToken200ResponseAccount.cs
 src/Zernio/Model/ConnectShopifyWithTokenRequest.cs
 src/Zernio/Model/ConnectSlackChannelRequest.cs
+src/Zernio/Model/ConnectWelcomeScreen.cs
 src/Zernio/Model/ConnectWhatsAppCredentials200Response.cs
 src/Zernio/Model/ConnectWhatsAppCredentials200ResponseAccount.cs
 src/Zernio/Model/ConnectWhatsAppCredentialsRequest.cs
@@ -8152,6 +8157,7 @@ src/Zernio/Model/UpdateCommerceProductPricesRequestVariantsInner.cs
 src/Zernio/Model/UpdateCommerceProductPricesRequestVariantsInnerPrice.cs
 src/Zernio/Model/UpdateCommerceProductRequest.cs
 src/Zernio/Model/UpdateCommerceRedirectRequest.cs
+src/Zernio/Model/UpdateConnectWelcomeScreenRequest.cs
 src/Zernio/Model/UpdateContact200Response.cs
 src/Zernio/Model/UpdateContact200ResponseContact.cs
 src/Zernio/Model/UpdateContactRequest.cs
