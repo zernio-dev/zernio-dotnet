@@ -399,6 +399,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DetachAdLabel200Response</returns>
         ApiResponse<DetachAdLabel200Response> DetachAdLabelWithHttpInfo(string labelId, string accountId, string? adAccountId = default, string? customerId = default, List<string>? campaignIds = default, List<string>? adSetIds = default, List<string>? adIds = default, List<string>? keywordIds = default);
         /// <summary>
+        /// Get ad account billing
+        /// </summary>
+        /// <remarks>
+        /// Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <returns>GetAdAccountBilling200Response</returns>
+        GetAdAccountBilling200Response GetAdAccountBilling(string accountId, string? adAccountId = default);
+
+        /// <summary>
+        /// Get ad account billing
+        /// </summary>
+        /// <remarks>
+        /// Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <returns>ApiResponse of GetAdAccountBilling200Response</returns>
+        ApiResponse<GetAdAccountBilling200Response> GetAdAccountBillingWithHttpInfo(string accountId, string? adAccountId = default);
+        /// <summary>
         /// Ad account finances
         /// </summary>
         /// <remarks>
@@ -1504,6 +1527,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RevokeAdAccountUserInvitation200Response</returns>
         ApiResponse<RevokeAdAccountUserInvitation200Response> RevokeAdAccountUserInvitationWithHttpInfo(string accountId, string adAccountId, string invitationId);
         /// <summary>
+        /// Set up ad account billing (monthly invoicing)
+        /// </summary>
+        /// <remarks>
+        /// Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <returns>SetUpAdAccountBilling200Response</returns>
+        SetUpAdAccountBilling200Response SetUpAdAccountBilling(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest);
+
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing)
+        /// </summary>
+        /// <remarks>
+        /// Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <returns>ApiResponse of SetUpAdAccountBilling200Response</returns>
+        ApiResponse<SetUpAdAccountBilling200Response> SetUpAdAccountBillingWithHttpInfo(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest);
+        /// <summary>
         /// Update account callouts
         /// </summary>
         /// <remarks>
@@ -2113,6 +2157,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DetachAdLabel200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DetachAdLabel200Response>> DetachAdLabelWithHttpInfoAsync(string labelId, string accountId, string? adAccountId = default, string? customerId = default, List<string>? campaignIds = default, List<string>? adSetIds = default, List<string>? adIds = default, List<string>? keywordIds = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get ad account billing
+        /// </summary>
+        /// <remarks>
+        /// Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdAccountBilling200Response</returns>
+        System.Threading.Tasks.Task<GetAdAccountBilling200Response> GetAdAccountBillingAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get ad account billing
+        /// </summary>
+        /// <remarks>
+        /// Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdAccountBilling200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdAccountBilling200Response>> GetAdAccountBillingWithHttpInfoAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Ad account finances
         /// </summary>
@@ -3304,6 +3373,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RevokeAdAccountUserInvitation200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RevokeAdAccountUserInvitation200Response>> RevokeAdAccountUserInvitationWithHttpInfoAsync(string accountId, string adAccountId, string invitationId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing)
+        /// </summary>
+        /// <remarks>
+        /// Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SetUpAdAccountBilling200Response</returns>
+        System.Threading.Tasks.Task<SetUpAdAccountBilling200Response> SetUpAdAccountBillingAsync(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing)
+        /// </summary>
+        /// <remarks>
+        /// Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SetUpAdAccountBilling200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SetUpAdAccountBilling200Response>> SetUpAdAccountBillingWithHttpInfoAsync(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update account callouts
         /// </summary>
@@ -6000,6 +6092,145 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DetachAdLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get ad account billing Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <returns>GetAdAccountBilling200Response</returns>
+        public GetAdAccountBilling200Response GetAdAccountBilling(string accountId, string? adAccountId = default)
+        {
+            Zernio.Client.ApiResponse<GetAdAccountBilling200Response> localVarResponse = GetAdAccountBillingWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get ad account billing Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <returns>ApiResponse of GetAdAccountBilling200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdAccountBilling200Response> GetAdAccountBillingWithHttpInfo(string accountId, string? adAccountId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetAdAccountBilling");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdAccountBilling200Response>("/v1/ads/accounts/billing", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdAccountBilling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get ad account billing Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdAccountBilling200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdAccountBilling200Response> GetAdAccountBillingAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdAccountBilling200Response> localVarResponse = await GetAdAccountBillingWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get ad account billing Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Google ads SocialAccount id.</param>
+        /// <param name="adAccountId">Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdAccountBilling200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdAccountBilling200Response>> GetAdAccountBillingWithHttpInfoAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdAccountsApi->GetAdAccountBilling");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdAccountBilling200Response>("/v1/ads/accounts/billing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdAccountBilling", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -12751,6 +12982,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RevokeAdAccountUserInvitation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing) Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <returns>SetUpAdAccountBilling200Response</returns>
+        public SetUpAdAccountBilling200Response SetUpAdAccountBilling(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest)
+        {
+            Zernio.Client.ApiResponse<SetUpAdAccountBilling200Response> localVarResponse = SetUpAdAccountBillingWithHttpInfo(setUpAdAccountBillingRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing) Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <returns>ApiResponse of SetUpAdAccountBilling200Response</returns>
+        public Zernio.Client.ApiResponse<SetUpAdAccountBilling200Response> SetUpAdAccountBillingWithHttpInfo(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest)
+        {
+            // verify the required parameter 'setUpAdAccountBillingRequest' is set
+            if (setUpAdAccountBillingRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setUpAdAccountBillingRequest' when calling AdAccountsApi->SetUpAdAccountBilling");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setUpAdAccountBillingRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SetUpAdAccountBilling200Response>("/v1/ads/accounts/billing", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetUpAdAccountBilling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing) Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SetUpAdAccountBilling200Response</returns>
+        public async System.Threading.Tasks.Task<SetUpAdAccountBilling200Response> SetUpAdAccountBillingAsync(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SetUpAdAccountBilling200Response> localVarResponse = await SetUpAdAccountBillingWithHttpInfoAsync(setUpAdAccountBillingRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set up ad account billing (monthly invoicing) Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setUpAdAccountBillingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SetUpAdAccountBilling200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SetUpAdAccountBilling200Response>> SetUpAdAccountBillingWithHttpInfoAsync(SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'setUpAdAccountBillingRequest' is set
+            if (setUpAdAccountBillingRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setUpAdAccountBillingRequest' when calling AdAccountsApi->SetUpAdAccountBilling");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setUpAdAccountBillingRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SetUpAdAccountBilling200Response>("/v1/ads/accounts/billing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetUpAdAccountBilling", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

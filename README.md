@@ -212,6 +212,7 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**DeleteAdNegativeKeywordList**](docs/AdAccountsApi.md#deleteadnegativekeywordlist) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list
 *AdAccountsApi* | [**DeleteValueRuleSet**](docs/AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**DetachAdLabel**](docs/AdAccountsApi.md#detachadlabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
+*AdAccountsApi* | [**GetAdAccountBilling**](docs/AdAccountsApi.md#getadaccountbilling) | **GET** /v1/ads/accounts/billing | Get ad account billing
 *AdAccountsApi* | [**GetAdAccountFinance**](docs/AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**GetAdAccountHierarchy**](docs/AdAccountsApi.md#getadaccounthierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
 *AdAccountsApi* | [**GetAdAccountLiveEntities**](docs/AdAccountsApi.md#getadaccountliveentities) | **GET** /v1/ads/accounts/live | Read an ad account's campaigns and ad sets live
@@ -255,6 +256,7 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**ReplaceAdNegativeKeywordListKeywords**](docs/AdAccountsApi.md#replaceadnegativekeywordlistkeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**ReplyToAdComment**](docs/AdAccountsApi.md#replytoadcomment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
 *AdAccountsApi* | [**RevokeAdAccountUserInvitation**](docs/AdAccountsApi.md#revokeadaccountuserinvitation) | **DELETE** /v1/ads/accounts/user-invitations | Revoke a user access invitation
+*AdAccountsApi* | [**SetUpAdAccountBilling**](docs/AdAccountsApi.md#setupadaccountbilling) | **POST** /v1/ads/accounts/billing | Set up ad account billing (monthly invoicing)
 *AdAccountsApi* | [**UpdateAccountCallouts**](docs/AdAccountsApi.md#updateaccountcallouts) | **PUT** /v1/ads/accounts/callouts | Update account callouts
 *AdAccountsApi* | [**UpdateAccountSitelinks**](docs/AdAccountsApi.md#updateaccountsitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks
 *AdAccountsApi* | [**UpdateAccountStructuredSnippets**](docs/AdAccountsApi.md#updateaccountstructuredsnippets) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets
@@ -1965,6 +1967,11 @@ Class | Method | HTTP request | Description
  - [Model.GetAccountPosts200ResponsePostsInner](docs/GetAccountPosts200ResponsePostsInner.md)
  - [Model.GetAd200Response](docs/GetAd200Response.md)
  - [Model.GetAd200ResponseDarkPost](docs/GetAd200ResponseDarkPost.md)
+ - [Model.GetAdAccountBilling200Response](docs/GetAdAccountBilling200Response.md)
+ - [Model.GetAdAccountBilling200ResponseAccountBudgetsInner](docs/GetAdAccountBilling200ResponseAccountBudgetsInner.md)
+ - [Model.GetAdAccountBilling200ResponseBillingSetupsInner](docs/GetAdAccountBilling200ResponseBillingSetupsInner.md)
+ - [Model.GetAdAccountBilling200ResponsePaymentsAccountsInner](docs/GetAdAccountBilling200ResponsePaymentsAccountsInner.md)
+ - [Model.GetAdAccountBilling200ResponsePendingBudgetProposalsInner](docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md)
  - [Model.GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [Model.GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [Model.GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
@@ -3307,6 +3314,9 @@ Class | Method | HTTP request | Description
  - [Model.SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [Model.SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [Model.SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [Model.SetUpAdAccountBilling200Response](docs/SetUpAdAccountBilling200Response.md)
+ - [Model.SetUpAdAccountBilling201Response](docs/SetUpAdAccountBilling201Response.md)
+ - [Model.SetUpAdAccountBillingRequest](docs/SetUpAdAccountBillingRequest.md)
  - [Model.SetWhatsAppConversationalAutomationRequest](docs/SetWhatsAppConversationalAutomationRequest.md)
  - [Model.SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [Model.SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)

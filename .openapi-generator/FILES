@@ -864,6 +864,11 @@ docs/GetAccountPosts200Response.md
 docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
 docs/GetAd200ResponseDarkPost.md
+docs/GetAdAccountBilling200Response.md
+docs/GetAdAccountBilling200ResponseAccountBudgetsInner.md
+docs/GetAdAccountBilling200ResponseBillingSetupsInner.md
+docs/GetAdAccountBilling200ResponsePaymentsAccountsInner.md
+docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHierarchy200Response.md
@@ -2229,6 +2234,9 @@ docs/SetPartnershipAdPermissionRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SetUpAdAccountBilling200Response.md
+docs/SetUpAdAccountBilling201Response.md
+docs/SetUpAdAccountBillingRequest.md
 docs/SetWhatsAppConversationalAutomationRequest.md
 docs/SetWhatsAppFlowsEncryptionKeyRequest.md
 docs/SetWhatsappBusinessUsername200Response.md
@@ -3770,6 +3778,11 @@ src/Zernio.Test/Model/GetAccountPosts200ResponsePostsInnerTests.cs
 src/Zernio.Test/Model/GetAccountPosts200ResponseTests.cs
 src/Zernio.Test/Model/GetAd200ResponseDarkPostTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
+src/Zernio.Test/Model/GetAdAccountBilling200ResponseAccountBudgetsInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountBilling200ResponseBillingSetupsInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountBilling200ResponsePaymentsAccountsInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountBilling200ResponsePendingBudgetProposalsInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountBilling200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInnerTests.cs
@@ -5112,6 +5125,9 @@ src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
+src/Zernio.Test/Model/SetUpAdAccountBilling200ResponseTests.cs
+src/Zernio.Test/Model/SetUpAdAccountBilling201ResponseTests.cs
+src/Zernio.Test/Model/SetUpAdAccountBillingRequestTests.cs
 src/Zernio.Test/Model/SetWhatsAppConversationalAutomationRequestTests.cs
 src/Zernio.Test/Model/SetWhatsAppFlowsEncryptionKeyRequestTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsername200ResponseTests.cs
@@ -6652,6 +6668,11 @@ src/Zernio/Model/GetAccountPosts200Response.cs
 src/Zernio/Model/GetAccountPosts200ResponsePostsInner.cs
 src/Zernio/Model/GetAd200Response.cs
 src/Zernio/Model/GetAd200ResponseDarkPost.cs
+src/Zernio/Model/GetAdAccountBilling200Response.cs
+src/Zernio/Model/GetAdAccountBilling200ResponseAccountBudgetsInner.cs
+src/Zernio/Model/GetAdAccountBilling200ResponseBillingSetupsInner.cs
+src/Zernio/Model/GetAdAccountBilling200ResponsePaymentsAccountsInner.cs
+src/Zernio/Model/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.cs
 src/Zernio/Model/GetAdAccountFinance200Response.cs
 src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
 src/Zernio/Model/GetAdAccountHierarchy200Response.cs
@@ -7994,6 +8015,9 @@ src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
+src/Zernio/Model/SetUpAdAccountBilling200Response.cs
+src/Zernio/Model/SetUpAdAccountBilling201Response.cs
+src/Zernio/Model/SetUpAdAccountBillingRequest.cs
 src/Zernio/Model/SetWhatsAppConversationalAutomationRequest.cs
 src/Zernio/Model/SetWhatsAppFlowsEncryptionKeyRequest.cs
 src/Zernio/Model/SetWhatsappBusinessUsername200Response.cs

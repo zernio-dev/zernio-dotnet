@@ -264,6 +264,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdAccountBilling
+        /// </summary>
+        [Fact]
+        public void GetAdAccountBillingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? adAccountId = null;
+            //var response = instance.GetAdAccountBilling(accountId, adAccountId);
+            //Assert.IsType<GetAdAccountBilling200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAdAccountFinance
         /// </summary>
         [Fact]
@@ -878,6 +891,18 @@ namespace Zernio.Test.Api
             //string invitationId = null;
             //var response = instance.RevokeAdAccountUserInvitation(accountId, adAccountId, invitationId);
             //Assert.IsType<RevokeAdAccountUserInvitation200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SetUpAdAccountBilling
+        /// </summary>
+        [Fact]
+        public void SetUpAdAccountBillingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SetUpAdAccountBillingRequest setUpAdAccountBillingRequest = null;
+            //var response = instance.SetUpAdAccountBilling(setUpAdAccountBillingRequest);
+            //Assert.IsType<SetUpAdAccountBilling200Response>(response);
         }
 
         /// <summary>

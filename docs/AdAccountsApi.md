@@ -20,6 +20,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAdNegativeKeywordList**](AdAccountsApi.md#deleteadnegativekeywordlist) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**DeleteValueRuleSet**](AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**DetachAdLabel**](AdAccountsApi.md#detachadlabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
+| [**GetAdAccountBilling**](AdAccountsApi.md#getadaccountbilling) | **GET** /v1/ads/accounts/billing | Get ad account billing |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**GetAdAccountHierarchy**](AdAccountsApi.md#getadaccounthierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**GetAdAccountLiveEntities**](AdAccountsApi.md#getadaccountliveentities) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live |
@@ -63,6 +64,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ReplaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceadnegativekeywordlistkeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**ReplyToAdComment**](AdAccountsApi.md#replytoadcomment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
 | [**RevokeAdAccountUserInvitation**](AdAccountsApi.md#revokeadaccountuserinvitation) | **DELETE** /v1/ads/accounts/user-invitations | Revoke a user access invitation |
+| [**SetUpAdAccountBilling**](AdAccountsApi.md#setupadaccountbilling) | **POST** /v1/ads/accounts/billing | Set up ad account billing (monthly invoicing) |
 | [**UpdateAccountCallouts**](AdAccountsApi.md#updateaccountcallouts) | **PUT** /v1/ads/accounts/callouts | Update account callouts |
 | [**UpdateAccountSitelinks**](AdAccountsApi.md#updateaccountsitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks |
 | [**UpdateAccountStructuredSnippets**](AdAccountsApi.md#updateaccountstructuredsnippets) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
@@ -1779,6 +1781,113 @@ catch (ApiException e)
 | **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
 | **404** | Label not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadaccountbilling"></a>
+# **GetAdAccountBilling**
+> GetAdAccountBilling200Response GetAdAccountBilling (string accountId, string? adAccountId = null)
+
+Get ad account billing
+
+Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google's PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty `paymentsAccounts` means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdAccountBillingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var adAccountId = "adAccountId_example";  // string? | Google Ads customer id, digits only. Defaults to the connection's selected customer. (optional) 
+
+            try
+            {
+                // Get ad account billing
+                GetAdAccountBilling200Response result = apiInstance.GetAdAccountBilling(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.GetAdAccountBilling: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdAccountBillingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get ad account billing
+    ApiResponse<GetAdAccountBilling200Response> response = apiInstance.GetAdAccountBillingWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.GetAdAccountBillingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **adAccountId** | **string?** | Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. | [optional]  |
+
+### Return type
+
+[**GetAdAccountBilling200Response**](GetAdAccountBilling200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Billing state of the customer |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6470,6 +6579,113 @@ catch (ApiException e)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="setupadaccountbilling"></a>
+# **SetUpAdAccountBilling**
+> SetUpAdAccountBilling200Response SetUpAdAccountBilling (SetUpAdAccountBillingRequest setUpAdAccountBillingRequest)
+
+Set up ad account billing (monthly invoicing)
+
+Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google's API cannot add a card or other payment method, so `paymentsAccountId` must be one of the manager's monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google's BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at `spendingLimit` in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads `APPROVED_HELD` and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus=unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so `validateOnly: true` checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SetUpAdAccountBillingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var setUpAdAccountBillingRequest = new SetUpAdAccountBillingRequest(); // SetUpAdAccountBillingRequest | 
+
+            try
+            {
+                // Set up ad account billing (monthly invoicing)
+                SetUpAdAccountBilling200Response result = apiInstance.SetUpAdAccountBilling(setUpAdAccountBillingRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.SetUpAdAccountBilling: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SetUpAdAccountBillingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set up ad account billing (monthly invoicing)
+    ApiResponse<SetUpAdAccountBilling200Response> response = apiInstance.SetUpAdAccountBillingWithHttpInfo(setUpAdAccountBillingRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.SetUpAdAccountBillingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **setUpAdAccountBillingRequest** | [**SetUpAdAccountBillingRequest**](SetUpAdAccountBillingRequest.md) |  |  |
+
+### Return type
+
+[**SetUpAdAccountBilling200Response**](SetUpAdAccountBilling200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | validateOnly: checks passed, nothing created. billingSetupId is set when an existing setup would be reused. |  -  |
+| **201** | Billing setup created (or reused) and account budget proposed. |  -  |
+| **400** | Invalid input, a payments account the customer cannot use (the message lists the available ones), or a Google rejection. A rejected budget after a created setup carries details.billingSetupId: resend the same request to finish. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The customer already has billing: a current billing setup with a budget, or one on another payments account. Nothing is changed. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+| **502** | Google did not confirm the billing setup (details.creationStatus&#x3D;unknown) or the budget proposal. Read GET /v1/ads/accounts/billing before retrying. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
