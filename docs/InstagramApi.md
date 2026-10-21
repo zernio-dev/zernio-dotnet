@@ -8,6 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInstagramBusinessDiscovery**](InstagramApi.md#getinstagrambusinessdiscovery) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account |
 | [**GetInstagramPublishingLimit**](InstagramApi.md#getinstagrampublishinglimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**GetInstagramStoryInsights**](InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
+| [**ListInstagramLiveMedia**](InstagramApi.md#listinstagramlivemedia) | **GET** /v1/accounts/{accountId}/instagram/live-media | List the live broadcasts of an Instagram account |
 | [**ListInstagramMediaCollaborators**](InstagramApi.md#listinstagrammediacollaborators) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post |
 | [**ListInstagramStories**](InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
 | [**SearchInstagramAudio**](InstagramApi.md#searchinstagramaudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
@@ -428,6 +429,109 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **502** | Instagram rejected the request. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listinstagramlivemedia"></a>
+# **ListInstagramLiveMedia**
+> ListInstagramLiveMedia200Response ListInstagramLiveMedia (string accountId)
+
+List the live broadcasts of an Instagram account
+
+Returns the live videos the connected Instagram account is broadcasting right now. Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error). Pair the returned `id` with comments flagged as live (the live_comments webhook field) or with a `live_comment` comment automation.  Requires an Instagram account connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (`instagram_live_media_requires_facebook_login`) and must be reconnected choosing the Facebook option. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListInstagramLiveMediaExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InstagramApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Instagram account (Facebook Login).
+
+            try
+            {
+                // List the live broadcasts of an Instagram account
+                ListInstagramLiveMedia200Response result = apiInstance.ListInstagramLiveMedia(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling InstagramApi.ListInstagramLiveMedia: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListInstagramLiveMediaWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the live broadcasts of an Instagram account
+    ApiResponse<ListInstagramLiveMedia200Response> response = apiInstance.ListInstagramLiveMediaWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling InstagramApi.ListInstagramLiveMediaWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Instagram account (Facebook Login). |  |
+
+### Return type
+
+[**ListInstagramLiveMedia200Response**](ListInstagramLiveMedia200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Live broadcasts in progress |  -  |
+| **400** | Invalid accountId, an account on another platform (&#x60;platform_not_supported&#x60;) or an account connected with Instagram Login (&#x60;instagram_live_media_requires_facebook_login&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1399,6 +1399,7 @@ docs/InstagramBusinessDiscoveryMediaInnerChildrenInner.md
 docs/InstagramBusinessDiscoveryProfile.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
+docs/InstagramLiveMedia.md
 docs/InstagramMediaCollaborator.md
 docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
@@ -1632,6 +1633,7 @@ docs/ListInboxReviews200ResponseDataInnerPhotosInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
+docs/ListInstagramLiveMedia200Response.md
 docs/ListInstagramMediaCollaborators200Response.md
 docs/ListInstagramPages200Response.md
 docs/ListInstagramPages200ResponsePagesInner.md
@@ -4288,6 +4290,7 @@ src/Zernio.Test/Model/InstagramBusinessDiscoveryProfileTests.cs
 src/Zernio.Test/Model/InstagramBusinessDiscoveryTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseDemographicsValueInnerTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseTests.cs
+src/Zernio.Test/Model/InstagramLiveMediaTests.cs
 src/Zernio.Test/Model/InstagramMediaCollaboratorTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
@@ -4518,6 +4521,7 @@ src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerReviewerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseTests.cs
+src/Zernio.Test/Model/ListInstagramLiveMedia200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramMediaCollaborators200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccountTests.cs
 src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerTests.cs
@@ -7156,6 +7160,7 @@ src/Zernio/Model/InstagramBusinessDiscoveryMediaInnerChildrenInner.cs
 src/Zernio/Model/InstagramBusinessDiscoveryProfile.cs
 src/Zernio/Model/InstagramDemographicsResponse.cs
 src/Zernio/Model/InstagramDemographicsResponseDemographicsValueInner.cs
+src/Zernio/Model/InstagramLiveMedia.cs
 src/Zernio/Model/InstagramMediaCollaborator.cs
 src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
@@ -7386,6 +7391,7 @@ src/Zernio/Model/ListInboxReviews200ResponseDataInnerPhotosInner.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReply.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReviewer.cs
 src/Zernio/Model/ListInboxReviews200ResponseSummary.cs
+src/Zernio/Model/ListInstagramLiveMedia200Response.cs
 src/Zernio/Model/ListInstagramMediaCollaborators200Response.cs
 src/Zernio/Model/ListInstagramPages200Response.cs
 src/Zernio/Model/ListInstagramPages200ResponsePagesInner.cs
