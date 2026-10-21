@@ -2777,7 +2777,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Account ID. Sibling-expanded to its linked posting↔ads pair.
+            var accountId = "accountId_example";  // string | Account ID. Sibling-expanded to its linked posting↔ads pair. An id that does not exist or sits on a profile the API key cannot reach answers 404 (code: account_not_found).
             var adAccountId = "adAccountId_example";  // string? | Optional platform-native ad account ID (e.g. Meta `act_…`, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don't carry this column; the recurring 7-day re-sync repopulates them naturally. (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional) 
@@ -2824,7 +2824,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Account ID. Sibling-expanded to its linked posting↔ads pair. |  |
+| **accountId** | **string** | Account ID. Sibling-expanded to its linked posting↔ads pair. An id that does not exist or sits on a profile the API key cannot reach answers 404 (code: account_not_found). |  |
 | **adAccountId** | **string?** | Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. | [optional]  |
 | **fromDate** | **DateOnly?** | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional]  |
@@ -2852,6 +2852,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
