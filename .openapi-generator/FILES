@@ -2187,6 +2187,7 @@ docs/SendSms200Response.md
 docs/SendSmsRequest.md
 docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppConversion200Response.md
+docs/SendWhatsAppConversion200ResponseFailuresInner.md
 docs/SendWhatsAppConversionRequest.md
 docs/SendWhatsAppFlowMessage200Response.md
 docs/SendWhatsAppFlowMessageRequest.md
@@ -5058,6 +5059,7 @@ src/Zernio.Test/Model/SendRcsMessageRequestTests.cs
 src/Zernio.Test/Model/SendSms200ResponseTests.cs
 src/Zernio.Test/Model/SendSmsRequestTests.cs
 src/Zernio.Test/Model/SendTypingIndicatorRequestTests.cs
+src/Zernio.Test/Model/SendWhatsAppConversion200ResponseFailuresInnerTests.cs
 src/Zernio.Test/Model/SendWhatsAppConversion200ResponseTests.cs
 src/Zernio.Test/Model/SendWhatsAppConversionRequestTests.cs
 src/Zernio.Test/Model/SendWhatsAppFlowMessage200ResponseTests.cs
@@ -7929,6 +7931,7 @@ src/Zernio/Model/SendSms200Response.cs
 src/Zernio/Model/SendSmsRequest.cs
 src/Zernio/Model/SendTypingIndicatorRequest.cs
 src/Zernio/Model/SendWhatsAppConversion200Response.cs
+src/Zernio/Model/SendWhatsAppConversion200ResponseFailuresInner.cs
 src/Zernio/Model/SendWhatsAppConversionRequest.cs
 src/Zernio/Model/SendWhatsAppFlowMessage200Response.cs
 src/Zernio/Model/SendWhatsAppFlowMessageRequest.cs
