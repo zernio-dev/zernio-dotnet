@@ -1405,6 +1405,7 @@ docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
+docs/InstagramTaggedMedia.md
 docs/InstallTrackingTagOnStore200Response.md
 docs/InstallTrackingTagOnStore200ResponseInstall.md
 docs/InstallTrackingTagOnStore422Response.md
@@ -1640,6 +1641,7 @@ docs/ListInstagramPages200ResponsePagesInner.md
 docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md
 docs/ListInstagramStories200Response.md
 docs/ListInstagramStories200ResponseDataInner.md
+docs/ListInstagramTaggedMedia200Response.md
 docs/ListLeadForms200Response.md
 docs/ListLeads200Response.md
 docs/ListLeads200ResponseLeadsInner.md
@@ -4297,6 +4299,7 @@ src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
+src/Zernio.Test/Model/InstagramTaggedMediaTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseInstallTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore422ResponseDetailsTests.cs
@@ -4529,6 +4532,7 @@ src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListInstagramPages200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseTests.cs
+src/Zernio.Test/Model/ListInstagramTaggedMedia200ResponseTests.cs
 src/Zernio.Test/Model/ListLeadForms200ResponseTests.cs
 src/Zernio.Test/Model/ListLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListLeads200ResponseMetaTests.cs
@@ -7168,6 +7172,7 @@ src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
+src/Zernio/Model/InstagramTaggedMedia.cs
 src/Zernio/Model/InstallTrackingTagOnStore200Response.cs
 src/Zernio/Model/InstallTrackingTagOnStore200ResponseInstall.cs
 src/Zernio/Model/InstallTrackingTagOnStore422Response.cs
@@ -7400,6 +7405,7 @@ src/Zernio/Model/ListInstagramPages200ResponsePagesInner.cs
 src/Zernio/Model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.cs
 src/Zernio/Model/ListInstagramStories200Response.cs
 src/Zernio/Model/ListInstagramStories200ResponseDataInner.cs
+src/Zernio/Model/ListInstagramTaggedMedia200Response.cs
 src/Zernio/Model/ListLeadForms200Response.cs
 src/Zernio/Model/ListLeads200Response.cs
 src/Zernio/Model/ListLeads200ResponseLeadsInner.cs
