@@ -1288,6 +1288,7 @@ docs/GoogleAdsHierarchyClient.md
 docs/GoogleAdsManagerLink.md
 docs/GoogleAdsUserAccessInvitation.md
 docs/GoogleAdsUserAccessInvitationResult.md
+docs/GoogleAdsUserInvitationApproval.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
@@ -1461,6 +1462,7 @@ docs/ListAccountSitelinks200Response.md
 docs/ListAccountSitelinks200ResponseSitelinksInner.md
 docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
+docs/ListAdAccountUserInvitationApprovals200Response.md
 docs/ListAdAccountUserInvitations200Response.md
 docs/ListAdAccountUsers200Response.md
 docs/ListAdAccounts200Response.md
@@ -2802,6 +2804,7 @@ docs/WhatsAppTemplateLookupErrorDetailsProviderHeaders.md
 docs/WhatsAppTemplateLookupErrorPlatformError.md
 docs/WhatsAppTemplateLookupErrorPlatformErrorErrorData.md
 docs/WhatsAppTemplatesApi.md
+docs/WithdrawAdAccountUserInvitationApproval200Response.md
 docs/WorkflowEdge.md
 docs/WorkflowExecutionEvent.md
 docs/WorkflowNode.md
@@ -4177,6 +4180,7 @@ src/Zernio.Test/Model/GoogleAdsHierarchyClientTests.cs
 src/Zernio.Test/Model/GoogleAdsManagerLinkTests.cs
 src/Zernio.Test/Model/GoogleAdsUserAccessInvitationResultTests.cs
 src/Zernio.Test/Model/GoogleAdsUserAccessInvitationTests.cs
+src/Zernio.Test/Model/GoogleAdsUserInvitationApprovalTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetLinkTests.cs
 src/Zernio.Test/Model/GoogleAssetGroupAssetUnlinkTests.cs
 src/Zernio.Test/Model/GoogleAssetUpdateTests.cs
@@ -4344,6 +4348,7 @@ src/Zernio.Test/Model/ListAccountSitelinks200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListAccountSitelinks200ResponseTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseTests.cs
+src/Zernio.Test/Model/ListAdAccountUserInvitationApprovals200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccountUserInvitations200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccountUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerFundingSourceDetailsTests.cs
@@ -5650,6 +5655,7 @@ src/Zernio.Test/Model/WhatsAppTemplateLookupErrorDetailsTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateLookupErrorPlatformErrorErrorDataTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateLookupErrorPlatformErrorTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateLookupErrorTests.cs
+src/Zernio.Test/Model/WithdrawAdAccountUserInvitationApproval200ResponseTests.cs
 src/Zernio.Test/Model/WorkflowEdgeTests.cs
 src/Zernio.Test/Model/WorkflowExecutionEventTests.cs
 src/Zernio.Test/Model/WorkflowNodePositionTests.cs
@@ -7042,6 +7048,7 @@ src/Zernio/Model/GoogleAdsHierarchyClient.cs
 src/Zernio/Model/GoogleAdsManagerLink.cs
 src/Zernio/Model/GoogleAdsUserAccessInvitation.cs
 src/Zernio/Model/GoogleAdsUserAccessInvitationResult.cs
+src/Zernio/Model/GoogleAdsUserInvitationApproval.cs
 src/Zernio/Model/GoogleAssetGroupAssetLink.cs
 src/Zernio/Model/GoogleAssetGroupAssetUnlink.cs
 src/Zernio/Model/GoogleAssetUpdate.cs
@@ -7209,6 +7216,7 @@ src/Zernio/Model/ListAccountSitelinks200Response.cs
 src/Zernio/Model/ListAccountSitelinks200ResponseSitelinksInner.cs
 src/Zernio/Model/ListAccountStructuredSnippets200Response.cs
 src/Zernio/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.cs
+src/Zernio/Model/ListAdAccountUserInvitationApprovals200Response.cs
 src/Zernio/Model/ListAdAccountUserInvitations200Response.cs
 src/Zernio/Model/ListAdAccountUsers200Response.cs
 src/Zernio/Model/ListAdAccounts200Response.cs
@@ -8515,6 +8523,7 @@ src/Zernio/Model/WhatsAppTemplateLookupErrorDetails.cs
 src/Zernio/Model/WhatsAppTemplateLookupErrorDetailsProviderHeaders.cs
 src/Zernio/Model/WhatsAppTemplateLookupErrorPlatformError.cs
 src/Zernio/Model/WhatsAppTemplateLookupErrorPlatformErrorErrorData.cs
+src/Zernio/Model/WithdrawAdAccountUserInvitationApproval200Response.cs
 src/Zernio/Model/WorkflowEdge.cs
 src/Zernio/Model/WorkflowExecutionEvent.cs
 src/Zernio/Model/WorkflowNode.cs

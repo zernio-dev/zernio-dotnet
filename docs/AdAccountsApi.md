@@ -36,6 +36,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAccountCallouts**](AdAccountsApi.md#listaccountcallouts) | **GET** /v1/ads/accounts/callouts | List account callouts |
 | [**ListAccountSitelinks**](AdAccountsApi.md#listaccountsitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
 | [**ListAccountStructuredSnippets**](AdAccountsApi.md#listaccountstructuredsnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
+| [**ListAdAccountUserInvitationApprovals**](AdAccountsApi.md#listadaccountuserinvitationapprovals) | **GET** /v1/ads/accounts/user-invitations/pending-approvals | List invitations awaiting multi-party approval |
 | [**ListAdAccountUserInvitations**](AdAccountsApi.md#listadaccountuserinvitations) | **GET** /v1/ads/accounts/user-invitations | List user access invitations |
 | [**ListAdAccountUsers**](AdAccountsApi.md#listadaccountusers) | **GET** /v1/ads/accounts/users | Ad account users |
 | [**ListAdAccounts**](AdAccountsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
@@ -70,6 +71,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateAdLabel**](AdAccountsApi.md#updateadlabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
 | [**UpdateAdNegativeKeywordList**](AdAccountsApi.md#updateadnegativekeywordlist) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**UpdateValueRuleSet**](AdAccountsApi.md#updatevalueruleset) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
+| [**WithdrawAdAccountUserInvitationApproval**](AdAccountsApi.md#withdrawadaccountuserinvitationapproval) | **DELETE** /v1/ads/accounts/user-invitations/pending-approvals | Withdraw an invitation awaiting multi-party approval |
 
 <a id="addaccountcallouts"></a>
 # **AddAccountCallouts**
@@ -3099,7 +3101,7 @@ catch (ApiException e)
 
 Invite a user to an ad account by email
 
-Emails someone an invitation to a Google Ads account with the access role you choose, for example to hand a client account you created under your manager to its owner.  Creates a user access invitation (Google's CustomerUserAccessInvitationService) on `adAccountId`. The connection's Google user needs admin access to that account, directly or through a manager above it, which is the case for an account created with POST /v1/ads/accounts. The recipient accepts from the email, possibly with another Google account. When Google requires multi-party approval, nothing is sent until a second admin of the account approves the request in Google Ads: the response then has `status: PENDING_APPROVAL` and a `multiPartyAuthReviewId` instead of an `invitationId`. Not idempotent: Google refuses a second invitation while the email has one pending or awaiting approval. Google has no server-side check for this call, so `validateOnly: true` reads the account's invitations with the same credentials (proving the account is reachable) and fails if the email already has a pending one, without sending anything.
+Emails someone an invitation to a Google Ads account with the access role you choose, for example to hand a client account you created under your manager to its owner.  Creates a user access invitation (Google's CustomerUserAccessInvitationService) on `adAccountId`. The connection's Google user needs admin access to that account, directly or through a manager above it, which is the case for an account created with POST /v1/ads/accounts. The recipient accepts from the email, possibly with another Google account. When Google requires multi-party approval, nothing is sent until a second admin of the account approves the request in Google Ads: the response then has `status: PENDING_APPROVAL` and a `multiPartyAuthReviewId` instead of an `invitationId`, which DELETE /v1/ads/accounts/user-invitations/pending-approvals withdraws. Not idempotent: Google refuses a second invitation while the email has one pending or awaiting approval. Google has no server-side check for this call, so `validateOnly: true` reads the account's invitations with the same credentials (proving the account is reachable) and fails if the email already has a pending one, without sending anything.
 
 ### Example
 ```csharp
@@ -3526,13 +3528,120 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listadaccountuserinvitationapprovals"></a>
+# **ListAdAccountUserInvitationApprovals**
+> ListAdAccountUserInvitationApprovals200Response ListAdAccountUserInvitationApprovals (string accountId, string? adAccountId = null)
+
+List invitations awaiting multi-party approval
+
+Lists the email invitations to a Google Ads account that Google is holding until a second admin approves them.  When Google requires multi-party approval, POST /v1/ads/accounts/user-invitations answers `status: PENDING_APPROVAL` and sends nothing. Those requests are not in GET /v1/ads/accounts/user-invitations; this reads Google's `multi_party_auth_review` resource for the ones still `PENDING` that target an invitation. Approved, rejected, revoked and expired reviews are not listed. Results are cached for 10 minutes and dropped on every invite or withdrawal through Zernio, but an approval or rejection made in Google Ads can take that long to show.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdAccountUserInvitationApprovalsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var adAccountId = "adAccountId_example";  // string? | Google Ads customer id, digits only. Defaults to the connection's selected customer. (optional) 
+
+            try
+            {
+                // List invitations awaiting multi-party approval
+                ListAdAccountUserInvitationApprovals200Response result = apiInstance.ListAdAccountUserInvitationApprovals(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.ListAdAccountUserInvitationApprovals: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdAccountUserInvitationApprovalsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List invitations awaiting multi-party approval
+    ApiResponse<ListAdAccountUserInvitationApprovals200Response> response = apiInstance.ListAdAccountUserInvitationApprovalsWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.ListAdAccountUserInvitationApprovalsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **adAccountId** | **string?** | Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. | [optional]  |
+
+### Return type
+
+[**ListAdAccountUserInvitationApprovals200Response**](ListAdAccountUserInvitationApprovals200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invitations awaiting approval on the customer |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadaccountuserinvitations"></a>
 # **ListAdAccountUserInvitations**
 > ListAdAccountUserInvitations200Response ListAdAccountUserInvitations (string accountId, string? adAccountId = null)
 
 List user access invitations
 
-Lists the email invitations to a Google Ads account, with their role and status.  Reads Google's `customer_user_access_invitation` resource for one customer: invitations that are `PENDING`, `DECLINED` or `EXPIRED` (Google expires them 20 days after sending). An accepted invitation becomes a user of the account and leaves this list, which can take Google up to 24 hours. An invitation still waiting for multi-party approval is not listed until a second admin approves it. Results are cached for 10 minutes and dropped on every invite or revoke through Zernio.
+Lists the email invitations to a Google Ads account, with their role and status.  Reads Google's `customer_user_access_invitation` resource for one customer: invitations that are `PENDING`, `DECLINED` or `EXPIRED` (Google expires them 20 days after sending). An accepted invitation becomes a user of the account and leaves this list, which can take Google up to 24 hours. An invitation still waiting for multi-party approval is not listed until a second admin approves it; GET /v1/ads/accounts/user-invitations/pending-approvals lists those. Results are cached for 10 minutes and dropped on every invite or revoke through Zernio.
 
 ### Example
 ```csharp
@@ -7204,6 +7313,115 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="withdrawadaccountuserinvitationapproval"></a>
+# **WithdrawAdAccountUserInvitationApproval**
+> WithdrawAdAccountUserInvitationApproval200Response WithdrawAdAccountUserInvitationApproval (string accountId, string adAccountId, string multiPartyAuthReviewId)
+
+Withdraw an invitation awaiting multi-party approval
+
+Cancels an email invitation that Google is still holding for a second admin's approval, so the same address can be invited again right away.  Resolves the review `multiPartyAuthReviewId` (from POST /v1/ads/accounts/user-invitations or GET on this path) to `REVOKED` through Google's MultiPartyAuthReviewService. Only the Google user who sent the invitation can withdraw it, and only while no admin has approved or rejected it; otherwise Google refuses and this returns a 400. Without a withdrawal, Google refuses a new invitation to the address until the review is resolved or expires.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class WithdrawAdAccountUserInvitationApprovalExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Google ads SocialAccount id.
+            var adAccountId = "adAccountId_example";  // string | Google Ads customer id, digits only.
+            var multiPartyAuthReviewId = "multiPartyAuthReviewId_example";  // string | Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals.
+
+            try
+            {
+                // Withdraw an invitation awaiting multi-party approval
+                WithdrawAdAccountUserInvitationApproval200Response result = apiInstance.WithdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.WithdrawAdAccountUserInvitationApproval: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the WithdrawAdAccountUserInvitationApprovalWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Withdraw an invitation awaiting multi-party approval
+    ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> response = apiInstance.WithdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.WithdrawAdAccountUserInvitationApprovalWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Google ads SocialAccount id. |  |
+| **adAccountId** | **string** | Google Ads customer id, digits only. |  |
+| **multiPartyAuthReviewId** | **string** | Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals. |  |
+
+### Return type
+
+[**WithdrawAdAccountUserInvitationApproval200Response**](WithdrawAdAccountUserInvitationApproval200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Approval request withdrawn |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
