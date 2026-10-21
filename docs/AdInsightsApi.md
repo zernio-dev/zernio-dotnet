@@ -336,7 +336,7 @@ catch (ApiException e)
 
 Get ad analytics
 
-Returns one ad's performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.  Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+Returns one ad's performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.  Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics. `summary` and `daily` come from those synced metrics, so they hold no data for days before that. Breakdowns are read live from the platform over the requested range, so they are not limited by the import. When the ad belongs to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return `202`. 
 
 ### Example
 ```csharp
@@ -431,7 +431,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -676,7 +676,7 @@ catch (ApiException e)
 
 Get campaign analytics
 
-Returns a campaign's performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.  Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign's ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads. `campaignId` is the platform campaign id; pass `platform` when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Google adds searchImpressionShare, searchBudgetLostImpressionShare, searchRankLostImpressionShare, searchTopImpressionShare and searchAbsoluteTopImpressionShare under analytics.summary for the requested inclusive range. These ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics. 
+Returns a campaign's performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.  Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign's ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads. `campaignId` is the platform campaign id; pass `platform` when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics. `summary` and `daily` come from those synced metrics, so they hold no data for days before that. Breakdowns and Google's impression share are read live from the platform over the requested range, so they are not limited by the import. When the campaign belongs to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return `202`.  Google adds searchImpressionShare, searchBudgetLostImpressionShare, searchRankLostImpressionShare, searchTopImpressionShare and searchAbsoluteTopImpressionShare under analytics.summary for the requested inclusive range. These ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics. 
 
 ### Example
 ```csharp
@@ -773,7 +773,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign analytics |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |

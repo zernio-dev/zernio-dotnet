@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BackfillPending** | **bool** | Present and true while historical data is being backfilled. | [optional] 
+**BackfillPending** | **bool** | Meta only. Present and true while historical data is being backfilled. | [optional] 
 **Ad** | [**AdAnalyticsResponseAd**](AdAnalyticsResponseAd.md) |  | [optional] 
 **Analytics** | [**AdAnalyticsResponseAnalytics**](AdAnalyticsResponseAnalytics.md) |  | [optional] 
 
