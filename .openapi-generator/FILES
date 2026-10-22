@@ -1892,6 +1892,8 @@ docs/PreflightSmsRegistration200Response.md
 docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
 docs/PreflightSmsRegistration200ResponseComposed.md
 docs/PreflightSmsRegistrationRequest.md
+docs/PrepareMedia200Response.md
+docs/PrepareMediaRequest.md
 docs/Product.md
 docs/ProductCatalogsApi.md
 docs/ProductImage.md
@@ -4799,6 +4801,8 @@ src/Zernio.Test/Model/PreflightSmsRegistration200ResponseAdvisoriesInnerTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseComposedTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/PreflightSmsRegistrationRequestTests.cs
+src/Zernio.Test/Model/PrepareMedia200ResponseTests.cs
+src/Zernio.Test/Model/PrepareMediaRequestTests.cs
 src/Zernio.Test/Model/ProductImageTests.cs
 src/Zernio.Test/Model/ProductOptionsInnerTests.cs
 src/Zernio.Test/Model/ProductSeoTests.cs
@@ -7695,6 +7699,8 @@ src/Zernio/Model/PreflightSmsRegistration200Response.cs
 src/Zernio/Model/PreflightSmsRegistration200ResponseAdvisoriesInner.cs
 src/Zernio/Model/PreflightSmsRegistration200ResponseComposed.cs
 src/Zernio/Model/PreflightSmsRegistrationRequest.cs
+src/Zernio/Model/PrepareMedia200Response.cs
+src/Zernio/Model/PrepareMediaRequest.cs
 src/Zernio/Model/Product.cs
 src/Zernio/Model/ProductImage.cs
 src/Zernio/Model/ProductOptionsInner.cs
