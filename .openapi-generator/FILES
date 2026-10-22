@@ -1222,6 +1222,7 @@ docs/GetValueRuleSet200Response.md
 docs/GetVoiceCall200Response.md
 docs/GetVoiceCallEstimate200Response.md
 docs/GetVoiceCallEstimate200ResponseBreakdown.md
+docs/GetWebflowConnectUrl200Response.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
@@ -4140,6 +4141,7 @@ src/Zernio.Test/Model/GetValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/GetVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseBreakdownTests.cs
 src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseTests.cs
+src/Zernio.Test/Model/GetWebflowConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
@@ -7034,6 +7036,7 @@ src/Zernio/Model/GetValueRuleSet200Response.cs
 src/Zernio/Model/GetVoiceCall200Response.cs
 src/Zernio/Model/GetVoiceCallEstimate200Response.cs
 src/Zernio/Model/GetVoiceCallEstimate200ResponseBreakdown.cs
+src/Zernio/Model/GetWebflowConnectUrl200Response.cs
 src/Zernio/Model/GetWebhookLogs200Response.cs
 src/Zernio/Model/GetWebhookLogs200ResponsePagination.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
