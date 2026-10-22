@@ -354,6 +354,7 @@ docs/CommerceMetaobjectDefinitionFieldsInner.md
 docs/CommerceMetaobjectFieldsInner.md
 docs/CommerceMoney.md
 docs/CommerceOrder.md
+docs/CommerceOrderAttribution.md
 docs/CommerceOrderChargeLine.md
 docs/CommerceOrderCustomer.md
 docs/CommerceOrderFulfillmentsInner.md
@@ -361,6 +362,8 @@ docs/CommerceOrderLineItemsInner.md
 docs/CommerceOrderRefundsInner.md
 docs/CommerceOrderRefundsInnerLineItemsInner.md
 docs/CommerceOrderStatus.md
+docs/CommerceOrderVisit.md
+docs/CommerceOrderVisitUtm.md
 docs/CommercePage.md
 docs/CommercePriceList.md
 docs/CommerceProduct.md
@@ -3297,6 +3300,7 @@ src/Zernio.Test/Model/CommerceMetaobjectDefinitionTests.cs
 src/Zernio.Test/Model/CommerceMetaobjectFieldsInnerTests.cs
 src/Zernio.Test/Model/CommerceMetaobjectTests.cs
 src/Zernio.Test/Model/CommerceMoneyTests.cs
+src/Zernio.Test/Model/CommerceOrderAttributionTests.cs
 src/Zernio.Test/Model/CommerceOrderChargeLineTests.cs
 src/Zernio.Test/Model/CommerceOrderCustomerTests.cs
 src/Zernio.Test/Model/CommerceOrderFulfillmentsInnerTests.cs
@@ -3305,6 +3309,8 @@ src/Zernio.Test/Model/CommerceOrderRefundsInnerLineItemsInnerTests.cs
 src/Zernio.Test/Model/CommerceOrderRefundsInnerTests.cs
 src/Zernio.Test/Model/CommerceOrderStatusTests.cs
 src/Zernio.Test/Model/CommerceOrderTests.cs
+src/Zernio.Test/Model/CommerceOrderVisitTests.cs
+src/Zernio.Test/Model/CommerceOrderVisitUtmTests.cs
 src/Zernio.Test/Model/CommercePageTests.cs
 src/Zernio.Test/Model/CommercePriceListTests.cs
 src/Zernio.Test/Model/CommerceProductStatusTests.cs
@@ -6203,6 +6209,7 @@ src/Zernio/Model/CommerceMetaobjectDefinitionFieldsInner.cs
 src/Zernio/Model/CommerceMetaobjectFieldsInner.cs
 src/Zernio/Model/CommerceMoney.cs
 src/Zernio/Model/CommerceOrder.cs
+src/Zernio/Model/CommerceOrderAttribution.cs
 src/Zernio/Model/CommerceOrderChargeLine.cs
 src/Zernio/Model/CommerceOrderCustomer.cs
 src/Zernio/Model/CommerceOrderFulfillmentsInner.cs
@@ -6210,6 +6217,8 @@ src/Zernio/Model/CommerceOrderLineItemsInner.cs
 src/Zernio/Model/CommerceOrderRefundsInner.cs
 src/Zernio/Model/CommerceOrderRefundsInnerLineItemsInner.cs
 src/Zernio/Model/CommerceOrderStatus.cs
+src/Zernio/Model/CommerceOrderVisit.cs
+src/Zernio/Model/CommerceOrderVisitUtm.cs
 src/Zernio/Model/CommercePage.cs
 src/Zernio/Model/CommercePriceList.cs
 src/Zernio/Model/CommerceProduct.cs

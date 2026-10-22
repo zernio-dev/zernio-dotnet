@@ -155,6 +155,7 @@ namespace Zernio.Model
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="shippingAddress">shippingAddress.</param>
         /// <param name="buyerNote">buyerNote.</param>
+        /// <param name="attribution">attribution.</param>
         /// <param name="lineItems">lineItems.</param>
         /// <param name="shippingLines">shippingLines.</param>
         /// <param name="feeLines">WooCommerce fees. Always empty on Shopify..</param>
@@ -162,7 +163,7 @@ namespace Zernio.Model
         /// <param name="refunds">refunds.</param>
         /// <param name="fulfillments">fulfillments.</param>
         /// <param name="platformData">Platform-only fields. Null when the platform has none..</param>
-        public CommerceOrder(string id = default, string accountId = default, PlatformEnum? platform = default, string number = default, CommerceOrderStatus? status = default, string platformStatus = default, PaymentStatusEnum? paymentStatus = default, string platformPaymentStatus = default, string currency = default, bool taxesIncluded = default, DateTime createdAt = default, DateTime updatedAt = default, DateTime? paidAt = default, DateTime? cancelledAt = default, string cancelReason = default, CommerceMoney subtotal = default, CommerceMoney discountTotal = default, CommerceMoney shippingTotal = default, CommerceMoney taxTotal = default, CommerceMoney total = default, CommerceMoney refundedTotal = default, List<string> discountCodes = default, List<string> paymentMethods = default, CommerceOrderCustomer customer = default, CommerceAddress billingAddress = default, CommerceAddress shippingAddress = default, string buyerNote = default, List<CommerceOrderLineItemsInner> lineItems = default, List<CommerceOrderChargeLine> shippingLines = default, List<CommerceOrderChargeLine> feeLines = default, List<CommerceTaxLine> taxLines = default, List<CommerceOrderRefundsInner> refunds = default, List<CommerceOrderFulfillmentsInner> fulfillments = default, Dictionary<string, Object> platformData = default)
+        public CommerceOrder(string id = default, string accountId = default, PlatformEnum? platform = default, string number = default, CommerceOrderStatus? status = default, string platformStatus = default, PaymentStatusEnum? paymentStatus = default, string platformPaymentStatus = default, string currency = default, bool taxesIncluded = default, DateTime createdAt = default, DateTime updatedAt = default, DateTime? paidAt = default, DateTime? cancelledAt = default, string cancelReason = default, CommerceMoney subtotal = default, CommerceMoney discountTotal = default, CommerceMoney shippingTotal = default, CommerceMoney taxTotal = default, CommerceMoney total = default, CommerceMoney refundedTotal = default, List<string> discountCodes = default, List<string> paymentMethods = default, CommerceOrderCustomer customer = default, CommerceAddress billingAddress = default, CommerceAddress shippingAddress = default, string buyerNote = default, CommerceOrderAttribution attribution = default, List<CommerceOrderLineItemsInner> lineItems = default, List<CommerceOrderChargeLine> shippingLines = default, List<CommerceOrderChargeLine> feeLines = default, List<CommerceTaxLine> taxLines = default, List<CommerceOrderRefundsInner> refunds = default, List<CommerceOrderFulfillmentsInner> fulfillments = default, Dictionary<string, Object> platformData = default)
         {
             this.Id = id;
             this.AccountId = accountId;
@@ -191,6 +192,7 @@ namespace Zernio.Model
             this.BillingAddress = billingAddress;
             this.ShippingAddress = shippingAddress;
             this.BuyerNote = buyerNote;
+            this.Attribution = attribution;
             this.LineItems = lineItems;
             this.ShippingLines = shippingLines;
             this.FeeLines = feeLines;
@@ -358,6 +360,12 @@ namespace Zernio.Model
         public string BuyerNote { get; set; }
 
         /// <summary>
+        /// Gets or Sets Attribution
+        /// </summary>
+        [DataMember(Name = "attribution", EmitDefaultValue = false)]
+        public CommerceOrderAttribution Attribution { get; set; }
+
+        /// <summary>
         /// Gets or Sets LineItems
         /// </summary>
         [DataMember(Name = "lineItems", EmitDefaultValue = false)]
@@ -437,6 +445,7 @@ namespace Zernio.Model
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
             sb.Append("  ShippingAddress: ").Append(ShippingAddress).Append("\n");
             sb.Append("  BuyerNote: ").Append(BuyerNote).Append("\n");
+            sb.Append("  Attribution: ").Append(Attribution).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  ShippingLines: ").Append(ShippingLines).Append("\n");
             sb.Append("  FeeLines: ").Append(FeeLines).Append("\n");

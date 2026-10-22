@@ -299,6 +299,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Attribution'
+        /// </summary>
+        [Fact]
+        public void AttributionTest()
+        {
+            // TODO unit test for the property 'Attribution'
+        }
+
+        /// <summary>
         /// Test the property 'LineItems'
         /// </summary>
         [Fact]

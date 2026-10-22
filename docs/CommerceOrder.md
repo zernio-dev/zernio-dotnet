@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **BillingAddress** | [**CommerceAddress**](CommerceAddress.md) |  | [optional] 
 **ShippingAddress** | [**CommerceAddress**](CommerceAddress.md) |  | [optional] 
 **BuyerNote** | **string** |  | [optional] 
+**Attribution** | [**CommerceOrderAttribution**](CommerceOrderAttribution.md) |  | [optional] 
 **LineItems** | [**List&lt;CommerceOrderLineItemsInner&gt;**](CommerceOrderLineItemsInner.md) |  | [optional] 
 **ShippingLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) |  | [optional] 
 **FeeLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) | WooCommerce fees. Always empty on Shopify. | [optional] 
