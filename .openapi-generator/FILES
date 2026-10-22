@@ -43,6 +43,7 @@ docs/AdInsightsApi.md
 docs/AdKeyword.md
 docs/AdKeywordMetrics.md
 docs/AdKeywordQuality.md
+docs/AdLead.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdNegativeKeywordList.md
@@ -1655,7 +1656,6 @@ docs/ListInstagramStories200ResponseDataInner.md
 docs/ListInstagramTaggedMedia200Response.md
 docs/ListLeadForms200Response.md
 docs/ListLeads200Response.md
-docs/ListLeads200ResponseLeadsInner.md
 docs/ListLeads200ResponseMeta.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
@@ -1797,6 +1797,8 @@ docs/MetaLeadFormLegalContent.md
 docs/MetaLeadFormLegalContentPrivacyPolicy.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
+docs/MetaLeadFormPlatformDataCustomDisclaimer.md
+docs/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInner.md
 docs/MetaLeadFormQuestionsInner.md
 docs/MetaLeadFormThankYouPage.md
 docs/MetaPageOwnership.md
@@ -2525,6 +2527,8 @@ docs/UpdateImessageSenderRequestContact.md
 docs/UpdateInboxConversation200Response.md
 docs/UpdateInboxConversation200ResponseData.md
 docs/UpdateInboxConversationRequest.md
+docs/UpdateLead200Response.md
+docs/UpdateLeadRequest.md
 docs/UpdateLinkedInOrganization200Response.md
 docs/UpdateLinkedInOrganizationRequest.md
 docs/UpdatePinterestBoardsRequest.md
@@ -2983,6 +2987,7 @@ src/Zernio.Test/Model/AdFunnelCountsTests.cs
 src/Zernio.Test/Model/AdKeywordMetricsTests.cs
 src/Zernio.Test/Model/AdKeywordQualityTests.cs
 src/Zernio.Test/Model/AdKeywordTests.cs
+src/Zernio.Test/Model/AdLeadTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
 src/Zernio.Test/Model/AdNegativeKeywordListKeywordTests.cs
 src/Zernio.Test/Model/AdNegativeKeywordListTests.cs
@@ -4562,7 +4567,6 @@ src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramTaggedMedia200ResponseTests.cs
 src/Zernio.Test/Model/ListLeadForms200ResponseTests.cs
-src/Zernio.Test/Model/ListLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListLeads200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListLeads200ResponseTests.cs
 src/Zernio.Test/Model/ListLinkedInOrganizations200ResponseOrganizationsInnerTests.cs
@@ -4698,6 +4702,8 @@ src/Zernio.Test/Model/MetaLeadFormContextCardTests.cs
 src/Zernio.Test/Model/MetaLeadFormLegalContentPrivacyPolicyTests.cs
 src/Zernio.Test/Model/MetaLeadFormLegalContentTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataContextCardTests.cs
+src/Zernio.Test/Model/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInnerTests.cs
+src/Zernio.Test/Model/MetaLeadFormPlatformDataCustomDisclaimerTests.cs
 src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MetaLeadFormQuestionsInnerTests.cs
 src/Zernio.Test/Model/MetaLeadFormTests.cs
@@ -5411,6 +5417,8 @@ src/Zernio.Test/Model/UpdateImessageSenderRequestTests.cs
 src/Zernio.Test/Model/UpdateInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/UpdateInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateInboxConversationRequestTests.cs
+src/Zernio.Test/Model/UpdateLead200ResponseTests.cs
+src/Zernio.Test/Model/UpdateLeadRequestTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganization200ResponseTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganizationRequestTests.cs
 src/Zernio.Test/Model/UpdatePinterestBoardsRequestTests.cs
@@ -5874,6 +5882,7 @@ src/Zernio/Model/AdFunnelCounts.cs
 src/Zernio/Model/AdKeyword.cs
 src/Zernio/Model/AdKeywordMetrics.cs
 src/Zernio/Model/AdKeywordQuality.cs
+src/Zernio/Model/AdLead.cs
 src/Zernio/Model/AdMetrics.cs
 src/Zernio/Model/AdNegativeKeywordList.cs
 src/Zernio/Model/AdNegativeKeywordListKeyword.cs
@@ -7453,7 +7462,6 @@ src/Zernio/Model/ListInstagramStories200ResponseDataInner.cs
 src/Zernio/Model/ListInstagramTaggedMedia200Response.cs
 src/Zernio/Model/ListLeadForms200Response.cs
 src/Zernio/Model/ListLeads200Response.cs
-src/Zernio/Model/ListLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListLeads200ResponseMeta.cs
 src/Zernio/Model/ListLinkedInOrganizations200Response.cs
 src/Zernio/Model/ListLinkedInOrganizations200ResponseOrganizationsInner.cs
@@ -7590,6 +7598,8 @@ src/Zernio/Model/MetaLeadFormLegalContent.cs
 src/Zernio/Model/MetaLeadFormLegalContentPrivacyPolicy.cs
 src/Zernio/Model/MetaLeadFormPlatformData.cs
 src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
+src/Zernio/Model/MetaLeadFormPlatformDataCustomDisclaimer.cs
+src/Zernio/Model/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInner.cs
 src/Zernio/Model/MetaLeadFormQuestionsInner.cs
 src/Zernio/Model/MetaLeadFormThankYouPage.cs
 src/Zernio/Model/MetaPageOwnership.cs
@@ -8301,6 +8311,8 @@ src/Zernio/Model/UpdateImessageSenderRequestContact.cs
 src/Zernio/Model/UpdateInboxConversation200Response.cs
 src/Zernio/Model/UpdateInboxConversation200ResponseData.cs
 src/Zernio/Model/UpdateInboxConversationRequest.cs
+src/Zernio/Model/UpdateLead200Response.cs
+src/Zernio/Model/UpdateLeadRequest.cs
 src/Zernio/Model/UpdateLinkedInOrganization200Response.cs
 src/Zernio/Model/UpdateLinkedInOrganizationRequest.cs
 src/Zernio/Model/UpdatePinterestBoardsRequest.cs

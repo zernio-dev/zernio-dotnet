@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | [optional] 
-**Leads** | [**List&lt;ListLeads200ResponseLeadsInner&gt;**](ListLeads200ResponseLeadsInner.md) |  | [optional] 
+**Leads** | [**List&lt;AdLead&gt;**](AdLead.md) |  | [optional] 
 **Pagination** | [**SearchTweets200ResponsePagination**](SearchTweets200ResponsePagination.md) |  | [optional] 
 **Meta** | [**ListLeads200ResponseMeta**](ListLeads200ResponseMeta.md) |  | [optional] 
 

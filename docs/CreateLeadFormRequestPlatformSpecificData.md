@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **BlockDisplayForNonTargetedViewer** | **bool** |  | [optional] 
 **QuestionPageCustomHeadline** | **string** |  | [optional] 
 **ContextCard** | [**MetaLeadFormPlatformDataContextCard**](MetaLeadFormPlatformDataContextCard.md) |  | [optional] 
+**CustomDisclaimer** | [**MetaLeadFormPlatformDataCustomDisclaimer**](MetaLeadFormPlatformDataCustomDisclaimer.md) |  | [optional] 
 **AdAccountId** | **string** | LinkedIn ad account id (resolves the owning organization). | 
 **Headline** | **string** |  | 
 **Description** | **string** |  | 

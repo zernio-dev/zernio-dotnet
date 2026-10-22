@@ -12,6 +12,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListFormLeads**](LeadGenApi.md#listformleads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form |
 | [**ListLeadForms**](LeadGenApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms |
 | [**ListLeads**](LeadGenApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads |
+| [**UpdateLead**](LeadGenApi.md#updatelead) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status |
 
 <a id="archiveleadform"></a>
 # **ArchiveLeadForm**
@@ -858,6 +859,110 @@ catch (ApiException e)
 | **403** | Ads add-on required. |  -  |
 | **502** | The platform returned a server error. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatelead"></a>
+# **UpdateLead**
+> UpdateLead200Response UpdateLead (string id, UpdateLeadRequest updateLeadRequest)
+
+Update a lead's status
+
+Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.  `{id}` is the Zernio lead id (`id` on `GET /v1/ads/leads`, `leadId` on `GET /v1/ads/lead-forms/{formId}/leads`) or the Meta `leadgenId` together with `accountId` in the body. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateLeadExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Zernio lead id, or the Meta leadgenId (then accountId is required).
+            var updateLeadRequest = new UpdateLeadRequest(); // UpdateLeadRequest | 
+
+            try
+            {
+                // Update a lead's status
+                UpdateLead200Response result = apiInstance.UpdateLead(id, updateLeadRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling LeadGenApi.UpdateLead: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateLeadWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a lead's status
+    ApiResponse<UpdateLead200Response> response = apiInstance.UpdateLeadWithHttpInfo(id, updateLeadRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LeadGenApi.UpdateLeadWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Zernio lead id, or the Meta leadgenId (then accountId is required). |  |
+| **updateLeadRequest** | [**UpdateLeadRequest**](UpdateLeadRequest.md) |  |  |
+
+### Return type
+
+[**UpdateLead200Response**](UpdateLead200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated lead. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+| **404** | Lead not found or not accessible. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

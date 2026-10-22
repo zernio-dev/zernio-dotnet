@@ -1,4 +1,4 @@
-# Zernio.Model.ListLeads200ResponseLeadsInner
+# Zernio.Model.AdLead
 
 ## Properties
 
@@ -16,6 +16,12 @@ Name | Type | Description | Notes
 **CreatedTime** | **string** | ISO 8601. | [optional] 
 **Fields** | **Dictionary&lt;string, string&gt;** | Question key → answer. On LinkedIn, the key is the lowercased predefinedField, else the question name, else the numeric questionId; multiple-choice values are option labels (unlike Meta, which returns the option key). | [optional] 
 **FieldData** | **List&lt;Object&gt;** | Raw Meta field_data. | [optional] 
+**Status** | **string** | Meta leads only. &#x60;contacted&#x60; is set when the first WhatsApp message of a lead_received workflow is delivered, &#x60;unreachable&#x60; when it fails or the phone number is not valid. | [optional] 
+**StatusChangedAt** | **DateTime?** |  | [optional] 
+**Value** | **decimal?** |  | [optional] 
+**Currency** | **string** |  | [optional] 
+**ContactId** | **string** | The contact a lead_received workflow created or matched for this lead. | [optional] 
+**FirstContactedAt** | **DateTime?** | When the first WhatsApp message to the lead was delivered. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
