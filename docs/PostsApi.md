@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetPost**](PostsApi.md#getpost) | **GET** /v1/posts/{postId} | Get post |
 | [**ListPosts**](PostsApi.md#listposts) | **GET** /v1/posts | List posts |
 | [**RetryPost**](PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post |
+| [**ReviewPost**](PostsApi.md#reviewpost) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
 | [**UnpublishPost**](PostsApi.md#unpublishpost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**UpdatePost**](PostsApi.md#updatepost) | **PUT** /v1/posts/{postId} | Update post |
 | [**UpdatePostMetadata**](PostsApi.md#updatepostmetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata |
@@ -782,6 +783,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="reviewpost"></a>
+# **ReviewPost**
+> PostGetResponse ReviewPost (string postId, ReviewPostRequest reviewPostRequest)
+
+Approve or reject a post
+
+Approves or rejects a post saved with `requiresApproval: true` (status `pending_approval`). `approve` schedules the post for its `scheduledFor` and fires the `post.scheduled` webhook. When that time has already passed, the post publishes within a couple of minutes. `reject` returns the post to `draft`. Returns 409 when the post is not `pending_approval`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReviewPostExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var reviewPostRequest = new ReviewPostRequest(); // ReviewPostRequest | 
+
+            try
+            {
+                // Approve or reject a post
+                PostGetResponse result = apiInstance.ReviewPost(postId, reviewPostRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PostsApi.ReviewPost: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReviewPostWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Approve or reject a post
+    ApiResponse<PostGetResponse> response = apiInstance.ReviewPostWithHttpInfo(postId, reviewPostRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PostsApi.ReviewPostWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **reviewPostRequest** | [**ReviewPostRequest**](ReviewPostRequest.md) |  |  |
+
+### Return type
+
+[**PostGetResponse**](PostGetResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The reviewed post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="unpublishpost"></a>
 # **UnpublishPost**
 > UnpublishPost200Response UnpublishPost (string postId, UnpublishPostRequest unpublishPostRequest)
@@ -990,7 +1096,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. |  -  |
+| **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. Also returned when requiresApproval is sent on a post that is not a draft (code: invalid_resource_state). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
