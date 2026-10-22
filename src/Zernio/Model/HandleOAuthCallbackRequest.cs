@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="HandleOAuthCallbackRequest" /> class.
         /// </summary>
         /// <param name="code">code (required).</param>
-        /// <param name="state">state (required).</param>
+        /// <param name="state">For twitter, the state X returned on the redirect (the same as the state query parameter of authUrl, ending in its -cv_ PKCE verifier suffix), signed and under 1 hour old. The state field of the GET JSON response does not carry the verifier. (required).</param>
         /// <param name="profileId">profileId (required).</param>
         public HandleOAuthCallbackRequest(string code = default, string state = default, string profileId = default)
         {
@@ -73,8 +73,9 @@ namespace Zernio.Model
         public string Code { get; set; }
 
         /// <summary>
-        /// Gets or Sets State
+        /// For twitter, the state X returned on the redirect (the same as the state query parameter of authUrl, ending in its -cv_ PKCE verifier suffix), signed and under 1 hour old. The state field of the GET JSON response does not carry the verifier.
         /// </summary>
+        /// <value>For twitter, the state X returned on the redirect (the same as the state query parameter of authUrl, ending in its -cv_ PKCE verifier suffix), signed and under 1 hour old. The state field of the GET JSON response does not carry the verifier.</value>
         [DataMember(Name = "state", IsRequired = true, EmitDefaultValue = true)]
         public string State { get; set; }
 
