@@ -1,5 +1,5 @@
-# Zernio.Model.WebhookPayloadAdReviewAccount
-The connected ads account that owns the ad.
+# Zernio.Model.WebhookAdsAccount
+The connected ads account the event belongs to.
 
 ## Properties
 

@@ -2680,6 +2680,7 @@ docs/VerifyWhatsAppNumberRequest.md
 docs/VoiceApi.md
 docs/VoteRedditThingRequest.md
 docs/Webhook.md
+docs/WebhookAdsAccount.md
 docs/WebhookAdsSyncAccount.md
 docs/WebhookAdsSyncAdAccount.md
 docs/WebhookEventsApi.md
@@ -2695,8 +2696,12 @@ docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
 docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
+docs/WebhookPayloadAdAccountStatusChanged.md
+docs/WebhookPayloadAdAccountStatusChangedAdAccount.md
+docs/WebhookPayloadAdAccountStatusChangedStatus.md
+docs/WebhookPayloadAdDeliveryIssue.md
+docs/WebhookPayloadAdDeliveryIssueIssue.md
 docs/WebhookPayloadAdReview.md
-docs/WebhookPayloadAdReviewAccount.md
 docs/WebhookPayloadAdReviewAdObject.md
 docs/WebhookPayloadAdReviewReview.md
 docs/WebhookPayloadAdReviewReviewReasonsInner.md
@@ -2721,6 +2726,9 @@ docs/WebhookPayloadCallPermissionRequest.md
 docs/WebhookPayloadCallPermissionRequestPermission.md
 docs/WebhookPayloadCallReceived.md
 docs/WebhookPayloadCallReceivedCall.md
+docs/WebhookPayloadCampaignBudgetDepleted.md
+docs/WebhookPayloadCampaignBudgetDepletedAdObject.md
+docs/WebhookPayloadCampaignBudgetDepletedBudget.md
 docs/WebhookPayloadComment.md
 docs/WebhookPayloadCommentAccount.md
 docs/WebhookPayloadCommentComment.md
@@ -5583,6 +5591,7 @@ src/Zernio.Test/Model/VerifyWhatsAppCallerIdRequestTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppNumber200ResponseTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppNumberRequestTests.cs
 src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
+src/Zernio.Test/Model/WebhookAdsAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAdAccountTests.cs
 src/Zernio.Test/Model/WebhookLogTests.cs
@@ -5597,7 +5606,11 @@ src/Zernio.Test/Model/WebhookPayloadAccountConnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountConnectedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedTests.cs
-src/Zernio.Test/Model/WebhookPayloadAdReviewAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedAdAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedStatusTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdDeliveryIssueIssueTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdDeliveryIssueTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewReviewReasonsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewReviewTests.cs
@@ -5623,6 +5636,9 @@ src/Zernio.Test/Model/WebhookPayloadCallPermissionRequestPermissionTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallPermissionRequestTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallReceivedCallTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallReceivedTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedAdObjectTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedBudgetTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAdTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAttachmentTests.cs
@@ -8497,6 +8513,7 @@ src/Zernio/Model/VerifyWhatsAppNumber200Response.cs
 src/Zernio/Model/VerifyWhatsAppNumberRequest.cs
 src/Zernio/Model/VoteRedditThingRequest.cs
 src/Zernio/Model/Webhook.cs
+src/Zernio/Model/WebhookAdsAccount.cs
 src/Zernio/Model/WebhookAdsSyncAccount.cs
 src/Zernio/Model/WebhookAdsSyncAdAccount.cs
 src/Zernio/Model/WebhookLog.cs
@@ -8511,8 +8528,12 @@ src/Zernio/Model/WebhookPayloadAccountConnected.cs
 src/Zernio/Model/WebhookPayloadAccountConnectedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnected.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnectedAccount.cs
+src/Zernio/Model/WebhookPayloadAdAccountStatusChanged.cs
+src/Zernio/Model/WebhookPayloadAdAccountStatusChangedAdAccount.cs
+src/Zernio/Model/WebhookPayloadAdAccountStatusChangedStatus.cs
+src/Zernio/Model/WebhookPayloadAdDeliveryIssue.cs
+src/Zernio/Model/WebhookPayloadAdDeliveryIssueIssue.cs
 src/Zernio/Model/WebhookPayloadAdReview.cs
-src/Zernio/Model/WebhookPayloadAdReviewAccount.cs
 src/Zernio/Model/WebhookPayloadAdReviewAdObject.cs
 src/Zernio/Model/WebhookPayloadAdReviewReview.cs
 src/Zernio/Model/WebhookPayloadAdReviewReviewReasonsInner.cs
@@ -8537,6 +8558,9 @@ src/Zernio/Model/WebhookPayloadCallPermissionRequest.cs
 src/Zernio/Model/WebhookPayloadCallPermissionRequestPermission.cs
 src/Zernio/Model/WebhookPayloadCallReceived.cs
 src/Zernio/Model/WebhookPayloadCallReceivedCall.cs
+src/Zernio/Model/WebhookPayloadCampaignBudgetDepleted.cs
+src/Zernio/Model/WebhookPayloadCampaignBudgetDepletedAdObject.cs
+src/Zernio/Model/WebhookPayloadCampaignBudgetDepletedBudget.cs
 src/Zernio/Model/WebhookPayloadComment.cs
 src/Zernio/Model/WebhookPayloadCommentAccount.cs
 src/Zernio/Model/WebhookPayloadCommentComment.cs
