@@ -1201,8 +1201,6 @@ docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md
 docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md
 docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
 docs/GetTikTokSmartPlusAdReview200Response.md
-docs/GetTikTokSmartPlusAdReview200ResponseMaterialsInner.md
-docs/GetTikTokSmartPlusAdReview200ResponseReview.md
 docs/GetTikTokSmartPlusMaterialReport200Response.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
@@ -1728,6 +1726,10 @@ docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md
 docs/ListTikTokCommercialMusic200Response.md
 docs/ListTikTokCommercialMusic200ResponseTracksInner.md
 docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md
+docs/ListTikTokSmartPlusReviews200Response.md
+docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.md
+docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.md
+docs/ListTikTokSmartPlusReviews200ResponseItemsInner.md
 docs/ListTrackingTagEvents200Response.md
 docs/ListTrackingTagPartners200Response.md
 docs/ListTrackingTagSharedAccounts200Response.md
@@ -2312,6 +2314,8 @@ docs/TikTokPlatformData.md
 docs/TikTokPlatformDataMusicSoundInfo.md
 docs/TikTokReviewRejection.md
 docs/TikTokReviewRejectionContent.md
+docs/TikTokSmartPlusAdLevelReview.md
+docs/TikTokSmartPlusMaterialReview.md
 docs/TikTokSmartPlusReviewStatus.md
 docs/ToolsApi.md
 docs/TrackingTag.md
@@ -4125,8 +4129,6 @@ src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSet
 src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponsePostingLimitsTests.cs
 src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInnerTests.cs
 src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponseTests.cs
-src/Zernio.Test/Model/GetTikTokSmartPlusAdReview200ResponseMaterialsInnerTests.cs
-src/Zernio.Test/Model/GetTikTokSmartPlusAdReview200ResponseReviewTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusAdReview200ResponseTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetricsTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerTests.cs
@@ -4647,6 +4649,10 @@ src/Zernio.Test/Model/ListTikTokAdPixels200ResponseTests.cs
 src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTests.cs
 src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTracksInnerClipTests.cs
 src/Zernio.Test/Model/ListTikTokCommercialMusic200ResponseTracksInnerTests.cs
+src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerErrorTests.cs
+src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerTests.cs
+src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseItemsInnerTests.cs
+src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagPartners200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
@@ -5212,6 +5218,8 @@ src/Zernio.Test/Model/TikTokPlatformDataMusicSoundInfoTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
 src/Zernio.Test/Model/TikTokReviewRejectionContentTests.cs
 src/Zernio.Test/Model/TikTokReviewRejectionTests.cs
+src/Zernio.Test/Model/TikTokSmartPlusAdLevelReviewTests.cs
+src/Zernio.Test/Model/TikTokSmartPlusMaterialReviewTests.cs
 src/Zernio.Test/Model/TikTokSmartPlusReviewStatusTests.cs
 src/Zernio.Test/Model/TrackingTagDiagnosticTests.cs
 src/Zernio.Test/Model/TrackingTagEventInputTests.cs
@@ -7027,8 +7035,6 @@ src/Zernio/Model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings
 src/Zernio/Model/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.cs
 src/Zernio/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.cs
 src/Zernio/Model/GetTikTokSmartPlusAdReview200Response.cs
-src/Zernio/Model/GetTikTokSmartPlusAdReview200ResponseMaterialsInner.cs
-src/Zernio/Model/GetTikTokSmartPlusAdReview200ResponseReview.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200Response.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.cs
@@ -7548,6 +7554,10 @@ src/Zernio/Model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.cs
 src/Zernio/Model/ListTikTokCommercialMusic200Response.cs
 src/Zernio/Model/ListTikTokCommercialMusic200ResponseTracksInner.cs
 src/Zernio/Model/ListTikTokCommercialMusic200ResponseTracksInnerClip.cs
+src/Zernio/Model/ListTikTokSmartPlusReviews200Response.cs
+src/Zernio/Model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.cs
+src/Zernio/Model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.cs
+src/Zernio/Model/ListTikTokSmartPlusReviews200ResponseItemsInner.cs
 src/Zernio/Model/ListTrackingTagEvents200Response.cs
 src/Zernio/Model/ListTrackingTagPartners200Response.cs
 src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
@@ -8113,6 +8123,8 @@ src/Zernio/Model/TikTokPlatformData.cs
 src/Zernio/Model/TikTokPlatformDataMusicSoundInfo.cs
 src/Zernio/Model/TikTokReviewRejection.cs
 src/Zernio/Model/TikTokReviewRejectionContent.cs
+src/Zernio/Model/TikTokSmartPlusAdLevelReview.cs
+src/Zernio/Model/TikTokSmartPlusMaterialReview.cs
 src/Zernio/Model/TikTokSmartPlusReviewStatus.cs
 src/Zernio/Model/TrackingTag.cs
 src/Zernio/Model/TrackingTagDiagnostic.cs

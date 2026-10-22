@@ -48,6 +48,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListGoogleAssetGroups**](AdCampaignsApi.md#listgoogleassetgroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
 | [**ListGoogleRecommendations**](AdCampaignsApi.md#listgooglerecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations |
 | [**ListSharedBudgets**](AdCampaignsApi.md#listsharedbudgets) | **GET** /v1/ads/shared-budgets | List shared budgets |
+| [**ListTikTokSmartPlusReviews**](AdCampaignsApi.md#listtiktoksmartplusreviews) | **GET** /v1/ads/tiktok-smart-plus-reviews | Review status of every TikTok Smart+ ad of an advertiser |
 | [**RemoveAdGroupAssets**](AdCampaignsApi.md#removeadgroupassets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**RemoveAdKeyword**](AdCampaignsApi.md#removeadkeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
 | [**RemoveCampaignAssets**](AdCampaignsApi.md#removecampaignassets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
@@ -2497,7 +2498,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad not found, it has no platform ad id yet, or the platform has no review record for it |  -  |
-| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second for the whole app, across every advertiser, and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 with &#x60;Retry-After: 60&#x60; for that advertiser and connection, without calling TikTok, until the minute is over.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second for the whole app, across every advertiser, and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 with &#x60;Retry-After: 60&#x60; for that advertiser and connection, without calling TikTok, until the minute is over. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;incomplete: true&#x60; instead.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on TikTok, Google and Meta (Facebook and Instagram ads) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3497,7 +3498,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad not found, it has no TikTok ad or ad group id yet, or no Smart+ ad of its ad group holds it. In the last case &#x60;details.listedSmartPlusAds&#x60; is how many Smart+ ads TikTok lists in the ad group, deleted ones included: 0 means the ad group lists none. |  -  |
 | **422** | The TikTok ad is not an Upgraded Smart+ ad (read it with GET /v1/ads/{adId}/review) |  -  |
-| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second for the whole app, across every advertiser, and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 with &#x60;Retry-After: 60&#x60; for that advertiser and connection, without calling TikTok, until the minute is over.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second for the whole app, across every advertiser, and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 with &#x60;Retry-After: 60&#x60; for that advertiser and connection, without calling TikTok, until the minute is over. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;incomplete: true&#x60; instead.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on TikTok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4867,6 +4868,119 @@ catch (ApiException e)
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listtiktoksmartplusreviews"></a>
+# **ListTikTokSmartPlusReviews**
+> ListTikTokSmartPlusReviews200Response ListTikTokSmartPlusReviews (string accountId, string adAccountId, bool? includeDeleted = null, int? page = null, int? pageSize = null)
+
+Review status of every TikTok Smart+ ad of an advertiser
+
+Returns the review verdict of every Upgraded Smart+ ad of one TikTok advertiser, with each creative's verdict, in one paginated read. Use it to refresh reviews periodically: one call (plus its pages) per advertiser per refresh, instead of `GET /v1/ads/{adId}/tiktok-smart-plus-review` per ad.  Zernio lists the advertiser's Smart+ ads with `/smart_plus/ad/get/` (deleted ones only with `includeDeleted=true`; the listing is cached for 5 minutes) and reads `/smart_plus/ad/review_info/` for up to 100 Smart+ ads per call, across ad groups, one call after another. A full refresh of N Smart+ ads costs about `ceil(N / 100)` listing calls and `ceil(N / 100)` review calls on TikTok. Each review is cached for 10 minutes per connection, advertiser and Smart+ ad, shared with the single-ad read, so cached reviews are served without calling TikTok and `readAt` can be up to 10 minutes old.  TikTok's review endpoint has a strict quota of its own. When it is over quota (or Zernio is holding review reads for this advertiser and connection after an overage), Zernio stops calling TikTok and answers 200 with the reviews it has: `incomplete: true`, the Smart+ ads still to read in `pendingSmartPlusAdIds`, and `retryAfterSeconds` (also in the `Retry-After` header). Every Smart+ ad of the page is in `items`, `failedSmartPlusAds` or `pendingSmartPlusAdIds`. Wait `retryAfterSeconds` and read the same page again: only the pending ads reach TikTok.  A Smart+ ad whose review TikTok refuses on its own (for example one deleted on TikTok since the listing was cached) is returned in `failedSmartPlusAds` with TikTok's error, and the rest of the page is still read. Zernio finds it by splitting the refused batch in halves, at most 16 extra TikTok calls per page; ads still unresolved after that come back in `failedSmartPlusAds` with the batch error. A refusal of a single ad is remembered for 10 minutes. When both halves of a refused batch are refused with the same TikTok error (for example a permission error), the whole request fails with that error instead.  Items are sorted by `adGroupId`, then `smartPlusAdId`, so pages are stable. Read the pages of one advertiser one after another, not in parallel: parallel pages spend the review quota at the same time and come back incomplete.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTikTokSmartPlusReviewsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | A tiktok or tiktokads account ID
+            var adAccountId = "adAccountId_example";  // string | TikTok advertiser ID
+            var includeDeleted = false;  // bool? | Also return Smart+ ads deleted on TikTok (listed with `primary_status: STATUS_ALL`). (optional)  (default to false)
+            var page = 1;  // int? |  (optional)  (default to 1)
+            var pageSize = 500;  // int? |  (optional)  (default to 500)
+
+            try
+            {
+                // Review status of every TikTok Smart+ ad of an advertiser
+                ListTikTokSmartPlusReviews200Response result = apiInstance.ListTikTokSmartPlusReviews(accountId, adAccountId, includeDeleted, page, pageSize);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ListTikTokSmartPlusReviews: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTikTokSmartPlusReviewsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Review status of every TikTok Smart+ ad of an advertiser
+    ApiResponse<ListTikTokSmartPlusReviews200Response> response = apiInstance.ListTikTokSmartPlusReviewsWithHttpInfo(accountId, adAccountId, includeDeleted, page, pageSize);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ListTikTokSmartPlusReviewsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | A tiktok or tiktokads account ID |  |
+| **adAccountId** | **string** | TikTok advertiser ID |  |
+| **includeDeleted** | **bool?** | Also return Smart+ ads deleted on TikTok (listed with &#x60;primary_status: STATUS_ALL&#x60;). | [optional] [default to false] |
+| **page** | **int?** |  | [optional] [default to 1] |
+| **pageSize** | **int?** |  | [optional] [default to 500] |
+
+### Return type
+
+[**ListTikTokSmartPlusReviews200Response**](ListTikTokSmartPlusReviews200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The reviews of one page of the advertiser&#39;s Smart+ ads. Check &#x60;incomplete&#x60;: when true, some reviews are still pending. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | accountId is not a TikTok or TikTok Ads connection (code feature_not_available). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The TikTok connection has no TikTok Ads token: connect TikTok Ads first (code ads_connection_required). |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second for the whole app, across every advertiser, and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 with &#x60;Retry-After: 60&#x60; for that advertiser and connection, without calling TikTok, until the minute is over. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;incomplete: true&#x60; instead.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

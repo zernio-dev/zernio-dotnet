@@ -1,4 +1,5 @@
-# Zernio.Model.GetTikTokSmartPlusAdReview200ResponseMaterialsInner
+# Zernio.Model.TikTokSmartPlusMaterialReview
+The verdict of one creative of a Smart+ ad (`material_review_infos`).
 
 ## Properties
 

@@ -1,5 +1,5 @@
-# Zernio.Model.GetTikTokSmartPlusAdReview200ResponseReview
-The ad-level verdict (`smart_plus_ad_review_infos`). Null when TikTok returned none.
+# Zernio.Model.TikTokSmartPlusAdLevelReview
+The ad-level verdict of a Smart+ ad (`smart_plus_ad_review_infos`). Null when TikTok returned none.
 
 ## Properties
 
