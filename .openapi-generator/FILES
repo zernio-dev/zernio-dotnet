@@ -1414,6 +1414,9 @@ docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
 docs/InstagramLiveMedia.md
 docs/InstagramMediaCollaborator.md
+docs/InstagramMentionedComment.md
+docs/InstagramMentionedCommentMedia.md
+docs/InstagramMentionedMedia.md
 docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
@@ -4333,6 +4336,9 @@ src/Zernio.Test/Model/InstagramDemographicsResponseDemographicsValueInnerTests.c
 src/Zernio.Test/Model/InstagramDemographicsResponseTests.cs
 src/Zernio.Test/Model/InstagramLiveMediaTests.cs
 src/Zernio.Test/Model/InstagramMediaCollaboratorTests.cs
+src/Zernio.Test/Model/InstagramMentionedCommentMediaTests.cs
+src/Zernio.Test/Model/InstagramMentionedCommentTests.cs
+src/Zernio.Test/Model/InstagramMentionedMediaTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
@@ -7231,6 +7237,9 @@ src/Zernio/Model/InstagramDemographicsResponse.cs
 src/Zernio/Model/InstagramDemographicsResponseDemographicsValueInner.cs
 src/Zernio/Model/InstagramLiveMedia.cs
 src/Zernio/Model/InstagramMediaCollaborator.cs
+src/Zernio/Model/InstagramMentionedComment.cs
+src/Zernio/Model/InstagramMentionedCommentMedia.cs
+src/Zernio/Model/InstagramMentionedMedia.cs
 src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
