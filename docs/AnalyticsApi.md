@@ -1143,7 +1143,7 @@ catch (ApiException e)
 
 <a id="getfollowerstats"></a>
 # **GetFollowerStats**
-> FollowerStatsResponse GetFollowerStats (string? accountIds = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? granularity = null)
+> FollowerStatsResponse GetFollowerStats (string? accountIds = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? granularity = null, int? limit = null, string? cursor = null)
 
 Get follower stats
 
@@ -1178,11 +1178,13 @@ namespace Example
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date in YYYY-MM-DD format (defaults to today) (optional) 
             var granularity = "daily";  // string? | Data aggregation level (optional)  (default to daily)
+            var limit = 56;  // int? | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned. (optional) 
+            var cursor = "cursor_example";  // string? | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400. (optional) 
 
             try
             {
                 // Get follower stats
-                FollowerStatsResponse result = apiInstance.GetFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
+                FollowerStatsResponse result = apiInstance.GetFollowerStats(accountIds, profileId, fromDate, toDate, granularity, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1203,7 +1205,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get follower stats
-    ApiResponse<FollowerStatsResponse> response = apiInstance.GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+    ApiResponse<FollowerStatsResponse> response = apiInstance.GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1225,6 +1227,8 @@ catch (ApiException e)
 | **fromDate** | **DateOnly?** | Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional]  |
 | **toDate** | **DateOnly?** | End date in YYYY-MM-DD format (defaults to today) | [optional]  |
 | **granularity** | **string?** | Data aggregation level | [optional] [default to daily] |
+| **limit** | **int?** | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional]  |
+| **cursor** | **string?** | Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional]  |
 
 ### Return type
 
@@ -1244,6 +1248,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Accounts** | [**List&lt;SocialAccount&gt;**](SocialAccount.md) |  | 
 **HasAnalyticsAccess** | **bool** | Whether user has analytics add-on access | 
-**Pagination** | [**Pagination**](Pagination.md) | Only present when page/limit params are provided | [optional] 
+**Pagination** | [**AccountsListResponsePagination**](AccountsListResponsePagination.md) |  | [optional] 
 **ProfileTotals** | **Dictionary&lt;string, int&gt;** | Only with profileIds and perProfile. Accounts matching the filters per profile ID; a profile with none is absent. | [optional] 
 **StatusCounts** | [**AccountsListResponseStatusCounts**](AccountsListResponseStatusCounts.md) |  | [optional] 
 

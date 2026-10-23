@@ -7,12 +7,14 @@ docs/APIKeysApi.md
 docs/AcceptConversationRequest200Response.md
 docs/AcceptConversationRequest200ResponseData.md
 docs/AcceptConversationRequestRequest.md
+docs/AccountCursorPagination.md
 docs/AccountGroupsApi.md
 docs/AccountSettingsApi.md
 docs/AccountWithFollowerStats.md
 docs/AccountWithFollowerStatsAllOfAccountStats.md
 docs/AccountsApi.md
 docs/AccountsListResponse.md
+docs/AccountsListResponsePagination.md
 docs/AccountsListResponseStatusCounts.md
 docs/ActivateSequence200Response.md
 docs/ActivateWorkflow200Response.md
@@ -2991,8 +2993,10 @@ src/Zernio.Test/Api/WorkflowsApiTests.cs
 src/Zernio.Test/Model/AcceptConversationRequest200ResponseDataTests.cs
 src/Zernio.Test/Model/AcceptConversationRequest200ResponseTests.cs
 src/Zernio.Test/Model/AcceptConversationRequestRequestTests.cs
+src/Zernio.Test/Model/AccountCursorPaginationTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsAllOfAccountStatsTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsTests.cs
+src/Zernio.Test/Model/AccountsListResponsePaginationTests.cs
 src/Zernio.Test/Model/AccountsListResponseStatusCountsTests.cs
 src/Zernio.Test/Model/AccountsListResponseTests.cs
 src/Zernio.Test/Model/ActivateSequence200ResponseTests.cs
@@ -5916,9 +5920,11 @@ src/Zernio/Model/AbstractOpenAPISchema.cs
 src/Zernio/Model/AcceptConversationRequest200Response.cs
 src/Zernio/Model/AcceptConversationRequest200ResponseData.cs
 src/Zernio/Model/AcceptConversationRequestRequest.cs
+src/Zernio/Model/AccountCursorPagination.cs
 src/Zernio/Model/AccountWithFollowerStats.cs
 src/Zernio/Model/AccountWithFollowerStatsAllOfAccountStats.cs
 src/Zernio/Model/AccountsListResponse.cs
+src/Zernio/Model/AccountsListResponsePagination.cs
 src/Zernio/Model/AccountsListResponseStatusCounts.cs
 src/Zernio/Model/ActivateSequence200Response.cs
 src/Zernio/Model/ActivateWorkflow200Response.cs
