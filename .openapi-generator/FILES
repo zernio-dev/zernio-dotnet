@@ -413,6 +413,7 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
+docs/ConversationAdAttribution.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
@@ -1056,7 +1057,6 @@ docs/GetImessageSender200Response.md
 docs/GetImessageSender200ResponseHealth.md
 docs/GetInboxConversation200Response.md
 docs/GetInboxConversation200ResponseData.md
-docs/GetInboxConversation200ResponseDataMetadata.md
 docs/GetInboxConversationAnalytics200Response.md
 docs/GetInboxConversationAnalytics200ResponseBySourceInner.md
 docs/GetInboxConversationAnalytics200ResponseSummary.md
@@ -1379,6 +1379,7 @@ docs/ImessageSandboxContact.md
 docs/ImessageSender.md
 docs/ImessageSenderLifecycle.md
 docs/InboxAnalyticsApi.md
+docs/InboxConversationAdMetadata.md
 docs/InboxMessageEditAttachment.md
 docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
@@ -1637,7 +1638,6 @@ docs/ListInboxConversationAnalytics200ResponsePagination.md
 docs/ListInboxConversations200Response.md
 docs/ListInboxConversations200ResponseDataInner.md
 docs/ListInboxConversations200ResponseDataInnerInstagramProfile.md
-docs/ListInboxConversations200ResponseDataInnerMetadata.md
 docs/ListInboxConversations200ResponseMeta.md
 docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md
@@ -2748,6 +2748,7 @@ docs/WebhookPayloadContactTagContact.md
 docs/WebhookPayloadConversationControlChanged.md
 docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
+docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
@@ -3370,6 +3371,7 @@ src/Zernio.Test/Model/ConnectWordPressWithApplicationPasswordRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
+src/Zernio.Test/Model/ConversationAdAttributionTests.cs
 src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
 src/Zernio.Test/Model/ConversionActionTests.cs
 src/Zernio.Test/Model/ConversionDestinationTests.cs
@@ -3999,7 +4001,6 @@ src/Zernio.Test/Model/GetImessageGroup200ResponseGroupTests.cs
 src/Zernio.Test/Model/GetImessageGroup200ResponseTests.cs
 src/Zernio.Test/Model/GetImessageSender200ResponseHealthTests.cs
 src/Zernio.Test/Model/GetImessageSender200ResponseTests.cs
-src/Zernio.Test/Model/GetInboxConversation200ResponseDataMetadataTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxConversationAnalytics200ResponseBySourceInnerTests.cs
@@ -4322,6 +4323,7 @@ src/Zernio.Test/Model/ImessageAudienceContactTests.cs
 src/Zernio.Test/Model/ImessageSandboxContactTests.cs
 src/Zernio.Test/Model/ImessageSenderLifecycleTests.cs
 src/Zernio.Test/Model/ImessageSenderTests.cs
+src/Zernio.Test/Model/InboxConversationAdMetadataTests.cs
 src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
 src/Zernio.Test/Model/InboxMessageEditHistoryEntryTests.cs
 src/Zernio.Test/Model/InboxWebhookAccountTests.cs
@@ -4574,7 +4576,6 @@ src/Zernio.Test/Model/ListInboxConversationAnalytics200ResponseItemsInnerTests.c
 src/Zernio.Test/Model/ListInboxConversationAnalytics200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListInboxConversationAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/ListInboxConversations200ResponseDataInnerInstagramProfileTests.cs
-src/Zernio.Test/Model/ListInboxConversations200ResponseDataInnerMetadataTests.cs
 src/Zernio.Test/Model/ListInboxConversations200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInboxConversations200ResponseMetaAccountsSkippedInnerTests.cs
 src/Zernio.Test/Model/ListInboxConversations200ResponseMetaFailedAccountsInnerTests.cs
@@ -5657,6 +5658,7 @@ src/Zernio.Test/Model/WebhookPayloadContactTagContactTests.cs
 src/Zernio.Test/Model/WebhookPayloadContactTagTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedControlTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
 src/Zernio.Test/Model/WebhookPayloadExternalPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadAccountTests.cs
@@ -6291,6 +6293,7 @@ src/Zernio/Model/ConnectWordPressWithApplicationPasswordRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
 src/Zernio/Model/ConnectedApp.cs
+src/Zernio/Model/ConversationAdAttribution.cs
 src/Zernio/Model/ConversionAction.cs
 src/Zernio/Model/ConversionActionTagSnippetsInner.cs
 src/Zernio/Model/ConversionDestination.cs
@@ -6922,7 +6925,6 @@ src/Zernio/Model/GetImessageSender200Response.cs
 src/Zernio/Model/GetImessageSender200ResponseHealth.cs
 src/Zernio/Model/GetInboxConversation200Response.cs
 src/Zernio/Model/GetInboxConversation200ResponseData.cs
-src/Zernio/Model/GetInboxConversation200ResponseDataMetadata.cs
 src/Zernio/Model/GetInboxConversationAnalytics200Response.cs
 src/Zernio/Model/GetInboxConversationAnalytics200ResponseBySourceInner.cs
 src/Zernio/Model/GetInboxConversationAnalytics200ResponseSummary.cs
@@ -7243,6 +7245,7 @@ src/Zernio/Model/ImessageAudienceContactOptIn.cs
 src/Zernio/Model/ImessageSandboxContact.cs
 src/Zernio/Model/ImessageSender.cs
 src/Zernio/Model/ImessageSenderLifecycle.cs
+src/Zernio/Model/InboxConversationAdMetadata.cs
 src/Zernio/Model/InboxMessageEditAttachment.cs
 src/Zernio/Model/InboxMessageEditHistoryEntry.cs
 src/Zernio/Model/InboxWebhookAccount.cs
@@ -7497,7 +7500,6 @@ src/Zernio/Model/ListInboxConversationAnalytics200ResponsePagination.cs
 src/Zernio/Model/ListInboxConversations200Response.cs
 src/Zernio/Model/ListInboxConversations200ResponseDataInner.cs
 src/Zernio/Model/ListInboxConversations200ResponseDataInnerInstagramProfile.cs
-src/Zernio/Model/ListInboxConversations200ResponseDataInnerMetadata.cs
 src/Zernio/Model/ListInboxConversations200ResponseMeta.cs
 src/Zernio/Model/ListInboxConversations200ResponseMetaAccountsSkippedInner.cs
 src/Zernio/Model/ListInboxConversations200ResponseMetaFailedAccountsInner.cs
@@ -8580,6 +8582,7 @@ src/Zernio/Model/WebhookPayloadContactTagContact.cs
 src/Zernio/Model/WebhookPayloadConversationControlChanged.cs
 src/Zernio/Model/WebhookPayloadConversationControlChangedControl.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
+src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
 src/Zernio/Model/WebhookPayloadExternalPost.cs
 src/Zernio/Model/WebhookPayloadLead.cs
 src/Zernio/Model/WebhookPayloadLeadAccount.cs

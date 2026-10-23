@@ -23,7 +23,8 @@ Name | Type | Description | Notes
 **IsGroup** | **bool** | iMessage only, true for a group thread. Manage it through the /v1/imessage/groups/{conversationId} endpoints. | [optional] 
 **Url** | **string** | Direct link to open the conversation on the platform (if available) | [optional] 
 **InstagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  | [optional] 
-**Metadata** | [**ListInboxConversations200ResponseDataInnerMetadata**](ListInboxConversations200ResponseDataInnerMetadata.md) |  | [optional] 
+**Metadata** | [**InboxConversationAdMetadata**](InboxConversationAdMetadata.md) |  | [optional] 
+**AdAttribution** | [**ConversationAdAttribution**](ConversationAdAttribution.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
