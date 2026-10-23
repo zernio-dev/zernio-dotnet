@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Timestamp** | **DateTime** | When the event was sent to Meta. | [optional] 
-**EventName** | **string** | One of LeadSubmitted, Purchase, AddToCart, InitiateCheckout, ViewContent. | [optional] 
+**EventName** | **string** | One of LeadSubmitted, QualifiedLead, Purchase, AddToCart, InitiateCheckout, ViewContent, OrderCreated, OrderCanceled, OrderReturned. | [optional] 
 **ConversationId** | **string** |  | [optional] 
 **EventsReceived** | **int?** | Number of events Meta accepted on this send (usually 1). | [optional] 
 **EventsFailed** | **int?** | Number of events Meta rejected (usually 0). | [optional] 
