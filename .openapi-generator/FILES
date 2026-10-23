@@ -2009,6 +2009,8 @@ docs/RemovePageUser200Response.md
 docs/RemoveTrackingTagFromStore200Response.md
 docs/RemoveTrackingTagFromStore200ResponseInstall.md
 docs/RemoveTrackingTagUser200Response.md
+docs/RemoveUsersFromAdAudience200Response.md
+docs/RemoveUsersFromAdAudienceRequest.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReorderCommerceCollectionProductsRequest.md
 docs/ReorderCommerceCollectionProductsRequestMovesInner.md
@@ -4936,6 +4938,8 @@ src/Zernio.Test/Model/RemovePageUser200ResponseTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseInstallTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagFromStore200ResponseTests.cs
 src/Zernio.Test/Model/RemoveTrackingTagUser200ResponseTests.cs
+src/Zernio.Test/Model/RemoveUsersFromAdAudience200ResponseTests.cs
+src/Zernio.Test/Model/RemoveUsersFromAdAudienceRequestTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReorderCommerceCollectionProductsRequestMovesInnerTests.cs
 src/Zernio.Test/Model/ReorderCommerceCollectionProductsRequestTests.cs
@@ -7859,6 +7863,8 @@ src/Zernio/Model/RemovePageUser200Response.cs
 src/Zernio/Model/RemoveTrackingTagFromStore200Response.cs
 src/Zernio/Model/RemoveTrackingTagFromStore200ResponseInstall.cs
 src/Zernio/Model/RemoveTrackingTagUser200Response.cs
+src/Zernio/Model/RemoveUsersFromAdAudience200Response.cs
+src/Zernio/Model/RemoveUsersFromAdAudienceRequest.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReorderCommerceCollectionProductsRequest.cs
 src/Zernio/Model/ReorderCommerceCollectionProductsRequestMovesInner.cs

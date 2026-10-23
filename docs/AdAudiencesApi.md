@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAdAudience**](AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience |
 | [**GetAdAudience**](AdAudiencesApi.md#getadaudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details |
 | [**ListAdAudiences**](AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences |
+| [**RemoveUsersFromAdAudience**](AdAudiencesApi.md#removeusersfromadaudience) | **DELETE** /v1/ads/audiences/{audienceId}/users | Remove users from audience |
 | [**ReplaceAdAudienceCompanies**](AdAudiencesApi.md#replaceadaudiencecompanies) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies |
 | [**UpdateAdAudience**](AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience |
 
@@ -529,6 +530,111 @@ catch (ApiException e)
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="removeusersfromadaudience"></a>
+# **RemoveUsersFromAdAudience**
+> RemoveUsersFromAdAudience200Response RemoveUsersFromAdAudience (string audienceId, RemoveUsersFromAdAudienceRequest removeUsersFromAdAudienceRequest)
+
+Remove users from audience
+
+Removes customer emails and phone numbers from a Meta customer list audience. Same body as `POST /v1/ads/audiences/{audienceId}/users`: send plaintext rows, they are normalized and SHA256-hashed server-side exactly like an upload, so a row removes the person it added.  Meta only, customer_list only. Every other platform returns 422 with code `feature_not_available`, and every other audience type returns 422. Max 10,000 users per request. Meta applies the removal asynchronously, so the audience size does not drop immediately. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RemoveUsersFromAdAudienceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
+            var audienceId = "audienceId_example";  // string | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id.
+            var removeUsersFromAdAudienceRequest = new RemoveUsersFromAdAudienceRequest(); // RemoveUsersFromAdAudienceRequest | 
+
+            try
+            {
+                // Remove users from audience
+                RemoveUsersFromAdAudience200Response result = apiInstance.RemoveUsersFromAdAudience(audienceId, removeUsersFromAdAudienceRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAudiencesApi.RemoveUsersFromAdAudience: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveUsersFromAdAudienceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove users from audience
+    ApiResponse<RemoveUsersFromAdAudience200Response> response = apiInstance.RemoveUsersFromAdAudienceWithHttpInfo(audienceId, removeUsersFromAdAudienceRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAudiencesApi.RemoveUsersFromAdAudienceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **audienceId** | **string** | The Zernio audience id (the id field of GET /v1/ads/audiences), not the platform segment id. |  |
+| **removeUsersFromAdAudienceRequest** | [**RemoveUsersFromAdAudienceRequest**](RemoveUsersFromAdAudienceRequest.md) |  |  |
+
+### Return type
+
+[**RemoveUsersFromAdAudience200Response**](RemoveUsersFromAdAudience200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Users removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The audience is not a customer_list, is not on Meta (code &#x60;feature_not_available&#x60;), or has no platform ID yet. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
