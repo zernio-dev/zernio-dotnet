@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAdDeliveryIssue**](WebhookEventsApi.md#onaddeliveryissue) | **POST** /ad.delivery_issue | Ad delivery issue event |
 | [**OnAdReviewApproved**](WebhookEventsApi.md#onadreviewapproved) | **POST** /ad.review.approved | Ad review approved event |
 | [**OnAdReviewRejected**](WebhookEventsApi.md#onadreviewrejected) | **POST** /ad.review.rejected | Ad review rejected event |
+| [**OnAdRuleTriggered**](WebhookEventsApi.md#onadruletriggered) | **POST** /ad_rule.triggered | Ad rule triggered event |
 | [**OnAdStatusChanged**](WebhookEventsApi.md#onadstatuschanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**OnAdVideoProcessed**](WebhookEventsApi.md#onadvideoprocessed) | **POST** /ad.video.processed | Ad video processed event |
 | [**OnAnalyticsSynced**](WebhookEventsApi.md#onanalyticssynced) | **POST** /analytics.synced | Analytics synced event |
@@ -918,6 +919,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAdReview** | [**WebhookPayloadAdReview**](WebhookPayloadAdReview.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onadruletriggered"></a>
+# **OnAdRuleTriggered**
+> void OnAdRuleTriggered (WebhookPayloadAdRuleTriggered webhookPayloadAdRuleTriggered)
+
+Ad rule triggered event
+
+Fired when a scheduled ad rule run finds campaigns or ad sets meeting every condition, once per object per cooldown. Ad rules are in closed beta: the event only fires for accounts in the ad rules pilot. See `WebhookPayloadAdRuleTriggered` for when it fires and when it does not. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAdRuleTriggeredExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAdRuleTriggered = new WebhookPayloadAdRuleTriggered(); // WebhookPayloadAdRuleTriggered | 
+
+            try
+            {
+                // Ad rule triggered event
+                apiInstance.OnAdRuleTriggered(webhookPayloadAdRuleTriggered);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAdRuleTriggered: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAdRuleTriggeredWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad rule triggered event
+    apiInstance.OnAdRuleTriggeredWithHttpInfo(webhookPayloadAdRuleTriggered);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAdRuleTriggeredWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAdRuleTriggered** | [**WebhookPayloadAdRuleTriggered**](WebhookPayloadAdRuleTriggered.md) |  |  |
 
 ### Return type
 

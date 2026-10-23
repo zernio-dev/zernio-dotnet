@@ -2715,6 +2715,11 @@ docs/WebhookPayloadAdReview.md
 docs/WebhookPayloadAdReviewAdObject.md
 docs/WebhookPayloadAdReviewReview.md
 docs/WebhookPayloadAdReviewReviewReasonsInner.md
+docs/WebhookPayloadAdRuleTriggered.md
+docs/WebhookPayloadAdRuleTriggeredObjectsInner.md
+docs/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.md
+docs/WebhookPayloadAdRuleTriggeredRule.md
+docs/WebhookPayloadAdRuleTriggeredRun.md
 docs/WebhookPayloadAdStatusChanged.md
 docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
@@ -5636,6 +5641,11 @@ src/Zernio.Test/Model/WebhookPayloadAdReviewAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewReviewReasonsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewReviewTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInnerTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredObjectsInnerTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredRuleTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredRunTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedErrorTests.cs
@@ -8569,6 +8579,11 @@ src/Zernio/Model/WebhookPayloadAdReview.cs
 src/Zernio/Model/WebhookPayloadAdReviewAdObject.cs
 src/Zernio/Model/WebhookPayloadAdReviewReview.cs
 src/Zernio/Model/WebhookPayloadAdReviewReviewReasonsInner.cs
+src/Zernio/Model/WebhookPayloadAdRuleTriggered.cs
+src/Zernio/Model/WebhookPayloadAdRuleTriggeredObjectsInner.cs
+src/Zernio/Model/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.cs
+src/Zernio/Model/WebhookPayloadAdRuleTriggeredRule.cs
+src/Zernio/Model/WebhookPayloadAdRuleTriggeredRun.cs
 src/Zernio/Model/WebhookPayloadAdStatusChanged.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAccount.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAdObject.cs
