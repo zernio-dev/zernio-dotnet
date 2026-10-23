@@ -390,6 +390,10 @@ docs/ConnectApi.md
 docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
 docs/ConnectDiscordChannelRequest.md
+docs/ConnectHandoff.md
+docs/ConnectHandoffAccountsInner.md
+docs/ConnectHandoffError.md
+docs/ConnectHandoffLink.md
 docs/ConnectOpenAIAdsCredentials200Response.md
 docs/ConnectOpenAIAdsCredentialsRequest.md
 docs/ConnectShopifyWithToken200Response.md
@@ -1183,6 +1187,7 @@ docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
 docs/GetSequence200ResponseSequenceStepsInnerTemplate.md
+docs/GetShopifyConnectUrl200Response.md
 docs/GetSipTrunk200Response.md
 docs/GetSipTrunk200ResponseNumbersInner.md
 docs/GetSlackSettings200Response.md
@@ -3355,6 +3360,10 @@ src/Zernio.Test/Model/ConnectAds200ResponseTests.cs
 src/Zernio.Test/Model/ConnectBlueskyCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectBlueskyCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectDiscordChannelRequestTests.cs
+src/Zernio.Test/Model/ConnectHandoffAccountsInnerTests.cs
+src/Zernio.Test/Model/ConnectHandoffErrorTests.cs
+src/Zernio.Test/Model/ConnectHandoffLinkTests.cs
+src/Zernio.Test/Model/ConnectHandoffTests.cs
 src/Zernio.Test/Model/ConnectOpenAIAdsCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectOpenAIAdsCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseAccountTests.cs
@@ -4134,6 +4143,7 @@ src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseTests.cs
+src/Zernio.Test/Model/GetShopifyConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetSipTrunk200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/GetSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/GetSlackSettings200ResponseAccountTests.cs
@@ -6282,6 +6292,10 @@ src/Zernio/Model/ConnectAds200ResponseOneOf1.cs
 src/Zernio/Model/ConnectBlueskyCredentials200Response.cs
 src/Zernio/Model/ConnectBlueskyCredentialsRequest.cs
 src/Zernio/Model/ConnectDiscordChannelRequest.cs
+src/Zernio/Model/ConnectHandoff.cs
+src/Zernio/Model/ConnectHandoffAccountsInner.cs
+src/Zernio/Model/ConnectHandoffError.cs
+src/Zernio/Model/ConnectHandoffLink.cs
 src/Zernio/Model/ConnectOpenAIAdsCredentials200Response.cs
 src/Zernio/Model/ConnectOpenAIAdsCredentialsRequest.cs
 src/Zernio/Model/ConnectShopifyWithToken200Response.cs
@@ -7061,6 +7075,7 @@ src/Zernio/Model/GetSequence200Response.cs
 src/Zernio/Model/GetSequence200ResponseSequence.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInner.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInnerTemplate.cs
+src/Zernio/Model/GetShopifyConnectUrl200Response.cs
 src/Zernio/Model/GetSipTrunk200Response.cs
 src/Zernio/Model/GetSipTrunk200ResponseNumbersInner.cs
 src/Zernio/Model/GetSlackSettings200Response.cs

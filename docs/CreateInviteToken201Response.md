@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Token** | **string** |  | [optional] 
 **Scope** | **string** |  | [optional] 
 **InvitedProfileIds** | **List&lt;string&gt;** |  | [optional] 
+**DisabledResourceGroups** | **List&lt;string&gt;** |  | [optional] 
 **ExpiresAt** | **DateTime** |  | [optional] 
 **InviteUrl** | **string** |  | [optional] 
 

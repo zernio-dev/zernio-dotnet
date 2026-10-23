@@ -22,6 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConnectWordPressWithApplicationPassword**](ConnectApi.md#connectwordpresswithapplicationpassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
 | [**CreatePinterestBoard**](ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**CreateYoutubePlaylist**](ConnectApi.md#createyoutubeplaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
+| [**GetConnectHandoff**](ConnectApi.md#getconnecthandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**GetConnectUrl**](ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**GetConnectWelcomeScreen**](ConnectApi.md#getconnectwelcomescreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
 | [**GetFacebookPages**](ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
@@ -1948,9 +1949,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getconnecthandoff"></a>
+# **GetConnectHandoff**
+> ConnectHandoff GetConnectHandoff (Guid handoffId)
+
+Get a phone handoff
+
+Where a connect started with `handoff=true` on `GET /v1/connect/{platform}` stands: `waiting` until the QR code is scanned, `opened` once the phone opened it, then `connected` with the new accounts or `failed` with the error the flow ended on (the same `error` codes as the redirect flow). `expired` when nobody opened the QR code within its 30 minutes. Poll it every 2 to 5 seconds while your QR code is shown, and stop once it is `connected`, `failed` or `expired`. Readable for 60 minutes after it was created, then 404, as is a handoff created by another workspace.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetConnectHandoffExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var handoffId = "handoffId_example";  // Guid | `handoff.id` from the connect response.
+
+            try
+            {
+                // Get a phone handoff
+                ConnectHandoff result = apiInstance.GetConnectHandoff(handoffId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetConnectHandoff: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetConnectHandoffWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a phone handoff
+    ApiResponse<ConnectHandoff> response = apiInstance.GetConnectHandoffWithHttpInfo(handoffId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetConnectHandoffWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **handoffId** | **Guid** | &#x60;handoff.id&#x60; from the connect response. |  |
+
+### Return type
+
+[**ConnectHandoff**](ConnectHandoff.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The handoff. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The handoff expired, does not exist, or belongs to another workspace (code RESOURCE_NOT_FOUND). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getconnecturl"></a>
 # **GetConnectUrl**
-> GetConnectUrl200Response GetConnectUrl (string platform, string profileId, string? reconnectAccountId = null, string? expectedPlatformUserId = null, string? expectedUsername = null, bool? forceReauth = null, string? redirectUrl = null, string? scopes = null, bool? headless = null, string? loginMethod = null, string? onboarding = null, string? signup = null, string? brandName = null, string? primaryColor = null, bool? welcome = null, string? welcomeTheme = null, string? logoUrl = null, string? language = null)
+> GetConnectUrl200Response GetConnectUrl (string platform, string profileId, string? reconnectAccountId = null, string? expectedPlatformUserId = null, string? expectedUsername = null, bool? forceReauth = null, string? redirectUrl = null, string? scopes = null, bool? headless = null, string? loginMethod = null, string? onboarding = null, string? signup = null, string? brandName = null, string? primaryColor = null, bool? welcome = null, string? welcomeTheme = null, string? logoUrl = null, string? language = null, bool? handoff = null)
 
 Get OAuth connect URL
 
@@ -1998,11 +2100,12 @@ namespace Example
             var welcomeTheme = "welcomeTheme_example";  // string? | Welcome screen only (`welcome=true`): a URL-encoded JSON object that restyles and rewords the screen. All keys are optional. Copy: `heading` (up to 120 characters), `trustLine`, `consentLine` and `statusLine` (up to 200 each, `statusLine` being the line above the button), `buttonLabel` (up to 30, the label of the link the button becomes if the redirect stalls); each may contain the placeholders `{brand}` and `{platform}`. Style: `primaryColor` (the button), `accentColor` (the header gradient, built as a scale of that colour, and the icons), `pageColor`, `cardColor` and `textColor` as `#RRGGBB`, `cornerRadius` as an integer from 0 to 24 (pixels), `font` as `sans`, `serif` or `mono`. A `primaryColor` here wins over the `primaryColor` parameter. Unknown keys, invalid JSON or an invalid value are a 400 `INVALID_FIELD_VALUE`. Rejected when the welcome screen is not shown. Example: `{\"heading\":\"Link your {platform} to {brand}\",\"cardColor\":\"#FFF7ED\",\"cornerRadius\":12}`. (optional) 
             var logoUrl = "logoUrl_example";  // string? | Welcome screen only (`welcome=true`): https URL of your logo, shown in a square tile, so use a square image. Without it the tile shows the first letter of `brandName`, or the Zernio mark when there is no `brandName` either. Rejected with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown. (optional) 
             var language = "en";  // string? | Hosted signup page only (`signup=hosted`, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default `en`. Rejected without `signup=hosted`. (optional) 
+            var handoff = false;  // bool? | Let the user finish on their phone. When `true`, the response also carries `handoff`: show `handoff.url` as a QR code in your app (any QR library), the user scans it and the welcome screen opens on the phone, already carrying this connect, so they log in to the platform there without signing in to anything else. The phone ends on a Zernio result screen telling them to go back to their computer. Learn the outcome by polling `GET /v1/connect/handoffs/{handoffId}` (every 2 to 5 seconds is fine) or from the `account.connected` webhook. Shows the welcome screen with your branding parameters or saved settings. Cannot be combined with `welcome=false`, `headless=true`, `signup`, `redirect=true` or `redirect_url` (400 `INVALID_FIELD_VALUE`). `handoff.url` works for 30 minutes. When the account is re-enabled straight away the response carries `account` instead, as without `handoff`. (optional)  (default to false)
 
             try
             {
                 // Get OAuth connect URL
-                GetConnectUrl200Response result = apiInstance.GetConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language);
+                GetConnectUrl200Response result = apiInstance.GetConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2023,7 +2126,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get OAuth connect URL
-    ApiResponse<GetConnectUrl200Response> response = apiInstance.GetConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language);
+    ApiResponse<GetConnectUrl200Response> response = apiInstance.GetConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2058,6 +2161,7 @@ catch (ApiException e)
 | **welcomeTheme** | **string?** | Welcome screen only (&#x60;welcome&#x3D;true&#x60;): a URL-encoded JSON object that restyles and rewords the screen. All keys are optional. Copy: &#x60;heading&#x60; (up to 120 characters), &#x60;trustLine&#x60;, &#x60;consentLine&#x60; and &#x60;statusLine&#x60; (up to 200 each, &#x60;statusLine&#x60; being the line above the button), &#x60;buttonLabel&#x60; (up to 30, the label of the link the button becomes if the redirect stalls); each may contain the placeholders &#x60;{brand}&#x60; and &#x60;{platform}&#x60;. Style: &#x60;primaryColor&#x60; (the button), &#x60;accentColor&#x60; (the header gradient, built as a scale of that colour, and the icons), &#x60;pageColor&#x60;, &#x60;cardColor&#x60; and &#x60;textColor&#x60; as &#x60;#RRGGBB&#x60;, &#x60;cornerRadius&#x60; as an integer from 0 to 24 (pixels), &#x60;font&#x60; as &#x60;sans&#x60;, &#x60;serif&#x60; or &#x60;mono&#x60;. A &#x60;primaryColor&#x60; here wins over the &#x60;primaryColor&#x60; parameter. Unknown keys, invalid JSON or an invalid value are a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected when the welcome screen is not shown. Example: &#x60;{\&quot;heading\&quot;:\&quot;Link your {platform} to {brand}\&quot;,\&quot;cardColor\&quot;:\&quot;#FFF7ED\&quot;,\&quot;cornerRadius\&quot;:12}&#x60;. | [optional]  |
 | **logoUrl** | **string?** | Welcome screen only (&#x60;welcome&#x3D;true&#x60;): https URL of your logo, shown in a square tile, so use a square image. Without it the tile shows the first letter of &#x60;brandName&#x60;, or the Zernio mark when there is no &#x60;brandName&#x60; either. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; when the welcome screen is not shown. | [optional]  |
 | **language** | **string?** | Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. | [optional]  |
+| **handoff** | **bool?** | Let the user finish on their phone. When &#x60;true&#x60;, the response also carries &#x60;handoff&#x60;: show &#x60;handoff.url&#x60; as a QR code in your app (any QR library), the user scans it and the welcome screen opens on the phone, already carrying this connect, so they log in to the platform there without signing in to anything else. The phone ends on a Zernio result screen telling them to go back to their computer. Learn the outcome by polling &#x60;GET /v1/connect/handoffs/{handoffId}&#x60; (every 2 to 5 seconds is fine) or from the &#x60;account.connected&#x60; webhook. Shows the welcome screen with your branding parameters or saved settings. Cannot be combined with &#x60;welcome&#x3D;false&#x60;, &#x60;headless&#x3D;true&#x60;, &#x60;signup&#x60;, &#x60;redirect&#x3D;true&#x60; or &#x60;redirect_url&#x60; (400 &#x60;INVALID_FIELD_VALUE&#x60;). &#x60;handoff.url&#x60; works for 30 minutes. When the account is re-enabled straight away the response carries &#x60;account&#x60; instead, as without &#x60;handoff&#x60;. | [optional] [default to false] |
 
 ### Return type
 
@@ -3111,7 +3215,7 @@ catch (ApiException e)
 
 <a id="getshopifyconnecturl"></a>
 # **GetShopifyConnectUrl**
-> GetConnectUrl200Response GetShopifyConnectUrl (string profileId, string shop, string? redirectUrl = null)
+> GetShopifyConnectUrl200Response GetShopifyConnectUrl (string profileId, string shop, string? redirectUrl = null)
 
 Get Shopify OAuth connect URL
 
@@ -3148,7 +3252,7 @@ namespace Example
             try
             {
                 // Get Shopify OAuth connect URL
-                GetConnectUrl200Response result = apiInstance.GetShopifyConnectUrl(profileId, shop, redirectUrl);
+                GetShopifyConnectUrl200Response result = apiInstance.GetShopifyConnectUrl(profileId, shop, redirectUrl);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3169,7 +3273,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Shopify OAuth connect URL
-    ApiResponse<GetConnectUrl200Response> response = apiInstance.GetShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl);
+    ApiResponse<GetShopifyConnectUrl200Response> response = apiInstance.GetShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3192,7 +3296,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetConnectUrl200Response**](GetConnectUrl200Response.md)
+[**GetShopifyConnectUrl200Response**](GetShopifyConnectUrl200Response.md)
 
 ### Authorization
 
