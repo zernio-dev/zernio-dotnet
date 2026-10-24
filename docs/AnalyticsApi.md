@@ -1519,7 +1519,7 @@ namespace Example
             var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
             var until = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var metricType = "time_series";  // string? | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric.  (optional)  (default to total_value)
-            var breakdown = "breakdown_example";  // string? | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  (optional) 
+            var breakdown = "breakdown_example";  // string? | Breakdown dimension (only valid with metricType=total_value). Valid values per metric: reach and views take follow_type or media_product_type; follows_and_unfollows takes follow_type; profile_links_taps takes contact_button_type; comments, likes, saves, shares and total_interactions take media_product_type.  (optional) 
 
             try
             {
@@ -1569,7 +1569,7 @@ catch (ApiException e)
 | **since** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
 | **until** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **metricType** | **string?** | \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] |
-| **breakdown** | **string?** | Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional]  |
+| **breakdown** | **string?** | Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values per metric: reach and views take follow_type or media_product_type; follows_and_unfollows takes follow_type; profile_links_taps takes contact_button_type; comments, likes, saves, shares and total_interactions take media_product_type.  | [optional]  |
 
 ### Return type
 
