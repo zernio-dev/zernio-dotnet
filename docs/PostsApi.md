@@ -10,8 +10,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**EditPost**](PostsApi.md#editpost) | **POST** /v1/posts/{postId}/edit | Edit published post |
 | [**GetPost**](PostsApi.md#getpost) | **GET** /v1/posts/{postId} | Get post |
 | [**ListPosts**](PostsApi.md#listposts) | **GET** /v1/posts | List posts |
+| [**PinPost**](PostsApi.md#pinpost) | **POST** /v1/posts/{postId}/pin | Pin post |
 | [**RetryPost**](PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post |
 | [**ReviewPost**](PostsApi.md#reviewpost) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
+| [**UnpinPost**](PostsApi.md#unpinpost) | **POST** /v1/posts/{postId}/unpin | Unpin post |
 | [**UnpublishPost**](PostsApi.md#unpublishpost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**UpdatePost**](PostsApi.md#updatepost) | **PUT** /v1/posts/{postId} | Update post |
 | [**UpdatePostMetadata**](PostsApi.md#updatepostmetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata |
@@ -678,6 +680,112 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="pinpost"></a>
+# **PinPost**
+> PinPostResponse PinPost (string postId, PinPostRequest pinPostRequest)
+
+Pin post
+
+Pins a published Facebook Page post to the top of its Page. Only Facebook posts can be pinned; any other platform answers 400 `platform_not_supported`. Works for posts on Pages connected through Facebook Login. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class PinPostExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var pinPostRequest = new PinPostRequest(); // PinPostRequest | 
+
+            try
+            {
+                // Pin post
+                PinPostResponse result = apiInstance.PinPost(postId, pinPostRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PostsApi.PinPost: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PinPostWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Pin post
+    ApiResponse<PinPostResponse> response = apiInstance.PinPostWithHttpInfo(postId, pinPostRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PostsApi.PinPostWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **pinPostRequest** | [**PinPostRequest**](PinPostRequest.md) |  |  |
+
+### Return type
+
+[**PinPostResponse**](PinPostResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pin applied on Facebook |  -  |
+| **400** | Invalid request: invalid postId or accountId, the post or the chosen account is not on Facebook (&#x60;platform_not_supported&#x60;), the Facebook entry is not published or has no platform post ID, no access token, or Facebook rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Facebook accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Facebook API call failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="retrypost"></a>
 # **RetryPost**
 > PostRetryResponse RetryPost (string postId)
@@ -886,6 +994,112 @@ catch (ApiException e)
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="unpinpost"></a>
+# **UnpinPost**
+> PinPostResponse UnpinPost (string postId, PinPostRequest pinPostRequest)
+
+Unpin post
+
+Unpins a published Facebook Page post from the top of its Page. Only Facebook posts can be unpinned; any other platform answers 400 `platform_not_supported`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UnpinPostExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var pinPostRequest = new PinPostRequest(); // PinPostRequest | 
+
+            try
+            {
+                // Unpin post
+                PinPostResponse result = apiInstance.UnpinPost(postId, pinPostRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PostsApi.UnpinPost: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UnpinPostWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Unpin post
+    ApiResponse<PinPostResponse> response = apiInstance.UnpinPostWithHttpInfo(postId, pinPostRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PostsApi.UnpinPostWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **pinPostRequest** | [**PinPostRequest**](PinPostRequest.md) |  |  |
+
+### Return type
+
+[**PinPostResponse**](PinPostResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unpin applied on Facebook |  -  |
+| **400** | Invalid request: invalid postId or accountId, the post or the chosen account is not on Facebook (&#x60;platform_not_supported&#x60;), the Facebook entry is not published or has no platform post ID, no access token, or Facebook rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Facebook accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Facebook API call failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
