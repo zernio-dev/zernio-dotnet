@@ -603,6 +603,8 @@ docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
 docs/CreatePinterestBoardRequest.md
 docs/CreatePost200Response.md
+docs/CreatePost400Response.md
+docs/CreatePost400ResponseDetails.md
 docs/CreatePost403Response.md
 docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
@@ -1479,6 +1481,7 @@ docs/LinkedInLeadFormPlatformDataQuestionsInner.md
 docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.md
 docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md
 docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
+docs/LinkedInMentionIssue.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
 docs/LinkedInPlatformDataAudience.md
@@ -3573,6 +3576,8 @@ src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
 src/Zernio.Test/Model/CreatePinterestBoardRequestTests.cs
 src/Zernio.Test/Model/CreatePost200ResponseTests.cs
+src/Zernio.Test/Model/CreatePost400ResponseDetailsTests.cs
+src/Zernio.Test/Model/CreatePost400ResponseTests.cs
 src/Zernio.Test/Model/CreatePost403ResponseTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseTests.cs
@@ -4433,6 +4438,7 @@ src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1Tests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOfTests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerTests.cs
 src/Zernio.Test/Model/LinkedInLeadFormPlatformDataTests.cs
+src/Zernio.Test/Model/LinkedInMentionIssueTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataAudienceInterfaceLocalesInnerTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataAudienceTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataPollTests.cs
@@ -6508,6 +6514,8 @@ src/Zernio/Model/CreatePinterestBoard201Response.cs
 src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
 src/Zernio/Model/CreatePinterestBoardRequest.cs
 src/Zernio/Model/CreatePost200Response.cs
+src/Zernio/Model/CreatePost400Response.cs
+src/Zernio/Model/CreatePost400ResponseDetails.cs
 src/Zernio/Model/CreatePost403Response.cs
 src/Zernio/Model/CreatePost409Response.cs
 src/Zernio/Model/CreatePost409ResponseDetails.cs
@@ -7368,6 +7376,7 @@ src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInner.cs
 src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.cs
 src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.cs
 src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.cs
+src/Zernio/Model/LinkedInMentionIssue.cs
 src/Zernio/Model/LinkedInPlatformData.cs
 src/Zernio/Model/LinkedInPlatformDataAudience.cs
 src/Zernio/Model/LinkedInPlatformDataAudienceInterfaceLocalesInner.cs
