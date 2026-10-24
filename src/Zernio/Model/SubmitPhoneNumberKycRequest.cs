@@ -49,13 +49,14 @@ namespace Zernio.Model
         /// <param name="reuseOptionId">Which reusable verification to use (GET reusable.options[].id). The unambiguous selection key. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
         /// <param name="reuseFrom">Legacy fallback for &#x60;reuseOptionId&#x60;: the source phone number (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels two verifications, so prefer &#x60;reuseOptionId&#x60;. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
         /// <param name="areaCode">Area code (NDC) the number must be in. Hard constraint: an empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of ordering from another area. Omit for any area. Options come from GET /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here..</param>
+        /// <param name="phoneNumber">Exact number to order, in E.164, taken from GET /v1/phone-numbers/available. It is ordered as is or the request fails with 409 code phone_number_unavailable; another number is never substituted and a pre-order is never placed. Requires quantity 1 (or omitted). Omit to let the carrier pick a number in the area..</param>
         /// <param name="preOrder">With areaCode: pre-order that area when it has no stock (an area listed in soldOutAreas with preOrderable true) instead of failing with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area. Without areaCode it accepts the pre-order a previous submit offered with 409 code area_pre_order_available (a geographic-match country whose address area has no stock): resend the same body with preOrder true and the order is placed for that area. A whole pair with no stock is pre-ordered without either flag..</param>
         /// <param name="endUserFirstName">End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement..</param>
         /// <param name="endUserLastName">End user&#39;s legal last name. Same condition as endUserFirstName..</param>
         /// <param name="values">requirementId → textual value.</param>
         /// <param name="documents">One per document requirement. Each is EITHER inline base64 OR a &#x60;documentId&#x60; returned by POST /v1/phone-numbers/kyc/upload-document (use the upload endpoint for large files to stay under the request-size limit)..</param>
         /// <param name="address">address.</param>
-        public SubmitPhoneNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseOptionId = default, string reuseFrom = default, string areaCode = default, bool preOrder = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitPhoneNumberKycRequestDocumentsInner> documents = default, SubmitPhoneNumberKycRequestAddress address = default)
+        public SubmitPhoneNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseOptionId = default, string reuseFrom = default, string areaCode = default, string phoneNumber = default, bool preOrder = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitPhoneNumberKycRequestDocumentsInner> documents = default, SubmitPhoneNumberKycRequestAddress address = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -75,6 +76,7 @@ namespace Zernio.Model
             this.ReuseOptionId = reuseOptionId;
             this.ReuseFrom = reuseFrom;
             this.AreaCode = areaCode;
+            this.PhoneNumber = phoneNumber;
             this.PreOrder = preOrder;
             this.EndUserFirstName = endUserFirstName;
             this.EndUserLastName = endUserLastName;
@@ -138,6 +140,13 @@ namespace Zernio.Model
         public string AreaCode { get; set; }
 
         /// <summary>
+        /// Exact number to order, in E.164, taken from GET /v1/phone-numbers/available. It is ordered as is or the request fails with 409 code phone_number_unavailable; another number is never substituted and a pre-order is never placed. Requires quantity 1 (or omitted). Omit to let the carrier pick a number in the area.
+        /// </summary>
+        /// <value>Exact number to order, in E.164, taken from GET /v1/phone-numbers/available. It is ordered as is or the request fails with 409 code phone_number_unavailable; another number is never substituted and a pre-order is never placed. Requires quantity 1 (or omitted). Omit to let the carrier pick a number in the area.</value>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
         /// With areaCode: pre-order that area when it has no stock (an area listed in soldOutAreas with preOrderable true) instead of failing with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area. Without areaCode it accepts the pre-order a previous submit offered with 409 code area_pre_order_available (a geographic-match country whose address area has no stock): resend the same body with preOrder true and the order is placed for that area. A whole pair with no stock is pre-ordered without either flag.
         /// </summary>
         /// <value>With areaCode: pre-order that area when it has no stock (an area listed in soldOutAreas with preOrderable true) instead of failing with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area. Without areaCode it accepts the pre-order a previous submit offered with 409 code area_pre_order_available (a geographic-match country whose address area has no stock): resend the same body with preOrder true and the order is placed for that area. A whole pair with no stock is pre-ordered without either flag.</value>
@@ -194,6 +203,7 @@ namespace Zernio.Model
             sb.Append("  ReuseOptionId: ").Append(ReuseOptionId).Append("\n");
             sb.Append("  ReuseFrom: ").Append(ReuseFrom).Append("\n");
             sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  PreOrder: ").Append(PreOrder).Append("\n");
             sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
             sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
@@ -238,6 +248,15 @@ namespace Zernio.Model
                 if (!regexAreaCode.Match(this.AreaCode).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AreaCode, must match a pattern of " + regexAreaCode, new [] { "AreaCode" });
+                }
+            }
+
+            if (this.PhoneNumber != null) {
+                // PhoneNumber (string) pattern
+                Regex regexPhoneNumber = new Regex(@"^\+[1-9]\d{6,14}$", RegexOptions.CultureInvariant);
+                if (!regexPhoneNumber.Match(this.PhoneNumber).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PhoneNumber, must match a pattern of " + regexPhoneNumber, new [] { "PhoneNumber" });
                 }
             }
 
