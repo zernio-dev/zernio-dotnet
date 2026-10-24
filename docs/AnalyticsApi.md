@@ -34,6 +34,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetYouTubeDemographics**](AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
 | [**GetYouTubeVideoRetention**](AnalyticsApi.md#getyoutubevideoretention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 | [**ListFacebookTaggedPosts**](AnalyticsApi.md#listfacebooktaggedposts) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in |
+| [**ListFacebookVisitorPosts**](AnalyticsApi.md#listfacebookvisitorposts) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page |
 | [**SyncExternalPosts**](AnalyticsApi.md#syncexternalposts) | **POST** /v1/posts/sync-external | Sync an external post |
 
 <a id="getanalytics"></a>
@@ -3369,6 +3370,114 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | One page of posts the Page is tagged in |  -  |
 | **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing &#x60;pages_read_user_content&#x60; permission). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listfacebookvisitorposts"></a>
+# **ListFacebookVisitorPosts**
+> ListFacebookVisitorPosts200Response ListFacebookVisitorPosts (string accountId, int? limit = null, string? cursor = null)
+
+List visitor posts on a Facebook Page
+
+Returns the posts other people published on the connected Facebook Page, newest first. Zernio reads the Page feed (Graph `/{page-id}/feed`, which works on New Pages Experience Pages, unlike the deprecated `visitor_posts` edge) and drops the posts the Page published itself and the posts other people published on their own timeline that only tag the Page. A Page without visitor posts returns an empty `data` array.  Cursor-paginated: pass `nextCursor` from the previous response as `cursor` to read the next page. `limit` sets how many feed entries are scanned, so a page can hold fewer posts than `limit`, or none, while `nextCursor` is not null. `nextCursor` is null when there are no more pages, and the final page can come back empty.  Works on `facebook` accounts with a Page selected. Meta requires the `pages_read_user_content` permission, which Zernio requests with the comments scope: an account connected without it receives Meta's refusal as `platform_api_error`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListFacebookVisitorPostsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Facebook Page account.
+            var limit = 25;  // int? | Number of Page feed entries to scan. The Page's own posts are dropped from them. (optional)  (default to 25)
+            var cursor = "cursor_example";  // string? | The `nextCursor` of the previous page. (optional) 
+
+            try
+            {
+                // List visitor posts on a Facebook Page
+                ListFacebookVisitorPosts200Response result = apiInstance.ListFacebookVisitorPosts(accountId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.ListFacebookVisitorPosts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListFacebookVisitorPostsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List visitor posts on a Facebook Page
+    ApiResponse<ListFacebookVisitorPosts200Response> response = apiInstance.ListFacebookVisitorPostsWithHttpInfo(accountId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.ListFacebookVisitorPostsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Facebook Page account. |  |
+| **limit** | **int?** | Number of Page feed entries to scan. The Page&#39;s own posts are dropped from them. | [optional] [default to 25] |
+| **cursor** | **string?** | The &#x60;nextCursor&#x60; of the previous page. | [optional]  |
+
+### Return type
+
+[**ListFacebookVisitorPosts200Response**](ListFacebookVisitorPosts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of visitor posts |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;, for example the Page was connected without the &#x60;pages_read_user_content&#x60; permission). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is not scoped to this account. |  -  |
 | **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |

@@ -837,6 +837,10 @@ docs/FacebookSettings.md
 docs/FacebookSettingsCarouselCardsInner.md
 docs/FacebookTaggedPost.md
 docs/FacebookTaggedPostFrom.md
+docs/FacebookVisitorPost.md
+docs/FacebookVisitorPostFrom.md
+docs/FacebookVisitorPostMedia.md
+docs/FacebookVisitorPostMediaMediaItemsInner.md
 docs/FeedbackApi.md
 docs/FeedbackReceipt.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
@@ -1622,6 +1626,7 @@ docs/ListDiscordScheduledEvents200Response.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
+docs/ListFacebookVisitorPosts200Response.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
@@ -3808,6 +3813,10 @@ src/Zernio.Test/Model/FacebookSettingsCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookSettingsTests.cs
 src/Zernio.Test/Model/FacebookTaggedPostFromTests.cs
 src/Zernio.Test/Model/FacebookTaggedPostTests.cs
+src/Zernio.Test/Model/FacebookVisitorPostFromTests.cs
+src/Zernio.Test/Model/FacebookVisitorPostMediaMediaItemsInnerTests.cs
+src/Zernio.Test/Model/FacebookVisitorPostMediaTests.cs
+src/Zernio.Test/Model/FacebookVisitorPostTests.cs
 src/Zernio.Test/Model/FeedbackReceiptTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInnerTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseTests.cs
@@ -4578,6 +4587,7 @@ src/Zernio.Test/Model/ListDiscordScheduledEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookTaggedPosts200ResponseTests.cs
+src/Zernio.Test/Model/ListFacebookVisitorPosts200ResponseTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseTests.cs
@@ -6746,6 +6756,10 @@ src/Zernio/Model/FacebookSettings.cs
 src/Zernio/Model/FacebookSettingsCarouselCardsInner.cs
 src/Zernio/Model/FacebookTaggedPost.cs
 src/Zernio/Model/FacebookTaggedPostFrom.cs
+src/Zernio/Model/FacebookVisitorPost.cs
+src/Zernio/Model/FacebookVisitorPostFrom.cs
+src/Zernio/Model/FacebookVisitorPostMedia.cs
+src/Zernio/Model/FacebookVisitorPostMediaMediaItemsInner.cs
 src/Zernio/Model/FeedbackReceipt.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200Response.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.cs
@@ -7516,6 +7530,7 @@ src/Zernio/Model/ListDiscordScheduledEvents200Response.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
+src/Zernio/Model/ListFacebookVisitorPosts200Response.cs
 src/Zernio/Model/ListFormLeads200Response.cs
 src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListFormLeads200ResponseMeta.cs
