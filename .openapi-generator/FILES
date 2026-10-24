@@ -829,6 +829,7 @@ docs/ExternalPostSummary.md
 docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookOrInstagramPost.md
+docs/FacebookPageInfo.md
 docs/FacebookPlatformData.md
 docs/FacebookPostEarningsResponse.md
 docs/FacebookPostEarningsResponseMetricsValue.md
@@ -2514,6 +2515,7 @@ docs/UpdateDiscordSettings200ResponseAccount.md
 docs/UpdateDiscordSettingsRequest.md
 docs/UpdateFacebookPage200Response.md
 docs/UpdateFacebookPage200ResponseSelectedPage.md
+docs/UpdateFacebookPageInfoRequest.md
 docs/UpdateFacebookPageRequest.md
 docs/UpdateGmbLocation200Response.md
 docs/UpdateGmbLocationRequest.md
@@ -3807,6 +3809,7 @@ src/Zernio.Test/Model/ExternalPostSummaryAnalyticsTests.cs
 src/Zernio.Test/Model/ExternalPostSummaryTests.cs
 src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
 src/Zernio.Test/Model/FacebookOrInstagramPostTests.cs
+src/Zernio.Test/Model/FacebookPageInfoTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
 src/Zernio.Test/Model/FacebookPostEarningsResponseMetricsValueTests.cs
 src/Zernio.Test/Model/FacebookPostEarningsResponseTests.cs
@@ -5455,6 +5458,7 @@ src/Zernio.Test/Model/UpdateDiscordSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateDiscordSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateFacebookPage200ResponseSelectedPageTests.cs
 src/Zernio.Test/Model/UpdateFacebookPage200ResponseTests.cs
+src/Zernio.Test/Model/UpdateFacebookPageInfoRequestTests.cs
 src/Zernio.Test/Model/UpdateFacebookPageRequestTests.cs
 src/Zernio.Test/Model/UpdateGmbLocation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateGmbLocationRequestTests.cs
@@ -6752,6 +6756,7 @@ src/Zernio/Model/ExternalPostSummary.cs
 src/Zernio/Model/ExternalPostSummaryAnalytics.cs
 src/Zernio/Model/ExternalPostWebhookPost.cs
 src/Zernio/Model/FacebookOrInstagramPost.cs
+src/Zernio/Model/FacebookPageInfo.cs
 src/Zernio/Model/FacebookPlatformData.cs
 src/Zernio/Model/FacebookPostEarningsResponse.cs
 src/Zernio/Model/FacebookPostEarningsResponseMetricsValue.cs
@@ -8400,6 +8405,7 @@ src/Zernio/Model/UpdateDiscordSettings200ResponseAccount.cs
 src/Zernio/Model/UpdateDiscordSettingsRequest.cs
 src/Zernio/Model/UpdateFacebookPage200Response.cs
 src/Zernio/Model/UpdateFacebookPage200ResponseSelectedPage.cs
+src/Zernio/Model/UpdateFacebookPageInfoRequest.cs
 src/Zernio/Model/UpdateFacebookPageRequest.cs
 src/Zernio/Model/UpdateGmbLocation200Response.cs
 src/Zernio/Model/UpdateGmbLocationRequest.cs
