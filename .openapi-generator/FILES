@@ -87,6 +87,7 @@ docs/AddCommerceDiscountCodesRequest.md
 docs/AddCommerceMarketingEngagement201Response.md
 docs/AddCommerceMarketingEngagementRequest.md
 docs/AddCommerceProductImagesRequest.md
+docs/AddConversationLabelRequest.md
 docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
@@ -3087,6 +3088,7 @@ src/Zernio.Test/Model/AddCommerceDiscountCodesRequestTests.cs
 src/Zernio.Test/Model/AddCommerceMarketingEngagement201ResponseTests.cs
 src/Zernio.Test/Model/AddCommerceMarketingEngagementRequestTests.cs
 src/Zernio.Test/Model/AddCommerceProductImagesRequestTests.cs
+src/Zernio.Test/Model/AddConversationLabelRequestTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
@@ -6038,6 +6040,7 @@ src/Zernio/Model/AddCommerceDiscountCodesRequest.cs
 src/Zernio/Model/AddCommerceMarketingEngagement201Response.cs
 src/Zernio/Model/AddCommerceMarketingEngagementRequest.cs
 src/Zernio/Model/AddCommerceProductImagesRequest.cs
+src/Zernio/Model/AddConversationLabelRequest.cs
 src/Zernio/Model/AddConversionAssociations200Response.cs
 src/Zernio/Model/AddConversionAssociations200ResponseFailedInner.cs
 src/Zernio/Model/AddConversionAssociationsRequest.cs
