@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **AdGroupId** | **string** |  | [optional] 
 **CampaignId** | **string** |  | [optional] 
 **Error** | [**ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError**](ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.md) |  | [optional] 
+**RefusedAt** | **DateTime?** | When TikTok refused this ad. Null for a refusal stored before this field existed. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
