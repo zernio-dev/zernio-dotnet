@@ -577,6 +577,8 @@ docs/CreateInboxConversationRequestTemplateButtonParamsInner.md
 docs/CreateInboxConversationRequestTemplateCardsInner.md
 docs/CreateInboxConversationRequestTemplateCardsInnerButtonsInner.md
 docs/CreateInboxConversationRequestTemplateCardsInnerHeaderMedia.md
+docs/CreateInboxLabel201Response.md
+docs/CreateInboxLabelRequest.md
 docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
@@ -1662,6 +1664,8 @@ docs/ListInboxConversations200ResponseMeta.md
 docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/ListInboxConversations200ResponsePagination.md
+docs/ListInboxLabels200Response.md
+docs/ListInboxLabels200ResponseLabelsInner.md
 docs/ListInboxMentions200Response.md
 docs/ListInboxMentions200ResponseDataInner.md
 docs/ListInboxMentions200ResponseMeta.md
@@ -3559,6 +3563,8 @@ src/Zernio.Test/Model/CreateInboxConversationRequestTemplateCardsInnerButtonsInn
 src/Zernio.Test/Model/CreateInboxConversationRequestTemplateCardsInnerHeaderMediaTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestTemplateCardsInnerTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestTests.cs
+src/Zernio.Test/Model/CreateInboxLabel201ResponseTests.cs
+src/Zernio.Test/Model/CreateInboxLabelRequestTests.cs
 src/Zernio.Test/Model/CreateInviteToken201ResponseTests.cs
 src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
 src/Zernio.Test/Model/CreateLeadForm200ResponseTests.cs
@@ -4627,6 +4633,8 @@ src/Zernio.Test/Model/ListInboxConversations200ResponseMetaFailedAccountsInnerTe
 src/Zernio.Test/Model/ListInboxConversations200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListInboxConversations200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListInboxConversations200ResponseTests.cs
+src/Zernio.Test/Model/ListInboxLabels200ResponseLabelsInnerTests.cs
+src/Zernio.Test/Model/ListInboxLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListInboxMentions200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInboxMentions200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListInboxMentions200ResponseTests.cs
@@ -6506,6 +6514,8 @@ src/Zernio/Model/CreateInboxConversationRequestTemplateButtonParamsInner.cs
 src/Zernio/Model/CreateInboxConversationRequestTemplateCardsInner.cs
 src/Zernio/Model/CreateInboxConversationRequestTemplateCardsInnerButtonsInner.cs
 src/Zernio/Model/CreateInboxConversationRequestTemplateCardsInnerHeaderMedia.cs
+src/Zernio/Model/CreateInboxLabel201Response.cs
+src/Zernio/Model/CreateInboxLabelRequest.cs
 src/Zernio/Model/CreateInviteToken201Response.cs
 src/Zernio/Model/CreateInviteTokenRequest.cs
 src/Zernio/Model/CreateLeadForm200Response.cs
@@ -7574,6 +7584,8 @@ src/Zernio/Model/ListInboxConversations200ResponseMeta.cs
 src/Zernio/Model/ListInboxConversations200ResponseMetaAccountsSkippedInner.cs
 src/Zernio/Model/ListInboxConversations200ResponseMetaFailedAccountsInner.cs
 src/Zernio/Model/ListInboxConversations200ResponsePagination.cs
+src/Zernio/Model/ListInboxLabels200Response.cs
+src/Zernio/Model/ListInboxLabels200ResponseLabelsInner.cs
 src/Zernio/Model/ListInboxMentions200Response.cs
 src/Zernio/Model/ListInboxMentions200ResponseDataInner.cs
 src/Zernio/Model/ListInboxMentions200ResponseMeta.cs

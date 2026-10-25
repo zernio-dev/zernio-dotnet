@@ -811,13 +811,16 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**AcceptConversationRequest**](docs/MessagesApi.md#acceptconversationrequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request
 *MessagesApi* | [**AddMessageReaction**](docs/MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**CreateInboxConversation**](docs/MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**CreateInboxLabel**](docs/MessagesApi.md#createinboxlabel) | **POST** /v1/inbox/labels | Create a conversation label
 *MessagesApi* | [**DeleteInboxConversation**](docs/MessagesApi.md#deleteinboxconversation) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation
+*MessagesApi* | [**DeleteInboxLabel**](docs/MessagesApi.md#deleteinboxlabel) | **DELETE** /v1/inbox/labels/{labelId} | Delete a conversation label
 *MessagesApi* | [**DeleteInboxMessage**](docs/MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**EditInboxMessage**](docs/MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**GetInboxConversation**](docs/MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
 *MessagesApi* | [**GetInboxConversationMessages**](docs/MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
 *MessagesApi* | [**GetMessageAttachment**](docs/MessagesApi.md#getmessageattachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**ListInboxConversations**](docs/MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations
+*MessagesApi* | [**ListInboxLabels**](docs/MessagesApi.md#listinboxlabels) | **GET** /v1/inbox/labels | List the Page's conversation labels
 *MessagesApi* | [**MarkConversationRead**](docs/MessagesApi.md#markconversationread) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**RemoveMessageReaction**](docs/MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
 *MessagesApi* | [**SearchInboxConversations**](docs/MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations
@@ -1706,6 +1709,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateInboxConversationRequestTemplateCardsInner](docs/CreateInboxConversationRequestTemplateCardsInner.md)
  - [Model.CreateInboxConversationRequestTemplateCardsInnerButtonsInner](docs/CreateInboxConversationRequestTemplateCardsInnerButtonsInner.md)
  - [Model.CreateInboxConversationRequestTemplateCardsInnerHeaderMedia](docs/CreateInboxConversationRequestTemplateCardsInnerHeaderMedia.md)
+ - [Model.CreateInboxLabel201Response](docs/CreateInboxLabel201Response.md)
+ - [Model.CreateInboxLabelRequest](docs/CreateInboxLabelRequest.md)
  - [Model.CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [Model.CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [Model.CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
@@ -2774,6 +2779,8 @@ Class | Method | HTTP request | Description
  - [Model.ListInboxConversations200ResponseMetaAccountsSkippedInner](docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [Model.ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [Model.ListInboxConversations200ResponsePagination](docs/ListInboxConversations200ResponsePagination.md)
+ - [Model.ListInboxLabels200Response](docs/ListInboxLabels200Response.md)
+ - [Model.ListInboxLabels200ResponseLabelsInner](docs/ListInboxLabels200ResponseLabelsInner.md)
  - [Model.ListInboxMentions200Response](docs/ListInboxMentions200Response.md)
  - [Model.ListInboxMentions200ResponseDataInner](docs/ListInboxMentions200ResponseDataInner.md)
  - [Model.ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)

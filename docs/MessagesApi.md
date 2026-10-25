@@ -7,13 +7,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**AcceptConversationRequest**](MessagesApi.md#acceptconversationrequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
 | [**AddMessageReaction**](MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**CreateInboxConversation**](MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation |
+| [**CreateInboxLabel**](MessagesApi.md#createinboxlabel) | **POST** /v1/inbox/labels | Create a conversation label |
 | [**DeleteInboxConversation**](MessagesApi.md#deleteinboxconversation) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation |
+| [**DeleteInboxLabel**](MessagesApi.md#deleteinboxlabel) | **DELETE** /v1/inbox/labels/{labelId} | Delete a conversation label |
 | [**DeleteInboxMessage**](MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
 | [**EditInboxMessage**](MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message |
 | [**GetInboxConversation**](MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation |
 | [**GetInboxConversationMessages**](MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
 | [**GetMessageAttachment**](MessagesApi.md#getmessageattachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
 | [**ListInboxConversations**](MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations |
+| [**ListInboxLabels**](MessagesApi.md#listinboxlabels) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels |
 | [**MarkConversationRead**](MessagesApi.md#markconversationread) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
 | [**RemoveMessageReaction**](MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**SearchInboxConversations**](MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations |
@@ -341,6 +344,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createinboxlabel"></a>
+# **CreateInboxLabel**
+> CreateInboxLabel201Response CreateInboxLabel (CreateInboxLabelRequest createInboxLabelRequest)
+
+Create a conversation label
+
+Facebook Messenger only. Creates a custom label on the Page (Graph `POST /{page-id}/custom_labels`). Other platforms answer 400 `platform_not_supported`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateInboxLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var createInboxLabelRequest = new CreateInboxLabelRequest(); // CreateInboxLabelRequest | 
+
+            try
+            {
+                // Create a conversation label
+                CreateInboxLabel201Response result = apiInstance.CreateInboxLabel(createInboxLabelRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.CreateInboxLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateInboxLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a conversation label
+    ApiResponse<CreateInboxLabel201Response> response = apiInstance.CreateInboxLabelWithHttpInfo(createInboxLabelRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.CreateInboxLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createInboxLabelRequest** | [**CreateInboxLabelRequest**](CreateInboxLabelRequest.md) |  |  |
+
+### Return type
+
+[**CreateInboxLabel201Response**](CreateInboxLabel201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Label created |  -  |
+| **400** | Invalid body, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s error_user_title and error_user_msg in the message, e.g. the Page has not accepted the label privacy terms, subcode 2018344, in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteinboxconversation"></a>
 # **DeleteInboxConversation**
 > DeleteInboxConversation200Response DeleteInboxConversation (string conversationId, string accountId)
@@ -442,6 +548,111 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteinboxlabel"></a>
+# **DeleteInboxLabel**
+> UpdateYoutubeDefaultPlaylist200Response DeleteInboxLabel (string labelId, string accountId)
+
+Delete a conversation label
+
+Facebook Messenger only. Deletes a custom label from the Page (Graph `DELETE /{label-id}`), which also removes it from every conversation. The id must be one of the Page's custom labels, otherwise 404 `resource_not_found`. Other platforms answer 400 `platform_not_supported`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteInboxLabelExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var labelId = "labelId_example";  // string | Meta label id
+            var accountId = "accountId_example";  // string | Facebook social account ID
+
+            try
+            {
+                // Delete a conversation label
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteInboxLabel(labelId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.DeleteInboxLabel: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteInboxLabelWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a conversation label
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteInboxLabelWithHttpInfo(labelId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.DeleteInboxLabelWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **labelId** | **string** | Meta label id |  |
+| **accountId** | **string** | Facebook social account ID |  |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label deleted |  -  |
+| **400** | Invalid id, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s error_user_title and error_user_msg in the message, e.g. the Page has not accepted the label privacy terms, subcode 2018344, in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found, or the label is not one of the Page&#39;s custom labels |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1093,6 +1304,109 @@ catch (ApiException e)
 | **400** | Invalid query, a platform without direct messages (PLATFORM_NOT_SUPPORTED), or folder&#x3D;requests on one account Meta will not list the folder for (PLATFORM_LIMITATION). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listinboxlabels"></a>
+# **ListInboxLabels**
+> ListInboxLabels200Response ListInboxLabels (string accountId)
+
+List the Page's conversation labels
+
+Facebook Messenger only. Lists the custom labels defined on the Page (Graph `/{page-id}/custom_labels`). Other platforms answer 400 `platform_not_supported`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListInboxLabelsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Facebook social account ID
+
+            try
+            {
+                // List the Page's conversation labels
+                ListInboxLabels200Response result = apiInstance.ListInboxLabels(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.ListInboxLabels: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListInboxLabelsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the Page's conversation labels
+    ApiResponse<ListInboxLabels200Response> response = apiInstance.ListInboxLabelsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.ListInboxLabelsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Facebook social account ID |  |
+
+### Return type
+
+[**ListInboxLabels200Response**](ListInboxLabels200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s labels |  -  |
+| **400** | Invalid accountId, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s error_user_title and error_user_msg in the message, e.g. the Page has not accepted the label privacy terms, subcode 2018344, in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

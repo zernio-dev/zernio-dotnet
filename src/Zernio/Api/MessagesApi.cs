@@ -98,6 +98,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateInboxConversation201Response</returns>
         ApiResponse<CreateInboxConversation201Response> CreateInboxConversationWithHttpInfo(CreateInboxConversationRequest createInboxConversationRequest);
         /// <summary>
+        /// Create a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <returns>CreateInboxLabel201Response</returns>
+        CreateInboxLabel201Response CreateInboxLabel(CreateInboxLabelRequest createInboxLabelRequest);
+
+        /// <summary>
+        /// Create a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <returns>ApiResponse of CreateInboxLabel201Response</returns>
+        ApiResponse<CreateInboxLabel201Response> CreateInboxLabelWithHttpInfo(CreateInboxLabelRequest createInboxLabelRequest);
+        /// <summary>
         /// Delete conversation
         /// </summary>
         /// <remarks>
@@ -120,6 +141,29 @@ namespace Zernio.Api
         /// <param name="accountId">Account ID</param>
         /// <returns>ApiResponse of DeleteInboxConversation200Response</returns>
         ApiResponse<DeleteInboxConversation200Response> DeleteInboxConversationWithHttpInfo(string conversationId, string accountId);
+        /// <summary>
+        /// Delete a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response DeleteInboxLabel(string labelId, string accountId);
+
+        /// <summary>
+        /// Delete a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxLabelWithHttpInfo(string labelId, string accountId);
         /// <summary>
         /// Delete message
         /// </summary>
@@ -286,6 +330,27 @@ namespace Zernio.Api
         /// <param name="accountId">Filter by specific account ID (optional)</param>
         /// <returns>ApiResponse of ListInboxConversations200Response</returns>
         ApiResponse<ListInboxConversations200Response> ListInboxConversationsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, string? folder = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default);
+        /// <summary>
+        /// List the Page&#39;s conversation labels
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>ListInboxLabels200Response</returns>
+        ListInboxLabels200Response ListInboxLabels(string accountId);
+
+        /// <summary>
+        /// List the Page&#39;s conversation labels
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>ApiResponse of ListInboxLabels200Response</returns>
+        ApiResponse<ListInboxLabels200Response> ListInboxLabelsWithHttpInfo(string accountId);
         /// <summary>
         /// Mark a conversation as read
         /// </summary>
@@ -569,6 +634,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateInboxConversation201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateInboxConversation201Response>> CreateInboxConversationWithHttpInfoAsync(CreateInboxConversationRequest createInboxConversationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateInboxLabel201Response</returns>
+        System.Threading.Tasks.Task<CreateInboxLabel201Response> CreateInboxLabelAsync(CreateInboxLabelRequest createInboxLabelRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateInboxLabel201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateInboxLabel201Response>> CreateInboxLabelWithHttpInfoAsync(CreateInboxLabelRequest createInboxLabelRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Delete conversation
         /// </summary>
         /// <remarks>
@@ -593,6 +681,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteInboxConversation200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteInboxConversation200Response>> DeleteInboxConversationWithHttpInfoAsync(string conversationId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxLabelAsync(string labelId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a conversation label
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteInboxLabelWithHttpInfoAsync(string labelId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete message
         /// </summary>
@@ -771,6 +884,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListInboxConversations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListInboxConversations200Response>> ListInboxConversationsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, string? folder = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List the Page&#39;s conversation labels
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListInboxLabels200Response</returns>
+        System.Threading.Tasks.Task<ListInboxLabels200Response> ListInboxLabelsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List the Page&#39;s conversation labels
+        /// </summary>
+        /// <remarks>
+        /// Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListInboxLabels200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListInboxLabels200Response>> ListInboxLabelsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Mark a conversation as read
         /// </summary>
@@ -1630,6 +1766,135 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Create a conversation label Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <returns>CreateInboxLabel201Response</returns>
+        public CreateInboxLabel201Response CreateInboxLabel(CreateInboxLabelRequest createInboxLabelRequest)
+        {
+            Zernio.Client.ApiResponse<CreateInboxLabel201Response> localVarResponse = CreateInboxLabelWithHttpInfo(createInboxLabelRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a conversation label Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <returns>ApiResponse of CreateInboxLabel201Response</returns>
+        public Zernio.Client.ApiResponse<CreateInboxLabel201Response> CreateInboxLabelWithHttpInfo(CreateInboxLabelRequest createInboxLabelRequest)
+        {
+            // verify the required parameter 'createInboxLabelRequest' is set
+            if (createInboxLabelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createInboxLabelRequest' when calling MessagesApi->CreateInboxLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createInboxLabelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateInboxLabel201Response>("/v1/inbox/labels", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateInboxLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a conversation label Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateInboxLabel201Response</returns>
+        public async System.Threading.Tasks.Task<CreateInboxLabel201Response> CreateInboxLabelAsync(CreateInboxLabelRequest createInboxLabelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateInboxLabel201Response> localVarResponse = await CreateInboxLabelWithHttpInfoAsync(createInboxLabelRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a conversation label Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxLabelRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateInboxLabel201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateInboxLabel201Response>> CreateInboxLabelWithHttpInfoAsync(CreateInboxLabelRequest createInboxLabelRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createInboxLabelRequest' is set
+            if (createInboxLabelRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createInboxLabelRequest' when calling MessagesApi->CreateInboxLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createInboxLabelRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateInboxLabel201Response>("/v1/inbox/labels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateInboxLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Delete conversation Permanently deletes Zernio&#39;s stored copy of one conversation and every message in it, in one transaction, and unlinks the contact channel that pointed at it. Nothing is deleted on the platform (the thread stays in WhatsApp, Messenger or Instagram), and the contact record is kept: call DELETE /v1/contacts/{contactId} to erase the person&#39;s name and number as well. A platform re-sync can import the thread again: WhatsApp coexistence numbers receive their messaging history from Meta repeatedly, and a Facebook or Instagram account whose DM history walk has not finished imports it on that walk. Inbound media copies Zernio stored are removed on a best-effort basis.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1764,6 +2029,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteInboxConversation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a conversation label Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response DeleteInboxLabel(string labelId, string accountId)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeleteInboxLabelWithHttpInfo(labelId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a conversation label Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxLabelWithHttpInfo(string labelId, string accountId)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling MessagesApi->DeleteInboxLabel");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->DeleteInboxLabel");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/labels/{labelId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteInboxLabel", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a conversation label Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxLabelAsync(string labelId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeleteInboxLabelWithHttpInfoAsync(labelId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a conversation label Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId">Meta label id</param>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteInboxLabelWithHttpInfoAsync(string labelId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'labelId' when calling MessagesApi->DeleteInboxLabel");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->DeleteInboxLabel");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("labelId", Zernio.Client.ClientUtils.ParameterToString(labelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/labels/{labelId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteInboxLabel", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2776,6 +3182,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListInboxConversations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List the Page&#39;s conversation labels Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>ListInboxLabels200Response</returns>
+        public ListInboxLabels200Response ListInboxLabels(string accountId)
+        {
+            Zernio.Client.ApiResponse<ListInboxLabels200Response> localVarResponse = ListInboxLabelsWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List the Page&#39;s conversation labels Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <returns>ApiResponse of ListInboxLabels200Response</returns>
+        public Zernio.Client.ApiResponse<ListInboxLabels200Response> ListInboxLabelsWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->ListInboxLabels");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListInboxLabels200Response>("/v1/inbox/labels", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListInboxLabels", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List the Page&#39;s conversation labels Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListInboxLabels200Response</returns>
+        public async System.Threading.Tasks.Task<ListInboxLabels200Response> ListInboxLabelsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListInboxLabels200Response> localVarResponse = await ListInboxLabelsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List the Page&#39;s conversation labels Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Facebook social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListInboxLabels200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListInboxLabels200Response>> ListInboxLabelsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->ListInboxLabels");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListInboxLabels200Response>("/v1/inbox/labels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListInboxLabels", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

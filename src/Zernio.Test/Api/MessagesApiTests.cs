@@ -94,6 +94,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateInboxLabel
+        /// </summary>
+        [Fact]
+        public void CreateInboxLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateInboxLabelRequest createInboxLabelRequest = null;
+            //var response = instance.CreateInboxLabel(createInboxLabelRequest);
+            //Assert.IsType<CreateInboxLabel201Response>(response);
+        }
+
+        /// <summary>
         /// Test DeleteInboxConversation
         /// </summary>
         [Fact]
@@ -104,6 +116,19 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.DeleteInboxConversation(conversationId, accountId);
             //Assert.IsType<DeleteInboxConversation200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteInboxLabel
+        /// </summary>
+        [Fact]
+        public void DeleteInboxLabelTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string labelId = null;
+            //string accountId = null;
+            //var response = instance.DeleteInboxLabel(labelId, accountId);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 
         /// <summary>
@@ -196,6 +221,18 @@ namespace Zernio.Test.Api
             //string? accountId = null;
             //var response = instance.ListInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
             //Assert.IsType<ListInboxConversations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListInboxLabels
+        /// </summary>
+        [Fact]
+        public void ListInboxLabelsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.ListInboxLabels(accountId);
+            //Assert.IsType<ListInboxLabels200Response>(response);
         }
 
         /// <summary>
