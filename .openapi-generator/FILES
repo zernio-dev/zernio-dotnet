@@ -67,6 +67,7 @@ docs/AdRuleObjectEvaluationConditionsInner.md
 docs/AdRuleRun.md
 docs/AdRuleRunEvaluation.md
 docs/AdRuleRunEvaluationActionsInner.md
+docs/AdRuleRunEvaluationNotification.md
 docs/AdRuleSchedule.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
@@ -3098,6 +3099,7 @@ src/Zernio.Test/Model/AdRuleLevelTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationConditionsInnerTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationActionsInnerTests.cs
+src/Zernio.Test/Model/AdRuleRunEvaluationNotificationTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunTests.cs
 src/Zernio.Test/Model/AdRuleScheduleTests.cs
@@ -6086,6 +6088,7 @@ src/Zernio/Model/AdRuleObjectEvaluationConditionsInner.cs
 src/Zernio/Model/AdRuleRun.cs
 src/Zernio/Model/AdRuleRunEvaluation.cs
 src/Zernio/Model/AdRuleRunEvaluationActionsInner.cs
+src/Zernio/Model/AdRuleRunEvaluationNotification.cs
 src/Zernio/Model/AdRuleSchedule.cs
 src/Zernio/Model/AdSchedule.cs
 src/Zernio/Model/AdScheduleWindow.cs
