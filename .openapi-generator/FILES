@@ -1672,6 +1672,8 @@ docs/ListFacebookVisitorPosts200Response.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
+docs/ListGoogleAnalyticsProperties200Response.md
+docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md
 docs/ListGoogleAssetGroups200Response.md
 docs/ListGoogleBusinessLocations200Response.md
 docs/ListGoogleBusinessLocations200ResponseLocationsInner.md
@@ -2190,6 +2192,9 @@ docs/SelectFacebookPageRequestOneOf.md
 docs/SelectFacebookPageRequestOneOf1.md
 docs/SelectFacebookPageRequestOneOfNot.md
 docs/SelectFacebookPageRequestOneOfUserProfile.md
+docs/SelectGoogleAnalyticsProperty200Response.md
+docs/SelectGoogleAnalyticsProperty200ResponseAccount.md
+docs/SelectGoogleAnalyticsPropertyRequest.md
 docs/SelectGoogleBusinessLocation200Response.md
 docs/SelectGoogleBusinessLocation200ResponseAccount.md
 docs/SelectGoogleBusinessLocation200ResponseFailedInner.md
@@ -4701,6 +4706,8 @@ src/Zernio.Test/Model/ListFacebookVisitorPosts200ResponseTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseTests.cs
+src/Zernio.Test/Model/ListGoogleAnalyticsProperties200ResponsePropertiesInnerTests.cs
+src/Zernio.Test/Model/ListGoogleAnalyticsProperties200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleAssetGroups200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessLocations200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessLocations200ResponseTests.cs
@@ -5203,6 +5210,9 @@ src/Zernio.Test/Model/SelectFacebookPageRequestOneOfNotTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestOneOfTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestOneOfUserProfileTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestTests.cs
+src/Zernio.Test/Model/SelectGoogleAnalyticsProperty200ResponseAccountTests.cs
+src/Zernio.Test/Model/SelectGoogleAnalyticsProperty200ResponseTests.cs
+src/Zernio.Test/Model/SelectGoogleAnalyticsPropertyRequestTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseTests.cs
@@ -7712,6 +7722,8 @@ src/Zernio/Model/ListFacebookVisitorPosts200Response.cs
 src/Zernio/Model/ListFormLeads200Response.cs
 src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListFormLeads200ResponseMeta.cs
+src/Zernio/Model/ListGoogleAnalyticsProperties200Response.cs
+src/Zernio/Model/ListGoogleAnalyticsProperties200ResponsePropertiesInner.cs
 src/Zernio/Model/ListGoogleAssetGroups200Response.cs
 src/Zernio/Model/ListGoogleBusinessLocations200Response.cs
 src/Zernio/Model/ListGoogleBusinessLocations200ResponseLocationsInner.cs
@@ -8214,6 +8226,9 @@ src/Zernio/Model/SelectFacebookPageRequestOneOf.cs
 src/Zernio/Model/SelectFacebookPageRequestOneOf1.cs
 src/Zernio/Model/SelectFacebookPageRequestOneOfNot.cs
 src/Zernio/Model/SelectFacebookPageRequestOneOfUserProfile.cs
+src/Zernio/Model/SelectGoogleAnalyticsProperty200Response.cs
+src/Zernio/Model/SelectGoogleAnalyticsProperty200ResponseAccount.cs
+src/Zernio/Model/SelectGoogleAnalyticsPropertyRequest.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200Response.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200ResponseAccount.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200ResponseFailedInner.cs

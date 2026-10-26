@@ -47,6 +47,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**HandleOAuthCallback**](ConnectApi.md#handleoauthcallback) | **POST** /v1/connect/{platform} | Complete OAuth callback |
 | [**InitiateTelegramConnect**](ConnectApi.md#initiatetelegramconnect) | **POST** /v1/connect/telegram | Connect Telegram directly |
 | [**ListFacebookPages**](ConnectApi.md#listfacebookpages) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
+| [**ListGoogleAnalyticsProperties**](ConnectApi.md#listgoogleanalyticsproperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
 | [**ListGoogleBusinessLocations**](ConnectApi.md#listgooglebusinesslocations) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations |
 | [**ListInstagramPages**](ConnectApi.md#listinstagrampages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account |
 | [**ListLinkedInOrganizations**](ConnectApi.md#listlinkedinorganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
@@ -56,6 +57,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWhatsAppPhoneNumbers**](ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
 | [**ResyncPageWebhookSubscription**](ConnectApi.md#resyncpagewebhooksubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
 | [**SelectFacebookPage**](ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
+| [**SelectGoogleAnalyticsProperty**](ConnectApi.md#selectgoogleanalyticsproperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
 | [**SelectGoogleBusinessLocation**](ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
 | [**SelectInstagramAccount**](ConnectApi.md#selectinstagramaccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect |
 | [**SelectLinkedInOrganization**](ConnectApi.md#selectlinkedinorganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org |
@@ -2500,7 +2502,7 @@ catch (ApiException e)
 
 Get Google Analytics OAuth connect URL
 
-Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform `googleanalytics`; it reads reports and does not post. Redirect the user to `authUrl`. When the Google account can read one property, Zernio connects it and redirects to `redirect_url` (or the dashboard) with `connected=googleanalytics`, `profileId`, `accountId` and `username` (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. On failure the redirect carries `error`, `platform=googleanalytics` and `error_message`; errors include `googleanalytics_scope_missing` (the user unticked Analytics access) and `googleanalytics_no_properties`. Requested scope: `https://www.googleapis.com/auth/analytics.readonly`. 
+Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform `googleanalytics`; it reads reports and does not post. Redirect the user to `authUrl`. When the Google account can read one property, Zernio connects it and redirects to `redirect_url` (or the dashboard) with `connected=googleanalytics`, `profileId`, `accountId` and `username` (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. To show your own picker instead, add `headless=true` to `redirect_url`: Zernio then redirects there with `step=select_property`, `profileId`, `platform=googleanalytics` and a `pendingDataToken` for `GET /v1/connect/googleanalytics/properties` and `POST /v1/connect/googleanalytics/select-property`. On failure the redirect carries `error`, `platform=googleanalytics` and `error_message`; errors include `googleanalytics_scope_missing` (the user unticked Analytics access) and `googleanalytics_no_properties`. Requested scope: `https://www.googleapis.com/auth/analytics.readonly`. 
 
 ### Example
 ```csharp
@@ -4603,6 +4605,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listgoogleanalyticsproperties"></a>
+# **ListGoogleAnalyticsProperties**
+> ListGoogleAnalyticsProperties200Response ListGoogleAnalyticsProperties (string pendingDataToken)
+
+List Google Analytics properties for a pending connect
+
+For headless flows. When the connect started with `redirect_url=...?headless=true` and the Google account can read several GA4 properties, Zernio redirects to your `redirect_url` with `step=select_property`, `profileId`, `platform=googleanalytics` and a `pendingDataToken`. Call this to list the properties and show your own picker, then call `POST /v1/connect/googleanalytics/select-property`. Listing does not consume the token. A headless token passes through your own URLs, so it is honored only together with your API key (or connect token) for the same profile. It expires after one hour. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListGoogleAnalyticsPropertiesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var pendingDataToken = "pendingDataToken_example";  // string | Token from the headless redirect.
+
+            try
+            {
+                // List Google Analytics properties for a pending connect
+                ListGoogleAnalyticsProperties200Response result = apiInstance.ListGoogleAnalyticsProperties(pendingDataToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ListGoogleAnalyticsProperties: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListGoogleAnalyticsPropertiesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Google Analytics properties for a pending connect
+    ApiResponse<ListGoogleAnalyticsProperties200Response> response = apiInstance.ListGoogleAnalyticsPropertiesWithHttpInfo(pendingDataToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ListGoogleAnalyticsPropertiesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pendingDataToken** | **string** | Token from the headless redirect. |  |
+
+### Return type
+
+[**ListGoogleAnalyticsProperties200Response**](ListGoogleAnalyticsProperties200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Properties the Google account can read |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listgooglebusinesslocations"></a>
 # **ListGoogleBusinessLocations**
 > ListGoogleBusinessLocations200Response ListGoogleBusinessLocations (string? profileId = null, string? pendingDataToken = null, string? tempToken = null, string? search = null, string? filter = null)
@@ -5566,6 +5673,111 @@ catch (ApiException e)
 | **422** | pageIds only. None of the Pages could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **429** | Meta is rate limiting Page reads for this Facebook account (code &#x60;rate_limited&#x60;). Retry after &#x60;Retry-After&#x60; seconds; the listing stops at the first throttle instead of retrying. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **500** | Failed to save Facebook connection |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="selectgoogleanalyticsproperty"></a>
+# **SelectGoogleAnalyticsProperty**
+> SelectGoogleAnalyticsProperty200Response SelectGoogleAnalyticsProperty (SelectGoogleAnalyticsPropertyRequest selectGoogleAnalyticsPropertyRequest)
+
+Connect the chosen Google Analytics property
+
+For headless flows. Connects the property the user picked as a `googleanalytics` account and returns where to send the user next: your `redirect_url` with `connected=googleanalytics`, `profileId`, `accountId` and `username`, or an `error` when the connect was refused (for example a billing block). Consumes the `pendingDataToken`; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SelectGoogleAnalyticsPropertyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var selectGoogleAnalyticsPropertyRequest = new SelectGoogleAnalyticsPropertyRequest(); // SelectGoogleAnalyticsPropertyRequest | 
+
+            try
+            {
+                // Connect the chosen Google Analytics property
+                SelectGoogleAnalyticsProperty200Response result = apiInstance.SelectGoogleAnalyticsProperty(selectGoogleAnalyticsPropertyRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.SelectGoogleAnalyticsProperty: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SelectGoogleAnalyticsPropertyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect the chosen Google Analytics property
+    ApiResponse<SelectGoogleAnalyticsProperty200Response> response = apiInstance.SelectGoogleAnalyticsPropertyWithHttpInfo(selectGoogleAnalyticsPropertyRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.SelectGoogleAnalyticsPropertyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **selectGoogleAnalyticsPropertyRequest** | [**SelectGoogleAnalyticsPropertyRequest**](SelectGoogleAnalyticsPropertyRequest.md) |  |  |
+
+### Return type
+
+[**SelectGoogleAnalyticsProperty200Response**](SelectGoogleAnalyticsProperty200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The property is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
