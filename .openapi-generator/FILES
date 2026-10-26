@@ -211,6 +211,7 @@ docs/BlogsApi.md
 docs/BlueskyPlatformData.md
 docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
+docs/BoostPost201Response.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestAttributionSpecInner.md
 docs/BoostPostRequestBudget.md
@@ -1467,6 +1468,8 @@ docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InstagramTaggedMedia.md
+docs/InstagramVideoFallback.md
+docs/InstagramVideoFallbackPlatformError.md
 docs/InstallTrackingTagOnStore200Response.md
 docs/InstallTrackingTagOnStore200ResponseInstall.md
 docs/InstallTrackingTagOnStore422Response.md
@@ -3253,6 +3256,7 @@ src/Zernio.Test/Model/BlogTests.cs
 src/Zernio.Test/Model/BlueskyPlatformDataTests.cs
 src/Zernio.Test/Model/BookmarkPost200ResponseTests.cs
 src/Zernio.Test/Model/BookmarkPostRequestTests.cs
+src/Zernio.Test/Model/BoostPost201ResponseTests.cs
 src/Zernio.Test/Model/BoostPostRequestAttributionSpecInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
 src/Zernio.Test/Model/BoostPostRequestPlatformSpecificDataTests.cs
@@ -4483,6 +4487,8 @@ src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
 src/Zernio.Test/Model/InstagramTaggedMediaTests.cs
+src/Zernio.Test/Model/InstagramVideoFallbackPlatformErrorTests.cs
+src/Zernio.Test/Model/InstagramVideoFallbackTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseInstallTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore200ResponseTests.cs
 src/Zernio.Test/Model/InstallTrackingTagOnStore422ResponseDetailsTests.cs
@@ -6248,6 +6254,7 @@ src/Zernio/Model/BlogArticleImage.cs
 src/Zernio/Model/BlueskyPlatformData.cs
 src/Zernio/Model/BookmarkPost200Response.cs
 src/Zernio/Model/BookmarkPostRequest.cs
+src/Zernio/Model/BoostPost201Response.cs
 src/Zernio/Model/BoostPostRequest.cs
 src/Zernio/Model/BoostPostRequestAttributionSpecInner.cs
 src/Zernio/Model/BoostPostRequestBudget.cs
@@ -7478,6 +7485,8 @@ src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
 src/Zernio/Model/InstagramTaggedMedia.cs
+src/Zernio/Model/InstagramVideoFallback.cs
+src/Zernio/Model/InstagramVideoFallbackPlatformError.cs
 src/Zernio/Model/InstallTrackingTagOnStore200Response.cs
 src/Zernio/Model/InstallTrackingTagOnStore200ResponseInstall.cs
 src/Zernio/Model/InstallTrackingTagOnStore422Response.cs

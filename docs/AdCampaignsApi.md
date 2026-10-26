@@ -496,7 +496,7 @@ catch (ApiException e)
 
 <a id="boostpost"></a>
 # **BoostPost**
-> UpdateAd200Response BoostPost (BoostPostRequest boostPostRequest, string? idempotencyKey = null)
+> BoostPost201Response BoostPost (BoostPostRequest boostPostRequest, string? idempotencyKey = null)
 
 Boost post as ad
 
@@ -532,7 +532,7 @@ namespace Example
             try
             {
                 // Boost post as ad
-                UpdateAd200Response result = apiInstance.BoostPost(boostPostRequest, idempotencyKey);
+                BoostPost201Response result = apiInstance.BoostPost(boostPostRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -553,7 +553,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Boost post as ad
-    ApiResponse<UpdateAd200Response> response = apiInstance.BoostPostWithHttpInfo(boostPostRequest, idempotencyKey);
+    ApiResponse<BoostPost201Response> response = apiInstance.BoostPostWithHttpInfo(boostPostRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -575,7 +575,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateAd200Response**](UpdateAd200Response.md)
+[**BoostPost201Response**](BoostPost201Response.md)
 
 ### Authorization
 
