@@ -564,6 +564,8 @@ docs/CreateDiscordScheduledEventRequestEntityOneOf2.md
 docs/CreateDiscordThread200Response.md
 docs/CreateDiscordThread200ResponseData.md
 docs/CreateDiscordThreadRequest.md
+docs/CreateEventDestination201Response.md
+docs/CreateEventDestinationRequest.md
 docs/CreateGoogleAdAccountRequest.md
 docs/CreateGoogleAssetGroup200Response.md
 docs/CreateGoogleAssetGroup201Response.md
@@ -846,6 +848,7 @@ docs/ErrorResponseDetailsCreatedObjectsInner.md
 docs/ErrorResponseDetailsUnconfirmedWrite.md
 docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
+docs/EventDestination.md
 docs/Expired.md
 docs/ExternalPostMediaItem.md
 docs/ExternalPostSummary.md
@@ -1649,6 +1652,7 @@ docs/ListDiscordGuildRoles200ResponseDataInner.md
 docs/ListDiscordPinnedMessages200Response.md
 docs/ListDiscordPinnedMessages200ResponseDataInner.md
 docs/ListDiscordScheduledEvents200Response.md
+docs/ListEventDestinations200Response.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -2206,6 +2210,12 @@ docs/SendDiscordDirectMessage200ResponseAccount.md
 docs/SendDiscordDirectMessage200ResponseRecipient.md
 docs/SendDiscordDirectMessageRequest.md
 docs/SendDiscordDirectMessageRequestAttachmentsInner.md
+docs/SendEvents200Response.md
+docs/SendEvents200ResponseDestinationsInner.md
+docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
+docs/SendEventsRequest.md
+docs/SendEventsRequestConsent.md
+docs/SendEventsRequestDestinationsInner.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage200ResponseDataAttachmentsInner.md
@@ -3584,6 +3594,8 @@ src/Zernio.Test/Model/CreateDiscordScheduledEventRequestTests.cs
 src/Zernio.Test/Model/CreateDiscordThread200ResponseDataTests.cs
 src/Zernio.Test/Model/CreateDiscordThread200ResponseTests.cs
 src/Zernio.Test/Model/CreateDiscordThreadRequestTests.cs
+src/Zernio.Test/Model/CreateEventDestination201ResponseTests.cs
+src/Zernio.Test/Model/CreateEventDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleAdAccountRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup201ResponseAssetGroupTests.cs
@@ -3864,6 +3876,7 @@ src/Zernio.Test/Model/ErrorResponseDetailsUnconfirmedWriteTests.cs
 src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
+src/Zernio.Test/Model/EventDestinationTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
 src/Zernio.Test/Model/ExternalPostMediaItemTests.cs
 src/Zernio.Test/Model/ExternalPostSummaryAnalyticsTests.cs
@@ -4652,6 +4665,7 @@ src/Zernio.Test/Model/ListDiscordGuildRoles200ResponseTests.cs
 src/Zernio.Test/Model/ListDiscordPinnedMessages200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListDiscordPinnedMessages200ResponseTests.cs
 src/Zernio.Test/Model/ListDiscordScheduledEvents200ResponseTests.cs
+src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookTaggedPosts200ResponseTests.cs
@@ -5193,6 +5207,12 @@ src/Zernio.Test/Model/SendDiscordDirectMessage200ResponseRecipientTests.cs
 src/Zernio.Test/Model/SendDiscordDirectMessage200ResponseTests.cs
 src/Zernio.Test/Model/SendDiscordDirectMessageRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/SendDiscordDirectMessageRequestTests.cs
+src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerFailuresInnerTests.cs
+src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerTests.cs
+src/Zernio.Test/Model/SendEvents200ResponseTests.cs
+src/Zernio.Test/Model/SendEventsRequestConsentTests.cs
+src/Zernio.Test/Model/SendEventsRequestDestinationsInnerTests.cs
+src/Zernio.Test/Model/SendEventsRequestTests.cs
 src/Zernio.Test/Model/SendInboxMessage200ResponseDataAttachmentsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessage200ResponseDataPartialFailurePlatformErrorTests.cs
 src/Zernio.Test/Model/SendInboxMessage200ResponseDataPartialFailureTests.cs
@@ -6569,6 +6589,8 @@ src/Zernio/Model/CreateDiscordScheduledEventRequestEntityOneOf2.cs
 src/Zernio/Model/CreateDiscordThread200Response.cs
 src/Zernio/Model/CreateDiscordThread200ResponseData.cs
 src/Zernio/Model/CreateDiscordThreadRequest.cs
+src/Zernio/Model/CreateEventDestination201Response.cs
+src/Zernio/Model/CreateEventDestinationRequest.cs
 src/Zernio/Model/CreateGoogleAdAccountRequest.cs
 src/Zernio/Model/CreateGoogleAssetGroup200Response.cs
 src/Zernio/Model/CreateGoogleAssetGroup201Response.cs
@@ -6849,6 +6871,7 @@ src/Zernio/Model/ErrorResponseDetailsCreatedObjectsInner.cs
 src/Zernio/Model/ErrorResponseDetailsUnconfirmedWrite.cs
 src/Zernio/Model/EstimateAdReach200Response.cs
 src/Zernio/Model/EstimateAdReachRequest.cs
+src/Zernio/Model/EventDestination.cs
 src/Zernio/Model/Expired.cs
 src/Zernio/Model/ExternalPostMediaItem.cs
 src/Zernio/Model/ExternalPostSummary.cs
@@ -7637,6 +7660,7 @@ src/Zernio/Model/ListDiscordGuildRoles200ResponseDataInner.cs
 src/Zernio/Model/ListDiscordPinnedMessages200Response.cs
 src/Zernio/Model/ListDiscordPinnedMessages200ResponseDataInner.cs
 src/Zernio/Model/ListDiscordScheduledEvents200Response.cs
+src/Zernio/Model/ListEventDestinations200Response.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
@@ -8178,6 +8202,12 @@ src/Zernio/Model/SendDiscordDirectMessage200ResponseAccount.cs
 src/Zernio/Model/SendDiscordDirectMessage200ResponseRecipient.cs
 src/Zernio/Model/SendDiscordDirectMessageRequest.cs
 src/Zernio/Model/SendDiscordDirectMessageRequestAttachmentsInner.cs
+src/Zernio/Model/SendEvents200Response.cs
+src/Zernio/Model/SendEvents200ResponseDestinationsInner.cs
+src/Zernio/Model/SendEvents200ResponseDestinationsInnerFailuresInner.cs
+src/Zernio/Model/SendEventsRequest.cs
+src/Zernio/Model/SendEventsRequestConsent.cs
+src/Zernio/Model/SendEventsRequestDestinationsInner.cs
 src/Zernio/Model/SendInboxMessage200Response.cs
 src/Zernio/Model/SendInboxMessage200ResponseData.cs
 src/Zernio/Model/SendInboxMessage200ResponseDataAttachmentsInner.cs

@@ -9,7 +9,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateConversionAction**](ConversionsApi.md#createconversionaction) | **POST** /v1/ads/conversions/actions | Create website conversion action |
 | [**CreateConversionDestination**](ConversionsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**CreateCustomConversionGoal**](ConversionsApi.md#createcustomconversiongoal) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
+| [**CreateEventDestination**](ConversionsApi.md#createeventdestination) | **POST** /v1/events/destinations | Add an event destination |
 | [**DeleteConversionDestination**](ConversionsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
+| [**DeleteEventDestination**](ConversionsApi.md#deleteeventdestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
 | [**GetConversionDestination**](ConversionsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**GetConversionMetrics**](ConversionsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**GetConversionsQuality**](ConversionsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
@@ -18,9 +20,11 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListConversionAssociations**](ConversionsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
 | [**ListConversionDestinations**](ConversionsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
 | [**ListCustomConversionGoals**](ConversionsApi.md#listcustomconversiongoals) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
+| [**ListEventDestinations**](ConversionsApi.md#listeventdestinations) | **GET** /v1/events/destinations | List event destinations |
 | [**RemoveConversionAssociations**](ConversionsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**RemoveCustomConversionGoal**](ConversionsApi.md#removecustomconversiongoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**SendConversions**](ConversionsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events |
+| [**SendEvents**](ConversionsApi.md#sendevents) | **POST** /v1/events | Send events to every destination |
 | [**UpdateAdConversionGoals**](ConversionsApi.md#updateadconversiongoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
 | [**UpdateConversionAction**](ConversionsApi.md#updateconversionaction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings |
 | [**UpdateConversionDestination**](ConversionsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
@@ -557,6 +561,108 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createeventdestination"></a>
+# **CreateEventDestination**
+> CreateEventDestination201Response CreateEventDestination (CreateEventDestinationRequest createEventDestinationRequest)
+
+Add an event destination
+
+Saves an ad platform destination for a profile, so events sent to `POST /v1/events` for that profile are forwarded to it. Pick `destinationId` from `GET /v1/accounts/{accountId}/conversion-destinations`. Set `eventNames` to forward only those events (for example only `Purchase`); leave it out to forward every event. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateEventDestinationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var createEventDestinationRequest = new CreateEventDestinationRequest(); // CreateEventDestinationRequest | 
+
+            try
+            {
+                // Add an event destination
+                CreateEventDestination201Response result = apiInstance.CreateEventDestination(createEventDestinationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.CreateEventDestination: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateEventDestinationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add an event destination
+    ApiResponse<CreateEventDestination201Response> response = apiInstance.CreateEventDestinationWithHttpInfo(createEventDestinationRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.CreateEventDestinationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createEventDestinationRequest** | [**CreateEventDestinationRequest**](CreateEventDestinationRequest.md) |  |  |
+
+### Return type
+
+[**CreateEventDestination201Response**](CreateEventDestination201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Destination saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The profile already sends events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteconversiondestination"></a>
 # **DeleteConversionDestination**
 > void DeleteConversionDestination (string accountId, string destinationId, string? adAccountId = null)
@@ -659,6 +765,107 @@ void (empty response body)
 | **405** | Platform does not support deleting destinations. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteeventdestination"></a>
+# **DeleteEventDestination**
+> DeleteSmsSenderId200Response DeleteEventDestination (string destinationId)
+
+Remove an event destination
+
+Stops forwarding events to this destination. `destinationId` is the event destination `id`, not the platform destination.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteEventDestinationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var destinationId = "destinationId_example";  // string | 
+
+            try
+            {
+                // Remove an event destination
+                DeleteSmsSenderId200Response result = apiInstance.DeleteEventDestination(destinationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.DeleteEventDestination: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteEventDestinationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove an event destination
+    ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.DeleteEventDestinationWithHttpInfo(destinationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.DeleteEventDestinationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **destinationId** | **string** |  |  |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1531,6 +1738,107 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listeventdestinations"></a>
+# **ListEventDestinations**
+> ListEventDestinations200Response ListEventDestinations (string? profileId = null)
+
+List event destinations
+
+Lists the ad platform destinations that receive events sent to `POST /v1/events`, for one profile or every profile you can access.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListEventDestinationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string? |  (optional) 
+
+            try
+            {
+                // List event destinations
+                ListEventDestinations200Response result = apiInstance.ListEventDestinations(profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.ListEventDestinations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListEventDestinationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List event destinations
+    ApiResponse<ListEventDestinations200Response> response = apiInstance.ListEventDestinationsWithHttpInfo(profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.ListEventDestinationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string?** |  | [optional]  |
+
+### Return type
+
+[**ListEventDestinations200Response**](ListEventDestinations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="removeconversionassociations"></a>
 # **RemoveConversionAssociations**
 > RemoveConversionAssociations200Response RemoveConversionAssociations (string accountId, string destinationId, string adAccountId, string campaignIds)
@@ -1854,6 +2162,107 @@ catch (ApiException e)
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **422** | OpenAI Ads: no tracking tag (pixel) exists yet for this account. Code &#x60;TRACKING_TAG_REQUIRED&#x60;; create one via &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; first. Google Ads: no Google Ads customer account is left on this connection after its ad-account selection (code &#x60;ads_connection_required&#x60;). Reconnect via GET /v1/connect/googleads/ads with a Google user that can reach the ad account, or select one of its ad accounts. Code &#x60;invalid_resource_state&#x60; when the connection reaches only a Google Ads manager account with no client accounts yet: create one with POST /v1/ads/accounts or under the manager in Google Ads, then retry. |  -  |
 | **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="sendevents"></a>
+# **SendEvents**
+> SendEvents200Response SendEvents (SendEventsRequest sendEventsRequest)
+
+Send events to every destination
+
+Sends conversion events once and forwards them to every ad platform destination saved for the profile (see `POST /v1/events/destinations`), or to the `destinations` given in the request. Each destination receives the events exactly as `POST /v1/ads/conversions` would send them, so the per-platform notes there (hashing, batching, `eventName` semantics, dedup on `eventId`) apply here too. A destination saved with `eventNames` only receives events with those names.  Zernio also stores each event for the profile's reporting. Email, phone and `externalId` are stored only as SHA-256 hashes, and `sourceUrl` keeps only its origin, path and attribution parameters (`utm_*`, `gclid`, `fbclid`, `ttclid`, `li_fat_id`, `epik`, `rdt_cid`, `gbraid`, `wbraid`). Events sent with `testCode` are forwarded but not stored.  One destination failing never blocks the others: each one reports its own result. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SendEventsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var sendEventsRequest = new SendEventsRequest(); // SendEventsRequest | 
+
+            try
+            {
+                // Send events to every destination
+                SendEvents200Response result = apiInstance.SendEvents(sendEventsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.SendEvents: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SendEventsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Send events to every destination
+    ApiResponse<SendEvents200Response> response = apiInstance.SendEventsWithHttpInfo(sendEventsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.SendEventsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sendEventsRequest** | [**SendEventsRequest**](SendEventsRequest.md) |  |  |
+
+### Return type
+
+[**SendEvents200Response**](SendEvents200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Events processed. Check each destination for partial failure. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
