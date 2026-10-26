@@ -15,6 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetFacebookPostEarnings**](AnalyticsApi.md#getfacebookpostearnings) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings |
 | [**GetFacebookPostReactions**](AnalyticsApi.md#getfacebookpostreactions) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions |
 | [**GetFollowerStats**](AnalyticsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**GetGoogleAnalyticsMetadata**](AnalyticsApi.md#getgoogleanalyticsmetadata) | **GET** /v1/analytics/googleanalytics/metadata | List Google Analytics (GA4) dimensions and metrics |
 | [**GetGoogleBusinessPerformance**](AnalyticsApi.md#getgooglebusinessperformance) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics |
 | [**GetGoogleBusinessSearchKeywords**](AnalyticsApi.md#getgooglebusinesssearchkeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords |
 | [**GetInstagramAccountInsights**](AnalyticsApi.md#getinstagramaccountinsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram insights |
@@ -35,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetYouTubeVideoRetention**](AnalyticsApi.md#getyoutubevideoretention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 | [**ListFacebookTaggedPosts**](AnalyticsApi.md#listfacebooktaggedposts) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in |
 | [**ListFacebookVisitorPosts**](AnalyticsApi.md#listfacebookvisitorposts) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page |
+| [**RunGoogleAnalyticsRealtimeReport**](AnalyticsApi.md#rungoogleanalyticsrealtimereport) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report |
+| [**RunGoogleAnalyticsReport**](AnalyticsApi.md#rungoogleanalyticsreport) | **POST** /v1/analytics/googleanalytics/report | Run a Google Analytics (GA4) report |
 | [**SyncExternalPosts**](AnalyticsApi.md#syncexternalposts) | **POST** /v1/posts/sync-external | Sync an external post |
 
 <a id="getanalytics"></a>
@@ -1253,6 +1256,109 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgoogleanalyticsmetadata"></a>
+# **GetGoogleAnalyticsMetadata**
+> GetGoogleAnalyticsMetadata200Response GetGoogleAnalyticsMetadata (string accountId)
+
+List Google Analytics (GA4) dimensions and metrics
+
+Every dimension and metric the connected GA4 property accepts in a report, including its custom definitions. Cached for one hour. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGoogleAnalyticsMetadataExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio account ID of the Google Analytics connection.
+
+            try
+            {
+                // List Google Analytics (GA4) dimensions and metrics
+                GetGoogleAnalyticsMetadata200Response result = apiInstance.GetGoogleAnalyticsMetadata(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetGoogleAnalyticsMetadata: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGoogleAnalyticsMetadataWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Google Analytics (GA4) dimensions and metrics
+    ApiResponse<GetGoogleAnalyticsMetadata200Response> response = apiInstance.GetGoogleAnalyticsMetadataWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetGoogleAnalyticsMetadataWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio account ID of the Google Analytics connection. |  |
+
+### Return type
+
+[**GetGoogleAnalyticsMetadata200Response**](GetGoogleAnalyticsMetadata200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Available dimensions and metrics |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The Google account that connected the property lost access to it, or revoked Zernio. Reconnect Google Analytics. |  -  |
+| **404** | Resource not found |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  YouTube Analytics: reads (channel-insights, demographics, daily-views, video-retention) run on the \&quot;Queries per day\&quot; quota of the Google Cloud project the YouTube account is connected through, shared with other Zernio customers, so a 429 there is not your own volume. It resets at midnight Pacific Time. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 for that advertiser and connection, without calling TikTok, for about 60 seconds, then 120, 240, 480 and up to 960 while TikTok keeps refusing, each with up to 10% of random jitter. Each successful call holds the next one for at least 60 seconds, since TikTok often refuses review calls sent in quick succession, and after an overage for one step less than the last pause (480, 240, 120, then 60 seconds); &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3485,6 +3591,212 @@ catch (ApiException e)
 | **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="rungoogleanalyticsrealtimereport"></a>
+# **RunGoogleAnalyticsRealtimeReport**
+> GoogleAnalyticsReport RunGoogleAnalyticsRealtimeReport (RunGoogleAnalyticsRealtimeReportRequest runGoogleAnalyticsRealtimeReportRequest)
+
+Run a Google Analytics (GA4) realtime report
+
+Activity on a connected GA4 property in the last 30 minutes (up to 60 for Analytics 360), through Google's `runRealtimeReport`. Not cached. Only realtime dimensions and metrics are accepted, e.g. `country`, `unifiedScreenName` with `activeUsers`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RunGoogleAnalyticsRealtimeReportExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var runGoogleAnalyticsRealtimeReportRequest = new RunGoogleAnalyticsRealtimeReportRequest(); // RunGoogleAnalyticsRealtimeReportRequest | 
+
+            try
+            {
+                // Run a Google Analytics (GA4) realtime report
+                GoogleAnalyticsReport result = apiInstance.RunGoogleAnalyticsRealtimeReport(runGoogleAnalyticsRealtimeReportRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.RunGoogleAnalyticsRealtimeReport: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RunGoogleAnalyticsRealtimeReportWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Run a Google Analytics (GA4) realtime report
+    ApiResponse<GoogleAnalyticsReport> response = apiInstance.RunGoogleAnalyticsRealtimeReportWithHttpInfo(runGoogleAnalyticsRealtimeReportRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.RunGoogleAnalyticsRealtimeReportWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **runGoogleAnalyticsRealtimeReportRequest** | [**RunGoogleAnalyticsRealtimeReportRequest**](RunGoogleAnalyticsRealtimeReportRequest.md) |  |  |
+
+### Return type
+
+[**GoogleAnalyticsReport**](GoogleAnalyticsReport.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Realtime report rows from Google |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The Google account that connected the property lost access to it, or revoked Zernio. Reconnect Google Analytics. |  -  |
+| **404** | Resource not found |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  YouTube Analytics: reads (channel-insights, demographics, daily-views, video-retention) run on the \&quot;Queries per day\&quot; quota of the Google Cloud project the YouTube account is connected through, shared with other Zernio customers, so a 429 there is not your own volume. It resets at midnight Pacific Time. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 for that advertiser and connection, without calling TikTok, for about 60 seconds, then 120, 240, 480 and up to 960 while TikTok keeps refusing, each with up to 10% of random jitter. Each successful call holds the next one for at least 60 seconds, since TikTok often refuses review calls sent in quick succession, and after an overage for one step less than the last pause (480, 240, 120, then 60 seconds); &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="rungoogleanalyticsreport"></a>
+# **RunGoogleAnalyticsReport**
+> GoogleAnalyticsReport RunGoogleAnalyticsReport (RunGoogleAnalyticsReportRequest runGoogleAnalyticsReportRequest)
+
+Run a Google Analytics (GA4) report
+
+Runs a report on a connected GA4 property through Google's Data API (`runReport`). Pick any GA4 dimensions and metrics; filters and ordering use Google's own shapes. Identical requests on the same property are cached for 10 minutes. Google meters each property by quota tokens; when it is used up the request returns 429 until Google refills it (hourly quotas within the hour, daily ones at midnight Pacific time). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RunGoogleAnalyticsReportExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var runGoogleAnalyticsReportRequest = new RunGoogleAnalyticsReportRequest(); // RunGoogleAnalyticsReportRequest | 
+
+            try
+            {
+                // Run a Google Analytics (GA4) report
+                GoogleAnalyticsReport result = apiInstance.RunGoogleAnalyticsReport(runGoogleAnalyticsReportRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.RunGoogleAnalyticsReport: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RunGoogleAnalyticsReportWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Run a Google Analytics (GA4) report
+    ApiResponse<GoogleAnalyticsReport> response = apiInstance.RunGoogleAnalyticsReportWithHttpInfo(runGoogleAnalyticsReportRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.RunGoogleAnalyticsReportWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **runGoogleAnalyticsReportRequest** | [**RunGoogleAnalyticsReportRequest**](RunGoogleAnalyticsReportRequest.md) |  |  |
+
+### Return type
+
+[**GoogleAnalyticsReport**](GoogleAnalyticsReport.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Report rows from Google |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The Google account that connected the property lost access to it, or revoked Zernio. Reconnect Google Analytics. |  -  |
+| **404** | Resource not found |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  YouTube Analytics: reads (channel-insights, demographics, daily-views, video-retention) run on the \&quot;Queries per day\&quot; quota of the Google Cloud project the YouTube account is connected through, shared with other Zernio customers, so a 429 there is not your own volume. It resets at midnight Pacific Time. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok: after an overage Zernio answers 429 for that advertiser and connection, without calling TikTok, for about 60 seconds, then 120, 240, 480 and up to 960 while TikTok keeps refusing, each with up to 10% of random jitter. Each successful call holds the next one for at least 60 seconds, since TikTok often refuses review calls sent in quick succession, and after an overage for one step less than the last pause (480, 240, 120, then 60 seconds); &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -27,6 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetConnectWelcomeScreen**](ConnectApi.md#getconnectwelcomescreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
 | [**GetFacebookPages**](ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**GetGmbLocations**](ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
+| [**GetGoogleAnalyticsConnectUrl**](ConnectApi.md#getgoogleanalyticsconnecturl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
 | [**GetHubSpotConnectUrl**](ConnectApi.md#gethubspotconnecturl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**GetLinkedInOrganizations**](ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**GetPageWebhookSubscription**](ConnectApi.md#getpagewebhooksubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
@@ -2490,6 +2491,118 @@ catch (ApiException e)
 | **400** | Invalid query parameter (e.g. limit out of range) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgoogleanalyticsconnecturl"></a>
+# **GetGoogleAnalyticsConnectUrl**
+> GetGoogleAnalyticsConnectUrl200Response GetGoogleAnalyticsConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+
+Get Google Analytics OAuth connect URL
+
+Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform `googleanalytics`; it reads reports and does not post. Redirect the user to `authUrl`. When the Google account can read one property, Zernio connects it and redirects to `redirect_url` (or the dashboard) with `connected=googleanalytics`, `profileId`, `accountId` and `username` (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. On failure the redirect carries `error`, `platform=googleanalytics` and `error_message`; errors include `googleanalytics_scope_missing` (the user unticked Analytics access) and `googleanalytics_no_properties`. Requested scope: `https://www.googleapis.com/auth/analytics.readonly`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGoogleAnalyticsConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
+            var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Google Analytics account being reconnected. Picking a different property then fails instead of adding a second account. (optional) 
+
+            try
+            {
+                // Get Google Analytics OAuth connect URL
+                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetGoogleAnalyticsConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetGoogleAnalyticsConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGoogleAnalyticsConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Google Analytics OAuth connect URL
+    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetGoogleAnalyticsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetGoogleAnalyticsConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
+| **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | Zernio account ID of the Google Analytics account being reconnected. Picking a different property then fails instead of adding a second account. | [optional]  |
+
+### Return type
+
+[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Google Analytics OAuth is not configured. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
