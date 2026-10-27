@@ -21,6 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListConversionDestinations**](ConversionsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
 | [**ListCustomConversionGoals**](ConversionsApi.md#listcustomconversiongoals) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
 | [**ListEventDestinations**](ConversionsApi.md#listeventdestinations) | **GET** /v1/events/destinations | List event destinations |
+| [**ListEvents**](ConversionsApi.md#listevents) | **GET** /v1/events | List stored events |
 | [**RemoveConversionAssociations**](ConversionsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**RemoveCustomConversionGoal**](ConversionsApi.md#removecustomconversiongoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**SendConversions**](ConversionsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events |
@@ -1833,6 +1834,117 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listevents"></a>
+# **ListEvents**
+> ListEvents200Response ListEvents (string profileId, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? cursor = null)
+
+List stored events
+
+Lists the conversion events stored for a profile by `POST /v1/events`, newest first. Personal data is never returned: `hasEmail`, `hasPhone` and `hasExternalId` only say whether the event carried that identifier. Events sent with `testCode` are not stored, so they never appear here.  Paginate with `cursor`: pass the `nextCursor` of the previous page until it comes back `null`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListEventsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events at or after this time (ISO 8601, on the event time). (optional) 
+            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events before this time (ISO 8601, on the event time). (optional) 
+            var eventName = "eventName_example";  // string? | Only events with this name, such as `Purchase`. (optional) 
+            var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
+
+            try
+            {
+                // List stored events
+                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.ListEvents: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListEventsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List stored events
+    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.ListEventsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** |  |  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **from** | **DateTime?** | Only events at or after this time (ISO 8601, on the event time). | [optional]  |
+| **to** | **DateTime?** | Only events before this time (ISO 8601, on the event time). | [optional]  |
+| **eventName** | **string?** | Only events with this name, such as &#x60;Purchase&#x60;. | [optional]  |
+| **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
+
+### Return type
+
+[**ListEvents200Response**](ListEvents200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of stored events. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

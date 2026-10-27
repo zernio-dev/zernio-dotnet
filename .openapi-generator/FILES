@@ -517,6 +517,7 @@ docs/CreateAdRule201Response.md
 docs/CreateAdRuleRequest.md
 docs/CreateAdSet201Response.md
 docs/CreateAdSetRequest.md
+docs/CreateAdSetRequestPromotedObject.md
 docs/CreateApiKey201Response.md
 docs/CreateApiKeyRequest.md
 docs/CreateBidStrategy201Response.md
@@ -1730,6 +1731,10 @@ docs/ListEmailFolders200Response.md
 docs/ListEmailMessages200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
+docs/ListEvents200Response.md
+docs/ListEvents200ResponseEventsInner.md
+docs/ListEvents200ResponseEventsInnerClickIds.md
+docs/ListEvents200ResponseEventsInnerUtm.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -3665,6 +3670,7 @@ src/Zernio.Test/Model/CreateAdNegativeKeywordListRequestTests.cs
 src/Zernio.Test/Model/CreateAdRule201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdRuleRequestTests.cs
 src/Zernio.Test/Model/CreateAdSet201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdSetRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateAdSetRequestTests.cs
 src/Zernio.Test/Model/CreateApiKey201ResponseTests.cs
 src/Zernio.Test/Model/CreateApiKeyRequestTests.cs
@@ -4860,6 +4866,10 @@ src/Zernio.Test/Model/ListEmailFolders200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailMessages200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseEventsInnerClickIdsTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseEventsInnerTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseEventsInnerUtmTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookTaggedPosts200ResponseTests.cs
@@ -6778,6 +6788,7 @@ src/Zernio/Model/CreateAdRule201Response.cs
 src/Zernio/Model/CreateAdRuleRequest.cs
 src/Zernio/Model/CreateAdSet201Response.cs
 src/Zernio/Model/CreateAdSetRequest.cs
+src/Zernio/Model/CreateAdSetRequestPromotedObject.cs
 src/Zernio/Model/CreateApiKey201Response.cs
 src/Zernio/Model/CreateApiKeyRequest.cs
 src/Zernio/Model/CreateBidStrategy201Response.cs
@@ -7972,6 +7983,10 @@ src/Zernio/Model/ListEmailFolders200Response.cs
 src/Zernio/Model/ListEmailMessages200Response.cs
 src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
+src/Zernio/Model/ListEvents200Response.cs
+src/Zernio/Model/ListEvents200ResponseEventsInner.cs
+src/Zernio/Model/ListEvents200ResponseEventsInnerClickIds.cs
+src/Zernio/Model/ListEvents200ResponseEventsInnerUtm.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
