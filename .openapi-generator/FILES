@@ -1734,6 +1734,7 @@ docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
 docs/ListEvents200ResponseEventsInner.md
+docs/ListEvents200ResponseEventsInnerAd.md
 docs/ListEvents200ResponseEventsInnerClickIds.md
 docs/ListEvents200ResponseEventsInnerUtm.md
 docs/ListFacebookPages200Response.md
@@ -4868,6 +4869,7 @@ src/Zernio.Test/Model/ListEmailFolders200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailMessages200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseEventsInnerAdTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseEventsInnerClickIdsTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseEventsInnerTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseEventsInnerUtmTests.cs
@@ -7988,6 +7990,7 @@ src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
 src/Zernio/Model/ListEvents200Response.cs
 src/Zernio/Model/ListEvents200ResponseEventsInner.cs
+src/Zernio/Model/ListEvents200ResponseEventsInnerAd.cs
 src/Zernio/Model/ListEvents200ResponseEventsInnerClickIds.cs
 src/Zernio/Model/ListEvents200ResponseEventsInnerUtm.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
