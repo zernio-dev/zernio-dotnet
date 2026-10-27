@@ -48,7 +48,9 @@ namespace Zernio.Model
         /// <param name="thankYouTitle">thankYouTitle.</param>
         /// <param name="thankYouBody">thankYouBody.</param>
         /// <param name="thankYouButtonText">thankYouButtonText.</param>
-        /// <param name="thankYouButtonType">Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page..</param>
+        /// <param name="thankYouButtonType">Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Case-insensitive, sent to Meta in uppercase. CALL_BUSINESS requires businessPhoneNumber and countryCode (a 400 otherwise). Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page..</param>
+        /// <param name="businessPhoneNumber">International E.164 number the CALL_BUSINESS thank-you button dials (Meta thank_you_page.business_phone_number). It must start with + and the country calling code matching countryCode; spaces, dashes, dots and parentheses are stripped, and a local number such as 2025550123 is a 400. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level businessPhoneNumber is a 400..</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country of businessPhoneNumber (Meta thank_you_page.country_code), sent in uppercase. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level countryCode is a 400..</param>
         /// <param name="thankYouWebsiteUrl">thankYouWebsiteUrl.</param>
         /// <param name="thankYouEnableMessenger">Sent as Meta thank_you_page.enable_messenger (boolean). Accepted only inside platformSpecificData: a top-level thankYouEnableMessenger is a 400. (default to false).</param>
         /// <param name="isOptimizedForQuality">Set true for a higher-intent form (adds a review step before submit)..</param>
@@ -57,7 +59,7 @@ namespace Zernio.Model
         /// <param name="questionPageCustomHeadline">questionPageCustomHeadline.</param>
         /// <param name="contextCard">contextCard.</param>
         /// <param name="customDisclaimer">customDisclaimer.</param>
-        public MetaLeadFormPlatformData(List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool thankYouEnableMessenger = false, bool isOptimizedForQuality = default, bool isPhoneSmsVerifyEnabled = false, bool blockDisplayForNonTargetedViewer = default, string questionPageCustomHeadline = default, MetaLeadFormPlatformDataContextCard contextCard = default, MetaLeadFormPlatformDataCustomDisclaimer customDisclaimer = default)
+        public MetaLeadFormPlatformData(List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string businessPhoneNumber = default, string countryCode = default, string thankYouWebsiteUrl = default, bool thankYouEnableMessenger = false, bool isOptimizedForQuality = default, bool isPhoneSmsVerifyEnabled = false, bool blockDisplayForNonTargetedViewer = default, string questionPageCustomHeadline = default, MetaLeadFormPlatformDataContextCard contextCard = default, MetaLeadFormPlatformDataCustomDisclaimer customDisclaimer = default)
         {
             // to ensure "questions" is required (not null)
             if (questions == null)
@@ -72,6 +74,8 @@ namespace Zernio.Model
             this.ThankYouBody = thankYouBody;
             this.ThankYouButtonText = thankYouButtonText;
             this.ThankYouButtonType = thankYouButtonType;
+            this.BusinessPhoneNumber = businessPhoneNumber;
+            this.CountryCode = countryCode;
             this.ThankYouWebsiteUrl = thankYouWebsiteUrl;
             this.ThankYouEnableMessenger = thankYouEnableMessenger;
             this.IsOptimizedForQuality = isOptimizedForQuality;
@@ -128,14 +132,34 @@ namespace Zernio.Model
         public string ThankYouButtonText { get; set; }
 
         /// <summary>
-        /// Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page.
+        /// Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Case-insensitive, sent to Meta in uppercase. CALL_BUSINESS requires businessPhoneNumber and countryCode (a 400 otherwise). Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page.
         /// </summary>
-        /// <value>Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page.</value>
+        /// <value>Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Case-insensitive, sent to Meta in uppercase. CALL_BUSINESS requires businessPhoneNumber and countryCode (a 400 otherwise). Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page.</value>
         /*
         <example>VIEW_WEBSITE</example>
         */
         [DataMember(Name = "thankYouButtonType", EmitDefaultValue = false)]
         public string ThankYouButtonType { get; set; }
+
+        /// <summary>
+        /// International E.164 number the CALL_BUSINESS thank-you button dials (Meta thank_you_page.business_phone_number). It must start with + and the country calling code matching countryCode; spaces, dashes, dots and parentheses are stripped, and a local number such as 2025550123 is a 400. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level businessPhoneNumber is a 400.
+        /// </summary>
+        /// <value>International E.164 number the CALL_BUSINESS thank-you button dials (Meta thank_you_page.business_phone_number). It must start with + and the country calling code matching countryCode; spaces, dashes, dots and parentheses are stripped, and a local number such as 2025550123 is a 400. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level businessPhoneNumber is a 400.</value>
+        /*
+        <example>+12025550123</example>
+        */
+        [DataMember(Name = "businessPhoneNumber", EmitDefaultValue = false)]
+        public string BusinessPhoneNumber { get; set; }
+
+        /// <summary>
+        /// ISO 3166-1 alpha-2 country of businessPhoneNumber (Meta thank_you_page.country_code), sent in uppercase. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level countryCode is a 400.
+        /// </summary>
+        /// <value>ISO 3166-1 alpha-2 country of businessPhoneNumber (Meta thank_you_page.country_code), sent in uppercase. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level countryCode is a 400.</value>
+        /*
+        <example>US</example>
+        */
+        [DataMember(Name = "countryCode", EmitDefaultValue = false)]
+        public string CountryCode { get; set; }
 
         /// <summary>
         /// Gets or Sets ThankYouWebsiteUrl
@@ -204,6 +228,8 @@ namespace Zernio.Model
             sb.Append("  ThankYouBody: ").Append(ThankYouBody).Append("\n");
             sb.Append("  ThankYouButtonText: ").Append(ThankYouButtonText).Append("\n");
             sb.Append("  ThankYouButtonType: ").Append(ThankYouButtonType).Append("\n");
+            sb.Append("  BusinessPhoneNumber: ").Append(BusinessPhoneNumber).Append("\n");
+            sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  ThankYouWebsiteUrl: ").Append(ThankYouWebsiteUrl).Append("\n");
             sb.Append("  ThankYouEnableMessenger: ").Append(ThankYouEnableMessenger).Append("\n");
             sb.Append("  IsOptimizedForQuality: ").Append(IsOptimizedForQuality).Append("\n");
@@ -236,6 +262,15 @@ namespace Zernio.Model
             if (this.PrivacyPolicyLinkText != null && this.PrivacyPolicyLinkText.Length > 70)
             {
                 yield return new ValidationResult("Invalid value for PrivacyPolicyLinkText, length must be less than 70.", new [] { "PrivacyPolicyLinkText" });
+            }
+
+            if (this.CountryCode != null) {
+                // CountryCode (string) pattern
+                Regex regexCountryCode = new Regex(@"^[A-Za-z]{2}$", RegexOptions.CultureInvariant);
+                if (!regexCountryCode.Match(this.CountryCode).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CountryCode, must match a pattern of " + regexCountryCode, new [] { "CountryCode" });
+                }
             }
 
             yield break;

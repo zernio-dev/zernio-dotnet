@@ -128,6 +128,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BusinessPhoneNumber'
+        /// </summary>
+        [Fact]
+        public void BusinessPhoneNumberTest()
+        {
+            // TODO unit test for the property 'BusinessPhoneNumber'
+        }
+
+        /// <summary>
+        /// Test the property 'CountryCode'
+        /// </summary>
+        [Fact]
+        public void CountryCodeTest()
+        {
+            // TODO unit test for the property 'CountryCode'
+        }
+
+        /// <summary>
         /// Test the property 'ThankYouWebsiteUrl'
         /// </summary>
         [Fact]
