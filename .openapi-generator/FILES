@@ -87,6 +87,7 @@ docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignOptimizationGoal.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
+docs/AdTreeResponsePreviousRange.md
 docs/AddAccountCallouts201Response.md
 docs/AddAccountCallouts201ResponseCalloutsInner.md
 docs/AddAccountCalloutsRequest.md
@@ -131,8 +132,12 @@ docs/AdjustConversions200ResponseFailuresInner.md
 docs/AdjustConversionsRequest.md
 docs/AdjustConversionsRequestAdjustmentsInner.md
 docs/AdjustConversionsRequestAdjustmentsInnerUser.md
+docs/AdsAlert.md
+docs/AdsAlertEntity.md
+docs/AdsAlertFix.md
 docs/AdsListResponse.md
 docs/AdsTimelineResponse.md
+docs/AdsTimelineResponsePreviousRange.md
 docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
 docs/AnalyticsDashboardFollowers.md
@@ -810,6 +815,7 @@ docs/DiscordPlatformDataThreadFromMessage.md
 docs/DiscordRole.md
 docs/DiscordScheduledEvent.md
 docs/DiscordScheduledEventEntityMetadata.md
+docs/DismissAdsAlert200Response.md
 docs/DismissGoogleRecommendationsRequest.md
 docs/DmButton.md
 docs/DownloadTikTokVideo200Response.md
@@ -1585,6 +1591,8 @@ docs/ListAdSets200ResponseAdSetsInnerTargeting.md
 docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
+docs/ListAdsAlerts200Response.md
+docs/ListAdsAlerts200ResponseCounts.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListAdsInstagramAccounts200Response.md
 docs/ListAdsInstagramAccounts200ResponseAccountsInner.md
@@ -3161,6 +3169,7 @@ src/Zernio.Test/Model/AdTreeCampaignCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdTreeCampaignOptimizationGoalTests.cs
 src/Zernio.Test/Model/AdTreeCampaignPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeCampaignTests.cs
+src/Zernio.Test/Model/AdTreeResponsePreviousRangeTests.cs
 src/Zernio.Test/Model/AdTreeResponseTests.cs
 src/Zernio.Test/Model/AddAccountCallouts201ResponseCalloutsInnerTests.cs
 src/Zernio.Test/Model/AddAccountCallouts201ResponseTests.cs
@@ -3206,7 +3215,11 @@ src/Zernio.Test/Model/AdjustConversions200ResponseTests.cs
 src/Zernio.Test/Model/AdjustConversionsRequestAdjustmentsInnerTests.cs
 src/Zernio.Test/Model/AdjustConversionsRequestAdjustmentsInnerUserTests.cs
 src/Zernio.Test/Model/AdjustConversionsRequestTests.cs
+src/Zernio.Test/Model/AdsAlertEntityTests.cs
+src/Zernio.Test/Model/AdsAlertFixTests.cs
+src/Zernio.Test/Model/AdsAlertTests.cs
 src/Zernio.Test/Model/AdsListResponseTests.cs
+src/Zernio.Test/Model/AdsTimelineResponsePreviousRangeTests.cs
 src/Zernio.Test/Model/AdsTimelineResponseRowsInnerTests.cs
 src/Zernio.Test/Model/AdsTimelineResponseTests.cs
 src/Zernio.Test/Model/AnalyticsDashboardFollowersByAccountInnerTests.cs
@@ -3869,6 +3882,7 @@ src/Zernio.Test/Model/DiscordPlatformDataThreadFromMessageTests.cs
 src/Zernio.Test/Model/DiscordRoleTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventEntityMetadataTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventTests.cs
+src/Zernio.Test/Model/DismissAdsAlert200ResponseTests.cs
 src/Zernio.Test/Model/DismissGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/DmButtonTests.cs
 src/Zernio.Test/Model/DownloadTikTokVideo200ResponseFormatsInnerTests.cs
@@ -4629,6 +4643,8 @@ src/Zernio.Test/Model/ListAdSets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
 src/Zernio.Test/Model/ListAdVideos200ResponseTests.cs
 src/Zernio.Test/Model/ListAds202ResponseTests.cs
+src/Zernio.Test/Model/ListAdsAlerts200ResponseCountsTests.cs
+src/Zernio.Test/Model/ListAdsAlerts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
 src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/ListAdsInstagramAccounts200ResponsePagesInnerTests.cs
@@ -6188,6 +6204,7 @@ src/Zernio/Model/AdTreeCampaignCampaignBudget.cs
 src/Zernio/Model/AdTreeCampaignOptimizationGoal.cs
 src/Zernio/Model/AdTreeCampaignPromotedObject.cs
 src/Zernio/Model/AdTreeResponse.cs
+src/Zernio/Model/AdTreeResponsePreviousRange.cs
 src/Zernio/Model/AddAccountCallouts201Response.cs
 src/Zernio/Model/AddAccountCallouts201ResponseCalloutsInner.cs
 src/Zernio/Model/AddAccountCalloutsRequest.cs
@@ -6232,8 +6249,12 @@ src/Zernio/Model/AdjustConversions200ResponseFailuresInner.cs
 src/Zernio/Model/AdjustConversionsRequest.cs
 src/Zernio/Model/AdjustConversionsRequestAdjustmentsInner.cs
 src/Zernio/Model/AdjustConversionsRequestAdjustmentsInnerUser.cs
+src/Zernio/Model/AdsAlert.cs
+src/Zernio/Model/AdsAlertEntity.cs
+src/Zernio/Model/AdsAlertFix.cs
 src/Zernio/Model/AdsListResponse.cs
 src/Zernio/Model/AdsTimelineResponse.cs
+src/Zernio/Model/AdsTimelineResponsePreviousRange.cs
 src/Zernio/Model/AdsTimelineResponseRowsInner.cs
 src/Zernio/Model/AnalyticsDashboardFollowers.cs
 src/Zernio/Model/AnalyticsDashboardFollowersByAccountInner.cs
@@ -6895,6 +6916,7 @@ src/Zernio/Model/DiscordPlatformDataThreadFromMessage.cs
 src/Zernio/Model/DiscordRole.cs
 src/Zernio/Model/DiscordScheduledEvent.cs
 src/Zernio/Model/DiscordScheduledEventEntityMetadata.cs
+src/Zernio/Model/DismissAdsAlert200Response.cs
 src/Zernio/Model/DismissGoogleRecommendationsRequest.cs
 src/Zernio/Model/DmButton.cs
 src/Zernio/Model/DownloadTikTokVideo200Response.cs
@@ -7655,6 +7677,8 @@ src/Zernio/Model/ListAdSets200ResponseAdSetsInnerTargeting.cs
 src/Zernio/Model/ListAdStudies200Response.cs
 src/Zernio/Model/ListAdVideos200Response.cs
 src/Zernio/Model/ListAds202Response.cs
+src/Zernio/Model/ListAdsAlerts200Response.cs
+src/Zernio/Model/ListAdsAlerts200ResponseCounts.cs
 src/Zernio/Model/ListAdsBusinessCenters200Response.cs
 src/Zernio/Model/ListAdsInstagramAccounts200Response.cs
 src/Zernio/Model/ListAdsInstagramAccounts200ResponseAccountsInner.cs

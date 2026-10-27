@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **IsBudgetScheduleEnabled** | **bool** | Meta-only. Mirrors Campaign.is_budget_schedule_enabled: true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO. | [optional] [default to false]
 **Currency** | **string** | ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD. | [optional] 
 **Metrics** | [**AdMetrics**](AdMetrics.md) |  | [optional] 
+**PreviousMetrics** | [**AdMetrics**](AdMetrics.md) | Only with &#x60;compare&#x3D;previous&#x60;. The same metrics over &#x60;previousRange&#x60;. | [optional] 
 **PlatformAdAccountId** | **string** |  | [optional] 
 **PlatformAdAccountName** | **string** | Human-readable advertiser/account name from the platform. Refreshed on every sync. | [optional] 
 **AccountId** | **string** |  | [optional] 
