@@ -212,6 +212,8 @@ docs/BlogsApi.md
 docs/BlueskyPlatformData.md
 docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
+docs/BoostPost200Response.md
+docs/BoostPost200ResponseResultsInner.md
 docs/BoostPost201Response.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestAttributionSpecInner.md
@@ -3277,6 +3279,8 @@ src/Zernio.Test/Model/BlogTests.cs
 src/Zernio.Test/Model/BlueskyPlatformDataTests.cs
 src/Zernio.Test/Model/BookmarkPost200ResponseTests.cs
 src/Zernio.Test/Model/BookmarkPostRequestTests.cs
+src/Zernio.Test/Model/BoostPost200ResponseResultsInnerTests.cs
+src/Zernio.Test/Model/BoostPost200ResponseTests.cs
 src/Zernio.Test/Model/BoostPost201ResponseTests.cs
 src/Zernio.Test/Model/BoostPostRequestAttributionSpecInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
@@ -6295,6 +6299,8 @@ src/Zernio/Model/BlogArticleImage.cs
 src/Zernio/Model/BlueskyPlatformData.cs
 src/Zernio/Model/BookmarkPost200Response.cs
 src/Zernio/Model/BookmarkPostRequest.cs
+src/Zernio/Model/BoostPost200Response.cs
+src/Zernio/Model/BoostPost200ResponseResultsInner.cs
 src/Zernio/Model/BoostPost201Response.cs
 src/Zernio/Model/BoostPostRequest.cs
 src/Zernio/Model/BoostPostRequestAttributionSpecInner.cs

@@ -496,7 +496,7 @@ catch (ApiException e)
 
 <a id="boostpost"></a>
 # **BoostPost**
-> BoostPost201Response BoostPost (BoostPostRequest boostPostRequest, string? idempotencyKey = null)
+> BoostPost200Response BoostPost (BoostPostRequest boostPostRequest, string? idempotencyKey = null)
 
 Boost post as ad
 
@@ -532,7 +532,7 @@ namespace Example
             try
             {
                 // Boost post as ad
-                BoostPost201Response result = apiInstance.BoostPost(boostPostRequest, idempotencyKey);
+                BoostPost200Response result = apiInstance.BoostPost(boostPostRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -553,7 +553,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Boost post as ad
-    ApiResponse<BoostPost201Response> response = apiInstance.BoostPostWithHttpInfo(boostPostRequest, idempotencyKey);
+    ApiResponse<BoostPost200Response> response = apiInstance.BoostPostWithHttpInfo(boostPostRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -575,7 +575,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**BoostPost201Response**](BoostPost201Response.md)
+[**BoostPost200Response**](BoostPost200Response.md)
 
 ### Authorization
 
@@ -590,8 +590,9 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | validateOnly dry-run passed (Meta), nothing was created |  -  |
 | **201** | Ad created |  -  |
-| **400** | Missing required fields or invalid values |  -  |
+| **400** | Missing required fields or invalid values, &#x60;validateOnly: true&#x60; outside Meta, &#x60;dryRun&#x60; sent, or a Meta validateOnly validation failure (verbatim) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected. Also returned with code &#x60;insufficient_permissions&#x60; when the Facebook user behind the connection&#39;s token lacks the Advertise permission on the Meta ad account, or the token lacks &#x60;ads_management&#x60; (Meta subcode 2490585, 2490591 or 4841020; see &#x60;ErrorResponse.details&#x60;).  |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
