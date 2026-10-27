@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.381.0
+  version: 1.382.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -81305,6 +81305,12 @@ components:
             only)
           items:
             type: string
+          type: array
+        droppedCollaborators:
+          description: Output only. Set by Zernio when Instagram rejected these collaborators
+            and the retry was sent without them.
+          items:
+            $ref: "#/components/schemas/InstagramPlatformData_droppedCollaborators_inner"
           type: array
         firstComment:
           description: Optional first comment to add after the post is created (not
@@ -175347,6 +175353,18 @@ components:
           type: string
       required:
       - link
+    InstagramPlatformData_droppedCollaborators_inner:
+      properties:
+        username:
+          description: The collaborator username Instagram rejected
+          example: brandcommunity
+          type: string
+        reason:
+          description: The reason Instagram gave for rejecting the collaborator
+          type: string
+      required:
+      - reason
+      - username
     InstagramPlatformData_trialParams:
       description: Trial Reels configuration. Trial reels are shared to non-followers
         first and can later be graduated to regular reels manually or automatically

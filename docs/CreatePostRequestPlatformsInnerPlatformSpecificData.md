@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **FacebookSettings** | [**FacebookSettings**](FacebookSettings.md) |  | [optional] 
 **ShareToFeed** | **bool** | For Reels only. When true (default), the Reel appears on both the Reels tab and your main profile feed. Set to false to post to the Reels tab only. | [optional] [default to true]
 **Collaborators** | **List&lt;string&gt;** | Up to 3 Instagram usernames to invite as collaborators (feed/Reels only) | [optional] 
+**DroppedCollaborators** | [**List&lt;InstagramPlatformDataDroppedCollaboratorsInner&gt;**](InstagramPlatformDataDroppedCollaboratorsInner.md) | Output only. Set by Zernio when Instagram rejected these collaborators and the retry was sent without them. | [optional] 
 **TrialParams** | [**InstagramPlatformDataTrialParams**](InstagramPlatformDataTrialParams.md) |  | [optional] 
 **UserTags** | [**List&lt;InstagramPlatformDataUserTagsInner&gt;**](InstagramPlatformDataUserTagsInner.md) | Tag Instagram users by username. The tag shape depends on the media: photos require x/y coordinates, Reels and videos take username only (coordinates are ignored), stories accept optional coordinates. For carousels, use mediaIndex to target specific slides (defaults to 0); video slides take username-only tags. Photo tags without valid coordinates are skipped. | [optional] 
 **AudioName** | **string** | Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once. Unrelated to audioConfiguration, which attaches a catalog track. | [optional] 

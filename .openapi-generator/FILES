@@ -1531,6 +1531,7 @@ docs/InstagramMentionedCommentMedia.md
 docs/InstagramMentionedMedia.md
 docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
+docs/InstagramPlatformDataDroppedCollaboratorsInner.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InstagramTaggedMedia.md
@@ -4662,6 +4663,7 @@ src/Zernio.Test/Model/InstagramMentionedCommentMediaTests.cs
 src/Zernio.Test/Model/InstagramMentionedCommentTests.cs
 src/Zernio.Test/Model/InstagramMentionedMediaTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataAudioConfigurationTests.cs
+src/Zernio.Test/Model/InstagramPlatformDataDroppedCollaboratorsInnerTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
@@ -7774,6 +7776,7 @@ src/Zernio/Model/InstagramMentionedCommentMedia.cs
 src/Zernio/Model/InstagramMentionedMedia.cs
 src/Zernio/Model/InstagramPlatformData.cs
 src/Zernio/Model/InstagramPlatformDataAudioConfiguration.cs
+src/Zernio/Model/InstagramPlatformDataDroppedCollaboratorsInner.cs
 src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
 src/Zernio/Model/InstagramTaggedMedia.cs
