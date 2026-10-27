@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.377.0
+  version: 1.377.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -40076,6 +40076,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -41001,6 +41003,11 @@ paths:
             Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Ad not found
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
         "501":
           description: Only supported on Meta (facebook/instagram)
       security:
@@ -41114,6 +41121,8 @@ paths:
             \ Meta's error"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -42978,8 +42987,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
@@ -43081,8 +43095,15 @@ paths:
             \ carries Meta's error"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: Ad not found
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
         "429":
           $ref: "#/components/responses/MetaRateLimited"
         "501":
@@ -43153,6 +43174,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Ad not found, it has no platform ad id yet, or the platform\
             \ has no review record for it"
@@ -43219,6 +43242,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Ad not found, it has no TikTok ad or ad group id yet, or no\
             \ Smart+ ad of its ad group holds it. In the last case `details.listedSmartPlusAds`\
@@ -43284,8 +43309,15 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: Ad not found
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
         "422":
           description: No active Meta connection for this ad. Reconnect the account.
         "501":
@@ -43968,6 +44000,11 @@ paths:
             by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
       security:
       - bearerAuth: []
       summary: Get ad analytics
@@ -44016,6 +44053,8 @@ paths:
           description: Tracking tags for the ad's platform (shape varies by platform).
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: Ad not found
         "405":
@@ -44881,6 +44920,8 @@ paths:
           description: Invalid input
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -45014,6 +45055,8 @@ paths:
           description: "Invalid input, or Meta rejected the query"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -45552,7 +45595,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: The account or Meta asset is not accessible.
+          description: "The account or Meta asset is not accessible. Also returned\
+            \ with code `ad_account_not_selected` when the connection has selected\
+            \ ad accounts and the ad account this request targets is not among them;\
+            \ `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -45618,7 +45667,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: The account or Meta asset is not accessible.
+          description: "The account or Meta asset is not accessible. Also returned\
+            \ with code `ad_account_not_selected` when the connection has selected\
+            \ ad accounts and the ad account this request targets is not among them;\
+            \ `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46431,6 +46486,8 @@ paths:
           description: "Invalid input, or Meta rejected the query"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46562,6 +46619,8 @@ paths:
           description: "Invalid input, or Meta rejected the query"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46764,6 +46823,8 @@ paths:
           description: "Invalid input, or Meta rejected the query"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46902,6 +46963,8 @@ paths:
             \ is indistinguishable between not-found, no-permission, and account-not-enabled."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -49223,7 +49286,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Meta refused: the token lacks business_management or business\
-            \ admin access."
+            \ admin access. Also returned with code `ad_account_not_selected` when\
+            \ the connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -49334,6 +49402,8 @@ paths:
           description: "Invalid input, or Meta rejected the query"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -51706,6 +51776,8 @@ paths:
           description: "Invalid input, or Meta rejected the query"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -51846,6 +51918,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -52042,6 +52116,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -52557,8 +52633,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -54025,8 +54106,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -56484,7 +56570,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required, or the token lacks the ads permissions."
+          description: "Ads access required, or the token lacks the ads permissions.\
+            \ Also returned with code `ad_account_not_selected` when the connection\
+            \ has selected ad accounts and the ad account this request targets is\
+            \ not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
