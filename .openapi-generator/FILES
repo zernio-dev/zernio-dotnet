@@ -46,6 +46,7 @@ docs/AdKeyword.md
 docs/AdKeywordMetrics.md
 docs/AdKeywordQuality.md
 docs/AdLead.md
+docs/AdLeadConsent.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdNegativeKeywordList.md
@@ -3113,6 +3114,7 @@ src/Zernio.Test/Model/AdFunnelCountsTests.cs
 src/Zernio.Test/Model/AdKeywordMetricsTests.cs
 src/Zernio.Test/Model/AdKeywordQualityTests.cs
 src/Zernio.Test/Model/AdKeywordTests.cs
+src/Zernio.Test/Model/AdLeadConsentTests.cs
 src/Zernio.Test/Model/AdLeadTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
 src/Zernio.Test/Model/AdNegativeKeywordListKeywordTests.cs
@@ -6132,6 +6134,7 @@ src/Zernio/Model/AdKeyword.cs
 src/Zernio/Model/AdKeywordMetrics.cs
 src/Zernio/Model/AdKeywordQuality.cs
 src/Zernio/Model/AdLead.cs
+src/Zernio/Model/AdLeadConsent.cs
 src/Zernio/Model/AdMetrics.cs
 src/Zernio/Model/AdNegativeKeywordList.cs
 src/Zernio/Model/AdNegativeKeywordListKeyword.cs

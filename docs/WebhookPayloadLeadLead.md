@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **AdsetId** | **string** |  | [optional] 
 **CampaignId** | **string** |  | [optional] 
 **Fields** | **Dictionary&lt;string, string&gt;** | Flattened question key -&gt; answer map. For multiple-choice questions the value is the option key (e.g. \&quot;k1\&quot;), not the display label.  | 
+**Consents** | [**List&lt;AdLeadConsent&gt;**](AdLeadConsent.md) | Sent on every delivery since 2026-10-25. Absent when an older event is redelivered, since redeliveries replay the stored payload. | [optional] 
 **IsOrganic** | **bool** | True when the lead came from an organic post rather than a paid ad | 
 **CreatedAt** | **DateTime** | Meta&#39;s lead creation time (ISO 8601) | 
 
