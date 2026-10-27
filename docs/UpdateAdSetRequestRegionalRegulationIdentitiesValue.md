@@ -1,4 +1,4 @@
-# Zernio.Model.BoostPostRequestRegionalRegulationIdentitiesValue
+# Zernio.Model.UpdateAdSetRequestRegionalRegulationIdentitiesValue
 
 ## Properties
 
