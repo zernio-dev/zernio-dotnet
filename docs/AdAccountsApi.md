@@ -22,6 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DetachAdLabel**](AdAccountsApi.md#detachadlabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
 | [**GetAdAccountBilling**](AdAccountsApi.md#getadaccountbilling) | **GET** /v1/ads/accounts/billing | Get ad account billing |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
+| [**GetAdAccountHealth**](AdAccountsApi.md#getadaccounthealth) | **GET** /v1/ads/accounts/health | Check an ad account before creating ads |
 | [**GetAdAccountHierarchy**](AdAccountsApi.md#getadaccounthierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**GetAdAccountLiveEntities**](AdAccountsApi.md#getadaccountliveentities) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live |
 | [**GetAdComments**](AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
@@ -1990,6 +1991,111 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Account finances |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadaccounthealth"></a>
+# **GetAdAccountHealth**
+> GetAdAccountHealth200Response GetAdAccountHealth (string accountId, string adAccountId)
+
+Check an ad account before creating ads
+
+Checks whether a Meta ad account can run ads right now, with a fix link for each problem.  Reads the account status, the payment method, the account spending limit, the Facebook Page and its Instagram account, the Page's Lead Ads terms, the newest pixel event and the WhatsApp number linked to the Page. Each check reads on its own: one this connection cannot see comes back `unknown` instead of failing the request.  `status` is `blocked` when any check is `error` (ads will be refused), `attention` when one is `warning`, else `ok`. `missing` marks an optional asset that is not set up (a pixel, a WhatsApp number): only the ads that need it are affected. A `fix.url` is either a Meta page or a Zernio dashboard path (starting with `/`).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdAccountHealthExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = act_123;  // string | Meta ad account id (act_<n>).
+
+            try
+            {
+                // Check an ad account before creating ads
+                GetAdAccountHealth200Response result = apiInstance.GetAdAccountHealth(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.GetAdAccountHealth: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdAccountHealthWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check an ad account before creating ads
+    ApiResponse<GetAdAccountHealth200Response> response = apiInstance.GetAdAccountHealthWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.GetAdAccountHealthWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+
+### Return type
+
+[**GetAdAccountHealth200Response**](GetAdAccountHealth200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account checks |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |

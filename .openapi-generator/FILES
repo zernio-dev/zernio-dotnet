@@ -453,6 +453,8 @@ docs/ConversionEventMessaging.md
 docs/ConversionEventUser.md
 docs/ConversionEventUserClickIds.md
 docs/ConversionsApi.md
+docs/CountLeads200Response.md
+docs/CountLeads200ResponseCounts.md
 docs/CreateAccountGroup201Response.md
 docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
@@ -922,6 +924,9 @@ docs/GetAdAccountBilling200ResponsePaymentsAccountsInner.md
 docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
+docs/GetAdAccountHealth200Response.md
+docs/GetAdAccountHealth200ResponseChecksInner.md
+docs/GetAdAccountHealth200ResponseChecksInnerFix.md
 docs/GetAdAccountHierarchy200Response.md
 docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md
 docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md
@@ -3508,6 +3513,8 @@ src/Zernio.Test/Model/ConversionEventMessagingTests.cs
 src/Zernio.Test/Model/ConversionEventTests.cs
 src/Zernio.Test/Model/ConversionEventUserClickIdsTests.cs
 src/Zernio.Test/Model/ConversionEventUserTests.cs
+src/Zernio.Test/Model/CountLeads200ResponseCountsTests.cs
+src/Zernio.Test/Model/CountLeads200ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseGroupTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroupRequestTests.cs
@@ -3966,6 +3973,9 @@ src/Zernio.Test/Model/GetAdAccountBilling200ResponsePendingBudgetProposalsInnerT
 src/Zernio.Test/Model/GetAdAccountBilling200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
 src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
+src/Zernio.Test/Model/GetAdAccountHealth200ResponseChecksInnerFixTests.cs
+src/Zernio.Test/Model/GetAdAccountHealth200ResponseChecksInnerTests.cs
+src/Zernio.Test/Model/GetAdAccountHealth200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInnerTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerTests.cs
 src/Zernio.Test/Model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInnerTests.cs
@@ -6528,6 +6538,8 @@ src/Zernio/Model/ConversionEventItemsInner.cs
 src/Zernio/Model/ConversionEventMessaging.cs
 src/Zernio/Model/ConversionEventUser.cs
 src/Zernio/Model/ConversionEventUserClickIds.cs
+src/Zernio/Model/CountLeads200Response.cs
+src/Zernio/Model/CountLeads200ResponseCounts.cs
 src/Zernio/Model/CreateAccountGroup201Response.cs
 src/Zernio/Model/CreateAccountGroup201ResponseGroup.cs
 src/Zernio/Model/CreateAccountGroupRequest.cs
@@ -6986,6 +6998,9 @@ src/Zernio/Model/GetAdAccountBilling200ResponsePaymentsAccountsInner.cs
 src/Zernio/Model/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.cs
 src/Zernio/Model/GetAdAccountFinance200Response.cs
 src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
+src/Zernio/Model/GetAdAccountHealth200Response.cs
+src/Zernio/Model/GetAdAccountHealth200ResponseChecksInner.cs
+src/Zernio/Model/GetAdAccountHealth200ResponseChecksInnerFix.cs
 src/Zernio/Model/GetAdAccountHierarchy200Response.cs
 src/Zernio/Model/GetAdAccountHierarchy200ResponseDirectCustomersInner.cs
 src/Zernio/Model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.cs

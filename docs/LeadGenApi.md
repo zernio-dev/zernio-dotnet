@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**ArchiveLeadForm**](LeadGenApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
+| [**CountLeads**](LeadGenApi.md#countleads) | **GET** /v1/ads/leads/counts | Count leads by status |
 | [**CreateLeadForm**](LeadGenApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**CreateTestLead**](LeadGenApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
 | [**DeleteTestLead**](LeadGenApi.md#deletetestlead) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead |
@@ -115,6 +116,109 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="countleads"></a>
+# **CountLeads**
+> CountLeads200Response CountLeads (string? accountId = null, string? campaignId = null)
+
+Count leads by status
+
+Counts your team's stored Meta leads per status, for a status filter or a \"new leads\" badge.  Every status is present, with 0 when no lead has it. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CountLeadsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string? | Count one connected account only. (optional) 
+            var campaignId = "campaignId_example";  // string? | The platform campaign id the leads came from. (optional) 
+
+            try
+            {
+                // Count leads by status
+                CountLeads200Response result = apiInstance.CountLeads(accountId, campaignId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling LeadGenApi.CountLeads: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CountLeadsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Count leads by status
+    ApiResponse<CountLeads200Response> response = apiInstance.CountLeadsWithHttpInfo(accountId, campaignId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LeadGenApi.CountLeadsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string?** | Count one connected account only. | [optional]  |
+| **campaignId** | **string?** | The platform campaign id the leads came from. | [optional]  |
+
+### Return type
+
+[**CountLeads200Response**](CountLeads200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead counts. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -751,7 +855,7 @@ catch (ApiException e)
 
 <a id="listleads"></a>
 # **ListLeads**
-> ListLeads200Response ListLeads (string? formId = null, string? accountId = null, string? adAccountId = null, int? limit = null, int? since = null, string? cursor = null)
+> ListLeads200Response ListLeads (string? formId = null, string? accountId = null, string? accountIds = null, string? status = null, string? campaignId = null, string? platform = null, string? q = null, string? adAccountId = null, int? limit = null, int? since = null, string? cursor = null)
 
 List submitted leads
 
@@ -783,6 +887,11 @@ namespace Example
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
             var formId = "formId_example";  // string? | Filter to a single lead form. (optional) 
             var accountId = "accountId_example";  // string? | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional) 
+            var accountIds = "accountIds_example";  // string? | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. (optional) 
+            var status = new,contacted;  // string? | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. (optional) 
+            var campaignId = "campaignId_example";  // string? | Meta only. The platform campaign id the lead came from. (optional) 
+            var platform = "meta";  // string? | meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). (optional) 
+            var q = "q_example";  // string? | Meta only. Case-insensitive text search over the lead's answers and the form name. (optional) 
             var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
             var since = 1757404800;  // int? | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional) 
@@ -791,7 +900,7 @@ namespace Example
             try
             {
                 // List submitted leads
-                ListLeads200Response result = apiInstance.ListLeads(formId, accountId, adAccountId, limit, since, cursor);
+                ListLeads200Response result = apiInstance.ListLeads(formId, accountId, accountIds, status, campaignId, platform, q, adAccountId, limit, since, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -812,7 +921,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List submitted leads
-    ApiResponse<ListLeads200Response> response = apiInstance.ListLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor);
+    ApiResponse<ListLeads200Response> response = apiInstance.ListLeadsWithHttpInfo(formId, accountId, accountIds, status, campaignId, platform, q, adAccountId, limit, since, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -831,6 +940,11 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **formId** | **string?** | Filter to a single lead form. | [optional]  |
 | **accountId** | **string?** | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional]  |
+| **accountIds** | **string?** | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional]  |
+| **status** | **string?** | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional]  |
+| **campaignId** | **string?** | Meta only. The platform campaign id the lead came from. | [optional]  |
+| **platform** | **string?** | meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). | [optional]  |
+| **q** | **string?** | Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional]  |
 | **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **since** | **int?** | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. | [optional]  |
