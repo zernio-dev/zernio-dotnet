@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **LastMessage** | **string** |  | [optional] 
 **UpdatedTime** | **DateTime** |  | [optional] 
 **Status** | **string** |  | [optional] 
-**UnreadCount** | **int?** | Number of unread messages | [optional] 
+**UnreadCount** | **int?** | Number of unread incoming messages, capped at 1000. Read from a replica, so it can trail a conversation you just marked read by a few seconds. | [optional] 
 **ThreadControl** | **string** | Present once a handover has touched the thread (WhatsApp, Facebook, Instagram). ai_agent: Meta Business Agent answers (WhatsApp) and new inbound arrive flagged metadata.standby; app: you hold control; other: another app does (a WhatsApp partner, or a Messenger / Instagram receiver such as Page Inbox). Change it with POST /v1/inbox/conversations/{conversationId}/thread-control. | [optional] 
 **Folder** | **string** | Present only on items listed with folder&#x3D;requests: a Message Request the account has not accepted yet. | [optional] 
 **IsGroup** | **bool** | iMessage only, true for a group thread. Manage it through the /v1/imessage/groups/{conversationId} endpoints. | [optional] 
