@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ad** | [**Ad**](Ad.md) |  | [optional] 
+**AppliedDefaults** | [**AdAppliedDefaults**](AdAppliedDefaults.md) |  | [optional] 
 **Message** | **string** |  | [optional] 
 **Ads** | [**List&lt;Ad&gt;**](Ad.md) |  | [optional] 
 **PlatformCampaignId** | **string** |  | [optional] 

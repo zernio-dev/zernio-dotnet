@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Ads** | [**List&lt;Ad&gt;**](Ad.md) |  | [optional] 
 **PlatformCampaignId** | **string** |  | [optional] 
 **PlatformAdSetId** | **string** |  | [optional] 
+**AppliedDefaults** | [**AdAppliedDefaults**](AdAppliedDefaults.md) |  | [optional] 
 **Message** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

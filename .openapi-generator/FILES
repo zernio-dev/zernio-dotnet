@@ -25,6 +25,7 @@ docs/AdActivationStatus.md
 docs/AdAnalyticsResponse.md
 docs/AdAnalyticsResponseAd.md
 docs/AdAnalyticsResponseAnalytics.md
+docs/AdAppliedDefaults.md
 docs/AdAudiencesApi.md
 docs/AdBudget.md
 docs/AdCampaign.md
@@ -3105,6 +3106,7 @@ src/Zernio.Test/Model/AdActivationStatusTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseAdTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseAnalyticsTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseTests.cs
+src/Zernio.Test/Model/AdAppliedDefaultsTests.cs
 src/Zernio.Test/Model/AdBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignTests.cs
@@ -6131,6 +6133,7 @@ src/Zernio/Model/AdActivationStatus.cs
 src/Zernio/Model/AdAnalyticsResponse.cs
 src/Zernio/Model/AdAnalyticsResponseAd.cs
 src/Zernio/Model/AdAnalyticsResponseAnalytics.cs
+src/Zernio/Model/AdAppliedDefaults.cs
 src/Zernio/Model/AdBudget.cs
 src/Zernio/Model/AdCampaign.cs
 src/Zernio/Model/AdCampaignBudget.cs

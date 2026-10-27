@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ValidateOnly** | **bool** | Always true in a validate-only response. | [optional] 
+**AppliedDefaults** | [**AdAppliedDefaults**](AdAppliedDefaults.md) |  | [optional] 
 **Results** | [**List&lt;CreateStandaloneAd200ResponseResultsInner&gt;**](CreateStandaloneAd200ResponseResultsInner.md) |  | [optional] 
 **Message** | **string** |  | [optional] 
 
