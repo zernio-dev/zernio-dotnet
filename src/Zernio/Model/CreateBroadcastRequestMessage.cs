@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class CreateBroadcastRequestMessage : IValidatableObject
     {
         /// <summary>
-        /// Instagram and Facebook only. Meta message tag sent with every recipient message (messaging_type MESSAGE_TAG) so the broadcast can reach people outside the 24h window. Instagram accepts HUMAN_AGENT only. Rejected with a 400 on any other platform.
+        /// Not usable: a broadcast only reaches people within the 24h window. HUMAN_AGENT is rejected with a 400 because it is only for replies typed by a person, and Meta retired the other tags.
         /// </summary>
-        /// <value>Instagram and Facebook only. Meta message tag sent with every recipient message (messaging_type MESSAGE_TAG) so the broadcast can reach people outside the 24h window. Instagram accepts HUMAN_AGENT only. Rejected with a 400 on any other platform.</value>
+        /// <value>Not usable: a broadcast only reaches people within the 24h window. HUMAN_AGENT is rejected with a 400 because it is only for replies typed by a person, and Meta retired the other tags.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MessageTagEnum
         {
@@ -67,9 +67,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Instagram and Facebook only. Meta message tag sent with every recipient message (messaging_type MESSAGE_TAG) so the broadcast can reach people outside the 24h window. Instagram accepts HUMAN_AGENT only. Rejected with a 400 on any other platform.
+        /// Not usable: a broadcast only reaches people within the 24h window. HUMAN_AGENT is rejected with a 400 because it is only for replies typed by a person, and Meta retired the other tags.
         /// </summary>
-        /// <value>Instagram and Facebook only. Meta message tag sent with every recipient message (messaging_type MESSAGE_TAG) so the broadcast can reach people outside the 24h window. Instagram accepts HUMAN_AGENT only. Rejected with a 400 on any other platform.</value>
+        /// <value>Not usable: a broadcast only reaches people within the 24h window. HUMAN_AGENT is rejected with a 400 because it is only for replies typed by a person, and Meta retired the other tags.</value>
         [DataMember(Name = "messageTag", EmitDefaultValue = false)]
         public MessageTagEnum? MessageTag { get; set; }
         /// <summary>
@@ -77,7 +77,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="text">Required on every platform except WhatsApp (which sends &#x60;template&#x60;) and an SMS broadcast that carries attachments..</param>
         /// <param name="attachments">SMS only: sent as MMS media, one media_url per attachment. Each url must be public http(s); JPEG, PNG, GIF, WEBP, MP4 or 3GPP under 1 MB (checked at create when the host answers a HEAD request; Telnyx enforces the 1 MB total per message at send)..</param>
-        /// <param name="messageTag">Instagram and Facebook only. Meta message tag sent with every recipient message (messaging_type MESSAGE_TAG) so the broadcast can reach people outside the 24h window. Instagram accepts HUMAN_AGENT only. Rejected with a 400 on any other platform..</param>
+        /// <param name="messageTag">Not usable: a broadcast only reaches people within the 24h window. HUMAN_AGENT is rejected with a 400 because it is only for replies typed by a person, and Meta retired the other tags..</param>
         public CreateBroadcastRequestMessage(string text = default, List<CreateBroadcastRequestMessageAttachmentsInner> attachments = default, MessageTagEnum? messageTag = default)
         {
             this.Text = text;

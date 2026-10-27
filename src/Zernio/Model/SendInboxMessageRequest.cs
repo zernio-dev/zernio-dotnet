@@ -280,9 +280,9 @@ namespace Zernio.Model
         [DataMember(Name = "messagingType", EmitDefaultValue = false)]
         public MessagingTypeEnum? MessagingType { get; set; }
         /// <summary>
-        /// Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT.
+        /// Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail.
         /// </summary>
-        /// <value>Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT.</value>
+        /// <value>Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MessageTagEnum
         {
@@ -313,9 +313,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT.
+        /// Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail.
         /// </summary>
-        /// <value>Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT.</value>
+        /// <value>Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail.</value>
         [DataMember(Name = "messageTag", EmitDefaultValue = false)]
         public MessageTagEnum? MessageTag { get; set; }
         /// <summary>
@@ -347,7 +347,7 @@ namespace Zernio.Model
         /// <param name="interactive">interactive.</param>
         /// <param name="replyMarkup">replyMarkup.</param>
         /// <param name="messagingType">Facebook messaging type. Required when using messageTag..</param>
-        /// <param name="messageTag">Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT..</param>
+        /// <param name="messageTag">Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail..</param>
         /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid; for Telegram, the Telegram message ID (delivered as message.platformMessageId on webhooks, and as &#x60;id&#x60; on each entry of the list-messages endpoint). On Slack it threads the reply (thread_ts) instead of quoting. Instagram and Facebook Messenger do not support send-side quote replies: the message is sent without a quote and the successful response includes a warnings entry with code ignored_field and param replyTo. Other platforms without send-side reply support ignore this field..</param>
         /// <param name="location">location.</param>
         /// <param name="contacts">WhatsApp-only. Send one or more contact cards..</param>
