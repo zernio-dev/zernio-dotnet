@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountAdsSyncRecovered**](WebhookEventsApi.md#onaccountadssyncrecovered) | **POST** /account.ads.sync_recovered | Ads sync recovered event |
 | [**OnAccountConnected**](WebhookEventsApi.md#onaccountconnected) | **POST** /account.connected | Account connected event |
 | [**OnAccountDisconnected**](WebhookEventsApi.md#onaccountdisconnected) | **POST** /account.disconnected | Account disconnected event |
+| [**OnAccountRateLimited**](WebhookEventsApi.md#onaccountratelimited) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**OnAdAccountStatusChanged**](WebhookEventsApi.md#onadaccountstatuschanged) | **POST** /ad_account.status_changed | Ad account status changed event |
 | [**OnAdDeliveryIssue**](WebhookEventsApi.md#onaddeliveryissue) | **POST** /ad.delivery_issue | Ad delivery issue event |
 | [**OnAdReviewApproved**](WebhookEventsApi.md#onadreviewapproved) | **POST** /ad.review.approved | Ad review approved event |
@@ -21,6 +22,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onbrandedcallingidentityactionrequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**OnBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onbrandedcallingidentitystatusupdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
 | [**OnBrandedCallingNumberStatusUpdated**](WebhookEventsApi.md#onbrandedcallingnumberstatusupdated) | **POST** /branded_calling.number.status_updated | Branded number status updated event |
+| [**OnCalendarEventCreated**](WebhookEventsApi.md#oncalendareventcreated) | **POST** /calendar.event.created | Calendar event created |
+| [**OnCalendarEventDeleted**](WebhookEventsApi.md#oncalendareventdeleted) | **POST** /calendar.event.deleted | Calendar event deleted |
+| [**OnCalendarEventUpdated**](WebhookEventsApi.md#oncalendareventupdated) | **POST** /calendar.event.updated | Calendar event updated |
 | [**OnCallEnded**](WebhookEventsApi.md#oncallended) | **POST** /call.ended | Call ended event |
 | [**OnCallFailed**](WebhookEventsApi.md#oncallfailed) | **POST** /call.failed | Call failed event |
 | [**OnCallPermissionRequest**](WebhookEventsApi.md#oncallpermissionrequest) | **POST** /call.permission_request | Call permission request reply event |
@@ -33,11 +37,17 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCommerceProductCreated**](WebhookEventsApi.md#oncommerceproductcreated) | **POST** /commerce.product.created | Commerce product created event |
 | [**OnCommerceProductDeleted**](WebhookEventsApi.md#oncommerceproductdeleted) | **POST** /commerce.product.deleted | Commerce product deleted event |
 | [**OnCommerceProductUpdated**](WebhookEventsApi.md#oncommerceproductupdated) | **POST** /commerce.product.updated | Commerce product updated event |
+| [**OnContactDeleted**](WebhookEventsApi.md#oncontactdeleted) | **POST** /contact.deleted | Contact deleted |
 | [**OnContactFieldChanged**](WebhookEventsApi.md#oncontactfieldchanged) | **POST** /contact.field_changed | Contact field changed event |
 | [**OnContactTagAdded**](WebhookEventsApi.md#oncontacttagadded) | **POST** /contact.tag_added | Contact tag added event |
 | [**OnContactTagRemoved**](WebhookEventsApi.md#oncontacttagremoved) | **POST** /contact.tag_removed | Contact tag removed event |
+| [**OnContactUpdated**](WebhookEventsApi.md#oncontactupdated) | **POST** /contact.updated | Contact updated |
 | [**OnConversationControlChanged**](WebhookEventsApi.md#onconversationcontrolchanged) | **POST** /conversation.control_changed | Conversation control changed event |
 | [**OnConversationStarted**](WebhookEventsApi.md#onconversationstarted) | **POST** /conversation.started | Conversation started event |
+| [**OnFileCreated**](WebhookEventsApi.md#onfilecreated) | **POST** /file.created | File created |
+| [**OnFileDeleted**](WebhookEventsApi.md#onfiledeleted) | **POST** /file.deleted | File deleted |
+| [**OnFilePicked**](WebhookEventsApi.md#onfilepicked) | **POST** /file.picked | Files picked |
+| [**OnFileUpdated**](WebhookEventsApi.md#onfileupdated) | **POST** /file.updated | File updated |
 | [**OnLeadReceived**](WebhookEventsApi.md#onleadreceived) | **POST** /lead.received | Lead received event |
 | [**OnMessageDeleted**](WebhookEventsApi.md#onmessagedeleted) | **POST** /message.deleted | Message deleted event |
 | [**OnMessageDelivered**](WebhookEventsApi.md#onmessagedelivered) | **POST** /message.delivered | Message delivered event |
@@ -543,6 +553,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAccountDisconnected** | [**WebhookPayloadAccountDisconnected**](WebhookPayloadAccountDisconnected.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onaccountratelimited"></a>
+# **OnAccountRateLimited**
+> void OnAccountRateLimited (WebhookPayloadAccountRateLimited webhookPayloadAccountRateLimited)
+
+Mailbox sending cooldown started
+
+Fired when a Google or Microsoft mailbox enters a sending cooldown (same body to more than 50 recipients in an hour, or a later trigger). Sends answer 429 until `account.resetsAt`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAccountRateLimitedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAccountRateLimited = new WebhookPayloadAccountRateLimited(); // WebhookPayloadAccountRateLimited | 
+
+            try
+            {
+                // Mailbox sending cooldown started
+                apiInstance.OnAccountRateLimited(webhookPayloadAccountRateLimited);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAccountRateLimited: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAccountRateLimitedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Mailbox sending cooldown started
+    apiInstance.OnAccountRateLimitedWithHttpInfo(webhookPayloadAccountRateLimited);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAccountRateLimitedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAccountRateLimited** | [**WebhookPayloadAccountRateLimited**](WebhookPayloadAccountRateLimited.md) |  |  |
 
 ### Return type
 
@@ -1693,6 +1797,284 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncalendareventcreated"></a>
+# **OnCalendarEventCreated**
+> void OnCalendarEventCreated (WebhookPayloadCalendarEvent webhookPayloadCalendarEvent)
+
+Calendar event created
+
+A new event appeared on a connected Microsoft calendar (push, seconds after the change).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCalendarEventCreatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCalendarEvent = new WebhookPayloadCalendarEvent(); // WebhookPayloadCalendarEvent | 
+
+            try
+            {
+                // Calendar event created
+                apiInstance.OnCalendarEventCreated(webhookPayloadCalendarEvent);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCalendarEventCreated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCalendarEventCreatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Calendar event created
+    apiInstance.OnCalendarEventCreatedWithHttpInfo(webhookPayloadCalendarEvent);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCalendarEventCreatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCalendarEvent** | [**WebhookPayloadCalendarEvent**](WebhookPayloadCalendarEvent.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncalendareventdeleted"></a>
+# **OnCalendarEventDeleted**
+> void OnCalendarEventDeleted (WebhookPayloadCalendarEvent webhookPayloadCalendarEvent)
+
+Calendar event deleted
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCalendarEventDeletedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCalendarEvent = new WebhookPayloadCalendarEvent(); // WebhookPayloadCalendarEvent | 
+
+            try
+            {
+                // Calendar event deleted
+                apiInstance.OnCalendarEventDeleted(webhookPayloadCalendarEvent);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCalendarEventDeleted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCalendarEventDeletedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Calendar event deleted
+    apiInstance.OnCalendarEventDeletedWithHttpInfo(webhookPayloadCalendarEvent);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCalendarEventDeletedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCalendarEvent** | [**WebhookPayloadCalendarEvent**](WebhookPayloadCalendarEvent.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncalendareventupdated"></a>
+# **OnCalendarEventUpdated**
+> void OnCalendarEventUpdated (WebhookPayloadCalendarEvent webhookPayloadCalendarEvent)
+
+Calendar event updated
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCalendarEventUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCalendarEvent = new WebhookPayloadCalendarEvent(); // WebhookPayloadCalendarEvent | 
+
+            try
+            {
+                // Calendar event updated
+                apiInstance.OnCalendarEventUpdated(webhookPayloadCalendarEvent);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCalendarEventUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCalendarEventUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Calendar event updated
+    apiInstance.OnCalendarEventUpdatedWithHttpInfo(webhookPayloadCalendarEvent);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCalendarEventUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCalendarEvent** | [**WebhookPayloadCalendarEvent**](WebhookPayloadCalendarEvent.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="oncallended"></a>
 # **OnCallEnded**
 > void OnCallEnded (WebhookPayloadCallEnded webhookPayloadCallEnded)
@@ -2821,6 +3203,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncontactdeleted"></a>
+# **OnContactDeleted**
+> void OnContactDeleted (WebhookPayloadContact webhookPayloadContact)
+
+Contact deleted
+
+The provider contact was deleted; its email channel is removed, the contact row stays when other channels remain.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnContactDeletedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadContact = new WebhookPayloadContact(); // WebhookPayloadContact | 
+
+            try
+            {
+                // Contact deleted
+                apiInstance.OnContactDeleted(webhookPayloadContact);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnContactDeleted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnContactDeletedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Contact deleted
+    apiInstance.OnContactDeletedWithHttpInfo(webhookPayloadContact);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnContactDeletedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadContact** | [**WebhookPayloadContact**](WebhookPayloadContact.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="oncontactfieldchanged"></a>
 # **OnContactFieldChanged**
 > void OnContactFieldChanged (WebhookPayloadContactFieldChanged webhookPayloadContactFieldChanged)
@@ -3103,6 +3579,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncontactupdated"></a>
+# **OnContactUpdated**
+> void OnContactUpdated (WebhookPayloadContact webhookPayloadContact)
+
+Contact updated
+
+A provider contacts sync created or changed a contact.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnContactUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadContact = new WebhookPayloadContact(); // WebhookPayloadContact | 
+
+            try
+            {
+                // Contact updated
+                apiInstance.OnContactUpdated(webhookPayloadContact);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnContactUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnContactUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Contact updated
+    apiInstance.OnContactUpdatedWithHttpInfo(webhookPayloadContact);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnContactUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadContact** | [**WebhookPayloadContact**](WebhookPayloadContact.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onconversationcontrolchanged"></a>
 # **OnConversationControlChanged**
 > void OnConversationControlChanged (WebhookPayloadConversationControlChanged webhookPayloadConversationControlChanged)
@@ -3269,6 +3839,380 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadConversationStarted** | [**WebhookPayloadConversationStarted**](WebhookPayloadConversationStarted.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onfilecreated"></a>
+# **OnFileCreated**
+> void OnFileCreated (WebhookPayloadFile webhookPayloadFile)
+
+File created
+
+A file or folder appeared in a connected Drive or OneDrive (push, seconds after the change).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnFileCreatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadFile = new WebhookPayloadFile(); // WebhookPayloadFile | 
+
+            try
+            {
+                // File created
+                apiInstance.OnFileCreated(webhookPayloadFile);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnFileCreated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnFileCreatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // File created
+    apiInstance.OnFileCreatedWithHttpInfo(webhookPayloadFile);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnFileCreatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadFile** | [**WebhookPayloadFile**](WebhookPayloadFile.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onfiledeleted"></a>
+# **OnFileDeleted**
+> void OnFileDeleted (WebhookPayloadFile webhookPayloadFile)
+
+File deleted
+
+The item was trashed or removed on the provider.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnFileDeletedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadFile = new WebhookPayloadFile(); // WebhookPayloadFile | 
+
+            try
+            {
+                // File deleted
+                apiInstance.OnFileDeleted(webhookPayloadFile);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnFileDeleted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnFileDeletedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // File deleted
+    apiInstance.OnFileDeletedWithHttpInfo(webhookPayloadFile);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnFileDeletedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadFile** | [**WebhookPayloadFile**](WebhookPayloadFile.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onfilepicked"></a>
+# **OnFilePicked**
+> void OnFilePicked (WebhookPayloadFilePicked webhookPayloadFilePicked)
+
+Files picked
+
+The user finished a hosted picker session (`POST /v1/files/picker-sessions`) and picked at least one file. The app can now open those files. Not sent on cancel.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnFilePickedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadFilePicked = new WebhookPayloadFilePicked(); // WebhookPayloadFilePicked | 
+
+            try
+            {
+                // Files picked
+                apiInstance.OnFilePicked(webhookPayloadFilePicked);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnFilePicked: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnFilePickedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Files picked
+    apiInstance.OnFilePickedWithHttpInfo(webhookPayloadFilePicked);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnFilePickedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadFilePicked** | [**WebhookPayloadFilePicked**](WebhookPayloadFilePicked.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onfileupdated"></a>
+# **OnFileUpdated**
+> void OnFileUpdated (WebhookPayloadFile webhookPayloadFile)
+
+File updated
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnFileUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadFile = new WebhookPayloadFile(); // WebhookPayloadFile | 
+
+            try
+            {
+                // File updated
+                apiInstance.OnFileUpdated(webhookPayloadFile);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnFileUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnFileUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // File updated
+    apiInstance.OnFileUpdatedWithHttpInfo(webhookPayloadFile);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnFileUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadFile** | [**WebhookPayloadFile**](WebhookPayloadFile.md) |  |  |
 
 ### Return type
 

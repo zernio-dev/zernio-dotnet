@@ -1,0 +1,12 @@
+# Zernio.Model.FilePickerSession
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **string** | Public session id, echoed as &#x60;pickerSessionId&#x60; on the redirect and as &#x60;picker.sessionId&#x60; on the webhook. | 
+**Url** | **string** | The hosted picker page. Open it in the end user&#39;s browser (redirect or new tab, not an iframe). It is a credential: single-use and valid until &#x60;expiresAt&#x60;. | 
+**ExpiresAt** | **DateTime** | 30 minutes after creation. | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

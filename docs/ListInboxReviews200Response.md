@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | [optional] 
 **Data** | [**List&lt;ListInboxReviews200ResponseDataInner&gt;**](ListInboxReviews200ResponseDataInner.md) |  | [optional] 
-**Pagination** | [**ListInboxConversations200ResponsePagination**](ListInboxConversations200ResponsePagination.md) |  | [optional] 
+**Pagination** | [**ListFiles200ResponsePagination**](ListFiles200ResponsePagination.md) |  | [optional] 
 **Meta** | [**ListInboxConversations200ResponseMeta**](ListInboxConversations200ResponseMeta.md) |  | [optional] 
 **Summary** | [**ListInboxReviews200ResponseSummary**](ListInboxReviews200ResponseSummary.md) |  | [optional] 
 
