@@ -1861,6 +1861,7 @@ docs/MessagingCarouselCard.md
 docs/MessengerGreeting.md
 docs/MessengerIceBreakerLocale.md
 docs/MessengerIceBreakerLocaleCallToActionsInner.md
+docs/MetaAdScheduleInner.md
 docs/MetaAdsPlatformData.md
 docs/MetaAssignedUser.md
 docs/MetaBusinessUser.md
@@ -4890,6 +4891,7 @@ src/Zernio.Test/Model/MessagingCarouselCardTests.cs
 src/Zernio.Test/Model/MessengerGreetingTests.cs
 src/Zernio.Test/Model/MessengerIceBreakerLocaleCallToActionsInnerTests.cs
 src/Zernio.Test/Model/MessengerIceBreakerLocaleTests.cs
+src/Zernio.Test/Model/MetaAdScheduleInnerTests.cs
 src/Zernio.Test/Model/MetaAdsPlatformDataTests.cs
 src/Zernio.Test/Model/MetaAssignedUserTests.cs
 src/Zernio.Test/Model/MetaBusinessUserTests.cs
@@ -7906,6 +7908,7 @@ src/Zernio/Model/MessagingCarouselCard.cs
 src/Zernio/Model/MessengerGreeting.cs
 src/Zernio/Model/MessengerIceBreakerLocale.cs
 src/Zernio/Model/MessengerIceBreakerLocaleCallToActionsInner.cs
+src/Zernio/Model/MetaAdScheduleInner.cs
 src/Zernio/Model/MetaAdsPlatformData.cs
 src/Zernio/Model/MetaAssignedUser.cs
 src/Zernio/Model/MetaBusinessUser.cs
