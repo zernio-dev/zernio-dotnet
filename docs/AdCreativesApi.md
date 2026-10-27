@@ -561,11 +561,11 @@ catch (ApiException e)
 
 <a id="getadmedia"></a>
 # **GetAdMedia**
-> GetAdMedia200Response GetAdMedia (string adId)
+> GetAdMedia200Response GetAdMedia (string adId, string? accountId = null)
 
 Direct video and image URLs for an ad
 
-Returns fresh, short-lived download links for every image and video a Meta ad uses, including the original media of a boosted Instagram post.  Returns the direct signed URLs for every video and image asset used by an ad's live creative, normalised across shapes: single image/video, carousel, Reels/Story (`object_story_spec.video_data`) and dynamic creative (`asset_feed_spec`). Video items include Meta's poster thumbnail and the video's Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post's media: the image, the video with its cover as `thumbnailUrl`, or every child of a carousel post with `index`. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta's signed fbcdn URLs carry an `oe=<hex>` expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+Returns fresh, short-lived download links for every image and video a Meta ad uses, including the original media of a boosted Instagram post.  Returns the direct signed URLs for every video and image asset used by an ad's live creative, normalised across shapes: single image/video, carousel, Reels/Story (`object_story_spec.video_data`) and dynamic creative (`asset_feed_spec`). Video items include Meta's poster thumbnail and the video's Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post's media: the image, the video with its cover as `thumbnailUrl`, or every child of a carousel post with `index`. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta's signed fbcdn URLs carry an `oe=<hex>` expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.  **Meta ads that are not synced yet.** Pass `accountId` with a Meta platform ad id that is not in Zernio's store to read its media live through that connection; the response carries `synced: false`.
 
 ### Example
 ```csharp
@@ -592,11 +592,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCreativesApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Zernio ad id (24-char hex) or platform ad id.
+            var accountId = "accountId_example";  // string? | Meta only. A Zernio connection id (Meta Ads or Facebook connection) used when `{adId}` is a Meta ad id that is not in Zernio's synced store, for example an ad created in Ads Manager on an ad account reached only through a Facebook connection. The ad is then read live from Meta through that connection and the response carries `synced: false`. The same rules as GET /v1/ads/campaigns/{campaignId} apply: a connection on a profile the API key cannot access answers 404, and an ad on an ad account outside the connection's selected ad accounts answers 403 `ad_account_not_selected`. An id Meta cannot read through the connection, or that is not an ad (a campaign or ad set id, for example), answers 404 `ad_not_found`, and a connection that is not Meta answers 501. Ads Meta reports as DELETED are returned too, with their status. Ignored when the ad is in the store (the stored ad's own connection is used). Without it an unsynced ad answers 404 `ad_not_found`. Writes (PUT, DELETE, status) still need the ad in the store. (optional) 
 
             try
             {
                 // Direct video and image URLs for an ad
-                GetAdMedia200Response result = apiInstance.GetAdMedia(adId);
+                GetAdMedia200Response result = apiInstance.GetAdMedia(adId, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -617,7 +618,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Direct video and image URLs for an ad
-    ApiResponse<GetAdMedia200Response> response = apiInstance.GetAdMediaWithHttpInfo(adId);
+    ApiResponse<GetAdMedia200Response> response = apiInstance.GetAdMediaWithHttpInfo(adId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -635,6 +636,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Zernio ad id (24-char hex) or platform ad id. |  |
+| **accountId** | **string?** | Meta only. A Zernio connection id (Meta Ads or Facebook connection) used when &#x60;{adId}&#x60; is a Meta ad id that is not in Zernio&#39;s synced store, for example an ad created in Ads Manager on an ad account reached only through a Facebook connection. The ad is then read live from Meta through that connection and the response carries &#x60;synced: false&#x60;. The same rules as GET /v1/ads/campaigns/{campaignId} apply: a connection on a profile the API key cannot access answers 404, and an ad on an ad account outside the connection&#39;s selected ad accounts answers 403 &#x60;ad_account_not_selected&#x60;. An id Meta cannot read through the connection, or that is not an ad (a campaign or ad set id, for example), answers 404 &#x60;ad_not_found&#x60;, and a connection that is not Meta answers 501. Ads Meta reports as DELETED are returned too, with their status. Ignored when the ad is in the store (the stored ad&#39;s own connection is used). Without it an unsynced ad answers 404 &#x60;ad_not_found&#x60;. Writes (PUT, DELETE, status) still need the ad in the store. | [optional]  |
 
 ### Return type
 
@@ -660,17 +662,17 @@ catch (ApiException e)
 | **404** | Ad not found |  -  |
 | **409** | Several active connections on the API key&#39;s profiles reach the ad account of this ad (code &#x60;ambiguous_account&#x60;), so the connection to act with is ambiguous. Keep one of them connected or move the others to a profile this key cannot access. |  -  |
 | **422** | No active Meta connection for this ad. Reconnect the account. |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta (facebook/instagram). &#x60;accountId&#x60; naming a connection that is not Meta also answers 501. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getadpreviews"></a>
 # **GetAdPreviews**
-> GetAdPreviews200Response GetAdPreviews (string adId, string? formats = null)
+> GetAdPreviews200Response GetAdPreviews (string adId, string? accountId = null, string? formats = null)
 
 Render previews of an existing ad
 
-Shows how an existing Meta ad looks in each placement, as embeddable previews.  Renders an EXISTING ad per placement via Meta's `/{ad_id}/previews`. Each preview is an HTML `<iframe>` snippet embeddable directly. Unknown `formats` values return Meta's 400 verbatim. 
+Shows how an existing Meta ad looks in each placement, as embeddable previews.  Renders an EXISTING ad per placement via Meta's `/{ad_id}/previews`. Each preview is an HTML `<iframe>` snippet embeddable directly. Unknown `formats` values return Meta's 400 verbatim.  **Meta ads that are not synced yet.** Pass `accountId` with a Meta platform ad id that is not in Zernio's store to render it live through that connection; the response carries `synced: false`. 
 
 ### Example
 ```csharp
@@ -696,13 +698,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCreativesApi(httpClient, config, httpClientHandler);
-            var adId = "adId_example";  // string | Zernio ad id (24-char hex).
+            var adId = "adId_example";  // string | Zernio ad id (24-char hex) or Meta platform ad id.
+            var accountId = "accountId_example";  // string? | Meta only. A Zernio connection id (Meta Ads or Facebook connection) used when `{adId}` is a Meta ad id that is not in Zernio's synced store, for example an ad created in Ads Manager on an ad account reached only through a Facebook connection. The ad is then read live from Meta through that connection and the response carries `synced: false`. The same rules as GET /v1/ads/campaigns/{campaignId} apply: a connection on a profile the API key cannot access answers 404, and an ad on an ad account outside the connection's selected ad accounts answers 403 `ad_account_not_selected`. An id Meta cannot read through the connection, or that is not an ad (a campaign or ad set id, for example), answers 404 `ad_not_found`, and a connection that is not Meta answers 501. Ads Meta reports as DELETED are returned too, with their status. Ignored when the ad is in the store (the stored ad's own connection is used). Without it an unsynced ad answers 404 `ad_not_found`. Writes (PUT, DELETE, status) still need the ad in the store. (optional) 
             var formats = "formats_example";  // string? | Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional) 
 
             try
             {
                 // Render previews of an existing ad
-                GetAdPreviews200Response result = apiInstance.GetAdPreviews(adId, formats);
+                GetAdPreviews200Response result = apiInstance.GetAdPreviews(adId, accountId, formats);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -723,7 +726,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Render previews of an existing ad
-    ApiResponse<GetAdPreviews200Response> response = apiInstance.GetAdPreviewsWithHttpInfo(adId, formats);
+    ApiResponse<GetAdPreviews200Response> response = apiInstance.GetAdPreviewsWithHttpInfo(adId, accountId, formats);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -740,7 +743,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **adId** | **string** | Zernio ad id (24-char hex). |  |
+| **adId** | **string** | Zernio ad id (24-char hex) or Meta platform ad id. |  |
+| **accountId** | **string?** | Meta only. A Zernio connection id (Meta Ads or Facebook connection) used when &#x60;{adId}&#x60; is a Meta ad id that is not in Zernio&#39;s synced store, for example an ad created in Ads Manager on an ad account reached only through a Facebook connection. The ad is then read live from Meta through that connection and the response carries &#x60;synced: false&#x60;. The same rules as GET /v1/ads/campaigns/{campaignId} apply: a connection on a profile the API key cannot access answers 404, and an ad on an ad account outside the connection&#39;s selected ad accounts answers 403 &#x60;ad_account_not_selected&#x60;. An id Meta cannot read through the connection, or that is not an ad (a campaign or ad set id, for example), answers 404 &#x60;ad_not_found&#x60;, and a connection that is not Meta answers 501. Ads Meta reports as DELETED are returned too, with their status. Ignored when the ad is in the store (the stored ad&#39;s own connection is used). Without it an unsynced ad answers 404 &#x60;ad_not_found&#x60;. Writes (PUT, DELETE, status) still need the ad in the store. | [optional]  |
 | **formats** | **string?** | Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. | [optional]  |
 
 ### Return type
@@ -767,7 +771,7 @@ catch (ApiException e)
 | **404** | Ad not found |  -  |
 | **409** | Several active connections on the API key&#39;s profiles reach the ad account of this ad (code &#x60;ambiguous_account&#x60;), so the connection to act with is ambiguous. Keep one of them connected or move the others to a profile this key cannot access. |  -  |
 | **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta (facebook/instagram). &#x60;accountId&#x60; naming a connection that is not Meta also answers 501. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
