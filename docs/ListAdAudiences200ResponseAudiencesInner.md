@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **PlatformAudienceId** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
-**Type** | **string** |  | [optional] 
+**Type** | **string** | &#x60;reddit_engagement&#x60;, &#x60;third_party&#x60; and &#x60;in_market&#x60; are listed from Reddit (engagement retargeting, and Reddit&#39;s own audiences) so they can be targeted. Zernio cannot create them. | [optional] 
 **Spec** | [**TargetingSpec**](TargetingSpec.md) |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **Size** | **int** |  | [optional] 
