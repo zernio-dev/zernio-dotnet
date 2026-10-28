@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.394.0
+  version: 1.394.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23138,7 +23138,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Inbox addon required or profile limit reached
+          description: "Inbox addon required, profile limit reached, or a sandbox\
+            \ send with a template other than the locked sandbox template"
         "404":
           content:
             application/json:
@@ -23695,9 +23696,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "Inbox addon required, or Meta rejected the send outside the\
-            \ messaging window (type platform_error, code platform_api_error, platform,\
-            \ platformError with code/subcode/fbtraceId/type)"
+          description: "Inbox addon required, a sandbox send with a template other\
+            \ than the locked sandbox template, or Meta rejected the send outside\
+            \ the messaging window (type platform_error, code platform_api_error,\
+            \ platform, platformError with code/subcode/fbtraceId/type)"
         "409":
           content:
             application/json:
@@ -27492,6 +27494,8 @@ paths:
             \ category)"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The shared WhatsApp sandbox account: its templates are read-only."
         "404":
           description: WhatsApp account not found
         "502":
@@ -27550,6 +27554,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The shared WhatsApp sandbox account: its templates are read-only."
         "404":
           description: "Account not found, or (with language) no such variant (code\
             \ template_not_found)."
@@ -27697,6 +27703,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The shared WhatsApp sandbox account: its templates are read-only."
         "404":
           description: "Account not found, or no template with that name (and language,\
             \ when given) (code template_not_found)."
@@ -27750,6 +27758,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The shared WhatsApp sandbox account: its templates are read-only."
         "404":
           description: Account not found.
         "502":
@@ -27843,6 +27853,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The shared WhatsApp sandbox account: its templates are read-only."
         "404":
           description: Account not found.
         "502":

@@ -763,6 +763,7 @@ catch (ApiException e)
 | **200** | Template created (pre-approved for library templates, pending review for custom) |  -  |
 | **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The shared WhatsApp sandbox account: its templates are read-only. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -1073,6 +1074,7 @@ catch (ApiException e)
 | **200** | Template deleted successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The shared WhatsApp sandbox account: its templates are read-only. |  -  |
 | **404** | Account not found, or (with language) no such variant (code template_not_found). |  -  |
 | **409** | Only with language: a bare code (es) matched several regional variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template). Without language there is no 409: the whole family is deleted. |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -1178,6 +1180,7 @@ catch (ApiException e)
 | **200** | Variant deleted successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The shared WhatsApp sandbox account: its templates are read-only. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -4774,6 +4777,7 @@ catch (ApiException e)
 | **200** | Template updated successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The shared WhatsApp sandbox account: its templates are read-only. |  -  |
 | **404** | Account not found, or no template with that name (and language, when given) (code template_not_found). |  -  |
 | **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -4879,6 +4883,7 @@ catch (ApiException e)
 | **200** | Template updated successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The shared WhatsApp sandbox account: its templates are read-only. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the update (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
