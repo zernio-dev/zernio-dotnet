@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
-**Vertical** | **string** | Catalog vertical (e.g. commerce, vehicles, hotels) | [optional] 
+**Vertical** | **string** | Catalog vertical as Meta reports it (e.g. commerce, services, vehicles, hotels) | [optional] 
 **ProductCount** | **int** |  | [optional] 
 **BusinessId** | **string** |  | [optional] 
 

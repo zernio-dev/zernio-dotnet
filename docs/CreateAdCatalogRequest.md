@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AdAccountId** | **string** | Ad account whose owner business creates the catalog | [optional] 
 **BusinessId** | **string** | Business portfolio that owns the catalog | [optional] 
 **Name** | **string** |  | 
-**Vertical** | **string** |  | [optional] [default to VerticalEnum.Commerce]
+**Vertical** | **string** | Meta catalog vertical. Use services for a professional services catalog (for example one linked to WhatsApp). local_service_business is a deprecated alias of local_service_businesses. The product endpoints under /v1/ads/catalogs/{catalogId}/products write commerce product items only. | [optional] [default to VerticalEnum.Commerce]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
