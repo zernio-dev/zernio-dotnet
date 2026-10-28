@@ -651,6 +651,8 @@ docs/CreateMessagingAd200ResponseResultsInner.md
 docs/CreateMessagingAd201Response.md
 docs/CreateMessagingAdRequest.md
 docs/CreateMetaAdAccountRequest.md
+docs/CreateOAuthApp201Response.md
+docs/CreateOAuthAppRequest.md
 docs/CreatePhoneNumberKycLink200Response.md
 docs/CreatePhoneNumberKycLinkRequest.md
 docs/CreatePhoneNumberKycLinkRequestBranding.md
@@ -813,6 +815,7 @@ docs/DeleteInboxConversation200Response.md
 docs/DeleteInboxConversation200ResponseData.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
+docs/DeleteOAuthApp200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
 docs/DeleteTrackingTagEvent200Response.md
@@ -1817,6 +1820,8 @@ docs/ListLogs200ResponseLogsInner.md
 docs/ListLogs200ResponsePagination.md
 docs/ListMetaBusinessUsers200Response.md
 docs/ListMetaBusinesses200Response.md
+docs/ListOAuthApps200Response.md
+docs/ListOAuthApps200ResponsePagination.md
 docs/ListPageUsers200Response.md
 docs/ListPartnershipAdContent200Response.md
 docs/ListPartnershipAdContent200ResponseMediaInner.md
@@ -1973,6 +1978,9 @@ docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
 docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
+docs/OAuthApp.md
+docs/OAuthAppSetup.md
+docs/OAuthAppSetupScopeAreasInner.md
 docs/OnBrandedCallingIdentityActionRequiredRequest.md
 docs/OnBrandedCallingIdentityActionRequiredRequestIdentity.md
 docs/OnBrandedCallingIdentityStatusUpdatedRequest.md
@@ -2726,6 +2734,7 @@ docs/UpdateLead200Response.md
 docs/UpdateLeadRequest.md
 docs/UpdateLinkedInOrganization200Response.md
 docs/UpdateLinkedInOrganizationRequest.md
+docs/UpdateOAuthAppRequest.md
 docs/UpdatePinterestBoardsRequest.md
 docs/UpdatePostMetadata200Response.md
 docs/UpdatePostMetadataRequest.md
@@ -2879,6 +2888,8 @@ docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
 docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
+docs/WebhookPayloadAccountPermissionsChanged.md
+docs/WebhookPayloadAccountPermissionsChangedAccount.md
 docs/WebhookPayloadAccountRateLimited.md
 docs/WebhookPayloadAccountRateLimitedAccount.md
 docs/WebhookPayloadAdAccountStatusChanged.md
@@ -3810,6 +3821,8 @@ src/Zernio.Test/Model/CreateMessagingAd200ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAdRequestTests.cs
 src/Zernio.Test/Model/CreateMetaAdAccountRequestTests.cs
+src/Zernio.Test/Model/CreateOAuthApp201ResponseTests.cs
+src/Zernio.Test/Model/CreateOAuthAppRequestTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLink200ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLinkRequestBrandingTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberKycLinkRequestTests.cs
@@ -3971,6 +3984,7 @@ src/Zernio.Test/Model/DeleteInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/DeleteInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
+src/Zernio.Test/Model/DeleteOAuthApp200ResponseTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTestLead200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTrackingTagEvent200ResponseTests.cs
@@ -4957,6 +4971,8 @@ src/Zernio.Test/Model/ListLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinessUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinesses200ResponseTests.cs
+src/Zernio.Test/Model/ListOAuthApps200ResponsePaginationTests.cs
+src/Zernio.Test/Model/ListOAuthApps200ResponseTests.cs
 src/Zernio.Test/Model/ListPageUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListPartnershipAdContent200ResponseMediaInnerTests.cs
 src/Zernio.Test/Model/ListPartnershipAdContent200ResponseTests.cs
@@ -5108,6 +5124,9 @@ src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
+src/Zernio.Test/Model/OAuthAppSetupScopeAreasInnerTests.cs
+src/Zernio.Test/Model/OAuthAppSetupTests.cs
+src/Zernio.Test/Model/OAuthAppTests.cs
 src/Zernio.Test/Model/OnBrandedCallingIdentityActionRequiredRequestIdentityTests.cs
 src/Zernio.Test/Model/OnBrandedCallingIdentityActionRequiredRequestTests.cs
 src/Zernio.Test/Model/OnBrandedCallingIdentityStatusUpdatedRequestIdentityTests.cs
@@ -5844,6 +5863,7 @@ src/Zernio.Test/Model/UpdateLead200ResponseTests.cs
 src/Zernio.Test/Model/UpdateLeadRequestTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganization200ResponseTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganizationRequestTests.cs
+src/Zernio.Test/Model/UpdateOAuthAppRequestTests.cs
 src/Zernio.Test/Model/UpdatePinterestBoardsRequestTests.cs
 src/Zernio.Test/Model/UpdatePostMetadata200ResponseTests.cs
 src/Zernio.Test/Model/UpdatePostMetadataRequestTests.cs
@@ -5990,6 +6010,8 @@ src/Zernio.Test/Model/WebhookPayloadAccountConnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountConnectedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountPermissionsChangedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountPermissionsChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountRateLimitedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountRateLimitedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedAdAccountTests.cs
@@ -6932,6 +6954,8 @@ src/Zernio/Model/CreateMessagingAd200ResponseResultsInner.cs
 src/Zernio/Model/CreateMessagingAd201Response.cs
 src/Zernio/Model/CreateMessagingAdRequest.cs
 src/Zernio/Model/CreateMetaAdAccountRequest.cs
+src/Zernio/Model/CreateOAuthApp201Response.cs
+src/Zernio/Model/CreateOAuthAppRequest.cs
 src/Zernio/Model/CreatePhoneNumberKycLink200Response.cs
 src/Zernio/Model/CreatePhoneNumberKycLinkRequest.cs
 src/Zernio/Model/CreatePhoneNumberKycLinkRequestBranding.cs
@@ -7093,6 +7117,7 @@ src/Zernio/Model/DeleteInboxConversation200Response.cs
 src/Zernio/Model/DeleteInboxConversation200ResponseData.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
+src/Zernio/Model/DeleteOAuthApp200Response.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteTestLead200Response.cs
 src/Zernio/Model/DeleteTrackingTagEvent200Response.cs
@@ -8079,6 +8104,8 @@ src/Zernio/Model/ListLogs200ResponseLogsInner.cs
 src/Zernio/Model/ListLogs200ResponsePagination.cs
 src/Zernio/Model/ListMetaBusinessUsers200Response.cs
 src/Zernio/Model/ListMetaBusinesses200Response.cs
+src/Zernio/Model/ListOAuthApps200Response.cs
+src/Zernio/Model/ListOAuthApps200ResponsePagination.cs
 src/Zernio/Model/ListPageUsers200Response.cs
 src/Zernio/Model/ListPartnershipAdContent200Response.cs
 src/Zernio/Model/ListPartnershipAdContent200ResponseMediaInner.cs
@@ -8230,6 +8257,9 @@ src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfile200Response.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfileRequest.cs
+src/Zernio/Model/OAuthApp.cs
+src/Zernio/Model/OAuthAppSetup.cs
+src/Zernio/Model/OAuthAppSetupScopeAreasInner.cs
 src/Zernio/Model/OnBrandedCallingIdentityActionRequiredRequest.cs
 src/Zernio/Model/OnBrandedCallingIdentityActionRequiredRequestIdentity.cs
 src/Zernio/Model/OnBrandedCallingIdentityStatusUpdatedRequest.cs
@@ -8966,6 +8996,7 @@ src/Zernio/Model/UpdateLead200Response.cs
 src/Zernio/Model/UpdateLeadRequest.cs
 src/Zernio/Model/UpdateLinkedInOrganization200Response.cs
 src/Zernio/Model/UpdateLinkedInOrganizationRequest.cs
+src/Zernio/Model/UpdateOAuthAppRequest.cs
 src/Zernio/Model/UpdatePinterestBoardsRequest.cs
 src/Zernio/Model/UpdatePostMetadata200Response.cs
 src/Zernio/Model/UpdatePostMetadataRequest.cs
@@ -9113,6 +9144,8 @@ src/Zernio/Model/WebhookPayloadAccountConnected.cs
 src/Zernio/Model/WebhookPayloadAccountConnectedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnected.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnectedAccount.cs
+src/Zernio/Model/WebhookPayloadAccountPermissionsChanged.cs
+src/Zernio/Model/WebhookPayloadAccountPermissionsChangedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountRateLimited.cs
 src/Zernio/Model/WebhookPayloadAccountRateLimitedAccount.cs
 src/Zernio/Model/WebhookPayloadAdAccountStatusChanged.cs
