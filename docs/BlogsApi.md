@@ -123,11 +123,11 @@ catch (ApiException e)
 
 <a id="createblogarticle"></a>
 # **CreateBlogArticle**
-> CreateBlogArticle201Response CreateBlogArticle (string accountId, string blogId, CreateBlogArticleRequest createBlogArticleRequest)
+> CreateBlogArticle201Response CreateBlogArticle (string accountId, string blogId, CreateBlogArticleRequest createBlogArticleRequest, string? idempotencyKey = null)
 
 Create a blog article
 
-Creates an article on the blog. Publishing behavior:  - WordPress, Wix and Webflow default to a draft when both publishing   fields are omitted. - `isPublished: false` keeps the article as a draft and takes priority   over a future `publishDate`. - A future `publishDate` schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - `isPublished: true` publishes immediately when there is no future   `publishDate`. - `seo.title` / `seo.description` map to Shopify's global `title_tag`   and `description_tag` metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post's SEO   title and meta description. WordPress and Webflow reject `seo`; SEO   plugin and custom-field writes are not supported. - Webflow has no scheduling API: a future `publishDate` returns 400   unless `isPublished: false` keeps a draft. Fields map to the   collection's own fields by type and slug (the body to its rich text   field, `excerpt` to a summary field, `image` to an image field, `tags`   and `author` to tag and author reference fields); sending a field the   collection does not have returns 400, as does a collection that   requires a field the Blogs API cannot fill. - Wix stores rich content: `bodyHtml` is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site's Media Manager.  Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress native scheduling depends on the site's scheduler/WP-Cron. 
+Creates an article on the blog. Publishing behavior:  - WordPress, Wix and Webflow default to a draft when both publishing   fields are omitted. - `isPublished: false` keeps the article as a draft and takes priority   over a future `publishDate`. - A future `publishDate` schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - `isPublished: true` publishes immediately when there is no future   `publishDate`. - `seo.title` / `seo.description` map to Shopify's global `title_tag`   and `description_tag` metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post's SEO   title and meta description. WordPress and Webflow reject `seo`; SEO   plugin and custom-field writes are not supported. - Webflow has no scheduling API: a future `publishDate` returns 400   unless `isPublished: false` keeps a draft. Fields map to the   collection's own fields by type and slug (the body to its rich text   field, `excerpt` to a summary field, `image` to an image field, `tags`   and `author` to tag and author reference fields); sending a field the   collection does not have returns 400, as does a collection that   requires a field the Blogs API cannot fill. - Wix stores rich content: `bodyHtml` is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site's Media Manager.  Send an Idempotency-Key header to make retries safe: a retry with the same key and body replays the original 201 instead of creating a second article. A retry while the first request is still running returns 409; retry after a short backoff.  Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`). WordPress native scheduling depends on the site's scheduler/WP-Cron. 
 
 ### Example
 ```csharp
@@ -156,11 +156,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Connected Shopify, WordPress, Wix or Webflow account id.
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
             var createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
 
             try
             {
                 // Create a blog article
-                CreateBlogArticle201Response result = apiInstance.CreateBlogArticle(accountId, blogId, createBlogArticleRequest);
+                CreateBlogArticle201Response result = apiInstance.CreateBlogArticle(accountId, blogId, createBlogArticleRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -181,7 +182,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a blog article
-    ApiResponse<CreateBlogArticle201Response> response = apiInstance.CreateBlogArticleWithHttpInfo(accountId, blogId, createBlogArticleRequest);
+    ApiResponse<CreateBlogArticle201Response> response = apiInstance.CreateBlogArticleWithHttpInfo(accountId, blogId, createBlogArticleRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -201,6 +202,7 @@ catch (ApiException e)
 | **accountId** | **string** | Connected Shopify, WordPress, Wix or Webflow account id. |  |
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
 
 ### Return type
 
@@ -225,6 +227,8 @@ catch (ApiException e)
 | **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support creating articles. |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
 | **502** | The connected platform returned an unclassified upstream error. Article mutations are not blindly retried. |  -  |
 
