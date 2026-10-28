@@ -5,6 +5,7 @@ The matched objects with their condition values, and what each action did.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Rule** | [**AdRuleRunEvaluationRule**](AdRuleRunEvaluationRule.md) |  | [optional] 
 **Today** | **DateOnly** |  | [optional] 
 **Timezone** | **string** |  | [optional] 
 **TimezoneAssumed** | **bool** |  | [optional] 

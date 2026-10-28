@@ -60,6 +60,7 @@ docs/AdRuleActionOneOf.md
 docs/AdRuleActionOneOf1.md
 docs/AdRuleActionOneOf2.md
 docs/AdRuleActionOneOf3.md
+docs/AdRuleActivityEntry.md
 docs/AdRuleCondition.md
 docs/AdRuleConditions.md
 docs/AdRuleEvaluation.md
@@ -70,6 +71,7 @@ docs/AdRuleRun.md
 docs/AdRuleRunEvaluation.md
 docs/AdRuleRunEvaluationActionsInner.md
 docs/AdRuleRunEvaluationNotification.md
+docs/AdRuleRunEvaluationRule.md
 docs/AdRuleSchedule.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
@@ -1626,6 +1628,7 @@ docs/ListAdLabels200Response.md
 docs/ListAdLabels200ResponseDataInner.md
 docs/ListAdLabels200ResponsePaging.md
 docs/ListAdNegativeKeywordLists200Response.md
+docs/ListAdRuleActivity200Response.md
 docs/ListAdRuleRuns200Response.md
 docs/ListAdRules200Response.md
 docs/ListAdSets200Response.md
@@ -3231,6 +3234,7 @@ src/Zernio.Test/Model/AdRuleActionOneOf2Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf3Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfTests.cs
 src/Zernio.Test/Model/AdRuleActionTests.cs
+src/Zernio.Test/Model/AdRuleActivityEntryTests.cs
 src/Zernio.Test/Model/AdRuleConditionTests.cs
 src/Zernio.Test/Model/AdRuleConditionsTests.cs
 src/Zernio.Test/Model/AdRuleEvaluationTests.cs
@@ -3239,6 +3243,7 @@ src/Zernio.Test/Model/AdRuleObjectEvaluationConditionsInnerTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationActionsInnerTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationNotificationTests.cs
+src/Zernio.Test/Model/AdRuleRunEvaluationRuleTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunTests.cs
 src/Zernio.Test/Model/AdRuleScheduleTests.cs
@@ -4763,6 +4768,7 @@ src/Zernio.Test/Model/ListAdLabels200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponsePagingTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListAdNegativeKeywordLists200ResponseTests.cs
+src/Zernio.Test/Model/ListAdRuleActivity200ResponseTests.cs
 src/Zernio.Test/Model/ListAdRuleRuns200ResponseTests.cs
 src/Zernio.Test/Model/ListAdRules200ResponseTests.cs
 src/Zernio.Test/Model/ListAdSets200ResponseAdSetsInnerBudgetTests.cs
@@ -6352,6 +6358,7 @@ src/Zernio/Model/AdRuleActionOneOf.cs
 src/Zernio/Model/AdRuleActionOneOf1.cs
 src/Zernio/Model/AdRuleActionOneOf2.cs
 src/Zernio/Model/AdRuleActionOneOf3.cs
+src/Zernio/Model/AdRuleActivityEntry.cs
 src/Zernio/Model/AdRuleCondition.cs
 src/Zernio/Model/AdRuleConditions.cs
 src/Zernio/Model/AdRuleEvaluation.cs
@@ -6362,6 +6369,7 @@ src/Zernio/Model/AdRuleRun.cs
 src/Zernio/Model/AdRuleRunEvaluation.cs
 src/Zernio/Model/AdRuleRunEvaluationActionsInner.cs
 src/Zernio/Model/AdRuleRunEvaluationNotification.cs
+src/Zernio/Model/AdRuleRunEvaluationRule.cs
 src/Zernio/Model/AdRuleSchedule.cs
 src/Zernio/Model/AdSchedule.cs
 src/Zernio/Model/AdScheduleWindow.cs
@@ -7882,6 +7890,7 @@ src/Zernio/Model/ListAdLabels200Response.cs
 src/Zernio/Model/ListAdLabels200ResponseDataInner.cs
 src/Zernio/Model/ListAdLabels200ResponsePaging.cs
 src/Zernio/Model/ListAdNegativeKeywordLists200Response.cs
+src/Zernio/Model/ListAdRuleActivity200Response.cs
 src/Zernio/Model/ListAdRuleRuns200Response.cs
 src/Zernio/Model/ListAdRules200Response.cs
 src/Zernio/Model/ListAdSets200Response.cs

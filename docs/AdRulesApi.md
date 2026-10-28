@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateAdRule**](AdRulesApi.md#createadrule) | **POST** /v1/ads/rules | Create an ad rule |
 | [**DeleteAdRule**](AdRulesApi.md#deleteadrule) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule |
 | [**GetAdRule**](AdRulesApi.md#getadrule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
+| [**ListAdRuleActivity**](AdRulesApi.md#listadruleactivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**ListAdRuleRuns**](AdRulesApi.md#listadruleruns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
 | [**ListAdRules**](AdRulesApi.md#listadrules) | **GET** /v1/ads/rules | List ad rules |
 | [**PreviewAdRule**](AdRulesApi.md#previewadrule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule |
@@ -319,13 +320,126 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listadruleactivity"></a>
+# **ListAdRuleActivity**
+> ListAdRuleActivity200Response ListAdRuleActivity (string? ruleId = null, string? accountId = null, string? type = null, DateTime? from = null, DateTime? to = null, int? limit = null, string? cursor = null)
+
+List every change ad rules made
+
+The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach. Entries stay after a rule is renamed or deleted; `ruleName` is the rule's name when it acted. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdRuleActivityExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdRulesApi(httpClient, config, httpClientHandler);
+            var ruleId = "ruleId_example";  // string? |  (optional) 
+            var accountId = "accountId_example";  // string? | Only changes of rules on this ads connection. (optional) 
+            var type = "pause";  // string? |  (optional) 
+            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | ISO 8601 date-time, inclusive. (optional) 
+            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | ISO 8601 date-time, inclusive. (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
+
+            try
+            {
+                // List every change ad rules made
+                ListAdRuleActivity200Response result = apiInstance.ListAdRuleActivity(ruleId, accountId, type, from, to, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdRulesApi.ListAdRuleActivity: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdRuleActivityWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List every change ad rules made
+    ApiResponse<ListAdRuleActivity200Response> response = apiInstance.ListAdRuleActivityWithHttpInfo(ruleId, accountId, type, from, to, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdRulesApi.ListAdRuleActivityWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **ruleId** | **string?** |  | [optional]  |
+| **accountId** | **string?** | Only changes of rules on this ads connection. | [optional]  |
+| **type** | **string?** |  | [optional]  |
+| **from** | **DateTime?** | ISO 8601 date-time, inclusive. | [optional]  |
+| **to** | **DateTime?** | ISO 8601 date-time, inclusive. | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdRuleActivity200Response**](ListAdRuleActivity200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Changes, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadruleruns"></a>
 # **ListAdRuleRuns**
 > ListAdRuleRuns200Response ListAdRuleRuns (string ruleId, int? limit = null, int? skip = null)
 
 List an ad rule's runs
 
-Lists a rule's scheduled runs, newest first: what each run evaluated, matched and did. 
+Lists a rule's scheduled runs, newest first: what each run evaluated, matched and did. Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days. For every change across all rules, use `GET /v1/ads/rules/activity`. 
 
 ### Example
 ```csharp
