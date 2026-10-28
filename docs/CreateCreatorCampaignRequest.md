@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **BrandName** | **string** |  | 
 **Economics** | [**CreatorCampaignEconomics**](CreatorCampaignEconomics.md) |  | 
-**Caps** | [**CreatorCampaignCaps**](CreatorCampaignCaps.md) |  | [optional] 
+**Caps** | [**CreatorCampaignCaps**](CreatorCampaignCaps.md) | Omitted, the campaign starts with authenticityThreshold 40 and no other caps. | [optional] 
 **Platforms** | **List&lt;CreateCreatorCampaignRequest.PlatformsEnum&gt;** | Platforms creators may post on. At least one is needed to activate. | [optional] 
 **ContentRules** | **string** |  | [optional] 
 **StartsAt** | **DateTime?** |  | [optional] 

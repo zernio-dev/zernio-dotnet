@@ -101,7 +101,7 @@ namespace Zernio.Model
         /// <param name="name">name (required).</param>
         /// <param name="brandName">brandName (required).</param>
         /// <param name="economics">economics (required).</param>
-        /// <param name="caps">caps.</param>
+        /// <param name="caps">Omitted, the campaign starts with authenticityThreshold 40 and no other caps..</param>
         /// <param name="platforms">Platforms creators may post on. At least one is needed to activate..</param>
         /// <param name="contentRules">contentRules.</param>
         /// <param name="startsAt">startsAt.</param>
@@ -175,8 +175,9 @@ namespace Zernio.Model
         public CreatorCampaignEconomics Economics { get; set; }
 
         /// <summary>
-        /// Gets or Sets Caps
+        /// Omitted, the campaign starts with authenticityThreshold 40 and no other caps.
         /// </summary>
+        /// <value>Omitted, the campaign starts with authenticityThreshold 40 and no other caps.</value>
         [DataMember(Name = "caps", EmitDefaultValue = false)]
         public CreatorCampaignCaps Caps { get; set; }
 

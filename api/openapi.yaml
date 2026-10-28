@@ -80840,8 +80840,8 @@ components:
         caps:
           allOf:
           - $ref: "#/components/schemas/CreatorCampaignCaps"
-          default:
-            authenticityThreshold: 40
+          description: "Omitted, the campaign starts with authenticityThreshold 40\
+            \ and no other caps."
         platforms:
           description: Platforms creators may post on. At least one is needed to activate.
           items:
