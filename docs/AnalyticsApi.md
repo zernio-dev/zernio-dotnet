@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**CancelTrackingWindow**](AnalyticsApi.md#canceltrackingwindow) | **DELETE** /v1/analytics/tracking/{windowId} | Cancel a tracking window |
 | [**GetAnalytics**](AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics |
 | [**GetAnalyticsDashboard**](AnalyticsApi.md#getanalyticsdashboard) | **GET** /v1/analytics/dashboard | Get an analytics dashboard |
 | [**GetAnalyticsDelta**](AnalyticsApi.md#getanalyticsdelta) | **GET** /v1/analytics/delta | Analytics changed since a cursor |
@@ -27,18 +28,126 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetLinkedInOrgAggregateAnalytics**](AnalyticsApi.md#getlinkedinorgaggregateanalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics |
 | [**GetLinkedInPostAnalytics**](AnalyticsApi.md#getlinkedinpostanalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
 | [**GetLinkedInPostReactions**](AnalyticsApi.md#getlinkedinpostreactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
+| [**GetPostAuthenticity**](AnalyticsApi.md#getpostauthenticity) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score |
+| [**GetPostSamples**](AnalyticsApi.md#getpostsamples) | **GET** /v1/analytics/samples | Get post samples |
 | [**GetPostTimeline**](AnalyticsApi.md#getposttimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**GetPostingFrequency**](AnalyticsApi.md#getpostingfrequency) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement |
 | [**GetTikTokAccountInsights**](AnalyticsApi.md#gettiktokaccountinsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights |
+| [**GetTrackingWindow**](AnalyticsApi.md#gettrackingwindow) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window |
 | [**GetYouTubeChannelInsights**](AnalyticsApi.md#getyoutubechannelinsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights |
 | [**GetYouTubeDailyViews**](AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
 | [**GetYouTubeDemographics**](AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
 | [**GetYouTubeVideoRetention**](AnalyticsApi.md#getyoutubevideoretention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 | [**ListFacebookTaggedPosts**](AnalyticsApi.md#listfacebooktaggedposts) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in |
 | [**ListFacebookVisitorPosts**](AnalyticsApi.md#listfacebookvisitorposts) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page |
+| [**ListPostAuthenticity**](AnalyticsApi.md#listpostauthenticity) | **GET** /v1/analytics/authenticity | List authenticity scores |
+| [**ListTrackingWindows**](AnalyticsApi.md#listtrackingwindows) | **GET** /v1/analytics/tracking | List tracking windows |
+| [**OpenTrackingWindow**](AnalyticsApi.md#opentrackingwindow) | **POST** /v1/analytics/tracking | Open a tracking window |
 | [**RunGoogleAnalyticsRealtimeReport**](AnalyticsApi.md#rungoogleanalyticsrealtimereport) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report |
 | [**RunGoogleAnalyticsReport**](AnalyticsApi.md#rungoogleanalyticsreport) | **POST** /v1/analytics/googleanalytics/report | Run a Google Analytics (GA4) report |
 | [**SyncExternalPosts**](AnalyticsApi.md#syncexternalposts) | **POST** /v1/posts/sync-external | Sync an external post |
+
+<a id="canceltrackingwindow"></a>
+# **CancelTrackingWindow**
+> TrackingWindowResponse CancelTrackingWindow (string windowId)
+
+Cancel a tracking window
+
+Stops tracking and returns the window with its final status. A window that already completed keeps its `completed` status and its final read. A cancelled window gets no final read and fires no `post.tracking_completed` webhook. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CancelTrackingWindowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var windowId = "windowId_example";  // string | 
+
+            try
+            {
+                // Cancel a tracking window
+                TrackingWindowResponse result = apiInstance.CancelTrackingWindow(windowId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.CancelTrackingWindow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CancelTrackingWindowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Cancel a tracking window
+    ApiResponse<TrackingWindowResponse> response = apiInstance.CancelTrackingWindowWithHttpInfo(windowId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.CancelTrackingWindowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **windowId** | **string** |  |  |
+
+### Return type
+
+[**TrackingWindowResponse**](TrackingWindowResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The window after cancellation |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Tracking window not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getanalytics"></a>
 # **GetAnalytics**
@@ -2582,6 +2691,217 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getpostauthenticity"></a>
+# **GetPostAuthenticity**
+> PostAuthenticity GetPostAuthenticity (string postId)
+
+Get a post's authenticity score
+
+Returns Zernio's authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and `reasons` lists each factor that lowered it with its weight in points. `confidence` (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The `post.authenticity_changed` webhook fires when a score crosses 40. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetPostAuthenticityExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | An external post id, a platform post id or a Zernio post id.
+
+            try
+            {
+                // Get a post's authenticity score
+                PostAuthenticity result = apiInstance.GetPostAuthenticity(postId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetPostAuthenticity: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetPostAuthenticityWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a post's authenticity score
+    ApiResponse<PostAuthenticity> response = apiInstance.GetPostAuthenticityWithHttpInfo(postId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetPostAuthenticityWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** | An external post id, a platform post id or a Zernio post id. |  |
+
+### Return type
+
+[**PostAuthenticity**](PostAuthenticity.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The post&#39;s authenticity score |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getpostsamples"></a>
+# **GetPostSamples**
+> GetPostSamples200Response GetPostSamples (string postId, DateTime? fromDate = null, DateTime? toDate = null, int? limit = null)
+
+Get post samples
+
+Returns the raw readings behind a post's numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at `syncedAt`. Zernio only stores what it fetched from the platform, so nothing here was self-reported. `shares` and `saves` are null on platforms that do not return that counter, which is different from a real zero. `watchSeconds` and `completionRate` are null when the platform gives no watch signal. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetPostSamplesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | The post to read samples for. Accepts an external post id, a platform post id or a Zernio post id.
+            var fromDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Earliest sample to return (ISO 8601). (optional) 
+            var toDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Latest sample to return (ISO 8601). (optional) 
+            var limit = 500;  // int? | Maximum number of samples. (optional)  (default to 500)
+
+            try
+            {
+                // Get post samples
+                GetPostSamples200Response result = apiInstance.GetPostSamples(postId, fromDate, toDate, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetPostSamples: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetPostSamplesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get post samples
+    ApiResponse<GetPostSamples200Response> response = apiInstance.GetPostSamplesWithHttpInfo(postId, fromDate, toDate, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetPostSamplesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** | The post to read samples for. Accepts an external post id, a platform post id or a Zernio post id. |  |
+| **fromDate** | **DateTime?** | Earliest sample to return (ISO 8601). | [optional]  |
+| **toDate** | **DateTime?** | Latest sample to return (ISO 8601). | [optional]  |
+| **limit** | **int?** | Maximum number of samples. | [optional] [default to 500] |
+
+### Return type
+
+[**GetPostSamples200Response**](GetPostSamples200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Samples for the post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getposttimeline"></a>
 # **GetPostTimeline**
 > GetPostTimeline200Response GetPostTimeline (string postId, DateTime? fromDate = null, DateTime? toDate = null)
@@ -2907,6 +3227,108 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettrackingwindow"></a>
+# **GetTrackingWindow**
+> TrackingWindowResponse GetTrackingWindow (string windowId)
+
+Get a tracking window
+
+Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, `finalReadAt` and `completionReason` say how it closed. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetTrackingWindowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var windowId = "windowId_example";  // string | 
+
+            try
+            {
+                // Get a tracking window
+                TrackingWindowResponse result = apiInstance.GetTrackingWindow(windowId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetTrackingWindow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTrackingWindowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a tracking window
+    ApiResponse<TrackingWindowResponse> response = apiInstance.GetTrackingWindowWithHttpInfo(windowId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetTrackingWindowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **windowId** | **string** |  |  |
+
+### Return type
+
+[**TrackingWindowResponse**](TrackingWindowResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The tracking window |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Tracking window not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3591,6 +4013,332 @@ catch (ApiException e)
 | **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listpostauthenticity"></a>
+# **ListPostAuthenticity**
+> ListPostAuthenticity200Response ListPostAuthenticity (string accountId, int? minScore = null, int? maxScore = null, DateTime? from = null, DateTime? to = null, int? limit = null, int? skip = null)
+
+List authenticity scores
+
+Lists the stored authenticity scores for one connected account, newest first. Scores are 0 to 100 and come from Zernio's own model over verified platform samples. Filter with `minScore` and `maxScore` to find posts that look inflated, and with `from` and `to` to bound when the score was computed. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListPostAuthenticityExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The connected account to list scores for.
+            var minScore = 56;  // int? | Only scores at or above this value. (optional) 
+            var maxScore = 56;  // int? | Only scores at or below this value. (optional) 
+            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only scores computed at or after this time (ISO 8601). (optional) 
+            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only scores computed at or before this time (ISO 8601). (optional) 
+            var limit = 50;  // int? | Page size. (optional)  (default to 50)
+            var skip = 0;  // int? | Number of scores to skip. (optional)  (default to 0)
+
+            try
+            {
+                // List authenticity scores
+                ListPostAuthenticity200Response result = apiInstance.ListPostAuthenticity(accountId, minScore, maxScore, from, to, limit, skip);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.ListPostAuthenticity: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListPostAuthenticityWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List authenticity scores
+    ApiResponse<ListPostAuthenticity200Response> response = apiInstance.ListPostAuthenticityWithHttpInfo(accountId, minScore, maxScore, from, to, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.ListPostAuthenticityWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The connected account to list scores for. |  |
+| **minScore** | **int?** | Only scores at or above this value. | [optional]  |
+| **maxScore** | **int?** | Only scores at or below this value. | [optional]  |
+| **from** | **DateTime?** | Only scores computed at or after this time (ISO 8601). | [optional]  |
+| **to** | **DateTime?** | Only scores computed at or before this time (ISO 8601). | [optional]  |
+| **limit** | **int?** | Page size. | [optional] [default to 50] |
+| **skip** | **int?** | Number of scores to skip. | [optional] [default to 0] |
+
+### Return type
+
+[**ListPostAuthenticity200Response**](ListPostAuthenticity200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Authenticity scores |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listtrackingwindows"></a>
+# **ListTrackingWindows**
+> ListTrackingWindows200Response ListTrackingWindows (string? accountId = null, string? status = null, int? limit = null, int? skip = null)
+
+List tracking windows
+
+Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTrackingWindowsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string? | Only windows for this connected account. (optional) 
+            var status = "open";  // string? | Only windows in this status. (optional) 
+            var limit = 50;  // int? | Page size. (optional)  (default to 50)
+            var skip = 0;  // int? | Number of windows to skip. (optional)  (default to 0)
+
+            try
+            {
+                // List tracking windows
+                ListTrackingWindows200Response result = apiInstance.ListTrackingWindows(accountId, status, limit, skip);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.ListTrackingWindows: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTrackingWindowsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List tracking windows
+    ApiResponse<ListTrackingWindows200Response> response = apiInstance.ListTrackingWindowsWithHttpInfo(accountId, status, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.ListTrackingWindowsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string?** | Only windows for this connected account. | [optional]  |
+| **status** | **string?** | Only windows in this status. | [optional]  |
+| **limit** | **int?** | Page size. | [optional] [default to 50] |
+| **skip** | **int?** | Number of windows to skip. | [optional] [default to 0] |
+
+### Return type
+
+[**ListTrackingWindows200Response**](ListTrackingWindows200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking windows |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="opentrackingwindow"></a>
+# **OpenTrackingWindow**
+> TrackingWindowResponse OpenTrackingWindow (OpenTrackingWindowRequest openTrackingWindowRequest)
+
+Open a tracking window
+
+Starts watching a post's views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for `trackingDays` (30 by default, 90 at most) and ends with one final read, after which the `post.tracking_completed` webhook fires. Identify the post with `postId` (an external post id from Zernio), or with `accountId` together with the post's `url`. Opening a window for a post that is already tracked returns the existing window with `200`. A new window returns `201`. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OpenTrackingWindowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var openTrackingWindowRequest = new OpenTrackingWindowRequest(); // OpenTrackingWindowRequest | 
+
+            try
+            {
+                // Open a tracking window
+                TrackingWindowResponse result = apiInstance.OpenTrackingWindow(openTrackingWindowRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.OpenTrackingWindow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OpenTrackingWindowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Open a tracking window
+    ApiResponse<TrackingWindowResponse> response = apiInstance.OpenTrackingWindowWithHttpInfo(openTrackingWindowRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.OpenTrackingWindowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **openTrackingWindowRequest** | [**OpenTrackingWindowRequest**](OpenTrackingWindowRequest.md) |  |  |
+
+### Return type
+
+[**TrackingWindowResponse**](TrackingWindowResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The post already had a window; it is returned unchanged |  -  |
+| **201** | Window opened |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post or account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
