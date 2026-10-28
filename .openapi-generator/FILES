@@ -1982,6 +1982,7 @@ docs/OAuthApp.md
 docs/OAuthAppSetup.md
 docs/OAuthAppSetupScopeAreasInner.md
 docs/OAuthAppWebhook.md
+docs/OAuthAppWebhookObject.md
 docs/OnBrandedCallingIdentityActionRequiredRequest.md
 docs/OnBrandedCallingIdentityActionRequiredRequestIdentity.md
 docs/OnBrandedCallingIdentityStatusUpdatedRequest.md
@@ -5128,6 +5129,7 @@ src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
 src/Zernio.Test/Model/OAuthAppSetupScopeAreasInnerTests.cs
 src/Zernio.Test/Model/OAuthAppSetupTests.cs
 src/Zernio.Test/Model/OAuthAppTests.cs
+src/Zernio.Test/Model/OAuthAppWebhookObjectTests.cs
 src/Zernio.Test/Model/OAuthAppWebhookTests.cs
 src/Zernio.Test/Model/OnBrandedCallingIdentityActionRequiredRequestIdentityTests.cs
 src/Zernio.Test/Model/OnBrandedCallingIdentityActionRequiredRequestTests.cs
@@ -8263,6 +8265,7 @@ src/Zernio/Model/OAuthApp.cs
 src/Zernio/Model/OAuthAppSetup.cs
 src/Zernio/Model/OAuthAppSetupScopeAreasInner.cs
 src/Zernio/Model/OAuthAppWebhook.cs
+src/Zernio/Model/OAuthAppWebhookObject.cs
 src/Zernio/Model/OnBrandedCallingIdentityActionRequiredRequest.cs
 src/Zernio/Model/OnBrandedCallingIdentityActionRequiredRequestIdentity.cs
 src/Zernio/Model/OnBrandedCallingIdentityStatusUpdatedRequest.cs

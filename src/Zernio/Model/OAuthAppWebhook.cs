@@ -33,33 +33,12 @@ namespace Zernio.Model
     [DataContract(Name = "OAuthApp_webhook")]
     public partial class OAuthAppWebhook : IValidatableObject
     {
-        /// <summary>
-        /// The webhook object to configure.
-        /// </summary>
-        /// <value>The webhook object to configure.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ObjectEnum
-        {
-            /// <summary>
-            /// Enum Page for value: page
-            /// </summary>
-            [EnumMember(Value = "page")]
-            Page = 1,
-
-            /// <summary>
-            /// Enum Instagram for value: instagram
-            /// </summary>
-            [EnumMember(Value = "instagram")]
-            Instagram = 2
-        }
-
 
         /// <summary>
-        /// The webhook object to configure.
+        /// Gets or Sets Object
         /// </summary>
-        /// <value>The webhook object to configure.</value>
         [DataMember(Name = "object", IsRequired = true, EmitDefaultValue = true)]
-        public ObjectEnum Object { get; set; }
+        public OAuthAppWebhookObject Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthAppWebhook" /> class.
         /// </summary>
@@ -70,9 +49,9 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="callbackUrl">callbackUrl (required).</param>
         /// <param name="verifyToken">verifyToken (required).</param>
-        /// <param name="varObject">The webhook object to configure. (required).</param>
+        /// <param name="varObject">varObject (required).</param>
         /// <param name="fields">Subscribe the app to these fields. (required).</param>
-        public OAuthAppWebhook(string callbackUrl = default, string verifyToken = default, ObjectEnum varObject = default, List<string> fields = default)
+        public OAuthAppWebhook(string callbackUrl = default, string verifyToken = default, OAuthAppWebhookObject varObject = default, List<string> fields = default)
         {
             // to ensure "callbackUrl" is required (not null)
             if (callbackUrl == null)

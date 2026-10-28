@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CallbackUrl** | **string** |  | 
 **VerifyToken** | **string** |  | 
-**Object** | **string** | The webhook object to configure. | 
+**Object** | **OAuthAppWebhookObject** |  | 
 **Fields** | **List&lt;string&gt;** | Subscribe the app to these fields. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
