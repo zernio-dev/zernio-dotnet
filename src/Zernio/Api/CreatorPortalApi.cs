@@ -25,7 +25,7 @@ namespace Zernio.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ICreatorPortalPublicApiSync : IApiAccessor
+    public interface ICreatorPortalApiSync : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
@@ -237,7 +237,7 @@ namespace Zernio.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ICreatorPortalPublicApiAsync : IApiAccessor
+    public interface ICreatorPortalApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
         /// <summary>
@@ -467,7 +467,7 @@ namespace Zernio.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ICreatorPortalPublicApi : ICreatorPortalPublicApiSync, ICreatorPortalPublicApiAsync
+    public interface ICreatorPortalApi : ICreatorPortalApiSync, ICreatorPortalApiAsync
     {
 
     }
@@ -475,29 +475,29 @@ namespace Zernio.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class CreatorPortalPublicApi : IDisposable, ICreatorPortalPublicApi
+    public partial class CreatorPortalApi : IDisposable, ICreatorPortalApi
     {
         private Zernio.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class.
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
-        public CreatorPortalPublicApi() : this((string)null)
+        public CreatorPortalApi() : this((string)null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class.
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <param name="basePath">The target service's base path in URL format.</param>
         /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
-        public CreatorPortalPublicApi(string basePath)
+        public CreatorPortalApi(string basePath)
         {
             this.Configuration = Zernio.Client.Configuration.MergeConfigurations(
                 Zernio.Client.GlobalConfiguration.Instance,
@@ -510,14 +510,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class using Configuration object.
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class using Configuration object.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public CreatorPortalPublicApi(Zernio.Client.Configuration configuration)
+        public CreatorPortalApi(Zernio.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -532,7 +532,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class.
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class.
         /// </summary>
         /// <param name="client">An instance of HttpClient.</param>
         /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
@@ -542,12 +542,12 @@ namespace Zernio.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public CreatorPortalPublicApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
+        public CreatorPortalApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class.
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class.
         /// </summary>
         /// <param name="client">An instance of HttpClient.</param>
         /// <param name="basePath">The target service's base path in URL format.</param>
@@ -559,7 +559,7 @@ namespace Zernio.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public CreatorPortalPublicApi(HttpClient client, string basePath, HttpClientHandler handler = null)
+        public CreatorPortalApi(HttpClient client, string basePath, HttpClientHandler handler = null)
         {
             if (client == null) throw new ArgumentNullException("client");
 
@@ -574,7 +574,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class using Configuration object.
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class using Configuration object.
         /// </summary>
         /// <param name="client">An instance of HttpClient.</param>
         /// <param name="configuration">An instance of Configuration.</param>
@@ -585,7 +585,7 @@ namespace Zernio.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public CreatorPortalPublicApi(HttpClient client, Zernio.Client.Configuration configuration, HttpClientHandler handler = null)
+        public CreatorPortalApi(HttpClient client, Zernio.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
@@ -601,14 +601,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatorPortalPublicApi"/> class
+        /// Initializes a new instance of the <see cref="CreatorPortalApi"/> class
         /// using a Configuration object and client instance.
         /// </summary>
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public CreatorPortalPublicApi(Zernio.Client.ISynchronousClient client, Zernio.Client.IAsynchronousClient asyncClient, Zernio.Client.IReadableConfiguration configuration)
+        public CreatorPortalApi(Zernio.Client.ISynchronousClient client, Zernio.Client.IAsynchronousClient asyncClient, Zernio.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -696,7 +696,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->CreateCreatorPayoutLogin");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->CreateCreatorPayoutLogin");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -753,7 +753,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->CreateCreatorPayoutLogin");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->CreateCreatorPayoutLogin");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -813,11 +813,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->GetCreatorPayoutStatement");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->GetCreatorPayoutStatement");
 
             // verify the required parameter 'transferId' is set
             if (transferId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'transferId' when calling CreatorPortalPublicApi->GetCreatorPayoutStatement");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'transferId' when calling CreatorPortalApi->GetCreatorPayoutStatement");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -878,11 +878,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->GetCreatorPayoutStatement");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->GetCreatorPayoutStatement");
 
             // verify the required parameter 'transferId' is set
             if (transferId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'transferId' when calling CreatorPortalPublicApi->GetCreatorPayoutStatement");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'transferId' when calling CreatorPortalApi->GetCreatorPayoutStatement");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -946,7 +946,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->GetCreatorPayouts");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->GetCreatorPayouts");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1015,7 +1015,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->GetCreatorPayouts");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->GetCreatorPayouts");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1081,7 +1081,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->GetCreatorPortal");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->GetCreatorPortal");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1138,7 +1138,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->GetCreatorPortal");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->GetCreatorPortal");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1198,7 +1198,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->JoinCreatorCampaign");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->JoinCreatorCampaign");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1259,7 +1259,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->JoinCreatorCampaign");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->JoinCreatorCampaign");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1319,7 +1319,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'recoverCreatorPortalLinksRequest' is set
             if (recoverCreatorPortalLinksRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'recoverCreatorPortalLinksRequest' when calling CreatorPortalPublicApi->RecoverCreatorPortalLinks");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'recoverCreatorPortalLinksRequest' when calling CreatorPortalApi->RecoverCreatorPortalLinks");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1377,7 +1377,7 @@ namespace Zernio.Api
         {
             // verify the required parameter 'recoverCreatorPortalLinksRequest' is set
             if (recoverCreatorPortalLinksRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'recoverCreatorPortalLinksRequest' when calling CreatorPortalPublicApi->RecoverCreatorPortalLinks");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'recoverCreatorPortalLinksRequest' when calling CreatorPortalApi->RecoverCreatorPortalLinks");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1438,11 +1438,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->StartCreatorConnect");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->StartCreatorConnect");
 
             // verify the required parameter 'startCreatorConnectRequest' is set
             if (startCreatorConnectRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorConnectRequest' when calling CreatorPortalPublicApi->StartCreatorConnect");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorConnectRequest' when calling CreatorPortalApi->StartCreatorConnect");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1503,11 +1503,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->StartCreatorConnect");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->StartCreatorConnect");
 
             // verify the required parameter 'startCreatorConnectRequest' is set
             if (startCreatorConnectRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorConnectRequest' when calling CreatorPortalPublicApi->StartCreatorConnect");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorConnectRequest' when calling CreatorPortalApi->StartCreatorConnect");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1569,11 +1569,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->StartCreatorPayouts");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->StartCreatorPayouts");
 
             // verify the required parameter 'startCreatorPayoutsRequest' is set
             if (startCreatorPayoutsRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorPayoutsRequest' when calling CreatorPortalPublicApi->StartCreatorPayouts");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorPayoutsRequest' when calling CreatorPortalApi->StartCreatorPayouts");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1634,11 +1634,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->StartCreatorPayouts");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->StartCreatorPayouts");
 
             // verify the required parameter 'startCreatorPayoutsRequest' is set
             if (startCreatorPayoutsRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorPayoutsRequest' when calling CreatorPortalPublicApi->StartCreatorPayouts");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startCreatorPayoutsRequest' when calling CreatorPortalApi->StartCreatorPayouts");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1700,11 +1700,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->SubmitCreatorPost");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->SubmitCreatorPost");
 
             // verify the required parameter 'submitCreatorPostRequest' is set
             if (submitCreatorPostRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'submitCreatorPostRequest' when calling CreatorPortalPublicApi->SubmitCreatorPost");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'submitCreatorPostRequest' when calling CreatorPortalApi->SubmitCreatorPost");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1765,11 +1765,11 @@ namespace Zernio.Api
         {
             // verify the required parameter 'token' is set
             if (token == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalPublicApi->SubmitCreatorPost");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'token' when calling CreatorPortalApi->SubmitCreatorPost");
 
             // verify the required parameter 'submitCreatorPostRequest' is set
             if (submitCreatorPostRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'submitCreatorPostRequest' when calling CreatorPortalPublicApi->SubmitCreatorPost");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'submitCreatorPostRequest' when calling CreatorPortalApi->SubmitCreatorPost");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();

@@ -1,18 +1,18 @@
-# Zernio.Api.CreatorPortalPublicApi
+# Zernio.Api.CreatorPortalApi
 
 All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**CreateCreatorPayoutLogin**](CreatorPortalPublicApi.md#createcreatorpayoutlogin) | **POST** /public/creator-campaigns/{token}/payout-login | Open the creator&#39;s Stripe dashboard |
-| [**GetCreatorPayoutStatement**](CreatorPortalPublicApi.md#getcreatorpayoutstatement) | **GET** /public/creator-campaigns/{token}/payouts/{transferId}/statement | Download a payout statement |
-| [**GetCreatorPayouts**](CreatorPortalPublicApi.md#getcreatorpayouts) | **GET** /public/creator-campaigns/{token}/payouts | List a creator&#39;s earnings history |
-| [**GetCreatorPortal**](CreatorPortalPublicApi.md#getcreatorportal) | **GET** /public/creator-campaigns/{token} | Read a creator invite or participant page |
-| [**JoinCreatorCampaign**](CreatorPortalPublicApi.md#joincreatorcampaign) | **POST** /public/creator-campaigns/{token} | Join a campaign |
-| [**RecoverCreatorPortalLinks**](CreatorPortalPublicApi.md#recovercreatorportallinks) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links |
-| [**StartCreatorConnect**](CreatorPortalPublicApi.md#startcreatorconnect) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account |
-| [**StartCreatorPayouts**](CreatorPortalPublicApi.md#startcreatorpayouts) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding |
-| [**SubmitCreatorPost**](CreatorPortalPublicApi.md#submitcreatorpost) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post |
+| [**CreateCreatorPayoutLogin**](CreatorPortalApi.md#createcreatorpayoutlogin) | **POST** /public/creator-campaigns/{token}/payout-login | Open the creator&#39;s Stripe dashboard |
+| [**GetCreatorPayoutStatement**](CreatorPortalApi.md#getcreatorpayoutstatement) | **GET** /public/creator-campaigns/{token}/payouts/{transferId}/statement | Download a payout statement |
+| [**GetCreatorPayouts**](CreatorPortalApi.md#getcreatorpayouts) | **GET** /public/creator-campaigns/{token}/payouts | List a creator&#39;s earnings history |
+| [**GetCreatorPortal**](CreatorPortalApi.md#getcreatorportal) | **GET** /public/creator-campaigns/{token} | Read a creator invite or participant page |
+| [**JoinCreatorCampaign**](CreatorPortalApi.md#joincreatorcampaign) | **POST** /public/creator-campaigns/{token} | Join a campaign |
+| [**RecoverCreatorPortalLinks**](CreatorPortalApi.md#recovercreatorportallinks) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links |
+| [**StartCreatorConnect**](CreatorPortalApi.md#startcreatorconnect) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account |
+| [**StartCreatorPayouts**](CreatorPortalApi.md#startcreatorpayouts) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding |
+| [**SubmitCreatorPost**](CreatorPortalApi.md#submitcreatorpost) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post |
 
 <a id="createcreatorpayoutlogin"></a>
 # **CreateCreatorPayoutLogin**
@@ -42,7 +42,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
 
             try
@@ -53,7 +53,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.CreateCreatorPayoutLogin: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.CreateCreatorPayoutLogin: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -76,7 +76,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.CreateCreatorPayoutLoginWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.CreateCreatorPayoutLoginWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -140,7 +140,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
             var transferId = "transferId_example";  // string | 
 
@@ -152,7 +152,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.GetCreatorPayoutStatement: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.GetCreatorPayoutStatement: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -175,7 +175,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.GetCreatorPayoutStatementWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.GetCreatorPayoutStatementWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -239,7 +239,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
             var limit = 50;  // int? |  (optional)  (default to 50)
             var skip = 0;  // int? |  (optional)  (default to 0)
@@ -252,7 +252,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.GetCreatorPayouts: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.GetCreatorPayouts: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -275,7 +275,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.GetCreatorPayoutsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.GetCreatorPayoutsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -340,7 +340,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
 
             try
@@ -351,7 +351,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.GetCreatorPortal: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.GetCreatorPortal: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -374,7 +374,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.GetCreatorPortalWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.GetCreatorPortalWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -436,7 +436,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
             var joinCreatorCampaignRequest = new JoinCreatorCampaignRequest?(); // JoinCreatorCampaignRequest? |  (optional) 
 
@@ -448,7 +448,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.JoinCreatorCampaign: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.JoinCreatorCampaign: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -471,7 +471,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.JoinCreatorCampaignWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.JoinCreatorCampaignWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -537,7 +537,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var recoverCreatorPortalLinksRequest = new RecoverCreatorPortalLinksRequest(); // RecoverCreatorPortalLinksRequest | 
 
             try
@@ -548,7 +548,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.RecoverCreatorPortalLinks: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.RecoverCreatorPortalLinks: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -571,7 +571,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.RecoverCreatorPortalLinksWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.RecoverCreatorPortalLinksWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -634,7 +634,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
             var startCreatorConnectRequest = new StartCreatorConnectRequest(); // StartCreatorConnectRequest | 
 
@@ -646,7 +646,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.StartCreatorConnect: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.StartCreatorConnect: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -669,7 +669,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.StartCreatorConnectWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.StartCreatorConnectWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -734,7 +734,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
             var startCreatorPayoutsRequest = new StartCreatorPayoutsRequest(); // StartCreatorPayoutsRequest | 
 
@@ -746,7 +746,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.StartCreatorPayouts: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.StartCreatorPayouts: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -769,7 +769,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.StartCreatorPayoutsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.StartCreatorPayoutsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -835,7 +835,7 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CreatorPortalPublicApi(httpClient, config, httpClientHandler);
+            var apiInstance = new CreatorPortalApi(httpClient, config, httpClientHandler);
             var token = "token_example";  // string | A participant token or an open invite token. A malformed token answers 404 like an unknown one.
             var submitCreatorPostRequest = new SubmitCreatorPostRequest(); // SubmitCreatorPostRequest | 
 
@@ -847,7 +847,7 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling CreatorPortalPublicApi.SubmitCreatorPost: " + e.Message);
+                Debug.Print("Exception when calling CreatorPortalApi.SubmitCreatorPost: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -870,7 +870,7 @@ try
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling CreatorPortalPublicApi.SubmitCreatorPostWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling CreatorPortalApi.SubmitCreatorPostWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

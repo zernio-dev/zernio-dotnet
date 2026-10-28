@@ -810,6 +810,7 @@ docs/CreatorCampaignEconomicsCpm.md
 docs/CreatorCampaignEconomicsPerPost.md
 docs/CreatorCampaignEconomicsPool.md
 docs/CreatorCampaignsApi.md
+docs/CreatorPortalApi.md
 docs/CreatorPortalCampaign.md
 docs/CreatorPortalEconomics.md
 docs/CreatorPortalInvite.md
@@ -820,7 +821,6 @@ docs/CreatorPortalParticipantParticipant.md
 docs/CreatorPortalPayoutEntry.md
 docs/CreatorPortalPayoutSetup.md
 docs/CreatorPortalPayoutSetupTransfersInner.md
-docs/CreatorPortalPublicApi.md
 docs/CreatorPortalSubmission.md
 docs/CrosspostDiscordMessage200Response.md
 docs/CtwaAdRequestBody.md
@@ -3289,7 +3289,7 @@ src/Zernio.Test/Api/ConnectedAppsApiTests.cs
 src/Zernio.Test/Api/ContactsApiTests.cs
 src/Zernio.Test/Api/ConversionsApiTests.cs
 src/Zernio.Test/Api/CreatorCampaignsApiTests.cs
-src/Zernio.Test/Api/CreatorPortalPublicApiTests.cs
+src/Zernio.Test/Api/CreatorPortalApiTests.cs
 src/Zernio.Test/Api/CustomFieldsApiTests.cs
 src/Zernio.Test/Api/DiscordApiTests.cs
 src/Zernio.Test/Api/EmailApiTests.cs
@@ -6547,7 +6547,7 @@ src/Zernio/Api/ConnectedAppsApi.cs
 src/Zernio/Api/ContactsApi.cs
 src/Zernio/Api/ConversionsApi.cs
 src/Zernio/Api/CreatorCampaignsApi.cs
-src/Zernio/Api/CreatorPortalPublicApi.cs
+src/Zernio/Api/CreatorPortalApi.cs
 src/Zernio/Api/CustomFieldsApi.cs
 src/Zernio/Api/DiscordApi.cs
 src/Zernio/Api/EmailApi.cs
