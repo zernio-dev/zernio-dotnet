@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **LastError** | **string** |  | [optional] 
 **AccountCount** | **int** | Connected accounts currently running on this app. | 
 **RedirectUri** | **string** | The OAuth redirect URI to allow in your app&#39;s settings on the platform. | 
+**Webhook** | [**OAuthAppWebhook**](OAuthAppWebhook.md) |  | [optional] 
 **CreatedAt** | **DateTime** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

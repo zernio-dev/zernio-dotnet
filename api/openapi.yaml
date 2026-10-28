@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.392.0
+  version: 1.393.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -68889,6 +68889,13 @@ components:
         clientId: clientId
         lastError: lastError
         accountCount: 0
+        webhook:
+          verifyToken: verifyToken
+          callbackUrl: https://openapi-generator.tech
+          fields:
+          - fields
+          - fields
+          object: page
         id: id
         label: label
         platform: platform
@@ -68916,7 +68923,6 @@ components:
             - analytics
             - comments
             - messaging
-            - ads
             type: string
           type: array
         status:
@@ -68944,6 +68950,8 @@ components:
             platform.
           format: uri
           type: string
+        webhook:
+          $ref: "#/components/schemas/OAuthApp_webhook"
         createdAt:
           format: date-time
           type: string
@@ -112665,6 +112673,13 @@ components:
           clientId: clientId
           lastError: lastError
           accountCount: 0
+          webhook:
+            verifyToken: verifyToken
+            callbackUrl: https://openapi-generator.tech
+            fields:
+            - fields
+            - fields
+            object: page
           id: id
           label: label
           platform: platform
@@ -112678,6 +112693,13 @@ components:
           clientId: clientId
           lastError: lastError
           accountCount: 0
+          webhook:
+            verifyToken: verifyToken
+            callbackUrl: https://openapi-generator.tech
+            fields:
+            - fields
+            - fields
+            object: page
           id: id
           label: label
           platform: platform
@@ -112753,7 +112775,6 @@ components:
             - analytics
             - comments
             - messaging
-            - ads
             type: string
           type: array
       required:
@@ -112773,6 +112794,13 @@ components:
           clientId: clientId
           lastError: lastError
           accountCount: 0
+          webhook:
+            verifyToken: verifyToken
+            callbackUrl: https://openapi-generator.tech
+            fields:
+            - fields
+            - fields
+            object: page
           id: id
           label: label
           platform: platform
@@ -112810,7 +112838,6 @@ components:
             - analytics
             - comments
             - messaging
-            - ads
             type: string
           type: array
     getPendingOAuthData_200_response_organizations_inner:
@@ -170529,6 +170556,41 @@ components:
           description: "The other params the redirect flow appends for that error,\
             \ such as `is_user_fixable`, `reason`, `dashboard_url`, `request_id` and\
             \ `stage`. All optional."
+    OAuthApp_webhook:
+      description: "Facebook and Instagram only: Meta delivers comments and messages\
+        \ to your app's own webhook, so set it to this callback URL and verify token\
+        \ on the app's webhook product (Page for Facebook, Instagram for Instagram)\
+        \ and subscribe the listed fields. Zernio checks each delivery against your\
+        \ app secret. Null on platforms with nothing to set up."
+      example:
+        verifyToken: verifyToken
+        callbackUrl: https://openapi-generator.tech
+        fields:
+        - fields
+        - fields
+        object: page
+      properties:
+        callbackUrl:
+          format: uri
+          type: string
+        verifyToken:
+          type: string
+        object:
+          description: The webhook object to configure.
+          enum:
+          - page
+          - instagram
+          type: string
+        fields:
+          description: Subscribe the app to these fields.
+          items:
+            type: string
+          type: array
+      required:
+      - callbackUrl
+      - fields
+      - object
+      - verifyToken
     OAuthAppSetup_scopeAreas_inner:
       example:
         area: posting
@@ -170542,7 +170604,6 @@ components:
           - analytics
           - comments
           - messaging
-          - ads
           type: string
         scopes:
           items:
@@ -173056,7 +173117,6 @@ components:
             - analytics
             - comments
             - messaging
-            - ads
             type: string
           type: array
         reason:
