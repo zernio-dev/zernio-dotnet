@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -75,7 +75,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -153,7 +153,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -174,7 +174,7 @@ namespace Zernio.Api
         /// List reviews
         /// </summary>
         /// <remarks>
-        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -574,7 +574,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -595,7 +595,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -688,7 +688,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
@@ -710,7 +710,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+        /// List reviews Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"> (optional)</param>
