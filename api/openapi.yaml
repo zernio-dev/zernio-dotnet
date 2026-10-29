@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.398.0
+  version: 1.399.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -72636,8 +72636,6 @@ components:
         scopeAreas:
         - posting
         - posting
-        lastCheckedAt: 2000-01-23T04:56:07.000+00:00
-        createdAt: 2000-01-23T04:56:07.000+00:00
         clientId: clientId
         lastError: lastError
         accountCount: 0
@@ -72648,9 +72646,12 @@ components:
           - fields
           - fields
           object: page
-        id: id
         label: label
         platform: platform
+        lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        sharedWebhookUrl: https://openapi-generator.tech
         status: ok
       properties:
         id:
@@ -72704,6 +72705,14 @@ components:
           type: string
         webhook:
           $ref: "#/components/schemas/OAuthApp_webhook"
+        sharedWebhookUrl:
+          description: "TikTok only: set this as the webhook callback URL in your\
+            \ TikTok developer app. TikTok uses it to report when a video finishes\
+            \ publishing; Zernio also checks the publish status itself, so posting\
+            \ works without it. Null on other platforms."
+          format: uri
+          nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -119112,8 +119121,6 @@ components:
           scopeAreas:
           - posting
           - posting
-          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
           clientId: clientId
           lastError: lastError
           accountCount: 0
@@ -119124,16 +119131,17 @@ components:
             - fields
             - fields
             object: page
-          id: id
           label: label
           platform: platform
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          sharedWebhookUrl: https://openapi-generator.tech
           status: ok
         - redirectUri: https://openapi-generator.tech
           scopeAreas:
           - posting
           - posting
-          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
           clientId: clientId
           lastError: lastError
           accountCount: 0
@@ -119144,9 +119152,12 @@ components:
             - fields
             - fields
             object: page
-          id: id
           label: label
           platform: platform
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          sharedWebhookUrl: https://openapi-generator.tech
           status: ok
         platforms:
         - redirectUri: https://openapi-generator.tech
@@ -119233,8 +119244,6 @@ components:
           scopeAreas:
           - posting
           - posting
-          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
           clientId: clientId
           lastError: lastError
           accountCount: 0
@@ -119245,9 +119254,12 @@ components:
             - fields
             - fields
             object: page
-          id: id
           label: label
           platform: platform
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          sharedWebhookUrl: https://openapi-generator.tech
           status: ok
       properties:
         app:
