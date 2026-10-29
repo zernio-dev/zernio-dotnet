@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **AccountId** | **string** |  | [optional] 
 **AccountUsername** | **string** |  | [optional] 
+**PageId** | **string** | The bare Facebook Page id behind the account, for Facebook and Instagram connected through Facebook Login. Null when the account has no Facebook Page. | [optional] 
 **ParticipantId** | **string** |  | [optional] 
 **ParticipantName** | **string** |  | [optional] 
 **ParticipantPicture** | **string** |  | [optional] 

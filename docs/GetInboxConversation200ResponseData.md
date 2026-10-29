@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | [optional] 
 **AccountId** | **string** |  | [optional] 
 **AccountUsername** | **string** |  | [optional] 
+**PageId** | **string** | The bare Facebook Page id behind the account, for Facebook and Instagram connected through Facebook Login. Null when the account has no Facebook Page. | [optional] 
 **Platform** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **ParticipantName** | **string** |  | [optional] 
