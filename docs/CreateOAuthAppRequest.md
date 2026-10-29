@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Label** | **string** |  | 
 **ClientId** | **string** |  | 
 **ClientSecret** | **string** |  | 
+**SlackSigningSecret** | **string** | Slack only: the signing secret from the app&#39;s Basic Information page. Needed to receive events from your Slack app; any other platform is a 400. | [optional] 
 **ScopeAreas** | **List&lt;CreateOAuthAppRequest.ScopeAreasEnum&gt;** | Areas this app requests. Defaults to every area the platform supports; an area the platform cannot request separately is a 400. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
