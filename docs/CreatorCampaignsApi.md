@@ -141,7 +141,7 @@ catch (ApiException e)
 
 Approve campaign submission
 
-Approves a `tracking` or `pending_review` submission of an active campaign and fires `campaign_submission.approved`. The Zernio dashboard offers Approve only on `pending_review` (a post that needs a decision) and waits for `tracking` posts to get there; the API accepts `tracking` so an integration can approve early. What the post earned so far moves to owed and is held for the campaign's `holdDays`; later earnings post straight to owed. A per-post campaign pays `perApprovedPostCents` here. Any other state answers 409. The same post approved in another of your campaigns also answers 409 (`invalid_resource_state`, \"This post is already approved in another campaign of yours.\"), so one post never earns twice. 
+Approves a `tracking` or `pending_review` submission of an active campaign and fires `campaign_submission.approved`.  The Zernio dashboard offers Approve only on `pending_review` (a post that needs a decision) and waits for `tracking` posts to get there. The API accepts `tracking` so an integration can approve early.  ### Earnings  - What the post earned so far moves to owed and is held for the campaign's `holdDays`. - Later earnings post straight to owed. - A per-post campaign pays `perApprovedPostCents` here.  ### Errors  - 409: the submission is in any other state. - 409 (`invalid_resource_state`, \"This post is already approved in another campaign of yours.\"): the same post was approved in another of your campaigns, so one post never earns twice. 
 
 ### Example
 ```csharp
@@ -169,7 +169,7 @@ namespace Example
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var submissionId = "submissionId_example";  // string | Submission ID.
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -214,7 +214,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Campaign ID. |  |
 | **submissionId** | **string** | Submission ID. |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -249,7 +249,7 @@ catch (ApiException e)
 
 Close creator campaign
 
-Closes an `active` or `paused` campaign for good and fires `creator_campaign.closed`. Open tracking windows are cancelled. A pool campaign is split among participants at this moment by their approved eligible views, so closing a pool campaign answers 409 while any post still awaits review. A campaign also closes by itself once `endsAt` passed and every tracking window had its final read. 
+Closes an `active` or `paused` campaign for good and fires `creator_campaign.closed`. Open tracking windows are cancelled.  A pool campaign is split among participants at this moment by their approved eligible views. Closing a pool campaign therefore answers 409 while any post still awaits review.  A campaign also closes by itself once `endsAt` passed and every tracking window had its final read. 
 
 ### Example
 ```csharp
@@ -380,7 +380,7 @@ namespace Example
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var createCampaignAdjustmentRequest = new CreateCampaignAdjustmentRequest(); // CreateCampaignAdjustmentRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -425,7 +425,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Campaign ID. |  |
 | **createCampaignAdjustmentRequest** | [**CreateCampaignAdjustmentRequest**](CreateCampaignAdjustmentRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -563,7 +563,7 @@ catch (ApiException e)
 
 Invite campaign participant
 
-Invites one creator and returns their personal invite URL. Send it to the creator: on that page they connect their accounts (read-only), submit posts and see their earnings. The URL is returned only here; inviting again creates no second link (409 for a creator already in the campaign). A creator is matched by email within your workspace, so the same person keeps one identity across your campaigns.  Answers 409 on a closed campaign and 403 `feature_not_available` once `caps.maxParticipants` is reached. 
+Invites one creator and returns their personal invite URL.  Send the URL to the creator. On that page they connect their accounts (read-only), submit posts and see their earnings.  ### Invite rules  - The URL is returned only here; inviting again creates no second link. - A creator is matched by email within your workspace, so the same person keeps one identity across your campaigns.  ### Errors  - 409: the creator is already in the campaign, or the campaign is closed. - 403 `feature_not_available`: `caps.maxParticipants` is reached. 
 
 ### Example
 ```csharp
@@ -591,7 +591,7 @@ namespace Example
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var createCampaignParticipantRequest = new CreateCampaignParticipantRequest(); // CreateCampaignParticipantRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -636,7 +636,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Campaign ID. |  |
 | **createCampaignParticipantRequest** | [**CreateCampaignParticipantRequest**](CreateCampaignParticipantRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -671,7 +671,7 @@ catch (ApiException e)
 
 Pay creators with one card payment
 
-Pays exactly what is owed: every payable creator of a `treasury` campaign who finished payout setup (or only `participantIds`, minus `excludeParticipantIds`) is held in `settling`, and the response carries a Stripe Checkout `url` for the total plus the fee (4% per creator, 50 cent minimum). Once the card payment completes, each creator gets a transfer funded by that charge and the batch ends `paid` or `partially_failed`. A creator whose payouts were disabled before the payment landed is skipped and stays payable. If the Checkout expires unpaid (24 hours), every amount is payable again.  Card payouts are limited to $2,000.00 gross per rolling 30 days by default; over it the call answers 402 (\"Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit.\"). Nothing payable answers 400 (\"Nothing is payable.\"). Needs an owner, admin or billing admin, signed in or through a full-access key they created. Send an `Idempotency-Key` so a retry never opens a second batch. 
+Pays exactly what is owed to the creators of a `treasury` campaign, through one Stripe Checkout card payment.  ### How it works  1. Every payable creator who finished payout setup (or only `participantIds`, minus `excludeParticipantIds`) is held in `settling`. 2. The response carries a Stripe Checkout `url` for the total plus the fee (4% per creator, 50 cent minimum). 3. Once the card payment completes, each creator gets a transfer funded by that charge, and the batch ends `paid` or `partially_failed`.  A creator whose payouts were disabled before the payment landed is skipped and stays payable. If the Checkout expires unpaid (24 hours), every amount is payable again.  ### Limits and errors  - 402: card payouts are limited to $2,000.00 gross per rolling 30 days by default. Over it the call answers \"Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit.\" - 400: nothing payable (\"Nothing is payable.\").  ### Access and retries  Needs an owner, admin or billing admin, signed in or through a full-access key they created.  Send an `Idempotency-Key` so a retry never opens a second batch. 
 
 ### Example
 ```csharp
@@ -698,7 +698,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Campaign ID.
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
             var createCampaignPayoutBatchRequest = new CreateCampaignPayoutBatchRequest?(); // CreateCampaignPayoutBatchRequest? |  (optional) 
 
             try
@@ -743,7 +743,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **campaignId** | **string** | Campaign ID. |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 | **createCampaignPayoutBatchRequest** | [**CreateCampaignPayoutBatchRequest?**](CreateCampaignPayoutBatchRequest?.md) |  | [optional]  |
 
 ### Return type
@@ -767,7 +767,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Over the instant payout limit (code &#x60;payment_required&#x60;). |  -  |
-| **403** | Refused (&#x60;insufficient_permissions&#x60;). Either a restricted API key without the &#x60;money&#x60; resource group, or a profile-scoped API key: money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). A member or viewer is refused too, signed in or through a key they created: only an owner, admin or billing admin moves money.  |  -  |
+| **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
 | **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 | **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
@@ -806,7 +806,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var createCreatorCampaignRequest = new CreateCreatorCampaignRequest(); // CreateCreatorCampaignRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -850,7 +850,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **createCreatorCampaignRequest** | [**CreateCreatorCampaignRequest**](CreateCreatorCampaignRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -1297,7 +1297,7 @@ catch (ApiException e)
 
 List campaign ledger
 
-Lists ledger entries, newest first. Without `participantId` it lists every entry of the campaign: earnings drawn from the budget (accruals, per-post payments, pool shares, adjustments), the approvals, hold releases and settlements that move money between its participants' buckets, and their reversals. Pass `participantId` to narrow the list to one participant's entries. 
+Lists ledger entries, newest first.  Without `participantId` it lists every entry of the campaign:  - earnings drawn from the budget (accruals, per-post payments, pool shares, adjustments) - the approvals, hold releases and settlements that move money between its participants' buckets - their reversals  Pass `participantId` to narrow the list to one participant's entries. 
 
 ### Example
 ```csharp
@@ -2059,7 +2059,7 @@ catch (ApiException e)
 
 Raise creator campaign budget
 
-Raises the budget of a campaign that is `draft`, `active` or `paused`. Only the budget changes; the pay terms stay as creators joined them, which `PATCH` refuses to change once the campaign is live. The new `budgetCents` must be above the current budget, otherwise 400 `invalid_field_value`. When it is also above what the campaign has spent, `budgetExhaustedAt` is cleared and earnings that stopped at the old budget resume. A closed campaign answers 409 `invalid_resource_state`. 
+Raises the budget of a campaign that is `draft`, `active` or `paused`.  Only the budget changes. The pay terms stay as creators joined them, which `PATCH` refuses to change once the campaign is live.  - The new `budgetCents` must be above the current budget, otherwise 400 `invalid_field_value`. - When it is also above what the campaign has spent, `budgetExhaustedAt` is cleared and earnings that stopped at the old budget resume. - A closed campaign answers 409 `invalid_resource_state`. 
 
 ### Example
 ```csharp
@@ -2087,7 +2087,7 @@ namespace Example
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var raiseCreatorCampaignBudgetRequest = new RaiseCreatorCampaignBudgetRequest(); // RaiseCreatorCampaignBudgetRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -2132,7 +2132,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Campaign ID. |  |
 | **raiseCreatorCampaignBudgetRequest** | [**RaiseCreatorCampaignBudgetRequest**](RaiseCreatorCampaignBudgetRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -2301,7 +2301,7 @@ namespace Example
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var submissionId = "submissionId_example";  // string | Submission ID.
             var rejectCampaignSubmissionRequest = new RejectCampaignSubmissionRequest(); // RejectCampaignSubmissionRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -2347,7 +2347,7 @@ catch (ApiException e)
 | **campaignId** | **string** | Campaign ID. |  |
 | **submissionId** | **string** | Submission ID. |  |
 | **rejectCampaignSubmissionRequest** | [**RejectCampaignSubmissionRequest**](RejectCampaignSubmissionRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -2486,7 +2486,7 @@ catch (ApiException e)
 
 Reopen campaign submission
 
-Puts a rejected submission back to `pending_review` so it can be decided again. Its tracking window resumes, so it works only while that window has not ended; otherwise 409 `invalid_resource_state` (\"This post's tracking window has ended.\"). A post that earned money which was already paid out cannot be reopened, and neither can a post of a closed campaign. Reopening a submission that is already `pending_review` returns it unchanged; any other status answers 409. No webhook fires. 
+Puts a rejected submission back to `pending_review` so it can be decided again. No webhook fires.  Its tracking window resumes, so it works only while that window has not ended.  ### When it can't be reopened  - The tracking window has ended: 409 `invalid_resource_state` (\"This post's tracking window has ended.\"). - A post that earned money which was already paid out cannot be reopened. - A post of a closed campaign cannot be reopened. - Any status other than rejected or `pending_review` answers 409.  Reopening a submission that is already `pending_review` returns it unchanged. 
 
 ### Example
 ```csharp
@@ -2514,7 +2514,7 @@ namespace Example
             var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var submissionId = "submissionId_example";  // string | Submission ID.
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -2559,7 +2559,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Campaign ID. |  |
 | **submissionId** | **string** | Submission ID. |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -2594,7 +2594,7 @@ catch (ApiException e)
 
 Settle campaign participant
 
-Records a payout of the participant's payable balance and fires `campaign_payout.settled`. Omit `amountCents` to settle the whole payable balance; an amount above it answers 400, and nothing payable answers 409.  - `none` settlement: records a payout you made elsewhere. - `external` settlement: pay from your own rails when `campaign_payout.payable` fires, then   call this with your payout id in `externalReference` (required in this mode). - `treasury` settlement: transfers the amount from your Zernio balance to the creator's   connected Stripe account, then records it with the Stripe transfer id as `externalReference`.   The transfer fee (4%, $0.50 minimum) is added on top: the creator receives the full amount   and your balance is debited `totalCents`. The creator must have finished payout setup from   their campaign page (409 otherwise), and a balance that does not cover the amount plus the   fee answers 402. While Stripe confirms the transfer the amount sits in the participant's   `settling` balance: a reject in that window cannot reverse it. If Stripe refuses the transfer   the amount returns to payable; if Stripe does not answer, the amount stays in `settling` and   the next settle call for this participant finishes that payout first (even with nothing   payable left). A retry asking for a different `amountCents` than the payout in progress   answers 409 with the amount in progress, and a settle while another request is still   waiting on Stripe for the same payout answers 409 (\"This payout is being sent to Stripe   right now. Try again in a minute.\"). A payout Stripe has not confirmed after 24 hours answers   409 (\"This payout is being confirmed with Stripe. Try again after the next reconciliation   (within 24 hours).\") until the daily reconciliation finishes it: settled if Stripe made the   transfer, returned to payable if it did not.   Set `recordOnly: true` to record a payout you made yourself instead of moving money through   the treasury (the webhook then carries `recorded: true`).   A treasury payout needs an owner, admin or billing admin, signed in or through a full-access   key they created (403 otherwise); recording with `recordOnly` does not. A creator held by an unfinished   payout batch answers 409 (\"This creator is in a card payout that is not finished yet.\").  Send an `Idempotency-Key` so a retry never records the payout twice. 
+Records a payout of the participant's payable balance and fires `campaign_payout.settled`.  Omit `amountCents` to settle the whole payable balance. An amount above it answers 400, and nothing payable answers 409. Send an `Idempotency-Key` so a retry never records the payout twice.  ### Settlement modes  - `none` settlement: records a payout you made elsewhere. - `external` settlement: pay from your own rails when `campaign_payout.payable` fires, then call this with your payout id in `externalReference` (required in this mode). - `treasury` settlement: transfers the amount from your Zernio balance to the creator's connected Stripe account, then records it with the Stripe transfer id as `externalReference`.  ### Treasury payouts  The transfer fee (4%, $0.50 minimum) is added on top: the creator receives the full amount and your balance is debited `totalCents`.  - The creator must have finished payout setup from their campaign page (409 otherwise). - A balance that does not cover the amount plus the fee answers 402.  Set `recordOnly: true` to record a payout you made yourself instead of moving money through the treasury (the webhook then carries `recorded: true`).  A treasury payout needs an owner, admin or billing admin, signed in or through a full-access key they created (403 otherwise). Recording with `recordOnly` does not.  #### While Stripe confirms the transfer  The amount sits in the participant's `settling` balance; a reject in that window cannot reverse it.  - If Stripe refuses the transfer, the amount returns to payable. - If Stripe does not answer, the amount stays in `settling`. The next settle call for this participant finishes that payout first (even with nothing payable left).  #### Conflicts (409)  - A retry asking for a different `amountCents` than the payout in progress answers 409 with the amount in progress. - A settle while another request is still waiting on Stripe for the same payout answers 409 (\"This payout is being sent to Stripe right now. Try again in a minute.\"). - A payout Stripe has not confirmed after 24 hours answers 409 (\"This payout is being confirmed with Stripe. Try again after the next reconciliation (within 24 hours).\") until the daily reconciliation finishes it: settled if Stripe made the transfer, returned to payable if it did not. - A creator held by an unfinished payout batch answers 409 (\"This creator is in a card payout that is not finished yet.\"). 
 
 ### Example
 ```csharp
@@ -2623,7 +2623,7 @@ namespace Example
             var campaignId = "campaignId_example";  // string | Campaign ID.
             var participantId = "participantId_example";  // string | Participant ID.
             var settleCampaignParticipantRequest = new SettleCampaignParticipantRequest(); // SettleCampaignParticipantRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -2669,7 +2669,7 @@ catch (ApiException e)
 | **campaignId** | **string** | Campaign ID. |  |
 | **participantId** | **string** | Participant ID. |  |
 | **settleCampaignParticipantRequest** | [**SettleCampaignParticipantRequest**](SettleCampaignParticipantRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 

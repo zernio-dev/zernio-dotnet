@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | 
 **PlatformPostId** | **string** | Platform-side post ID (for example the YouTube video ID) | 
 **PublishedAt** | **DateTime** | When the post was published, ISO-8601 UTC | 
-**SyncedAt** | **DateTime** | When the sync cycle that produced this snapshot STARTED, ISO-8601 UTC. This is NOT the order entries arrive in and it is not a resume point: a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Use &#x60;nextCursor&#x60; to resume.  | 
+**SyncedAt** | **DateTime** | When the sync cycle that produced this snapshot STARTED, ISO-8601 UTC.  This is NOT the order entries arrive in and not a resume point: a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Use &#x60;nextCursor&#x60; to resume.  | 
 **IsDeleted** | **bool** | True when the post was detected as deleted on the platform at this sync | 
 **Metrics** | [**AnalyticsDeltaEntryMetrics**](AnalyticsDeltaEntryMetrics.md) |  | 
 

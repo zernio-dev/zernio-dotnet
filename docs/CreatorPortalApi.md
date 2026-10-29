@@ -118,7 +118,7 @@ No authorization required
 
 Download a payout statement
 
-A PDF statement of one paid payout to this creator: who paid, the campaign, the date, the amount and the Stripe transfer id. It is a statement of a payment, not a tax invoice. Only for a paid payout of this participant; anything else answers 404. About 60 downloads per participant every 10 minutes. 
+A PDF statement of one paid payout to this creator: who paid, the campaign, the date, the amount and the Stripe transfer id. It is a statement of a payment, not a tax invoice.  Only for a paid payout of this participant; anything else answers 404.  About 60 downloads per participant every 10 minutes. 
 
 ### Example
 ```csharp
@@ -318,7 +318,7 @@ No authorization required
 
 Read a creator invite or participant page
 
-What a creator sees behind a campaign link, with no API key. `token` is either an open invite token (from `POST /v1/creator-campaigns/{campaignId}/invite-link`), which answers `kind: invite` with the campaign only, or a participant token (from an invite or a join), which answers `kind: participant` with the creator's connected accounts, latest 100 submissions, earnings and payout setup. Reading a participant page also re-checks the creator's connected accounts. Never cached. 
+What a creator sees behind a campaign link, with no API key. Never cached.  `token` is one of:  - An open invite token (from `POST /v1/creator-campaigns/{campaignId}/invite-link`): answers `kind: invite` with the campaign only. - A participant token (from an invite or a join): answers `kind: participant` with the creator's connected accounts, latest 100 submissions, earnings and payout setup.  Reading a participant page also re-checks the creator's connected accounts. 
 
 ### Example
 ```csharp
@@ -414,7 +414,7 @@ No authorization required
 
 Join a campaign
 
-Accepts a participant invite, or joins through an open invite link. With a participant token the body is ignored and the invite is accepted. With an open invite token a new participant is created from `displayName` (required) and `email` (optional), and a fresh participant token comes back: keep it, it is the creator's only key to their page. Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes. 
+Accepts a participant invite, or joins through an open invite link.  - Participant token: the body is ignored and the invite is accepted. - Open invite token: a new participant is created from `displayName` (required) and `email` (optional), and a fresh participant token comes back. Keep it: it is the creator's only key to their page.  Open-link joins are limited to about 20 per IP address and 60 per link every 10 minutes. 
 
 ### Example
 ```csharp
@@ -515,7 +515,7 @@ No authorization required
 
 Email a creator their campaign links
 
-For a creator who lost their link. Emails every personal participant link held by `email` in one message, optionally only the one for `campaignId`. Removed participants and draft campaigns are left out. Always answers 202 with the same body, so the answer never tells whether the address has links. Limited to 5 requests per hour per email address and 5 per hour per IP address. 
+For a creator who lost their link. Emails every personal participant link held by `email` in one message, optionally only the one for `campaignId`.  - Removed participants and draft campaigns are left out. - Always answers 202 with the same body, so the answer never tells whether the address has links. - Limited to 5 requests per hour per email address and 5 per hour per IP address. 
 
 ### Example
 ```csharp
@@ -901,7 +901,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Submitted. |  -  |
-| **400** | The link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts (&#x60;invalid_field_value&#x60;, &#x60;param: url&#x60;). Also 400 &#x60;invalid_field_value&#x60; when the post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;): only the first accounts the creator connected, up to that count, can submit. |  -  |
+| **400** | The post cannot be submitted: 400 &#x60;invalid_field_value&#x60;.  - &#x60;param: url&#x60;: the link is not a post of an accepted platform, or the post was published before the campaign started or longer ago than the campaign accepts. - The post is from an account past the campaign&#39;s &#x60;caps.maxAccountsPerParticipant&#x60; (\&quot;This campaign allows 2 connected accounts.\&quot;). Only the first accounts the creator connected, up to that count, can submit.  |  -  |
 | **403** | The creator has not connected an account on that platform yet (&#x60;insufficient_permissions&#x60;, \&quot;Connect your TikTok account first, then submit the post again\&quot;). |  -  |
 | **404** | The link is invalid or expired, or the post is not from an account the creator connected (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | The invite is not accepted yet, the campaign is not accepting posts (not started, paused or ended), the post was already submitted, today&#39;s per-participant post limit is reached, or the participation was suspended or removed (&#x60;invalid_resource_state&#x60;; the message says which). |  -  |

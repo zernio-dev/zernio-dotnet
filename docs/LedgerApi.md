@@ -13,7 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get ledger balances
 
-Returns the balance of each bucket (for example accruing, owed, payable) for one ledger scope. A scope owned by another team returns an empty balances object. A profile-scoped key (or a member limited to some profiles) only reads `campaign` and `participant` scopes of campaigns under its profiles; any other scope returns an empty balances object. 
+Returns the balance of each bucket (for example accruing, owed, payable) for one ledger scope.  These return an empty balances object:  - A scope owned by another team. - For a profile-scoped key (or a member limited to some profiles), any scope other than `campaign` and `participant` scopes of campaigns under its profiles. 
 
 ### Example
 ```csharp
@@ -107,7 +107,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Balances per bucket in cents |  -  |
 | **400** | Invalid request |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -117,7 +117,7 @@ catch (ApiException e)
 
 List ledger entries
 
-Lists ledger entries for your team, newest first. Filter by scope (matches either side of the entry), kind, or the reference that caused the entry. A profile-scoped key (or a member limited to some profiles) only sees entries of campaigns under its profiles and of their participants; operator and platform scopes stay hidden from it. 
+Lists ledger entries for your team, newest first.  ### Filters  - scope (matches either side of the entry) - kind - the reference that caused the entry  ### Profile-scoped access  A profile-scoped key (or a member limited to some profiles) only sees entries of campaigns under its profiles and of their participants. Operator and platform scopes stay hidden from it. 
 
 ### Example
 ```csharp
@@ -219,7 +219,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Ledger entries |  -  |
 | **400** | Invalid request |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

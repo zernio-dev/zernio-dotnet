@@ -741,7 +741,7 @@ catch (ApiException e)
 
 Get a call recording
 
-Resolves a fresh, playable MP3 URL for the call's recording. Provider-signed recording URLs expire ~10 minutes after signing, so the `recordingUrl` stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds `302 Found` redirecting to the fresh URL (point an `<audio>` element or a link straight at this endpoint); pass `as=json` to receive `{ url }` instead. 
+Resolves a fresh, playable MP3 URL for the call's recording.  Provider-signed recording URLs expire ~10 minutes after signing, so the `recordingUrl` stored on the call is usually stale by the time it is played. This endpoint re-signs on demand.  - Default: responds `302 Found` redirecting to the fresh URL (point an `<audio>` element or a link straight at this endpoint). - Pass `as=json` to receive `{ url }` instead. 
 
 ### Example
 ```csharp
@@ -847,7 +847,7 @@ catch (ApiException e)
 
 Get calling config for a number
 
-The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (`GET /v1/whatsapp/calling?accountId=`) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource).  Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored.  The account-scoped read (`GET /v1/whatsapp/calling?accountId=`) remains for callers that only know the account id. It additionally carries account-level extras (billing eligibility, current-period spend). 
 
 ### Example
 ```csharp
@@ -949,7 +949,7 @@ catch (ApiException e)
 
 Get calling config for an account
 
-Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as `{id}` on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
+Returns the local calling configuration snapshot for the connected WhatsApp account:  - whether calling is enabled; - the forward-to destination URI; - recording opt-in state; - the phone number record id (use as `{id}` on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling); - whether SIP digest credentials are stored (the encrypted password itself is never returned).  It also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
 
 ### Example
 ```csharp
@@ -1076,7 +1076,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
             var initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. (optional) 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  (optional) 
 
             try
             {
@@ -1120,7 +1120,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional]  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional]  |
 
 ### Return type
 
@@ -1264,7 +1264,7 @@ catch (ApiException e)
 
 Start caller-ID verification for a customer-brought number
 
-Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on `tel:` call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (`callerIdMode: platform` on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+Sends a one-time code to a customer-brought (BYO) WhatsApp number by SMS or voice call, to verify it as caller ID. Re-POST to resend.  BYO numbers cannot present themselves as caller ID on `tel:` call forwards until verified (carrier anti-spoofing). Until then forwarded calls show a Zernio number (`callerIdMode: platform` on the calling config).  Zernio-purchased numbers never need this and get a 400. 
 
 ### Example
 ```csharp

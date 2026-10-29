@@ -30,6 +30,7 @@ docs/AdAudiencesApi.md
 docs/AdBudget.md
 docs/AdCampaign.md
 docs/AdCampaignBudget.md
+docs/AdCampaignOptimizationGoal.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
 docs/AdCreativeAssets.md
@@ -390,6 +391,8 @@ docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
 docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
+docs/CheckWhatsAppNumberAvailability200Response.md
+docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md
 docs/CommentAutomationActions.md
 docs/CommentAutomationAudience.md
 docs/CommentAutomationDmMedia.md
@@ -757,6 +760,7 @@ docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestRegionsInnerOneOf.md
 docs/CreateStandaloneAdRequestSitelinksInner.md
+docs/CreateStandaloneAdRequestSmartTargeting.md
 docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
@@ -788,6 +792,7 @@ docs/CreateWhatsAppGroupChat201Response.md
 docs/CreateWhatsAppGroupChat201ResponseGroup.md
 docs/CreateWhatsAppGroupChatRequest.md
 docs/CreateWhatsAppGroupInviteLink200Response.md
+docs/CreateWhatsAppNumberKycLinkRequest.md
 docs/CreateWhatsAppSandboxSession200Response.md
 docs/CreateWhatsAppSandboxSessionRequest.md
 docs/CreateWhatsAppTemplate200Response.md
@@ -1019,6 +1024,7 @@ docs/GenerateKeywordIdeas200ResponsePaging.md
 docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccountHealth200Response.md
+docs/GetAccountHealth200ResponseMessagingRestriction.md
 docs/GetAccountHealth200ResponsePermissions.md
 docs/GetAccountHealth200ResponsePermissionsPostingInner.md
 docs/GetAccountHealth200ResponsePlatformConnection.md
@@ -3367,6 +3373,7 @@ src/Zernio.Test/Model/AdAnalyticsResponseTests.cs
 src/Zernio.Test/Model/AdAppliedDefaultsTests.cs
 src/Zernio.Test/Model/AdBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignBudgetTests.cs
+src/Zernio.Test/Model/AdCampaignOptimizationGoalTests.cs
 src/Zernio.Test/Model/AdCampaignTests.cs
 src/Zernio.Test/Model/AdCreativeAssetsMarketingImagesInnerTests.cs
 src/Zernio.Test/Model/AdCreativeAssetsSquareMarketingImagesInnerTests.cs
@@ -3715,6 +3722,8 @@ src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortabilityRequestTests.cs
 src/Zernio.Test/Model/CheckVerification200ResponseTests.cs
 src/Zernio.Test/Model/CheckVerificationRequestTests.cs
+src/Zernio.Test/Model/CheckWhatsAppNumberAvailability200ResponseAreaAvailabilityTests.cs
+src/Zernio.Test/Model/CheckWhatsAppNumberAvailability200ResponseTests.cs
 src/Zernio.Test/Model/CommentAutomationActionsTests.cs
 src/Zernio.Test/Model/CommentAutomationAudienceTests.cs
 src/Zernio.Test/Model/CommentAutomationDmMediaTests.cs
@@ -4074,6 +4083,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestSitelinksInnerTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestSmartTargetingTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTranslationsInnerTests.cs
@@ -4106,6 +4116,7 @@ src/Zernio.Test/Model/CreateWhatsAppGroupChat201ResponseGroupTests.cs
 src/Zernio.Test/Model/CreateWhatsAppGroupChat201ResponseTests.cs
 src/Zernio.Test/Model/CreateWhatsAppGroupChatRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppGroupInviteLink200ResponseTests.cs
+src/Zernio.Test/Model/CreateWhatsAppNumberKycLinkRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppSandboxSession200ResponseTests.cs
 src/Zernio.Test/Model/CreateWhatsAppSandboxSessionRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppTemplate200ResponseTemplateTests.cs
@@ -4321,6 +4332,7 @@ src/Zernio.Test/Model/GenerateKeywordIdeas200ResponsePagingTests.cs
 src/Zernio.Test/Model/GenerateKeywordIdeas200ResponseTests.cs
 src/Zernio.Test/Model/GenerateKeywordIdeasRequestTests.cs
 src/Zernio.Test/Model/GeoRestrictionTests.cs
+src/Zernio.Test/Model/GetAccountHealth200ResponseMessagingRestrictionTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsPostingInnerTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePlatformConnectionMetaErrorTests.cs
@@ -6646,6 +6658,7 @@ src/Zernio/Model/AdAppliedDefaults.cs
 src/Zernio/Model/AdBudget.cs
 src/Zernio/Model/AdCampaign.cs
 src/Zernio/Model/AdCampaignBudget.cs
+src/Zernio/Model/AdCampaignOptimizationGoal.cs
 src/Zernio/Model/AdCreative.cs
 src/Zernio/Model/AdCreativeAssets.cs
 src/Zernio/Model/AdCreativeAssetsMarketingImagesInner.cs
@@ -6992,6 +7005,8 @@ src/Zernio/Model/CheckPhoneNumberPortability200ResponseResultsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortabilityRequest.cs
 src/Zernio/Model/CheckVerification200Response.cs
 src/Zernio/Model/CheckVerificationRequest.cs
+src/Zernio/Model/CheckWhatsAppNumberAvailability200Response.cs
+src/Zernio/Model/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.cs
 src/Zernio/Model/CommentAutomationActions.cs
 src/Zernio/Model/CommentAutomationAudience.cs
 src/Zernio/Model/CommentAutomationDmMedia.cs
@@ -7352,6 +7367,7 @@ src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInnerOneOf.cs
 src/Zernio/Model/CreateStandaloneAdRequestSitelinksInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestSmartTargeting.cs
 src/Zernio/Model/CreateStandaloneAdRequestStructuredSnippetsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTranslationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
@@ -7383,6 +7399,7 @@ src/Zernio/Model/CreateWhatsAppGroupChat201Response.cs
 src/Zernio/Model/CreateWhatsAppGroupChat201ResponseGroup.cs
 src/Zernio/Model/CreateWhatsAppGroupChatRequest.cs
 src/Zernio/Model/CreateWhatsAppGroupInviteLink200Response.cs
+src/Zernio/Model/CreateWhatsAppNumberKycLinkRequest.cs
 src/Zernio/Model/CreateWhatsAppSandboxSession200Response.cs
 src/Zernio/Model/CreateWhatsAppSandboxSessionRequest.cs
 src/Zernio/Model/CreateWhatsAppTemplate200Response.cs
@@ -7599,6 +7616,7 @@ src/Zernio/Model/GenerateKeywordIdeas200ResponsePaging.cs
 src/Zernio/Model/GenerateKeywordIdeasRequest.cs
 src/Zernio/Model/GeoRestriction.cs
 src/Zernio/Model/GetAccountHealth200Response.cs
+src/Zernio/Model/GetAccountHealth200ResponseMessagingRestriction.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissions.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissionsPostingInner.cs
 src/Zernio/Model/GetAccountHealth200ResponsePlatformConnection.cs

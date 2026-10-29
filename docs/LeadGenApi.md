@@ -48,7 +48,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
             var formId = "formId_example";  // string | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
-            var accountId = "accountId_example";  // string | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile; an Instagram account uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile).
+            var accountId = "accountId_example";  // string | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile.
 
             try
             {
@@ -92,7 +92,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **formId** | **string** | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). |  |
-| **accountId** | **string** | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile; an Instagram account uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile). |  |
+| **accountId** | **string** | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile. |  |
 
 ### Return type
 
@@ -114,7 +114,7 @@ catch (ApiException e)
 | **200** | Archived. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
+| **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -228,7 +228,7 @@ catch (ApiException e)
 
 Create a lead form
 
-Creates a lead form on a Facebook Page or LinkedIn Company Page to collect contact details from ads.  The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where `accountId` may be the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile), an Instagram account (the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. thankYouEnableMessenger, isPhoneSmsVerifyEnabled and customDisclaimer are accepted only inside platformSpecificData (top-level is a 400). LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+Creates a lead form on a Facebook Page or LinkedIn Company Page to collect contact details from ads.  The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Requires the Ads add-on.  NOT idempotent: a retry creates a second form.  ### Meta  Created on the connected Facebook Page (POST /{page-id}/leadgen_forms). `accountId` may be:  - the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile) - an Instagram account (the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile) - the Facebook account itself  The old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent. Mixing both shapes is a 400.  thankYouEnableMessenger, isPhoneSmsVerifyEnabled and customDisclaimer are accepted only inside platformSpecificData (top-level is a 400).  Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both.  ### LinkedIn  Created on the ad account's Company Page. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). 
 
 ### Example
 ```csharp
@@ -319,7 +319,7 @@ catch (ApiException e)
 | **200** | Created form. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on required. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected. |  -  |
+| **403** | Forbidden. One of:  - Ads add-on required. - Code &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected. |  -  |
 | **422** | Meta rejected the lead form. Code 3 is Meta&#39;s generic app-capability error and does not name a field; when the request set isPhoneSmsVerifyEnabled, the response names that field as the one to drop first. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -432,7 +432,7 @@ catch (ApiException e)
 
 Delete a test lead
 
-Deletes the test lead on a Meta lead form so you can submit a new one (Meta allows only one at a time).  Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta's Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
+Deletes the test lead on a Meta lead form so you can submit a new one (Meta allows only one at a time).  Removes a test lead created for the form (DELETE /{leadgen_id}). Meta keeps one test lead per form and refuses a second until the first is gone.  - The same test lead appears in Meta's Lead Ads Testing Tool. - Meta only deletes test leads; a real lead is refused. 
 
 ### Example
 ```csharp
@@ -564,8 +564,8 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
             var formId = "formId_example";  // string | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
-            var accountId = "accountId_example";  // string | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile; an Instagram account uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile).
-            var fields = name,thank_you_page{title,body,button_type,website_url};  // string? | Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  (optional) 
+            var accountId = "accountId_example";  // string | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - Meta ads connection: resolves its Page through the Facebook account linked to the same profile. - Instagram account: uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile).
+            var fields = name,thank_you_page{title,body,button_type,website_url};  // string? | Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change.  - Field names, commas and {} expansion only. Anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. - Unknown field names are rejected by Meta as a 400. - Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages.  (optional) 
 
             try
             {
@@ -609,8 +609,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **formId** | **string** | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). |  |
-| **accountId** | **string** | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform). A Meta ads connection resolves its Page through the Facebook account linked to the same profile; an Instagram account uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile). |  |
-| **fields** | **string?** | Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change. Field names, commas and {} expansion only; anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages. Unknown field names are rejected by Meta as a 400.  | [optional]  |
+| **accountId** | **string** | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - Meta ads connection: resolves its Page through the Facebook account linked to the same profile. - Instagram account: uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile). |  |
+| **fields** | **string?** | Meta only. A Graph field selection passed through verbatim to GET /{form-id}, replacing the default projection, so fields Meta adds later are reachable without an API change.  - Field names, commas and {} expansion only. Anything else (Graph field modifiers such as .limit(), or characters that could open another query parameter) is a 400. - Unknown field names are rejected by Meta as a 400. - Ownership of the form is verified before the selection runs, so this cannot reach any Page but the one accountId manages.  | [optional]  |
 
 ### Return type
 
@@ -642,7 +642,7 @@ catch (ApiException e)
 
 List leads for a single form
 
-Lists the leads submitted through one Meta lead form.  Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent.  Persisted leads arrive in real time through Meta's webhook, and a background pass re-reads every Page from Meta to catch the leads the webhook misses: every 15 minutes for Pages that received a lead in the last 7 days. `meta.lastCheckedAt` says when that pass last ran, so polling this endpoint faster than that returns nothing new; subscribe to the `lead.received` webhook instead. The live Graph read is cached for 5 minutes, and `meta.lastCheckedAt` is when it was read. 
+Lists the leads submitted through one Meta lead form.  It serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read.  ### Accounts  Accepts either of these with leads_retrieval access to the form:  - a Facebook account - a metaads business-login account, which uses its system-user token without a posting parent  ### Freshness  Persisted leads arrive in real time through Meta's webhook. A background pass re-reads every Page from Meta to catch the leads the webhook misses: every 15 minutes for Pages that received a lead in the last 7 days.  `meta.lastCheckedAt` says when that pass last ran, so polling this endpoint faster than that returns nothing new. Subscribe to the `lead.received` webhook instead.  The live Graph read is cached for 5 minutes, and `meta.lastCheckedAt` is when it was read. 
 
 ### Example
 ```csharp
@@ -778,7 +778,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected Meta ads, Facebook, Instagram or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile; an Instagram account uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile).
+            var accountId = "accountId_example";  // string | Connected Meta ads, Facebook, Instagram or LinkedIn ads account ID.  - Meta ads connection: resolves its Page through the Facebook account linked to the same profile. - Instagram account: uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile).
             var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? |  (optional) 
@@ -824,7 +824,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected Meta ads, Facebook, Instagram or LinkedIn ads account ID. A Meta ads connection resolves its Page through the Facebook account linked to the same profile; an Instagram account uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile). |  |
+| **accountId** | **string** | Connected Meta ads, Facebook, Instagram or LinkedIn ads account ID.  - Meta ads connection: resolves its Page through the Facebook account linked to the same profile. - Instagram account: uses the Page its ads run under (its own linked Page, else the Facebook or business-login Meta ads account on the same profile). |  |
 | **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** |  | [optional]  |
@@ -859,7 +859,7 @@ catch (ApiException e)
 
 List submitted leads
 
-Lists the leads submitted through your Meta or LinkedIn lead forms, newest first.  Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on `cursor`. For Meta (default) leads are served from the persisted cache, ingested in real time from the `leadgen` webhook. When `accountId` is a LinkedIn ads account, leads are fetched live from LinkedIn's `leadFormResponses` (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and `adAccountId` is required. Reading LinkedIn responses needs the `r_marketing_leadgen_automation` permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
+Lists the leads submitted through your Meta or LinkedIn lead forms, newest first.  Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on `cursor`. Requires the Ads add-on.  ### Meta (default)  Leads are served from the persisted cache, ingested in real time from the `leadgen` webhook.  ### LinkedIn  When `accountId` is a LinkedIn ads account, `adAccountId` is required. Leads are fetched live from LinkedIn's `leadFormResponses`: LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted.  Reading LinkedIn responses needs the `r_marketing_leadgen_automation` permission. Accounts connected before it was added must reconnect. 
 
 ### Example
 ```csharp
