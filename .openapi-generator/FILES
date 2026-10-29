@@ -81,6 +81,7 @@ docs/AdTargetingApi.md
 docs/AdTracking.md
 docs/AdTreeAdSet.md
 docs/AdTreeAdSetAdSetBudget.md
+docs/AdTreeAdSetAttributionSpecInner.md
 docs/AdTreeAdSetBudget.md
 docs/AdTreeAdSetPromotedObject.md
 docs/AdTreeCampaign.md
@@ -3412,6 +3413,7 @@ src/Zernio.Test/Model/AdStatusTests.cs
 src/Zernio.Test/Model/AdTests.cs
 src/Zernio.Test/Model/AdTrackingTests.cs
 src/Zernio.Test/Model/AdTreeAdSetAdSetBudgetTests.cs
+src/Zernio.Test/Model/AdTreeAdSetAttributionSpecInnerTests.cs
 src/Zernio.Test/Model/AdTreeAdSetBudgetTests.cs
 src/Zernio.Test/Model/AdTreeAdSetPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeAdSetTests.cs
@@ -6689,6 +6691,7 @@ src/Zernio/Model/AdStatus.cs
 src/Zernio/Model/AdTracking.cs
 src/Zernio/Model/AdTreeAdSet.cs
 src/Zernio/Model/AdTreeAdSetAdSetBudget.cs
+src/Zernio/Model/AdTreeAdSetAttributionSpecInner.cs
 src/Zernio/Model/AdTreeAdSetBudget.cs
 src/Zernio/Model/AdTreeAdSetPromotedObject.cs
 src/Zernio/Model/AdTreeCampaign.cs
