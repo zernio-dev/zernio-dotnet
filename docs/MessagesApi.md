@@ -1407,7 +1407,7 @@ catch (ApiException e)
 
 <a id="listinboxconversations"></a>
 # **ListInboxConversations**
-> ListInboxConversations200Response ListInboxConversations (string? profileId = null, string? platform = null, string? status = null, string? folder = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null)
+> ListInboxConversations200Response ListInboxConversations (string? profileId = null, string? platform = null, string? status = null, string? folder = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null, string? tags = null)
 
 List conversations
 
@@ -1445,11 +1445,12 @@ namespace Example
             var limit = 50;  // int? | Maximum number of conversations to return; values above 100 are served as 100. (optional)  (default to 50)
             var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
             var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
+            var tags = "tags_example";  // string? | Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder=requests. (optional) 
 
             try
             {
                 // List conversations
-                ListInboxConversations200Response result = apiInstance.ListInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
+                ListInboxConversations200Response result = apiInstance.ListInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId, tags);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1470,7 +1471,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List conversations
-    ApiResponse<ListInboxConversations200Response> response = apiInstance.ListInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
+    ApiResponse<ListInboxConversations200Response> response = apiInstance.ListInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId, tags);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1495,6 +1496,7 @@ catch (ApiException e)
 | **limit** | **int?** | Maximum number of conversations to return; values above 100 are served as 100. | [optional] [default to 50] |
 | **cursor** | **string?** | Pagination cursor for next page | [optional]  |
 | **accountId** | **string?** | Filter by specific account ID | [optional]  |
+| **tags** | **string?** | Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder&#x3D;requests. | [optional]  |
 
 ### Return type
 
