@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **EndsAt** | **DateTime?** |  | [optional] 
 **TrackingDays** | **int** |  | [optional] 
 **HoldDays** | **int** |  | [optional] 
-**MaxPostAgeMinutes** | **int** |  | [optional] 
+**MaxPostAgeMinutes** | **int?** | Null removes the limit. | [optional] 
 **Settlement** | **string** |  | [optional] 
 **Economics** | [**CreatorCampaignEconomics**](CreatorCampaignEconomics.md) |  | [optional] 
 **Caps** | [**CreatorCampaignCaps**](CreatorCampaignCaps.md) |  | [optional] 

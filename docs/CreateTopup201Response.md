@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TopupId** | **string** |  | [optional] 
-**Url** | **string** | Stripe Checkout URL to send the payer to | [optional] 
+**TopupId** | **string** |  | 
+**Status** | **string** |  | 
+**ClientSecret** | **string** | PaymentIntent client secret for Stripe.js handleNextAction; set only when status is requires_action | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

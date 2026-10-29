@@ -582,6 +582,7 @@ docs/CreateCampaignInviteLink201Response.md
 docs/CreateCampaignParticipant201Response.md
 docs/CreateCampaignParticipantRequest.md
 docs/CreateCampaignPayoutBatch201Response.md
+docs/CreateCampaignPayoutBatch201ResponsePayment.md
 docs/CreateCampaignPayoutBatchRequest.md
 docs/CreateCommentAutomation200Response.md
 docs/CreateCommentAutomation200ResponseAutomation.md
@@ -1107,6 +1108,7 @@ docs/GetAnalyticsDashboard200Response.md
 docs/GetAnalyticsDashboard200ResponseDailyInner.md
 docs/GetAnalyticsDashboard200ResponseDateRange.md
 docs/GetBalance200Response.md
+docs/GetBalance200ResponsePayoutLocksInner.md
 docs/GetBalance200ResponsePendingReleasesInner.md
 docs/GetBestTimeToPost200Response.md
 docs/GetBestTimeToPost200ResponseSlotsInner.md
@@ -3908,6 +3910,7 @@ src/Zernio.Test/Model/CreateCampaignAdjustmentRequestTests.cs
 src/Zernio.Test/Model/CreateCampaignInviteLink201ResponseTests.cs
 src/Zernio.Test/Model/CreateCampaignParticipant201ResponseTests.cs
 src/Zernio.Test/Model/CreateCampaignParticipantRequestTests.cs
+src/Zernio.Test/Model/CreateCampaignPayoutBatch201ResponsePaymentTests.cs
 src/Zernio.Test/Model/CreateCampaignPayoutBatch201ResponseTests.cs
 src/Zernio.Test/Model/CreateCampaignPayoutBatchRequestTests.cs
 src/Zernio.Test/Model/CreateCommentAutomation200ResponseAutomationTests.cs
@@ -4418,6 +4421,7 @@ src/Zernio.Test/Model/GetAnalytics402ResponseTests.cs
 src/Zernio.Test/Model/GetAnalyticsDashboard200ResponseDailyInnerTests.cs
 src/Zernio.Test/Model/GetAnalyticsDashboard200ResponseDateRangeTests.cs
 src/Zernio.Test/Model/GetAnalyticsDashboard200ResponseTests.cs
+src/Zernio.Test/Model/GetBalance200ResponsePayoutLocksInnerTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePendingReleasesInnerTests.cs
 src/Zernio.Test/Model/GetBalance200ResponseTests.cs
 src/Zernio.Test/Model/GetBestTimeToPost200ResponseSlotsInnerTests.cs
@@ -7195,6 +7199,7 @@ src/Zernio/Model/CreateCampaignInviteLink201Response.cs
 src/Zernio/Model/CreateCampaignParticipant201Response.cs
 src/Zernio/Model/CreateCampaignParticipantRequest.cs
 src/Zernio/Model/CreateCampaignPayoutBatch201Response.cs
+src/Zernio/Model/CreateCampaignPayoutBatch201ResponsePayment.cs
 src/Zernio/Model/CreateCampaignPayoutBatchRequest.cs
 src/Zernio/Model/CreateCommentAutomation200Response.cs
 src/Zernio/Model/CreateCommentAutomation200ResponseAutomation.cs
@@ -7705,6 +7710,7 @@ src/Zernio/Model/GetAnalyticsDashboard200Response.cs
 src/Zernio/Model/GetAnalyticsDashboard200ResponseDailyInner.cs
 src/Zernio/Model/GetAnalyticsDashboard200ResponseDateRange.cs
 src/Zernio/Model/GetBalance200Response.cs
+src/Zernio/Model/GetBalance200ResponsePayoutLocksInner.cs
 src/Zernio/Model/GetBalance200ResponsePendingReleasesInner.cs
 src/Zernio/Model/GetBestTimeToPost200Response.cs
 src/Zernio/Model/GetBestTimeToPost200ResponseSlotsInner.cs
