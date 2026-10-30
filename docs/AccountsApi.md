@@ -1169,7 +1169,7 @@ catch (ApiException e)
 
 <a id="listaccounts"></a>
 # **ListAccounts**
-> AccountsListResponse ListAccounts (string? profileId = null, string? platform = null, string? status = null, string? search = null, string? category = null, string? sort = null, string? order = null, bool? includeOverLimit = null, bool? excludeHidden = null, bool? includeCreatorAccounts = null, bool? includeSandbox = null, bool? includeStatusCounts = null, int? page = null, int? limit = null, string? cursor = null, string? profileIds = null, int? perProfile = null)
+> AccountsListResponse ListAccounts (string? profileId = null, string? platform = null, string? status = null, string? search = null, string? category = null, string? sort = null, string? order = null, bool? includeOverLimit = null, bool? excludeHidden = null, bool? adAccountRows = null, bool? includeCreatorAccounts = null, bool? includeSandbox = null, bool? includeStatusCounts = null, int? page = null, int? limit = null, string? cursor = null, string? profileIds = null, int? perProfile = null)
 
 List accounts
 
@@ -1208,6 +1208,7 @@ namespace Example
             var order = "asc";  // string? | Direction for `sort`. (optional)  (default to asc)
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
             var excludeHidden = false;  // bool? | When true, leaves out accounts the dashboard does not show as connections:  - posting accounts with `enabled: false` (ads accounts are always kept, whatever their `enabled` value); - the internal `sms` and `phone` accounts behind each phone number.  Applied before pagination, so page totals and `statusCounts` count only the remaining accounts. Sandbox accounts added by `includeSandbox` are appended after this filter. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
+            var adAccountRows = false;  // bool? | When true, lists every ads account row, one per ad account. By default an API key or OAuth app sees each ads login once per profile and platform, as the single ads connection it had before rows per ad account: its oldest row.  Only changes the result once ads are connected as one row per ad account; until then the two shapes are the same. Applied before pagination. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
             var includeCreatorAccounts = false;  // bool? | When true, also lists the accounts creators connected to your creator campaigns. They sit on creator profiles, which `GET /v1/profiles` does not list, and are left out by default.  Asking for one creator profile by `profileId` lists its accounts either way. Applied before pagination. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
             var includeSandbox = false;  // bool? | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter.  Ignored on a paginated request (page, limit or cursor) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
             var includeStatusCounts = false;  // bool? | When true, the response carries `statusCounts`: how many accounts match every other filter of the request (with `status` lifted) in total and how many of those need a reconnection. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
@@ -1220,7 +1221,7 @@ namespace Example
             try
             {
                 // List accounts
-                AccountsListResponse result = apiInstance.ListAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeCreatorAccounts, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile);
+                AccountsListResponse result = apiInstance.ListAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, adAccountRows, includeCreatorAccounts, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1241,7 +1242,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List accounts
-    ApiResponse<AccountsListResponse> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeCreatorAccounts, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile);
+    ApiResponse<AccountsListResponse> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, adAccountRows, includeCreatorAccounts, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1267,6 +1268,7 @@ catch (ApiException e)
 | **order** | **string?** | Direction for &#x60;sort&#x60;. | [optional] [default to asc] |
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **excludeHidden** | **bool?** | When true, leaves out accounts the dashboard does not show as connections:  - posting accounts with &#x60;enabled: false&#x60; (ads accounts are always kept, whatever their &#x60;enabled&#x60; value); - the internal &#x60;sms&#x60; and &#x60;phone&#x60; accounts behind each phone number.  Applied before pagination, so page totals and &#x60;statusCounts&#x60; count only the remaining accounts. Sandbox accounts added by &#x60;includeSandbox&#x60; are appended after this filter. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **adAccountRows** | **bool?** | When true, lists every ads account row, one per ad account. By default an API key or OAuth app sees each ads login once per profile and platform, as the single ads connection it had before rows per ad account: its oldest row.  Only changes the result once ads are connected as one row per ad account; until then the two shapes are the same. Applied before pagination. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeCreatorAccounts** | **bool?** | When true, also lists the accounts creators connected to your creator campaigns. They sit on creator profiles, which &#x60;GET /v1/profiles&#x60; does not list, and are left out by default.  Asking for one creator profile by &#x60;profileId&#x60; lists its accounts either way. Applied before pagination. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeSandbox** | **bool?** | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter.  Ignored on a paginated request (page, limit or cursor) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeStatusCounts** | **bool?** | When true, the response carries &#x60;statusCounts&#x60;: how many accounts match every other filter of the request (with &#x60;status&#x60; lifted) in total and how many of those need a reconnection. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
