@@ -1,5 +1,5 @@
 # Zernio.Model.AdRuleLevel
-Whether the rule checks campaigns or ad sets. Each one is evaluated on its own.
+Whether the rule checks campaigns, ad sets or single ads. Each one is evaluated on its own.
 
 ## Properties
 
