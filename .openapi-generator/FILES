@@ -31,6 +31,7 @@ docs/AdBudget.md
 docs/AdCampaign.md
 docs/AdCampaignBudget.md
 docs/AdCampaignOptimizationGoal.md
+docs/AdCampaignResultsApi.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
 docs/AdCreativeAssets.md
@@ -353,6 +354,7 @@ docs/CampaignReportAuthenticityInner.md
 docs/CampaignReportParticipantsInner.md
 docs/CampaignReportSpend.md
 docs/CampaignReportViews.md
+docs/CampaignResultMetric.md
 docs/CampaignSettlement.md
 docs/CampaignSubmission.md
 docs/CampaignSubmissionAuthenticity.md
@@ -1135,6 +1137,8 @@ docs/GetCampaignBidding200Response.md
 docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignParticipant200Response.md
 docs/GetCampaignReport200Response.md
+docs/GetCampaignResultsUpload200Response.md
+docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md
 docs/GetCampaignSubmission200Response.md
 docs/GetCampaignTargeting200Response.md
 docs/GetCampaignTargeting200ResponseDevicesInner.md
@@ -1782,6 +1786,9 @@ docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
 docs/ListCampaignParticipants200Response.md
 docs/ListCampaignPayables200Response.md
 docs/ListCampaignPayoutBatches200Response.md
+docs/ListCampaignResultMetrics200Response.md
+docs/ListCampaignResults200Response.md
+docs/ListCampaignResults200ResponseCampaignsInner.md
 docs/ListCampaignSubmissions200Response.md
 docs/ListChangelog200Response.md
 docs/ListCommentAutomationLogs200Response.md
@@ -2520,6 +2527,8 @@ docs/SetBusinessAgentConnectorCredentialsRequest.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf1.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf2.md
+docs/SetCampaignResultMetric200Response.md
+docs/SetCampaignResultMetricRequest.md
 docs/SetCommentModerationRequest.md
 docs/SetCommerceDiscountActiveRequest.md
 docs/SetCommercePriceListPrices200Response.md
@@ -2924,6 +2933,9 @@ docs/UploadAdVideo202Response.md
 docs/UploadAdVideo202ResponseVideo.md
 docs/UploadAdVideoRequest.md
 docs/UploadBusinessAgentFileRequest.md
+docs/UploadCampaignResults202Response.md
+docs/UploadCampaignResultsRequest.md
+docs/UploadCampaignResultsRequestRowsInner.md
 docs/UploadFile201Response.md
 docs/UploadFileRequest.md
 docs/UploadMediaDirect200Response.md
@@ -3284,6 +3296,7 @@ src/Zernio.Test/Api/AccountSettingsApiTests.cs
 src/Zernio.Test/Api/AccountsApiTests.cs
 src/Zernio.Test/Api/AdAccountsApiTests.cs
 src/Zernio.Test/Api/AdAudiencesApiTests.cs
+src/Zernio.Test/Api/AdCampaignResultsApiTests.cs
 src/Zernio.Test/Api/AdCampaignsApiTests.cs
 src/Zernio.Test/Api/AdCreativesApiTests.cs
 src/Zernio.Test/Api/AdInsightsApiTests.cs
@@ -3695,6 +3708,7 @@ src/Zernio.Test/Model/CampaignReportParticipantsInnerTests.cs
 src/Zernio.Test/Model/CampaignReportSpendTests.cs
 src/Zernio.Test/Model/CampaignReportTests.cs
 src/Zernio.Test/Model/CampaignReportViewsTests.cs
+src/Zernio.Test/Model/CampaignResultMetricTests.cs
 src/Zernio.Test/Model/CampaignSettlementTests.cs
 src/Zernio.Test/Model/CampaignSubmissionAuthenticityTests.cs
 src/Zernio.Test/Model/CampaignSubmissionCountsTests.cs
@@ -4454,6 +4468,8 @@ src/Zernio.Test/Model/GetCampaignBidding200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignParticipant200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignReport200ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignResultsUpload200ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignResultsUpload200ResponseUnmatchedInnerTests.cs
 src/Zernio.Test/Model/GetCampaignSubmission200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseDevicesInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseExcludedLocationsInnerTests.cs
@@ -5094,6 +5110,9 @@ src/Zernio.Test/Model/ListCampaignNegativeKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignParticipants200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignPayables200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignPayoutBatches200ResponseTests.cs
+src/Zernio.Test/Model/ListCampaignResultMetrics200ResponseTests.cs
+src/Zernio.Test/Model/ListCampaignResults200ResponseCampaignsInnerTests.cs
+src/Zernio.Test/Model/ListCampaignResults200ResponseTests.cs
 src/Zernio.Test/Model/ListCampaignSubmissions200ResponseTests.cs
 src/Zernio.Test/Model/ListChangelog200ResponseTests.cs
 src/Zernio.Test/Model/ListCommentAutomationLogs200ResponseMissesSamplesInnerTests.cs
@@ -5815,6 +5834,8 @@ src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestOneOf1Tests.cs
 src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestOneOf2Tests.cs
 src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestOneOfTests.cs
 src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestTests.cs
+src/Zernio.Test/Model/SetCampaignResultMetric200ResponseTests.cs
+src/Zernio.Test/Model/SetCampaignResultMetricRequestTests.cs
 src/Zernio.Test/Model/SetCommentModerationRequestTests.cs
 src/Zernio.Test/Model/SetCommerceDiscountActiveRequestTests.cs
 src/Zernio.Test/Model/SetCommercePriceListPrices200ResponseTests.cs
@@ -6213,6 +6234,9 @@ src/Zernio.Test/Model/UploadAdVideo202ResponseTests.cs
 src/Zernio.Test/Model/UploadAdVideo202ResponseVideoTests.cs
 src/Zernio.Test/Model/UploadAdVideoRequestTests.cs
 src/Zernio.Test/Model/UploadBusinessAgentFileRequestTests.cs
+src/Zernio.Test/Model/UploadCampaignResults202ResponseTests.cs
+src/Zernio.Test/Model/UploadCampaignResultsRequestRowsInnerTests.cs
+src/Zernio.Test/Model/UploadCampaignResultsRequestTests.cs
 src/Zernio.Test/Model/UploadFile201ResponseTests.cs
 src/Zernio.Test/Model/UploadFileRequestTests.cs
 src/Zernio.Test/Model/UploadMediaDirect200ResponseTests.cs
@@ -6559,6 +6583,7 @@ src/Zernio/Api/AccountSettingsApi.cs
 src/Zernio/Api/AccountsApi.cs
 src/Zernio/Api/AdAccountsApi.cs
 src/Zernio/Api/AdAudiencesApi.cs
+src/Zernio/Api/AdCampaignResultsApi.cs
 src/Zernio/Api/AdCampaignsApi.cs
 src/Zernio/Api/AdCreativesApi.cs
 src/Zernio/Api/AdInsightsApi.cs
@@ -6988,6 +7013,7 @@ src/Zernio/Model/CampaignReportAuthenticityInner.cs
 src/Zernio/Model/CampaignReportParticipantsInner.cs
 src/Zernio/Model/CampaignReportSpend.cs
 src/Zernio/Model/CampaignReportViews.cs
+src/Zernio/Model/CampaignResultMetric.cs
 src/Zernio/Model/CampaignSettlement.cs
 src/Zernio/Model/CampaignSubmission.cs
 src/Zernio/Model/CampaignSubmissionAuthenticity.cs
@@ -7747,6 +7773,8 @@ src/Zernio/Model/GetCampaignBidding200Response.cs
 src/Zernio/Model/GetCampaignConversionGoals200Response.cs
 src/Zernio/Model/GetCampaignParticipant200Response.cs
 src/Zernio/Model/GetCampaignReport200Response.cs
+src/Zernio/Model/GetCampaignResultsUpload200Response.cs
+src/Zernio/Model/GetCampaignResultsUpload200ResponseUnmatchedInner.cs
 src/Zernio/Model/GetCampaignSubmission200Response.cs
 src/Zernio/Model/GetCampaignTargeting200Response.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseDevicesInner.cs
@@ -8387,6 +8415,9 @@ src/Zernio/Model/ListCampaignNegativeKeywords200ResponseKeywordsInner.cs
 src/Zernio/Model/ListCampaignParticipants200Response.cs
 src/Zernio/Model/ListCampaignPayables200Response.cs
 src/Zernio/Model/ListCampaignPayoutBatches200Response.cs
+src/Zernio/Model/ListCampaignResultMetrics200Response.cs
+src/Zernio/Model/ListCampaignResults200Response.cs
+src/Zernio/Model/ListCampaignResults200ResponseCampaignsInner.cs
 src/Zernio/Model/ListCampaignSubmissions200Response.cs
 src/Zernio/Model/ListChangelog200Response.cs
 src/Zernio/Model/ListCommentAutomationLogs200Response.cs
@@ -9108,6 +9139,8 @@ src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequest.cs
 src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequestOneOf.cs
 src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequestOneOf1.cs
 src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequestOneOf2.cs
+src/Zernio/Model/SetCampaignResultMetric200Response.cs
+src/Zernio/Model/SetCampaignResultMetricRequest.cs
 src/Zernio/Model/SetCommentModerationRequest.cs
 src/Zernio/Model/SetCommerceDiscountActiveRequest.cs
 src/Zernio/Model/SetCommercePriceListPrices200Response.cs
@@ -9506,6 +9539,9 @@ src/Zernio/Model/UploadAdVideo202Response.cs
 src/Zernio/Model/UploadAdVideo202ResponseVideo.cs
 src/Zernio/Model/UploadAdVideoRequest.cs
 src/Zernio/Model/UploadBusinessAgentFileRequest.cs
+src/Zernio/Model/UploadCampaignResults202Response.cs
+src/Zernio/Model/UploadCampaignResultsRequest.cs
+src/Zernio/Model/UploadCampaignResultsRequestRowsInner.cs
 src/Zernio/Model/UploadFile201Response.cs
 src/Zernio/Model/UploadFileRequest.cs
 src/Zernio/Model/UploadMediaDirect200Response.cs
