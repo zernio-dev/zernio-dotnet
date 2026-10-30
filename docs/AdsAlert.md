@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **PlatformAdAccountId** | **string** |  | [optional] 
 **Entity** | [**AdsAlertEntity**](AdsAlertEntity.md) |  | [optional] 
 **AdId** | **string** | The Zernio ad id when the entity is an ad, for GET /v1/ads/{adId}. | [optional] 
+**AccountId** | **string** | The Zernio ads connection, on connection_lost and sync_failing alerts. | [optional] 
 **Currency** | **string** |  | [optional] 
 **DetectedAt** | **DateTime** |  | [optional] 
 **Fix** | [**AdsAlertFix**](AdsAlertFix.md) |  | [optional] 
