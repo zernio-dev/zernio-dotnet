@@ -1829,7 +1829,7 @@ namespace Zernio.Api
         /// Review deleted event
         /// </summary>
         /// <remarks>
-        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -1840,7 +1840,7 @@ namespace Zernio.Api
         /// Review deleted event
         /// </summary>
         /// <remarks>
-        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -4488,7 +4488,7 @@ namespace Zernio.Api
         /// Review deleted event
         /// </summary>
         /// <remarks>
-        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -4500,7 +4500,7 @@ namespace Zernio.Api
         /// Review deleted event
         /// </summary>
         /// <remarks>
-        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -16184,7 +16184,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -16195,7 +16195,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -16244,7 +16244,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
@@ -16256,7 +16256,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+        /// Review deleted event Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewDeleted"></param>
