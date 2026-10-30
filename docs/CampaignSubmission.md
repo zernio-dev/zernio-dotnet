@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **ViewsAtSubmission** | **int?** | Views when the post was submitted. They count toward earnings like every later view. | 
 **ViewsLatest** | **int?** | Latest view count read for the post, frozen at the tracking window end. | 
 **ViewsEligible** | **int?** | Views that count toward earnings: every view the platform reports for the post, including those before submission, read at the tracking window end at the latest: once the window completes or is cancelled, the last read at or before its end is final and this value stops moving. | 
+**EngagementsLatest** | **int?** | The campaign engagement types summed at the latest read (all four on a views campaign), frozen at the tracking window end like &#x60;viewsEligible&#x60;. An &#x60;engagements&#x60; campaign earns on this count. | 
 **LastAccruedViews** | **int** |  | 
 **AccruedCents** | **int** |  | 
 **ApprovedCents** | **int** |  | 

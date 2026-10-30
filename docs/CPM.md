@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
+**Metric** | **string** | What the rate pays on. Missing means views. | [optional] 
+**EngagementTypes** | **List&lt;CPM.EngagementTypesEnum&gt;** | The engagements that count. Missing means all four. | [optional] 
 **RatePer1kCents** | **int** |  | 
 **MinViewsToEarn** | **int** |  | 
 **MaxPayoutPerClipCents** | **int** |  | [optional] 
