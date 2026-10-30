@@ -3163,8 +3163,11 @@ docs/WebhookPayloadReferral.md
 docs/WebhookPayloadReferralReferral.md
 docs/WebhookPayloadReferralReferralAdsContextData.md
 docs/WebhookPayloadReferralSender.md
+docs/WebhookPayloadReviewDeleted.md
+docs/WebhookPayloadReviewDeletedReview.md
 docs/WebhookPayloadReviewNew.md
 docs/WebhookPayloadReviewNewAccount.md
+docs/WebhookPayloadReviewRestored.md
 docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadSequenceEnrollment.md
 docs/WebhookPayloadSupportRun.md
@@ -6440,8 +6443,11 @@ src/Zernio.Test/Model/WebhookPayloadReferralReferralAdsContextDataTests.cs
 src/Zernio.Test/Model/WebhookPayloadReferralReferralTests.cs
 src/Zernio.Test/Model/WebhookPayloadReferralSenderTests.cs
 src/Zernio.Test/Model/WebhookPayloadReferralTests.cs
+src/Zernio.Test/Model/WebhookPayloadReviewDeletedReviewTests.cs
+src/Zernio.Test/Model/WebhookPayloadReviewDeletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewNewAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewNewTests.cs
+src/Zernio.Test/Model/WebhookPayloadReviewRestoredTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadSequenceEnrollmentTests.cs
 src/Zernio.Test/Model/WebhookPayloadSupportRunTests.cs
@@ -9729,8 +9735,11 @@ src/Zernio/Model/WebhookPayloadReferral.cs
 src/Zernio/Model/WebhookPayloadReferralReferral.cs
 src/Zernio/Model/WebhookPayloadReferralReferralAdsContextData.cs
 src/Zernio/Model/WebhookPayloadReferralSender.cs
+src/Zernio/Model/WebhookPayloadReviewDeleted.cs
+src/Zernio/Model/WebhookPayloadReviewDeletedReview.cs
 src/Zernio/Model/WebhookPayloadReviewNew.cs
 src/Zernio/Model/WebhookPayloadReviewNewAccount.cs
+src/Zernio/Model/WebhookPayloadReviewRestored.cs
 src/Zernio/Model/WebhookPayloadReviewUpdated.cs
 src/Zernio/Model/WebhookPayloadSequenceEnrollment.cs
 src/Zernio/Model/WebhookPayloadSupportRun.cs
