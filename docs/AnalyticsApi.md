@@ -181,10 +181,10 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
-            var postId = "postId_example";  // string? | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. (optional) 
+            var postId = "postId_example";  // string? | Returns analytics for a single post. Accepts Zernio Post IDs, External Post IDs and the platform's native post ID. Zernio IDs are auto-resolved to External Post analytics. (optional) 
             var platform = "platform_example";  // string? | Filter by platform (default \"all\") (optional) 
-            var profileId = "profileId_example";  // string? | Filter by profile ID (default \"all\") (optional) 
-            var accountId = "accountId_example";  // string? | Filter by account ID (optional) 
+            var profileId = "profileId_example";  // string? | Filter by profile ID (default \"all\"). With a native postId, selects that profile's copy of the post. (optional) 
+            var accountId = "accountId_example";  // string? | Filter by account ID. With a native postId, selects that account's copy of the post. (optional) 
             var source = "all";  // string? | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) (optional)  (default to all)
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional) 
@@ -235,10 +235,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **postId** | **string?** | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional]  |
+| **postId** | **string?** | Returns analytics for a single post. Accepts Zernio Post IDs, External Post IDs and the platform&#39;s native post ID. Zernio IDs are auto-resolved to External Post analytics. | [optional]  |
 | **platform** | **string?** | Filter by platform (default \&quot;all\&quot;) | [optional]  |
-| **profileId** | **string?** | Filter by profile ID (default \&quot;all\&quot;) | [optional]  |
-| **accountId** | **string?** | Filter by account ID | [optional]  |
+| **profileId** | **string?** | Filter by profile ID (default \&quot;all\&quot;). With a native postId, selects that profile&#39;s copy of the post. | [optional]  |
+| **accountId** | **string?** | Filter by account ID. With a native postId, selects that account&#39;s copy of the post. | [optional]  |
 | **source** | **string?** | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] |
 | **fromDate** | **DateOnly?** | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional]  |
 | **toDate** | **DateOnly?** | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional]  |
