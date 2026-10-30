@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Type** | **string** |  | 
 **Metric** | **string** | What the rate pays on. Missing means views. | [optional] 
 **EngagementTypes** | **List&lt;CreatorPortalEconomics.EngagementTypesEnum&gt;** | The engagements that count. Missing means all four. | [optional] 
+**OrganicViewsOnly** | **bool** | Only organic views count; views from ads do not. | [optional] 
 **RatePer1kCents** | **int** |  | 
 **MinViewsToEarn** | **int** |  | 
 **MaxPayoutPerClipCents** | **int** |  | [optional] 

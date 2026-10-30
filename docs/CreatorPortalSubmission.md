@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **PublishedAt** | **DateTime?** |  | 
 **Views** | **int** | Latest view count read for the post. | 
 **Engagements** | **int?** | The campaign engagement types summed at the latest read. Null until the post is read. | 
+**ViewsFromAds** | **int?** | Views that came from ads the creator ran, on YouTube and X. Null where the platform does not report them or before the first read. | 
 **EarnedCents** | **int** |  | 
 **RejectReason** | **string** |  | 
 **Flags** | **List&lt;CreatorPortalSubmission.FlagsEnum&gt;** | Creator-safe flags only. Every other review flag shows as &#x60;under_review&#x60;. | 
