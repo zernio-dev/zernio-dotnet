@@ -1137,6 +1137,7 @@ docs/GetCampaignBidding200Response.md
 docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignParticipant200Response.md
 docs/GetCampaignReport200Response.md
+docs/GetCampaignResultsTotals200Response.md
 docs/GetCampaignResultsUpload200Response.md
 docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md
 docs/GetCampaignSubmission200Response.md
@@ -4468,6 +4469,7 @@ src/Zernio.Test/Model/GetCampaignBidding200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignParticipant200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignReport200ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignResultsTotals200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignResultsUpload200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignResultsUpload200ResponseUnmatchedInnerTests.cs
 src/Zernio.Test/Model/GetCampaignSubmission200ResponseTests.cs
@@ -7773,6 +7775,7 @@ src/Zernio/Model/GetCampaignBidding200Response.cs
 src/Zernio/Model/GetCampaignConversionGoals200Response.cs
 src/Zernio/Model/GetCampaignParticipant200Response.cs
 src/Zernio/Model/GetCampaignReport200Response.cs
+src/Zernio/Model/GetCampaignResultsTotals200Response.cs
 src/Zernio/Model/GetCampaignResultsUpload200Response.cs
 src/Zernio/Model/GetCampaignResultsUpload200ResponseUnmatchedInner.cs
 src/Zernio/Model/GetCampaignSubmission200Response.cs

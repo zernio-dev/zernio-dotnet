@@ -5,6 +5,7 @@ Campaign with nested ad sets and rolled-up metrics
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Results** | **Dictionary&lt;string, decimal&gt;** | Only with &#x60;results&#x3D;true&#x60;. The values you sent for this campaign over the range, plus each formula they allow, by metric key. A metric with no value is absent. | [optional] 
 **PlatformCampaignId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **CampaignName** | **string** |  | [optional] 

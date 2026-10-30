@@ -4,11 +4,116 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**GetCampaignResultsTotals**](AdCampaignResultsApi.md#getcampaignresultstotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**GetCampaignResultsUpload**](AdCampaignResultsApi.md#getcampaignresultsupload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
 | [**ListCampaignResultMetrics**](AdCampaignResultsApi.md#listcampaignresultmetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**ListCampaignResults**](AdCampaignResultsApi.md#listcampaignresults) | **GET** /v1/ads/campaign-results | List your results per campaign |
-| [**SetCampaignResultMetric**](AdCampaignResultsApi.md#setcampaignresultmetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric |
+| [**SetCampaignResultMetric**](AdCampaignResultsApi.md#setcampaignresultmetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
 | [**UploadCampaignResults**](AdCampaignResultsApi.md#uploadcampaignresults) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
+
+<a id="getcampaignresultstotals"></a>
+# **GetCampaignResultsTotals**
+> GetCampaignResultsTotals200Response GetCampaignResultsTotals (DateOnly fromDate, DateOnly toDate, string? adAccountIds = null)
+
+Get your results totals
+
+Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest value only.  Formulas are not computed here, since they also read the platform's numbers: apply one to these totals and the account's spend for the same range, or read it per campaign from `GET /v1/ads/tree?results=true`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCampaignResultsTotalsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignResultsApi(httpClient, config, httpClientHandler);
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Inclusive. At most 400 days after `fromDate`.
+            var adAccountIds = "adAccountIds_example";  // string? | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. (optional) 
+
+            try
+            {
+                // Get your results totals
+                GetCampaignResultsTotals200Response result = apiInstance.GetCampaignResultsTotals(fromDate, toDate, adAccountIds);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignResultsApi.GetCampaignResultsTotals: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCampaignResultsTotalsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get your results totals
+    ApiResponse<GetCampaignResultsTotals200Response> response = apiInstance.GetCampaignResultsTotalsWithHttpInfo(fromDate, toDate, adAccountIds);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignResultsApi.GetCampaignResultsTotalsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **fromDate** | **DateOnly** |  |  |
+| **toDate** | **DateOnly** | Inclusive. At most 400 days after &#x60;fromDate&#x60;. |  |
+| **adAccountIds** | **string?** | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional]  |
+
+### Return type
+
+[**GetCampaignResultsTotals200Response**](GetCampaignResultsTotals200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The totals by metric key. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getcampaignresultsupload"></a>
 # **GetCampaignResultsUpload**
@@ -116,7 +221,7 @@ catch (ApiException e)
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind. A new key appears as a `count` labelled from the key; name it with `PUT /v1/ads/campaign-results/metrics/{key}`. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (`cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale`). A new key appears as a `count` labelled from the key; name it, or define a formula, with `PUT /v1/ads/campaign-results/metrics/{key}`. 
 
 ### Example
 ```csharp
@@ -316,9 +421,9 @@ catch (ApiException e)
 # **SetCampaignResultMetric**
 > SetCampaignResultMetric200Response SetCampaignResultMetric (string key, SetCampaignResultMetricRequest setCampaignResultMetricRequest)
 
-Name a result metric
+Name a result metric or define a formula
 
-Sets a metric key's label and kind: `count` for things you count (leads, sales) or `money` with its currency (revenue). 
+Sets a metric key's label and kind: `count` for things you count (leads, sales), `money` with its currency (revenue), `percent` or `ratio`.  Send `formula` to make it a computed metric: `+ - * /` and parentheses over `spend`, `impressions`, `clicks`, `conversions`, `purchase_value` and the metrics you send, at most 200 characters. A formula cannot read another formula.  It is computed per campaign over the summed values of the range, and has no value when an input is missing or a division is by zero. 
 
 ### Example
 ```csharp
@@ -349,7 +454,7 @@ namespace Example
 
             try
             {
-                // Name a result metric
+                // Name a result metric or define a formula
                 SetCampaignResultMetric200Response result = apiInstance.SetCampaignResultMetric(key, setCampaignResultMetricRequest);
                 Debug.WriteLine(result);
             }
@@ -370,7 +475,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Name a result metric
+    // Name a result metric or define a formula
     ApiResponse<SetCampaignResultMetric200Response> response = apiInstance.SetCampaignResultMetricWithHttpInfo(key, setCampaignResultMetricRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
