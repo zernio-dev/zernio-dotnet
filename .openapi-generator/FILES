@@ -980,6 +980,7 @@ docs/ExternalPostWebhookPost.md
 docs/FacebookOrInstagramPost.md
 docs/FacebookPageInfo.md
 docs/FacebookPlatformData.md
+docs/FacebookPlatformDataFailedCollaboratorsInner.md
 docs/FacebookPostEarningsResponse.md
 docs/FacebookPostEarningsResponseMetricsValue.md
 docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
@@ -4321,6 +4322,7 @@ src/Zernio.Test/Model/ExternalPostSummaryTests.cs
 src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
 src/Zernio.Test/Model/FacebookOrInstagramPostTests.cs
 src/Zernio.Test/Model/FacebookPageInfoTests.cs
+src/Zernio.Test/Model/FacebookPlatformDataFailedCollaboratorsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
 src/Zernio.Test/Model/FacebookPostEarningsResponseMetricsValueTests.cs
 src/Zernio.Test/Model/FacebookPostEarningsResponseTests.cs
@@ -7628,6 +7630,7 @@ src/Zernio/Model/ExternalPostWebhookPost.cs
 src/Zernio/Model/FacebookOrInstagramPost.cs
 src/Zernio/Model/FacebookPageInfo.cs
 src/Zernio/Model/FacebookPlatformData.cs
+src/Zernio/Model/FacebookPlatformDataFailedCollaboratorsInner.cs
 src/Zernio/Model/FacebookPostEarningsResponse.cs
 src/Zernio/Model/FacebookPostEarningsResponseMetricsValue.cs
 src/Zernio/Model/FacebookPostEarningsResponseUnavailableMetricsInner.cs

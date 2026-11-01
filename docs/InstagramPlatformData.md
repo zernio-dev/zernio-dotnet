@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContentType** | **string** | Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media. | [optional] 
 **ShareToFeed** | **bool** | For Reels only. When true (default), the Reel appears on both the Reels tab and your main profile feed. Set to false to post to the Reels tab only. | [optional] [default to true]
-**Collaborators** | **List&lt;string&gt;** | Up to 3 Instagram usernames to invite as collaborators (feed/Reels only) | [optional] 
+**Collaborators** | **List&lt;string&gt;** | Up to 3 Instagram usernames to invite as collaborators (feed/Reels only). Collaborators are supported on Instagram and Facebook Page Reels only. TikTok, YouTube, Threads, LinkedIn, X and Pinterest do not expose collaborators in their public APIs. | [optional] 
 **DroppedCollaborators** | [**List&lt;InstagramPlatformDataDroppedCollaboratorsInner&gt;**](InstagramPlatformDataDroppedCollaboratorsInner.md) | Output only. Set by Zernio when Instagram rejected these collaborators and the retry was sent without them. | [optional] 
 **FirstComment** | **string** | Optional first comment to add after the post is created (not applied to Stories) | [optional] 
 **TrialParams** | [**InstagramPlatformDataTrialParams**](InstagramPlatformDataTrialParams.md) |  | [optional] 

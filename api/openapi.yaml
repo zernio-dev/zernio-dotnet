@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.430.0
+  version: 1.431.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -90504,6 +90504,21 @@ components:
           type: string
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+        collaborators:
+          description: "Facebook Page IDs (numeric, up to 10 unique) to invite as\
+            \ collaborators. Reels only (contentType=reel), sent after the Reel is\
+            \ published, never for drafts. Each Page must accept. Meta allows 10 invites\
+            \ per Page per 24 hours; rejected invites are listed in failedCollaborators.\
+            \ Other values are ignored with a warning."
+          items:
+            type: string
+          type: array
+        failedCollaborators:
+          description: Output only. Collaborator invites Facebook rejected after the
+            Reel was published. The Reel itself stays published.
+          items:
+            $ref: "#/components/schemas/FacebookPlatformData_failedCollaborators_inner"
+          type: array
         facebookSettings:
           $ref: "#/components/schemas/FacebookSettings"
     FacebookSettings:
@@ -90563,8 +90578,10 @@ components:
             \ Reels tab only."
           type: boolean
         collaborators:
-          description: Up to 3 Instagram usernames to invite as collaborators (feed/Reels
-            only)
+          description: "Up to 3 Instagram usernames to invite as collaborators (feed/Reels\
+            \ only). Collaborators are supported on Instagram and Facebook Page Reels\
+            \ only. TikTok, YouTube, Threads, LinkedIn, X and Pinterest do not expose\
+            \ collaborators in their public APIs."
           items:
             type: string
           type: array
@@ -189314,6 +189331,15 @@ components:
         other:
           description: Content has other sensitive characteristics.
           type: boolean
+    FacebookPlatformData_failedCollaborators_inner:
+      properties:
+        pageId:
+          type: string
+        reason:
+          type: string
+      required:
+      - pageId
+      - reason
     FacebookSettings_carouselCards_inner:
       properties:
         link:
