@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.429.2
+  version: 1.430.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -90489,6 +90489,14 @@ components:
             \ (feed posts and reels, not stories). Skipped when facebookSettings.draft\
             \ is true."
           type: string
+        isAiGenerated:
+          default: false
+          description: "When true, Facebook shows its AI-disclosure label on the post.\
+            \ Forwarded as is_ai_generated on Reels (contentType=reel) and video Stories\
+            \ (contentType=story with a video). Meta documents no such parameter for\
+            \ feed posts, feed videos or photo Stories, so the flag is accepted with\
+            \ a warning and no label there."
+          type: boolean
         pageId:
           description: "Target Facebook Page ID for multi-page posting. If omitted,\
             \ uses the default page. Use GET /v1/accounts/{id}/facebook-page to list\
