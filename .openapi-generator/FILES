@@ -1171,6 +1171,7 @@ docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
 docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md
+docs/GetDailyMetrics200ResponseTotals.md
 docs/GetDiscordChannels200Response.md
 docs/GetDiscordChannels200ResponseChannelsInner.md
 docs/GetDiscordGuildMember200Response.md
@@ -4505,6 +4506,7 @@ src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerMetricsTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponsePlatformBreakdownInnerTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseTests.cs
+src/Zernio.Test/Model/GetDailyMetrics200ResponseTotalsTests.cs
 src/Zernio.Test/Model/GetDiscordChannels200ResponseChannelsInnerTests.cs
 src/Zernio.Test/Model/GetDiscordChannels200ResponseTests.cs
 src/Zernio.Test/Model/GetDiscordGuildMember200ResponseTests.cs
@@ -7814,6 +7816,7 @@ src/Zernio/Model/GetDailyMetrics200Response.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInner.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInnerMetrics.cs
 src/Zernio/Model/GetDailyMetrics200ResponsePlatformBreakdownInner.cs
+src/Zernio/Model/GetDailyMetrics200ResponseTotals.cs
 src/Zernio/Model/GetDiscordChannels200Response.cs
 src/Zernio/Model/GetDiscordChannels200ResponseChannelsInner.cs
 src/Zernio/Model/GetDiscordGuildMember200Response.cs
