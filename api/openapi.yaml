@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.437.0
+  version: 1.438.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -79462,6 +79462,25 @@ components:
       - platform
       - validateOnly
       - warnings
+    CommentAttachment:
+      description: |
+        Facebook only. The media on a comment (sticker, GIF, photo, shared link or video). One attachment per
+        comment, a single object. URLs are expiring Meta CDN links (oe= expiry), so fetch promptly. Instagram
+        comments carry no media.
+      properties:
+        type:
+          description: "Attachment type as Facebook reports it, for example sticker,\
+            \ animated_image_share, photo, image_share, share or video_inline."
+          type: string
+        imageUrl:
+          description: Rendered image/preview URL (from attachment.media.image.src).
+          type: string
+        url:
+          description: Source URL (from attachment.url). For GIFs this is an l.facebook.com
+            redirect.
+          type: string
+      required:
+      - type
     LinkedInMentionIssue:
       description: "One LinkedIn mention that could not be resolved, listed under\
         \ `details.mentions[]` of the error."
@@ -85065,10 +85084,7 @@ components:
             title: title
             originalMediaId: originalMediaId
             promotionStatus: promotionStatus
-          attachment:
-            imageUrl: imageUrl
-            type: type
-            url: url
+          attachment: ""
           author:
             isOwnAccount: true
             name: name
@@ -132838,6 +132854,7 @@ components:
         replies:
         - "{}"
         - "{}"
+        attachment: ""
         likeUri: likeUri
         createdTime: 2000-01-23T04:56:07.000+00:00
         from:
@@ -132908,6 +132925,12 @@ components:
         isLiked:
           description: Whether the current user has liked this comment
           type: boolean
+        attachment:
+          allOf:
+          - $ref: "#/components/schemas/CommentAttachment"
+          description: "Facebook only. The comment's sticker, GIF, photo, share or\
+            \ video, whenever Facebook returns one (replies included). Absent when\
+            \ the comment has no media and on every other platform."
         likeUri:
           description: Bluesky like URI for unliking
           nullable: true
@@ -133138,6 +133161,7 @@ components:
           replies:
           - "{}"
           - "{}"
+          attachment: ""
           likeUri: likeUri
           createdTime: 2000-01-23T04:56:07.000+00:00
           from:
@@ -133167,6 +133191,7 @@ components:
           replies:
           - "{}"
           - "{}"
+          attachment: ""
           likeUri: likeUri
           createdTime: 2000-01-23T04:56:07.000+00:00
           from:
@@ -186060,28 +186085,6 @@ components:
           description: "Facebook only: true when the post is an unpublished ad creative\
             \ (dark post), false for a boosted organic post."
           type: boolean
-    WebhookPayloadComment_comment_attachment:
-      description: |
-        Facebook only. Present on graphic-only comments (sticker, GIF, photo) that
-        carry no text. URLs are ephemeral and may expire for Meta platforms (oe= expiry),
-        so fetch promptly. Instagram comments do not support attachments.
-      example:
-        imageUrl: imageUrl
-        type: type
-        url: url
-      properties:
-        type:
-          description: "Attachment type: sticker, animated_image_share, or photo."
-          type: string
-        imageUrl:
-          description: Rendered image/preview URL (from attachment.media.image.src).
-          type: string
-        url:
-          description: Source URL (from attachment.url). For GIFs this is an l.facebook.com
-            redirect.
-          type: string
-      required:
-      - type
     WebhookPayloadComment_comment:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -186092,10 +186095,7 @@ components:
           title: title
           originalMediaId: originalMediaId
           promotionStatus: promotionStatus
-        attachment:
-          imageUrl: imageUrl
-          type: type
-          url: url
+        attachment: ""
         author:
           isOwnAccount: true
           name: name
@@ -186158,7 +186158,12 @@ components:
         ad:
           $ref: "#/components/schemas/WebhookPayloadComment_comment_ad"
         attachment:
-          $ref: "#/components/schemas/WebhookPayloadComment_comment_attachment"
+          allOf:
+          - $ref: "#/components/schemas/CommentAttachment"
+          description: |
+            Facebook only. Present on graphic-only comments (sticker, GIF, photo) that carry no text:
+            the webhook only includes it when the comment has no text. The REST comments API returns it
+            whenever Facebook returns one, text or not.
       required:
       - author
       - createdAt
