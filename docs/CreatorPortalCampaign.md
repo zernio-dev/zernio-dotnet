@@ -15,11 +15,13 @@ Name | Type | Description | Notes
 **ContentRules** | **string** |  | 
 **StartsAt** | **DateTime?** |  | 
 **EndsAt** | **DateTime?** |  | 
+**StartedAt** | **DateTime** | Posts published before this moment do not count: &#x60;startsAt&#x60;, else when the campaign went live. | 
 **Currency** | **string** |  | 
 **Economics** | [**CreatorPortalEconomics**](CreatorPortalEconomics.md) |  | 
 **MaxPostAgeMinutes** | **int?** | A post must be submitted within this many minutes of publishing. Null means any age. Either way, only posts published after the campaign started are accepted. | 
 **HoldDays** | **int** | Days approved earnings stay owed before they become payable. | 
 **TrackingDays** | **int** | Days each submitted post is tracked for views. | 
+**MaxAccountsPerParticipant** | **int?** | How many connected accounts can submit posts. Null means no limit. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
