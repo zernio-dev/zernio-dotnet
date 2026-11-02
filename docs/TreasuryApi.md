@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateTransfer**](TreasuryApi.md#createtransfer) | **POST** /v1/transfers | Create a transfer |
 | [**GetBalance**](TreasuryApi.md#getbalance) | **GET** /v1/balance | Get balance |
 | [**GetPayoutBatch**](TreasuryApi.md#getpayoutbatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
+| [**GetTopupCardFee**](TreasuryApi.md#gettopupcardfee) | **GET** /v1/balance/top-ups/card-fee | Get the card fee for a top-up |
 | [**GetTopupReceipt**](TreasuryApi.md#gettopupreceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt |
 | [**GetTransfer**](TreasuryApi.md#gettransfer) | **GET** /v1/transfers/{transferId} | Get a transfer |
 | [**ListPayees**](TreasuryApi.md#listpayees) | **GET** /v1/payees | List payees |
@@ -536,7 +537,7 @@ catch (ApiException e)
 
 Create a top-up
 
-Charges the billing owner's saved card (the default one, or `paymentMethodId`) for `amountCents` while the payer is present.  - `status: succeeded`: the card was charged. The top-up is credited to `availableCents` within seconds, net of Stripe's processing fee. Transfers to payees can use it from 7 days after the charge. - `status: requires_action`: the bank asked for 3D Secure. Complete it with Stripe.js `handleNextAction({ clientSecret })`, then call `POST /v1/balance/top-ups/{topupId}/confirm`. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 `payment_required`: no saved card. - 402 `card_declined`: the bank's reason. - 400: `method: bank_transfer` (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+Charges the billing owner's saved card (the default one, or `paymentMethodId`) `amountCents` plus the card fee, while the payer is present, and credits your balance what Stripe delivers.  The card fee is Stripe's own rate for the card, learned from its past charges (`GET /v1/balance/top-ups/card-fee` answers it).  - When `feeIsExact` is true you receive exactly `amountCents`. - When it is false (the first top-up on a card issued in the EEA, or Link, where Stripe prices by card product) the fee is the highest rate for the card's region. - You then receive at least `amountCents`: if Stripe charges less, the difference is added to your balance.  - `status: succeeded`: the card was charged. What Stripe delivered is credited to `availableCents` within seconds. Transfers to payees can use it from 7 days after the charge. - `status: requires_action`: the bank asked for 3D Secure. Complete it with Stripe.js `handleNextAction({ clientSecret })`, then call `POST /v1/balance/top-ups/{topupId}/confirm`. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 `payment_required`: no saved card. - 402 `card_declined`: the bank's reason. - 400: `method: bank_transfer` (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
 
 ### Example
 ```csharp
@@ -935,6 +936,108 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No payout batch with this id in a campaign you can see. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettopupcardfee"></a>
+# **GetTopupCardFee**
+> GetTopupCardFee200Response GetTopupCardFee (string? paymentMethodId = null)
+
+Get the card fee for a top-up
+
+The card fee a top-up on the billing owner's saved card pays: `feeBps` of the charge plus `fixedCents`. The card is charged the smallest amount that leaves `amountCents` once Stripe takes `round_half_up(charge * feeBps / 10000) + fixedCents`.  The rate is Stripe's own for the card, learned from its past charges.  `feeIsExact` is false for a card Zernio has not charged yet whose region Stripe prices by card product (EEA) or whose country is unknown (Link). The rate is then that region's highest, and the top-up credits at least the amount.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetTopupCardFeeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TreasuryApi(httpClient, config, httpClientHandler);
+            var paymentMethodId = "paymentMethodId_example";  // string? | A saved card of the billing owner's (`pm_...`). Defaults to the default payment method. (optional) 
+
+            try
+            {
+                // Get the card fee for a top-up
+                GetTopupCardFee200Response result = apiInstance.GetTopupCardFee(paymentMethodId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TreasuryApi.GetTopupCardFee: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTopupCardFeeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get the card fee for a top-up
+    ApiResponse<GetTopupCardFee200Response> response = apiInstance.GetTopupCardFeeWithHttpInfo(paymentMethodId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TreasuryApi.GetTopupCardFeeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **paymentMethodId** | **string?** | A saved card of the billing owner&#39;s (&#x60;pm_...&#x60;). Defaults to the default payment method. | [optional]  |
+
+### Return type
+
+[**GetTopupCardFee200Response**](GetTopupCardFee200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The card fee |  -  |
+| **400** | Invalid request |  -  |
+| **402** | No saved card (code &#x60;payment_required&#x60;), or a billing gate. |  -  |
+| **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
