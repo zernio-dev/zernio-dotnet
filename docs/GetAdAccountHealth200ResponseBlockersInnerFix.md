@@ -1,4 +1,4 @@
-# Zernio.Model.GetAdAccountHealth200ResponseChecksInnerFix
+# Zernio.Model.GetAdAccountHealth200ResponseBlockersInnerFix
 
 ## Properties
 
