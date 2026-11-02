@@ -920,8 +920,6 @@ docs/DiscordScheduledEventEntityMetadata.md
 docs/DismissAdsAlert200Response.md
 docs/DismissGoogleRecommendationsRequest.md
 docs/DmButton.md
-docs/DownloadTikTokVideo200Response.md
-docs/DownloadTikTokVideo200ResponseFormatsInner.md
 docs/DuplicateAd200Response.md
 docs/DuplicateAdCampaign200Response.md
 docs/DuplicateAdCampaignRequest.md
@@ -2636,7 +2634,6 @@ docs/TikTokReviewRejectionContent.md
 docs/TikTokSmartPlusAdLevelReview.md
 docs/TikTokSmartPlusMaterialReview.md
 docs/TikTokSmartPlusReviewStatus.md
-docs/ToolsApi.md
 docs/TrackingTag.md
 docs/TrackingTagDiagnostic.md
 docs/TrackingTagEvent.md
@@ -3361,7 +3358,6 @@ src/Zernio.Test/Api/SMSApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
 src/Zernio.Test/Api/SlackApiTests.cs
 src/Zernio.Test/Api/SupportAssistantApiTests.cs
-src/Zernio.Test/Api/ToolsApiTests.cs
 src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TreasuryApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
@@ -4264,8 +4260,6 @@ src/Zernio.Test/Model/DiscordScheduledEventTests.cs
 src/Zernio.Test/Model/DismissAdsAlert200ResponseTests.cs
 src/Zernio.Test/Model/DismissGoogleRecommendationsRequestTests.cs
 src/Zernio.Test/Model/DmButtonTests.cs
-src/Zernio.Test/Model/DownloadTikTokVideo200ResponseFormatsInnerTests.cs
-src/Zernio.Test/Model/DownloadTikTokVideo200ResponseTests.cs
 src/Zernio.Test/Model/DuplicateAd200ResponseTests.cs
 src/Zernio.Test/Model/DuplicateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DuplicateAdCampaignRequestTests.cs
@@ -6650,7 +6644,6 @@ src/Zernio/Api/SMSApi.cs
 src/Zernio/Api/SequencesApi.cs
 src/Zernio/Api/SlackApi.cs
 src/Zernio/Api/SupportAssistantApi.cs
-src/Zernio/Api/ToolsApi.cs
 src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TreasuryApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
@@ -7571,8 +7564,6 @@ src/Zernio/Model/DiscordScheduledEventEntityMetadata.cs
 src/Zernio/Model/DismissAdsAlert200Response.cs
 src/Zernio/Model/DismissGoogleRecommendationsRequest.cs
 src/Zernio/Model/DmButton.cs
-src/Zernio/Model/DownloadTikTokVideo200Response.cs
-src/Zernio/Model/DownloadTikTokVideo200ResponseFormatsInner.cs
 src/Zernio/Model/DuplicateAd200Response.cs
 src/Zernio/Model/DuplicateAdCampaign200Response.cs
 src/Zernio/Model/DuplicateAdCampaignRequest.cs
