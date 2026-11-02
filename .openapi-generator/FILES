@@ -2086,6 +2086,9 @@ docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
+docs/MoveCampaignParticipant200Response.md
+docs/MoveCampaignParticipant200ResponseSubmissions.md
+docs/MoveCampaignParticipantRequest.md
 docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
 docs/OAuthApp.md
@@ -5405,6 +5408,9 @@ src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
+src/Zernio.Test/Model/MoveCampaignParticipant200ResponseSubmissionsTests.cs
+src/Zernio.Test/Model/MoveCampaignParticipant200ResponseTests.cs
+src/Zernio.Test/Model/MoveCampaignParticipantRequestTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
 src/Zernio.Test/Model/OAuthAppSetupScopeAreasInnerTests.cs
@@ -8711,6 +8717,9 @@ src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
+src/Zernio/Model/MoveCampaignParticipant200Response.cs
+src/Zernio/Model/MoveCampaignParticipant200ResponseSubmissions.cs
+src/Zernio/Model/MoveCampaignParticipantRequest.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfile200Response.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfileRequest.cs
 src/Zernio/Model/OAuthApp.cs

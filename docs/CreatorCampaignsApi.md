@@ -22,6 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListCampaignPayoutBatches**](CreatorCampaignsApi.md#listcampaignpayoutbatches) | **GET** /v1/creator-campaigns/{campaignId}/payout-batches | List payout batches |
 | [**ListCampaignSubmissions**](CreatorCampaignsApi.md#listcampaignsubmissions) | **GET** /v1/creator-campaigns/{campaignId}/submissions | List campaign submissions |
 | [**ListCreatorCampaigns**](CreatorCampaignsApi.md#listcreatorcampaigns) | **GET** /v1/creator-campaigns | List creator campaigns |
+| [**MoveCampaignParticipant**](CreatorCampaignsApi.md#movecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign |
 | [**PauseCreatorCampaign**](CreatorCampaignsApi.md#pausecreatorcampaign) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign |
 | [**RaiseCreatorCampaignBudget**](CreatorCampaignsApi.md#raisecreatorcampaignbudget) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget |
 | [**ReinstateCampaignParticipant**](CreatorCampaignsApi.md#reinstatecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/reinstate | Reinstate campaign participant |
@@ -1948,6 +1949,113 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
 | **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="movecampaignparticipant"></a>
+# **MoveCampaignParticipant**
+> MoveCampaignParticipant200Response MoveCampaignParticipant (string campaignId, string participantId, MoveCampaignParticipantRequest moveCampaignParticipantRequest)
+
+Move participant to another campaign
+
+Moves a creator invited or joined into the wrong campaign to another campaign of the same owner. The participant keeps its id, status and portal link, which now opens the target.  Posts that fit the target (platform accepted, published after it started) move with it. Undecided posts that do not fit are rejected in this campaign with the reason; decided ones stay.  Answers 409 when the target is closed or full, the creator is already in it, the participant was removed, or any money touched the participation (ledger entries, a payout batch or a transfer). Money never moves between campaigns.  Fires `campaign_participant.removed` here and, for a creator who joined, `campaign_participant.joined` on the target. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class MoveCampaignParticipantExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign the participant is in now.
+            var participantId = "participantId_example";  // string | Participant ID.
+            var moveCampaignParticipantRequest = new MoveCampaignParticipantRequest(); // MoveCampaignParticipantRequest | 
+
+            try
+            {
+                // Move participant to another campaign
+                MoveCampaignParticipant200Response result = apiInstance.MoveCampaignParticipant(campaignId, participantId, moveCampaignParticipantRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.MoveCampaignParticipant: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the MoveCampaignParticipantWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Move participant to another campaign
+    ApiResponse<MoveCampaignParticipant200Response> response = apiInstance.MoveCampaignParticipantWithHttpInfo(campaignId, participantId, moveCampaignParticipantRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.MoveCampaignParticipantWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign the participant is in now. |  |
+| **participantId** | **string** | Participant ID. |  |
+| **moveCampaignParticipantRequest** | [**MoveCampaignParticipantRequest**](MoveCampaignParticipantRequest.md) |  |  |
+
+### Return type
+
+[**MoveCampaignParticipant200Response**](MoveCampaignParticipant200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Participant moved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
