@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **IsExternal** | **bool** |  | [optional] 
 **SyncStatus** | **string** | Overall sync state across all platforms | [optional] 
 **Message** | **string** | Human-readable status message for pending, partial, or failed states | [optional] 
-**ThumbnailUrl** | **string** | Cover image URL. Facebook and Instagram covers whose Meta CDN link expired are re-read from Meta and served from Zernio storage, so that URL does not expire and can be cached. | [optional] 
+**ThumbnailUrl** | **string** | Cover image URL. Facebook, Instagram and TikTok covers whose platform CDN link expired are re-read from the platform and served from Zernio storage, so that URL does not expire and can be cached. | [optional] 
 **MediaType** | **string** |  | [optional] 
 **MediaItems** | [**List&lt;AnalyticsSinglePostResponseMediaItemsInner&gt;**](AnalyticsSinglePostResponseMediaItemsInner.md) | All media items for this post. Carousel posts have one entry per slide.  - Facebook and Instagram images and video covers whose Meta CDN links expired are re-read and served from Zernio storage (non-expiring). - Facebook and Instagram video file URLs, and LinkedIn media URLs, stay the platform&#39;s signed links and are refreshed on read once they lapse.  | [optional] 
 **MediaProductType** | **string** | Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it. | [optional] 
