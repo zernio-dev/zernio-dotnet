@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.446.0
+  version: 1.447.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -98174,6 +98174,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -98204,15 +98205,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -98242,6 +98243,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -98272,15 +98274,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -98645,6 +98647,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -98675,15 +98678,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -98713,6 +98716,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -98743,15 +98747,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -98784,6 +98788,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -98814,15 +98819,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -99199,6 +99204,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -99229,15 +99235,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -99267,6 +99273,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -99297,15 +99304,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -99338,6 +99345,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -99368,15 +99376,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -99421,6 +99429,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -99451,15 +99460,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -99530,6 +99539,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -99560,15 +99570,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -99598,6 +99608,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -99628,15 +99639,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -100001,6 +100012,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -100031,15 +100043,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -100069,6 +100081,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -100099,15 +100112,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -100140,6 +100153,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -100170,15 +100184,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -100555,6 +100569,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -100585,15 +100600,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -100623,6 +100638,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -100653,15 +100669,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -100694,6 +100710,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -100724,15 +100741,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -100777,6 +100794,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -100807,15 +100825,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -100997,6 +101015,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -101030,15 +101049,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 5
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             searchTopImpressionShare: 3.0937452626664474
             allConversions: 2.027123023002322
@@ -101090,6 +101109,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -101120,15 +101140,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -101158,6 +101178,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -101188,15 +101209,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -101252,6 +101273,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -101282,15 +101304,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -101337,6 +101359,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -101367,15 +101390,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -101405,6 +101428,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -101435,15 +101459,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -101496,6 +101520,7 @@ components:
           appInstalls: 7
           leads: 4
           paymentInfoAdds: 6
+          schedules: 7
           landingPageViews: 6
           checkoutsInitiated: 7
         reach: 5
@@ -101526,15 +101551,15 @@ components:
           offsite_conversion.fb_pixel_purchase: 4.0114
         videoPlayActions: 9
         engagementBreakdown:
-          shares: 0
-          pageEngagement: 5
-          comments: 4
-          pageLikes: 4
-          saves: 6
-          linkClicks: 4
-          reactions: 3
-          postEngagement: 7
-          videoViews: 1
+          shares: 6
+          pageEngagement: 3
+          comments: 0
+          pageLikes: 1
+          saves: 4
+          linkClicks: 7
+          reactions: 4
+          postEngagement: 5
+          videoViews: 4
         inlineLinkClicks: 7
         allConversions: 4.145608029883936
         videoThruplayWatchedActions: 6
@@ -101607,6 +101632,9 @@ components:
             Per-action-type counts summed over the date range, keyed by the platform's action-type names. Keys differ by platform, so branch on the ad's platform when interpreting them. Empty object when no actions are reported.
 
             - Meta: raw Insights action_type keys (link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped, ...), covering both engagement and conversion events.
+            - Meta newer standard events (Schedule, SubmitApplication, Contact, StartTrial, Subscribe and the like) come only from Meta's `conversions` insight field, under keys such as schedule_total, schedule_website or offsite_schedule_add_<dataset>.
+            - Since 2026-11-03 every `conversions` key that `actions` lacks is added here, rounded per key, and its `conversion_values` value to `actionValues`. A key both fields report keeps its `actions` value.
+            - Days synced before 2026-11-03 lack those keys until re-fetched. Each sync restates the last 30 days.
             - TikTok: conversion events plus the paid-engagement family (follow, post_reaction for paid likes, comment, share). Follow is how FOLLOWERS-goal campaigns report their result.
             - TikTok website (pixel) events: complete_payment (website purchase, counted in `conversions` by SHOPPING-optimised campaigns), place_order, initiate_checkout, add_to_cart, view_content, lead (website form submissions plus TikTok instant-form leads).
             - TikTok place_order is Place an Order, the website purchase of pixels set up with the legacy ON_WEB_ORDER event. It is absent from days synced before this metric was added until the ad is re-synced.
@@ -101798,6 +101826,7 @@ components:
         appInstalls: 7
         leads: 4
         paymentInfoAdds: 6
+        schedules: 7
         landingPageViews: 6
         checkoutsInitiated: 7
       properties:
@@ -101852,6 +101881,14 @@ components:
         messagingFirstReplies:
           description: Messaging threads where the person sent a first reply.
           type: integer
+        schedules:
+          description: |
+            Booked appointments (Meta `Schedule` pixel event). Pair with `spend` for cost per booked meeting.
+
+            **Meta** reports Schedule in its `conversions` insight field, never in `actions`. This takes the FIRST present of `offsite_conversion.fb_pixel_schedule`, `omni_schedule`, `app_custom_event.fb_mobile_schedule`, `onsite_conversion.schedule`, `schedule`, `schedule_total`, `schedule_mobile_app`, `schedule_website`, `schedule_offline`. With none of those, a single `offsite_schedule_add_<dataset>` key counts. Two such keys (two datasets) leave it at 0, since one booking can reach both.
+
+            Added 2026-11-03. Days synced before then read 0 until re-fetched: each sync restates the last 30 days.
+          type: integer
     AdEngagementCounts:
       description: |
         The single `engagement` total, split into the interactions behind it.
@@ -101862,15 +101899,15 @@ components:
 
         **TikTok history**: these splits were added in 2026-08, and only the last 7 days are re-fetched on each sync (a stopped ad keeps syncing until its last delivery day is 7 days old). Days stored before the rollout keep 0s here. Spend, impressions, clicks and conversions are not affected.
       example:
-        shares: 0
-        pageEngagement: 5
-        comments: 4
-        pageLikes: 4
-        saves: 6
-        linkClicks: 4
-        reactions: 3
-        postEngagement: 7
-        videoViews: 1
+        shares: 6
+        pageEngagement: 3
+        comments: 0
+        pageLikes: 1
+        saves: 4
+        linkClicks: 7
+        reactions: 4
+        postEngagement: 5
+        videoViews: 4
       properties:
         postEngagement:
           description: Meta's own post-engagement total (`post_engagement`). Meta-only.
@@ -101940,6 +101977,7 @@ components:
           appInstalls: 7
           leads: 4
           paymentInfoAdds: 6
+          schedules: 7
           landingPageViews: 6
           checkoutsInitiated: 7
         reach: 1
@@ -101970,15 +102008,15 @@ components:
           offsite_conversion.fb_pixel_purchase: 4.0114
         videoPlayActions: 3
         engagementBreakdown:
-          shares: 0
-          pageEngagement: 5
-          comments: 4
-          pageLikes: 4
-          saves: 6
-          linkClicks: 4
-          reactions: 3
-          postEngagement: 7
-          videoViews: 1
+          shares: 6
+          pageEngagement: 3
+          comments: 0
+          pageLikes: 1
+          saves: 4
+          linkClicks: 7
+          reactions: 4
+          postEngagement: 5
+          videoViews: 4
         inlineLinkClicks: 6
         allConversions: 9.018348186070783
         videoThruplayWatchedActions: 7
@@ -104895,6 +104933,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 1
@@ -104925,15 +104964,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 3
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 6
           allConversions: 9.018348186070783
           videoThruplayWatchedActions: 7
@@ -104963,6 +105002,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 1
@@ -104993,15 +105033,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 3
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 6
           allConversions: 9.018348186070783
           videoThruplayWatchedActions: 7
@@ -105034,6 +105074,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 5
@@ -105064,15 +105105,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 7
           allConversions: 4.145608029883936
           videoThruplayWatchedActions: 6
@@ -105310,6 +105351,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 1
@@ -105340,15 +105382,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 3
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 6
           allConversions: 9.018348186070783
           videoThruplayWatchedActions: 7
@@ -105378,6 +105420,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 1
@@ -105408,15 +105451,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 3
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 6
           allConversions: 9.018348186070783
           videoThruplayWatchedActions: 7
@@ -105781,6 +105824,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -105811,15 +105855,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -105849,6 +105893,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -105879,15 +105924,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -105920,6 +105965,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -105950,15 +105996,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -106335,6 +106381,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -106365,15 +106412,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -106403,6 +106450,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -106433,15 +106481,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -106474,6 +106522,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -106504,15 +106553,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -106557,6 +106606,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 5
@@ -106587,15 +106637,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 7
           allConversions: 4.145608029883936
           videoThruplayWatchedActions: 6
@@ -106805,8 +106855,8 @@ components:
         platformAdAccountName: platformAdAccountName
         budgetLevel: campaign
         adCount: 0
-        bidAmount: 7.260521264802104
-        roasAverageFloor: 9.132027271330688
+        bidAmount: 9.132027271330688
+        roasAverageFloor: 0.8774076871421566
         nativeSettings:
           key: ""
         accountId: accountId
@@ -106831,6 +106881,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 5
@@ -106861,15 +106912,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 7
           allConversions: 4.145608029883936
           videoThruplayWatchedActions: 6
@@ -152502,8 +152553,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 7.260521264802104
-          roasAverageFloor: 9.132027271330688
+          bidAmount: 9.132027271330688
+          roasAverageFloor: 0.8774076871421566
           nativeSettings:
             key: ""
           accountId: accountId
@@ -152528,6 +152579,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -152558,15 +152610,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -152606,8 +152658,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 7.260521264802104
-          roasAverageFloor: 9.132027271330688
+          bidAmount: 9.132027271330688
+          roasAverageFloor: 0.8774076871421566
           nativeSettings:
             key: ""
           accountId: accountId
@@ -152632,6 +152684,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -152662,15 +152715,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -155495,6 +155548,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -155525,15 +155579,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -155563,6 +155617,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -155593,15 +155648,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -155966,6 +156021,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -155996,15 +156052,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -156034,6 +156090,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -156064,15 +156121,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -156105,6 +156162,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -156135,15 +156193,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -156520,6 +156578,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -156550,15 +156609,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -156588,6 +156647,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -156618,15 +156678,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -156659,6 +156719,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -156689,15 +156750,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -156742,6 +156803,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -156772,15 +156834,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -156851,6 +156913,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -156881,15 +156944,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -156919,6 +156982,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -156949,15 +157013,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 3
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             allConversions: 9.018348186070783
             videoThruplayWatchedActions: 7
@@ -157322,6 +157386,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -157352,15 +157417,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -157390,6 +157455,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -157420,15 +157486,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -157461,6 +157527,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -157491,15 +157558,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -157876,6 +157943,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -157906,15 +157974,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -157944,6 +158012,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 1
@@ -157974,15 +158043,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 3
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 6
               allConversions: 9.018348186070783
               videoThruplayWatchedActions: 7
@@ -158015,6 +158084,7 @@ components:
                 appInstalls: 7
                 leads: 4
                 paymentInfoAdds: 6
+                schedules: 7
                 landingPageViews: 6
                 checkoutsInitiated: 7
               reach: 5
@@ -158045,15 +158115,15 @@ components:
                 offsite_conversion.fb_pixel_purchase: 4.0114
               videoPlayActions: 9
               engagementBreakdown:
-                shares: 0
-                pageEngagement: 5
-                comments: 4
-                pageLikes: 4
-                saves: 6
-                linkClicks: 4
-                reactions: 3
-                postEngagement: 7
-                videoViews: 1
+                shares: 6
+                pageEngagement: 3
+                comments: 0
+                pageLikes: 1
+                saves: 4
+                linkClicks: 7
+                reactions: 4
+                postEngagement: 5
+                videoViews: 4
               inlineLinkClicks: 7
               allConversions: 4.145608029883936
               videoThruplayWatchedActions: 6
@@ -158098,6 +158168,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -158128,15 +158199,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -159494,6 +159565,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 1
@@ -159527,15 +159599,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 5
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 6
             searchTopImpressionShare: 3.0937452626664474
             allConversions: 2.027123023002322
@@ -159587,6 +159659,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -159617,15 +159690,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -159655,6 +159728,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -159685,15 +159759,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -160782,6 +160856,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 5
@@ -160812,15 +160887,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 7
             allConversions: 4.145608029883936
             videoThruplayWatchedActions: 6
@@ -160867,6 +160942,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -160897,15 +160973,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -160935,6 +161011,7 @@ components:
               appInstalls: 7
               leads: 4
               paymentInfoAdds: 6
+              schedules: 7
               landingPageViews: 6
               checkoutsInitiated: 7
             reach: 6
@@ -160965,15 +161042,15 @@ components:
               offsite_conversion.fb_pixel_purchase: 4.0114
             videoPlayActions: 9
             engagementBreakdown:
-              shares: 0
-              pageEngagement: 5
-              comments: 4
-              pageLikes: 4
-              saves: 6
-              linkClicks: 4
-              reactions: 3
-              postEngagement: 7
-              videoViews: 1
+              shares: 6
+              pageEngagement: 3
+              comments: 0
+              pageLikes: 1
+              saves: 4
+              linkClicks: 7
+              reactions: 4
+              postEngagement: 5
+              videoViews: 4
             inlineLinkClicks: 4
             allConversions: 7.04836565559697
             videoThruplayWatchedActions: 9
@@ -192681,6 +192758,7 @@ components:
           appInstalls: 7
           leads: 4
           paymentInfoAdds: 6
+          schedules: 7
           landingPageViews: 6
           checkoutsInitiated: 7
         reach: 1
@@ -192714,15 +192792,15 @@ components:
           offsite_conversion.fb_pixel_purchase: 4.0114
         videoPlayActions: 5
         engagementBreakdown:
-          shares: 0
-          pageEngagement: 5
-          comments: 4
-          pageLikes: 4
-          saves: 6
-          linkClicks: 4
-          reactions: 3
-          postEngagement: 7
-          videoViews: 1
+          shares: 6
+          pageEngagement: 3
+          comments: 0
+          pageLikes: 1
+          saves: 4
+          linkClicks: 7
+          reactions: 4
+          postEngagement: 5
+          videoViews: 4
         inlineLinkClicks: 6
         searchTopImpressionShare: 3.0937452626664474
         allConversions: 2.027123023002322
@@ -192775,6 +192853,7 @@ components:
           appInstalls: 7
           leads: 4
           paymentInfoAdds: 6
+          schedules: 7
           landingPageViews: 6
           checkoutsInitiated: 7
         reach: 6
@@ -192805,15 +192884,15 @@ components:
           offsite_conversion.fb_pixel_purchase: 4.0114
         videoPlayActions: 9
         engagementBreakdown:
-          shares: 0
-          pageEngagement: 5
-          comments: 4
-          pageLikes: 4
-          saves: 6
-          linkClicks: 4
-          reactions: 3
-          postEngagement: 7
-          videoViews: 1
+          shares: 6
+          pageEngagement: 3
+          comments: 0
+          pageLikes: 1
+          saves: 4
+          linkClicks: 7
+          reactions: 4
+          postEngagement: 5
+          videoViews: 4
         inlineLinkClicks: 4
         allConversions: 7.04836565559697
         videoThruplayWatchedActions: 9
@@ -192869,6 +192948,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 1
@@ -192902,15 +192982,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 5
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 6
           searchTopImpressionShare: 3.0937452626664474
           allConversions: 2.027123023002322
@@ -192962,6 +193042,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 6
@@ -192992,15 +193073,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 4
           allConversions: 7.04836565559697
           videoThruplayWatchedActions: 9
@@ -193030,6 +193111,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 6
@@ -193060,15 +193142,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 4
           allConversions: 7.04836565559697
           videoThruplayWatchedActions: 9
@@ -193203,6 +193285,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 5
@@ -193233,15 +193316,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 7
           allConversions: 4.145608029883936
           videoThruplayWatchedActions: 6
@@ -193288,6 +193371,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 6
@@ -193318,15 +193402,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 4
           allConversions: 7.04836565559697
           videoThruplayWatchedActions: 9
@@ -193356,6 +193440,7 @@ components:
             appInstalls: 7
             leads: 4
             paymentInfoAdds: 6
+            schedules: 7
             landingPageViews: 6
             checkoutsInitiated: 7
           reach: 6
@@ -193386,15 +193471,15 @@ components:
             offsite_conversion.fb_pixel_purchase: 4.0114
           videoPlayActions: 9
           engagementBreakdown:
-            shares: 0
-            pageEngagement: 5
-            comments: 4
-            pageLikes: 4
-            saves: 6
-            linkClicks: 4
-            reactions: 3
-            postEngagement: 7
-            videoViews: 1
+            shares: 6
+            pageEngagement: 3
+            comments: 0
+            pageLikes: 1
+            saves: 4
+            linkClicks: 7
+            reactions: 4
+            postEngagement: 5
+            videoViews: 4
           inlineLinkClicks: 4
           allConversions: 7.04836565559697
           videoThruplayWatchedActions: 9
