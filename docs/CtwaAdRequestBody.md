@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **AudienceId** | **string** | Custom audience ID to target. | [optional] 
 **Placements** | [**CtwaAdRequestBodyPlacements**](CtwaAdRequestBodyPlacements.md) |  | [optional] 
 **Gender** | **string** | Restrict the audience by gender (Meta &#x60;genders&#x60;). Omit or send all for everyone; all is ignored in adSetId attach mode. Stored on the ad and read back in &#x60;targeting.gender&#x60;. | [optional] 
-**Languages** | **List&lt;string&gt;** | Audience languages (Meta &#x60;locales&#x60;). A bare ISO 639-1 code targets all regional variants (\&quot;en\&quot; &#x3D; all English), a region-qualified code a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;); unknown codes are rejected. | [optional] 
+**Languages** | **List&lt;string&gt;** | Audience languages (Meta &#x60;locales&#x60;). A bare ISO 639-1 code targets all regional variants (\&quot;en\&quot; &#x3D; all English), a region-qualified code a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;). Meta numeric locale ids (e.g. \&quot;24\&quot; for English UK) are also accepted. Unknown values are rejected. Same format as &#x60;targeting.languages&#x60; on POST /v1/ads/boost. | [optional] 
 **Places** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta place keys (from GET /v1/ads/targeting/search). | [optional] 
 **Neighborhoods** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta neighborhood keys (from GET /v1/ads/targeting/search). | [optional] 
 **ExcludedLocations** | **Dictionary&lt;string, Object&gt;** | Geo to exclude, same shape as POST /v1/ads/create (countries, countryGroups, regions, cities, zips, places, neighborhoods, customLocations). | [optional] 
