@@ -1590,6 +1590,7 @@ docs/ImessageAudienceContactOptIn.md
 docs/ImessageSandboxContact.md
 docs/ImessageSender.md
 docs/ImessageSenderLifecycle.md
+docs/InboundActivity.md
 docs/InboxAnalyticsApi.md
 docs/InboxConversationAdMetadata.md
 docs/InboxMessageEditAttachment.md
@@ -2047,6 +2048,7 @@ docs/ListWorkflowVersions200Response.md
 docs/ListWorkflowVersions200ResponseVersionsInner.md
 docs/ListWorkflows200Response.md
 docs/ListWorkflows200ResponseWorkflowsInner.md
+docs/ListedAccount.md
 docs/LogsApi.md
 docs/LookupSmsNumber200Response.md
 docs/MarkConversationRead200Response.md
@@ -4932,6 +4934,7 @@ src/Zernio.Test/Model/ImessageAudienceContactTests.cs
 src/Zernio.Test/Model/ImessageSandboxContactTests.cs
 src/Zernio.Test/Model/ImessageSenderLifecycleTests.cs
 src/Zernio.Test/Model/ImessageSenderTests.cs
+src/Zernio.Test/Model/InboundActivityTests.cs
 src/Zernio.Test/Model/InboxConversationAdMetadataTests.cs
 src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
 src/Zernio.Test/Model/InboxMessageEditHistoryEntryTests.cs
@@ -5383,6 +5386,7 @@ src/Zernio.Test/Model/ListWorkflowVersions200ResponseTests.cs
 src/Zernio.Test/Model/ListWorkflowVersions200ResponseVersionsInnerTests.cs
 src/Zernio.Test/Model/ListWorkflows200ResponseTests.cs
 src/Zernio.Test/Model/ListWorkflows200ResponseWorkflowsInnerTests.cs
+src/Zernio.Test/Model/ListedAccountTests.cs
 src/Zernio.Test/Model/LookupSmsNumber200ResponseTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
 src/Zernio.Test/Model/MediaContentTypeTests.cs
@@ -8250,6 +8254,7 @@ src/Zernio/Model/ImessageAudienceContactOptIn.cs
 src/Zernio/Model/ImessageSandboxContact.cs
 src/Zernio/Model/ImessageSender.cs
 src/Zernio/Model/ImessageSenderLifecycle.cs
+src/Zernio/Model/InboundActivity.cs
 src/Zernio/Model/InboxConversationAdMetadata.cs
 src/Zernio/Model/InboxMessageEditAttachment.cs
 src/Zernio/Model/InboxMessageEditHistoryEntry.cs
@@ -8701,6 +8706,7 @@ src/Zernio/Model/ListWorkflowVersions200Response.cs
 src/Zernio/Model/ListWorkflowVersions200ResponseVersionsInner.cs
 src/Zernio/Model/ListWorkflows200Response.cs
 src/Zernio/Model/ListWorkflows200ResponseWorkflowsInner.cs
+src/Zernio/Model/ListedAccount.cs
 src/Zernio/Model/LookupSmsNumber200Response.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
 src/Zernio/Model/MediaContentType.cs

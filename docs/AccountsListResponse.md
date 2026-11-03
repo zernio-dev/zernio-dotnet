@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Accounts** | [**List&lt;SocialAccount&gt;**](SocialAccount.md) |  | 
+**Accounts** | [**List&lt;ListedAccount&gt;**](ListedAccount.md) |  | 
 **HasAnalyticsAccess** | **bool** | Whether user has analytics add-on access | 
 **Pagination** | [**AccountsListResponsePagination**](AccountsListResponsePagination.md) |  | [optional] 
 **ProfileTotals** | **Dictionary&lt;string, int&gt;** | Only with profileIds and perProfile. Accounts matching the filters per profile ID; a profile with none is absent. | [optional] 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.450.2
+  version: 1.451.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -97387,6 +97387,72 @@ components:
       properties:
         message:
           type: string
+    InboundActivity:
+      description: "When inbound messages and comments were first and last seen for\
+        \ the account. Only events matched to this account count. WhatsApp delivery\
+        \ statuses for outbound messages do not count, so the stamps of a number that\
+        \ only sends stay null. The stamps reset on every connect."
+      properties:
+        firstMessageAt:
+          description: "First inbound message since the latest connect, or since tracking\
+            \ began for an account connected before it. Null when none yet."
+          format: date-time
+          nullable: true
+          type: string
+        lastMessageAt:
+          description: "Latest inbound message, precise to about one hour. Null when\
+            \ none yet."
+          format: date-time
+          nullable: true
+          type: string
+        firstCommentAt:
+          description: "First inbound comment since the latest connect, or since tracking\
+            \ began for an account connected before it. Null when none yet."
+          format: date-time
+          nullable: true
+          type: string
+        lastCommentAt:
+          description: "Latest inbound comment, precise to about one hour. Null when\
+            \ none yet."
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - firstCommentAt
+      - firstMessageAt
+      - lastCommentAt
+      - lastMessageAt
+    ListedAccount:
+      allOf:
+      - $ref: "#/components/schemas/SocialAccount"
+      - properties:
+          inboundActivity:
+            allOf:
+            - $ref: "#/components/schemas/InboundActivity"
+            nullable: true
+      example:
+        profileUrl: profileUrl
+        scopeAreas:
+        - scopeAreas
+        - scopeAreas
+        metadata: "{}"
+        followersLastUpdated: 2000-01-23T04:56:07.000+00:00
+        displayName: displayName
+        oauthAppId: oauthAppId
+        rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+        isActive: true
+        platform: tiktok
+        enabled: true
+        parentAccountId: parentAccountId
+        profilePicture: profilePicture
+        needsReconnection: true
+        platformUserId: platformUserId
+        profileId: SocialAccount_profileId
+        tiktokAccountType: business
+        inboundActivity: ""
+        _id: _id
+        followersCount: 0.8008281904610115
+        username: username
     AccountsListResponse:
       example:
         hasAnalyticsAccess: true
@@ -97419,6 +97485,7 @@ components:
           platformUserId: platformUserId
           profileId: SocialAccount_profileId
           tiktokAccountType: business
+          inboundActivity: ""
           _id: _id
           followersCount: 0.8008281904610115
           username: username
@@ -97440,13 +97507,14 @@ components:
           platformUserId: platformUserId
           profileId: SocialAccount_profileId
           tiktokAccountType: business
+          inboundActivity: ""
           _id: _id
           followersCount: 0.8008281904610115
           username: username
       properties:
         accounts:
           items:
-            $ref: "#/components/schemas/SocialAccount"
+            $ref: "#/components/schemas/ListedAccount"
           type: array
         hasAnalyticsAccess:
           description: Whether user has analytics add-on access
@@ -117155,6 +117223,7 @@ components:
         disconnectionType: intentional
         profileId: profileId
         ownerUserId: ownerUserId
+        inboundActivity: ""
         analyticsSync:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           status: ok
@@ -117231,6 +117300,10 @@ components:
           type: string
         analyticsSync:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
+        inboundActivity:
+          allOf:
+          - $ref: "#/components/schemas/InboundActivity"
+          nullable: true
         messagingRestriction:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_messagingRestriction"
     getAllAccountsHealth_200_response:
@@ -117263,6 +117336,7 @@ components:
           disconnectionType: intentional
           profileId: profileId
           ownerUserId: ownerUserId
+          inboundActivity: ""
           analyticsSync:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             status: ok
@@ -117291,6 +117365,7 @@ components:
           disconnectionType: intentional
           profileId: profileId
           ownerUserId: ownerUserId
+          inboundActivity: ""
           analyticsSync:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             status: ok
@@ -117634,6 +117709,7 @@ components:
             granted: true
           canFetchAnalytics: true
         ownerUserId: ownerUserId
+        inboundActivity: ""
         integrationLane: business
         analyticsSync:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -117734,6 +117810,10 @@ components:
           type: string
         analyticsSync:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
+        inboundActivity:
+          allOf:
+          - $ref: "#/components/schemas/InboundActivity"
+          nullable: true
         messagingRestriction:
           $ref: "#/components/schemas/getAccountHealth_200_response_messagingRestriction"
         platformConnection:
