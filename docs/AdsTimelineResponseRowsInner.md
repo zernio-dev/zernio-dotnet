@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Cpm** | **decimal** | Cost per 1000 impressions in native currency. | [optional] 
 **Conversions** | **decimal** | Sum of conversion events over the range. Fractional values are normal (attribution splitting + Google modeled conversions). Meta: the ad set Ads Manager Results (see AdMetrics.conversions). Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07). | [optional] 
 **AllConversions** | **decimal** | All conversions, including actions excluded from the Conversions column (Google metrics.all_conversions). 0 on platforms without the concept. | [optional] 
+**ConversionsByType** | **Dictionary&lt;string, decimal&gt;** | &#x60;conversions&#x60; split by what was counted. Keys are the Meta action_type (e.g. &#x60;offsite_conversion.fb_pixel_purchase&#x60;) or the Google conversion action name, so a goal change shows as one key ending and another starting. Meta and Google only; empty before 2026-11. | [optional] 
 **CostPerConversion** | **decimal** |  | [optional] 
 **Actions** | **Dictionary&lt;string, decimal&gt;** | Per-action-type counts merged across all ads on this day. Keys are platform-native action types. | [optional] 
 **ActionValues** | **Dictionary&lt;string, decimal&gt;** | Monetary mirror of &#x60;actions&#x60; in native currency. | [optional] 
