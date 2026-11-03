@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.453.0
+  version: 1.456.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -107766,11 +107766,11 @@ components:
           - roas
           - reach
           - frequency
+          - daily_budget
+          - budget_used
           nullable: true
           type: string
         window:
-          description: Days in the ad account's own timezone. `last_7d` is the 7 full
-            days before today; only `today` reads the day in progress.
           enum:
           - today
           - yesterday
@@ -107778,6 +107778,7 @@ components:
           - last_7d
           - last_14d
           - last_30d
+          nullable: true
           type: string
         op:
           enum:
@@ -107789,6 +107790,13 @@ components:
         value:
           minimum: 0
           type: number
+        compareTo:
+          description: |
+            Makes the condition relative: `value` becomes a ratio of the metric over `window` to the same metric over this window. `previous_period` is the same number of days just before `window`; any other value is a window, such as `30_to_2_days_ago`.
+
+            Spend, impressions, clicks, conversions and reach are compared per day, so windows of different lengths compare fairly; rates such as `cpc` compare as they are. A comparison window with no value never matches.
+          example: previous_period
+          type: string
       required:
       - metric
       - op
@@ -107965,12 +107973,14 @@ components:
           actual: 1.4658129805029452
           metric: spend
           window: today
+          compareTo: previous_period
           value: 0.6027456183070403
           met: true
         - op: '>'
           actual: 1.4658129805029452
           metric: spend
           window: today
+          compareTo: previous_period
           value: 0.6027456183070403
           met: true
       properties:
@@ -108009,12 +108019,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         - campaignId: campaignId
@@ -108026,12 +108038,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         timezoneAssumed: true
@@ -108100,12 +108114,14 @@ components:
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
             - op: '>'
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
           - campaignId: campaignId
@@ -108117,12 +108133,14 @@ components:
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
             - op: '>'
               actual: 1.4658129805029452
               metric: spend
               window: today
+              compareTo: previous_period
               value: 0.6027456183070403
               met: true
           actions:
@@ -152489,12 +152507,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             - campaignId: campaignId
@@ -152506,12 +152526,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             actions:
@@ -152560,12 +152582,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             - campaignId: campaignId
@@ -152577,12 +152601,14 @@ components:
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
               - op: '>'
                 actual: 1.4658129805029452
                 metric: spend
                 window: today
+                compareTo: previous_period
                 value: 0.6027456183070403
                 met: true
             actions:
@@ -195779,6 +195805,7 @@ components:
         actual: 1.4658129805029452
         metric: spend
         window: today
+        compareTo: previous_period
         value: 0.6027456183070403
         met: true
     AdRuleRun_evaluation_rule:
@@ -195890,12 +195917,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         - campaignId: campaignId
@@ -195907,12 +195936,14 @@ components:
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
           - op: '>'
             actual: 1.4658129805029452
             metric: spend
             window: today
+            compareTo: previous_period
             value: 0.6027456183070403
             met: true
         actions:
