@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Spec** | [**TargetingSpec**](TargetingSpec.md) |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **Size** | **int** |  | [optional] 
+**Summary** | **string** | Who the audience contains, in one line (e.g. &#39;1% lookalike of Customers in US&#39; or &#39;All website visitors, last 30 days&#39;). Meta only. | [optional] 
 **Status** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
