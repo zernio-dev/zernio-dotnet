@@ -68,7 +68,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="status">status (required).</param>
         /// <param name="raw">Platform-native status string, forwarded verbatim (Meta &#x60;ACTIVE&#x60; / &#x60;DISAPPROVED&#x60;, TikTok &#x60;DISABLE&#x60;, ...). (required).</param>
-        /// <param name="reasons">Why the platform rejected the ad, when it says. Always empty on &#x60;approved&#x60;. Most networks only return a generic message today. (required).</param>
+        /// <param name="reasons">Why the platform rejected the ad, when it says. Always empty on &#x60;approved&#x60;. Pinterest, LinkedIn and Reddit send their own reasons, X sends none, and most other networks only return a generic message. (required).</param>
         public WebhookPayloadAdReviewReview(StatusEnum status = default, string raw = default, List<WebhookPayloadAdReviewReviewReasonsInner> reasons = default)
         {
             this.Status = status;
@@ -94,9 +94,9 @@ namespace Zernio.Model
         public string Raw { get; set; }
 
         /// <summary>
-        /// Why the platform rejected the ad, when it says. Always empty on &#x60;approved&#x60;. Most networks only return a generic message today.
+        /// Why the platform rejected the ad, when it says. Always empty on &#x60;approved&#x60;. Pinterest, LinkedIn and Reddit send their own reasons, X sends none, and most other networks only return a generic message.
         /// </summary>
-        /// <value>Why the platform rejected the ad, when it says. Always empty on &#x60;approved&#x60;. Most networks only return a generic message today.</value>
+        /// <value>Why the platform rejected the ad, when it says. Always empty on &#x60;approved&#x60;. Pinterest, LinkedIn and Reddit send their own reasons, X sends none, and most other networks only return a generic message.</value>
         [DataMember(Name = "reasons", IsRequired = true, EmitDefaultValue = true)]
         public List<WebhookPayloadAdReviewReviewReasonsInner> Reasons { get; set; }
 
