@@ -66,7 +66,10 @@ docs/AdRuleActionOneOf2.md
 docs/AdRuleActionOneOf3.md
 docs/AdRuleActivityEntry.md
 docs/AdRuleCondition.md
+docs/AdRuleConditionItem.md
 docs/AdRuleConditions.md
+docs/AdRuleConditionsOneOf.md
+docs/AdRuleConditionsOneOf1.md
 docs/AdRuleEvaluation.md
 docs/AdRuleLevel.md
 docs/AdRuleObjectEvaluation.md
@@ -3440,7 +3443,10 @@ src/Zernio.Test/Model/AdRuleActionOneOf3Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfTests.cs
 src/Zernio.Test/Model/AdRuleActionTests.cs
 src/Zernio.Test/Model/AdRuleActivityEntryTests.cs
+src/Zernio.Test/Model/AdRuleConditionItemTests.cs
 src/Zernio.Test/Model/AdRuleConditionTests.cs
+src/Zernio.Test/Model/AdRuleConditionsOneOf1Tests.cs
+src/Zernio.Test/Model/AdRuleConditionsOneOfTests.cs
 src/Zernio.Test/Model/AdRuleConditionsTests.cs
 src/Zernio.Test/Model/AdRuleEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleLevelTests.cs
@@ -6763,7 +6769,10 @@ src/Zernio/Model/AdRuleActionOneOf2.cs
 src/Zernio/Model/AdRuleActionOneOf3.cs
 src/Zernio/Model/AdRuleActivityEntry.cs
 src/Zernio/Model/AdRuleCondition.cs
+src/Zernio/Model/AdRuleConditionItem.cs
 src/Zernio/Model/AdRuleConditions.cs
+src/Zernio/Model/AdRuleConditionsOneOf.cs
+src/Zernio/Model/AdRuleConditionsOneOf1.cs
 src/Zernio/Model/AdRuleEvaluation.cs
 src/Zernio/Model/AdRuleLevel.cs
 src/Zernio/Model/AdRuleObjectEvaluation.cs
