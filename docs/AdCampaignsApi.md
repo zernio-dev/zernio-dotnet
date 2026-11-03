@@ -44,6 +44,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdSets**](AdCampaignsApi.md#listadsets) | **GET** /v1/ads/ad-sets | List ad sets |
 | [**ListAds**](AdCampaignsApi.md#listads) | **GET** /v1/ads | List ads |
 | [**ListAdsAlerts**](AdCampaignsApi.md#listadsalerts) | **GET** /v1/ads/alerts | List ads that need attention |
+| [**ListAdsByPerformance**](AdCampaignsApi.md#listadsbyperformance) | **GET** /v1/ads/performance | Rank ads by performance |
 | [**ListBidStrategies**](AdCampaignsApi.md#listbidstrategies) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
 | [**ListCampaignAssets**](AdCampaignsApi.md#listcampaignassets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets |
 | [**ListCampaignNegativeKeywordLists**](AdCampaignsApi.md#listcampaignnegativekeywordlists) | **GET** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | List campaign negative lists |
@@ -4447,6 +4448,121 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadsbyperformance"></a>
+# **ListAdsByPerformance**
+> AdsPerformanceResponse ListAdsByPerformance (string accountId, DateOnly fromDate, DateOnly toDate, string? adAccountId = null, string? platform = null, string? sortBy = null, int? limit = null)
+
+Rank ads by performance
+
+Returns an ads account's ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.  Use it to see which creatives perform best. `accountId` is sibling-expanded like `/v1/ads/timeline`.  Money is ranked by its raw amount, so pass `adAccountId` when the connection's ad accounts bill in different currencies.  A Meta range older than the imported history answers `202` with `backfillPending: true` and the covered part; repeat the request until it returns 200. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdsByPerformanceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Account ID. Sibling-expanded to its linked posting and ads pair. An id the API key cannot reach answers 404.
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | Inclusive start of the range (YYYY-MM-DD).
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Inclusive end of the range (YYYY-MM-DD). Max 730-day range.
+            var adAccountId = "adAccountId_example";  // string? | Optional platform-native ad account ID (e.g. Meta `act_…`) to rank one ad account only. (optional) 
+            var platform = "facebook";  // string? | Restrict to one platform. (optional) 
+            var sortBy = "spend";  // string? | Metric the ads are ranked by, highest first. (optional)  (default to spend)
+            var limit = 50;  // int? | How many ads to return. (optional)  (default to 50)
+
+            try
+            {
+                // Rank ads by performance
+                AdsPerformanceResponse result = apiInstance.ListAdsByPerformance(accountId, fromDate, toDate, adAccountId, platform, sortBy, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ListAdsByPerformance: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdsByPerformanceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Rank ads by performance
+    ApiResponse<AdsPerformanceResponse> response = apiInstance.ListAdsByPerformanceWithHttpInfo(accountId, fromDate, toDate, adAccountId, platform, sortBy, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ListAdsByPerformanceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Account ID. Sibling-expanded to its linked posting and ads pair. An id the API key cannot reach answers 404. |  |
+| **fromDate** | **DateOnly** | Inclusive start of the range (YYYY-MM-DD). |  |
+| **toDate** | **DateOnly** | Inclusive end of the range (YYYY-MM-DD). Max 730-day range. |  |
+| **adAccountId** | **string?** | Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;) to rank one ad account only. | [optional]  |
+| **platform** | **string?** | Restrict to one platform. | [optional]  |
+| **sortBy** | **string?** | Metric the ads are ranked by, highest first. | [optional] [default to spend] |
+| **limit** | **int?** | How many ads to return. | [optional] [default to 50] |
+
+### Return type
+
+[**AdsPerformanceResponse**](AdsPerformanceResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ads ranked by &#x60;sortBy&#x60;. Ads with no delivery in the range are left out. |  -  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
