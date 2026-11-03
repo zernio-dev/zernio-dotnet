@@ -116,6 +116,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -320,6 +321,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. One of:  - Ads add-on required. - Code &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 | **422** | Meta rejected the lead form. Code 3 is Meta&#39;s generic app-capability error and does not name a field; when the request set isPhoneSmsVerifyEnabled, the response names that field as the one to drop first. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -423,6 +425,7 @@ catch (ApiException e)
 | **200** | Test lead created. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -528,6 +531,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The form has no test lead. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -633,6 +637,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -742,7 +747,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -850,6 +855,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
+| **409** | The account exists but is disconnected (deactivated, or flagged as needing reconnection). Code &#x60;account_disconnected&#x60;.  &#x60;details&#x60; names the account (&#x60;accountId&#x60;, &#x60;platform&#x60;, &#x60;username&#x60;) with its &#x60;disconnectReason&#x60;, &#x60;disconnectionType&#x60;, &#x60;unhealthySince&#x60; and &#x60;action: reconnect&#x60;.  Reconnect the account (its accountId stays the same), then retry. The disconnect is also sent as the &#x60;account.disconnected&#x60; webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
