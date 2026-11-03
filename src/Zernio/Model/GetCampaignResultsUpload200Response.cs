@@ -96,6 +96,33 @@ namespace Zernio.Model
         [DataMember(Name = "source", IsRequired = true, EmitDefaultValue = true)]
         public SourceEnum Source { get; set; }
         /// <summary>
+        /// Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side.
+        /// </summary>
+        /// <value>Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum FailureReasonEnum
+        {
+            /// <summary>
+            /// Enum QueueUnavailable for value: queue_unavailable
+            /// </summary>
+            [EnumMember(Value = "queue_unavailable")]
+            QueueUnavailable = 1,
+
+            /// <summary>
+            /// Enum ProcessingFailed for value: processing_failed
+            /// </summary>
+            [EnumMember(Value = "processing_failed")]
+            ProcessingFailed = 2
+        }
+
+
+        /// <summary>
+        /// Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side.
+        /// </summary>
+        /// <value>Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side.</value>
+        [DataMember(Name = "failureReason", IsRequired = true, EmitDefaultValue = true)]
+        public FailureReasonEnum FailureReason { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetCampaignResultsUpload200Response" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -110,9 +137,10 @@ namespace Zernio.Model
         /// <param name="rowsMatched">rowsMatched (required).</param>
         /// <param name="rowsUnmatched">rowsUnmatched (required).</param>
         /// <param name="unmatched">unmatched (required).</param>
+        /// <param name="failureReason">Set when &#x60;status&#x60; is &#x60;failed&#x60;. &#x60;queue_unavailable&#x60;: the upload could not be queued. &#x60;processing_failed&#x60;: its rows could not be stored after several retries. Both are on our side. (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="completedAt">completedAt (required).</param>
-        public GetCampaignResultsUpload200Response(string uploadId = default, StatusEnum status = default, SourceEnum source = default, int rowsReceived = default, int rowsMatched = default, int rowsUnmatched = default, List<GetCampaignResultsUpload200ResponseUnmatchedInner> unmatched = default, DateTime createdAt = default, DateTime? completedAt = default)
+        public GetCampaignResultsUpload200Response(string uploadId = default, StatusEnum status = default, SourceEnum source = default, int rowsReceived = default, int rowsMatched = default, int rowsUnmatched = default, List<GetCampaignResultsUpload200ResponseUnmatchedInner> unmatched = default, FailureReasonEnum failureReason = default, DateTime createdAt = default, DateTime? completedAt = default)
         {
             // to ensure "uploadId" is required (not null)
             if (uploadId == null)
@@ -131,6 +159,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("unmatched is a required property for GetCampaignResultsUpload200Response and cannot be null");
             }
             this.Unmatched = unmatched;
+            this.FailureReason = failureReason;
             this.CreatedAt = createdAt;
             // to ensure "completedAt" is required (not null)
             if (completedAt == null)
@@ -197,6 +226,7 @@ namespace Zernio.Model
             sb.Append("  RowsMatched: ").Append(RowsMatched).Append("\n");
             sb.Append("  RowsUnmatched: ").Append(RowsUnmatched).Append("\n");
             sb.Append("  Unmatched: ").Append(Unmatched).Append("\n");
+            sb.Append("  FailureReason: ").Append(FailureReason).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CompletedAt: ").Append(CompletedAt).Append("\n");
             sb.Append("}\n");

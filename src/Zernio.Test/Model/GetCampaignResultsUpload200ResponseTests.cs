@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'FailureReason'
+        /// </summary>
+        [Fact]
+        public void FailureReasonTest()
+        {
+            // TODO unit test for the property 'FailureReason'
+        }
+
+        /// <summary>
         /// Test the property 'CreatedAt'
         /// </summary>
         [Fact]

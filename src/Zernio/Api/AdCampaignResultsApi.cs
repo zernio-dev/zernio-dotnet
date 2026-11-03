@@ -57,7 +57,7 @@ namespace Zernio.Api
         /// Check a results upload
         /// </summary>
         /// <remarks>
-        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -68,7 +68,7 @@ namespace Zernio.Api
         /// Check a results upload
         /// </summary>
         /// <remarks>
-        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -208,7 +208,7 @@ namespace Zernio.Api
         /// Check a results upload
         /// </summary>
         /// <remarks>
-        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -220,7 +220,7 @@ namespace Zernio.Api
         /// Check a results upload
         /// </summary>
         /// <remarks>
-        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -680,7 +680,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -692,7 +692,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -741,7 +741,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
@@ -754,7 +754,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days. 
+        /// Check a results upload How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (&#x60;no_campaign&#x60; or &#x60;ambiguous&#x60;).  &#x60;status&#x60; turns &#x60;done&#x60; once every row is processed, usually within seconds. Uploads are kept for 30 days.  A &#x60;failed&#x60; upload says why in &#x60;failureReason&#x60;. Send it again: re-sending a day replaces it, so nothing is counted twice. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="uploadId"></param>
