@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **MaxChangesPerDay** | **int** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. | [optional] 
 **Status** | **string** | How the copy starts. Defaults to &#x60;paused&#x60;. | [optional] 
 **RenameSuffix** | **string** | Text added to the copy&#39;s name. | [optional] 
+**Add** | **string** | Text to add, like &#x60;[WINNER]&#x60;. Compared without case. | [optional] 
+**At** | **string** | Where &#x60;add&#x60; goes. Defaults to &#x60;start&#x60;. | [optional] 
+**Remove** | **string** | Text to take out of the name, every copy of it. | [optional] 
 **Amount** | **decimal** | The daily budget to set, in the ad account currency. An object already at it is skipped with &#x60;already_at_amount&#x60;. | 
 **Direction** | **string** |  | 
 **Percent** | **int** | Change in percent: up to 100 for an increase, up to 90 for a decrease. | 

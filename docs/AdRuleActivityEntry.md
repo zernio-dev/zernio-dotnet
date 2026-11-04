@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **Reason** | **string** | Why it was skipped or failed, for example &#x60;already_paused&#x60;. | 
 **PreviousDailyBudget** | **decimal?** |  | 
 **NewDailyBudget** | **decimal?** |  | 
+**PreviousName** | **string** | The name before an &#x60;edit_name&#x60;. | 
+**NewName** | **string** | The name an applied &#x60;edit_name&#x60; set. | 
 **Currency** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
