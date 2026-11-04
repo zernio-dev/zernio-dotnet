@@ -735,6 +735,9 @@ docs/CreatePhoneNumberStockWatchRequest.md
 docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
 docs/CreatePinterestBoardRequest.md
+docs/CreatePlatformInvite200Response.md
+docs/CreatePlatformInvite200ResponseInvite.md
+docs/CreatePlatformInviteRequest.md
 docs/CreatePost200Response.md
 docs/CreatePost400Response.md
 docs/CreatePost400ResponseDetails.md
@@ -4138,6 +4141,9 @@ src/Zernio.Test/Model/CreatePhoneNumberStockWatchRequestTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
 src/Zernio.Test/Model/CreatePinterestBoardRequestTests.cs
+src/Zernio.Test/Model/CreatePlatformInvite200ResponseInviteTests.cs
+src/Zernio.Test/Model/CreatePlatformInvite200ResponseTests.cs
+src/Zernio.Test/Model/CreatePlatformInviteRequestTests.cs
 src/Zernio.Test/Model/CreatePost200ResponseTests.cs
 src/Zernio.Test/Model/CreatePost400ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost400ResponseTests.cs
@@ -7501,6 +7507,9 @@ src/Zernio/Model/CreatePhoneNumberStockWatchRequest.cs
 src/Zernio/Model/CreatePinterestBoard201Response.cs
 src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
 src/Zernio/Model/CreatePinterestBoardRequest.cs
+src/Zernio/Model/CreatePlatformInvite200Response.cs
+src/Zernio/Model/CreatePlatformInvite200ResponseInvite.cs
+src/Zernio/Model/CreatePlatformInviteRequest.cs
 src/Zernio/Model/CreatePost200Response.cs
 src/Zernio/Model/CreatePost400Response.cs
 src/Zernio/Model/CreatePost400ResponseDetails.cs
