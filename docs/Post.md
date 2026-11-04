@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **RecycledFromPostId** | **string** | ID of the original post if this post was created via recycling | [optional] 
 **QueuedFromProfile** | **string** | Profile ID if the post was scheduled via the queue | [optional] 
 **QueueId** | **string** | Queue ID if the post was scheduled via a specific queue | [optional] 
+**ProfileId** | **string** | Profile the post is filed under. Set only on drafts that have no platforms. | [optional] 
 **CreatedAt** | **DateTime** |  | [optional] 
 **UpdatedAt** | **DateTime** | Last change to the post or to any of its platforms (a publish, a failure, a resolved URL). | [optional] 
 
