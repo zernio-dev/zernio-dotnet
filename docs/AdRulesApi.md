@@ -12,6 +12,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdRuleTemplates**](AdRulesApi.md#listadruletemplates) | **GET** /v1/ads/rules/templates | List ready-made ad rules |
 | [**ListAdRules**](AdRulesApi.md#listadrules) | **GET** /v1/ads/rules | List ad rules |
 | [**PreviewAdRule**](AdRulesApi.md#previewadrule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule |
+| [**UndoAdRuleActivity**](AdRulesApi.md#undoadruleactivity) | **POST** /v1/ads/rules/activity/{activityId}/undo | Undo a change an ad rule made |
 | [**UpdateAdRule**](AdRulesApi.md#updateadrule) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule |
 
 <a id="createadrule"></a>
@@ -840,6 +841,111 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="undoadruleactivity"></a>
+# **UndoAdRuleActivity**
+> UndoAdRuleActivity200Response UndoAdRuleActivity (string activityId)
+
+Undo a change an ad rule made
+
+Puts back a pause, a reactivation or a budget change a rule applied, as a new change recorded in the activity feed. The rule's cooldown then covers the object. It is refused (409 `invalid_resource_state`) when the change was not applied, was already undone, is a copy, or when the object changed since: delivering again after a pause, paused again after a reactivation, or on another budget. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UndoAdRuleActivityExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdRulesApi(httpClient, config, httpClientHandler);
+            var activityId = "activityId_example";  // string | The `id` of an entry from `GET /v1/ads/rules/activity`.
+
+            try
+            {
+                // Undo a change an ad rule made
+                UndoAdRuleActivity200Response result = apiInstance.UndoAdRuleActivity(activityId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdRulesApi.UndoAdRuleActivity: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UndoAdRuleActivityWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Undo a change an ad rule made
+    ApiResponse<UndoAdRuleActivity200Response> response = apiInstance.UndoAdRuleActivityWithHttpInfo(activityId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdRulesApi.UndoAdRuleActivityWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **activityId** | **string** | The &#x60;id&#x60; of an entry from &#x60;GET /v1/ads/rules/activity&#x60;. |  |
+
+### Return type
+
+[**UndoAdRuleActivity200Response**](UndoAdRuleActivity200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The undo was recorded and attempted |  -  |
+| **202** | The platform did not answer; &#x60;undo.status&#x60; is &#x60;unknown&#x60; and the rule&#39;s next run reads back whether it went through. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). |  -  |
+| **404** | No such activity entry in the profiles the key can reach. |  -  |
+| **409** | The change cannot be undone (code &#x60;invalid_resource_state&#x60;); &#x60;error&#x60; says why. |  -  |
+| **502** | The platform refused the undo (code &#x60;platform_api_error&#x60;). The change can be undone again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

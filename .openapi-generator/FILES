@@ -2700,6 +2700,8 @@ docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
 docs/UnblockWhatsAppUsers200Response.md
 docs/UnblockWhatsAppUsersRequest.md
+docs/UndoAdRuleActivity200Response.md
+docs/UndoAdRuleActivity200ResponseUndo.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
@@ -6035,6 +6037,8 @@ src/Zernio.Test/Model/TwitterPlatformDataTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataThreadItemsInnerTests.cs
 src/Zernio.Test/Model/UnblockWhatsAppUsers200ResponseTests.cs
 src/Zernio.Test/Model/UnblockWhatsAppUsersRequestTests.cs
+src/Zernio.Test/Model/UndoAdRuleActivity200ResponseTests.cs
+src/Zernio.Test/Model/UndoAdRuleActivity200ResponseUndoTests.cs
 src/Zernio.Test/Model/UndoRetweet200ResponseTests.cs
 src/Zernio.Test/Model/UnfollowUser200ResponseTests.cs
 src/Zernio.Test/Model/UnlikeInboxComment200ResponseTests.cs
@@ -9374,6 +9378,8 @@ src/Zernio/Model/TwitterPlatformDataSensitiveMedia.cs
 src/Zernio/Model/TwitterPlatformDataThreadItemsInner.cs
 src/Zernio/Model/UnblockWhatsAppUsers200Response.cs
 src/Zernio/Model/UnblockWhatsAppUsersRequest.cs
+src/Zernio/Model/UndoAdRuleActivity200Response.cs
+src/Zernio/Model/UndoAdRuleActivity200ResponseUndo.cs
 src/Zernio/Model/UndoRetweet200Response.cs
 src/Zernio/Model/UnfollowUser200Response.cs
 src/Zernio/Model/UnlikeInboxComment200Response.cs
