@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Currency** | **string** |  | 
 **Matched** | **int** | How many objects meet every condition. | 
 **Objects** | [**List&lt;AdRuleObjectEvaluation&gt;**](AdRuleObjectEvaluation.md) | Every delivering campaign or ad set in scope (for an &#x60;activate&#x60; rule, the rule-paused ones it may reactivate). | 
+**Groups** | [**List&lt;AdRuleEvaluationGroupsInner&gt;**](AdRuleEvaluationGroupsInner.md) | Each group&#39;s totals, for a rule with groups. Null otherwise. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

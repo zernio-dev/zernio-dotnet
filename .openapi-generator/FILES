@@ -78,7 +78,9 @@ docs/AdRuleConditions.md
 docs/AdRuleConditionsOneOf.md
 docs/AdRuleConditionsOneOf1.md
 docs/AdRuleEvaluation.md
+docs/AdRuleEvaluationGroupsInner.md
 docs/AdRuleFiltersInner.md
+docs/AdRuleGroupsInner.md
 docs/AdRuleLevel.md
 docs/AdRuleLifecycle.md
 docs/AdRuleObjectEvaluation.md
@@ -3493,8 +3495,10 @@ src/Zernio.Test/Model/AdRuleConditionTests.cs
 src/Zernio.Test/Model/AdRuleConditionsOneOf1Tests.cs
 src/Zernio.Test/Model/AdRuleConditionsOneOfTests.cs
 src/Zernio.Test/Model/AdRuleConditionsTests.cs
+src/Zernio.Test/Model/AdRuleEvaluationGroupsInnerTests.cs
 src/Zernio.Test/Model/AdRuleEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleFiltersInnerTests.cs
+src/Zernio.Test/Model/AdRuleGroupsInnerTests.cs
 src/Zernio.Test/Model/AdRuleLevelTests.cs
 src/Zernio.Test/Model/AdRuleLifecycleTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationConditionsInnerTests.cs
@@ -6857,7 +6861,9 @@ src/Zernio/Model/AdRuleConditions.cs
 src/Zernio/Model/AdRuleConditionsOneOf.cs
 src/Zernio/Model/AdRuleConditionsOneOf1.cs
 src/Zernio/Model/AdRuleEvaluation.cs
+src/Zernio/Model/AdRuleEvaluationGroupsInner.cs
 src/Zernio/Model/AdRuleFiltersInner.cs
+src/Zernio/Model/AdRuleGroupsInner.cs
 src/Zernio/Model/AdRuleLevel.cs
 src/Zernio/Model/AdRuleLifecycle.cs
 src/Zernio/Model/AdRuleObjectEvaluation.cs
