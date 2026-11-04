@@ -5776,7 +5776,7 @@ void (empty response body)
 
 Contact updated
 
-A provider contacts sync created or changed a contact.
+A provider contacts sync (Google Contacts, Outlook) or a WhatsApp coexistence address-book change created or changed a contact.
 
 ### Example
 ```csharp
