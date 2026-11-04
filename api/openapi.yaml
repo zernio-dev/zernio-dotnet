@@ -62978,6 +62978,8 @@ paths:
           $ref: "#/components/responses/AccountConnectionRequired"
         "422":
           description: No Facebook Page resolved for the account
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "502":
           description: "Meta accepted the request then failed to produce the media\
             \ (upload session, chunk transfer, processing timeout, or a response with\
@@ -63049,6 +63051,8 @@ paths:
           $ref: "#/components/responses/AccountConnectionRequired"
         "422":
           description: No Facebook Page resolved for the account
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "502":
           description: "Meta accepted the request then failed to produce the media\
             \ (upload session, chunk transfer, processing timeout, or a response with\
@@ -63178,6 +63182,8 @@ paths:
           description: "Page is not connected to a verified WhatsApp number, or code\
             \ `ad_account_unusable` when Meta refuses writes on the ad account (see\
             \ `ErrorResponse.details`)."
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "502":
           description: |
             Meta rejected the request (e.g. WABA business verification
