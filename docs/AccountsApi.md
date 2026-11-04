@@ -1828,7 +1828,7 @@ catch (ApiException e)
 
 Update account
 
-Updates a connected account's display name or username override.  ### X capabilities  For X accounts on usage-based billing, also accepts an `xCapabilities` object to toggle background API operations that incur X API pass-through costs.  - Both fields are opt-in (default `false`). - When off, no analytics syncs or DM polling are performed for that account, and no API call is metered for those operations. - Publishing and deleting posts are always available regardless of these toggles. - Setting `xCapabilities` on a non-X account returns 400. 
+Updates a connected account's display name or username override.  ### X capabilities  For X accounts on usage-based billing, also accepts an `xCapabilities` object to toggle background API operations that incur X API pass-through costs.  - Both fields are opt-in (default `false`). - When off, no analytics syncs or DM polling are performed for that account, and no API call is metered for those operations. - Publishing and deleting posts are always available regardless of these toggles. - Setting `xCapabilities` on a non-X account returns 400.  ### Meta ads sync  For Facebook accounts, also accepts `metaAdsSyncEnabled` to sync the Meta ads of the ad accounts the account reaches without a Meta Ads connection. See the field for what turning it on and off does. 
 
 ### Example
 ```csharp
@@ -1919,8 +1919,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request (e.g. xCapabilities on a non-X account) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;metaAdsSyncEnabled: true&#x60; on a Facebook account without &#x60;ads_management&#x60; and &#x60;ads_read&#x60; (&#x60;reconnect_required&#x60;), without the Ads add-on (&#x60;ads_addon_required&#x60;) or over the managed ads allowance (&#x60;ads_allowance_exceeded&#x60;). |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
