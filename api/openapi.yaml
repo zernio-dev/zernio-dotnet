@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.483.1
+  version: 1.485.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -110245,8 +110245,8 @@ components:
           description: Marks an open alert critical.
     AdRuleFilters:
       description: "Narrows the objects the rule checks. Every filter must hold. A\
-        \ campaign rule reads `name`, `campaign_id`, `goal` and `days_live`; an ad\
-        \ set rule also `campaign_name` and `adset_id`; an ad rule also `adset_name`\
+        \ campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and `budget_level`;\
+        \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also `adset_name`\
         \ and `ad_id`."
       items:
         $ref: "#/components/schemas/AdRuleFilters_inner"
@@ -110292,6 +110292,9 @@ components:
           - mon
           - mon
           - mon
+        quietHours:
+          from: 22:00
+          to: 06:00
         everyMinutes: 0
         startsAt: 2000-01-23T04:56:07.000+00:00
         endsAt: 2000-01-23T04:56:07.000+00:00
@@ -110330,6 +110333,8 @@ components:
           format: date-time
           nullable: true
           type: string
+        quietHours:
+          $ref: "#/components/schemas/AdRuleSchedule_quietHours"
     AdRule:
       example:
         lastRunAt: 2000-01-23T04:56:07.000+00:00
@@ -110393,6 +110398,9 @@ components:
             - mon
             - mon
             - mon
+          quietHours:
+            from: 22:00
+            to: 06:00
           everyMinutes: 0
           startsAt: 2000-01-23T04:56:07.000+00:00
           endsAt: 2000-01-23T04:56:07.000+00:00
@@ -110469,9 +110477,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal` and `days_live`;\
-            \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also\
-            \ `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
+            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
+            \ an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -154877,6 +154885,9 @@ components:
               - mon
               - mon
               - mon
+            quietHours:
+              from: 22:00
+              to: 06:00
             everyMinutes: 0
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
@@ -154989,6 +155000,9 @@ components:
               - mon
               - mon
               - mon
+            quietHours:
+              from: 22:00
+              to: 06:00
             everyMinutes: 0
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
@@ -155071,9 +155085,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal` and `days_live`;\
-            \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also\
-            \ `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
+            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
+            \ an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -155175,6 +155189,9 @@ components:
               - mon
               - mon
               - mon
+            quietHours:
+              from: 22:00
+              to: 06:00
             everyMinutes: 0
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
@@ -155270,6 +155287,9 @@ components:
             - mon
             - mon
             - mon
+          quietHours:
+            from: 22:00
+            to: 06:00
           everyMinutes: 0
           startsAt: 2000-01-23T04:56:07.000+00:00
           endsAt: 2000-01-23T04:56:07.000+00:00
@@ -155410,6 +155430,9 @@ components:
               - mon
               - mon
               - mon
+            quietHours:
+              from: 22:00
+              to: 06:00
             everyMinutes: 0
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
@@ -155499,6 +155522,9 @@ components:
               - mon
               - mon
               - mon
+            quietHours:
+              from: 22:00
+              to: 06:00
             everyMinutes: 0
             startsAt: 2000-01-23T04:56:07.000+00:00
             endsAt: 2000-01-23T04:56:07.000+00:00
@@ -155665,9 +155691,9 @@ components:
           type: array
         filters:
           description: "Narrows the objects the rule checks. Every filter must hold.\
-            \ A campaign rule reads `name`, `campaign_id`, `goal` and `days_live`;\
-            \ an ad set rule also `campaign_name` and `adset_id`; an ad rule also\
-            \ `adset_name` and `ad_id`."
+            \ A campaign rule reads `name`, `campaign_id`, `goal`, `days_live` and\
+            \ `budget_level`; an ad set rule also `campaign_name` and `adset_id`;\
+            \ an ad rule also `adset_name` and `ad_id`."
           items:
             $ref: "#/components/schemas/AdRuleFilters_inner"
           maxItems: 10
@@ -199384,6 +199410,13 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
+          maximum: 100
+          minimum: 1
+          type: integer
       required:
       - type
     AdRuleAction_oneOf_2:
@@ -199403,6 +199436,13 @@ components:
           description: "At most this many objects changed in any 24 hours, across\
             \ runs. Matches over the limit are skipped with `daily_limit_reached`\
             \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
           maximum: 100
           minimum: 1
           type: integer
@@ -199430,6 +199470,13 @@ components:
           description: "At most this many objects changed in any 24 hours, across\
             \ runs. Matches over the limit are skipped with `daily_limit_reached`\
             \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
           maximum: 100
           minimum: 1
           type: integer
@@ -199469,6 +199516,13 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
+          maximum: 100
+          minimum: 1
+          type: integer
       required:
       - type
     AdRuleAction_oneOf_5:
@@ -199505,6 +199559,13 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
+          maximum: 100
+          minimum: 1
+          type: integer
       required:
       - type
     AdRuleAction_oneOf_6:
@@ -199523,6 +199584,13 @@ components:
           description: "At most this many objects changed in any 24 hours, across\
             \ runs. Matches over the limit are skipped with `daily_limit_reached`\
             \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
           maximum: 100
           minimum: 1
           type: integer
@@ -199557,6 +199625,13 @@ components:
           description: "At most this many objects changed in any 24 hours, across\
             \ runs. Matches over the limit are skipped with `daily_limit_reached`\
             \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxChangesPerObject:
+          description: "At most this many changes to one object by this rule, counted\
+            \ over the last 400 days. An object at the limit is left alone like one\
+            \ in cooldown."
           maximum: 100
           minimum: 1
           type: integer
@@ -199625,6 +199700,29 @@ components:
       - op
       - values
       title: Ids
+    Budget_level:
+      description: "Where the budget sits: on the campaign (Meta CBO, every Google\
+        \ campaign) or on each ad set (ABO). An object whose budget level is unknown\
+        \ never passes."
+      properties:
+        field:
+          enum:
+          - budget_level
+          type: string
+        op:
+          enum:
+          - equals
+          type: string
+        value:
+          enum:
+          - campaign
+          - adset
+          type: string
+      required:
+      - field
+      - op
+      - value
+      title: Budget level
     Days_live:
       description: Days since the object's first ad was created on the platform. An
         object without that date never passes.
@@ -199651,6 +199749,7 @@ components:
       oneOf:
       - $ref: "#/components/schemas/Name_or_goal"
       - $ref: "#/components/schemas/Ids"
+      - $ref: "#/components/schemas/Budget_level"
       - $ref: "#/components/schemas/Days_live"
     AdRuleSchedule_times_inner:
       example:
@@ -199684,6 +199783,26 @@ components:
       required:
       - at
       - days
+    AdRuleSchedule_quietHours:
+      description: "A daily window in the ad account timezone when the rule does not\
+        \ run, like `{ \"from\": \"22:00\", \"to\": \"06:00\" }`. It may wrap past\
+        \ midnight; the first run after it comes on the next interval point or set\
+        \ time."
+      example:
+        from: 22:00
+        to: 06:00
+      properties:
+        from:
+          example: 22:00
+          pattern: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+          type: string
+        to:
+          example: 06:00
+          pattern: "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+          type: string
+      required:
+      - from
+      - to
     AdRuleObjectEvaluation_conditions_inner:
       allOf:
       - $ref: "#/components/schemas/AdRuleCondition"

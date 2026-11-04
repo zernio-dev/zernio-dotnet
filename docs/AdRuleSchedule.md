@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Times** | [**List&lt;AdRuleScheduleTimesInner&gt;**](AdRuleScheduleTimesInner.md) | Set weekly times in the ad account timezone, instead of an interval. A rule that changes ads needs a cooldown of at least the shortest gap between two times. | [optional] 
 **StartsAt** | **DateTime?** | The rule runs from this time on. | [optional] 
 **EndsAt** | **DateTime?** | The rule stops running after this time. | [optional] 
+**QuietHours** | [**AdRuleScheduleQuietHours**](AdRuleScheduleQuietHours.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

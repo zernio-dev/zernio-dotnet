@@ -89,6 +89,7 @@ docs/AdRuleRunEvaluationActionsInner.md
 docs/AdRuleRunEvaluationNotification.md
 docs/AdRuleRunEvaluationRule.md
 docs/AdRuleSchedule.md
+docs/AdRuleScheduleQuietHours.md
 docs/AdRuleScheduleTimesInner.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
@@ -278,6 +279,7 @@ docs/BrandedCallingReferences.md
 docs/BroadcastsApi.md
 docs/BrowseAdTargeting200Response.md
 docs/BrowseAdTargeting200ResponseNodesInner.md
+docs/BudgetLevel.md
 docs/BulkCreateContacts200Response.md
 docs/BulkCreateContactsRequest.md
 docs/BulkCreateContactsRequestContactsInner.md
@@ -3502,6 +3504,7 @@ src/Zernio.Test/Model/AdRuleRunEvaluationNotificationTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationRuleTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunTests.cs
+src/Zernio.Test/Model/AdRuleScheduleQuietHoursTests.cs
 src/Zernio.Test/Model/AdRuleScheduleTests.cs
 src/Zernio.Test/Model/AdRuleScheduleTimesInnerTests.cs
 src/Zernio.Test/Model/AdRuleTests.cs
@@ -3688,6 +3691,7 @@ src/Zernio.Test/Model/BrandedCallingReferenceTests.cs
 src/Zernio.Test/Model/BrandedCallingReferencesTests.cs
 src/Zernio.Test/Model/BrowseAdTargeting200ResponseNodesInnerTests.cs
 src/Zernio.Test/Model/BrowseAdTargeting200ResponseTests.cs
+src/Zernio.Test/Model/BudgetLevelTests.cs
 src/Zernio.Test/Model/BulkCreateContacts200ResponseTests.cs
 src/Zernio.Test/Model/BulkCreateContactsRequestContactsInnerTests.cs
 src/Zernio.Test/Model/BulkCreateContactsRequestTests.cs
@@ -6864,6 +6868,7 @@ src/Zernio/Model/AdRuleRunEvaluationActionsInner.cs
 src/Zernio/Model/AdRuleRunEvaluationNotification.cs
 src/Zernio/Model/AdRuleRunEvaluationRule.cs
 src/Zernio/Model/AdRuleSchedule.cs
+src/Zernio/Model/AdRuleScheduleQuietHours.cs
 src/Zernio/Model/AdRuleScheduleTimesInner.cs
 src/Zernio/Model/AdSchedule.cs
 src/Zernio/Model/AdScheduleWindow.cs
@@ -7047,6 +7052,7 @@ src/Zernio/Model/BrandedCallingReference.cs
 src/Zernio/Model/BrandedCallingReferences.cs
 src/Zernio/Model/BrowseAdTargeting200Response.cs
 src/Zernio/Model/BrowseAdTargeting200ResponseNodesInner.cs
+src/Zernio/Model/BudgetLevel.cs
 src/Zernio/Model/BulkCreateContacts200Response.cs
 src/Zernio/Model/BulkCreateContactsRequest.cs
 src/Zernio/Model/BulkCreateContactsRequestContactsInner.cs
