@@ -3081,6 +3081,10 @@ docs/WebhookPayloadAccountRateLimitedAccount.md
 docs/WebhookPayloadAdAccountStatusChanged.md
 docs/WebhookPayloadAdAccountStatusChangedAdAccount.md
 docs/WebhookPayloadAdAccountStatusChangedStatus.md
+docs/WebhookPayloadAdCreated.md
+docs/WebhookPayloadAdCreatedAdObject.md
+docs/WebhookPayloadAdCreatedAdObjectAdSet.md
+docs/WebhookPayloadAdCreatedAdObjectCampaign.md
 docs/WebhookPayloadAdDeliveryIssue.md
 docs/WebhookPayloadAdDeliveryIssueIssue.md
 docs/WebhookPayloadAdReview.md
@@ -3098,6 +3102,7 @@ docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
 docs/WebhookPayloadAdStatusChangedError.md
 docs/WebhookPayloadAdStatusChangedStatus.md
+docs/WebhookPayloadAdUpdated.md
 docs/WebhookPayloadAdVideoProcessed.md
 docs/WebhookPayloadAdVideoProcessedAccount.md
 docs/WebhookPayloadAdVideoProcessedVideo.md
@@ -3126,6 +3131,8 @@ docs/WebhookPayloadCallReceivedCall.md
 docs/WebhookPayloadCampaignBudgetDepleted.md
 docs/WebhookPayloadCampaignBudgetDepletedAdObject.md
 docs/WebhookPayloadCampaignBudgetDepletedBudget.md
+docs/WebhookPayloadCampaignCreated.md
+docs/WebhookPayloadCampaignCreatedAdObject.md
 docs/WebhookPayloadCampaignParticipant.md
 docs/WebhookPayloadCampaignParticipantParticipant.md
 docs/WebhookPayloadCampaignPayout.md
@@ -3138,6 +3145,7 @@ docs/WebhookPayloadCampaignSubmissionCreator.md
 docs/WebhookPayloadCampaignSubmissionParticipant.md
 docs/WebhookPayloadCampaignSubmissionSubmission.md
 docs/WebhookPayloadCampaignSubmissionSubmissionFlagsInner.md
+docs/WebhookPayloadCampaignUpdated.md
 docs/WebhookPayloadComment.md
 docs/WebhookPayloadCommentAccount.md
 docs/WebhookPayloadCommentComment.md
@@ -6418,6 +6426,10 @@ src/Zernio.Test/Model/WebhookPayloadAccountRateLimitedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedAdAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedStatusTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdCreatedAdObjectAdSetTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdCreatedAdObjectCampaignTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdCreatedAdObjectTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdCreatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdDeliveryIssueIssueTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdDeliveryIssueTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdReviewAdObjectTests.cs
@@ -6435,6 +6447,7 @@ src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedErrorTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedStatusTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdVideoProcessedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdVideoProcessedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdVideoProcessedVideoTests.cs
@@ -6463,6 +6476,8 @@ src/Zernio.Test/Model/WebhookPayloadCallReceivedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedBudgetTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignCreatedAdObjectTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignCreatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignParticipantParticipantTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignParticipantTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignPayoutCampaignTests.cs
@@ -6475,6 +6490,7 @@ src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionParticipantTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionSubmissionFlagsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionSubmissionTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAdTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorInstagramProfileTests.cs
@@ -9767,6 +9783,10 @@ src/Zernio/Model/WebhookPayloadAccountRateLimitedAccount.cs
 src/Zernio/Model/WebhookPayloadAdAccountStatusChanged.cs
 src/Zernio/Model/WebhookPayloadAdAccountStatusChangedAdAccount.cs
 src/Zernio/Model/WebhookPayloadAdAccountStatusChangedStatus.cs
+src/Zernio/Model/WebhookPayloadAdCreated.cs
+src/Zernio/Model/WebhookPayloadAdCreatedAdObject.cs
+src/Zernio/Model/WebhookPayloadAdCreatedAdObjectAdSet.cs
+src/Zernio/Model/WebhookPayloadAdCreatedAdObjectCampaign.cs
 src/Zernio/Model/WebhookPayloadAdDeliveryIssue.cs
 src/Zernio/Model/WebhookPayloadAdDeliveryIssueIssue.cs
 src/Zernio/Model/WebhookPayloadAdReview.cs
@@ -9784,6 +9804,7 @@ src/Zernio/Model/WebhookPayloadAdStatusChangedAccount.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAdObject.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedError.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedStatus.cs
+src/Zernio/Model/WebhookPayloadAdUpdated.cs
 src/Zernio/Model/WebhookPayloadAdVideoProcessed.cs
 src/Zernio/Model/WebhookPayloadAdVideoProcessedAccount.cs
 src/Zernio/Model/WebhookPayloadAdVideoProcessedVideo.cs
@@ -9812,6 +9833,8 @@ src/Zernio/Model/WebhookPayloadCallReceivedCall.cs
 src/Zernio/Model/WebhookPayloadCampaignBudgetDepleted.cs
 src/Zernio/Model/WebhookPayloadCampaignBudgetDepletedAdObject.cs
 src/Zernio/Model/WebhookPayloadCampaignBudgetDepletedBudget.cs
+src/Zernio/Model/WebhookPayloadCampaignCreated.cs
+src/Zernio/Model/WebhookPayloadCampaignCreatedAdObject.cs
 src/Zernio/Model/WebhookPayloadCampaignParticipant.cs
 src/Zernio/Model/WebhookPayloadCampaignParticipantParticipant.cs
 src/Zernio/Model/WebhookPayloadCampaignPayout.cs
@@ -9824,6 +9847,7 @@ src/Zernio/Model/WebhookPayloadCampaignSubmissionCreator.cs
 src/Zernio/Model/WebhookPayloadCampaignSubmissionParticipant.cs
 src/Zernio/Model/WebhookPayloadCampaignSubmissionSubmission.cs
 src/Zernio/Model/WebhookPayloadCampaignSubmissionSubmissionFlagsInner.cs
+src/Zernio/Model/WebhookPayloadCampaignUpdated.cs
 src/Zernio/Model/WebhookPayloadComment.cs
 src/Zernio/Model/WebhookPayloadCommentAccount.cs
 src/Zernio/Model/WebhookPayloadCommentComment.cs

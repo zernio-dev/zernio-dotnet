@@ -12,11 +12,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountPermissionsChanged**](WebhookEventsApi.md#onaccountpermissionschanged) | **POST** /account.permissions_changed | Account permissions changed event |
 | [**OnAccountRateLimited**](WebhookEventsApi.md#onaccountratelimited) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**OnAdAccountStatusChanged**](WebhookEventsApi.md#onadaccountstatuschanged) | **POST** /ad_account.status_changed | Ad account status changed event |
+| [**OnAdCreated**](WebhookEventsApi.md#onadcreated) | **POST** /ad.created | Ad created event |
 | [**OnAdDeliveryIssue**](WebhookEventsApi.md#onaddeliveryissue) | **POST** /ad.delivery_issue | Ad delivery issue event |
 | [**OnAdReviewApproved**](WebhookEventsApi.md#onadreviewapproved) | **POST** /ad.review.approved | Ad review approved event |
 | [**OnAdReviewRejected**](WebhookEventsApi.md#onadreviewrejected) | **POST** /ad.review.rejected | Ad review rejected event |
 | [**OnAdRuleTriggered**](WebhookEventsApi.md#onadruletriggered) | **POST** /ad_rule.triggered | Ad rule triggered event |
 | [**OnAdStatusChanged**](WebhookEventsApi.md#onadstatuschanged) | **POST** /ad.status_changed | Ad status changed event |
+| [**OnAdUpdated**](WebhookEventsApi.md#onadupdated) | **POST** /ad.updated | Ad updated event |
 | [**OnAdVideoProcessed**](WebhookEventsApi.md#onadvideoprocessed) | **POST** /ad.video.processed | Ad video processed event |
 | [**OnAnalyticsSynced**](WebhookEventsApi.md#onanalyticssynced) | **POST** /analytics.synced | Analytics synced event |
 | [**OnApiChangelogPublished**](WebhookEventsApi.md#onapichangelogpublished) | **POST** /api.changelog.published | API changelog entry published event |
@@ -38,6 +40,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCallPermissionRequest**](WebhookEventsApi.md#oncallpermissionrequest) | **POST** /call.permission_request | Call permission request reply event |
 | [**OnCallReceived**](WebhookEventsApi.md#oncallreceived) | **POST** /call.received | Call received event |
 | [**OnCampaignBudgetDepleted**](WebhookEventsApi.md#oncampaignbudgetdepleted) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
+| [**OnCampaignCreated**](WebhookEventsApi.md#oncampaigncreated) | **POST** /campaign.created | Campaign created event |
 | [**OnCampaignParticipantJoined**](WebhookEventsApi.md#oncampaignparticipantjoined) | **POST** /campaign_participant.joined | Campaign participant joined event |
 | [**OnCampaignParticipantRemoved**](WebhookEventsApi.md#oncampaignparticipantremoved) | **POST** /campaign_participant.removed | Campaign participant removed event |
 | [**OnCampaignParticipantSuspended**](WebhookEventsApi.md#oncampaignparticipantsuspended) | **POST** /campaign_participant.suspended | Campaign participant suspended event |
@@ -49,6 +52,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCampaignSubmissionPendingReview**](WebhookEventsApi.md#oncampaignsubmissionpendingreview) | **POST** /campaign_submission.pending_review | Campaign submission pending review event |
 | [**OnCampaignSubmissionReceived**](WebhookEventsApi.md#oncampaignsubmissionreceived) | **POST** /campaign_submission.received | Campaign submission received event |
 | [**OnCampaignSubmissionRejected**](WebhookEventsApi.md#oncampaignsubmissionrejected) | **POST** /campaign_submission.rejected | Campaign submission rejected event |
+| [**OnCampaignUpdated**](WebhookEventsApi.md#oncampaignupdated) | **POST** /campaign.updated | Campaign updated event |
 | [**OnCommentReceived**](WebhookEventsApi.md#oncommentreceived) | **POST** /comment.received | Comment received event |
 | [**OnCommerceOrderCreated**](WebhookEventsApi.md#oncommerceordercreated) | **POST** /commerce.order.created | Commerce order created event |
 | [**OnCommerceOrderRefunded**](WebhookEventsApi.md#oncommerceorderrefunded) | **POST** /commerce.order.refunded | Commerce order refunded event |
@@ -882,6 +886,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onadcreated"></a>
+# **OnAdCreated**
+> void OnAdCreated (WebhookPayloadAdCreated webhookPayloadAdCreated)
+
+Ad created event
+
+Fired when an ad is created through Zernio (`source: \"zernio\"`) or detected by the sync (`source: \"platform\"`). Never for history loaded when an account connects, nor for ads older than 7 days. See `WebhookPayloadAdCreated`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAdCreatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAdCreated = new WebhookPayloadAdCreated(); // WebhookPayloadAdCreated | 
+
+            try
+            {
+                // Ad created event
+                apiInstance.OnAdCreated(webhookPayloadAdCreated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAdCreated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAdCreatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad created event
+    apiInstance.OnAdCreatedWithHttpInfo(webhookPayloadAdCreated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAdCreatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAdCreated** | [**WebhookPayloadAdCreated**](WebhookPayloadAdCreated.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onaddeliveryissue"></a>
 # **OnAdDeliveryIssue**
 > void OnAdDeliveryIssue (WebhookPayloadAdDeliveryIssue webhookPayloadAdDeliveryIssue)
@@ -1330,6 +1428,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAdStatusChanged** | [**WebhookPayloadAdStatusChanged**](WebhookPayloadAdStatusChanged.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onadupdated"></a>
+# **OnAdUpdated**
+> void OnAdUpdated (WebhookPayloadAdUpdated webhookPayloadAdUpdated)
+
+Ad updated event
+
+Fired when an ad is edited through Zernio (`source: \"zernio\"`) or when the sync detects an edit made outside Zernio (`source: \"platform\"`). `changes` lists the edited fields. See `WebhookPayloadAdUpdated`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAdUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAdUpdated = new WebhookPayloadAdUpdated(); // WebhookPayloadAdUpdated | 
+
+            try
+            {
+                // Ad updated event
+                apiInstance.OnAdUpdated(webhookPayloadAdUpdated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAdUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAdUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad updated event
+    apiInstance.OnAdUpdatedWithHttpInfo(webhookPayloadAdUpdated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAdUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAdUpdated** | [**WebhookPayloadAdUpdated**](WebhookPayloadAdUpdated.md) |  |  |
 
 ### Return type
 
@@ -3322,6 +3514,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncampaigncreated"></a>
+# **OnCampaignCreated**
+> void OnCampaignCreated (WebhookPayloadCampaignCreated webhookPayloadCampaignCreated)
+
+Campaign created event
+
+Fired when a campaign is created through Zernio (`source: \"zernio\"`) or detected by the sync (`source: \"platform\"`). Never for history loaded when an account connects, nor for campaigns older than 7 days. See `WebhookPayloadCampaignCreated`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignCreatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignCreated = new WebhookPayloadCampaignCreated(); // WebhookPayloadCampaignCreated | 
+
+            try
+            {
+                // Campaign created event
+                apiInstance.OnCampaignCreated(webhookPayloadCampaignCreated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignCreated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignCreatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign created event
+    apiInstance.OnCampaignCreatedWithHttpInfo(webhookPayloadCampaignCreated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignCreatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignCreated** | [**WebhookPayloadCampaignCreated**](WebhookPayloadCampaignCreated.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="oncampaignparticipantjoined"></a>
 # **OnCampaignParticipantJoined**
 > void OnCampaignParticipantJoined (WebhookPayloadCampaignParticipant webhookPayloadCampaignParticipant)
@@ -4334,6 +4620,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadCampaignSubmission** | [**WebhookPayloadCampaignSubmission**](WebhookPayloadCampaignSubmission.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignupdated"></a>
+# **OnCampaignUpdated**
+> void OnCampaignUpdated (WebhookPayloadCampaignUpdated webhookPayloadCampaignUpdated)
+
+Campaign updated event
+
+Fired when a campaign is edited through Zernio (`source: \"zernio\"`) or when the sync detects an edit made outside Zernio (`source: \"platform\"`). `changes` lists the edited fields. See `WebhookPayloadCampaignUpdated`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignUpdated = new WebhookPayloadCampaignUpdated(); // WebhookPayloadCampaignUpdated | 
+
+            try
+            {
+                // Campaign updated event
+                apiInstance.OnCampaignUpdated(webhookPayloadCampaignUpdated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign updated event
+    apiInstance.OnCampaignUpdatedWithHttpInfo(webhookPayloadCampaignUpdated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignUpdated** | [**WebhookPayloadCampaignUpdated**](WebhookPayloadCampaignUpdated.md) |  |  |
 
 ### Return type
 
