@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Level** | **AdRuleLevel** |  | [optional] 
 **CampaignIds** | **List&lt;string&gt;** |  | [optional] 
 **Conditions** | [**AdRuleConditions**](AdRuleConditions.md) |  | [optional] 
-**Actions** | [**List&lt;AdRuleAction&gt;**](AdRuleAction.md) | Each type at most once, and at most one of &#x60;pause&#x60;, &#x60;activate&#x60; and &#x60;adjust_budget&#x60;. | [optional] 
+**Actions** | [**List&lt;AdRuleAction&gt;**](AdRuleAction.md) | Each type at most once, and at most one of &#x60;pause&#x60;, &#x60;activate&#x60;, &#x60;adjust_budget&#x60; and &#x60;duplicate&#x60;. | [optional] 
 **Schedule** | [**AdRuleSchedule**](AdRuleSchedule.md) |  | [optional] 
 **CooldownMinutes** | **int** |  | [optional] 
 **Enabled** | **bool** |  | [optional] 

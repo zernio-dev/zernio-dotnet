@@ -65,6 +65,7 @@ docs/AdRuleActionOneOf1.md
 docs/AdRuleActionOneOf2.md
 docs/AdRuleActionOneOf3.md
 docs/AdRuleActionOneOf4.md
+docs/AdRuleActionOneOf5.md
 docs/AdRuleActionOneOfSendInner.md
 docs/AdRuleActionOneOfSendInnerOneOf.md
 docs/AdRuleActionOneOfSendInnerOneOf1.md
@@ -3454,6 +3455,7 @@ src/Zernio.Test/Model/AdRuleActionOneOf1Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf2Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf3Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf4Tests.cs
+src/Zernio.Test/Model/AdRuleActionOneOf5Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfSendInnerOneOf1Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfSendInnerOneOfTests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfSendInnerTests.cs
@@ -6794,6 +6796,7 @@ src/Zernio/Model/AdRuleActionOneOf1.cs
 src/Zernio/Model/AdRuleActionOneOf2.cs
 src/Zernio/Model/AdRuleActionOneOf3.cs
 src/Zernio/Model/AdRuleActionOneOf4.cs
+src/Zernio/Model/AdRuleActionOneOf5.cs
 src/Zernio/Model/AdRuleActionOneOfSendInner.cs
 src/Zernio/Model/AdRuleActionOneOfSendInnerOneOf.cs
 src/Zernio/Model/AdRuleActionOneOfSendInnerOneOf1.cs

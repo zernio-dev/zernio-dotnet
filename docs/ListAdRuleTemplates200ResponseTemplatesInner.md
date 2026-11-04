@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Description** | **string** |  | 
 **Level** | **AdRuleLevel** |  | 
 **Conditions** | [**AdRuleConditions**](AdRuleConditions.md) |  | 
-**Actions** | [**List&lt;AdRuleAction&gt;**](AdRuleAction.md) | Each type at most once, and at most one of &#x60;pause&#x60;, &#x60;activate&#x60; and &#x60;adjust_budget&#x60;. | 
+**Actions** | [**List&lt;AdRuleAction&gt;**](AdRuleAction.md) | Each type at most once, and at most one of &#x60;pause&#x60;, &#x60;activate&#x60;, &#x60;adjust_budget&#x60; and &#x60;duplicate&#x60;. | 
 **Schedule** | [**AdRuleSchedule**](AdRuleSchedule.md) |  | 
 **CooldownMinutes** | **int** |  | 
 **Platforms** | **List&lt;string&gt;** |  | 
