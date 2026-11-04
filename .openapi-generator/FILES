@@ -3046,6 +3046,7 @@ docs/Webhook.md
 docs/WebhookAdsAccount.md
 docs/WebhookAdsSyncAccount.md
 docs/WebhookAdsSyncAdAccount.md
+docs/WebhookAutomationRef.md
 docs/WebhookEventsApi.md
 docs/WebhookLog.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
@@ -3090,6 +3091,10 @@ docs/WebhookPayloadAnalyticsSynced.md
 docs/WebhookPayloadAnalyticsSyncedAccount.md
 docs/WebhookPayloadAnalyticsSyncedSync.md
 docs/WebhookPayloadApiChangelogPublished.md
+docs/WebhookPayloadAutomationAction.md
+docs/WebhookPayloadAutomationActionAction.md
+docs/WebhookPayloadAutomationCheckCompleted.md
+docs/WebhookPayloadAutomationCheckCompletedCheck.md
 docs/WebhookPayloadCalendarEvent.md
 docs/WebhookPayloadCalendarEventAccount.md
 docs/WebhookPayloadCalendarEventCalendarEvent.md
@@ -6363,6 +6368,7 @@ src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
 src/Zernio.Test/Model/WebhookAdsAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAdAccountTests.cs
+src/Zernio.Test/Model/WebhookAutomationRefTests.cs
 src/Zernio.Test/Model/WebhookLogTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedSyncTests.cs
@@ -6406,6 +6412,10 @@ src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedSyncTests.cs
 src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedTests.cs
 src/Zernio.Test/Model/WebhookPayloadApiChangelogPublishedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAutomationActionActionTests.cs
+src/Zernio.Test/Model/WebhookPayloadAutomationActionTests.cs
+src/Zernio.Test/Model/WebhookPayloadAutomationCheckCompletedCheckTests.cs
+src/Zernio.Test/Model/WebhookPayloadAutomationCheckCompletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCalendarEventAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadCalendarEventCalendarEventTests.cs
 src/Zernio.Test/Model/WebhookPayloadCalendarEventTests.cs
@@ -9691,6 +9701,7 @@ src/Zernio/Model/Webhook.cs
 src/Zernio/Model/WebhookAdsAccount.cs
 src/Zernio/Model/WebhookAdsSyncAccount.cs
 src/Zernio/Model/WebhookAdsSyncAdAccount.cs
+src/Zernio/Model/WebhookAutomationRef.cs
 src/Zernio/Model/WebhookLog.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompleted.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.cs
@@ -9734,6 +9745,10 @@ src/Zernio/Model/WebhookPayloadAnalyticsSynced.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSyncedAccount.cs
 src/Zernio/Model/WebhookPayloadAnalyticsSyncedSync.cs
 src/Zernio/Model/WebhookPayloadApiChangelogPublished.cs
+src/Zernio/Model/WebhookPayloadAutomationAction.cs
+src/Zernio/Model/WebhookPayloadAutomationActionAction.cs
+src/Zernio/Model/WebhookPayloadAutomationCheckCompleted.cs
+src/Zernio/Model/WebhookPayloadAutomationCheckCompletedCheck.cs
 src/Zernio/Model/WebhookPayloadCalendarEvent.cs
 src/Zernio/Model/WebhookPayloadCalendarEventAccount.cs
 src/Zernio/Model/WebhookPayloadCalendarEventCalendarEvent.cs
