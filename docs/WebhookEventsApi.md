@@ -23,6 +23,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAutomationActionApplied**](WebhookEventsApi.md#onautomationactionapplied) | **POST** /automation.action.applied | Automation action applied event |
 | [**OnAutomationActionFailed**](WebhookEventsApi.md#onautomationactionfailed) | **POST** /automation.action.failed | Automation action failed event |
 | [**OnAutomationActionUnknown**](WebhookEventsApi.md#onautomationactionunknown) | **POST** /automation.action.unknown | Automation action unknown event |
+| [**OnAutomationAlertEscalated**](WebhookEventsApi.md#onautomationalertescalated) | **POST** /automation.alert.escalated | Automation alert escalated event |
+| [**OnAutomationAlertOpened**](WebhookEventsApi.md#onautomationalertopened) | **POST** /automation.alert.opened | Automation alert opened event |
+| [**OnAutomationAlertResolved**](WebhookEventsApi.md#onautomationalertresolved) | **POST** /automation.alert.resolved | Automation alert resolved event |
 | [**OnAutomationCheckCompleted**](WebhookEventsApi.md#onautomationcheckcompleted) | **POST** /automation.check.completed | Automation check completed event |
 | [**OnBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onbrandedcallingidentityactionrequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**OnBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onbrandedcallingidentitystatusupdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
@@ -1891,6 +1894,288 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAutomationAction** | [**WebhookPayloadAutomationAction**](WebhookPayloadAutomationAction.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onautomationalertescalated"></a>
+# **OnAutomationAlertEscalated**
+> void OnAutomationAlertEscalated (WebhookPayloadAutomationAlert webhookPayloadAutomationAlert)
+
+Automation alert escalated event
+
+An alert episode of an automation with a lifecycle. See `WebhookPayloadAutomationAlert`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAutomationAlertEscalatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+
+            try
+            {
+                // Automation alert escalated event
+                apiInstance.OnAutomationAlertEscalated(webhookPayloadAutomationAlert);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAutomationAlertEscalated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAutomationAlertEscalatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Automation alert escalated event
+    apiInstance.OnAutomationAlertEscalatedWithHttpInfo(webhookPayloadAutomationAlert);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAutomationAlertEscalatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onautomationalertopened"></a>
+# **OnAutomationAlertOpened**
+> void OnAutomationAlertOpened (WebhookPayloadAutomationAlert webhookPayloadAutomationAlert)
+
+Automation alert opened event
+
+An alert episode of an automation with a lifecycle. See `WebhookPayloadAutomationAlert`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAutomationAlertOpenedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+
+            try
+            {
+                // Automation alert opened event
+                apiInstance.OnAutomationAlertOpened(webhookPayloadAutomationAlert);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAutomationAlertOpened: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAutomationAlertOpenedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Automation alert opened event
+    apiInstance.OnAutomationAlertOpenedWithHttpInfo(webhookPayloadAutomationAlert);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAutomationAlertOpenedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onautomationalertresolved"></a>
+# **OnAutomationAlertResolved**
+> void OnAutomationAlertResolved (WebhookPayloadAutomationAlert webhookPayloadAutomationAlert)
+
+Automation alert resolved event
+
+An alert episode of an automation with a lifecycle. See `WebhookPayloadAutomationAlert`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAutomationAlertResolvedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAutomationAlert = new WebhookPayloadAutomationAlert(); // WebhookPayloadAutomationAlert | 
+
+            try
+            {
+                // Automation alert resolved event
+                apiInstance.OnAutomationAlertResolved(webhookPayloadAutomationAlert);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAutomationAlertResolved: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAutomationAlertResolvedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Automation alert resolved event
+    apiInstance.OnAutomationAlertResolvedWithHttpInfo(webhookPayloadAutomationAlert);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAutomationAlertResolvedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAutomationAlert** | [**WebhookPayloadAutomationAlert**](WebhookPayloadAutomationAlert.md) |  |  |
 
 ### Return type
 

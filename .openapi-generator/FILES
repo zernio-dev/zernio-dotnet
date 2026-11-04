@@ -67,6 +67,7 @@ docs/AdRuleActionOneOf3.md
 docs/AdRuleActionOneOf4.md
 docs/AdRuleActionOneOf5.md
 docs/AdRuleActionOneOf6.md
+docs/AdRuleActionOneOf7.md
 docs/AdRuleActionOneOfSendInner.md
 docs/AdRuleActionOneOfSendInnerOneOf.md
 docs/AdRuleActionOneOfSendInnerOneOf1.md
@@ -79,6 +80,7 @@ docs/AdRuleConditionsOneOf1.md
 docs/AdRuleEvaluation.md
 docs/AdRuleFiltersInner.md
 docs/AdRuleLevel.md
+docs/AdRuleLifecycle.md
 docs/AdRuleObjectEvaluation.md
 docs/AdRuleObjectEvaluationConditionsInner.md
 docs/AdRuleRun.md
@@ -1747,6 +1749,8 @@ docs/ListAdLabels200ResponseDataInner.md
 docs/ListAdLabels200ResponsePaging.md
 docs/ListAdNegativeKeywordLists200Response.md
 docs/ListAdRuleActivity200Response.md
+docs/ListAdRuleAlerts200Response.md
+docs/ListAdRuleAlerts200ResponseAlertsInner.md
 docs/ListAdRuleRuns200Response.md
 docs/ListAdRuleTemplates200Response.md
 docs/ListAdRuleTemplates200ResponseTemplatesInner.md
@@ -3103,6 +3107,8 @@ docs/WebhookPayloadAnalyticsSyncedSync.md
 docs/WebhookPayloadApiChangelogPublished.md
 docs/WebhookPayloadAutomationAction.md
 docs/WebhookPayloadAutomationActionAction.md
+docs/WebhookPayloadAutomationAlert.md
+docs/WebhookPayloadAutomationAlertAlert.md
 docs/WebhookPayloadAutomationCheckCompleted.md
 docs/WebhookPayloadAutomationCheckCompletedCheck.md
 docs/WebhookPayloadCalendarEvent.md
@@ -3462,6 +3468,7 @@ src/Zernio.Test/Model/AdRuleActionOneOf3Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf4Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf5Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOf6Tests.cs
+src/Zernio.Test/Model/AdRuleActionOneOf7Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfSendInnerOneOf1Tests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfSendInnerOneOfTests.cs
 src/Zernio.Test/Model/AdRuleActionOneOfSendInnerTests.cs
@@ -3476,6 +3483,7 @@ src/Zernio.Test/Model/AdRuleConditionsTests.cs
 src/Zernio.Test/Model/AdRuleEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleFiltersInnerTests.cs
 src/Zernio.Test/Model/AdRuleLevelTests.cs
+src/Zernio.Test/Model/AdRuleLifecycleTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationConditionsInnerTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationActionsInnerTests.cs
@@ -5107,6 +5115,8 @@ src/Zernio.Test/Model/ListAdLabels200ResponsePagingTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListAdNegativeKeywordLists200ResponseTests.cs
 src/Zernio.Test/Model/ListAdRuleActivity200ResponseTests.cs
+src/Zernio.Test/Model/ListAdRuleAlerts200ResponseAlertsInnerTests.cs
+src/Zernio.Test/Model/ListAdRuleAlerts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdRuleRuns200ResponseTests.cs
 src/Zernio.Test/Model/ListAdRuleTemplates200ResponseTemplatesInnerTests.cs
 src/Zernio.Test/Model/ListAdRuleTemplates200ResponseTests.cs
@@ -6434,6 +6444,8 @@ src/Zernio.Test/Model/WebhookPayloadAnalyticsSyncedTests.cs
 src/Zernio.Test/Model/WebhookPayloadApiChangelogPublishedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAutomationActionActionTests.cs
 src/Zernio.Test/Model/WebhookPayloadAutomationActionTests.cs
+src/Zernio.Test/Model/WebhookPayloadAutomationAlertAlertTests.cs
+src/Zernio.Test/Model/WebhookPayloadAutomationAlertTests.cs
 src/Zernio.Test/Model/WebhookPayloadAutomationCheckCompletedCheckTests.cs
 src/Zernio.Test/Model/WebhookPayloadAutomationCheckCompletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCalendarEventAccountTests.cs
@@ -6808,6 +6820,7 @@ src/Zernio/Model/AdRuleActionOneOf3.cs
 src/Zernio/Model/AdRuleActionOneOf4.cs
 src/Zernio/Model/AdRuleActionOneOf5.cs
 src/Zernio/Model/AdRuleActionOneOf6.cs
+src/Zernio/Model/AdRuleActionOneOf7.cs
 src/Zernio/Model/AdRuleActionOneOfSendInner.cs
 src/Zernio/Model/AdRuleActionOneOfSendInnerOneOf.cs
 src/Zernio/Model/AdRuleActionOneOfSendInnerOneOf1.cs
@@ -6820,6 +6833,7 @@ src/Zernio/Model/AdRuleConditionsOneOf1.cs
 src/Zernio/Model/AdRuleEvaluation.cs
 src/Zernio/Model/AdRuleFiltersInner.cs
 src/Zernio/Model/AdRuleLevel.cs
+src/Zernio/Model/AdRuleLifecycle.cs
 src/Zernio/Model/AdRuleObjectEvaluation.cs
 src/Zernio/Model/AdRuleObjectEvaluationConditionsInner.cs
 src/Zernio/Model/AdRuleRun.cs
@@ -8449,6 +8463,8 @@ src/Zernio/Model/ListAdLabels200ResponseDataInner.cs
 src/Zernio/Model/ListAdLabels200ResponsePaging.cs
 src/Zernio/Model/ListAdNegativeKeywordLists200Response.cs
 src/Zernio/Model/ListAdRuleActivity200Response.cs
+src/Zernio/Model/ListAdRuleAlerts200Response.cs
+src/Zernio/Model/ListAdRuleAlerts200ResponseAlertsInner.cs
 src/Zernio/Model/ListAdRuleRuns200Response.cs
 src/Zernio/Model/ListAdRuleTemplates200Response.cs
 src/Zernio/Model/ListAdRuleTemplates200ResponseTemplatesInner.cs
@@ -9777,6 +9793,8 @@ src/Zernio/Model/WebhookPayloadAnalyticsSyncedSync.cs
 src/Zernio/Model/WebhookPayloadApiChangelogPublished.cs
 src/Zernio/Model/WebhookPayloadAutomationAction.cs
 src/Zernio/Model/WebhookPayloadAutomationActionAction.cs
+src/Zernio/Model/WebhookPayloadAutomationAlert.cs
+src/Zernio/Model/WebhookPayloadAutomationAlertAlert.cs
 src/Zernio/Model/WebhookPayloadAutomationCheckCompleted.cs
 src/Zernio/Model/WebhookPayloadAutomationCheckCompletedCheck.cs
 src/Zernio/Model/WebhookPayloadCalendarEvent.cs

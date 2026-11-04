@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **NewDailyBudget** | **decimal?** | On &#x60;adjust_budget&#x60;, the daily budget after the change. Null when nothing changed. | 
 **PreviousName** | **string** | On &#x60;edit_name&#x60;, the object&#39;s name before the change. Null otherwise. | 
 **NewName** | **string** | On &#x60;edit_name&#x60;, the name after the change. Null when nothing changed. | 
+**PreviousBidAmount** | **decimal?** | On &#x60;adjust_bid&#x60;, the cap before the change. Null otherwise. | 
+**NewBidAmount** | **decimal?** | On &#x60;adjust_bid&#x60;, the cap after the change. Null when nothing changed. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

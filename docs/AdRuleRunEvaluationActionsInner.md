@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **NewDailyBudget** | **decimal** |  | [optional] 
 **PreviousName** | **string** |  | [optional] 
 **NewName** | **string** |  | [optional] 
+**PreviousBidAmount** | **decimal** |  | [optional] 
+**NewBidAmount** | **decimal** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

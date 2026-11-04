@@ -1,14 +1,15 @@
 # Zernio.Model.AdRuleActionOneOf4
-Exactly one of `add` and `remove`.
+Either `amount`, or `direction`, `percent` and `limit`.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Tag the object by its name. Meta, Google and LinkedIn campaigns and ad sets, and TikTok campaigns, ad groups and ads. An object whose name already has the tag (or lacks it, for &#x60;remove&#x60;) is skipped with &#x60;name_unchanged&#x60;. | 
-**Add** | **string** | Text to add, like &#x60;[WINNER]&#x60;. Compared without case. | [optional] 
-**At** | **string** | Where &#x60;add&#x60; goes. Defaults to &#x60;start&#x60;. | [optional] 
-**Remove** | **string** | Text to take out of the name, every copy of it. | [optional] 
+**Type** | **string** | Move the bid cap or cost cap of a Meta ad set, in the ad account currency. Ad set rules on Meta only. An ad set without a cap is skipped with &#x60;no_bid_cap&#x60;. | 
+**Amount** | **decimal** | The cap to set. | [optional] 
+**Direction** | **string** |  | [optional] 
+**Percent** | **int** | Step size. A decrease is at most 90. | [optional] 
+**Limit** | **decimal** | The cap never goes above this on an increase, or below it on a decrease. | [optional] 
 **MaxChangesPerDay** | **int** | At most this many objects changed in any 24 hours, across runs. Matches over the limit are skipped with &#x60;daily_limit_reached&#x60; and tried again later. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
