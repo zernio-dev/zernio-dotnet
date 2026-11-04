@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **TranscriptionCostUSD** | **decimal** |  | [optional] 
 **MetaCostUSD** | **decimal** | WhatsApp channel only. Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio. | [optional] 
 **TelnyxCostUSD** | **decimal** |  | [optional] 
+**RecordingSeconds** | **decimal** | Seconds of the call that were recorded and billed as recording. | [optional] 
 **RecordingCostUSD** | **decimal** |  | [optional] 
 **BillableCostUSD** | **decimal** | Amount Zernio bills you &#x3D; telephony leg + recording + transcription (excludes any Meta portion). | [optional] 
 **TotalCostUSD** | **decimal** | Full cost incl. any Meta portion you pay directly. Display only. | [optional] 
