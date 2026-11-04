@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Field** | **string** | The object&#39;s own name, its campaign&#39;s or ad set&#39;s name, or the campaign goal (objective) as the platform reports it. | 
+**Field** | **string** |  | 
 **Op** | **string** |  | 
-**Value** | **string** |  | 
+**Value** | **int** |  | 
+**Values** | **List&lt;string&gt;** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

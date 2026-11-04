@@ -872,6 +872,7 @@ docs/CursorPagination.md
 docs/CustomConversion.md
 docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
+docs/DaysLive.md
 docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
@@ -1602,6 +1603,7 @@ docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/HubSpotSettings.md
 docs/IMessageApi.md
+docs/Ids.md
 docs/ImessageAudienceContact.md
 docs/ImessageAudienceContactOptIn.md
 docs/ImessageSandboxContact.md
@@ -2122,6 +2124,7 @@ docs/MoveCampaignParticipant200ResponseSubmissions.md
 docs/MoveCampaignParticipantRequest.md
 docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
+docs/NameOrGoal.md
 docs/OAuthApp.md
 docs/OAuthAppSetup.md
 docs/OAuthAppSetupScopeAreasInner.md
@@ -4265,6 +4268,7 @@ src/Zernio.Test/Model/CtwaSingleResponseTests.cs
 src/Zernio.Test/Model/CursorPaginationTests.cs
 src/Zernio.Test/Model/CustomConversionResultTests.cs
 src/Zernio.Test/Model/CustomConversionTests.cs
+src/Zernio.Test/Model/DaysLiveTests.cs
 src/Zernio.Test/Model/DeactivateSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
@@ -4982,6 +4986,7 @@ src/Zernio.Test/Model/HideAdCommentRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
 src/Zernio.Test/Model/HubSpotSettingsTests.cs
+src/Zernio.Test/Model/IdsTests.cs
 src/Zernio.Test/Model/ImessageAudienceContactOptInTests.cs
 src/Zernio.Test/Model/ImessageAudienceContactTests.cs
 src/Zernio.Test/Model/ImessageSandboxContactTests.cs
@@ -5491,6 +5496,7 @@ src/Zernio.Test/Model/MoveCampaignParticipant200ResponseTests.cs
 src/Zernio.Test/Model/MoveCampaignParticipantRequestTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveWhatsAppNumberToProfileRequestTests.cs
+src/Zernio.Test/Model/NameOrGoalTests.cs
 src/Zernio.Test/Model/OAuthAppSetupScopeAreasInnerTests.cs
 src/Zernio.Test/Model/OAuthAppSetupTests.cs
 src/Zernio.Test/Model/OAuthAppSlackEventsTests.cs
@@ -7621,6 +7627,7 @@ src/Zernio/Model/CtwaSingleResponse.cs
 src/Zernio/Model/CursorPagination.cs
 src/Zernio/Model/CustomConversion.cs
 src/Zernio/Model/CustomConversionResult.cs
+src/Zernio/Model/DaysLive.cs
 src/Zernio/Model/DeactivateSmsRegistration200Response.cs
 src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
@@ -8338,6 +8345,7 @@ src/Zernio/Model/HideAdCommentRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
 src/Zernio/Model/HubSpotSettings.cs
+src/Zernio/Model/Ids.cs
 src/Zernio/Model/ImessageAudienceContact.cs
 src/Zernio/Model/ImessageAudienceContactOptIn.cs
 src/Zernio/Model/ImessageSandboxContact.cs
@@ -8847,6 +8855,7 @@ src/Zernio/Model/MoveCampaignParticipant200ResponseSubmissions.cs
 src/Zernio/Model/MoveCampaignParticipantRequest.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfile200Response.cs
 src/Zernio/Model/MoveWhatsAppNumberToProfileRequest.cs
+src/Zernio/Model/NameOrGoal.cs
 src/Zernio/Model/OAuthApp.cs
 src/Zernio/Model/OAuthAppSetup.cs
 src/Zernio/Model/OAuthAppSetupScopeAreasInner.cs
