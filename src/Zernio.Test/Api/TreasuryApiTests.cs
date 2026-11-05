@@ -164,6 +164,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetTopupInvoice
+        /// </summary>
+        [Fact]
+        public void GetTopupInvoiceTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string topupId = null;
+            //var response = instance.GetTopupInvoice(topupId);
+            //Assert.IsType<GetTopupInvoice200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetTopupReceipt
         /// </summary>
         [Fact]
@@ -184,7 +196,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string topupId = null;
             //var response = instance.GetTopupStatement(topupId);
-            //Assert.IsType<GetTopupStatement200Response>(response);
+            //Assert.IsType<GetTopupInvoice200Response>(response);
         }
 
         /// <summary>
@@ -234,6 +246,18 @@ namespace Zernio.Test.Api
             //int? skip = null;
             //var response = instance.ListTransfers(limit, skip);
             //Assert.IsType<ListTransfers200Response>(response);
+        }
+
+        /// <summary>
+        /// Test PreviewTopup
+        /// </summary>
+        [Fact]
+        public void PreviewTopupTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //PreviewTopupRequest previewTopupRequest = null;
+            //var response = instance.PreviewTopup(previewTopupRequest);
+            //Assert.IsType<PreviewTopup200Response>(response);
         }
     }
 }

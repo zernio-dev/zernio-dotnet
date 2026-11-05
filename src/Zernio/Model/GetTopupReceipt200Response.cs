@@ -72,8 +72,9 @@ namespace Zernio.Model
         /// <param name="receiptUrl">Stripe&#39;s card receipt page for the charge..</param>
         /// <param name="amountCents">As in the top-up list. (required).</param>
         /// <param name="feeCents">Card fee paid, as in the top-up list. (required).</param>
-        /// <param name="chargedCents">What the card was charged, the total on the receipt. (required).</param>
-        public GetTopupReceipt200Response(string url = default, FormatEnum format = default, string invoiceUrl = default, string receiptUrl = default, int amountCents = default, int? feeCents = default, int chargedCents = default)
+        /// <param name="taxCents">Tax charged on top of amountCents, as in the top-up list..</param>
+        /// <param name="chargedCents">What the card was charged, tax included: the total on the receipt. (required).</param>
+        public GetTopupReceipt200Response(string url = default, FormatEnum format = default, string invoiceUrl = default, string receiptUrl = default, int amountCents = default, int? feeCents = default, int taxCents = default, int chargedCents = default)
         {
             // to ensure "url" is required (not null)
             if (url == null)
@@ -92,6 +93,7 @@ namespace Zernio.Model
             this.ChargedCents = chargedCents;
             this.InvoiceUrl = invoiceUrl;
             this.ReceiptUrl = receiptUrl;
+            this.TaxCents = taxCents;
         }
 
         /// <summary>
@@ -129,9 +131,16 @@ namespace Zernio.Model
         public int? FeeCents { get; set; }
 
         /// <summary>
-        /// What the card was charged, the total on the receipt.
+        /// Tax charged on top of amountCents, as in the top-up list.
         /// </summary>
-        /// <value>What the card was charged, the total on the receipt.</value>
+        /// <value>Tax charged on top of amountCents, as in the top-up list.</value>
+        [DataMember(Name = "taxCents", EmitDefaultValue = false)]
+        public int TaxCents { get; set; }
+
+        /// <summary>
+        /// What the card was charged, tax included: the total on the receipt.
+        /// </summary>
+        /// <value>What the card was charged, tax included: the total on the receipt.</value>
         [DataMember(Name = "chargedCents", IsRequired = true, EmitDefaultValue = true)]
         public int ChargedCents { get; set; }
 
@@ -149,6 +158,7 @@ namespace Zernio.Model
             sb.Append("  ReceiptUrl: ").Append(ReceiptUrl).Append("\n");
             sb.Append("  AmountCents: ").Append(AmountCents).Append("\n");
             sb.Append("  FeeCents: ").Append(FeeCents).Append("\n");
+            sb.Append("  TaxCents: ").Append(TaxCents).Append("\n");
             sb.Append("  ChargedCents: ").Append(ChargedCents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

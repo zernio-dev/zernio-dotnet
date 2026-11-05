@@ -132,16 +132,17 @@ namespace Zernio.Model
         /// <param name="purpose">&#x60;balance&#x60; funds your balance; &#x60;payout_batch&#x60; is the card payment of one payout batch, which pays its creators directly..</param>
         /// <param name="payoutBatch">payoutBatch.</param>
         /// <param name="feeCoveredByZernio">True for a balance top-up (there is no card fee) and a &#x60;payout_batch&#x60; payment: Zernio pays the Stripe processing fee, so you are credited the whole charge. False on a top-up made before 2026-11-05..</param>
-        /// <param name="amountCents">The amount you asked for. A top-up charges exactly this and credits it whole. Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee..</param>
+        /// <param name="amountCents">The amount you asked for. A top-up credits exactly this and charges it plus tax (taxCents). Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee..</param>
         /// <param name="feeCents">Card fee you paid: 0 when Zernio covers it (feeCoveredByZernio). On an older top-up, the fee Stripe took once paid, the fee charged on top before, or null..</param>
-        /// <param name="chargedCents">What your card was charged: amountCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05..</param>
+        /// <param name="taxCents">Tax charged on top of amountCents once paid (VAT where it applies, since 2026-11-05); 0 before payment, when reverse charged, outside the EU, and on older top-ups..</param>
+        /// <param name="chargedCents">What your card was charged: amountCents plus taxCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05..</param>
         /// <param name="stripeFeeCents">feeCents once the top-up is paid; null before. Kept for older clients: read feeCents..</param>
         /// <param name="netCents">Amount credited to your balance; null until paid. amountCents when feeCoveredByZernio; on an older top-up, what Stripe delivered..</param>
         /// <param name="status">&#x60;pending&#x60; until the card is charged (or 3D Secure is finished) and credited. &#x60;expired&#x60; means it ended unpaid: cancelled, or 3D Secure left unfinished for 30 minutes. Only &#x60;pending&#x60; counts toward pendingTopupCents..</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="succeededAt">succeededAt.</param>
-        /// <param name="hasInvoice">A Checkout invoice exists for this payment (Checkout payments before 2026-10-29). Every paid payment has a card receipt (getTopupReceipt); a paid top-up has a statement (getTopupStatement)..</param>
-        public TreasuryTopup(string id = default, MethodEnum? method = default, PurposeEnum? purpose = default, TreasuryTopupPayoutBatch payoutBatch = default, bool feeCoveredByZernio = default, int amountCents = default, int? feeCents = default, int chargedCents = default, int? stripeFeeCents = default, int? netCents = default, StatusEnum? status = default, DateTime createdAt = default, DateTime? succeededAt = default, bool hasInvoice = default)
+        /// <param name="hasInvoice">The paid payment has an invoice (getTopupInvoice): every balance top-up paid since 2026-11-05 (unless charged without one for a Stripe credit balance), and Checkout payments before 2026-10-29. Every paid payment has a card receipt (getTopupReceipt)..</param>
+        public TreasuryTopup(string id = default, MethodEnum? method = default, PurposeEnum? purpose = default, TreasuryTopupPayoutBatch payoutBatch = default, bool feeCoveredByZernio = default, int amountCents = default, int? feeCents = default, int taxCents = default, int chargedCents = default, int? stripeFeeCents = default, int? netCents = default, StatusEnum? status = default, DateTime createdAt = default, DateTime? succeededAt = default, bool hasInvoice = default)
         {
             this.Id = id;
             this.Method = method;
@@ -150,6 +151,7 @@ namespace Zernio.Model
             this.FeeCoveredByZernio = feeCoveredByZernio;
             this.AmountCents = amountCents;
             this.FeeCents = feeCents;
+            this.TaxCents = taxCents;
             this.ChargedCents = chargedCents;
             this.StripeFeeCents = stripeFeeCents;
             this.NetCents = netCents;
@@ -179,9 +181,9 @@ namespace Zernio.Model
         public bool FeeCoveredByZernio { get; set; }
 
         /// <summary>
-        /// The amount you asked for. A top-up charges exactly this and credits it whole. Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee.
+        /// The amount you asked for. A top-up credits exactly this and charges it plus tax (taxCents). Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee.
         /// </summary>
-        /// <value>The amount you asked for. A top-up charges exactly this and credits it whole. Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee.</value>
+        /// <value>The amount you asked for. A top-up credits exactly this and charges it plus tax (taxCents). Top-ups from 2026-11-02 to 2026-11-05 charged a card fee on top and credited what Stripe delivered; older ones charged this amount and credited it minus the fee.</value>
         [DataMember(Name = "amountCents", EmitDefaultValue = false)]
         public int AmountCents { get; set; }
 
@@ -193,9 +195,16 @@ namespace Zernio.Model
         public int? FeeCents { get; set; }
 
         /// <summary>
-        /// What your card was charged: amountCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05.
+        /// Tax charged on top of amountCents once paid (VAT where it applies, since 2026-11-05); 0 before payment, when reverse charged, outside the EU, and on older top-ups.
         /// </summary>
-        /// <value>What your card was charged: amountCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05.</value>
+        /// <value>Tax charged on top of amountCents once paid (VAT where it applies, since 2026-11-05); 0 before payment, when reverse charged, outside the EU, and on older top-ups.</value>
+        [DataMember(Name = "taxCents", EmitDefaultValue = false)]
+        public int TaxCents { get; set; }
+
+        /// <summary>
+        /// What your card was charged: amountCents plus taxCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05.
+        /// </summary>
+        /// <value>What your card was charged: amountCents plus taxCents, or amountCents plus the card fee on a top-up from 2026-11-02 to 2026-11-05.</value>
         [DataMember(Name = "chargedCents", EmitDefaultValue = false)]
         public int ChargedCents { get; set; }
 
@@ -226,9 +235,9 @@ namespace Zernio.Model
         public DateTime? SucceededAt { get; set; }
 
         /// <summary>
-        /// A Checkout invoice exists for this payment (Checkout payments before 2026-10-29). Every paid payment has a card receipt (getTopupReceipt); a paid top-up has a statement (getTopupStatement).
+        /// The paid payment has an invoice (getTopupInvoice): every balance top-up paid since 2026-11-05 (unless charged without one for a Stripe credit balance), and Checkout payments before 2026-10-29. Every paid payment has a card receipt (getTopupReceipt).
         /// </summary>
-        /// <value>A Checkout invoice exists for this payment (Checkout payments before 2026-10-29). Every paid payment has a card receipt (getTopupReceipt); a paid top-up has a statement (getTopupStatement).</value>
+        /// <value>The paid payment has an invoice (getTopupInvoice): every balance top-up paid since 2026-11-05 (unless charged without one for a Stripe credit balance), and Checkout payments before 2026-10-29. Every paid payment has a card receipt (getTopupReceipt).</value>
         [DataMember(Name = "hasInvoice", EmitDefaultValue = true)]
         public bool HasInvoice { get; set; }
 
@@ -247,6 +256,7 @@ namespace Zernio.Model
             sb.Append("  FeeCoveredByZernio: ").Append(FeeCoveredByZernio).Append("\n");
             sb.Append("  AmountCents: ").Append(AmountCents).Append("\n");
             sb.Append("  FeeCents: ").Append(FeeCents).Append("\n");
+            sb.Append("  TaxCents: ").Append(TaxCents).Append("\n");
             sb.Append("  ChargedCents: ").Append(ChargedCents).Append("\n");
             sb.Append("  StripeFeeCents: ").Append(StripeFeeCents).Append("\n");
             sb.Append("  NetCents: ").Append(NetCents).Append("\n");

@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TaxCents'
+        /// </summary>
+        [Fact]
+        public void TaxCentsTest()
+        {
+            // TODO unit test for the property 'TaxCents'
+        }
+
+        /// <summary>
         /// Test the property 'ChargedCents'
         /// </summary>
         [Fact]

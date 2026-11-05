@@ -137,7 +137,7 @@ namespace Zernio.Api
         /// Create a top-up
         /// </summary>
         /// <remarks>
-        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -149,7 +149,7 @@ namespace Zernio.Api
         /// Create a top-up
         /// </summary>
         /// <remarks>
-        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -220,10 +220,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetPayoutBatch200Response</returns>
         ApiResponse<GetPayoutBatch200Response> GetPayoutBatchWithHttpInfo(string batchId);
         /// <summary>
+        /// Get a top-up invoice
+        /// </summary>
+        /// <remarks>
+        /// The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <returns>GetTopupInvoice200Response</returns>
+        GetTopupInvoice200Response GetTopupInvoice(string topupId);
+
+        /// <summary>
+        /// Get a top-up invoice
+        /// </summary>
+        /// <remarks>
+        /// The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <returns>ApiResponse of GetTopupInvoice200Response</returns>
+        ApiResponse<GetTopupInvoice200Response> GetTopupInvoiceWithHttpInfo(string topupId);
+        /// <summary>
         /// Get a top-up receipt
         /// </summary>
         /// <remarks>
-        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -234,33 +255,35 @@ namespace Zernio.Api
         /// Get a top-up receipt
         /// </summary>
         /// <remarks>
-        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
         /// <returns>ApiResponse of GetTopupReceipt200Response</returns>
         ApiResponse<GetTopupReceipt200Response> GetTopupReceiptWithHttpInfo(string topupId);
         /// <summary>
-        /// Get a top-up statement
+        /// Get a top-up invoice (alias)
         /// </summary>
         /// <remarks>
-        /// The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>GetTopupStatement200Response</returns>
-        GetTopupStatement200Response GetTopupStatement(string topupId);
+        /// <returns>GetTopupInvoice200Response</returns>
+        [Obsolete]
+        GetTopupInvoice200Response GetTopupStatement(string topupId);
 
         /// <summary>
-        /// Get a top-up statement
+        /// Get a top-up invoice (alias)
         /// </summary>
         /// <remarks>
-        /// The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>ApiResponse of GetTopupStatement200Response</returns>
-        ApiResponse<GetTopupStatement200Response> GetTopupStatementWithHttpInfo(string topupId);
+        /// <returns>ApiResponse of GetTopupInvoice200Response</returns>
+        [Obsolete]
+        ApiResponse<GetTopupInvoice200Response> GetTopupStatementWithHttpInfo(string topupId);
         /// <summary>
         /// Get a transfer
         /// </summary>
@@ -338,6 +361,27 @@ namespace Zernio.Api
         /// <param name="skip"> (optional, default to 0)</param>
         /// <returns>ApiResponse of ListTransfers200Response</returns>
         ApiResponse<ListTransfers200Response> ListTransfersWithHttpInfo(int? limit = default, int? skip = default);
+        /// <summary>
+        /// Preview a top-up&#39;s tax
+        /// </summary>
+        /// <remarks>
+        /// The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <returns>PreviewTopup200Response</returns>
+        PreviewTopup200Response PreviewTopup(PreviewTopupRequest previewTopupRequest);
+
+        /// <summary>
+        /// Preview a top-up&#39;s tax
+        /// </summary>
+        /// <remarks>
+        /// The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <returns>ApiResponse of PreviewTopup200Response</returns>
+        ApiResponse<PreviewTopup200Response> PreviewTopupWithHttpInfo(PreviewTopupRequest previewTopupRequest);
         #endregion Synchronous Operations
     }
 
@@ -466,7 +510,7 @@ namespace Zernio.Api
         /// Create a top-up
         /// </summary>
         /// <remarks>
-        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -479,7 +523,7 @@ namespace Zernio.Api
         /// Create a top-up
         /// </summary>
         /// <remarks>
-        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -557,10 +601,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetPayoutBatch200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetPayoutBatch200Response>> GetPayoutBatchWithHttpInfoAsync(string batchId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get a top-up invoice
+        /// </summary>
+        /// <remarks>
+        /// The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetTopupInvoice200Response</returns>
+        System.Threading.Tasks.Task<GetTopupInvoice200Response> GetTopupInvoiceAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a top-up invoice
+        /// </summary>
+        /// <remarks>
+        /// The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetTopupInvoice200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetTopupInvoice200Response>> GetTopupInvoiceWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get a top-up receipt
         /// </summary>
         /// <remarks>
-        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -572,7 +639,7 @@ namespace Zernio.Api
         /// Get a top-up receipt
         /// </summary>
         /// <remarks>
-        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -580,28 +647,30 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetTopupReceipt200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetTopupReceipt200Response>> GetTopupReceiptWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get a top-up statement
+        /// Get a top-up invoice (alias)
         /// </summary>
         /// <remarks>
-        /// The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetTopupStatement200Response</returns>
-        System.Threading.Tasks.Task<GetTopupStatement200Response> GetTopupStatementAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetTopupInvoice200Response</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task<GetTopupInvoice200Response> GetTopupStatementAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a top-up statement
+        /// Get a top-up invoice (alias)
         /// </summary>
         /// <remarks>
-        /// The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetTopupStatement200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetTopupStatement200Response>> GetTopupStatementWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetTopupInvoice200Response)</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task<ApiResponse<GetTopupInvoice200Response>> GetTopupStatementWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a transfer
         /// </summary>
@@ -696,6 +765,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListTransfers200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListTransfers200Response>> ListTransfersWithHttpInfoAsync(int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Preview a top-up&#39;s tax
+        /// </summary>
+        /// <remarks>
+        /// The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PreviewTopup200Response</returns>
+        System.Threading.Tasks.Task<PreviewTopup200Response> PreviewTopupAsync(PreviewTopupRequest previewTopupRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Preview a top-up&#39;s tax
+        /// </summary>
+        /// <remarks>
+        /// The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PreviewTopup200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PreviewTopup200Response>> PreviewTopupWithHttpInfoAsync(PreviewTopupRequest previewTopupRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1545,7 +1637,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -1558,7 +1650,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -1613,7 +1705,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -1627,7 +1719,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) exactly &#x60;amountCents&#x60;, while the payer is present, and credits your balance the same amount. There is no card fee.  Each top-up has a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;) and a top-up statement without VAT (&#x60;GET /v1/balance/top-ups/{topupId}/statement&#x60;): the balance is taxed when it is used, on your monthly invoice.  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet).  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+        /// Create a top-up Charges the billing owner&#39;s saved card (the default one, or &#x60;paymentMethodId&#x60;) &#x60;amountCents&#x60; plus tax, while the payer is present, and credits your balance &#x60;amountCents&#x60;. There is no card fee.  Tax is added on top of the amount (&#x60;taxCents&#x60;, &#x60;totalCents&#x60;): VAT at 21% in Spain, at the customer&#39;s country rate for EU consumers; an EU business with a valid VAT id is reverse charged (no VAT, &#x60;reverseCharge: true&#x60;); outside the EU there is none.  Usage paid from the balance carries no further VAT. Get the figures before paying with &#x60;POST /v1/balance/top-ups/preview&#x60;.  Each top-up has an invoice, with VAT where it applies (&#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60;), and a card receipt (&#x60;GET /v1/balance/top-ups/{topupId}/receipt&#x60;).  - &#x60;status: succeeded&#x60;: the card was charged. &#x60;amountCents&#x60; is credited to &#x60;availableCents&#x60; within seconds. Transfers to payees can use it from 7 days after the charge. - &#x60;status: requires_action&#x60;: the bank asked for 3D Secure. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/balance/top-ups/{topupId}/confirm&#x60;. One left unconfirmed is cancelled after 30 minutes.  ### Errors  - 402 &#x60;payment_required&#x60;: no saved card. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason. - 400: &#x60;method: bank_transfer&#x60; (bank transfers are not available yet). - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location. Add it in Billing, then retry.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createTopupRequest"></param>
@@ -2067,7 +2159,134 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// Get a top-up invoice The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <returns>GetTopupInvoice200Response</returns>
+        public GetTopupInvoice200Response GetTopupInvoice(string topupId)
+        {
+            Zernio.Client.ApiResponse<GetTopupInvoice200Response> localVarResponse = GetTopupInvoiceWithHttpInfo(topupId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a top-up invoice The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <returns>ApiResponse of GetTopupInvoice200Response</returns>
+        public Zernio.Client.ApiResponse<GetTopupInvoice200Response> GetTopupInvoiceWithHttpInfo(string topupId)
+        {
+            // verify the required parameter 'topupId' is set
+            if (topupId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'topupId' when calling TreasuryApi->GetTopupInvoice");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("topupId", Zernio.Client.ClientUtils.ParameterToString(topupId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetTopupInvoice200Response>("/v1/balance/top-ups/{topupId}/invoice", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTopupInvoice", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a top-up invoice The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetTopupInvoice200Response</returns>
+        public async System.Threading.Tasks.Task<GetTopupInvoice200Response> GetTopupInvoiceAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetTopupInvoice200Response> localVarResponse = await GetTopupInvoiceWithHttpInfoAsync(topupId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a top-up invoice The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="topupId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetTopupInvoice200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTopupInvoice200Response>> GetTopupInvoiceWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'topupId' is set
+            if (topupId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'topupId' when calling TreasuryApi->GetTopupInvoice");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("topupId", Zernio.Client.ClientUtils.ParameterToString(topupId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTopupInvoice200Response>("/v1/balance/top-ups/{topupId}/invoice", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTopupInvoice", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -2079,7 +2298,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -2128,7 +2347,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -2141,7 +2360,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;format: pdf&#x60; is the Checkout invoice PDF (payments before 2026-10-29); &#x60;format: page&#x60; is Stripe&#39;s card receipt page. A top-up&#39;s statement is at getTopupStatement. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
+        /// Get a top-up receipt The receipt for a paid top-up or creator payout payment (&#x60;purpose: payout_batch&#x60;). &#x60;url&#x60; is the payment&#39;s invoice PDF when it has one (&#x60;format: pdf&#x60;), else Stripe&#39;s card receipt page (&#x60;format: page&#x60;); &#x60;invoiceUrl&#x60; and &#x60;receiptUrl&#x60; give each on its own.  The invoice alone is at getTopupInvoice. The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
@@ -2194,24 +2413,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a top-up statement The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Get a top-up invoice (alias) Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>GetTopupStatement200Response</returns>
-        public GetTopupStatement200Response GetTopupStatement(string topupId)
+        /// <returns>GetTopupInvoice200Response</returns>
+        [Obsolete]
+        public GetTopupInvoice200Response GetTopupStatement(string topupId)
         {
-            Zernio.Client.ApiResponse<GetTopupStatement200Response> localVarResponse = GetTopupStatementWithHttpInfo(topupId);
+            Zernio.Client.ApiResponse<GetTopupInvoice200Response> localVarResponse = GetTopupStatementWithHttpInfo(topupId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a top-up statement The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Get a top-up invoice (alias) Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>ApiResponse of GetTopupStatement200Response</returns>
-        public Zernio.Client.ApiResponse<GetTopupStatement200Response> GetTopupStatementWithHttpInfo(string topupId)
+        /// <returns>ApiResponse of GetTopupInvoice200Response</returns>
+        [Obsolete]
+        public Zernio.Client.ApiResponse<GetTopupInvoice200Response> GetTopupStatementWithHttpInfo(string topupId)
         {
             // verify the required parameter 'topupId' is set
             if (topupId == null)
@@ -2243,7 +2464,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetTopupStatement200Response>("/v1/balance/top-ups/{topupId}/statement", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetTopupInvoice200Response>("/v1/balance/top-ups/{topupId}/statement", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2255,26 +2476,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a top-up statement The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Get a top-up invoice (alias) Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetTopupStatement200Response</returns>
-        public async System.Threading.Tasks.Task<GetTopupStatement200Response> GetTopupStatementAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetTopupInvoice200Response</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task<GetTopupInvoice200Response> GetTopupStatementAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetTopupStatement200Response> localVarResponse = await GetTopupStatementWithHttpInfoAsync(topupId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetTopupInvoice200Response> localVarResponse = await GetTopupStatementWithHttpInfoAsync(topupId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a top-up statement The statement for a paid balance top-up: the PDF of the Stripe invoice it was paid through. It shows the amount added to your balance and no VAT: money added to the balance is taxed when it is used, on your monthly invoice.  - &#x60;format: pdf&#x60; is the statement PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no statement (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
+        /// Get a top-up invoice (alias) Alias of getTopupInvoice, kept for clients written against its first name.  The invoice for a paid balance top-up: the PDF of the Stripe invoice it was paid through.  It shows the amount added to your balance and the tax charged on top: VAT where it applies, or a reverse charge note for an EU business with a valid VAT id. Usage paid from the balance carries no further VAT.  - &#x60;format: pdf&#x60; is the invoice PDF; &#x60;format: page&#x60; is its Stripe-hosted page when the PDF is not ready. - 404 before the top-up is paid, and for a payment with no invoice (top-ups before 2026-11-05, creator payout payments). Its card receipt is at getTopupReceipt.  The link is short-lived, so fetch it when you need it. A profile-scoped key answers 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetTopupStatement200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTopupStatement200Response>> GetTopupStatementWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetTopupInvoice200Response)</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTopupInvoice200Response>> GetTopupStatementWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'topupId' is set
             if (topupId == null)
@@ -2309,7 +2532,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTopupStatement200Response>("/v1/balance/top-ups/{topupId}/statement", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTopupInvoice200Response>("/v1/balance/top-ups/{topupId}/statement", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2828,6 +3051,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListTransfers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Preview a top-up&#39;s tax The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <returns>PreviewTopup200Response</returns>
+        public PreviewTopup200Response PreviewTopup(PreviewTopupRequest previewTopupRequest)
+        {
+            Zernio.Client.ApiResponse<PreviewTopup200Response> localVarResponse = PreviewTopupWithHttpInfo(previewTopupRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Preview a top-up&#39;s tax The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <returns>ApiResponse of PreviewTopup200Response</returns>
+        public Zernio.Client.ApiResponse<PreviewTopup200Response> PreviewTopupWithHttpInfo(PreviewTopupRequest previewTopupRequest)
+        {
+            // verify the required parameter 'previewTopupRequest' is set
+            if (previewTopupRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'previewTopupRequest' when calling TreasuryApi->PreviewTopup");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = previewTopupRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<PreviewTopup200Response>("/v1/balance/top-ups/preview", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PreviewTopup", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Preview a top-up&#39;s tax The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PreviewTopup200Response</returns>
+        public async System.Threading.Tasks.Task<PreviewTopup200Response> PreviewTopupAsync(PreviewTopupRequest previewTopupRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<PreviewTopup200Response> localVarResponse = await PreviewTopupWithHttpInfoAsync(previewTopupRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Preview a top-up&#39;s tax The tax a top-up of &#x60;amountCents&#x60; will carry and the total the card is charged, calculated by Stripe Tax from the billing owner&#39;s billing address and tax ids, as the top-up&#39;s invoice will be. Charges nothing.  - 400 &#x60;invalid_billing_address&#x60;: the billing address gives no tax location, so a top-up would be refused too.  Needs a full-access key or a signed-in session; a profile-scoped key answers 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="previewTopupRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PreviewTopup200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PreviewTopup200Response>> PreviewTopupWithHttpInfoAsync(PreviewTopupRequest previewTopupRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'previewTopupRequest' is set
+            if (previewTopupRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'previewTopupRequest' when calling TreasuryApi->PreviewTopup");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = previewTopupRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PreviewTopup200Response>("/v1/balance/top-ups/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PreviewTopup", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

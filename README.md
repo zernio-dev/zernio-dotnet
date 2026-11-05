@@ -1122,12 +1122,14 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**CreateTransfer**](docs/TreasuryApi.md#createtransfer) | **POST** /v1/transfers | Create a transfer
 *TreasuryApi* | [**GetBalance**](docs/TreasuryApi.md#getbalance) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**GetPayoutBatch**](docs/TreasuryApi.md#getpayoutbatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
+*TreasuryApi* | [**GetTopupInvoice**](docs/TreasuryApi.md#gettopupinvoice) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice
 *TreasuryApi* | [**GetTopupReceipt**](docs/TreasuryApi.md#gettopupreceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
-*TreasuryApi* | [**GetTopupStatement**](docs/TreasuryApi.md#gettopupstatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up statement
+*TreasuryApi* | [**GetTopupStatement**](docs/TreasuryApi.md#gettopupstatement) | **GET** /v1/balance/top-ups/{topupId}/statement | Get a top-up invoice (alias)
 *TreasuryApi* | [**GetTransfer**](docs/TreasuryApi.md#gettransfer) | **GET** /v1/transfers/{transferId} | Get a transfer
 *TreasuryApi* | [**ListPayees**](docs/TreasuryApi.md#listpayees) | **GET** /v1/payees | List payees
 *TreasuryApi* | [**ListTopups**](docs/TreasuryApi.md#listtopups) | **GET** /v1/balance/top-ups | List top-ups
 *TreasuryApi* | [**ListTransfers**](docs/TreasuryApi.md#listtransfers) | **GET** /v1/transfers | List transfers
+*TreasuryApi* | [**PreviewTopup**](docs/TreasuryApi.md#previewtopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up's tax
 *TwitterEngagementApi* | [**BookmarkPost**](docs/TwitterEngagementApi.md#bookmarkpost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**FollowUser**](docs/TwitterEngagementApi.md#followuser) | **POST** /v1/twitter/follow | Follow a user
 *TwitterEngagementApi* | [**GetTweet**](docs/TwitterEngagementApi.md#gettweet) | **GET** /v1/twitter/tweet | Look up a tweet
@@ -2688,8 +2690,8 @@ Class | Method | HTTP request | Description
  - [Model.GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [Model.GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [Model.GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
+ - [Model.GetTopupInvoice200Response](docs/GetTopupInvoice200Response.md)
  - [Model.GetTopupReceipt200Response](docs/GetTopupReceipt200Response.md)
- - [Model.GetTopupStatement200Response](docs/GetTopupStatement200Response.md)
  - [Model.GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [Model.GetTrackingTagDiagnostics200Response](docs/GetTrackingTagDiagnostics200Response.md)
  - [Model.GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
@@ -3464,6 +3466,8 @@ Class | Method | HTTP request | Description
  - [Model.PreflightSmsRegistrationRequest](docs/PreflightSmsRegistrationRequest.md)
  - [Model.PrepareMedia200Response](docs/PrepareMedia200Response.md)
  - [Model.PrepareMediaRequest](docs/PrepareMediaRequest.md)
+ - [Model.PreviewTopup200Response](docs/PreviewTopup200Response.md)
+ - [Model.PreviewTopupRequest](docs/PreviewTopupRequest.md)
  - [Model.Product](docs/Product.md)
  - [Model.ProductImage](docs/ProductImage.md)
  - [Model.ProductOptionsInner](docs/ProductOptionsInner.md)

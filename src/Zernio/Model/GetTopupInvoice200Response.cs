@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetTopupStatement200Response
+    /// GetTopupInvoice200Response
     /// </summary>
-    [DataContract(Name = "getTopupStatement_200_response")]
-    public partial class GetTopupStatement200Response : IValidatableObject
+    [DataContract(Name = "getTopupInvoice_200_response")]
+    public partial class GetTopupInvoice200Response : IValidatableObject
     {
         /// <summary>
         /// Defines Format
@@ -59,40 +59,44 @@ namespace Zernio.Model
         [DataMember(Name = "format", IsRequired = true, EmitDefaultValue = true)]
         public FormatEnum Format { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTopupStatement200Response" /> class.
+        /// Initializes a new instance of the <see cref="GetTopupInvoice200Response" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GetTopupStatement200Response() { }
+        protected GetTopupInvoice200Response() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTopupStatement200Response" /> class.
+        /// Initializes a new instance of the <see cref="GetTopupInvoice200Response" /> class.
         /// </summary>
         /// <param name="url">url (required).</param>
         /// <param name="format">format (required).</param>
-        /// <param name="pdfUrl">The statement PDF. (required).</param>
-        /// <param name="pageUrl">The statement&#39;s Stripe-hosted page. (required).</param>
+        /// <param name="pdfUrl">The invoice PDF. (required).</param>
+        /// <param name="pageUrl">The invoice&#39;s Stripe-hosted page. (required).</param>
         /// <param name="amountCents">Amount added to your balance, as in the top-up list. (required).</param>
-        public GetTopupStatement200Response(string url = default, FormatEnum format = default, string pdfUrl = default, string pageUrl = default, int amountCents = default)
+        /// <param name="taxCents">Tax charged on top of amountCents. (required).</param>
+        /// <param name="chargedCents">What the card was charged, tax included. (required).</param>
+        public GetTopupInvoice200Response(string url = default, FormatEnum format = default, string pdfUrl = default, string pageUrl = default, int amountCents = default, int taxCents = default, int chargedCents = default)
         {
             // to ensure "url" is required (not null)
             if (url == null)
             {
-                throw new ArgumentNullException("url is a required property for GetTopupStatement200Response and cannot be null");
+                throw new ArgumentNullException("url is a required property for GetTopupInvoice200Response and cannot be null");
             }
             this.Url = url;
             this.Format = format;
             // to ensure "pdfUrl" is required (not null)
             if (pdfUrl == null)
             {
-                throw new ArgumentNullException("pdfUrl is a required property for GetTopupStatement200Response and cannot be null");
+                throw new ArgumentNullException("pdfUrl is a required property for GetTopupInvoice200Response and cannot be null");
             }
             this.PdfUrl = pdfUrl;
             // to ensure "pageUrl" is required (not null)
             if (pageUrl == null)
             {
-                throw new ArgumentNullException("pageUrl is a required property for GetTopupStatement200Response and cannot be null");
+                throw new ArgumentNullException("pageUrl is a required property for GetTopupInvoice200Response and cannot be null");
             }
             this.PageUrl = pageUrl;
             this.AmountCents = amountCents;
+            this.TaxCents = taxCents;
+            this.ChargedCents = chargedCents;
         }
 
         /// <summary>
@@ -102,16 +106,16 @@ namespace Zernio.Model
         public string Url { get; set; }
 
         /// <summary>
-        /// The statement PDF.
+        /// The invoice PDF.
         /// </summary>
-        /// <value>The statement PDF.</value>
+        /// <value>The invoice PDF.</value>
         [DataMember(Name = "pdfUrl", IsRequired = true, EmitDefaultValue = true)]
         public string PdfUrl { get; set; }
 
         /// <summary>
-        /// The statement&#39;s Stripe-hosted page.
+        /// The invoice&#39;s Stripe-hosted page.
         /// </summary>
-        /// <value>The statement&#39;s Stripe-hosted page.</value>
+        /// <value>The invoice&#39;s Stripe-hosted page.</value>
         [DataMember(Name = "pageUrl", IsRequired = true, EmitDefaultValue = true)]
         public string PageUrl { get; set; }
 
@@ -123,18 +127,34 @@ namespace Zernio.Model
         public int AmountCents { get; set; }
 
         /// <summary>
+        /// Tax charged on top of amountCents.
+        /// </summary>
+        /// <value>Tax charged on top of amountCents.</value>
+        [DataMember(Name = "taxCents", IsRequired = true, EmitDefaultValue = true)]
+        public int TaxCents { get; set; }
+
+        /// <summary>
+        /// What the card was charged, tax included.
+        /// </summary>
+        /// <value>What the card was charged, tax included.</value>
+        [DataMember(Name = "chargedCents", IsRequired = true, EmitDefaultValue = true)]
+        public int ChargedCents { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetTopupStatement200Response {\n");
+            sb.Append("class GetTopupInvoice200Response {\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("  PdfUrl: ").Append(PdfUrl).Append("\n");
             sb.Append("  PageUrl: ").Append(PageUrl).Append("\n");
             sb.Append("  AmountCents: ").Append(AmountCents).Append("\n");
+            sb.Append("  TaxCents: ").Append(TaxCents).Append("\n");
+            sb.Append("  ChargedCents: ").Append(ChargedCents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

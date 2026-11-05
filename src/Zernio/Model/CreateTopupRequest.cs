@@ -68,7 +68,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTopupRequest" /> class.
         /// </summary>
-        /// <param name="amountCents">Amount to charge and credit to your balance, in cents: $5 to $100,000. No card fee. (required).</param>
+        /// <param name="amountCents">Amount to credit to your balance, in cents: $5 to $100,000. Tax is charged on top; no card fee. (required).</param>
         /// <param name="method">Only card is available. bank_transfer returns 400 \&quot;Bank transfers are not available yet.\&quot; (required).</param>
         /// <param name="paymentMethodId">A saved card of the billing owner&#39;s (&#x60;pm_...&#x60;). Defaults to the default payment method..</param>
         public CreateTopupRequest(int amountCents = default, MethodEnum method = default, string paymentMethodId = default)
@@ -79,9 +79,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Amount to charge and credit to your balance, in cents: $5 to $100,000. No card fee.
+        /// Amount to credit to your balance, in cents: $5 to $100,000. Tax is charged on top; no card fee.
         /// </summary>
-        /// <value>Amount to charge and credit to your balance, in cents: $5 to $100,000. No card fee.</value>
+        /// <value>Amount to credit to your balance, in cents: $5 to $100,000. Tax is charged on top; no card fee.</value>
         [DataMember(Name = "amountCents", IsRequired = true, EmitDefaultValue = true)]
         public int AmountCents { get; set; }
 

@@ -73,13 +73,17 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateTopup201Response" /> class.
         /// </summary>
         /// <param name="topupId">topupId (required).</param>
-        /// <param name="amountCents">Charged and credited to your balance once paid. (required).</param>
+        /// <param name="amountCents">Credited to your balance once paid. (required).</param>
+        /// <param name="taxCents">Tax added on top of amountCents (VAT where it applies). 0 when reverse charged or outside the EU. (required).</param>
+        /// <param name="totalCents">What the card is charged: amountCents + taxCents. (required).</param>
+        /// <param name="taxLabel">The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged. (required).</param>
+        /// <param name="reverseCharge">True for an EU business with a valid VAT id: no VAT is charged and the invoice says reverse charge. (required).</param>
         /// <param name="feeCents">Always 0: there is no card fee. Kept for older clients. (required).</param>
-        /// <param name="chargedCents">What the card is charged: amountCents. Kept for older clients. (required).</param>
+        /// <param name="chargedCents">Same as totalCents. Kept for older clients. (required).</param>
         /// <param name="feeIsExact">Always true. Kept for older clients. (required).</param>
         /// <param name="status">status (required).</param>
         /// <param name="clientSecret">PaymentIntent client secret for Stripe.js handleNextAction; set only when status is requires_action (required).</param>
-        public CreateTopup201Response(string topupId = default, int amountCents = default, int feeCents = default, int chargedCents = default, bool feeIsExact = default, StatusEnum status = default, string clientSecret = default)
+        public CreateTopup201Response(string topupId = default, int amountCents = default, int taxCents = default, int totalCents = default, string taxLabel = default, bool reverseCharge = default, int feeCents = default, int chargedCents = default, bool feeIsExact = default, StatusEnum status = default, string clientSecret = default)
         {
             // to ensure "topupId" is required (not null)
             if (topupId == null)
@@ -88,6 +92,15 @@ namespace Zernio.Model
             }
             this.TopupId = topupId;
             this.AmountCents = amountCents;
+            this.TaxCents = taxCents;
+            this.TotalCents = totalCents;
+            // to ensure "taxLabel" is required (not null)
+            if (taxLabel == null)
+            {
+                throw new ArgumentNullException("taxLabel is a required property for CreateTopup201Response and cannot be null");
+            }
+            this.TaxLabel = taxLabel;
+            this.ReverseCharge = reverseCharge;
             this.FeeCents = feeCents;
             this.ChargedCents = chargedCents;
             this.FeeIsExact = feeIsExact;
@@ -107,11 +120,39 @@ namespace Zernio.Model
         public string TopupId { get; set; }
 
         /// <summary>
-        /// Charged and credited to your balance once paid.
+        /// Credited to your balance once paid.
         /// </summary>
-        /// <value>Charged and credited to your balance once paid.</value>
+        /// <value>Credited to your balance once paid.</value>
         [DataMember(Name = "amountCents", IsRequired = true, EmitDefaultValue = true)]
         public int AmountCents { get; set; }
+
+        /// <summary>
+        /// Tax added on top of amountCents (VAT where it applies). 0 when reverse charged or outside the EU.
+        /// </summary>
+        /// <value>Tax added on top of amountCents (VAT where it applies). 0 when reverse charged or outside the EU.</value>
+        [DataMember(Name = "taxCents", IsRequired = true, EmitDefaultValue = true)]
+        public int TaxCents { get; set; }
+
+        /// <summary>
+        /// What the card is charged: amountCents + taxCents.
+        /// </summary>
+        /// <value>What the card is charged: amountCents + taxCents.</value>
+        [DataMember(Name = "totalCents", IsRequired = true, EmitDefaultValue = true)]
+        public int TotalCents { get; set; }
+
+        /// <summary>
+        /// The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged.
+        /// </summary>
+        /// <value>The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged.</value>
+        [DataMember(Name = "taxLabel", IsRequired = true, EmitDefaultValue = true)]
+        public string TaxLabel { get; set; }
+
+        /// <summary>
+        /// True for an EU business with a valid VAT id: no VAT is charged and the invoice says reverse charge.
+        /// </summary>
+        /// <value>True for an EU business with a valid VAT id: no VAT is charged and the invoice says reverse charge.</value>
+        [DataMember(Name = "reverseCharge", IsRequired = true, EmitDefaultValue = true)]
+        public bool ReverseCharge { get; set; }
 
         /// <summary>
         /// Always 0: there is no card fee. Kept for older clients.
@@ -121,9 +162,9 @@ namespace Zernio.Model
         public int FeeCents { get; set; }
 
         /// <summary>
-        /// What the card is charged: amountCents. Kept for older clients.
+        /// Same as totalCents. Kept for older clients.
         /// </summary>
-        /// <value>What the card is charged: amountCents. Kept for older clients.</value>
+        /// <value>Same as totalCents. Kept for older clients.</value>
         [DataMember(Name = "chargedCents", IsRequired = true, EmitDefaultValue = true)]
         public int ChargedCents { get; set; }
 
@@ -151,6 +192,10 @@ namespace Zernio.Model
             sb.Append("class CreateTopup201Response {\n");
             sb.Append("  TopupId: ").Append(TopupId).Append("\n");
             sb.Append("  AmountCents: ").Append(AmountCents).Append("\n");
+            sb.Append("  TaxCents: ").Append(TaxCents).Append("\n");
+            sb.Append("  TotalCents: ").Append(TotalCents).Append("\n");
+            sb.Append("  TaxLabel: ").Append(TaxLabel).Append("\n");
+            sb.Append("  ReverseCharge: ").Append(ReverseCharge).Append("\n");
             sb.Append("  FeeCents: ").Append(FeeCents).Append("\n");
             sb.Append("  ChargedCents: ").Append(ChargedCents).Append("\n");
             sb.Append("  FeeIsExact: ").Append(FeeIsExact).Append("\n");

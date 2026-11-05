@@ -74,6 +74,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TaxCents'
+        /// </summary>
+        [Fact]
+        public void TaxCentsTest()
+        {
+            // TODO unit test for the property 'TaxCents'
+        }
+
+        /// <summary>
+        /// Test the property 'TotalCents'
+        /// </summary>
+        [Fact]
+        public void TotalCentsTest()
+        {
+            // TODO unit test for the property 'TotalCents'
+        }
+
+        /// <summary>
+        /// Test the property 'TaxLabel'
+        /// </summary>
+        [Fact]
+        public void TaxLabelTest()
+        {
+            // TODO unit test for the property 'TaxLabel'
+        }
+
+        /// <summary>
+        /// Test the property 'ReverseCharge'
+        /// </summary>
+        [Fact]
+        public void ReverseChargeTest()
+        {
+            // TODO unit test for the property 'ReverseCharge'
+        }
+
+        /// <summary>
         /// Test the property 'FeeCents'
         /// </summary>
         [Fact]
