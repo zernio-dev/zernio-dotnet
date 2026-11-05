@@ -1437,8 +1437,8 @@ docs/GetTikTokSmartPlusAdReview200Response.md
 docs/GetTikTokSmartPlusMaterialReport200Response.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
-docs/GetTopupCardFee200Response.md
 docs/GetTopupReceipt200Response.md
+docs/GetTopupStatement200Response.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagDiagnostics200Response.md
 docs/GetTrackingTagStats200Response.md
@@ -4830,8 +4830,8 @@ src/Zernio.Test/Model/GetTikTokSmartPlusAdReview200ResponseTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetricsTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetTikTokSmartPlusMaterialReport200ResponseTests.cs
-src/Zernio.Test/Model/GetTopupCardFee200ResponseTests.cs
 src/Zernio.Test/Model/GetTopupReceipt200ResponseTests.cs
+src/Zernio.Test/Model/GetTopupStatement200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTag200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagDiagnostics200ResponseTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
@@ -8198,8 +8198,8 @@ src/Zernio/Model/GetTikTokSmartPlusAdReview200Response.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200Response.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.cs
 src/Zernio/Model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.cs
-src/Zernio/Model/GetTopupCardFee200Response.cs
 src/Zernio/Model/GetTopupReceipt200Response.cs
+src/Zernio/Model/GetTopupStatement200Response.cs
 src/Zernio/Model/GetTrackingTag200Response.cs
 src/Zernio/Model/GetTrackingTagDiagnostics200Response.cs
 src/Zernio/Model/GetTrackingTagStats200Response.cs
