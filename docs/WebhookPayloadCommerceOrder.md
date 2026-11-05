@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | [optional] 
 **Event** | **string** |  | [optional] 
 **Timestamp** | **DateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. | [optional] 
+**Profiles** | [**List&lt;WebhookProfilesInner&gt;**](WebhookProfilesInner.md) | The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.  Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.  | [optional] 
 **Store** | [**WebhookPayloadCommerceProductStore**](WebhookPayloadCommerceProductStore.md) |  | [optional] 
 **Resource** | [**WebhookPayloadCommerceOrderResource**](WebhookPayloadCommerceOrderResource.md) |  | [optional] 
 
