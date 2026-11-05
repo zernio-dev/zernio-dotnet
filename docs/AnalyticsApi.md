@@ -273,6 +273,7 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 | **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -389,6 +390,7 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The profile is not accessible, or is beyond your plan&#39;s profile limit (PROFILE_OVER_LIMIT). |  -  |
 | **404** | Profile not found or not accessible with this API key. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -498,6 +500,7 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The caller cannot read the requested profile, the API key is scoped to other profiles, or the profile sits outside the plan&#39;s profile limit (&#x60;code&#x60; &#x60;PROFILE_OVER_LIMIT&#x60;).  |  -  |
 | **404** | Resource not found |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 | **500** | Internal server error |  -  |
 | **503** | The delta feed is temporarily unavailable, for example in the minutes between an application release and the analytics store catching up. Nothing is wrong with the request: retry it unchanged, honouring &#x60;Retry-After&#x60;.  The feed answers this rather than an empty page, because an empty page is indistinguishable from \&quot;nothing changed\&quot; and would advance you past a window you never received.  |  -  |
 
@@ -606,6 +609,7 @@ catch (ApiException e)
 | **200** | Best time slots |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -713,6 +717,7 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -825,6 +830,7 @@ catch (ApiException e)
 | **200** | Daily metrics and platform breakdown |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2900,6 +2906,7 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | API key scope violation |  -  |
 | **404** | Post not found |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3007,6 +3014,7 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Forbidden (post belongs to another user or API key scope violation) |  -  |
 | **404** | Post not found |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3113,6 +3121,7 @@ catch (ApiException e)
 | **200** | Posting frequency data |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3435,6 +3444,7 @@ catch (ApiException e)
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | API key scope violation |  -  |
 | **404** | Tracking window not found |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4341,6 +4351,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | API key scope violation |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

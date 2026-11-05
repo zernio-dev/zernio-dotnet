@@ -437,6 +437,7 @@ catch (ApiException e)
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Several active connections on the API key&#39;s profiles reach the ad account of this ad (code &#x60;ambiguous_account&#x60;), so the connection to act with is ambiguous. Keep one of them connected or move the others to a profile this key cannot access. |  -  |
+| **429** | A limit on your request rate was reached: your plan&#39;s API limit, or the team&#39;s analytics read cap on a 30-second sliding window. &#x60;details.scope&#x60; names the capped group (&#x60;campaign-analytics&#x60;, &#x60;ad-analytics&#x60;, &#x60;ads-listings&#x60; or &#x60;post-analytics&#x60;) and is absent for the API limit.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The ceiling of the limit that was reached. <br>  * X-RateLimit-Remaining - Requests remaining in the window. <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -779,7 +780,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. One of:  - Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. - Code &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Resource not found |  -  |
-| **429** | Google operations budget or quota exhausted without a cached impression-share result. |  -  |
+| **429** | The team&#39;s analytics read cap was reached (&#x60;details.scope&#x60; is &#x60;campaign-analytics&#x60;), or the Google operations budget or quota is exhausted without a cached impression-share result. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
