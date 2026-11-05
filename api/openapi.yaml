@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.494.1
+  version: 1.495.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -48353,7 +48353,12 @@ paths:
         "403":
           $ref: "#/components/responses/AdAccountNotSelected"
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Ad not found (`ad_not_found`), or `account_not_found` when\
+            \ the ad's connection is on a profile this API key can't access."
       security:
       - bearerAuth: []
       summary: Cancel an ad
@@ -48699,7 +48704,12 @@ paths:
           x-summary: "The free live ads limit is reached without a card, or the account\
             \ is not selected: add a card or select it."
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Ad not found (`ad_not_found`), or `account_not_found` when\
+            \ the ad's connection is on a profile this API key can't access."
         "422":
           description: |-
             The edit cannot be applied. One of:
@@ -48826,7 +48836,12 @@ paths:
           x-summary: "The free live ads limit is reached without a card, or the account\
             \ is not selected: add a card or select it."
         "404":
-          description: Ad not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Ad not found (`ad_not_found`), or `account_not_found` when\
+            \ the ad's connection is on a profile this API key can't access."
       security:
       - bearerAuth: []
       summary: Pause or resume a single ad
