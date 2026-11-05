@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.503.0
+  version: 1.504.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4253,6 +4253,8 @@ paths:
           - topup
           - transfer
           - fee
+          - usage
+          - grant
           type: string
         style: form
       - explode: true
@@ -75874,6 +75876,8 @@ paths:
           - topup
           - transfer
           - fee
+          - usage
+          - grant
           type: string
         style: form
       - explode: true
@@ -76929,6 +76933,8 @@ components:
           - topup
           - transfer
           - fee
+          - usage
+          - grant
           type: string
         amountCents:
           type: integer
@@ -86598,6 +86604,8 @@ components:
           - topup
           - transfer
           - fee
+          - usage
+          - grant
           type: string
         amountCents:
           description: Always positive; direction is given by debit and credit.
@@ -116640,6 +116648,8 @@ components:
           - topup
           - transfer
           - fee
+          - usage
+          - grant
           type: string
         amountCents:
           description: Always positive; direction is given by debit and credit
@@ -116836,7 +116846,10 @@ components:
         availableCents:
           description: "Your balance, including card top-ups paid in the last 7 days\
             \ (see payoutLockedCents). Negative after a dispute or refund of a top-up\
-            \ that was already spent; transfers are refused while it is negative."
+            \ that was already spent, or, on balance billing, when pay-per-use already\
+            \ in flight (a connected call, an SMS already with the carrier) lands\
+            \ past zero; the next top-up covers it. Transfers are refused while it\
+            \ is negative."
           type: integer
         payoutLockedCents:
           description: "Part of availableCents from card top-ups charged in the last\
