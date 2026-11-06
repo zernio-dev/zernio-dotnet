@@ -14,6 +14,9 @@ Name | Type | Description | Notes
 **NewName** | **string** |  | [optional] 
 **PreviousBidAmount** | **decimal** |  | [optional] 
 **NewBidAmount** | **decimal** |  | [optional] 
+**TargetMetric** | **string** |  | [optional] 
+**PreviousTarget** | **decimal** |  | [optional] 
+**NewTarget** | **decimal** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

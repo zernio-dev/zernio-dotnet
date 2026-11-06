@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Groups** | [**List&lt;AdRuleGroupsInner&gt;**](AdRuleGroupsInner.md) | Null removes the groups; each campaign is then judged on its own. | [optional] 
 **Lifecycle** | [**AdRuleLifecycle**](AdRuleLifecycle.md) |  | [optional] 
 **Conditions** | [**AdRuleConditions**](AdRuleConditions.md) |  | [optional] 
-**Actions** | [**List&lt;AdRuleAction&gt;**](AdRuleAction.md) | Each type at most once, and at most one of &#x60;pause&#x60;, &#x60;activate&#x60;, &#x60;adjust_budget&#x60;, &#x60;adjust_bid&#x60;, &#x60;duplicate&#x60; and &#x60;edit_name&#x60;. | [optional] 
+**Actions** | [**List&lt;AdRuleAction&gt;**](AdRuleAction.md) | Each type at most once, and at most one of &#x60;pause&#x60;, &#x60;activate&#x60;, &#x60;adjust_budget&#x60;, &#x60;adjust_bid&#x60;, &#x60;adjust_target&#x60;, &#x60;reallocate_budget&#x60;, &#x60;duplicate&#x60; and &#x60;edit_name&#x60;. | [optional] 
 **Schedule** | [**AdRuleSchedule**](AdRuleSchedule.md) |  | [optional] 
 **CooldownMinutes** | **int** |  | [optional] 
 **Enabled** | **bool** |  | [optional] 
