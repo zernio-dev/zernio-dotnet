@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreatePayeeOnboardingLink**](TreasuryApi.md#createpayeeonboardinglink) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link |
 | [**CreateTopup**](TreasuryApi.md#createtopup) | **POST** /v1/balance/top-ups | Create a top-up |
 | [**CreateTransfer**](TreasuryApi.md#createtransfer) | **POST** /v1/transfers | Create a transfer |
+| [**GetAutoRecharge**](TreasuryApi.md#getautorecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings |
 | [**GetBalance**](TreasuryApi.md#getbalance) | **GET** /v1/balance | Get balance |
 | [**GetPayoutBatch**](TreasuryApi.md#getpayoutbatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch |
 | [**GetTopupInvoice**](TreasuryApi.md#gettopupinvoice) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice |
@@ -21,6 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListTopups**](TreasuryApi.md#listtopups) | **GET** /v1/balance/top-ups | List top-ups |
 | [**ListTransfers**](TreasuryApi.md#listtransfers) | **GET** /v1/transfers | List transfers |
 | [**PreviewTopup**](TreasuryApi.md#previewtopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up&#39;s tax |
+| [**UpdateAutoRecharge**](TreasuryApi.md#updateautorecharge) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings |
 
 <a id="cancelpayoutbatch"></a>
 # **CancelPayoutBatch**
@@ -742,6 +744,101 @@ catch (ApiException e)
 | **404** | Resource not found |  -  |
 | **409** | Payee has not finished payout onboarding, the Idempotency-Key is still processing, another request is waiting on Stripe for this transfer, or Stripe has not confirmed it within 24 hours |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getautorecharge"></a>
+# **GetAutoRecharge**
+> AutoRecharge GetAutoRecharge ()
+
+Get auto-recharge settings
+
+Your balance's auto-recharge rule: when the balance drops below `belowCents`, the billing owner's saved card is charged back up to `toCents`, tax added on top as for any top-up.  The first read gives the default rule, sized from your last 30 days of pay-per-use: below about a week of spend (at least $5), back up by about two more weeks (at least $20).  - 409 `balance_billing_required`: the account is not on the prepaid balance.  A profile-scoped key answers 403. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAutoRechargeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TreasuryApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // Get auto-recharge settings
+                AutoRecharge result = apiInstance.GetAutoRecharge();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TreasuryApi.GetAutoRecharge: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAutoRechargeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get auto-recharge settings
+    ApiResponse<AutoRecharge> response = apiInstance.GetAutoRechargeWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TreasuryApi.GetAutoRechargeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**AutoRecharge**](AutoRecharge.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Auto-recharge settings |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | Code &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1742,6 +1839,107 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateautorecharge"></a>
+# **UpdateAutoRecharge**
+> AutoRecharge UpdateAutoRecharge (UpdateAutoRechargeRequest updateAutoRechargeRequest)
+
+Update auto-recharge settings
+
+Changes the auto-recharge rule. Omitted fields keep their value.  A declined recharge is retried 1 hour, 1 day and 3 days later, with an email each time. After the last retry fails, auto-recharge switches off (`disabledReason: payment_failed`) until the card is updated. A top-up you make yourself resets the retries.  A bank asking for 3D Secure counts as a decline: the charge happens while you are away, so the email asks you to top up in Billing.  When this month's auto-recharges plus the next one would pass `monthlyLimitCents`, the card is not charged and you get one email that month. At $0, pay-per-use then answers 402 `usage_limit_reached`.  - 400: a field is out of range, or `toCents` is not more than $5 above `belowCents`. - 409 `balance_billing_required`: the account is not on the prepaid balance.  Needs an owner, admin or billing admin, signed in or through a full-access key they created. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAutoRechargeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TreasuryApi(httpClient, config, httpClientHandler);
+            var updateAutoRechargeRequest = new UpdateAutoRechargeRequest(); // UpdateAutoRechargeRequest | 
+
+            try
+            {
+                // Update auto-recharge settings
+                AutoRecharge result = apiInstance.UpdateAutoRecharge(updateAutoRechargeRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TreasuryApi.UpdateAutoRecharge: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAutoRechargeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update auto-recharge settings
+    ApiResponse<AutoRecharge> response = apiInstance.UpdateAutoRechargeWithHttpInfo(updateAutoRechargeRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TreasuryApi.UpdateAutoRechargeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **updateAutoRechargeRequest** | [**UpdateAutoRechargeRequest**](UpdateAutoRechargeRequest.md) |  |  |
+
+### Return type
+
+[**AutoRecharge**](AutoRecharge.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **409** | Code &#x60;balance_billing_required&#x60;: the account is not on the prepaid balance. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

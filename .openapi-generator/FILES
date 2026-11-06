@@ -221,6 +221,7 @@ docs/AttachCampaignAssets201Response.md
 docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
 docs/AttachNumberToSipTrunkRequest.md
+docs/AutoRecharge.md
 docs/BatchAdCatalogProducts202Response.md
 docs/BatchAdCatalogProductsRequest.md
 docs/BatchAdCatalogProductsRequestRequestsInner.md
@@ -2797,6 +2798,7 @@ docs/UpdateAdTrackingTags200Response.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
+docs/UpdateAutoRechargeRequest.md
 docs/UpdateBidStrategy200Response.md
 docs/UpdateBidStrategy200ResponseStrategy.md
 docs/UpdateBidStrategyRequest.md
@@ -3645,6 +3647,7 @@ src/Zernio.Test/Model/AttachCampaignAssets201ResponseTests.cs
 src/Zernio.Test/Model/AttachCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunkRequestTests.cs
+src/Zernio.Test/Model/AutoRechargeTests.cs
 src/Zernio.Test/Model/BatchAdCatalogProducts202ResponseTests.cs
 src/Zernio.Test/Model/BatchAdCatalogProductsRequestRequestsInnerProductTests.cs
 src/Zernio.Test/Model/BatchAdCatalogProductsRequestRequestsInnerTests.cs
@@ -6163,6 +6166,7 @@ src/Zernio.Test/Model/UpdateAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestUrlTagsInnerTests.cs
+src/Zernio.Test/Model/UpdateAutoRechargeRequestTests.cs
 src/Zernio.Test/Model/UpdateBidStrategy200ResponseStrategyTests.cs
 src/Zernio.Test/Model/UpdateBidStrategy200ResponseTests.cs
 src/Zernio.Test/Model/UpdateBidStrategyRequestTests.cs
@@ -7015,6 +7019,7 @@ src/Zernio/Model/AttachCampaignAssets201Response.cs
 src/Zernio/Model/AttachCampaignAssetsRequest.cs
 src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
 src/Zernio/Model/AttachNumberToSipTrunkRequest.cs
+src/Zernio/Model/AutoRecharge.cs
 src/Zernio/Model/BatchAdCatalogProducts202Response.cs
 src/Zernio/Model/BatchAdCatalogProductsRequest.cs
 src/Zernio/Model/BatchAdCatalogProductsRequestRequestsInner.cs
@@ -9533,6 +9538,7 @@ src/Zernio/Model/UpdateAdTrackingTags200Response.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequest.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestCreative.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestUrlTagsInner.cs
+src/Zernio/Model/UpdateAutoRechargeRequest.cs
 src/Zernio/Model/UpdateBidStrategy200Response.cs
 src/Zernio/Model/UpdateBidStrategy200ResponseStrategy.cs
 src/Zernio/Model/UpdateBidStrategyRequest.cs
