@@ -5,6 +5,7 @@ Besides the `required` list, the request must use EXACTLY ONE of these shapes:  
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**RetryOnServerError** | **bool** | When Meta answers a create with a 5xx and reading the parent back by name finds no such object, Zernio sends the create again (at most 3 POSTs per object, never for an object created ACTIVE) and reports it in &#x60;recoveredWrites&#x60;.  &#x60;false&#x60; never sends it again: the request fails with 502 and &#x60;details.unconfirmedWrite&#x60;, so you can check the parent yourself. One object found by name is still reused.  | [optional] [default to true]
 **CreativeFeatures** | **Dictionary&lt;string, CtwaAdRequestBody.InnerEnum&gt;** | Meta enhancement settings for single or attached ads, and defaults for creatives[]. An item replaces the entire map, including with an empty object. | [optional] 
 **Tracking** | [**AdTracking**](AdTracking.md) |  | [optional] 
 **AccountId** | **string** | Facebook or Instagram SocialAccount ID. | 

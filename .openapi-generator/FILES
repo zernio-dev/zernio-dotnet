@@ -2125,6 +2125,7 @@ docs/MetaProductCatalog.md
 docs/MetaProductFeed.md
 docs/MetaProductFeedSchedule.md
 docs/MetaProductSet.md
+docs/MetaRecoveredWritesInner.md
 docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
@@ -5510,6 +5511,7 @@ src/Zernio.Test/Model/MetaProductCatalogTests.cs
 src/Zernio.Test/Model/MetaProductFeedScheduleTests.cs
 src/Zernio.Test/Model/MetaProductFeedTests.cs
 src/Zernio.Test/Model/MetaProductSetTests.cs
+src/Zernio.Test/Model/MetaRecoveredWritesInnerTests.cs
 src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
@@ -8882,6 +8884,7 @@ src/Zernio/Model/MetaProductCatalog.cs
 src/Zernio/Model/MetaProductFeed.cs
 src/Zernio/Model/MetaProductFeedSchedule.cs
 src/Zernio/Model/MetaProductSet.cs
+src/Zernio/Model/MetaRecoveredWritesInner.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
