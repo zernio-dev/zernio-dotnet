@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.513.0
+  version: 1.513.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45768,6 +45768,8 @@ paths:
           $ref: "#/components/responses/AccountUnavailable"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "501":
           description: "`validateOnly: true` outside Meta, or campaign-only creation\
             \ on a platform that does not support it. Carries code `feature_not_available`."
@@ -46847,6 +46849,8 @@ paths:
             \ is not selected: add a card or select it."
         "404":
           description: Source campaign not found
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "501":
           description: Operation not supported on this platform
       security:
@@ -47353,6 +47357,8 @@ paths:
             \ is not selected: add a card or select it."
         "404":
           description: Source ad set not found
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "501":
           description: Only supported on Meta (facebook/instagram) and TikTok
       security:
@@ -47447,6 +47453,8 @@ paths:
             \ to a profile this key cannot access."
           x-summary: "Several active connections reach this ad account, so the target\
             \ is ambiguous: keep only one connected for this key."
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "501":
           description: Only supported on Meta (facebook/instagram)
       security:
@@ -48964,12 +48972,14 @@ paths:
           x-summary: "The ad cannot take this edit as sent: fix the field named in\
             \ `param`, or finish the ad's setup on the platform."
         "429":
-          description: "Meta admits one write per 30 seconds to a metered object,\
-            \ ad creatives above all. Zernio waits out two of those windows and replays\
-            \ the call before surfacing this, so it only appears when the object is\
-            \ being edited faster than that. Retry in 30 seconds."
-          x-summary: "Meta allows one write per 30 seconds to this object and Zernio\
-            \ already retried: retry in 30 seconds."
+          description: |
+            Two causes, both code `rate_limited`:
+
+            - Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds.
+            - A Meta `creative` replace creates a new creative, so it takes the Meta ad account write guard (see `MetaAdAccountWriteLimited`): `details.reason` is `ad_account_busy` (another write held the ad account past a 60-second wait) or `ad_account_write_cap` (30 creates in 5 minutes), with `details.adAccountId`. Wait `Retry-After` seconds.
+          x-summary: "Meta allows one write per 30 seconds to this object, or the\
+            \ Meta ad account write guard refused a creative rebuild: wait `Retry-After`\
+            \ (or 30 seconds) and retry."
         "501":
           description: "targeting or creative not supported on the platform (supported\
             \ on Meta, TikTok, and LinkedIn)"
@@ -51125,6 +51135,8 @@ paths:
         "422":
           description: Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark
             creative)
+        "429":
+          $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "502":
           description: "Meta accepted the request then failed to produce the media\
             \ (upload session, chunk transfer, processing timeout, or a response with\
@@ -76763,6 +76775,8 @@ components:
             $ref: "#/components/schemas/ErrorResponse"
       description: |
         Meta only (code `rate_limited`). Meta puts a security hold lasting days (code 31, subcode 3858385, "Please authenticate your account") on ad accounts that receive bursts of ad writes, and it counts `validateOnly` checks as writes.
+
+        Creates here are every request that creates ad objects on the ad account: `POST /v1/ads/create`, `/boost`, `/campaigns`, `/messaging`, `/ctwa` and `/call` (each including `validateOnly`), the three duplicate routes, and a creative rebuilt by `PUT /v1/ads/{adId}` or `PATCH /v1/ads/{adId}/tracking-tags`. One request counts as one create, however many objects it writes.
 
         To keep integrations out of that hold, Zernio:
 
