@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.504.0
+  version: 1.505.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -26903,6 +26903,8 @@ paths:
             \ send."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           content:
             application/json:
@@ -29945,6 +29947,8 @@ paths:
           description: Bad request or platform limitation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: "X rejected the request (e.g. suspended account, missing OAuth\
             \ scope)"
@@ -30022,6 +30026,8 @@ paths:
           description: Bad request or platform limitation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: "X rejected the request (e.g. suspended account, missing OAuth\
             \ scope)"
@@ -30099,6 +30105,8 @@ paths:
           description: Bad request or platform limitation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: "X rejected the request (e.g. suspended account, missing OAuth\
             \ scope)"
@@ -31603,6 +31611,8 @@ paths:
           description: Call originated; lifecycle continues asynchronously via webhooks.
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "409":
           description: No active call permission. Send a permission request first.
           x-summary: "The recipient has not granted call permission: send a permission\
@@ -32060,6 +32070,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "422":
           description: "No voice-enabled number matches `fromNumber`, or no forward\
             \ destination configured (set the number's forward or pass `forwardTo`)."
@@ -32370,6 +32382,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "422":
           description: "Invalid or unknown WebRTC credential, or no voice-enabled\
             \ number matches `fromNumber`"
@@ -32527,10 +32541,11 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: "A valid payment method is required (code: payment_method_required);\
-            \ the last payment failed and is still unpaid, or the card was declined\
-            \ for the first month (code: payment_required). Nothing is ordered; update\
-            \ the card in Billing, then order again."
+          description: "Nothing is ordered. A valid payment method is required (code:\
+            \ payment_method_required), the last payment failed or the first month\
+            \ was declined (code: payment_required), or, on balance billing, the balance\
+            \ is at $0 (code: insufficient_balance or usage_limit_reached). Fix it\
+            \ in Billing, then order again."
           x-summary: "A valid payment method is required, or a payment failed, and\
             \ nothing was ordered: update the card in Billing, then order again."
         "403":
@@ -34232,6 +34247,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: Usage-based billing is required (code usage_billing_required).
         "404":
@@ -34653,6 +34670,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: The caller is a team member limited to specific profiles; registrations
             cover the whole account.
@@ -36455,8 +36474,9 @@ paths:
             \ the keyless purchase claim link to the number's owner."
         "402":
           description: "Payment method required (usage-based billing account with\
-            \ no card on file). Response body carries code: PAYMENT_REQUIRED; add\
-            \ a card, then retry."
+            \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
+            \ balance billing with the balance at $0: code insufficient_balance or\
+            \ usage_limit_reached, top up in Billing, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "403":
@@ -36882,8 +36902,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "402":
           description: "Payment method required (usage-based billing account with\
-            \ no card on file). Response body carries code: PAYMENT_REQUIRED; add\
-            \ a card, then retry."
+            \ no card on file): code PAYMENT_REQUIRED, add a card, then retry. On\
+            \ balance billing with the balance at $0: code insufficient_balance or\
+            \ usage_limit_reached, top up in Billing, then retry."
           x-summary: "A payment method is required because the usage-based account\
             \ has no card on file: add a card, then retry."
         "403":
@@ -38034,6 +38055,8 @@ paths:
           description: "Validation error (e.g. address not in-country, file too large)"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "409":
           description: |-
             A conflict on the KYC order. The `code` says why:
@@ -38592,6 +38615,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: "The team is on legacy (non-usage-based) billing, which cannot\
             \ invoice trunk call costs (code feature_not_available). Move to usage-based\
@@ -38780,6 +38805,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: "The team is on legacy (non-usage-based) billing, which cannot\
             \ invoice trunk call costs (code feature_not_available). Move to usage-based\
@@ -41607,9 +41634,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: A card is required (code `payment_method_required`) or the
-            last payment failed (code `payment_required`). Add or update the card
-            in Billing.
+          description: "A card is required (code `payment_method_required`), the last\
+            \ payment failed (code `payment_required`), or, on balance billing, the\
+            \ balance is at $0 (code `insufficient_balance` or `usage_limit_reached`).\
+            \ Fix it in Billing."
           x-summary: "A card is required or the last payment failed: add or update\
             \ the card in Billing."
         "403":
@@ -73829,6 +73857,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/BalanceRequired"
         "403":
           description: Verifications require usage-based billing.
         "404":
@@ -76499,6 +76529,16 @@ components:
         - `rate_limited`: the mailbox is in a sending cooldown, either from a same-body burst to more than 50 recipients in an hour (`details.cap.kind: recipient_burst`) or an earlier trigger. `retryAfterSeconds` says when it lifts, and `account.rate_limited` fired when it started.
       x-summary: "The email was refused because the mailbox hit its daily cap or a\
         \ sending cooldown: wait until `retryAfterSeconds` passes and retry."
+    BalanceRequired:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "Balance billing only. The balance is at or below $0, so new pay-per-use\
+        \ is refused: code `insufficient_balance`, or `usage_limit_reached` when the\
+        \ auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic\
+        \ and calls already connected are never refused."
+      x-summary: "Balance at $0: top up in Billing to continue."
     BadRequest:
       content:
         application/json:

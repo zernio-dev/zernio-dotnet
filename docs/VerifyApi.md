@@ -209,6 +209,7 @@ catch (ApiException e)
 | **201** | Verification created and the code sent. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Balance billing only. The balance is at or below $0, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the auto-recharge monthly limit kept it there. Top up in Billing. Inbound traffic and calls already connected are never refused. |  -  |
 | **403** | Verifications require usage-based billing. |  -  |
 | **404** | The &#39;from&#39; number is not an SMS-enabled (sms) or connected WhatsApp (whatsapp) number on this account. |  -  |
 | **409** | The recipient has opted out of messages from your number. |  -  |
