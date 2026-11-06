@@ -3260,6 +3260,10 @@ docs/WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner.md
 docs/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.md
 docs/WebhookPayloadAdRuleTriggeredRule.md
 docs/WebhookPayloadAdRuleTriggeredRun.md
+docs/WebhookPayloadAdSetCreated.md
+docs/WebhookPayloadAdSetCreatedAdObject.md
+docs/WebhookPayloadAdSetCreatedAdObjectCampaign.md
+docs/WebhookPayloadAdSetUpdated.md
 docs/WebhookPayloadAdStatusChanged.md
 docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
@@ -6768,6 +6772,10 @@ src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredObjectsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredRuleTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredRunTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdRuleTriggeredTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdSetCreatedAdObjectCampaignTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdSetCreatedAdObjectTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdSetCreatedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdSetUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdStatusChangedErrorTests.cs
@@ -10288,6 +10296,10 @@ src/Zernio/Model/WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner.cs
 src/Zernio/Model/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.cs
 src/Zernio/Model/WebhookPayloadAdRuleTriggeredRule.cs
 src/Zernio/Model/WebhookPayloadAdRuleTriggeredRun.cs
+src/Zernio/Model/WebhookPayloadAdSetCreated.cs
+src/Zernio/Model/WebhookPayloadAdSetCreatedAdObject.cs
+src/Zernio/Model/WebhookPayloadAdSetCreatedAdObjectCampaign.cs
+src/Zernio/Model/WebhookPayloadAdSetUpdated.cs
 src/Zernio/Model/WebhookPayloadAdStatusChanged.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAccount.cs
 src/Zernio/Model/WebhookPayloadAdStatusChangedAdObject.cs
