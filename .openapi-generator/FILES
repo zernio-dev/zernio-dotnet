@@ -532,6 +532,7 @@ docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
 docs/ConversionEvent.md
+docs/ConversionEventCampaign.md
 docs/ConversionEventItemsInner.md
 docs/ConversionEventMessaging.md
 docs/ConversionEventUser.md
@@ -3945,6 +3946,7 @@ src/Zernio.Test/Model/ConversationAdAttributionTests.cs
 src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
 src/Zernio.Test/Model/ConversionActionTests.cs
 src/Zernio.Test/Model/ConversionDestinationTests.cs
+src/Zernio.Test/Model/ConversionEventCampaignTests.cs
 src/Zernio.Test/Model/ConversionEventItemsInnerTests.cs
 src/Zernio.Test/Model/ConversionEventMessagingTests.cs
 src/Zernio.Test/Model/ConversionEventTests.cs
@@ -7319,6 +7321,7 @@ src/Zernio/Model/ConversionAction.cs
 src/Zernio/Model/ConversionActionTagSnippetsInner.cs
 src/Zernio/Model/ConversionDestination.cs
 src/Zernio/Model/ConversionEvent.cs
+src/Zernio/Model/ConversionEventCampaign.cs
 src/Zernio/Model/ConversionEventItemsInner.cs
 src/Zernio/Model/ConversionEventMessaging.cs
 src/Zernio/Model/ConversionEventUser.cs
