@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadAdSetUpdated
-Webhook payload for the `ad_set.updated` event. Fires when an ad set is edited through Zernio (API, MCP or dashboard), after the platform and Zernio both accepted the edit, once per user who can see the ad set.  `changes` names the edited fields and never their values: read the ad set with `GET /v1/ads/ad-sets/{adSetId}` for the current state. Ignore values you do not know, new ones can be added. Budget and targeting edits made through `PUT /v1/ads/{adId}` arrive as `ad.updated`.  Events are not deduplicated: every edit is announced. Use the event `id` to drop repeats. 
+Webhook payload for the `ad_set.updated` event. Fires when an ad set is edited through Zernio (API, MCP or dashboard), after the platform and Zernio both accepted the edit, once per user who can see the ad set. It also fires when the sync detects an edit made outside Zernio.  `source` is `zernio` for edits through Zernio, `platform` for edits the sync detected outside Zernio, up to one sync interval late, sent only to the user whose sync saw it.  From the sync, `changes` covers only `name` and `status` (status not on Reddit). Never for history loaded when an account connects.  `changes` names the edited fields and never their values: read the ad set with `GET /v1/ads/ad-sets/{adSetId}` for the current state. Ignore values you do not know, new ones can be added. Budget and targeting edits made through `PUT /v1/ads/{adId}` arrive as `ad.updated`.  Events are not deduplicated: every edit is announced. Use the event `id` to drop repeats. 
 
 ## Properties
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Account** | [**WebhookAdsAccount**](WebhookAdsAccount.md) |  | 
 **AdObject** | [**WebhookPayloadAdSetCreatedAdObject**](WebhookPayloadAdSetCreatedAdObject.md) |  | 
 **Changes** | **List&lt;WebhookPayloadAdSetUpdated.ChangesEnum&gt;** | Fields edited by this request. &#x60;status&#x60; is the ad set&#39;s own on/off switch. Ignore values you do not know. | 
-**Source** | **string** | Where the edit was made. &#x60;zernio&#x60; for edits through Zernio. | 
+**Source** | **string** | Where the edit was made. &#x60;zernio&#x60; for edits through Zernio, &#x60;platform&#x60; for edits the sync detected outside Zernio. | 
 **Timestamp** | **DateTime** | UTC time at which Zernio generated this event. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
