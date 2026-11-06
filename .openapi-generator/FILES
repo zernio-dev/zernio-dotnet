@@ -890,6 +890,7 @@ docs/CreateStandaloneAdRequestAdditionalHeadlinesInner.md
 docs/CreateStandaloneAdRequestBehaviorsInner.md
 docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCarouselCardsInner.md
+docs/CreateStandaloneAdRequestCatalogIntroCardsInner.md
 docs/CreateStandaloneAdRequestCitiesInner.md
 docs/CreateStandaloneAdRequestCitiesInnerOneOf.md
 docs/CreateStandaloneAdRequestCreativesInner.md
@@ -4447,6 +4448,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestAdditionalHeadlinesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBehaviorsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBrandIdentityTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCarouselCardsInnerTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestCatalogIntroCardsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
@@ -7966,6 +7968,7 @@ src/Zernio/Model/CreateStandaloneAdRequestAdditionalHeadlinesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestBehaviorsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestBrandIdentity.cs
 src/Zernio/Model/CreateStandaloneAdRequestCarouselCardsInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestCatalogIntroCardsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInnerOneOf.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInner.cs
