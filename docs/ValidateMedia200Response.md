@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Valid** | **bool** |  | [optional] 
 **Url** | **string** |  | [optional] 
 **Error** | **string** | Error message if valid is false | [optional] 
-**Code** | **string** | Stable reason when valid is false. MEDIA_UNDECODABLE: the bytes are not a valid image, video or PDF. MEDIA_URL_UNREACHABLE: HTTP error, timeout or network failure. MEDIA_URL_NOT_ALLOWED: not a public HTTP(S) URL. | [optional] 
+**Code** | **string** | Stable reason when valid is false. MEDIA_UNDECODABLE: the bytes are not a valid image, video or PDF. MEDIA_URL_UNREACHABLE: HTTP error, timeout, network failure, or a web page served instead of the file. MEDIA_URL_NOT_ALLOWED: not a public HTTP(S) URL. | [optional] 
 **ContentType** | **string** | Content-Type header the server sent (may disagree with the detected format) | [optional] 
 **Size** | **int?** | File size in bytes | [optional] 
 **SizeFormatted** | **string** |  | [optional] 
