@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **HoldDays** | **int** | Days approved earnings are held before they become payable. | 
 **MaxPostAgeMinutes** | **int?** | A post older than this many minutes when submitted is refused. Null (the default) accepts any age. Either way, a post published before the campaign started (&#x60;startsAt&#x60;, or &#x60;activatedAt&#x60; without one) is refused. | 
 **ActivatedAt** | **DateTime?** | When the campaign was first activated. Without &#x60;startsAt&#x60;, posts must be published after this moment. | 
-**Settlement** | **string** | none: settle records a payout made elsewhere. external: you pay from your own rails on campaign_payout.payable and settle with your reference. treasury: settle moves the money from your Zernio balance to the creator&#39;s Stripe account, and the creator sets up payouts from their campaign page. | 
+**Settlement** | **string** | none: settle records a payout made elsewhere. external: you pay from your own rails on campaign_payout.payable and settle with your reference. treasury: you pay by card with a payout batch and Zernio pays each creator in your name 7 days after the charge. | 
 **Economics** | [**CreatorCampaignEconomics**](CreatorCampaignEconomics.md) |  | 
 **Caps** | [**CreatorCampaignCaps**](CreatorCampaignCaps.md) |  | 
 **Branding** | [**CreatorCampaignBranding**](CreatorCampaignBranding.md) |  | 

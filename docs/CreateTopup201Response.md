@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **TaxCents** | **int** | Tax added on top of amountCents (VAT where it applies). 0 when reverse charged or outside the EU. | 
 **TotalCents** | **int** | What the card is charged: amountCents + taxCents. | 
 **TaxLabel** | **string** | The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged. | 
-**ReverseCharge** | **bool** | True for an EU business with a valid VAT id: no VAT is charged and the invoice says reverse charge. | 
+**ReverseCharge** | **bool** | True for an EU business whose VAT id VIES confirms: no VAT is charged and the invoice says reverse charge (inversión del sujeto pasivo). | 
 **FeeCents** | **int** | Always 0: there is no card fee. Kept for older clients. | 
 **ChargedCents** | **int** | Same as totalCents. Kept for older clients. | 
 **FeeIsExact** | **bool** | Always true. Kept for older clients. | 
