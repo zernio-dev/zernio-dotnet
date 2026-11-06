@@ -55,6 +55,8 @@ Name | Type | Description | Notes
 **NotifySubscribers** | **bool** | Set false to skip notifying subscribers about this upload (YouTube&#39;s notifySubscribers). Defaults to true. | [optional] [default to true]
 **CategoryId** | **string** | YouTube video category ID. Defaults to 22 (People &amp; Blogs). Common: 1 (Film), 2 (Autos), 10 (Music), 15 (Pets), 17 (Sports), 20 (Gaming), 23 (Comedy), 24 (Entertainment), 25 (News), 26 (Howto), 27 (Education), 28 (Science &amp; Tech). | [optional] [default to "22"]
 **PlaylistId** | **string** | Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call. | [optional] 
+**DefaultLanguage** | **string** | Language of the title and description (BCP-47, e.g. ko). | [optional] 
+**DefaultAudioLanguage** | **string** | Spoken language of the video (BCP-47, e.g. ko). When a video has no audio language, YouTube may set en-US once its metadata is updated. | [optional] 
 **LanguageCode** | **string** | BCP 47 language code (e.g. \&quot;en\&quot;, \&quot;de\&quot;, \&quot;es\&quot;). Auto-detected if omitted. Set explicitly for short or mixed-language posts. | [optional] 
 **TopicType** | **string** | Post type. STANDARD is a regular update. EVENT requires the event object. OFFER requires the offer object. Defaults to STANDARD if omitted. | [optional] [default to TopicTypeEnum.STANDARD]
 **CallToAction** | [**GoogleBusinessPlatformDataCallToAction**](GoogleBusinessPlatformDataCallToAction.md) |  | [optional] 
