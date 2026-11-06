@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Percent** | **int** | Change in percent: up to 100 for an increase, up to 90 for a decrease. | 
 **Limit** | **decimal** | The budget never goes above this on an increase, or below it on a decrease, in the ad account currency. | 
 **Target** | **string** | Which target moves: &#x60;cpa&#x60; in the ad account currency, &#x60;roas&#x60; as a ratio (3 is 300%). | 
-**Metric** | **string** | What objects are ranked by: any condition metric except &#x60;day_of_month&#x60; and &#x60;working_day_of_month&#x60;, or a result metric (&#x60;result:&lt;key&gt;&#x60;) on campaign rules. Objects without a value are not ranked, except one that spent with no result on a metric where lower is best (a CPA with no conversions): it ranks worst and only gives. | 
+**Metric** | **string** | What objects are ranked by: any condition metric except &#x60;day_of_month&#x60; and &#x60;working_day_of_month&#x60;, or a result metric (&#x60;result:&lt;key&gt;&#x60;) on campaign rules.  Objects without a value are not ranked, except one that spent with no result on a metric where lower is best (a CPA with no conversions): it ranks worst and only gives. | 
 **Window** | **string** | The period the metric is read over, like a condition window. | 
 **Best** | **string** | Which end of the ranking is best. Defaults to &#x60;lowest&#x60; for &#x60;cpa&#x60;, &#x60;cpc&#x60;, &#x60;cpm&#x60;, &#x60;frequency&#x60; and result metrics whose formula has spend above the line (cost per sale, %CAC), &#x60;highest&#x60; otherwise. | [optional] 
 **From** | [**AdRuleActionOneOf6From**](AdRuleActionOneOf6From.md) |  | 
