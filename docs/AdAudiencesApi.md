@@ -459,7 +459,7 @@ namespace Example
             var accountId = "accountId_example";  // string | Account ID
             var adAccountId = "adAccountId_example";  // string | Platform ad account ID
             var platform = "facebook";  // string? |  (optional) 
-            var type = "customer_list";  // string? | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional) 
+            var type = "customer_list";  // string? | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are `meta_engagement`. (optional) 
 
             try
             {
@@ -505,7 +505,7 @@ catch (ApiException e)
 | **accountId** | **string** | Account ID |  |
 | **adAccountId** | **string** | Platform ad account ID |  |
 | **platform** | **string?** |  | [optional]  |
-| **type** | **string?** | Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional]  |
+| **type** | **string?** | Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences and needs no adAccountId; the other types keep only the platform audiences of that type (an empty list when the platform has none). Meta ENGAGEMENT audiences are &#x60;meta_engagement&#x60;. | [optional]  |
 
 ### Return type
 
