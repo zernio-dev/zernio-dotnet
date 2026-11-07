@@ -269,8 +269,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>GetTopupReceipt200Response</returns>
-        GetTopupReceipt200Response GetTopupReceipt(string topupId);
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
+        /// <returns>FileParameter</returns>
+        FileParameter GetTopupReceipt(string topupId, bool? download = default);
 
         /// <summary>
         /// Get a top-up receipt
@@ -280,8 +281,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>ApiResponse of GetTopupReceipt200Response</returns>
-        ApiResponse<GetTopupReceipt200Response> GetTopupReceiptWithHttpInfo(string topupId);
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> GetTopupReceiptWithHttpInfo(string topupId, bool? download = default);
         /// <summary>
         /// Get a top-up invoice (alias)
         /// </summary>
@@ -696,9 +698,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetTopupReceipt200Response</returns>
-        System.Threading.Tasks.Task<GetTopupReceipt200Response> GetTopupReceiptAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> GetTopupReceiptAsync(string topupId, bool? download = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a top-up receipt
@@ -708,9 +711,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetTopupReceipt200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetTopupReceipt200Response>> GetTopupReceiptWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> GetTopupReceiptWithHttpInfoAsync(string topupId, bool? download = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a top-up invoice (alias)
         /// </summary>
@@ -2493,10 +2497,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>GetTopupReceipt200Response</returns>
-        public GetTopupReceipt200Response GetTopupReceipt(string topupId)
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
+        /// <returns>FileParameter</returns>
+        public FileParameter GetTopupReceipt(string topupId, bool? download = default)
         {
-            Zernio.Client.ApiResponse<GetTopupReceipt200Response> localVarResponse = GetTopupReceiptWithHttpInfo(topupId);
+            Zernio.Client.ApiResponse<FileParameter> localVarResponse = GetTopupReceiptWithHttpInfo(topupId, download);
             return localVarResponse.Data;
         }
 
@@ -2505,8 +2510,9 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
-        /// <returns>ApiResponse of GetTopupReceipt200Response</returns>
-        public Zernio.Client.ApiResponse<GetTopupReceipt200Response> GetTopupReceiptWithHttpInfo(string topupId)
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Zernio.Client.ApiResponse<FileParameter> GetTopupReceiptWithHttpInfo(string topupId, bool? download = default)
         {
             // verify the required parameter 'topupId' is set
             if (topupId == null)
@@ -2519,6 +2525,7 @@ namespace Zernio.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/pdf",
                 "application/json"
             };
 
@@ -2529,6 +2536,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("topupId", Zernio.Client.ClientUtils.ParameterToString(topupId)); // path parameter
+            if (download != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "download", download));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2538,7 +2549,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetTopupReceipt200Response>("/v1/balance/top-ups/{topupId}/receipt", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FileParameter>("/v1/balance/top-ups/{topupId}/receipt", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2554,11 +2565,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetTopupReceipt200Response</returns>
-        public async System.Threading.Tasks.Task<GetTopupReceipt200Response> GetTopupReceiptAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> GetTopupReceiptAsync(string topupId, bool? download = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetTopupReceipt200Response> localVarResponse = await GetTopupReceiptWithHttpInfoAsync(topupId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<FileParameter> localVarResponse = await GetTopupReceiptWithHttpInfoAsync(topupId, download, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2567,9 +2579,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="topupId"></param>
+        /// <param name="download">true answers the card receipt itself as a PDF file (application/pdf, as an attachment) instead of the JSON links. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetTopupReceipt200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTopupReceipt200Response>> GetTopupReceiptWithHttpInfoAsync(string topupId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<FileParameter>> GetTopupReceiptWithHttpInfoAsync(string topupId, bool? download = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'topupId' is set
             if (topupId == null)
@@ -2583,6 +2596,7 @@ namespace Zernio.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/pdf",
                 "application/json"
             };
 
@@ -2594,6 +2608,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("topupId", Zernio.Client.ClientUtils.ParameterToString(topupId)); // path parameter
+            if (download != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "download", download));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2604,7 +2622,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTopupReceipt200Response>("/v1/balance/top-ups/{topupId}/receipt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/v1/balance/top-ups/{topupId}/receipt", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

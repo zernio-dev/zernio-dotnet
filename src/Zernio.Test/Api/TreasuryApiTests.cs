@@ -193,8 +193,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string topupId = null;
-            //var response = instance.GetTopupReceipt(topupId);
-            //Assert.IsType<GetTopupReceipt200Response>(response);
+            //bool? download = null;
+            //var response = instance.GetTopupReceipt(topupId, download);
+            //Assert.IsType<FileParameter>(response);
         }
 
         /// <summary>
