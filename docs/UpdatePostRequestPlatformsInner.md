@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | 
 **AccountId** | **string** |  | 
 **CustomContent** | **string** | Platform-specific text override. | [optional] 
-**CustomMedia** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  | [optional] 
+**CustomMedia** | [**List&lt;MediaItem&gt;**](MediaItem.md) | On update, an omitted customMedia keeps the stored per-platform media; send [] to clear it. | [optional] 
 **ScheduledFor** | **DateTime** | Optional per-platform scheduled time override. It is kept when a top-level scheduledFor is also sent, except a date sent back unchanged (same instant, or the same wall-clock time in the post&#39;s previous timezone) that matched the post scheduled time or is already past, which follows the new top-level scheduledFor. | [optional] 
 **PlatformSpecificData** | **Dictionary&lt;string, Object&gt;** | A &lt;platform&gt;Settings namespace (e.g. facebookSettings, tiktokSettings) omitted from the request is preserved from the stored post. Sending the key replaces the whole namespace; it is not deep-merged. | [optional] 
 
