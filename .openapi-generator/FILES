@@ -2532,6 +2532,7 @@ docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/ResyncPageWebhookSubscription200Response.md
 docs/RetryPost207Response.md
+docs/RetryPost402Response.md
 docs/RetweetPost200Response.md
 docs/RetweetPostRequest.md
 docs/ReuseSmsRegistrationForNumber200Response.md
@@ -6071,6 +6072,7 @@ src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/ResyncPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/RetryPost207ResponseTests.cs
+src/Zernio.Test/Model/RetryPost402ResponseTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
 src/Zernio.Test/Model/RetweetPostRequestTests.cs
 src/Zernio.Test/Model/ReuseSmsRegistrationForNumber200ResponseTests.cs
@@ -9606,6 +9608,7 @@ src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/ResyncPageWebhookSubscription200Response.cs
 src/Zernio/Model/RetryPost207Response.cs
+src/Zernio/Model/RetryPost402Response.cs
 src/Zernio/Model/RetweetPost200Response.cs
 src/Zernio/Model/RetweetPostRequest.cs
 src/Zernio/Model/ReuseSmsRegistrationForNumber200Response.cs
