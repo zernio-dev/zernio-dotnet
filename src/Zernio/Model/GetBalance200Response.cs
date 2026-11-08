@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <param name="pendingTopupCents">Top-ups started but not paid yet..</param>
         /// <param name="currency">currency.</param>
         /// <param name="recentTopups">recentTopups.</param>
-        /// <param name="recentCreditRecharges">Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry..</param>
+        /// <param name="recentCreditRecharges">Balance billing only (absent otherwise). The 10 newest auto top-ups paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry..</param>
         public GetBalance200Response(int availableCents = default, bool balanceBilling = default, int spendableCents = default, int promoCents = default, int payoutLockedCents = default, List<GetBalance200ResponsePayoutLocksInner> payoutLocks = default, int pendingCents = default, List<GetBalance200ResponsePendingReleasesInner> pendingReleases = default, int pendingTopupCents = default, CurrencyEnum? currency = default, List<TreasuryTopup> recentTopups = default, List<GetBalance200ResponseRecentCreditRechargesInner> recentCreditRecharges = default)
         {
             this.AvailableCents = availableCents;
@@ -154,9 +154,9 @@ namespace Zernio.Model
         public List<TreasuryTopup> RecentTopups { get; set; }
 
         /// <summary>
-        /// Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry.
+        /// Balance billing only (absent otherwise). The 10 newest auto top-ups paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry.
         /// </summary>
-        /// <value>Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry.</value>
+        /// <value>Balance billing only (absent otherwise). The 10 newest auto top-ups paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry.</value>
         [DataMember(Name = "recentCreditRecharges", EmitDefaultValue = false)]
         public List<GetBalance200ResponseRecentCreditRechargesInner> RecentCreditRecharges { get; set; }
 

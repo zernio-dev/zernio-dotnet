@@ -62,15 +62,15 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoRecharge" /> class.
         /// </summary>
-        /// <param name="enabled">Whether auto-recharge is on. Charges happen only when this is true and disabledReason is null. (required).</param>
-        /// <param name="belowCents">Recharge when the balance drops below this, in cents. (required).</param>
-        /// <param name="toCents">Recharge back up to this, in cents. The charge is toCents minus the balance, plus tax. (required).</param>
-        /// <param name="monthlyLimitCents">Most auto-recharge may add per calendar month (UTC), before tax; null for no limit. (required).</param>
+        /// <param name="enabled">Whether auto top-up is on. Charges happen only when this is true and disabledReason is null. (required).</param>
+        /// <param name="belowCents">Top up when the balance drops below this, in cents. (required).</param>
+        /// <param name="toCents">Top back up to this, in cents. The charge is toCents minus the balance, plus tax. (required).</param>
+        /// <param name="monthlyLimitCents">Most auto top-up may add per calendar month (UTC), before tax; null for no limit. (required).</param>
         /// <param name="alertBelowCents">Low-balance email threshold, sent once per drop below it; null for none. (required).</param>
         /// <param name="disabledReason">&#x60;payment_failed&#x60; after four failed charges in a row. Updating the card clears it. (required).</param>
         /// <param name="retryCount">Failed charges in a row; 0 once one goes through. (required).</param>
-        /// <param name="nextRetryAt">When a declined recharge is tried again; null when none is waiting. (required).</param>
-        /// <param name="monthRechargedCents">Auto-recharge top-ups this calendar month (UTC), paid or being paid, before tax. (required).</param>
+        /// <param name="nextRetryAt">When a declined auto top-up is tried again; null when none is waiting. (required).</param>
+        /// <param name="monthRechargedCents">Auto top-ups this calendar month (UTC), paid or being paid, before tax. (required).</param>
         public AutoRecharge(bool enabled = default, int belowCents = default, int toCents = default, int? monthlyLimitCents = default, int? alertBelowCents = default, DisabledReasonEnum disabledReason = default, int retryCount = default, DateTime? nextRetryAt = default, int monthRechargedCents = default)
         {
             this.Enabled = enabled;
@@ -100,30 +100,30 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Whether auto-recharge is on. Charges happen only when this is true and disabledReason is null.
+        /// Whether auto top-up is on. Charges happen only when this is true and disabledReason is null.
         /// </summary>
-        /// <value>Whether auto-recharge is on. Charges happen only when this is true and disabledReason is null.</value>
+        /// <value>Whether auto top-up is on. Charges happen only when this is true and disabledReason is null.</value>
         [DataMember(Name = "enabled", IsRequired = true, EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// Recharge when the balance drops below this, in cents.
+        /// Top up when the balance drops below this, in cents.
         /// </summary>
-        /// <value>Recharge when the balance drops below this, in cents.</value>
+        /// <value>Top up when the balance drops below this, in cents.</value>
         [DataMember(Name = "belowCents", IsRequired = true, EmitDefaultValue = true)]
         public int BelowCents { get; set; }
 
         /// <summary>
-        /// Recharge back up to this, in cents. The charge is toCents minus the balance, plus tax.
+        /// Top back up to this, in cents. The charge is toCents minus the balance, plus tax.
         /// </summary>
-        /// <value>Recharge back up to this, in cents. The charge is toCents minus the balance, plus tax.</value>
+        /// <value>Top back up to this, in cents. The charge is toCents minus the balance, plus tax.</value>
         [DataMember(Name = "toCents", IsRequired = true, EmitDefaultValue = true)]
         public int ToCents { get; set; }
 
         /// <summary>
-        /// Most auto-recharge may add per calendar month (UTC), before tax; null for no limit.
+        /// Most auto top-up may add per calendar month (UTC), before tax; null for no limit.
         /// </summary>
-        /// <value>Most auto-recharge may add per calendar month (UTC), before tax; null for no limit.</value>
+        /// <value>Most auto top-up may add per calendar month (UTC), before tax; null for no limit.</value>
         [DataMember(Name = "monthlyLimitCents", IsRequired = true, EmitDefaultValue = true)]
         public int? MonthlyLimitCents { get; set; }
 
@@ -142,16 +142,16 @@ namespace Zernio.Model
         public int RetryCount { get; set; }
 
         /// <summary>
-        /// When a declined recharge is tried again; null when none is waiting.
+        /// When a declined auto top-up is tried again; null when none is waiting.
         /// </summary>
-        /// <value>When a declined recharge is tried again; null when none is waiting.</value>
+        /// <value>When a declined auto top-up is tried again; null when none is waiting.</value>
         [DataMember(Name = "nextRetryAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTime? NextRetryAt { get; set; }
 
         /// <summary>
-        /// Auto-recharge top-ups this calendar month (UTC), paid or being paid, before tax.
+        /// Auto top-ups this calendar month (UTC), paid or being paid, before tax.
         /// </summary>
-        /// <value>Auto-recharge top-ups this calendar month (UTC), paid or being paid, before tax.</value>
+        /// <value>Auto top-ups this calendar month (UTC), paid or being paid, before tax.</value>
         [DataMember(Name = "monthRechargedCents", IsRequired = true, EmitDefaultValue = true)]
         public int MonthRechargedCents { get; set; }
 

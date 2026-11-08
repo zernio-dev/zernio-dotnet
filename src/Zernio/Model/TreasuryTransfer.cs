@@ -103,7 +103,7 @@ namespace Zernio.Model
         /// <param name="payeeName">The payee&#39;s name when Zernio knows it, for example a creator&#39;s display name in one of your creator campaigns; null otherwise.</param>
         /// <param name="destinationType">destinationType.</param>
         /// <param name="amountCents">Amount the payee receives, in full.</param>
-        /// <param name="feeCents">Zernio fee added on top, 4% with a 50 cent minimum.</param>
+        /// <param name="feeCents">Zernio fee added on top: 4%, 50 cents minimum per payout..</param>
         /// <param name="totalCents">amountCents plus feeCents, both paid by the payout batch card charge.</param>
         /// <param name="currency">currency.</param>
         /// <param name="reference">reference.</param>
@@ -154,9 +154,9 @@ namespace Zernio.Model
         public int AmountCents { get; set; }
 
         /// <summary>
-        /// Zernio fee added on top, 4% with a 50 cent minimum
+        /// Zernio fee added on top: 4%, 50 cents minimum per payout.
         /// </summary>
-        /// <value>Zernio fee added on top, 4% with a 50 cent minimum</value>
+        /// <value>Zernio fee added on top: 4%, 50 cents minimum per payout.</value>
         [DataMember(Name = "feeCents", EmitDefaultValue = false)]
         public int FeeCents { get; set; }
 

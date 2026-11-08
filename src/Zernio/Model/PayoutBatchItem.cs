@@ -90,7 +90,7 @@ namespace Zernio.Model
         /// <param name="participantId">participantId (required).</param>
         /// <param name="creator">creator (required).</param>
         /// <param name="amountCents">What the creator receives, in full. (required).</param>
-        /// <param name="feeCents">Zernio fee on top: 4% with a 50 cent minimum. (required).</param>
+        /// <param name="feeCents">Zernio fee on top: 4%, 50 cents minimum per payout. (required).</param>
         /// <param name="totalCents">amountCents plus feeCents. (required).</param>
         /// <param name="status">&#x60;skipped&#x60;: payout setup not finished, or the card payment never completed. &#x60;failed&#x60;: Stripe refused the transfer. &#x60;refunded&#x60;: failed or skipped after the card hold; its payout, fee and VAT on the fee went back to the card through a credit note. The amount is payable again in every case. (required).</param>
         /// <param name="failureReason">Why the item was not paid, in plain words. (required).</param>
@@ -166,9 +166,9 @@ namespace Zernio.Model
         public int AmountCents { get; set; }
 
         /// <summary>
-        /// Zernio fee on top: 4% with a 50 cent minimum.
+        /// Zernio fee on top: 4%, 50 cents minimum per payout.
         /// </summary>
-        /// <value>Zernio fee on top: 4% with a 50 cent minimum.</value>
+        /// <value>Zernio fee on top: 4%, 50 cents minimum per payout.</value>
         [DataMember(Name = "feeCents", IsRequired = true, EmitDefaultValue = true)]
         public int FeeCents { get; set; }
 

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **PendingTopupCents** | **int** | Top-ups started but not paid yet. | [optional] 
 **Currency** | **string** |  | [optional] 
 **RecentTopups** | [**List&lt;TreasuryTopup&gt;**](TreasuryTopup.md) |  | [optional] 
-**RecentCreditRecharges** | [**List&lt;GetBalance200ResponseRecentCreditRechargesInner&gt;**](GetBalance200ResponseRecentCreditRechargesInner.md) | Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry. | [optional] 
+**RecentCreditRecharges** | [**List&lt;GetBalance200ResponseRecentCreditRechargesInner&gt;**](GetBalance200ResponseRecentCreditRechargesInner.md) | Balance billing only (absent otherwise). The 10 newest auto top-ups paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

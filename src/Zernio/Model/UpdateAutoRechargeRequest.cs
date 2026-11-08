@@ -36,10 +36,10 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAutoRechargeRequest" /> class.
         /// </summary>
-        /// <param name="enabled">Turns auto-recharge on or off. A rule switched off by failed charges stays off until the card is updated..</param>
-        /// <param name="belowCents">Recharge when the balance drops below this, in cents. At least $5..</param>
-        /// <param name="toCents">Recharge back up to this, in cents. More than $5 above belowCents..</param>
-        /// <param name="monthlyLimitCents">Most auto-recharge may add per calendar month (UTC), before tax. Null for no limit..</param>
+        /// <param name="enabled">Turns auto top-up on or off. A rule switched off by failed charges stays off until the card is updated..</param>
+        /// <param name="belowCents">Top up when the balance drops below this, in cents. At least $5..</param>
+        /// <param name="toCents">Top back up to this, in cents. More than $5 above belowCents..</param>
+        /// <param name="monthlyLimitCents">Most auto top-up may add per calendar month (UTC), before tax. Null for no limit..</param>
         /// <param name="alertBelowCents">Email the billing owner once each time the balance drops below this. Null for no email..</param>
         public UpdateAutoRechargeRequest(bool enabled = default, int belowCents = default, int toCents = default, int? monthlyLimitCents = default, int? alertBelowCents = default)
         {
@@ -52,30 +52,30 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Turns auto-recharge on or off. A rule switched off by failed charges stays off until the card is updated.
+        /// Turns auto top-up on or off. A rule switched off by failed charges stays off until the card is updated.
         /// </summary>
-        /// <value>Turns auto-recharge on or off. A rule switched off by failed charges stays off until the card is updated.</value>
+        /// <value>Turns auto top-up on or off. A rule switched off by failed charges stays off until the card is updated.</value>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// Recharge when the balance drops below this, in cents. At least $5.
+        /// Top up when the balance drops below this, in cents. At least $5.
         /// </summary>
-        /// <value>Recharge when the balance drops below this, in cents. At least $5.</value>
+        /// <value>Top up when the balance drops below this, in cents. At least $5.</value>
         [DataMember(Name = "belowCents", EmitDefaultValue = false)]
         public int BelowCents { get; set; }
 
         /// <summary>
-        /// Recharge back up to this, in cents. More than $5 above belowCents.
+        /// Top back up to this, in cents. More than $5 above belowCents.
         /// </summary>
-        /// <value>Recharge back up to this, in cents. More than $5 above belowCents.</value>
+        /// <value>Top back up to this, in cents. More than $5 above belowCents.</value>
         [DataMember(Name = "toCents", EmitDefaultValue = false)]
         public int ToCents { get; set; }
 
         /// <summary>
-        /// Most auto-recharge may add per calendar month (UTC), before tax. Null for no limit.
+        /// Most auto top-up may add per calendar month (UTC), before tax. Null for no limit.
         /// </summary>
-        /// <value>Most auto-recharge may add per calendar month (UTC), before tax. Null for no limit.</value>
+        /// <value>Most auto top-up may add per calendar month (UTC), before tax. Null for no limit.</value>
         [DataMember(Name = "monthlyLimitCents", EmitDefaultValue = true)]
         public int? MonthlyLimitCents { get; set; }
 

@@ -1152,7 +1152,7 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**CreatePayeeOnboardingLink**](docs/TreasuryApi.md#createpayeeonboardinglink) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
 *TreasuryApi* | [**CreateTopup**](docs/TreasuryApi.md#createtopup) | **POST** /v1/balance/top-ups | Create a top-up
 *TreasuryApi* | [**CreateTransfer**](docs/TreasuryApi.md#createtransfer) | **POST** /v1/transfers | Create a transfer (removed)
-*TreasuryApi* | [**GetAutoRecharge**](docs/TreasuryApi.md#getautorecharge) | **GET** /v1/balance/auto-recharge | Get auto-recharge settings
+*TreasuryApi* | [**GetAutoRecharge**](docs/TreasuryApi.md#getautorecharge) | **GET** /v1/balance/auto-recharge | Get auto top-up settings
 *TreasuryApi* | [**GetBalance**](docs/TreasuryApi.md#getbalance) | **GET** /v1/balance | Get balance
 *TreasuryApi* | [**GetPayoutBatch**](docs/TreasuryApi.md#getpayoutbatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
 *TreasuryApi* | [**GetTopupInvoice**](docs/TreasuryApi.md#gettopupinvoice) | **GET** /v1/balance/top-ups/{topupId}/invoice | Get a top-up invoice
@@ -1163,7 +1163,7 @@ Class | Method | HTTP request | Description
 *TreasuryApi* | [**ListTopups**](docs/TreasuryApi.md#listtopups) | **GET** /v1/balance/top-ups | List top-ups
 *TreasuryApi* | [**ListTransfers**](docs/TreasuryApi.md#listtransfers) | **GET** /v1/transfers | List transfers
 *TreasuryApi* | [**PreviewTopup**](docs/TreasuryApi.md#previewtopup) | **POST** /v1/balance/top-ups/preview | Preview a top-up's tax
-*TreasuryApi* | [**UpdateAutoRecharge**](docs/TreasuryApi.md#updateautorecharge) | **PATCH** /v1/balance/auto-recharge | Update auto-recharge settings
+*TreasuryApi* | [**UpdateAutoRecharge**](docs/TreasuryApi.md#updateautorecharge) | **PATCH** /v1/balance/auto-recharge | Update auto top-up settings
 *TwitterEngagementApi* | [**BookmarkPost**](docs/TwitterEngagementApi.md#bookmarkpost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**FollowUser**](docs/TwitterEngagementApi.md#followuser) | **POST** /v1/twitter/follow | Follow a user
 *TwitterEngagementApi* | [**GetTweet**](docs/TwitterEngagementApi.md#gettweet) | **GET** /v1/twitter/tweet | Look up a tweet

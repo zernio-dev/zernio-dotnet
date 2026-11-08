@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="payoutCount">Creators who would be paid. (required).</param>
         /// <param name="amountCents">Total the creators receive. (required).</param>
-        /// <param name="feeCents">Zernio fee: 4% per creator, 50 cent minimum. (required).</param>
+        /// <param name="feeCents">Zernio fee: 4%, 50 cents minimum per payout. (required).</param>
         /// <param name="taxCents">VAT on the fee, 0 when none applies. (required).</param>
         /// <param name="totalCents">What the card would be charged: amountCents + feeCents + taxCents. (required).</param>
         /// <param name="taxLabel">For example \&quot;VAT 21%\&quot;. Null when there is no tax. (required).</param>
@@ -79,9 +79,9 @@ namespace Zernio.Model
         public int AmountCents { get; set; }
 
         /// <summary>
-        /// Zernio fee: 4% per creator, 50 cent minimum.
+        /// Zernio fee: 4%, 50 cents minimum per payout.
         /// </summary>
-        /// <value>Zernio fee: 4% per creator, 50 cent minimum.</value>
+        /// <value>Zernio fee: 4%, 50 cents minimum per payout.</value>
         [DataMember(Name = "feeCents", IsRequired = true, EmitDefaultValue = true)]
         public int FeeCents { get; set; }
 

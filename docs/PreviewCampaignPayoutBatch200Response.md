@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PayoutCount** | **int** | Creators who would be paid. | 
 **AmountCents** | **int** | Total the creators receive. | 
-**FeeCents** | **int** | Zernio fee: 4% per creator, 50 cent minimum. | 
+**FeeCents** | **int** | Zernio fee: 4%, 50 cents minimum per payout. | 
 **TaxCents** | **int** | VAT on the fee, 0 when none applies. | 
 **TotalCents** | **int** | What the card would be charged: amountCents + feeCents + taxCents. | 
 **TaxLabel** | **string** | For example \&quot;VAT 21%\&quot;. Null when there is no tax. | 
