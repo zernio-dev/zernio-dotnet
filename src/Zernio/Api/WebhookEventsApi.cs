@@ -596,6 +596,69 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnAutomationCheckCompletedWithHttpInfo(WebhookPayloadAutomationCheckCompleted webhookPayloadAutomationCheckCompleted);
         /// <summary>
+        /// Balance charged event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <returns></returns>
+        void OnBalanceCharged(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged);
+
+        /// <summary>
+        /// Balance charged event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnBalanceChargedWithHttpInfo(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged);
+        /// <summary>
+        /// Balance empty event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <returns></returns>
+        void OnBalanceEmpty(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty);
+
+        /// <summary>
+        /// Balance empty event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnBalanceEmptyWithHttpInfo(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty);
+        /// <summary>
+        /// Balance low event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <returns></returns>
+        void OnBalanceLow(WebhookPayloadBalanceLow webhookPayloadBalanceLow);
+
+        /// <summary>
+        /// Balance low event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnBalanceLowWithHttpInfo(WebhookPayloadBalanceLow webhookPayloadBalanceLow);
+        /// <summary>
         /// Caller identity action required event
         /// </summary>
         /// <remarks>
@@ -3409,6 +3472,75 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnAutomationCheckCompletedWithHttpInfoAsync(WebhookPayloadAutomationCheckCompleted webhookPayloadAutomationCheckCompleted, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Balance charged event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnBalanceChargedAsync(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Balance charged event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnBalanceChargedWithHttpInfoAsync(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Balance empty event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnBalanceEmptyAsync(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Balance empty event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnBalanceEmptyWithHttpInfoAsync(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Balance low event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnBalanceLowAsync(WebhookPayloadBalanceLow webhookPayloadBalanceLow, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Balance low event
+        /// </summary>
+        /// <remarks>
+        /// Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnBalanceLowWithHttpInfoAsync(WebhookPayloadBalanceLow webhookPayloadBalanceLow, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Caller identity action required event
         /// </summary>
@@ -9383,6 +9515,381 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnAutomationCheckCompleted", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Balance charged event Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <returns></returns>
+        public void OnBalanceCharged(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged)
+        {
+            OnBalanceChargedWithHttpInfo(webhookPayloadBalanceCharged);
+        }
+
+        /// <summary>
+        /// Balance charged event Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnBalanceChargedWithHttpInfo(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged)
+        {
+            // verify the required parameter 'webhookPayloadBalanceCharged' is set
+            if (webhookPayloadBalanceCharged == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadBalanceCharged' when calling WebhookEventsApi->OnBalanceCharged");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadBalanceCharged;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/balance.charged", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnBalanceCharged", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Balance charged event Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnBalanceChargedAsync(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnBalanceChargedWithHttpInfoAsync(webhookPayloadBalanceCharged, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Balance charged event Balance billing only. A card top-up of the balance succeeded: one someone made (&#x60;trigger: manual&#x60;) or one the auto top-up rule made (&#x60;trigger: auto_top_up&#x60;).  ### When it fires  Once per top-up, when the payment is credited to the balance. Stripe emails the billing owner its receipt for the charge.  ### Payload notes  &#x60;topup.amountCents&#x60; was added to the balance; the card was charged &#x60;topup.chargedCents&#x60;, which is that plus &#x60;topup.taxCents&#x60; (VAT, 0 when none applies). The invoice and receipt are at &#x60;GET /v1/balance/top-ups/{topupId}/invoice&#x60; and &#x60;/receipt&#x60;.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceCharged"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnBalanceChargedWithHttpInfoAsync(WebhookPayloadBalanceCharged webhookPayloadBalanceCharged, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadBalanceCharged' is set
+            if (webhookPayloadBalanceCharged == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadBalanceCharged' when calling WebhookEventsApi->OnBalanceCharged");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadBalanceCharged;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/balance.charged", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnBalanceCharged", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Balance empty event Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <returns></returns>
+        public void OnBalanceEmpty(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty)
+        {
+            OnBalanceEmptyWithHttpInfo(webhookPayloadBalanceEmpty);
+        }
+
+        /// <summary>
+        /// Balance empty event Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnBalanceEmptyWithHttpInfo(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty)
+        {
+            // verify the required parameter 'webhookPayloadBalanceEmpty' is set
+            if (webhookPayloadBalanceEmpty == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadBalanceEmpty' when calling WebhookEventsApi->OnBalanceEmpty");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadBalanceEmpty;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/balance.empty", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnBalanceEmpty", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Balance empty event Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnBalanceEmptyAsync(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnBalanceEmptyWithHttpInfoAsync(webhookPayloadBalanceEmpty, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Balance empty event Balance billing only. The balance reached $0 and no auto top-up covered it (auto top-up off, the card declined, or the monthly limit reached), so new pay-per-use (SMS, calls, numbers, X and the rest) answers 402 with &#x60;code&#x60; until the balance is funded.  ### When it fires  Once per time the balance runs out, within about a minute of the usage that emptied it. Funding the balance and running out again fires it again.  ### Who receives it  The billing owner&#39;s endpoints, like &#x60;balance.low&#x60;. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60;, or, for &#x60;usage_limit_reached&#x60;, raise &#x60;monthlyLimitCents&#x60; with &#x60;PATCH /v1/balance/auto-recharge&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceEmpty"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnBalanceEmptyWithHttpInfoAsync(WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadBalanceEmpty' is set
+            if (webhookPayloadBalanceEmpty == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadBalanceEmpty' when calling WebhookEventsApi->OnBalanceEmpty");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadBalanceEmpty;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/balance.empty", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnBalanceEmpty", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Balance low event Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <returns></returns>
+        public void OnBalanceLow(WebhookPayloadBalanceLow webhookPayloadBalanceLow)
+        {
+            OnBalanceLowWithHttpInfo(webhookPayloadBalanceLow);
+        }
+
+        /// <summary>
+        /// Balance low event Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnBalanceLowWithHttpInfo(WebhookPayloadBalanceLow webhookPayloadBalanceLow)
+        {
+            // verify the required parameter 'webhookPayloadBalanceLow' is set
+            if (webhookPayloadBalanceLow == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadBalanceLow' when calling WebhookEventsApi->OnBalanceLow");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadBalanceLow;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/balance.low", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnBalanceLow", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Balance low event Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnBalanceLowAsync(WebhookPayloadBalanceLow webhookPayloadBalanceLow, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnBalanceLowWithHttpInfoAsync(webhookPayloadBalanceLow, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Balance low event Balance billing only. The balance dropped below the low-balance alert set on auto-recharge (&#x60;alertBelowCents&#x60; on &#x60;GET /v1/balance/auto-recharge&#x60;).  ### When it fires  Once per drop below the threshold; a balance back at or above it re-arms the next one. It does not fire when an auto top-up is already covering the drop, and never when no alert is set.  ### Who receives it  It belongs to the billing owner, not to a profile or account: endpoints scoped with &#x60;profileIds&#x60; or &#x60;accountIds&#x60; do not receive it. Restricted keys need the &#x60;money&#x60; resource group.  ### How to act  Send the user to &#x60;fundingUrl&#x60; (Billing with the top-up drawer open), or top up through the API. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadBalanceLow"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnBalanceLowWithHttpInfoAsync(WebhookPayloadBalanceLow webhookPayloadBalanceLow, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadBalanceLow' is set
+            if (webhookPayloadBalanceLow == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadBalanceLow' when calling WebhookEventsApi->OnBalanceLow");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadBalanceLow;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/balance.low", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnBalanceLow", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

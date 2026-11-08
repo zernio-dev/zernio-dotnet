@@ -815,10 +815,28 @@ namespace Zernio.Model
             CommerceOrderRefunded = 129,
 
             /// <summary>
+            /// Enum BalanceLow for value: balance.low
+            /// </summary>
+            [EnumMember(Value = "balance.low")]
+            BalanceLow = 130,
+
+            /// <summary>
+            /// Enum BalanceEmpty for value: balance.empty
+            /// </summary>
+            [EnumMember(Value = "balance.empty")]
+            BalanceEmpty = 131,
+
+            /// <summary>
+            /// Enum BalanceCharged for value: balance.charged
+            /// </summary>
+            [EnumMember(Value = "balance.charged")]
+            BalanceCharged = 132,
+
+            /// <summary>
             /// Enum ApiChangelogPublished for value: api.changelog.published
             /// </summary>
             [EnumMember(Value = "api.changelog.published")]
-            ApiChangelogPublished = 130
+            ApiChangelogPublished = 133
         }
 
 

@@ -352,6 +352,39 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnBalanceCharged
+        /// </summary>
+        [Fact]
+        public void OnBalanceChargedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadBalanceCharged webhookPayloadBalanceCharged = null;
+            //instance.OnBalanceCharged(webhookPayloadBalanceCharged);
+        }
+
+        /// <summary>
+        /// Test OnBalanceEmpty
+        /// </summary>
+        [Fact]
+        public void OnBalanceEmptyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadBalanceEmpty webhookPayloadBalanceEmpty = null;
+            //instance.OnBalanceEmpty(webhookPayloadBalanceEmpty);
+        }
+
+        /// <summary>
+        /// Test OnBalanceLow
+        /// </summary>
+        [Fact]
+        public void OnBalanceLowTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadBalanceLow webhookPayloadBalanceLow = null;
+            //instance.OnBalanceLow(webhookPayloadBalanceLow);
+        }
+
+        /// <summary>
         /// Test OnBrandedCallingIdentityActionRequired
         /// </summary>
         [Fact]

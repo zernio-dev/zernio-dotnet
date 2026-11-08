@@ -817,7 +817,25 @@ namespace Zernio.Model
             /// Enum ContactDeleted for value: contact.deleted
             /// </summary>
             [EnumMember(Value = "contact.deleted")]
-            ContactDeleted = 130
+            ContactDeleted = 130,
+
+            /// <summary>
+            /// Enum BalanceLow for value: balance.low
+            /// </summary>
+            [EnumMember(Value = "balance.low")]
+            BalanceLow = 131,
+
+            /// <summary>
+            /// Enum BalanceEmpty for value: balance.empty
+            /// </summary>
+            [EnumMember(Value = "balance.empty")]
+            BalanceEmpty = 132,
+
+            /// <summary>
+            /// Enum BalanceCharged for value: balance.charged
+            /// </summary>
+            [EnumMember(Value = "balance.charged")]
+            BalanceCharged = 133
         }
 
         /// <summary>

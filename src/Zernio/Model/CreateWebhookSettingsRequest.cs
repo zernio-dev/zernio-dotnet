@@ -757,7 +757,25 @@ namespace Zernio.Model
             /// Enum CampaignParticipantRemoved for value: campaign_participant.removed
             /// </summary>
             [EnumMember(Value = "campaign_participant.removed")]
-            CampaignParticipantRemoved = 120
+            CampaignParticipantRemoved = 120,
+
+            /// <summary>
+            /// Enum BalanceLow for value: balance.low
+            /// </summary>
+            [EnumMember(Value = "balance.low")]
+            BalanceLow = 121,
+
+            /// <summary>
+            /// Enum BalanceEmpty for value: balance.empty
+            /// </summary>
+            [EnumMember(Value = "balance.empty")]
+            BalanceEmpty = 122,
+
+            /// <summary>
+            /// Enum BalanceCharged for value: balance.charged
+            /// </summary>
+            [EnumMember(Value = "balance.charged")]
+            BalanceCharged = 123
         }
 
         /// <summary>
