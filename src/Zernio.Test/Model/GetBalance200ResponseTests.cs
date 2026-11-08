@@ -65,6 +65,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BalanceBilling'
+        /// </summary>
+        [Fact]
+        public void BalanceBillingTest()
+        {
+            // TODO unit test for the property 'BalanceBilling'
+        }
+
+        /// <summary>
+        /// Test the property 'SpendableCents'
+        /// </summary>
+        [Fact]
+        public void SpendableCentsTest()
+        {
+            // TODO unit test for the property 'SpendableCents'
+        }
+
+        /// <summary>
         /// Test the property 'PromoCents'
         /// </summary>
         [Fact]

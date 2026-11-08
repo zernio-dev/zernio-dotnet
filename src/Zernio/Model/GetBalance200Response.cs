@@ -56,6 +56,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetBalance200Response" /> class.
         /// </summary>
         /// <param name="availableCents">Your balance. It goes negative after a dispute or refund of a spent top-up, or when pay-per-use already in flight lands past zero. The next top-up covers it. New payout batches are refused while it is negative..</param>
+        /// <param name="balanceBilling">True when the account pays pay-per-use from this prepaid balance (new signups). Absent otherwise: that pay-per-use is on the monthly invoice..</param>
+        /// <param name="spendableCents">Balance billing only (absent otherwise). What pay-per-use can still spend: availableCents plus promoCents, minus usage not yet posted. At 0 or below, new pay-per-use answers 402 &#x60;insufficient_balance&#x60;..</param>
         /// <param name="promoCents">Balance billing only (absent otherwise). Promotional and support credit Zernio added to your balance. Pay-per-use spends it before availableCents. It is never paid out to payees and is not part of availableCents..</param>
         /// <param name="payoutLockedCents">Always 0. The balance no longer pays creators, so none of it is locked from them..</param>
         /// <param name="payoutLocks">Always empty. The balance no longer pays creators..</param>
@@ -65,9 +67,11 @@ namespace Zernio.Model
         /// <param name="currency">currency.</param>
         /// <param name="recentTopups">recentTopups.</param>
         /// <param name="recentCreditRecharges">Balance billing only (absent otherwise). The 10 newest recharges paid from the account credit you held when you moved to the balance, newest first. Nothing was charged to your card and there is no invoice. The amount was added to promoCents with the credit&#39;s own expiry..</param>
-        public GetBalance200Response(int availableCents = default, int promoCents = default, int payoutLockedCents = default, List<GetBalance200ResponsePayoutLocksInner> payoutLocks = default, int pendingCents = default, List<GetBalance200ResponsePendingReleasesInner> pendingReleases = default, int pendingTopupCents = default, CurrencyEnum? currency = default, List<TreasuryTopup> recentTopups = default, List<GetBalance200ResponseRecentCreditRechargesInner> recentCreditRecharges = default)
+        public GetBalance200Response(int availableCents = default, bool balanceBilling = default, int spendableCents = default, int promoCents = default, int payoutLockedCents = default, List<GetBalance200ResponsePayoutLocksInner> payoutLocks = default, int pendingCents = default, List<GetBalance200ResponsePendingReleasesInner> pendingReleases = default, int pendingTopupCents = default, CurrencyEnum? currency = default, List<TreasuryTopup> recentTopups = default, List<GetBalance200ResponseRecentCreditRechargesInner> recentCreditRecharges = default)
         {
             this.AvailableCents = availableCents;
+            this.BalanceBilling = balanceBilling;
+            this.SpendableCents = spendableCents;
             this.PromoCents = promoCents;
             this.PayoutLockedCents = payoutLockedCents;
             this.PayoutLocks = payoutLocks;
@@ -85,6 +89,20 @@ namespace Zernio.Model
         /// <value>Your balance. It goes negative after a dispute or refund of a spent top-up, or when pay-per-use already in flight lands past zero. The next top-up covers it. New payout batches are refused while it is negative.</value>
         [DataMember(Name = "availableCents", EmitDefaultValue = false)]
         public int AvailableCents { get; set; }
+
+        /// <summary>
+        /// True when the account pays pay-per-use from this prepaid balance (new signups). Absent otherwise: that pay-per-use is on the monthly invoice.
+        /// </summary>
+        /// <value>True when the account pays pay-per-use from this prepaid balance (new signups). Absent otherwise: that pay-per-use is on the monthly invoice.</value>
+        [DataMember(Name = "balanceBilling", EmitDefaultValue = true)]
+        public bool BalanceBilling { get; set; }
+
+        /// <summary>
+        /// Balance billing only (absent otherwise). What pay-per-use can still spend: availableCents plus promoCents, minus usage not yet posted. At 0 or below, new pay-per-use answers 402 &#x60;insufficient_balance&#x60;.
+        /// </summary>
+        /// <value>Balance billing only (absent otherwise). What pay-per-use can still spend: availableCents plus promoCents, minus usage not yet posted. At 0 or below, new pay-per-use answers 402 &#x60;insufficient_balance&#x60;.</value>
+        [DataMember(Name = "spendableCents", EmitDefaultValue = false)]
+        public int SpendableCents { get; set; }
 
         /// <summary>
         /// Balance billing only (absent otherwise). Promotional and support credit Zernio added to your balance. Pay-per-use spends it before availableCents. It is never paid out to payees and is not part of availableCents.
@@ -151,6 +169,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetBalance200Response {\n");
             sb.Append("  AvailableCents: ").Append(AvailableCents).Append("\n");
+            sb.Append("  BalanceBilling: ").Append(BalanceBilling).Append("\n");
+            sb.Append("  SpendableCents: ").Append(SpendableCents).Append("\n");
             sb.Append("  PromoCents: ").Append(PromoCents).Append("\n");
             sb.Append("  PayoutLockedCents: ").Append(PayoutLockedCents).Append("\n");
             sb.Append("  PayoutLocks: ").Append(PayoutLocks).Append("\n");
