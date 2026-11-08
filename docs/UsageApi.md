@@ -433,7 +433,7 @@ catch (ApiException e)
 | **400** | Invalid query parameter |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
-| **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -535,7 +535,7 @@ catch (ApiException e)
 | **400** | Invalid query parameter |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
-| **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **429** | The billing backend is rate limiting reads (code &#x60;rate_limited&#x60;). Wait &#x60;Retry-After&#x60; seconds and retry. Before 1.81.0 this surfaced as a 500. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
