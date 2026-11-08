@@ -46,7 +46,8 @@ namespace Zernio.Model
         /// <param name="totalCents">What the card would be charged: amountCents + taxCents. (required).</param>
         /// <param name="taxLabel">The tax and its rate, for example \&quot;VAT 21%\&quot;. Null when no tax is charged. (required).</param>
         /// <param name="reverseCharge">True for an EU business with a valid VAT id: no VAT, reverse charge. (required).</param>
-        public PreviewTopup200Response(int amountCents = default, int taxCents = default, int totalCents = default, string taxLabel = default, bool reverseCharge = default)
+        /// <param name="country">Two-letter country the tax was placed in, from the billing address. Null when Stripe Tax returned no address..</param>
+        public PreviewTopup200Response(int amountCents = default, int taxCents = default, int totalCents = default, string taxLabel = default, bool reverseCharge = default, string country = default)
         {
             this.AmountCents = amountCents;
             this.TaxCents = taxCents;
@@ -58,6 +59,7 @@ namespace Zernio.Model
             }
             this.TaxLabel = taxLabel;
             this.ReverseCharge = reverseCharge;
+            this.Country = country;
         }
 
         /// <summary>
@@ -96,6 +98,13 @@ namespace Zernio.Model
         public bool ReverseCharge { get; set; }
 
         /// <summary>
+        /// Two-letter country the tax was placed in, from the billing address. Null when Stripe Tax returned no address.
+        /// </summary>
+        /// <value>Two-letter country the tax was placed in, from the billing address. Null when Stripe Tax returned no address.</value>
+        [DataMember(Name = "country", EmitDefaultValue = true)]
+        public string Country { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -108,6 +117,7 @@ namespace Zernio.Model
             sb.Append("  TotalCents: ").Append(TotalCents).Append("\n");
             sb.Append("  TaxLabel: ").Append(TaxLabel).Append("\n");
             sb.Append("  ReverseCharge: ").Append(ReverseCharge).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

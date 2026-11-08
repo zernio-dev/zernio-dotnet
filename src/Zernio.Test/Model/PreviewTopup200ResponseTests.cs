@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ReverseCharge'
         }
+
+        /// <summary>
+        /// Test the property 'Country'
+        /// </summary>
+        [Fact]
+        public void CountryTest()
+        {
+            // TODO unit test for the property 'Country'
+        }
     }
 }
