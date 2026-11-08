@@ -1952,7 +1952,7 @@ catch (ApiException e)
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the monthly limit kept it there. &#x60;funding_url&#x60; opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused. |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 | **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |

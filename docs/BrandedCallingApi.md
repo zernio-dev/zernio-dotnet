@@ -434,7 +434,7 @@ catch (ApiException e)
 | **201** | Identity created, in review. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused: code &#x60;insufficient_balance&#x60;, or &#x60;usage_limit_reached&#x60; when the monthly limit kept it there. &#x60;funding_url&#x60; opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused. |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto-recharge could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the top-up drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 | **403** | Usage-based billing is required (code usage_billing_required). |  -  |
 | **404** | Business not found |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
