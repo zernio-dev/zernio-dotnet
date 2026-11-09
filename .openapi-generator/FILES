@@ -1338,6 +1338,8 @@ docs/GetDsaDefaults200ResponseDsaDefaults.md
 docs/GetDsaRecommendations200Response.md
 docs/GetEmailThread200Response.md
 docs/GetEmailThread200ResponseData.md
+docs/GetEvent200Response.md
+docs/GetEvent200ResponseDeliveriesInner.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
 docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
@@ -2017,10 +2019,6 @@ docs/ListEmailMessages200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
-docs/ListEvents200ResponseEventsInner.md
-docs/ListEvents200ResponseEventsInnerAd.md
-docs/ListEvents200ResponseEventsInnerClickIds.md
-docs/ListEvents200ResponseEventsInnerUtm.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -2645,6 +2643,7 @@ docs/SendEmailRequestAttachmentsInner.md
 docs/SendEvents200Response.md
 docs/SendEvents200ResponseDestinationsInner.md
 docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
+docs/SendEvents202Response.md
 docs/SendEventsRequest.md
 docs/SendEventsRequestConsent.md
 docs/SendEventsRequestDestinationsInner.md
@@ -2789,6 +2788,10 @@ docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/StorePixelInstall.md
 docs/StorePixelInstallTagsInner.md
+docs/StoredEvent.md
+docs/StoredEventAd.md
+docs/StoredEventClickIds.md
+docs/StoredEventUtm.md
 docs/SubmitCreatorPost201Response.md
 docs/SubmitCreatorPostRequest.md
 docs/SubmitFeedbackRequest.md
@@ -4899,6 +4902,8 @@ src/Zernio.Test/Model/GetDsaDefaults200ResponseTests.cs
 src/Zernio.Test/Model/GetDsaRecommendations200ResponseTests.cs
 src/Zernio.Test/Model/GetEmailThread200ResponseDataTests.cs
 src/Zernio.Test/Model/GetEmailThread200ResponseTests.cs
+src/Zernio.Test/Model/GetEvent200ResponseDeliveriesInnerTests.cs
+src/Zernio.Test/Model/GetEvent200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsCountryInnerTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseTests.cs
@@ -5570,10 +5575,6 @@ src/Zernio.Test/Model/ListEmailFolders200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailMessages200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
-src/Zernio.Test/Model/ListEvents200ResponseEventsInnerAdTests.cs
-src/Zernio.Test/Model/ListEvents200ResponseEventsInnerClickIdsTests.cs
-src/Zernio.Test/Model/ListEvents200ResponseEventsInnerTests.cs
-src/Zernio.Test/Model/ListEvents200ResponseEventsInnerUtmTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
@@ -6183,6 +6184,7 @@ src/Zernio.Test/Model/SendEmailRequestTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerFailuresInnerTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseTests.cs
+src/Zernio.Test/Model/SendEvents202ResponseTests.cs
 src/Zernio.Test/Model/SendEventsRequestConsentTests.cs
 src/Zernio.Test/Model/SendEventsRequestDestinationsInnerTests.cs
 src/Zernio.Test/Model/SendEventsRequestTests.cs
@@ -6325,6 +6327,10 @@ src/Zernio.Test/Model/StartWhatsAppCallerIdVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
 src/Zernio.Test/Model/StorePixelInstallTagsInnerTests.cs
 src/Zernio.Test/Model/StorePixelInstallTests.cs
+src/Zernio.Test/Model/StoredEventAdTests.cs
+src/Zernio.Test/Model/StoredEventClickIdsTests.cs
+src/Zernio.Test/Model/StoredEventTests.cs
+src/Zernio.Test/Model/StoredEventUtmTests.cs
 src/Zernio.Test/Model/SubmitCreatorPost201ResponseTests.cs
 src/Zernio.Test/Model/SubmitCreatorPostRequestTests.cs
 src/Zernio.Test/Model/SubmitFeedbackRequestAgentTests.cs
@@ -8435,6 +8441,8 @@ src/Zernio/Model/GetDsaDefaults200ResponseDsaDefaults.cs
 src/Zernio/Model/GetDsaRecommendations200Response.cs
 src/Zernio/Model/GetEmailThread200Response.cs
 src/Zernio/Model/GetEmailThread200ResponseData.cs
+src/Zernio/Model/GetEvent200Response.cs
+src/Zernio/Model/GetEvent200ResponseDeliveriesInner.cs
 src/Zernio/Model/GetFacebookDemographics200Response.cs
 src/Zernio/Model/GetFacebookDemographics200ResponseDemographics.cs
 src/Zernio/Model/GetFacebookDemographics200ResponseDemographicsCountryInner.cs
@@ -9107,10 +9115,6 @@ src/Zernio/Model/ListEmailMessages200Response.cs
 src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
 src/Zernio/Model/ListEvents200Response.cs
-src/Zernio/Model/ListEvents200ResponseEventsInner.cs
-src/Zernio/Model/ListEvents200ResponseEventsInnerAd.cs
-src/Zernio/Model/ListEvents200ResponseEventsInnerClickIds.cs
-src/Zernio/Model/ListEvents200ResponseEventsInnerUtm.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
@@ -9719,6 +9723,7 @@ src/Zernio/Model/SendEmailRequestAttachmentsInner.cs
 src/Zernio/Model/SendEvents200Response.cs
 src/Zernio/Model/SendEvents200ResponseDestinationsInner.cs
 src/Zernio/Model/SendEvents200ResponseDestinationsInnerFailuresInner.cs
+src/Zernio/Model/SendEvents202Response.cs
 src/Zernio/Model/SendEventsRequest.cs
 src/Zernio/Model/SendEventsRequestConsent.cs
 src/Zernio/Model/SendEventsRequestDestinationsInner.cs
@@ -9861,6 +9866,10 @@ src/Zernio/Model/StartWhatsAppCallerIdVerification200Response.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerificationRequest.cs
 src/Zernio/Model/StorePixelInstall.cs
 src/Zernio/Model/StorePixelInstallTagsInner.cs
+src/Zernio/Model/StoredEvent.cs
+src/Zernio/Model/StoredEventAd.cs
+src/Zernio/Model/StoredEventClickIds.cs
+src/Zernio/Model/StoredEventUtm.cs
 src/Zernio/Model/SubmitCreatorPost201Response.cs
 src/Zernio/Model/SubmitCreatorPostRequest.cs
 src/Zernio/Model/SubmitFeedbackRequest.cs

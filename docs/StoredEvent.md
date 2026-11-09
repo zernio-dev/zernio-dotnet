@@ -1,4 +1,4 @@
-# Zernio.Model.ListEvents200ResponseEventsInner
+# Zernio.Model.StoredEvent
 
 ## Properties
 
@@ -12,14 +12,14 @@ Name | Type | Description | Notes
 **Value** | **decimal?** |  | [optional] 
 **Currency** | **string** |  | [optional] 
 **SourceUrl** | **string** | Origin, path and attribution parameters only. | [optional] 
-**Utm** | [**ListEvents200ResponseEventsInnerUtm**](ListEvents200ResponseEventsInnerUtm.md) |  | [optional] 
+**Utm** | [**StoredEventUtm**](StoredEventUtm.md) |  | [optional] 
 **Zrn** | **string** | Ad ID from the &#x60;zrn&#x60; parameter Zernio adds to links of ads it creates. | [optional] 
-**ClickIds** | [**ListEvents200ResponseEventsInnerClickIds**](ListEvents200ResponseEventsInnerClickIds.md) |  | [optional] 
+**ClickIds** | [**StoredEventClickIds**](StoredEventClickIds.md) |  | [optional] 
 **DestinationsSent** | **int** | Destinations the event was forwarded to. | [optional] 
 **HasEmail** | **bool** |  | [optional] 
 **HasPhone** | **bool** |  | [optional] 
 **HasExternalId** | **bool** |  | [optional] 
-**Ad** | [**ListEvents200ResponseEventsInnerAd**](ListEvents200ResponseEventsInnerAd.md) |  | [optional] 
+**Ad** | [**StoredEventAd**](StoredEventAd.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

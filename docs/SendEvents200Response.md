@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Stored** | **bool** | Whether the events were stored for reporting (always false with testCode). | [optional] 
 **TestCode** | **string** | The test code forwarded to every destination, or &#x60;null&#x60; when the request carried none. | [optional] 
 **Destinations** | [**List&lt;SendEvents200ResponseDestinationsInner&gt;**](SendEvents200ResponseDestinationsInner.md) |  | [optional] 
+**QueuedDestinations** | **int** | Destinations whose sends were queued (all of them with &#x60;mode: async&#x60;, retries with &#x60;sync&#x60;). | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

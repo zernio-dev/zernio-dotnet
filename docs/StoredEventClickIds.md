@@ -1,4 +1,4 @@
-# Zernio.Model.ListEvents200ResponseEventsInnerClickIds
+# Zernio.Model.StoredEventClickIds
 
 ## Properties
 

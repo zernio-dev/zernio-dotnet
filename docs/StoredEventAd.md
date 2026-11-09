@@ -1,4 +1,4 @@
-# Zernio.Model.ListEvents200ResponseEventsInnerAd
+# Zernio.Model.StoredEventAd
 The ad behind the event, when Zernio can name it. Google: from the click behind `clickIds.gclid` (synced daily from Google Ads click_view for clicks up to 14 days before the event; gbraid/wbraid clicks are not resolved). Meta: from the `zrn` ad id, for Meta ads Zernio holds. `null` otherwise.
 
 ## Properties
