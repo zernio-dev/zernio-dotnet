@@ -2501,6 +2501,8 @@ docs/ReplyToGoogleBusinessReview200Response.md
 docs/ReplyToGoogleBusinessReviewRequest.md
 docs/ReplyToInboxPost200Response.md
 docs/ReplyToInboxPost200ResponseData.md
+docs/ReplyToInboxPost400Response.md
+docs/ReplyToInboxPost400ResponseDetails.md
 docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
@@ -6044,6 +6046,8 @@ src/Zernio.Test/Model/ReplyToGoogleBusinessReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToGoogleBusinessReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseDataTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseTests.cs
+src/Zernio.Test/Model/ReplyToInboxPost400ResponseDetailsTests.cs
+src/Zernio.Test/Model/ReplyToInboxPost400ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxPostRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxReviewRequestTests.cs
@@ -9583,6 +9587,8 @@ src/Zernio/Model/ReplyToGoogleBusinessReview200Response.cs
 src/Zernio/Model/ReplyToGoogleBusinessReviewRequest.cs
 src/Zernio/Model/ReplyToInboxPost200Response.cs
 src/Zernio/Model/ReplyToInboxPost200ResponseData.cs
+src/Zernio/Model/ReplyToInboxPost400Response.cs
+src/Zernio/Model/ReplyToInboxPost400ResponseDetails.cs
 src/Zernio/Model/ReplyToInboxPostRequest.cs
 src/Zernio/Model/ReplyToInboxReview200Response.cs
 src/Zernio/Model/ReplyToInboxReviewRequest.cs
