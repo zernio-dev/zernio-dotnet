@@ -2174,7 +2174,7 @@ catch (ApiException e)
 
 <a id="sendconversions"></a>
 # **SendConversions**
-> SendConversions200Response SendConversions (SendConversionsRequest sendConversionsRequest)
+> SendConversions200Response SendConversions (SendConversionsRequest sendConversionsRequest, string? idempotencyKey = null)
 
 Send conversion events
 
@@ -2205,11 +2205,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
             var sendConversionsRequest = new SendConversionsRequest(); // SendConversionsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Send conversion events
-                SendConversions200Response result = apiInstance.SendConversions(sendConversionsRequest);
+                SendConversions200Response result = apiInstance.SendConversions(sendConversionsRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2230,7 +2231,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send conversion events
-    ApiResponse<SendConversions200Response> response = apiInstance.SendConversionsWithHttpInfo(sendConversionsRequest);
+    ApiResponse<SendConversions200Response> response = apiInstance.SendConversionsWithHttpInfo(sendConversionsRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2248,6 +2249,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **sendConversionsRequest** | [**SendConversionsRequest**](SendConversionsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -2279,7 +2281,7 @@ catch (ApiException e)
 
 <a id="sendevents"></a>
 # **SendEvents**
-> SendEvents200Response SendEvents (SendEventsRequest sendEventsRequest)
+> SendEvents200Response SendEvents (SendEventsRequest sendEventsRequest, string? idempotencyKey = null)
 
 Send events to every destination
 
@@ -2310,11 +2312,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
             var sendEventsRequest = new SendEventsRequest(); // SendEventsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Send events to every destination
-                SendEvents200Response result = apiInstance.SendEvents(sendEventsRequest);
+                SendEvents200Response result = apiInstance.SendEvents(sendEventsRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2335,7 +2338,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send events to every destination
-    ApiResponse<SendEvents200Response> response = apiInstance.SendEventsWithHttpInfo(sendEventsRequest);
+    ApiResponse<SendEvents200Response> response = apiInstance.SendEventsWithHttpInfo(sendEventsRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2353,6 +2356,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **sendEventsRequest** | [**SendEventsRequest**](SendEventsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -2375,6 +2379,8 @@ catch (ApiException e)
 | **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
