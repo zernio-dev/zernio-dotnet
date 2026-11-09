@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Username** | **string** | Instagram username; empty when Meta does not expose it. | 
 **ProfilePictureUrl** | **string** | Profile picture URL when available. | [optional] 
 **IsPageBacked** | **bool** | Whether this is a Page-backed Instagram identity. | 
-**Source** | **string** | Discovery source; Page linkage also uses page_backed. | 
+**Source** | **string** | Discovery source; Page linkage also uses page_backed. business_partner is a partner asset shared with the ad account&#39;s business; promote_pages is linked to a Page the ad account promotes. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
