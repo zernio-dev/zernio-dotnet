@@ -74,6 +74,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnConversationStarted**](WebhookEventsApi.md#onconversationstarted) | **POST** /conversation.started | Conversation started event |
 | [**OnCreatorCampaignBudgetExhausted**](WebhookEventsApi.md#oncreatorcampaignbudgetexhausted) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**OnCreatorCampaignClosed**](WebhookEventsApi.md#oncreatorcampaignclosed) | **POST** /creator_campaign.closed | Creator campaign closed event |
+| [**OnEmailLinkClicked**](WebhookEventsApi.md#onemaillinkclicked) | **POST** /email.link_clicked | Email link clicked |
+| [**OnEmailOpened**](WebhookEventsApi.md#onemailopened) | **POST** /email.opened | Email opened |
+| [**OnEmailSendFailed**](WebhookEventsApi.md#onemailsendfailed) | **POST** /email.send_failed | Scheduled email failed |
+| [**OnEmailThreadReplied**](WebhookEventsApi.md#onemailthreadreplied) | **POST** /email.thread_replied | Email thread replied |
 | [**OnFileCreated**](WebhookEventsApi.md#onfilecreated) | **POST** /file.created | File created |
 | [**OnFileDeleted**](WebhookEventsApi.md#onfiledeleted) | **POST** /file.deleted | File deleted |
 | [**OnFilePicked**](WebhookEventsApi.md#onfilepicked) | **POST** /file.picked | Files picked |
@@ -6697,6 +6701,382 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadCreatorCampaign** | [**WebhookPayloadCreatorCampaign**](WebhookPayloadCreatorCampaign.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onemaillinkclicked"></a>
+# **OnEmailLinkClicked**
+> void OnEmailLinkClicked (WebhookPayloadEmailLinkClicked webhookPayloadEmailLinkClicked)
+
+Email link clicked
+
+A recipient followed a link of a message sent with `trackLinks: true`. Every http(s) link in the html was rewritten to a Zernio redirect that records the click and sends the reader on to `click.url`.  Security scanners in corporate mail gateways sometimes follow links on delivery, which reports as a click. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailLinkClickedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailLinkClicked = new WebhookPayloadEmailLinkClicked(); // WebhookPayloadEmailLinkClicked | 
+
+            try
+            {
+                // Email link clicked
+                apiInstance.OnEmailLinkClicked(webhookPayloadEmailLinkClicked);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailLinkClicked: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailLinkClickedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email link clicked
+    apiInstance.OnEmailLinkClickedWithHttpInfo(webhookPayloadEmailLinkClicked);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailLinkClickedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailLinkClicked** | [**WebhookPayloadEmailLinkClicked**](WebhookPayloadEmailLinkClicked.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onemailopened"></a>
+# **OnEmailOpened**
+> void OnEmailOpened (WebhookPayloadEmailOpened webhookPayloadEmailOpened)
+
+Email opened
+
+A mail client loaded the open pixel of a message sent with `trackOpens: true`.  Opens are a signal, not proof of reading:  - Gmail and Apple Mail fetch images through their own proxies, some as soon as the mail arrives. - Clients that block images never report an open. - The sender viewing the message in their own Sent folder counts too.  Repeat fetches within 10 seconds raise `count` without firing again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailOpenedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailOpened = new WebhookPayloadEmailOpened(); // WebhookPayloadEmailOpened | 
+
+            try
+            {
+                // Email opened
+                apiInstance.OnEmailOpened(webhookPayloadEmailOpened);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailOpened: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailOpenedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email opened
+    apiInstance.OnEmailOpenedWithHttpInfo(webhookPayloadEmailOpened);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailOpenedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailOpened** | [**WebhookPayloadEmailOpened**](WebhookPayloadEmailOpened.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onemailsendfailed"></a>
+# **OnEmailSendFailed**
+> void OnEmailSendFailed (WebhookPayloadEmailSendFailed webhookPayloadEmailSendFailed)
+
+Scheduled email failed
+
+A send scheduled with `scheduledFor` could not leave at its time. Nothing reached the recipients. `error` says why, for example the mailbox was disconnected, the daily send cap was reached or the provider refused the mail. The send stays listed with `status: failed`; schedule it again to retry. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailSendFailedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailSendFailed = new WebhookPayloadEmailSendFailed(); // WebhookPayloadEmailSendFailed | 
+
+            try
+            {
+                // Scheduled email failed
+                apiInstance.OnEmailSendFailed(webhookPayloadEmailSendFailed);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailSendFailed: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailSendFailedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Scheduled email failed
+    apiInstance.OnEmailSendFailedWithHttpInfo(webhookPayloadEmailSendFailed);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailSendFailedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailSendFailed** | [**WebhookPayloadEmailSendFailed**](WebhookPayloadEmailSendFailed.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onemailthreadreplied"></a>
+# **OnEmailThreadReplied**
+> void OnEmailThreadReplied (WebhookPayloadEmailThreadReplied webhookPayloadEmailThreadReplied)
+
+Email thread replied
+
+Mail from someone other than the mailbox arrived in the thread of a message sent with `trackReplies: true`. Works on text and html sends. Auto-replies and bounce reports in the thread count as replies.  The reply also arrives as `message.received` with its full content. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailThreadRepliedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailThreadReplied = new WebhookPayloadEmailThreadReplied(); // WebhookPayloadEmailThreadReplied | 
+
+            try
+            {
+                // Email thread replied
+                apiInstance.OnEmailThreadReplied(webhookPayloadEmailThreadReplied);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailThreadReplied: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailThreadRepliedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email thread replied
+    apiInstance.OnEmailThreadRepliedWithHttpInfo(webhookPayloadEmailThreadReplied);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailThreadRepliedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailThreadReplied** | [**WebhookPayloadEmailThreadReplied**](WebhookPayloadEmailThreadReplied.md) |  |  |
 
 ### Return type
 

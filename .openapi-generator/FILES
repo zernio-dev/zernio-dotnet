@@ -2127,6 +2127,7 @@ docs/ListQueueSlots200ResponseOneOf.md
 docs/ListRcsAgents200Response.md
 docs/ListRcsBrands200Response.md
 docs/ListRcsTestDevices200Response.md
+docs/ListScheduledEmails200Response.md
 docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
@@ -2567,6 +2568,7 @@ docs/ScheduledAutomationCheckActionsInner.md
 docs/ScheduledAutomationCheckMatchedInner.md
 docs/ScheduledAutomationDefinition.md
 docs/ScheduledAutomationDefinitionStepsInner.md
+docs/ScheduledEmail.md
 docs/SearchAdInterests200Response.md
 docs/SearchAdInterests200ResponseInterestsInner.md
 docs/SearchAdLibrary200Response.md
@@ -2641,6 +2643,7 @@ docs/SendDiscordDirectMessage200ResponseRecipient.md
 docs/SendDiscordDirectMessageRequest.md
 docs/SendDiscordDirectMessageRequestAttachmentsInner.md
 docs/SendEmailMessage201Response.md
+docs/SendEmailMessage202Response.md
 docs/SendEmailRequest.md
 docs/SendEmailRequestAttachmentsInner.md
 docs/SendEvents200Response.md
@@ -3235,6 +3238,7 @@ docs/WebhookAdsAccount.md
 docs/WebhookAdsSyncAccount.md
 docs/WebhookAdsSyncAdAccount.md
 docs/WebhookAutomationRef.md
+docs/WebhookEmailTrackedMessage.md
 docs/WebhookEventsApi.md
 docs/WebhookLog.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
@@ -3355,6 +3359,14 @@ docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadCreatorCampaign.md
 docs/WebhookPayloadCreatorCampaignCampaign.md
+docs/WebhookPayloadEmailLinkClicked.md
+docs/WebhookPayloadEmailLinkClickedClick.md
+docs/WebhookPayloadEmailOpened.md
+docs/WebhookPayloadEmailOpenedOpen.md
+docs/WebhookPayloadEmailSendFailed.md
+docs/WebhookPayloadEmailSendFailedScheduledEmail.md
+docs/WebhookPayloadEmailThreadReplied.md
+docs/WebhookPayloadEmailThreadRepliedReply.md
 docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadFile.md
 docs/WebhookPayloadFilePicked.md
@@ -5687,6 +5699,7 @@ src/Zernio.Test/Model/ListQueueSlots200ResponseTests.cs
 src/Zernio.Test/Model/ListRcsAgents200ResponseTests.cs
 src/Zernio.Test/Model/ListRcsBrands200ResponseTests.cs
 src/Zernio.Test/Model/ListRcsTestDevices200ResponseTests.cs
+src/Zernio.Test/Model/ListScheduledEmails200ResponseTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseEnrollmentsInnerTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseSequencesInnerTests.cs
@@ -6111,6 +6124,7 @@ src/Zernio.Test/Model/ScheduledAutomationCheckMatchedInnerTests.cs
 src/Zernio.Test/Model/ScheduledAutomationCheckTests.cs
 src/Zernio.Test/Model/ScheduledAutomationDefinitionStepsInnerTests.cs
 src/Zernio.Test/Model/ScheduledAutomationDefinitionTests.cs
+src/Zernio.Test/Model/ScheduledEmailTests.cs
 src/Zernio.Test/Model/SearchAdInterests200ResponseInterestsInnerTests.cs
 src/Zernio.Test/Model/SearchAdInterests200ResponseTests.cs
 src/Zernio.Test/Model/SearchAdLibrary200ResponsePagingTests.cs
@@ -6185,6 +6199,7 @@ src/Zernio.Test/Model/SendDiscordDirectMessage200ResponseTests.cs
 src/Zernio.Test/Model/SendDiscordDirectMessageRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/SendDiscordDirectMessageRequestTests.cs
 src/Zernio.Test/Model/SendEmailMessage201ResponseTests.cs
+src/Zernio.Test/Model/SendEmailMessage202ResponseTests.cs
 src/Zernio.Test/Model/SendEmailRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/SendEmailRequestTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerFailuresInnerTests.cs
@@ -6767,6 +6782,7 @@ src/Zernio.Test/Model/WebhookAdsAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAdAccountTests.cs
 src/Zernio.Test/Model/WebhookAutomationRefTests.cs
+src/Zernio.Test/Model/WebhookEmailTrackedMessageTests.cs
 src/Zernio.Test/Model/WebhookLogTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedSyncTests.cs
@@ -6886,6 +6902,14 @@ src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCreatorCampaignCampaignTests.cs
 src/Zernio.Test/Model/WebhookPayloadCreatorCampaignTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailLinkClickedClickTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailLinkClickedTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailOpenedOpenTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailOpenedTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailSendFailedScheduledEmailTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailSendFailedTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailThreadRepliedReplyTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailThreadRepliedTests.cs
 src/Zernio.Test/Model/WebhookPayloadExternalPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadFilePickedPickerFilesInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadFilePickedPickerTests.cs
@@ -9229,6 +9253,7 @@ src/Zernio/Model/ListQueueSlots200ResponseOneOf.cs
 src/Zernio/Model/ListRcsAgents200Response.cs
 src/Zernio/Model/ListRcsBrands200Response.cs
 src/Zernio/Model/ListRcsTestDevices200Response.cs
+src/Zernio/Model/ListScheduledEmails200Response.cs
 src/Zernio/Model/ListSequenceEnrollments200Response.cs
 src/Zernio/Model/ListSequenceEnrollments200ResponseEnrollmentsInner.cs
 src/Zernio/Model/ListSequences200Response.cs
@@ -9653,6 +9678,7 @@ src/Zernio/Model/ScheduledAutomationCheckActionsInner.cs
 src/Zernio/Model/ScheduledAutomationCheckMatchedInner.cs
 src/Zernio/Model/ScheduledAutomationDefinition.cs
 src/Zernio/Model/ScheduledAutomationDefinitionStepsInner.cs
+src/Zernio/Model/ScheduledEmail.cs
 src/Zernio/Model/SearchAdInterests200Response.cs
 src/Zernio/Model/SearchAdInterests200ResponseInterestsInner.cs
 src/Zernio/Model/SearchAdLibrary200Response.cs
@@ -9727,6 +9753,7 @@ src/Zernio/Model/SendDiscordDirectMessage200ResponseRecipient.cs
 src/Zernio/Model/SendDiscordDirectMessageRequest.cs
 src/Zernio/Model/SendDiscordDirectMessageRequestAttachmentsInner.cs
 src/Zernio/Model/SendEmailMessage201Response.cs
+src/Zernio/Model/SendEmailMessage202Response.cs
 src/Zernio/Model/SendEmailRequest.cs
 src/Zernio/Model/SendEmailRequestAttachmentsInner.cs
 src/Zernio/Model/SendEvents200Response.cs
@@ -10310,6 +10337,7 @@ src/Zernio/Model/WebhookAdsAccount.cs
 src/Zernio/Model/WebhookAdsSyncAccount.cs
 src/Zernio/Model/WebhookAdsSyncAdAccount.cs
 src/Zernio/Model/WebhookAutomationRef.cs
+src/Zernio/Model/WebhookEmailTrackedMessage.cs
 src/Zernio/Model/WebhookLog.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompleted.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.cs
@@ -10429,6 +10457,14 @@ src/Zernio/Model/WebhookPayloadConversationStarted.cs
 src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
 src/Zernio/Model/WebhookPayloadCreatorCampaign.cs
 src/Zernio/Model/WebhookPayloadCreatorCampaignCampaign.cs
+src/Zernio/Model/WebhookPayloadEmailLinkClicked.cs
+src/Zernio/Model/WebhookPayloadEmailLinkClickedClick.cs
+src/Zernio/Model/WebhookPayloadEmailOpened.cs
+src/Zernio/Model/WebhookPayloadEmailOpenedOpen.cs
+src/Zernio/Model/WebhookPayloadEmailSendFailed.cs
+src/Zernio/Model/WebhookPayloadEmailSendFailedScheduledEmail.cs
+src/Zernio/Model/WebhookPayloadEmailThreadReplied.cs
+src/Zernio/Model/WebhookPayloadEmailThreadRepliedReply.cs
 src/Zernio/Model/WebhookPayloadExternalPost.cs
 src/Zernio/Model/WebhookPayloadFile.cs
 src/Zernio/Model/WebhookPayloadFilePicked.cs

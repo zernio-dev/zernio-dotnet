@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **Unread** | **bool** |  | [optional] 
 **Starred** | **bool** |  | [optional] 
 **Metadata** | **Dictionary&lt;string, string&gt;** |  | [optional] 
+**TrackingId** | **string** | Set on a send with &#x60;trackOpens&#x60;, &#x60;trackLinks&#x60; or &#x60;trackReplies&#x60;; the email.* webhooks carry it. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
