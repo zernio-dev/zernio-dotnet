@@ -2174,7 +2174,7 @@ catch (ApiException e)
 
 <a id="sendconversions"></a>
 # **SendConversions**
-> SendConversions200Response SendConversions (SendConversionsRequest sendConversionsRequest, string? idempotencyKey = null)
+> SendConversions200Response SendConversions (SendConversionsRequest sendConversionsRequest)
 
 Send conversion events
 
@@ -2205,12 +2205,11 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
             var sendConversionsRequest = new SendConversionsRequest(); // SendConversionsRequest | 
-            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Send conversion events
-                SendConversions200Response result = apiInstance.SendConversions(sendConversionsRequest, idempotencyKey);
+                SendConversions200Response result = apiInstance.SendConversions(sendConversionsRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2231,7 +2230,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send conversion events
-    ApiResponse<SendConversions200Response> response = apiInstance.SendConversionsWithHttpInfo(sendConversionsRequest, idempotencyKey);
+    ApiResponse<SendConversions200Response> response = apiInstance.SendConversionsWithHttpInfo(sendConversionsRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2249,7 +2248,6 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **sendConversionsRequest** | [**SendConversionsRequest**](SendConversionsRequest.md) |  |  |
-| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
