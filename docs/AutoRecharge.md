@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | **bool** | Whether auto top-up is on. Charges happen only when this is true and disabledReason is null. | 
-**BelowCents** | **int** | Top up when the balance drops below this, in cents. | 
+**BelowCents** | **int** | Auto top-up charges the card when the balance drops below this, in cents. | 
 **ToCents** | **int** | Top back up to this, in cents. The charge is toCents minus the balance, plus tax. | 
 **MonthlyLimitCents** | **int?** | Most auto top-up may add per calendar month (UTC), before tax; null for no limit. | 
 **AlertBelowCents** | **int?** | Low-balance email threshold, sent once per drop below it; null for none. | 

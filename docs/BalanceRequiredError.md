@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Platform** | **string** | Upstream platform (e.g. meta, google, tiktok), present when type is platform_error. | [optional] 
 **PlatformError** | **Dictionary&lt;string, Object&gt;** | Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg.  | [optional] 
 **Details** | [**ErrorResponseDetails**](ErrorResponseDetails.md) |  | [optional] 
-**FundingUrl** | **string** | Dashboard link to Billing that opens the top-up drawer (the add-card drawer first when there is no card). Send the user there, then retry. | 
+**FundingUrl** | **string** | Dashboard link to Billing that opens the Add funds drawer (the add-card drawer first when there is no card). Send the user there, then retry. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

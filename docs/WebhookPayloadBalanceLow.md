@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Test** | **bool** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. | [optional] 
 **Event** | **string** |  | 
 **Balance** | [**WebhookPayloadBalanceLowBalance**](WebhookPayloadBalanceLowBalance.md) |  | 
-**FundingUrl** | **string** | Dashboard link that opens the top-up drawer in Billing. | 
+**FundingUrl** | **string** | Dashboard link that opens the Add funds drawer in Billing. | 
 **Timestamp** | **DateTime** | UTC time at which Zernio generated this event. Retries and redeliveries keep the original value. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

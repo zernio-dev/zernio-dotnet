@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The top-up id, as in GET /v1/balance (&#x60;recentTopups&#x60;) and its invoice and receipt endpoints. | 
-**Trigger** | **string** | &#x60;manual&#x60;: someone topped up in Billing or through the API. &#x60;auto_top_up&#x60;: the auto top-up rule charged the card. | 
+**Trigger** | **string** | &#x60;manual&#x60;: someone added funds in Billing or through the API. &#x60;auto_top_up&#x60;: the auto top-up rule charged the card. | 
 **AmountCents** | **int** | Added to the balance, in USD cents. | 
 **TaxCents** | **int** | VAT charged on top, in USD cents (0 when none applies). | 
 **ChargedCents** | **int** | What the card was charged, in USD cents: amount plus tax. | 
