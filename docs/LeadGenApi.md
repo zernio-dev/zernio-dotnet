@@ -865,7 +865,7 @@ catch (ApiException e)
 
 List submitted leads
 
-Lists the leads submitted through your Meta or LinkedIn lead forms, newest first.  Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on `cursor`. Requires the Ads add-on.  ### Meta (default)  Leads are served from the persisted cache, ingested in real time from the `leadgen` webhook.  ### LinkedIn  When `accountId` is a LinkedIn ads account, `adAccountId` is required. Leads are fetched live from LinkedIn's `leadFormResponses`: LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted.  Reading LinkedIn responses needs the `r_marketing_leadgen_automation` permission. Accounts connected before it was added must reconnect. 
+Lists the leads submitted through your Meta, Google or LinkedIn lead forms, newest first.  Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on `cursor`. Requires the Ads add-on.  ### Meta (default)  Leads are served from the persisted cache, ingested in real time from the `leadgen` webhook.  ### Google  Google lead form submissions are stored like Meta leads and listed with them, usually within 15 minutes of the submission. Each lead says its network in `platform` (`meta`, `google`, `linkedin`), and `platform=google` lists only Google leads. On a Google lead `leadgenId` is the submission id and `formId` the lead form asset id; answers are keyed like Meta's (`email`, `phone_number`, `full_name`), custom questions by their text. Statuses work as for Meta leads.  ### LinkedIn  When `accountId` is a LinkedIn ads account, `adAccountId` is required. Leads are fetched live from LinkedIn's `leadFormResponses`: LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted.  Reading LinkedIn responses needs the `r_marketing_leadgen_automation` permission. Accounts connected before it was added must reconnect. 
 
 ### Example
 ```csharp
@@ -896,7 +896,7 @@ namespace Example
             var accountIds = "accountIds_example";  // string? | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. (optional) 
             var status = new,contacted;  // string? | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. (optional) 
             var campaignId = "campaignId_example";  // string? | Meta only. The platform campaign id the lead came from. (optional) 
-            var platform = "meta";  // string? | meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). (optional) 
+            var platform = "meta";  // string? | Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. (optional) 
             var q = "q_example";  // string? | Meta only. Case-insensitive text search over the lead's answers and the form name. (optional) 
             var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
@@ -949,7 +949,7 @@ catch (ApiException e)
 | **accountIds** | **string?** | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional]  |
 | **status** | **string?** | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional]  |
 | **campaignId** | **string?** | Meta only. The platform campaign id the lead came from. | [optional]  |
-| **platform** | **string?** | meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). | [optional]  |
+| **platform** | **string?** | Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional]  |
 | **q** | **string?** | Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional]  |
 | **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
