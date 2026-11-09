@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | [optional] 
 **CanPost** | **bool** |  | [optional] 
 **CanFetchAnalytics** | **bool** |  | [optional] 
+**ScopeAreas** | **Dictionary&lt;string, GetAllAccountsHealth200ResponseAccountsInner.InnerEnum&gt;** | Present when the account connected with &#x60;scopes&#x60; or through your own OAuth app: each permission area the platform splits, as granted, missing or not_requested. An area never requested does not make the account unhealthy. | [optional] 
 **TokenValid** | **bool** |  | [optional] 
 **TokenExpiresAt** | **DateTime** |  | [optional] 
 **NeedsReconnect** | **bool** | True when the token is expired or revoked, permissions are missing, the account is inactive, or the platform rejected its stored credentials (the same flag the account listing reports as needsReconnection). | [optional] 

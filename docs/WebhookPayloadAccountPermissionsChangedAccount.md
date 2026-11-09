@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | 
 **Username** | **string** |  | 
 **DisplayName** | **string** |  | [optional] 
-**OauthAppId** | **string** | The OAuth app the account connected through. | 
+**OauthAppId** | **string** | The OAuth app the account connected through; null on Zernio&#39;s app. | 
 **MissingScopeAreas** | **List&lt;WebhookPayloadAccountPermissionsChangedAccount.MissingScopeAreasEnum&gt;** | Every area now missing. Enable the permission on your app (or have the user grant it), then reconnect the account. | 
 **Reason** | **string** | The platform error that revealed it. | 
 
