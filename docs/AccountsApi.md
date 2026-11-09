@@ -542,7 +542,7 @@ catch (ApiException e)
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 `accountIds`, or a page of accounts. More than 25 `accountIds` returns 400. - Without `accountIds`, the response is the first page of 25 accounts even when `limit` and `cursor` are omitted. Pass `pagination.nextCursor` back as `cursor` for the next one. - When that default page cuts the list, the response also carries a `warning` and the headers `X-Result-Truncated: true` and `X-Result-Limit: 25`. - At most 1 year between `fromDate` and `toDate`. A longer range returns 400. 
 
 ### Example
 ```csharp
@@ -568,12 +568,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
-            var accountIds = "accountIds_example";  // string? | Comma-separated list of account IDs (optional, defaults to all user's accounts) (optional) 
+            var accountIds = "accountIds_example";  // string? | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. (optional) 
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
-            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date in YYYY-MM-DD format (defaults to today) (optional) 
             var granularity = "daily";  // string? | Data aggregation level (optional)  (default to daily)
-            var limit = 56;  // int? | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned. (optional) 
+            var limit = 56;  // int? | Accounts per page, ordered by account id; the response carries `pagination.nextCursor`. Without limit or cursor, a request without accountIds still gets a first page of 25. (optional) 
             var cursor = "cursor_example";  // string? | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400. (optional) 
 
             try
@@ -617,12 +617,12 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountIds** | **string?** | Comma-separated list of account IDs (optional, defaults to all user&#39;s accounts) | [optional]  |
+| **accountIds** | **string?** | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. | [optional]  |
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
-| **fromDate** | **DateOnly?** | Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional]  |
+| **fromDate** | **DateOnly?** | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. | [optional]  |
 | **toDate** | **DateOnly?** | End date in YYYY-MM-DD format (defaults to today) | [optional]  |
 | **granularity** | **string?** | Data aggregation level | [optional] [default to daily] |
-| **limit** | **int?** | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional]  |
+| **limit** | **int?** | Accounts per page, ordered by account id; the response carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor, a request without accountIds still gets a first page of 25. | [optional]  |
 | **cursor** | **string?** | Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional]  |
 
 ### Return type
@@ -642,7 +642,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Follower stats |  -  |
+| **200** | Follower stats |  * X-Result-Truncated - Only when a request without accountIds, limit or cursor got the default page of 25 and more accounts remain. Page through the rest with cursor. <br>  * X-Result-Limit - Only with X-Result-Truncated: the page size that cut the list. <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
@@ -1173,7 +1173,7 @@ catch (ApiException e)
 
 List accounts
 
-Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.  ### Pagination  Server-side pagination is optional. When omitted, returns all accounts (backward-compatible).  - Cursor paging: send `limit` alone for the first page, then pass `pagination.nextCursor` back as `cursor` until it is null. Pages are ordered by account id, so accounts added or removed between calls never shift a page. Cannot be combined with `page`, `sort` or `perProfile`. - Offset paging: send `page` and `limit` together. Out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.  ### Pagination  Server-side pagination is optional. When omitted, the dashboard gets every account, while an API key or OAuth app gets at most 500: the first cursor page, ordered by account id.  When that cap cuts the list, the response carries `warning` and `pagination.nextCursor`, plus the `X-Result-Truncated: true` and `X-Result-Limit: 500` headers. Pass `nextCursor` back as `cursor` (with `limit`) to list the rest.  - Cursor paging: send `limit` alone for the first page, then pass `pagination.nextCursor` back as `cursor` until it is null. Pages are ordered by account id, so accounts added or removed between calls never shift a page. Cannot be combined with `page`, `sort` or `perProfile`. - Offset paging: send `page` and `limit` together. Out-of-range page/limit values are rejected with 400 rather than silently clamped. 
 
 ### Example
 ```csharp
@@ -1213,7 +1213,7 @@ namespace Example
             var includeCreatorAccounts = false;  // bool? | When true, also lists the accounts creators connected to your creator campaigns. They sit on creator profiles, which `GET /v1/profiles` does not list, and are left out by default.  Asking for one creator profile by `profileId` lists its accounts either way. Applied before pagination. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
             var includeSandbox = false;  // bool? | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter.  Ignored on a paginated request (page, limit or cursor) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
             var includeStatusCounts = false;  // bool? | When true, the response carries `statusCounts`: how many accounts match every other filter of the request (with `status` lifted) in total and how many of those need a reconnection. Accepts `true` or `false` in any letter case; any other value returns 400.  (optional)  (default to false)
-            var page = 56;  // int? | Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts.  (optional) 
+            var page = 56;  // int? | Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for an unpaged listing (at most 500 accounts for an API key or OAuth app).  (optional) 
             var limit = 56;  // int? | Page size. With page, an offset page; alone or with cursor, a cursor page.  (optional) 
             var cursor = "cursor_example";  // string? | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (500 when limit is omitted). A cursor we cannot parse returns 400. Cannot be combined with page. (optional) 
             var profileIds = "profileIds_example";  // string? | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`. (optional) 
@@ -1274,7 +1274,7 @@ catch (ApiException e)
 | **includeCreatorAccounts** | **bool?** | When true, also lists the accounts creators connected to your creator campaigns. They sit on creator profiles, which &#x60;GET /v1/profiles&#x60; does not list, and are left out by default.  Asking for one creator profile by &#x60;profileId&#x60; lists its accounts either way. Applied before pagination. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeSandbox** | **bool?** | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter.  Ignored on a paginated request (page, limit or cursor) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeStatusCounts** | **bool?** | When true, the response carries &#x60;statusCounts&#x60;: how many accounts match every other filter of the request (with &#x60;status&#x60; lifted) in total and how many of those need a reconnection. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
-| **page** | **int?** | Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts.  | [optional]  |
+| **page** | **int?** | Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for an unpaged listing (at most 500 accounts for an API key or OAuth app).  | [optional]  |
 | **limit** | **int?** | Page size. With page, an offset page; alone or with cursor, a cursor page.  | [optional]  |
 | **cursor** | **string?** | Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (500 when limit is omitted). A cursor we cannot parse returns 400. Cannot be combined with page. | [optional]  |
 | **profileIds** | **string?** | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional]  |
@@ -1297,7 +1297,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Accounts (with optional pagination) |  -  |
+| **200** | Accounts (with optional pagination) |  * X-Result-Truncated - Only when a request without accountIds, limit or cursor got the default page of 25 and more accounts remain. Page through the rest with cursor. <br>  * X-Result-Limit - Only with X-Result-Truncated: the cap that cut the list. <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |

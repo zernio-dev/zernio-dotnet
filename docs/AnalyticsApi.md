@@ -1268,7 +1268,7 @@ catch (ApiException e)
 
 Get follower stats
 
-Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day. 
+Returns follower count history and growth metrics for connected accounts. Requires analytics add-on subscription. Follower counts are refreshed once per day.  ### Limits  - At most 25 accounts per request: up to 25 `accountIds`, or a page of accounts. More than 25 `accountIds` returns 400. - Without `accountIds`, the response is the first page of 25 accounts even when `limit` and `cursor` are omitted. Pass `pagination.nextCursor` back as `cursor` for the next one. - When that default page cuts the list, the response also carries a `warning` and the headers `X-Result-Truncated: true` and `X-Result-Limit: 25`. - At most 1 year between `fromDate` and `toDate`. A longer range returns 400. 
 
 ### Example
 ```csharp
@@ -1294,12 +1294,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
-            var accountIds = "accountIds_example";  // string? | Comma-separated list of account IDs (optional, defaults to all user's accounts) (optional) 
+            var accountIds = "accountIds_example";  // string? | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. (optional) 
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
-            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date in YYYY-MM-DD format (defaults to today) (optional) 
             var granularity = "daily";  // string? | Data aggregation level (optional)  (default to daily)
-            var limit = 56;  // int? | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned. (optional) 
+            var limit = 56;  // int? | Accounts per page, ordered by account id; the response carries `pagination.nextCursor`. Without limit or cursor, a request without accountIds still gets a first page of 25. (optional) 
             var cursor = "cursor_example";  // string? | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400. (optional) 
 
             try
@@ -1343,12 +1343,12 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountIds** | **string?** | Comma-separated list of account IDs (optional, defaults to all user&#39;s accounts) | [optional]  |
+| **accountIds** | **string?** | Comma-separated list of up to 25 account IDs. Optional: without it, the response pages through all your accounts. | [optional]  |
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
-| **fromDate** | **DateOnly?** | Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional]  |
+| **fromDate** | **DateOnly?** | Start date in YYYY-MM-DD format (defaults to one year before toDate). At most one year before toDate. | [optional]  |
 | **toDate** | **DateOnly?** | End date in YYYY-MM-DD format (defaults to today) | [optional]  |
 | **granularity** | **string?** | Data aggregation level | [optional] [default to daily] |
-| **limit** | **int?** | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional]  |
+| **limit** | **int?** | Accounts per page, ordered by account id; the response carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor, a request without accountIds still gets a first page of 25. | [optional]  |
 | **cursor** | **string?** | Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional]  |
 
 ### Return type
@@ -1368,7 +1368,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Follower stats |  -  |
+| **200** | Follower stats |  * X-Result-Truncated - Only when a request without accountIds, limit or cursor got the default page of 25 and more accounts remain. Page through the rest with cursor. <br>  * X-Result-Limit - Only with X-Result-Truncated: the page size that cut the list. <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
