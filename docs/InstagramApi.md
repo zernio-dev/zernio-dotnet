@@ -854,11 +854,11 @@ catch (ApiException e)
 
 <a id="listinstagramstories"></a>
 # **ListInstagramStories**
-> ListInstagramStories200Response ListInstagramStories (string accountId)
+> ListInstagramStories200Response ListInstagramStories (string accountId, bool? includeExpired = null, int? limit = null)
 
 List active Instagram stories
 
-Returns the IG Business/Creator account's currently-active stories. Meta keeps stories live for 24h; expired stories are not returned.  Limitations propagated from Meta (these are NOT bugs): - 24h window only - Live videos excluded - Reshared stories not returned - `mediaUrl` may be null if Meta flagged the story for copyright - `caption`, `likeCount`, `commentsCount` do not apply to story media 
+Returns the IG Business/Creator account's currently-active stories. Meta keeps stories live for 24h. Pass `includeExpired=true` to also get the stories Zernio archived before they expired: their media is copied into Zernio storage while the story is live, so `mediaUrl` and `thumbnailUrl` keep working after Meta deletes the story. Archiving needs the insights permission and covers stories posted since the account was connected (hourly readings, a final one at 23h, then Meta's end-of-story numbers when its webhook arrives).  Limitations propagated from Meta (these are NOT bugs): - 24h window only - Live videos excluded - Reshared stories not returned - `mediaUrl` may be null if Meta flagged the story for copyright - `caption`, `likeCount`, `commentsCount` do not apply to story media 
 
 ### Example
 ```csharp
@@ -885,11 +885,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new InstagramApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Instagram account ID
+            var includeExpired = false;  // bool? | Also return archived stories that are no longer live, newest first after the live ones. Every item then carries `expired` and `metrics`. (optional)  (default to false)
+            var limit = 100;  // int? | Maximum number of archived stories to read when `includeExpired=true` (live stories are always all returned). (optional)  (default to 100)
 
             try
             {
                 // List active Instagram stories
-                ListInstagramStories200Response result = apiInstance.ListInstagramStories(accountId);
+                ListInstagramStories200Response result = apiInstance.ListInstagramStories(accountId, includeExpired, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -910,7 +912,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List active Instagram stories
-    ApiResponse<ListInstagramStories200Response> response = apiInstance.ListInstagramStoriesWithHttpInfo(accountId);
+    ApiResponse<ListInstagramStories200Response> response = apiInstance.ListInstagramStoriesWithHttpInfo(accountId, includeExpired, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -928,6 +930,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | The Instagram account ID |  |
+| **includeExpired** | **bool?** | Also return archived stories that are no longer live, newest first after the live ones. Every item then carries &#x60;expired&#x60; and &#x60;metrics&#x60;. | [optional] [default to false] |
+| **limit** | **int?** | Maximum number of archived stories to read when &#x60;includeExpired&#x3D;true&#x60; (live stories are always all returned). | [optional] [default to 100] |
 
 ### Return type
 
@@ -947,7 +951,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Active stories |  -  |
-| **400** | Invalid request. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |

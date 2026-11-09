@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **Permalink** | **string** | Public Instagram permalink to the story (only viewable while live). | [optional] 
 **ThumbnailUrl** | **string** | Thumbnail URL for video stories. | [optional] 
 **Timestamp** | **DateTime?** | When the story was posted. | [optional] 
+**Expired** | **bool** | Only with &#x60;includeExpired&#x3D;true&#x60;. True for an archived story that is no longer live; its media urls point to Zernio storage. | [optional] 
+**Metrics** | [**ListInstagramStories200ResponseDataInnerMetrics**](ListInstagramStories200ResponseDataInnerMetrics.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

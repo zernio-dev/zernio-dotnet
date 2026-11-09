@@ -2078,6 +2078,7 @@ docs/ListInstagramPages200ResponsePagesInner.md
 docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md
 docs/ListInstagramStories200Response.md
 docs/ListInstagramStories200ResponseDataInner.md
+docs/ListInstagramStories200ResponseDataInnerMetrics.md
 docs/ListInstagramTaggedMedia200Response.md
 docs/ListLeadForms200Response.md
 docs/ListLeads200Response.md
@@ -5635,6 +5636,7 @@ src/Zernio.Test/Model/ListInstagramMediaCollaborators200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccountTests.cs
 src/Zernio.Test/Model/ListInstagramPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListInstagramPages200ResponseTests.cs
+src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerMetricsTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramTaggedMedia200ResponseTests.cs
@@ -9178,6 +9180,7 @@ src/Zernio/Model/ListInstagramPages200ResponsePagesInner.cs
 src/Zernio/Model/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.cs
 src/Zernio/Model/ListInstagramStories200Response.cs
 src/Zernio/Model/ListInstagramStories200ResponseDataInner.cs
+src/Zernio/Model/ListInstagramStories200ResponseDataInnerMetrics.cs
 src/Zernio/Model/ListInstagramTaggedMedia200Response.cs
 src/Zernio/Model/ListLeadForms200Response.cs
 src/Zernio/Model/ListLeads200Response.cs
