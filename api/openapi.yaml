@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.533.1
+  version: 1.535.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -12025,6 +12025,7 @@ paths:
         - `cid`: the Bluesky content id needed to reply.
         - `subreddit`: Reddit only.
         - `title`, `description`, `link`, `boardId` and `boardOwnerUsername`: Pinterest only (the native Pin values; `message` keeps title and description joined).
+        - `isOwner`: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep `isOwner: true` to import only its own Pins. On Facebook, false marks a collab post by another Page.
 
         ### Expired tokens
 
@@ -60702,6 +60703,8 @@ paths:
 
         ### LinkedIn
 
+        LinkedIn lead form responses are also stored and listed with the other networks (`platform: linkedin`), usually within 15 minutes, once they reach Zernio.
+
         When `accountId` is a LinkedIn ads account, `adAccountId` is required. Leads are fetched live from LinkedIn's `leadFormResponses`: LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted.
 
         Reading LinkedIn responses needs the `r_marketing_leadgen_automation` permission. Accounts connected before it was added must reconnect.
@@ -83655,6 +83658,7 @@ components:
         - "{}"
         - "{}"
         isAiGenerated: true
+        isOwner: true
         platformPostUrl: platformPostUrl
         mediaProductType: mediaProductType
         mediaAudioType: mediaAudioType
@@ -83704,6 +83708,13 @@ components:
           description: "Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND).\
             \ Absent when the platform did not report it."
           type: string
+        isOwner:
+          description: "Pinterest: true when the account created the Pin, false when\
+            \ it saved it from another user; keep true to import only its own Pins.\
+            \ Facebook: false for a collab post by another Page. Null when unknown\
+            \ and for other platforms."
+          nullable: true
+          type: boolean
         analytics:
           $ref: "#/components/schemas/ExternalPostSummary_analytics"
     MetaPageOwnership:
@@ -100210,9 +100221,10 @@ components:
           nullable: true
           type: string
         isOwner:
-          description: "Facebook only: true when the connected Page authored the post,\
-            \ false when Facebook reports another author (a collab post), null when\
-            \ unknown or for other platforms."
+          description: "Facebook: true when the connected Page authored the post,\
+            \ false when Facebook reports another author (a collab post). Pinterest:\
+            \ true when the account created the Pin, false when it saved it from another\
+            \ user. Null when unknown or for other platforms."
           nullable: true
           type: boolean
     AnalyticsOverview:
@@ -125397,6 +125409,7 @@ components:
           - "{}"
           - "{}"
           isAiGenerated: true
+          isOwner: true
           platformPostUrl: platformPostUrl
           mediaProductType: mediaProductType
           mediaAudioType: mediaAudioType
@@ -125423,6 +125436,7 @@ components:
           - "{}"
           - "{}"
           isAiGenerated: true
+          isOwner: true
           platformPostUrl: platformPostUrl
           mediaProductType: mediaProductType
           mediaAudioType: mediaAudioType
@@ -126989,6 +127003,7 @@ components:
         subreddit: subreddit
         commentCount: 0
         shareCount: 5
+        isOwner: true
         boardOwnerUsername: boardOwnerUsername
         createdTime: 2000-01-23T04:56:07.000+00:00
         boardId: boardId
@@ -127047,6 +127062,11 @@ components:
         boardOwnerUsername:
           description: "Pinterest only: username of the board owner"
           type: string
+        isOwner:
+          description: "Pinterest: true when the account created the Pin, false when\
+            \ it saved it from another user. Facebook: false for a collab post by\
+            \ another Page. Absent when the platform does not report it."
+          type: boolean
     getAccountPosts_200_response:
       example:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -127063,6 +127083,7 @@ components:
           subreddit: subreddit
           commentCount: 0
           shareCount: 5
+          isOwner: true
           boardOwnerUsername: boardOwnerUsername
           createdTime: 2000-01-23T04:56:07.000+00:00
           boardId: boardId
@@ -127081,6 +127102,7 @@ components:
           subreddit: subreddit
           commentCount: 0
           shareCount: 5
+          isOwner: true
           boardOwnerUsername: boardOwnerUsername
           createdTime: 2000-01-23T04:56:07.000+00:00
           boardId: boardId
