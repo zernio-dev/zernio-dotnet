@@ -570,7 +570,8 @@ namespace Zernio.Test.Api
             //string? adAccountId = null;
             //int? limit = null;
             //bool? inScopeOnly = null;
-            //var response = instance.ListAdAccounts(accountId, adAccountId, limit, inScopeOnly);
+            //bool? live = null;
+            //var response = instance.ListAdAccounts(accountId, adAccountId, limit, inScopeOnly, live);
             //Assert.IsType<ListAdAccounts200Response>(response);
         }
 
