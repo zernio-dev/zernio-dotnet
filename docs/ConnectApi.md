@@ -34,7 +34,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetHubSpotConnectUrl**](ConnectApi.md#gethubspotconnecturl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**GetLinkedInOrganizations**](ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**GetOAuthApp**](ConnectApi.md#getoauthapp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
-| [**GetPageWebhookSubscription**](ConnectApi.md#getpagewebhooksubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
+| [**GetPageWebhookSubscription**](ConnectApi.md#getpagewebhooksubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription |
 | [**GetPendingOAuthData**](ConnectApi.md#getpendingoauthdata) | **GET** /v1/connect/pending-data | Get pending OAuth data |
 | [**GetPinterestBoards**](ConnectApi.md#getpinterestboards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards |
 | [**GetRedditFlairs**](ConnectApi.md#getredditflairs) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs |
@@ -60,7 +60,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListSlackChannels**](ConnectApi.md#listslackchannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker |
 | [**ListSnapchatProfiles**](ConnectApi.md#listsnapchatprofiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
 | [**ListWhatsAppPhoneNumbers**](ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
-| [**ResyncPageWebhookSubscription**](ConnectApi.md#resyncpagewebhooksubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
+| [**ResyncPageWebhookSubscription**](ConnectApi.md#resyncpagewebhooksubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks |
 | [**SelectFacebookPage**](ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**SelectGoogleAnalyticsProperty**](ConnectApi.md#selectgoogleanalyticsproperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
 | [**SelectGoogleBusinessLocation**](ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
@@ -3258,9 +3258,9 @@ catch (ApiException e)
 # **GetPageWebhookSubscription**
 > GetPageWebhookSubscription200Response GetPageWebhookSubscription (string accountId)
 
-Read a Facebook Page's webhook subscription
+Read an account's webhook subscription
 
-Returns the webhook fields Zernio's app is subscribed to on the connected Page, read live from Meta. Use it to confirm `leadgen` is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it. 
+Returns the webhook fields Zernio's app is subscribed to on the connected Page, read live from Meta. Use it to confirm `leadgen` is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it.  For an Instagram account connected through Instagram Login it returns the subscription record (`subscriptionId`) and the webhook fields Meta did not subscribe (`missingFields`). An Instagram account connected through Facebook Login returns 409: its webhooks ride the Facebook Page subscription. 
 
 ### Example
 ```csharp
@@ -3290,7 +3290,7 @@ namespace Example
 
             try
             {
-                // Read a Facebook Page's webhook subscription
+                // Read an account's webhook subscription
                 GetPageWebhookSubscription200Response result = apiInstance.GetPageWebhookSubscription(accountId);
                 Debug.WriteLine(result);
             }
@@ -3311,7 +3311,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Read a Facebook Page's webhook subscription
+    // Read an account's webhook subscription
     ApiResponse<GetPageWebhookSubscription200Response> response = apiInstance.GetPageWebhookSubscriptionWithHttpInfo(accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -3351,7 +3351,7 @@ catch (ApiException e)
 | **200** | The Page&#39;s current subscription |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The connection has no selected Page |  -  |
+| **409** | The Facebook connection has no selected Page, or the Instagram account connected through Facebook Login, is disconnected, or has no access token |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6008,9 +6008,9 @@ catch (ApiException e)
 # **ResyncPageWebhookSubscription**
 > ResyncPageWebhookSubscription200Response ResyncPageWebhookSubscription (string accountId)
 
-Re-subscribe a Facebook Page to Zernio's webhooks
+Re-subscribe an account to Zernio's webhooks
 
-Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested. 
+Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested.  For an Instagram account connected through Instagram Login, Meta can keep listing a subscription while delivering nothing, and re-sending the fields over it changes nothing. So this call deletes the subscription and creates it again, and `recreated` is true when the record id moved.  Events can be missed during the short window in between, so use it when delivery has stopped, not periodically. An Instagram account connected through Facebook Login returns 409. 
 
 ### Example
 ```csharp
@@ -6040,7 +6040,7 @@ namespace Example
 
             try
             {
-                // Re-subscribe a Facebook Page to Zernio's webhooks
+                // Re-subscribe an account to Zernio's webhooks
                 ResyncPageWebhookSubscription200Response result = apiInstance.ResyncPageWebhookSubscription(accountId);
                 Debug.WriteLine(result);
             }
@@ -6061,7 +6061,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Re-subscribe a Facebook Page to Zernio's webhooks
+    // Re-subscribe an account to Zernio's webhooks
     ApiResponse<ResyncPageWebhookSubscription200Response> response = apiInstance.ResyncPageWebhookSubscriptionWithHttpInfo(accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -6101,8 +6101,8 @@ catch (ApiException e)
 | **200** | The subscription after re-subscribing |  -  |
 | **400** | Invalid request |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The connection has no selected Page |  -  |
-| **502** | Meta rejected the subscription |  -  |
+| **409** | The Facebook connection has no selected Page, or the Instagram account connected through Facebook Login, is disconnected, or has no access token |  -  |
+| **502** | Meta rejected the subscription, or (Instagram) the account has no webhook subscription right now |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
