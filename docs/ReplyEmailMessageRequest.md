@@ -10,8 +10,9 @@ Name | Type | Description | Notes
 **Bcc** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional] 
 **ReplyTo** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional] 
 **FromName** | **string** |  | [optional] 
-**From** | **string** | Send from another address of the mailbox, listed by &#x60;GET /v1/email/send-as&#x60;. Gmail: a verified send-as alias, else 400. Outlook: any address the mailbox has Send As or Send on Behalf rights on, else 403. Omitted, the mail leaves from the mailbox address. | [optional] 
-**AppendSignature** | **bool** | Gmail only. Appends the signature of the sending address (the &#x60;from&#x60; alias, or the mailbox address) to &#x60;html&#x60; and &#x60;text&#x60;. Outlook answers 400: Graph does not expose Outlook signatures. | [optional] 
+**From** | **string** | Send from another address listed by &#x60;GET /v1/email/send-as&#x60;; on Outlook, declare a shared mailbox there first. An address not on the list answers 400, and Outlook refusing it at send time answers 403. Omitted, the mail leaves from the mailbox address. | [optional] 
+**AppendSignature** | **bool** | Appends the signature of the sending address: its Zernio default first, else its Gmail signature. 400 when it has neither. | [optional] 
+**SignatureId** | **string** | Appends this Zernio signature instead. Wins over &#x60;appendSignature&#x60;. | [optional] 
 **Subject** | **string** | Optional on replies; the provider keeps the thread subject. | 
 **Text** | **string** | Plain-text body. One of &#x60;text&#x60; or &#x60;html&#x60; is required. | [optional] 
 **Html** | **string** |  | [optional] 

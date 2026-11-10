@@ -784,6 +784,8 @@ docs/CreateEmailDraftRequest.md
 docs/CreateEmailLabel200Response.md
 docs/CreateEmailLabelRequest.md
 docs/CreateEmailLabelRequestColor.md
+docs/CreateEmailSignature201Response.md
+docs/CreateEmailSignatureRequest.md
 docs/CreateEventDestination201Response.md
 docs/CreateEventDestinationRequest.md
 docs/CreateFilePickerSession201Response.md
@@ -1000,6 +1002,8 @@ docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
 docs/DaysLive.md
 docs/DeactivateSmsRegistration200Response.md
+docs/DeclareEmailSendAs200Response.md
+docs/DeclareEmailSendAsRequest.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
@@ -1025,6 +1029,8 @@ docs/DeleteCommerceRedirect200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteEmailDraft200Response.md
 docs/DeleteEmailDraft200ResponseData.md
+docs/DeleteEmailSendAs200Response.md
+docs/DeleteEmailSendAs200ResponseData.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
 docs/DeleteGoogleBusinessReviewReply200Response.md
@@ -1114,6 +1120,8 @@ docs/EmailListMeta.md
 docs/EmailMessage.md
 docs/EmailMessagePatch.md
 docs/EmailSendAs.md
+docs/EmailSendAsSignature.md
+docs/EmailSignature.md
 docs/EmailThread.md
 docs/EnableSmsOnNumber200Response.md
 docs/EnableSmsOnNumber200ResponseReusable.md
@@ -2047,6 +2055,7 @@ docs/ListEmailLabels200Response.md
 docs/ListEmailMessages200Response.md
 docs/ListEmailSendAs200Response.md
 docs/ListEmailSendAs200ResponseMeta.md
+docs/ListEmailSignatures200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
@@ -3069,6 +3078,7 @@ docs/UpdateDiscordSettings200Response.md
 docs/UpdateDiscordSettings200ResponseAccount.md
 docs/UpdateDiscordSettingsRequest.md
 docs/UpdateEmailDraftRequest.md
+docs/UpdateEmailSignatureRequest.md
 docs/UpdateEmailThread200Response.md
 docs/UpdateFacebookPage200Response.md
 docs/UpdateFacebookPage200ResponseSelectedPage.md
@@ -4428,6 +4438,8 @@ src/Zernio.Test/Model/CreateEmailDraftRequestTests.cs
 src/Zernio.Test/Model/CreateEmailLabel200ResponseTests.cs
 src/Zernio.Test/Model/CreateEmailLabelRequestColorTests.cs
 src/Zernio.Test/Model/CreateEmailLabelRequestTests.cs
+src/Zernio.Test/Model/CreateEmailSignature201ResponseTests.cs
+src/Zernio.Test/Model/CreateEmailSignatureRequestTests.cs
 src/Zernio.Test/Model/CreateEventDestination201ResponseTests.cs
 src/Zernio.Test/Model/CreateEventDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateFilePickerSession201ResponseTests.cs
@@ -4641,6 +4653,8 @@ src/Zernio.Test/Model/CustomConversionResultTests.cs
 src/Zernio.Test/Model/CustomConversionTests.cs
 src/Zernio.Test/Model/DaysLiveTests.cs
 src/Zernio.Test/Model/DeactivateSmsRegistration200ResponseTests.cs
+src/Zernio.Test/Model/DeclareEmailSendAs200ResponseTests.cs
+src/Zernio.Test/Model/DeclareEmailSendAsRequestTests.cs
 src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaignRequestTests.cs
@@ -4666,6 +4680,8 @@ src/Zernio.Test/Model/DeleteCommerceRedirect200ResponseTests.cs
 src/Zernio.Test/Model/DeleteDiscordScheduledEvent200ResponseTests.cs
 src/Zernio.Test/Model/DeleteEmailDraft200ResponseDataTests.cs
 src/Zernio.Test/Model/DeleteEmailDraft200ResponseTests.cs
+src/Zernio.Test/Model/DeleteEmailSendAs200ResponseDataTests.cs
+src/Zernio.Test/Model/DeleteEmailSendAs200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessPlaceAction200ResponseTests.cs
 src/Zernio.Test/Model/DeleteGoogleBusinessReviewReply200ResponseTests.cs
@@ -4752,7 +4768,9 @@ src/Zernio.Test/Model/EmailLabelTests.cs
 src/Zernio.Test/Model/EmailListMetaTests.cs
 src/Zernio.Test/Model/EmailMessagePatchTests.cs
 src/Zernio.Test/Model/EmailMessageTests.cs
+src/Zernio.Test/Model/EmailSendAsSignatureTests.cs
 src/Zernio.Test/Model/EmailSendAsTests.cs
+src/Zernio.Test/Model/EmailSignatureTests.cs
 src/Zernio.Test/Model/EmailThreadTests.cs
 src/Zernio.Test/Model/EnableSmsOnNumber200ResponseReusableTests.cs
 src/Zernio.Test/Model/EnableSmsOnNumber200ResponseTests.cs
@@ -5669,6 +5687,7 @@ src/Zernio.Test/Model/ListEmailLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailMessages200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailSendAs200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListEmailSendAs200ResponseTests.cs
+src/Zernio.Test/Model/ListEmailSignatures200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseTests.cs
@@ -6669,6 +6688,7 @@ src/Zernio.Test/Model/UpdateDiscordSettings200ResponseAccountTests.cs
 src/Zernio.Test/Model/UpdateDiscordSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateDiscordSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateEmailDraftRequestTests.cs
+src/Zernio.Test/Model/UpdateEmailSignatureRequestTests.cs
 src/Zernio.Test/Model/UpdateEmailThread200ResponseTests.cs
 src/Zernio.Test/Model/UpdateFacebookPage200ResponseSelectedPageTests.cs
 src/Zernio.Test/Model/UpdateFacebookPage200ResponseTests.cs
@@ -8032,6 +8052,8 @@ src/Zernio/Model/CreateEmailDraftRequest.cs
 src/Zernio/Model/CreateEmailLabel200Response.cs
 src/Zernio/Model/CreateEmailLabelRequest.cs
 src/Zernio/Model/CreateEmailLabelRequestColor.cs
+src/Zernio/Model/CreateEmailSignature201Response.cs
+src/Zernio/Model/CreateEmailSignatureRequest.cs
 src/Zernio/Model/CreateEventDestination201Response.cs
 src/Zernio/Model/CreateEventDestinationRequest.cs
 src/Zernio/Model/CreateFilePickerSession201Response.cs
@@ -8245,6 +8267,8 @@ src/Zernio/Model/CustomConversion.cs
 src/Zernio/Model/CustomConversionResult.cs
 src/Zernio/Model/DaysLive.cs
 src/Zernio/Model/DeactivateSmsRegistration200Response.cs
+src/Zernio/Model/DeclareEmailSendAs200Response.cs
+src/Zernio/Model/DeclareEmailSendAsRequest.cs
 src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
 src/Zernio/Model/DeleteAdCampaignRequest.cs
@@ -8270,6 +8294,8 @@ src/Zernio/Model/DeleteCommerceRedirect200Response.cs
 src/Zernio/Model/DeleteDiscordScheduledEvent200Response.cs
 src/Zernio/Model/DeleteEmailDraft200Response.cs
 src/Zernio/Model/DeleteEmailDraft200ResponseData.cs
+src/Zernio/Model/DeleteEmailSendAs200Response.cs
+src/Zernio/Model/DeleteEmailSendAs200ResponseData.cs
 src/Zernio/Model/DeleteGoogleBusinessMedia200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessPlaceAction200Response.cs
 src/Zernio/Model/DeleteGoogleBusinessReviewReply200Response.cs
@@ -8357,6 +8383,8 @@ src/Zernio/Model/EmailListMeta.cs
 src/Zernio/Model/EmailMessage.cs
 src/Zernio/Model/EmailMessagePatch.cs
 src/Zernio/Model/EmailSendAs.cs
+src/Zernio/Model/EmailSendAsSignature.cs
+src/Zernio/Model/EmailSignature.cs
 src/Zernio/Model/EmailThread.cs
 src/Zernio/Model/EnableSmsOnNumber200Response.cs
 src/Zernio/Model/EnableSmsOnNumber200ResponseReusable.cs
@@ -9273,6 +9301,7 @@ src/Zernio/Model/ListEmailLabels200Response.cs
 src/Zernio/Model/ListEmailMessages200Response.cs
 src/Zernio/Model/ListEmailSendAs200Response.cs
 src/Zernio/Model/ListEmailSendAs200ResponseMeta.cs
+src/Zernio/Model/ListEmailSignatures200Response.cs
 src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
 src/Zernio/Model/ListEvents200Response.cs
@@ -10273,6 +10302,7 @@ src/Zernio/Model/UpdateDiscordSettings200Response.cs
 src/Zernio/Model/UpdateDiscordSettings200ResponseAccount.cs
 src/Zernio/Model/UpdateDiscordSettingsRequest.cs
 src/Zernio/Model/UpdateEmailDraftRequest.cs
+src/Zernio/Model/UpdateEmailSignatureRequest.cs
 src/Zernio/Model/UpdateEmailThread200Response.cs
 src/Zernio/Model/UpdateFacebookPage200Response.cs
 src/Zernio/Model/UpdateFacebookPage200ResponseSelectedPage.cs

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Provider** | **string** |  | [optional] 
 **Folders** | **List&lt;string&gt;** |  | [optional] 
 **From** | [**EmailAddress**](EmailAddress.md) |  | [optional] 
+**Sender** | [**EmailAddress**](EmailAddress.md) |  | [optional] 
 **To** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional] 
 **Cc** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional] 
 **Bcc** | [**List&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional] 

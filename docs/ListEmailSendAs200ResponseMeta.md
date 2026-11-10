@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompleteList** | **bool** | &#x60;true&#x60; when &#x60;from&#x60; must be in this list (Gmail). &#x60;false&#x60; when the provider decides at send time (Outlook). | [optional] 
-**Signatures** | **bool** | Whether &#x60;appendSignature&#x60; works on this mailbox. | [optional] 
+**List** | **string** | &#x60;provider&#x60;: the provider lists every address (Gmail), nothing can be declared. &#x60;partial&#x60;: declare the addresses the provider cannot list (Outlook). | [optional] 
+**ProviderSignatures** | **bool** | Whether the provider&#39;s own signatures appear here (Gmail). | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

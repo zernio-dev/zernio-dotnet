@@ -7,19 +7,26 @@ All URIs are relative to *https://zernio.com/api*
 | [**CancelScheduledEmail**](EmailApi.md#cancelscheduledemail) | **DELETE** /v1/email/messages/scheduled/{scheduleId} | Cancel a scheduled email |
 | [**CreateEmailDraft**](EmailApi.md#createemaildraft) | **POST** /v1/email/drafts | Create a draft |
 | [**CreateEmailLabel**](EmailApi.md#createemaillabel) | **POST** /v1/email/labels | Create a label |
+| [**CreateEmailSignature**](EmailApi.md#createemailsignature) | **POST** /v1/email/signatures | Create a signature |
+| [**DeclareEmailSendAs**](EmailApi.md#declareemailsendas) | **POST** /v1/email/send-as | Declare a send-as address |
 | [**DeleteEmailDraft**](EmailApi.md#deleteemaildraft) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft |
 | [**DeleteEmailLabel**](EmailApi.md#deleteemaillabel) | **DELETE** /v1/email/labels/{labelId} | Delete a label |
+| [**DeleteEmailSendAs**](EmailApi.md#deleteemailsendas) | **DELETE** /v1/email/send-as/{email} | Remove a declared send-as address |
+| [**DeleteEmailSignature**](EmailApi.md#deleteemailsignature) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature |
 | [**DownloadEmailAttachment**](EmailApi.md#downloademailattachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**ForwardEmailMessage**](EmailApi.md#forwardemailmessage) | **POST** /v1/email/messages/{messageId}/forward | Forward a message |
 | [**GetEmailDraft**](EmailApi.md#getemaildraft) | **GET** /v1/email/drafts/{draftId} | Get a draft |
 | [**GetEmailMessage**](EmailApi.md#getemailmessage) | **GET** /v1/email/messages/{messageId} | Get an email message |
+| [**GetEmailSignature**](EmailApi.md#getemailsignature) | **GET** /v1/email/signatures/{signatureId} | Get a signature |
 | [**GetEmailThread**](EmailApi.md#getemailthread) | **GET** /v1/email/threads/{threadId} | Get an email thread with its messages |
 | [**GetScheduledEmail**](EmailApi.md#getscheduledemail) | **GET** /v1/email/messages/scheduled/{scheduleId} | Get a scheduled email |
+| [**ImportEmailSignatures**](EmailApi.md#importemailsignatures) | **POST** /v1/email/signatures/import | Import Gmail signatures |
 | [**ListEmailDrafts**](EmailApi.md#listemaildrafts) | **GET** /v1/email/drafts | List drafts |
 | [**ListEmailFolders**](EmailApi.md#listemailfolders) | **GET** /v1/email/folders | List mailbox folders |
 | [**ListEmailLabels**](EmailApi.md#listemaillabels) | **GET** /v1/email/labels | List labels |
 | [**ListEmailMessages**](EmailApi.md#listemailmessages) | **GET** /v1/email/messages | List email messages |
 | [**ListEmailSendAs**](EmailApi.md#listemailsendas) | **GET** /v1/email/send-as | List send-as addresses |
+| [**ListEmailSignatures**](EmailApi.md#listemailsignatures) | **GET** /v1/email/signatures | List signatures |
 | [**ListEmailThreads**](EmailApi.md#listemailthreads) | **GET** /v1/email/threads | List email threads |
 | [**ListScheduledEmails**](EmailApi.md#listscheduledemails) | **GET** /v1/email/messages/scheduled | List scheduled emails |
 | [**ReplyEmailMessage**](EmailApi.md#replyemailmessage) | **POST** /v1/email/messages/{messageId}/reply | Reply to a message |
@@ -28,6 +35,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**TrashEmailMessage**](EmailApi.md#trashemailmessage) | **DELETE** /v1/email/messages/{messageId} | Move a message to trash |
 | [**UpdateEmailDraft**](EmailApi.md#updateemaildraft) | **PATCH** /v1/email/drafts/{draftId} | Update a draft |
 | [**UpdateEmailMessage**](EmailApi.md#updateemailmessage) | **PATCH** /v1/email/messages/{messageId} | Mark read or starred, label, or move a message |
+| [**UpdateEmailSignature**](EmailApi.md#updateemailsignature) | **PATCH** /v1/email/signatures/{signatureId} | Update a signature |
 | [**UpdateEmailThread**](EmailApi.md#updateemailthread) | **PATCH** /v1/email/threads/{threadId} | Update every message in a thread |
 
 <a id="cancelscheduledemail"></a>
@@ -340,6 +348,208 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createemailsignature"></a>
+# **CreateEmailSignature**
+> CreateEmailSignature201Response CreateEmailSignature (CreateEmailSignatureRequest createEmailSignatureRequest)
+
+Create a signature
+
+Stores a signature Zernio appends on any provider. Without `accountId` it is workspace-wide. `defaultFor` makes it what `appendSignature` uses for those sending addresses. Up to 50 per workspace, 100 KB of html, no scripts.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateEmailSignatureExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var createEmailSignatureRequest = new CreateEmailSignatureRequest(); // CreateEmailSignatureRequest | 
+
+            try
+            {
+                // Create a signature
+                CreateEmailSignature201Response result = apiInstance.CreateEmailSignature(createEmailSignatureRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.CreateEmailSignature: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateEmailSignatureWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a signature
+    ApiResponse<CreateEmailSignature201Response> response = apiInstance.CreateEmailSignatureWithHttpInfo(createEmailSignatureRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.CreateEmailSignatureWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createEmailSignatureRequest** | [**CreateEmailSignatureRequest**](CreateEmailSignatureRequest.md) |  |  |
+
+### Return type
+
+[**CreateEmailSignature201Response**](CreateEmailSignature201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The signature was created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="declareemailsendas"></a>
+# **DeclareEmailSendAs**
+> DeclareEmailSendAs200Response DeclareEmailSendAs (DeclareEmailSendAsRequest declareEmailSendAsRequest)
+
+Declare a send-as address
+
+Adds an address the provider cannot list, such as an Outlook shared mailbox, so `from` accepts it. It starts `unverified` and becomes `accepted` after its first send. Gmail answers 400: add aliases in Gmail settings instead. An address already listed comes back with 200.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeclareEmailSendAsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var declareEmailSendAsRequest = new DeclareEmailSendAsRequest(); // DeclareEmailSendAsRequest | 
+
+            try
+            {
+                // Declare a send-as address
+                DeclareEmailSendAs200Response result = apiInstance.DeclareEmailSendAs(declareEmailSendAsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.DeclareEmailSendAs: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeclareEmailSendAsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Declare a send-as address
+    ApiResponse<DeclareEmailSendAs200Response> response = apiInstance.DeclareEmailSendAsWithHttpInfo(declareEmailSendAsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.DeclareEmailSendAsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **declareEmailSendAsRequest** | [**DeclareEmailSendAsRequest**](DeclareEmailSendAsRequest.md) |  |  |
+
+### Return type
+
+[**DeclareEmailSendAs200Response**](DeclareEmailSendAs200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The address was already listed |  -  |
+| **201** | The address was declared |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteemaildraft"></a>
 # **DeleteEmailDraft**
 > DeleteEmailDraft200Response DeleteEmailDraft (string draftId, string accountId)
@@ -543,6 +753,208 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteemailsendas"></a>
+# **DeleteEmailSendAs**
+> DeleteEmailSendAs200Response DeleteEmailSendAs (string email, string accountId)
+
+Remove a declared send-as address
+
+Removes an address declared with `POST /v1/email/send-as`. Addresses the provider lists cannot be removed here. URL-encode the `@`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteEmailSendAsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var email = "email_example";  // string | 
+            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+
+            try
+            {
+                // Remove a declared send-as address
+                DeleteEmailSendAs200Response result = apiInstance.DeleteEmailSendAs(email, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.DeleteEmailSendAs: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteEmailSendAsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a declared send-as address
+    ApiResponse<DeleteEmailSendAs200Response> response = apiInstance.DeleteEmailSendAsWithHttpInfo(email, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.DeleteEmailSendAsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **email** | **string** |  |  |
+| **accountId** | **string** | The connected Google or Microsoft account. |  |
+
+### Return type
+
+[**DeleteEmailSendAs200Response**](DeleteEmailSendAs200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The declaration was removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteemailsignature"></a>
+# **DeleteEmailSignature**
+> DeleteEmailDraft200Response DeleteEmailSignature (string signatureId)
+
+Delete a signature
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteEmailSignatureExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var signatureId = "signatureId_example";  // string | 
+
+            try
+            {
+                // Delete a signature
+                DeleteEmailDraft200Response result = apiInstance.DeleteEmailSignature(signatureId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.DeleteEmailSignature: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteEmailSignatureWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a signature
+    ApiResponse<DeleteEmailDraft200Response> response = apiInstance.DeleteEmailSignatureWithHttpInfo(signatureId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.DeleteEmailSignatureWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **signatureId** | **string** |  |  |
+
+### Return type
+
+[**DeleteEmailDraft200Response**](DeleteEmailDraft200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The signature was deleted |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -973,6 +1385,104 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getemailsignature"></a>
+# **GetEmailSignature**
+> CreateEmailSignature201Response GetEmailSignature (string signatureId)
+
+Get a signature
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetEmailSignatureExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var signatureId = "signatureId_example";  // string | 
+
+            try
+            {
+                // Get a signature
+                CreateEmailSignature201Response result = apiInstance.GetEmailSignature(signatureId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.GetEmailSignature: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetEmailSignatureWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a signature
+    ApiResponse<CreateEmailSignature201Response> response = apiInstance.GetEmailSignatureWithHttpInfo(signatureId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.GetEmailSignatureWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **signatureId** | **string** |  |  |
+
+### Return type
+
+[**CreateEmailSignature201Response**](CreateEmailSignature201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The signature |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getemailthread"></a>
 # **GetEmailThread**
 > GetEmailThread200Response GetEmailThread (string threadId, string accountId, bool? clean = null)
@@ -1175,6 +1685,107 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="importemailsignatures"></a>
+# **ImportEmailSignatures**
+> ListEmailSignatures200Response ImportEmailSignatures (string accountId)
+
+Import Gmail signatures
+
+Copies each Gmail send-as signature into a Zernio signature on that account, the default for its address. Repeating it refreshes the copies. Outlook answers 400: Microsoft Graph does not expose signatures.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ImportEmailSignaturesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+
+            try
+            {
+                // Import Gmail signatures
+                ListEmailSignatures200Response result = apiInstance.ImportEmailSignatures(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.ImportEmailSignatures: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ImportEmailSignaturesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Import Gmail signatures
+    ApiResponse<ListEmailSignatures200Response> response = apiInstance.ImportEmailSignaturesWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.ImportEmailSignaturesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The connected Google or Microsoft account. |  |
+
+### Return type
+
+[**ListEmailSignatures200Response**](ListEmailSignatures200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The imported signatures |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1626,7 +2237,7 @@ catch (ApiException e)
 
 List send-as addresses
 
-The addresses a mailbox can send from, for the `from` field of a send or reply. Gmail lists every send-as alias with its signature, and `from` must be one of them. Outlook lists the mailbox address and its aliases; Exchange checks any other `from` at send time.
+The addresses a mailbox can send from, for `from`, each with the signature `appendSignature` would add. Gmail lists every alias itself. Outlook lists the mailbox address and its aliases, plus any address declared with `POST /v1/email/send-as`.
 
 ### Example
 ```csharp
@@ -1718,6 +2329,106 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listemailsignatures"></a>
+# **ListEmailSignatures**
+> ListEmailSignatures200Response ListEmailSignatures (string? accountId = null)
+
+List signatures
+
+Zernio-stored signatures: workspace-wide ones plus those of the accounts you can see. With `accountId`, only workspace-wide ones and that account's.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListEmailSignaturesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string? |  (optional) 
+
+            try
+            {
+                // List signatures
+                ListEmailSignatures200Response result = apiInstance.ListEmailSignatures(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.ListEmailSignatures: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListEmailSignaturesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List signatures
+    ApiResponse<ListEmailSignatures200Response> response = apiInstance.ListEmailSignaturesWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.ListEmailSignaturesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string?** |  | [optional]  |
+
+### Return type
+
+[**ListEmailSignatures200Response**](ListEmailSignatures200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The signatures |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2600,6 +3311,109 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateemailsignature"></a>
+# **UpdateEmailSignature**
+> CreateEmailSignature201Response UpdateEmailSignature (string signatureId, UpdateEmailSignatureRequest updateEmailSignatureRequest)
+
+Update a signature
+
+Changes the name, html, text or `defaultFor`. Taking an address in `defaultFor` removes it from the other signatures of the same scope.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateEmailSignatureExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var signatureId = "signatureId_example";  // string | 
+            var updateEmailSignatureRequest = new UpdateEmailSignatureRequest(); // UpdateEmailSignatureRequest | 
+
+            try
+            {
+                // Update a signature
+                CreateEmailSignature201Response result = apiInstance.UpdateEmailSignature(signatureId, updateEmailSignatureRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.UpdateEmailSignature: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateEmailSignatureWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a signature
+    ApiResponse<CreateEmailSignature201Response> response = apiInstance.UpdateEmailSignatureWithHttpInfo(signatureId, updateEmailSignatureRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.UpdateEmailSignatureWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **signatureId** | **string** |  |  |
+| **updateEmailSignatureRequest** | [**UpdateEmailSignatureRequest**](UpdateEmailSignatureRequest.md) |  |  |
+
+### Return type
+
+[**CreateEmailSignature201Response**](CreateEmailSignature201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated signature |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
