@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**AutocompleteContacts**](ContactsApi.md#autocompletecontacts) | **GET** /v1/contacts/autocomplete | Search people |
 | [**BulkCreateContacts**](ContactsApi.md#bulkcreatecontacts) | **POST** /v1/contacts/bulk | Bulk create contacts |
 | [**CreateContact**](ContactsApi.md#createcontact) | **POST** /v1/contacts | Create contact |
 | [**DeleteContact**](ContactsApi.md#deletecontact) | **DELETE** /v1/contacts/{contactId} | Delete contact |
@@ -12,6 +13,112 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListContactGroups**](ContactsApi.md#listcontactgroups) | **GET** /v1/contacts/groups | List contact groups |
 | [**ListContacts**](ContactsApi.md#listcontacts) | **GET** /v1/contacts | List contacts |
 | [**UpdateContact**](ContactsApi.md#updatecontact) | **PATCH** /v1/contacts/{contactId} | Update contact |
+
+<a id="autocompletecontacts"></a>
+# **AutocompleteContacts**
+> AutocompleteContacts200Response AutocompleteContacts (string accountId, string q, int? limit = null)
+
+Search people
+
+Finds people for an address field, read live from a Google or Microsoft account. Nothing is stored.  With the contacts area it searches the user's address book. With the directory area it also searches coworkers and the people the user mails: Microsoft ranks them by relevance, Google adds its Workspace directory and other contacts.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AutocompleteContactsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ContactsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | A Google or Microsoft account connected with the contacts or directory area.
+            var q = "q_example";  // string | What the user typed: a name or the start of an email address.
+            var limit = 10;  // int? |  (optional)  (default to 10)
+
+            try
+            {
+                // Search people
+                AutocompleteContacts200Response result = apiInstance.AutocompleteContacts(accountId, q, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ContactsApi.AutocompleteContacts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AutocompleteContactsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Search people
+    ApiResponse<AutocompleteContacts200Response> response = apiInstance.AutocompleteContactsWithHttpInfo(accountId, q, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ContactsApi.AutocompleteContactsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | A Google or Microsoft account connected with the contacts or directory area. |  |
+| **q** | **string** | What the user typed: a name or the start of an email address. |  |
+| **limit** | **int?** |  | [optional] [default to 10] |
+
+### Return type
+
+[**AutocompleteContacts200Response**](AutocompleteContacts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching people, best first, one entry per email address |  -  |
+| **400** | Invalid request, or the account is not a Google or Microsoft account |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The account was connected without the contacts or directory area |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="bulkcreatecontacts"></a>
 # **BulkCreateContacts**

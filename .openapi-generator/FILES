@@ -148,6 +148,8 @@ docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
 docs/AddDiscordMemberRole200Response.md
+docs/AddEmailSharedMailbox200Response.md
+docs/AddEmailSharedMailboxRequest.md
 docs/AddImessageGroupParticipant200Response.md
 docs/AddImessageGroupParticipantRequest.md
 docs/AddImessageSandboxContact201Response.md
@@ -234,6 +236,10 @@ docs/AttachCampaignAssetsRequest.md
 docs/AttachNumberToSipTrunk200Response.md
 docs/AttachNumberToSipTrunkRequest.md
 docs/AutoRecharge.md
+docs/AutocompleteContacts200Response.md
+docs/AutocompleteContacts200ResponseDataInner.md
+docs/AutocompleteContacts200ResponseMeta.md
+docs/AutocompleteContacts200ResponseMetaSourcesInner.md
 docs/Automation.md
 docs/AutomationAction.md
 docs/AutomationActionAllOfAdAccount.md
@@ -1167,6 +1173,7 @@ docs/EmailMessage.md
 docs/EmailMessagePatch.md
 docs/EmailSendAs.md
 docs/EmailSendAsSignature.md
+docs/EmailSharedMailbox.md
 docs/EmailSignature.md
 docs/EmailThread.md
 docs/EnableSmsOnNumber200Response.md
@@ -2131,6 +2138,7 @@ docs/ListEmailLabels200Response.md
 docs/ListEmailMessages200Response.md
 docs/ListEmailSendAs200Response.md
 docs/ListEmailSendAs200ResponseMeta.md
+docs/ListEmailSharedMailboxes200Response.md
 docs/ListEmailSignatures200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
@@ -3925,6 +3933,8 @@ src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
 src/Zernio.Test/Model/AddDiscordMemberRole200ResponseTests.cs
+src/Zernio.Test/Model/AddEmailSharedMailbox200ResponseTests.cs
+src/Zernio.Test/Model/AddEmailSharedMailboxRequestTests.cs
 src/Zernio.Test/Model/AddImessageGroupParticipant200ResponseTests.cs
 src/Zernio.Test/Model/AddImessageGroupParticipantRequestTests.cs
 src/Zernio.Test/Model/AddImessageSandboxContact201ResponseTests.cs
@@ -4010,6 +4020,10 @@ src/Zernio.Test/Model/AttachCampaignAssetsRequestTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/AttachNumberToSipTrunkRequestTests.cs
 src/Zernio.Test/Model/AutoRechargeTests.cs
+src/Zernio.Test/Model/AutocompleteContacts200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/AutocompleteContacts200ResponseMetaSourcesInnerTests.cs
+src/Zernio.Test/Model/AutocompleteContacts200ResponseMetaTests.cs
+src/Zernio.Test/Model/AutocompleteContacts200ResponseTests.cs
 src/Zernio.Test/Model/AutomationActionAllOfAdAccountTests.cs
 src/Zernio.Test/Model/AutomationActionAllOfSubjectTests.cs
 src/Zernio.Test/Model/AutomationActionResultTests.cs
@@ -4922,6 +4936,7 @@ src/Zernio.Test/Model/EmailMessagePatchTests.cs
 src/Zernio.Test/Model/EmailMessageTests.cs
 src/Zernio.Test/Model/EmailSendAsSignatureTests.cs
 src/Zernio.Test/Model/EmailSendAsTests.cs
+src/Zernio.Test/Model/EmailSharedMailboxTests.cs
 src/Zernio.Test/Model/EmailSignatureTests.cs
 src/Zernio.Test/Model/EmailThreadTests.cs
 src/Zernio.Test/Model/EnableSmsOnNumber200ResponseReusableTests.cs
@@ -5869,6 +5884,7 @@ src/Zernio.Test/Model/ListEmailLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailMessages200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailSendAs200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListEmailSendAs200ResponseTests.cs
+src/Zernio.Test/Model/ListEmailSharedMailboxes200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailSignatures200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
@@ -7645,6 +7661,8 @@ src/Zernio/Model/AddConversionAssociations200Response.cs
 src/Zernio/Model/AddConversionAssociations200ResponseFailedInner.cs
 src/Zernio/Model/AddConversionAssociationsRequest.cs
 src/Zernio/Model/AddDiscordMemberRole200Response.cs
+src/Zernio/Model/AddEmailSharedMailbox200Response.cs
+src/Zernio/Model/AddEmailSharedMailboxRequest.cs
 src/Zernio/Model/AddImessageGroupParticipant200Response.cs
 src/Zernio/Model/AddImessageGroupParticipantRequest.cs
 src/Zernio/Model/AddImessageSandboxContact201Response.cs
@@ -7730,6 +7748,10 @@ src/Zernio/Model/AttachCampaignAssetsRequest.cs
 src/Zernio/Model/AttachNumberToSipTrunk200Response.cs
 src/Zernio/Model/AttachNumberToSipTrunkRequest.cs
 src/Zernio/Model/AutoRecharge.cs
+src/Zernio/Model/AutocompleteContacts200Response.cs
+src/Zernio/Model/AutocompleteContacts200ResponseDataInner.cs
+src/Zernio/Model/AutocompleteContacts200ResponseMeta.cs
+src/Zernio/Model/AutocompleteContacts200ResponseMetaSourcesInner.cs
 src/Zernio/Model/Automation.cs
 src/Zernio/Model/AutomationAction.cs
 src/Zernio/Model/AutomationActionAllOfAdAccount.cs
@@ -8642,6 +8664,7 @@ src/Zernio/Model/EmailMessage.cs
 src/Zernio/Model/EmailMessagePatch.cs
 src/Zernio/Model/EmailSendAs.cs
 src/Zernio/Model/EmailSendAsSignature.cs
+src/Zernio/Model/EmailSharedMailbox.cs
 src/Zernio/Model/EmailSignature.cs
 src/Zernio/Model/EmailThread.cs
 src/Zernio/Model/EnableSmsOnNumber200Response.cs
@@ -9589,6 +9612,7 @@ src/Zernio/Model/ListEmailLabels200Response.cs
 src/Zernio/Model/ListEmailMessages200Response.cs
 src/Zernio/Model/ListEmailSendAs200Response.cs
 src/Zernio/Model/ListEmailSendAs200ResponseMeta.cs
+src/Zernio/Model/ListEmailSharedMailboxes200Response.cs
 src/Zernio/Model/ListEmailSignatures200Response.cs
 src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
