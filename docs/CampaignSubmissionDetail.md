@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ParticipantId** | **string** |  | 
 **CreatorId** | **string** |  | 
 **AccountId** | **string** | The creator account the post was published from. | 
+**HasSparkCode** | **bool** | The creator pasted a TikTok Spark code for this post, so it can launch as a Spark Ad. The code itself is never returned. | [optional] 
 **Platform** | **string** |  | 
 **PlatformPostId** | **string** |  | 
 **PlatformPostUrl** | **string** |  | 
@@ -34,9 +35,10 @@ Name | Type | Description | Notes
 **AuthenticityScore** | **int** |  | 
 **AuthenticityConfidence** | **decimal** |  | 
 **Flags** | [**List&lt;CampaignSubmissionFlag&gt;**](CampaignSubmissionFlag.md) |  | 
+**DraftId** | **string** | The approved draft this post publishes, on a campaign with &#x60;requireDraftApproval&#x60;. | 
 **CreatedAt** | **DateTime** |  | 
 **UpdatedAt** | **DateTime** |  | 
-**Creator** | [**WebhookPayloadCampaignSubmissionCreator**](WebhookPayloadCampaignSubmissionCreator.md) |  | 
+**Creator** | [**CreatorCampaignAdResultsSubmissionsInnerCreator**](CreatorCampaignAdResultsSubmissionsInnerCreator.md) |  | 
 **Authenticity** | [**CampaignSubmissionAuthenticity**](CampaignSubmissionAuthenticity.md) |  | 
 **EarnedCents** | **int** | approvedCents once approved, otherwise accruedCents. | 
 **ReleasedCents** | **int** | Approved cents whose hold is over, so payable or already paid out. 0 unless approved. | 

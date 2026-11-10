@@ -48,12 +48,23 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCallTranscriptSegment**](WebhookEventsApi.md#oncalltranscriptsegment) | **POST** /call.transcript_segment | Call transcript segment event |
 | [**OnCampaignBudgetDepleted**](WebhookEventsApi.md#oncampaignbudgetdepleted) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
 | [**OnCampaignCreated**](WebhookEventsApi.md#oncampaigncreated) | **POST** /campaign.created | Campaign created event |
+| [**OnCampaignDraftApproved**](WebhookEventsApi.md#oncampaigndraftapproved) | **POST** /campaign_draft.approved | Campaign draft approved event |
+| [**OnCampaignDraftRejected**](WebhookEventsApi.md#oncampaigndraftrejected) | **POST** /campaign_draft.rejected | Campaign draft rejected event |
+| [**OnCampaignDraftRevisionRequested**](WebhookEventsApi.md#oncampaigndraftrevisionrequested) | **POST** /campaign_draft.revision_requested | Campaign draft revision requested event |
+| [**OnCampaignDraftSubmitted**](WebhookEventsApi.md#oncampaigndraftsubmitted) | **POST** /campaign_draft.submitted | Campaign draft submitted event |
+| [**OnCampaignParticipantApproved**](WebhookEventsApi.md#oncampaignparticipantapproved) | **POST** /campaign_participant.approved | Campaign participant approved event |
+| [**OnCampaignParticipantDenied**](WebhookEventsApi.md#oncampaignparticipantdenied) | **POST** /campaign_participant.denied | Campaign participant denied event |
 | [**OnCampaignParticipantJoined**](WebhookEventsApi.md#oncampaignparticipantjoined) | **POST** /campaign_participant.joined | Campaign participant joined event |
+| [**OnCampaignParticipantPending**](WebhookEventsApi.md#oncampaignparticipantpending) | **POST** /campaign_participant.pending | Campaign participant pending event |
 | [**OnCampaignParticipantRemoved**](WebhookEventsApi.md#oncampaignparticipantremoved) | **POST** /campaign_participant.removed | Campaign participant removed event |
 | [**OnCampaignParticipantSuspended**](WebhookEventsApi.md#oncampaignparticipantsuspended) | **POST** /campaign_participant.suspended | Campaign participant suspended event |
 | [**OnCampaignPayoutFailed**](WebhookEventsApi.md#oncampaignpayoutfailed) | **POST** /campaign_payout.failed | Campaign payout failed event |
 | [**OnCampaignPayoutPayable**](WebhookEventsApi.md#oncampaignpayoutpayable) | **POST** /campaign_payout.payable | Campaign payout payable event |
 | [**OnCampaignPayoutSettled**](WebhookEventsApi.md#oncampaignpayoutsettled) | **POST** /campaign_payout.settled | Campaign payout settled event |
+| [**OnCampaignSampleApproved**](WebhookEventsApi.md#oncampaignsampleapproved) | **POST** /campaign_sample.approved | Campaign sample approved event |
+| [**OnCampaignSampleDeclined**](WebhookEventsApi.md#oncampaignsampledeclined) | **POST** /campaign_sample.declined | Campaign sample declined event |
+| [**OnCampaignSampleRequested**](WebhookEventsApi.md#oncampaignsamplerequested) | **POST** /campaign_sample.requested | Campaign sample requested event |
+| [**OnCampaignSampleShipped**](WebhookEventsApi.md#oncampaignsampleshipped) | **POST** /campaign_sample.shipped | Campaign sample shipped event |
 | [**OnCampaignSubmissionApproved**](WebhookEventsApi.md#oncampaignsubmissionapproved) | **POST** /campaign_submission.approved | Campaign submission approved event |
 | [**OnCampaignSubmissionFlagged**](WebhookEventsApi.md#oncampaignsubmissionflagged) | **POST** /campaign_submission.flagged | Campaign submission flagged event |
 | [**OnCampaignSubmissionPendingReview**](WebhookEventsApi.md#oncampaignsubmissionpendingreview) | **POST** /campaign_submission.pending_review | Campaign submission pending review event |
@@ -4284,6 +4295,570 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncampaigndraftapproved"></a>
+# **OnCampaignDraftApproved**
+> void OnCampaignDraftApproved (WebhookPayloadCampaignDraft webhookPayloadCampaignDraft)
+
+Campaign draft approved event
+
+You approved a draft version.  ### Effect  The creator can now publish it and submit the post with its `draftId`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignDraftApprovedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignDraft = new WebhookPayloadCampaignDraft(); // WebhookPayloadCampaignDraft | 
+
+            try
+            {
+                // Campaign draft approved event
+                apiInstance.OnCampaignDraftApproved(webhookPayloadCampaignDraft);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftApproved: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignDraftApprovedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign draft approved event
+    apiInstance.OnCampaignDraftApprovedWithHttpInfo(webhookPayloadCampaignDraft);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftApprovedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignDraft** | [**WebhookPayloadCampaignDraft**](WebhookPayloadCampaignDraft.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaigndraftrejected"></a>
+# **OnCampaignDraftRejected**
+> void OnCampaignDraftRejected (WebhookPayloadCampaignDraft webhookPayloadCampaignDraft)
+
+Campaign draft rejected event
+
+You rejected a draft version.  ### Effect  It can never back a post, and it gets no new version. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignDraftRejectedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignDraft = new WebhookPayloadCampaignDraft(); // WebhookPayloadCampaignDraft | 
+
+            try
+            {
+                // Campaign draft rejected event
+                apiInstance.OnCampaignDraftRejected(webhookPayloadCampaignDraft);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftRejected: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignDraftRejectedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign draft rejected event
+    apiInstance.OnCampaignDraftRejectedWithHttpInfo(webhookPayloadCampaignDraft);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftRejectedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignDraft** | [**WebhookPayloadCampaignDraft**](WebhookPayloadCampaignDraft.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaigndraftrevisionrequested"></a>
+# **OnCampaignDraftRevisionRequested**
+> void OnCampaignDraftRevisionRequested (WebhookPayloadCampaignDraft webhookPayloadCampaignDraft)
+
+Campaign draft revision requested event
+
+You asked for changes to a draft version.  ### Comments  `draft.comments` lists your notes, each with `atMs` for the moment of the video it points at, or null for a general note. The creator can upload one new version of it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignDraftRevisionRequestedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignDraft = new WebhookPayloadCampaignDraft(); // WebhookPayloadCampaignDraft | 
+
+            try
+            {
+                // Campaign draft revision requested event
+                apiInstance.OnCampaignDraftRevisionRequested(webhookPayloadCampaignDraft);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftRevisionRequested: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignDraftRevisionRequestedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign draft revision requested event
+    apiInstance.OnCampaignDraftRevisionRequestedWithHttpInfo(webhookPayloadCampaignDraft);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftRevisionRequestedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignDraft** | [**WebhookPayloadCampaignDraft**](WebhookPayloadCampaignDraft.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaigndraftsubmitted"></a>
+# **OnCampaignDraftSubmitted**
+> void OnCampaignDraftSubmitted (WebhookPayloadCampaignDraft webhookPayloadCampaignDraft)
+
+Campaign draft submitted event
+
+A creator uploaded a draft, or a new version of one, on a campaign with `requireDraftApproval`.  ### Versions  `draft.version` is 1 for a new draft, higher for a new version answering your requested changes, and `draft.revisionOf` names the version it answers. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignDraftSubmittedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignDraft = new WebhookPayloadCampaignDraft(); // WebhookPayloadCampaignDraft | 
+
+            try
+            {
+                // Campaign draft submitted event
+                apiInstance.OnCampaignDraftSubmitted(webhookPayloadCampaignDraft);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftSubmitted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignDraftSubmittedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign draft submitted event
+    apiInstance.OnCampaignDraftSubmittedWithHttpInfo(webhookPayloadCampaignDraft);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignDraftSubmittedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignDraft** | [**WebhookPayloadCampaignDraft**](WebhookPayloadCampaignDraft.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignparticipantapproved"></a>
+# **OnCampaignParticipantApproved**
+> void OnCampaignParticipantApproved (WebhookPayloadCampaignParticipant webhookPayloadCampaignParticipant)
+
+Campaign participant approved event
+
+You accepted a creator who asked to join.  ### Effect  They are now `active` and `participant.joinedAt` is set. This event replaces `campaign_participant.joined` for them, so it fires instead of it, never with it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignParticipantApprovedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignParticipant = new WebhookPayloadCampaignParticipant(); // WebhookPayloadCampaignParticipant | 
+
+            try
+            {
+                // Campaign participant approved event
+                apiInstance.OnCampaignParticipantApproved(webhookPayloadCampaignParticipant);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantApproved: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignParticipantApprovedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign participant approved event
+    apiInstance.OnCampaignParticipantApprovedWithHttpInfo(webhookPayloadCampaignParticipant);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantApprovedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignParticipant** | [**WebhookPayloadCampaignParticipant**](WebhookPayloadCampaignParticipant.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignparticipantdenied"></a>
+# **OnCampaignParticipantDenied**
+> void OnCampaignParticipantDenied (WebhookPayloadCampaignParticipant webhookPayloadCampaignParticipant)
+
+Campaign participant denied event
+
+You turned down a creator who asked to join.  ### Effect  They cannot submit anything to this campaign. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignParticipantDeniedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignParticipant = new WebhookPayloadCampaignParticipant(); // WebhookPayloadCampaignParticipant | 
+
+            try
+            {
+                // Campaign participant denied event
+                apiInstance.OnCampaignParticipantDenied(webhookPayloadCampaignParticipant);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantDenied: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignParticipantDeniedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign participant denied event
+    apiInstance.OnCampaignParticipantDeniedWithHttpInfo(webhookPayloadCampaignParticipant);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantDeniedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignParticipant** | [**WebhookPayloadCampaignParticipant**](WebhookPayloadCampaignParticipant.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="oncampaignparticipantjoined"></a>
 # **OnCampaignParticipantJoined**
 > void OnCampaignParticipantJoined (WebhookPayloadCampaignParticipant webhookPayloadCampaignParticipant)
@@ -4346,6 +4921,100 @@ try
 catch (ApiException e)
 {
     Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantJoinedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignParticipant** | [**WebhookPayloadCampaignParticipant**](WebhookPayloadCampaignParticipant.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignparticipantpending"></a>
+# **OnCampaignParticipantPending**
+> void OnCampaignParticipantPending (WebhookPayloadCampaignParticipant webhookPayloadCampaignParticipant)
+
+Campaign participant pending event
+
+A creator asked to join a campaign that reviews creators.  ### When it fires  A creator joined from the open link of a campaign whose `joinApproval` is `manual`. They wait as `pending` until you approve or deny them, and they do not take a place under `maxParticipants` while they wait. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignParticipantPendingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignParticipant = new WebhookPayloadCampaignParticipant(); // WebhookPayloadCampaignParticipant | 
+
+            try
+            {
+                // Campaign participant pending event
+                apiInstance.OnCampaignParticipantPending(webhookPayloadCampaignParticipant);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantPending: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignParticipantPendingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign participant pending event
+    apiInstance.OnCampaignParticipantPendingWithHttpInfo(webhookPayloadCampaignParticipant);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignParticipantPendingWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -4826,6 +5495,382 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadCampaignPayout** | [**WebhookPayloadCampaignPayout**](WebhookPayloadCampaignPayout.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignsampleapproved"></a>
+# **OnCampaignSampleApproved**
+> void OnCampaignSampleApproved (WebhookPayloadCampaignSample webhookPayloadCampaignSample)
+
+Campaign sample approved event
+
+You approved a sample request.  ### Discount code  `sample.discountCode` is the single-use, 100% off code created in your store for that product. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignSampleApprovedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignSample = new WebhookPayloadCampaignSample(); // WebhookPayloadCampaignSample | 
+
+            try
+            {
+                // Campaign sample approved event
+                apiInstance.OnCampaignSampleApproved(webhookPayloadCampaignSample);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleApproved: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignSampleApprovedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign sample approved event
+    apiInstance.OnCampaignSampleApprovedWithHttpInfo(webhookPayloadCampaignSample);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleApprovedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignSample** | [**WebhookPayloadCampaignSample**](WebhookPayloadCampaignSample.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignsampledeclined"></a>
+# **OnCampaignSampleDeclined**
+> void OnCampaignSampleDeclined (WebhookPayloadCampaignSample webhookPayloadCampaignSample)
+
+Campaign sample declined event
+
+You declined a sample request.  ### Effect  `sample.declineReason` says why. The creator can ask for the same product again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignSampleDeclinedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignSample = new WebhookPayloadCampaignSample(); // WebhookPayloadCampaignSample | 
+
+            try
+            {
+                // Campaign sample declined event
+                apiInstance.OnCampaignSampleDeclined(webhookPayloadCampaignSample);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleDeclined: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignSampleDeclinedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign sample declined event
+    apiInstance.OnCampaignSampleDeclinedWithHttpInfo(webhookPayloadCampaignSample);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleDeclinedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignSample** | [**WebhookPayloadCampaignSample**](WebhookPayloadCampaignSample.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignsamplerequested"></a>
+# **OnCampaignSampleRequested**
+> void OnCampaignSampleRequested (WebhookPayloadCampaignSample webhookPayloadCampaignSample)
+
+Campaign sample requested event
+
+A creator asked for one of the campaign's `sampleProducts`, with a shipping address. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignSampleRequestedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignSample = new WebhookPayloadCampaignSample(); // WebhookPayloadCampaignSample | 
+
+            try
+            {
+                // Campaign sample requested event
+                apiInstance.OnCampaignSampleRequested(webhookPayloadCampaignSample);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleRequested: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignSampleRequestedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign sample requested event
+    apiInstance.OnCampaignSampleRequestedWithHttpInfo(webhookPayloadCampaignSample);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleRequestedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignSample** | [**WebhookPayloadCampaignSample**](WebhookPayloadCampaignSample.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignsampleshipped"></a>
+# **OnCampaignSampleShipped**
+> void OnCampaignSampleShipped (WebhookPayloadCampaignSample webhookPayloadCampaignSample)
+
+Campaign sample shipped event
+
+You marked an approved sample as shipped.  ### Tracking  `sample.trackingUrl` is set when you gave one. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignSampleShippedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignSample = new WebhookPayloadCampaignSample(); // WebhookPayloadCampaignSample | 
+
+            try
+            {
+                // Campaign sample shipped event
+                apiInstance.OnCampaignSampleShipped(webhookPayloadCampaignSample);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleShipped: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignSampleShippedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign sample shipped event
+    apiInstance.OnCampaignSampleShippedWithHttpInfo(webhookPayloadCampaignSample);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignSampleShippedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignSample** | [**WebhookPayloadCampaignSample**](WebhookPayloadCampaignSample.md) |  |  |
 
 ### Return type
 

@@ -5,6 +5,9 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**ActivateCreatorCampaign**](CreatorCampaignsApi.md#activatecreatorcampaign) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign |
+| [**ApproveCampaignDraft**](CreatorCampaignsApi.md#approvecampaigndraft) | **POST** /v1/creator-campaigns/{campaignId}/drafts/{draftId}/approve | Approve campaign draft |
+| [**ApproveCampaignParticipant**](CreatorCampaignsApi.md#approvecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/approve | Approve pending campaign participant |
+| [**ApproveCampaignSample**](CreatorCampaignsApi.md#approvecampaignsample) | **POST** /v1/creator-campaigns/{campaignId}/samples/{sampleId}/approve | Approve campaign sample request |
 | [**ApproveCampaignSubmission**](CreatorCampaignsApi.md#approvecampaignsubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/approve | Approve campaign submission |
 | [**CloseCreatorCampaign**](CreatorCampaignsApi.md#closecreatorcampaign) | **POST** /v1/creator-campaigns/{campaignId}/close | Close creator campaign |
 | [**CreateCampaignAdjustment**](CreatorCampaignsApi.md#createcampaignadjustment) | **POST** /v1/creator-campaigns/{campaignId}/adjustments | Create campaign adjustment |
@@ -12,14 +15,22 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateCampaignParticipant**](CreatorCampaignsApi.md#createcampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants | Invite campaign participant |
 | [**CreateCampaignPayoutBatch**](CreatorCampaignsApi.md#createcampaignpayoutbatch) | **POST** /v1/creator-campaigns/{campaignId}/payout-batches | Pay creators with one card payment |
 | [**CreateCreatorCampaign**](CreatorCampaignsApi.md#createcreatorcampaign) | **POST** /v1/creator-campaigns | Create creator campaign |
+| [**DeclineCampaignSample**](CreatorCampaignsApi.md#declinecampaignsample) | **POST** /v1/creator-campaigns/{campaignId}/samples/{sampleId}/decline | Decline campaign sample request |
+| [**DenyCampaignParticipant**](CreatorCampaignsApi.md#denycampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/deny | Deny pending campaign participant |
+| [**GetCampaignAdResults**](CreatorCampaignsApi.md#getcampaignadresults) | **GET** /v1/creator-campaigns/{campaignId}/ad-results | Get campaign ad results |
+| [**GetCampaignDraft**](CreatorCampaignsApi.md#getcampaigndraft) | **GET** /v1/creator-campaigns/{campaignId}/drafts/{draftId} | Get campaign draft |
 | [**GetCampaignParticipant**](CreatorCampaignsApi.md#getcampaignparticipant) | **GET** /v1/creator-campaigns/{campaignId}/participants/{participantId} | Get campaign participant |
 | [**GetCampaignReport**](CreatorCampaignsApi.md#getcampaignreport) | **GET** /v1/creator-campaigns/{campaignId}/report | Get campaign report |
 | [**GetCampaignSubmission**](CreatorCampaignsApi.md#getcampaignsubmission) | **GET** /v1/creator-campaigns/{campaignId}/submissions/{submissionId} | Get campaign submission |
 | [**GetCreatorCampaign**](CreatorCampaignsApi.md#getcreatorcampaign) | **GET** /v1/creator-campaigns/{campaignId} | Get creator campaign |
+| [**LaunchCampaignAds**](CreatorCampaignsApi.md#launchcampaignads) | **POST** /v1/creator-campaigns/{campaignId}/ads/launch | Launch campaign posts as ads |
+| [**ListCampaignDrafts**](CreatorCampaignsApi.md#listcampaigndrafts) | **GET** /v1/creator-campaigns/{campaignId}/drafts | List campaign drafts |
 | [**ListCampaignLedger**](CreatorCampaignsApi.md#listcampaignledger) | **GET** /v1/creator-campaigns/{campaignId}/ledger | List campaign ledger |
+| [**ListCampaignOrders**](CreatorCampaignsApi.md#listcampaignorders) | **GET** /v1/creator-campaigns/{campaignId}/orders | List campaign orders |
 | [**ListCampaignParticipants**](CreatorCampaignsApi.md#listcampaignparticipants) | **GET** /v1/creator-campaigns/{campaignId}/participants | List campaign participants |
 | [**ListCampaignPayables**](CreatorCampaignsApi.md#listcampaignpayables) | **GET** /v1/creator-campaigns/{campaignId}/payables | List campaign payables |
 | [**ListCampaignPayoutBatches**](CreatorCampaignsApi.md#listcampaignpayoutbatches) | **GET** /v1/creator-campaigns/{campaignId}/payout-batches | List payout batches |
+| [**ListCampaignSamples**](CreatorCampaignsApi.md#listcampaignsamples) | **GET** /v1/creator-campaigns/{campaignId}/samples | List campaign sample requests |
 | [**ListCampaignSubmissions**](CreatorCampaignsApi.md#listcampaignsubmissions) | **GET** /v1/creator-campaigns/{campaignId}/submissions | List campaign submissions |
 | [**ListCreatorCampaigns**](CreatorCampaignsApi.md#listcreatorcampaigns) | **GET** /v1/creator-campaigns | List creator campaigns |
 | [**MoveCampaignParticipant**](CreatorCampaignsApi.md#movecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign |
@@ -27,11 +38,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**PreviewCampaignPayoutBatch**](CreatorCampaignsApi.md#previewcampaignpayoutbatch) | **POST** /v1/creator-campaigns/{campaignId}/payout-batches/preview | Preview a payout batch |
 | [**RaiseCreatorCampaignBudget**](CreatorCampaignsApi.md#raisecreatorcampaignbudget) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget |
 | [**ReinstateCampaignParticipant**](CreatorCampaignsApi.md#reinstatecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/reinstate | Reinstate campaign participant |
+| [**RejectCampaignDraft**](CreatorCampaignsApi.md#rejectcampaigndraft) | **POST** /v1/creator-campaigns/{campaignId}/drafts/{draftId}/reject | Reject campaign draft |
 | [**RejectCampaignSubmission**](CreatorCampaignsApi.md#rejectcampaignsubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reject | Reject campaign submission |
 | [**RemoveCampaignParticipant**](CreatorCampaignsApi.md#removecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/remove | Remove campaign participant |
 | [**ReopenCampaignSubmission**](CreatorCampaignsApi.md#reopencampaignsubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission |
+| [**RequestCampaignDraftRevision**](CreatorCampaignsApi.md#requestcampaigndraftrevision) | **POST** /v1/creator-campaigns/{campaignId}/drafts/{draftId}/request-revision | Request changes on a campaign draft |
 | [**ResendCampaignParticipantInvite**](CreatorCampaignsApi.md#resendcampaignparticipantinvite) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite | Resend campaign participant invite |
 | [**SettleCampaignParticipant**](CreatorCampaignsApi.md#settlecampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant |
+| [**ShipCampaignSample**](CreatorCampaignsApi.md#shipcampaignsample) | **POST** /v1/creator-campaigns/{campaignId}/samples/{sampleId}/ship | Mark campaign sample shipped |
 | [**SuspendCampaignParticipant**](CreatorCampaignsApi.md#suspendcampaignparticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/suspend | Suspend campaign participant |
 | [**UpdateCreatorCampaign**](CreatorCampaignsApi.md#updatecreatorcampaign) | **PATCH** /v1/creator-campaigns/{campaignId} | Update creator campaign |
 
@@ -132,9 +146,333 @@ catch (ApiException e)
 | **200** | Campaign |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="approvecampaigndraft"></a>
+# **ApproveCampaignDraft**
+> ApproveCampaignDraft200Response ApproveCampaignDraft (string campaignId, string draftId, string? idempotencyKey = null)
+
+Approve campaign draft
+
+Approves a `submitted` draft version, emails the creator and fires `campaign_draft.approved`. The creator can then publish it and submit the live post with this `draftId`; each approved draft backs one post only.  Each version is decided once: a version that is no longer `submitted` answers 409. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ApproveCampaignDraftExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var draftId = "draftId_example";  // string | Draft version ID.
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Approve campaign draft
+                ApproveCampaignDraft200Response result = apiInstance.ApproveCampaignDraft(campaignId, draftId, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ApproveCampaignDraft: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ApproveCampaignDraftWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Approve campaign draft
+    ApiResponse<ApproveCampaignDraft200Response> response = apiInstance.ApproveCampaignDraftWithHttpInfo(campaignId, draftId, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ApproveCampaignDraftWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **draftId** | **string** | Draft version ID. |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ApproveCampaignDraft200Response**](ApproveCampaignDraft200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Draft approved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="approvecampaignparticipant"></a>
+# **ApproveCampaignParticipant**
+> GetCampaignParticipant200Response ApproveCampaignParticipant (string campaignId, string participantId, string? idempotencyKey = null)
+
+Approve pending campaign participant
+
+Lets a `pending` creator into the campaign: they become `active`, `joinedAt` is set, the creator is emailed and `campaign_participant.approved` fires (not `campaign_participant.joined`).  A creator is `pending` when they joined through the open link of a campaign with `joinApproval: manual`. Personal invites are never held.  ### Creator limit  Pending creators do not count toward `caps.maxParticipants`; the limit is checked here instead. A full campaign refuses the approval with 403 `feature_not_available` and the creator stays `pending`.  ### Errors  - 403 `feature_not_available`: the campaign reached `caps.maxParticipants`. - 409 `invalid_resource_state`: the participant is not `pending`, or the campaign is closed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ApproveCampaignParticipantExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var participantId = "participantId_example";  // string | Participant ID.
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Approve pending campaign participant
+                GetCampaignParticipant200Response result = apiInstance.ApproveCampaignParticipant(campaignId, participantId, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ApproveCampaignParticipant: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ApproveCampaignParticipantWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Approve pending campaign participant
+    ApiResponse<GetCampaignParticipant200Response> response = apiInstance.ApproveCampaignParticipantWithHttpInfo(campaignId, participantId, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ApproveCampaignParticipantWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **participantId** | **string** | Participant ID. |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**GetCampaignParticipant200Response**](GetCampaignParticipant200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Participant approved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="approvecampaignsample"></a>
+# **ApproveCampaignSample**
+> ApproveCampaignSample200Response ApproveCampaignSample (string campaignId, string sampleId, string? idempotencyKey = null)
+
+Approve campaign sample request
+
+Approves a `pending` sample request. Zernio creates a 100%-off, single-use discount code (`SAMPLE-XXXXXXXX`) limited to the requested product in the campaign's store (Shopify or WooCommerce), returns it as `discountCode`, emails it to the creator and fires `campaign_sample.approved`. The creator redeems it at checkout.  The code is created before the request changes, so when the store refuses (missing discount permission, an unsupported store, a store error) its error is returned and the request stays `pending`. The approval also starts the `sampleContentDueDays` clock behind `contentDueAt` and `contentOwed`.  ### Errors  - 400 `platform_not_supported`: the store cannot create discounts. - 403: the store has not granted the permission discounts need. - 409 `invalid_resource_state`: the request is not `pending`. - 502 `platform_api_error`: the store is unavailable. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ApproveCampaignSampleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var sampleId = "sampleId_example";  // string | Sample request ID.
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Approve campaign sample request
+                ApproveCampaignSample200Response result = apiInstance.ApproveCampaignSample(campaignId, sampleId, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ApproveCampaignSample: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ApproveCampaignSampleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Approve campaign sample request
+    ApiResponse<ApproveCampaignSample200Response> response = apiInstance.ApproveCampaignSampleWithHttpInfo(campaignId, sampleId, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ApproveCampaignSampleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **sampleId** | **string** | Sample request ID. |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ApproveCampaignSample200Response**](ApproveCampaignSample200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample approved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
+| **502** | The store did not answer (&#x60;platform_api_error&#x60;). No code was created and the request stays &#x60;pending&#x60;. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -239,8 +577,8 @@ catch (ApiException e)
 | **200** | Submission approved |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 | **409** | The campaign or submission is not in a state that allows approval, or the same post is already approved in another of your campaigns (&#x60;invalid_resource_state&#x60;, \&quot;This post is already approved in another campaign of yours.\&quot;). Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
@@ -343,9 +681,9 @@ catch (ApiException e)
 | **200** | Campaign |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -450,9 +788,9 @@ catch (ApiException e)
 | **201** | Adjustment posted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -554,9 +892,9 @@ catch (ApiException e)
 | **201** | Invite link created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -661,9 +999,9 @@ catch (ApiException e)
 | **201** | Participant invited |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -771,8 +1109,8 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Over the instant payout limit or no saved card (code &#x60;payment_required&#x60;), or the bank declined the charge (code &#x60;card_declined&#x60;). |  -  |
 | **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **429** | Code &#x60;payment_attempts_limited&#x60;: five card payments of the billing owner (top-ups, auto top-ups, payout batches paid by card, cards that failed to save) were declined within 24 hours, so new card payments are refused without reaching the bank until 24 hours after the fifth decline. Nothing was charged.  The message is \&quot;Too many declined payments. Try again tomorrow or contact support.\&quot; &#x60;Retry-After&#x60; and &#x60;details.retryAt&#x60; say when card payments are tried again.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -876,10 +1214,439 @@ catch (ApiException e)
 | **201** | Campaign created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="declinecampaignsample"></a>
+# **DeclineCampaignSample**
+> ApproveCampaignSample200Response DeclineCampaignSample (string campaignId, string sampleId, DeclineCampaignSampleRequest declineCampaignSampleRequest, string? idempotencyKey = null)
+
+Decline campaign sample request
+
+Declines a `pending` sample request with a reason, emails the creator and fires `campaign_sample.declined`. The creator can ask for the same product again. Any other status answers 409. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeclineCampaignSampleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var sampleId = "sampleId_example";  // string | Sample request ID.
+            var declineCampaignSampleRequest = new DeclineCampaignSampleRequest(); // DeclineCampaignSampleRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Decline campaign sample request
+                ApproveCampaignSample200Response result = apiInstance.DeclineCampaignSample(campaignId, sampleId, declineCampaignSampleRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.DeclineCampaignSample: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeclineCampaignSampleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Decline campaign sample request
+    ApiResponse<ApproveCampaignSample200Response> response = apiInstance.DeclineCampaignSampleWithHttpInfo(campaignId, sampleId, declineCampaignSampleRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.DeclineCampaignSampleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **sampleId** | **string** | Sample request ID. |  |
+| **declineCampaignSampleRequest** | [**DeclineCampaignSampleRequest**](DeclineCampaignSampleRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ApproveCampaignSample200Response**](ApproveCampaignSample200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample declined |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="denycampaignparticipant"></a>
+# **DenyCampaignParticipant**
+> GetCampaignParticipant200Response DenyCampaignParticipant (string campaignId, string participantId, string? idempotencyKey = null)
+
+Deny pending campaign participant
+
+Turns a `pending` creator away: they become `denied`, the creator is emailed and `campaign_participant.denied` fires. A denied creator cannot submit posts, drafts or sample requests. Any status other than `pending` answers 409. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DenyCampaignParticipantExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var participantId = "participantId_example";  // string | Participant ID.
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Deny pending campaign participant
+                GetCampaignParticipant200Response result = apiInstance.DenyCampaignParticipant(campaignId, participantId, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.DenyCampaignParticipant: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DenyCampaignParticipantWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Deny pending campaign participant
+    ApiResponse<GetCampaignParticipant200Response> response = apiInstance.DenyCampaignParticipantWithHttpInfo(campaignId, participantId, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.DenyCampaignParticipantWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **participantId** | **string** | Participant ID. |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**GetCampaignParticipant200Response**](GetCampaignParticipant200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Participant denied |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcampaignadresults"></a>
+# **GetCampaignAdResults**
+> GetCampaignAdResults200Response GetCampaignAdResults (string campaignId, string? rankBy = null, DateOnly? from = null, DateOnly? to = null)
+
+Get campaign ad results
+
+What the campaign's posts did as ads: totals, each post with its ads and launches, and the creators ranked by `rankBy`.  An ad counts for a post when it was launched from the post, or when it runs the post (a boosted post, the Instagram media it shows, or a TikTok Spark item).  Figures come from the ads' daily metrics; money is in the campaign currency, and ads billed in another currency are left out of money figures. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCampaignAdResultsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var rankBy = "spend";  // string? | How `creators` is ranked. (optional)  (default to spend)
+            var from = DateOnly.Parse("2013-10-20");  // DateOnly? | First day counted (YYYY-MM-DD, UTC). Omit to count from the first day of data. (optional) 
+            var to = DateOnly.Parse("2013-10-20");  // DateOnly? | Last day counted (YYYY-MM-DD, UTC). Omit to count through the latest day of data. (optional) 
+
+            try
+            {
+                // Get campaign ad results
+                GetCampaignAdResults200Response result = apiInstance.GetCampaignAdResults(campaignId, rankBy, from, to);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.GetCampaignAdResults: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCampaignAdResultsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get campaign ad results
+    ApiResponse<GetCampaignAdResults200Response> response = apiInstance.GetCampaignAdResultsWithHttpInfo(campaignId, rankBy, from, to);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.GetCampaignAdResultsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **rankBy** | **string?** | How &#x60;creators&#x60; is ranked. | [optional] [default to spend] |
+| **from** | **DateOnly?** | First day counted (YYYY-MM-DD, UTC). Omit to count from the first day of data. | [optional]  |
+| **to** | **DateOnly?** | Last day counted (YYYY-MM-DD, UTC). Omit to count through the latest day of data. | [optional]  |
+
+### Return type
+
+[**GetCampaignAdResults200Response**](GetCampaignAdResults200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign ad results |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcampaigndraft"></a>
+# **GetCampaignDraft**
+> GetCampaignDraft200Response GetCampaignDraft (string campaignId, string draftId)
+
+Get campaign draft
+
+Returns one draft version and every version of its chain (`versions`, newest first, including this one), each with its review comments. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCampaignDraftExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var draftId = "draftId_example";  // string | Draft version ID.
+
+            try
+            {
+                // Get campaign draft
+                GetCampaignDraft200Response result = apiInstance.GetCampaignDraft(campaignId, draftId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.GetCampaignDraft: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCampaignDraftWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get campaign draft
+    ApiResponse<GetCampaignDraft200Response> response = apiInstance.GetCampaignDraftWithHttpInfo(campaignId, draftId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.GetCampaignDraftWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **draftId** | **string** | Draft version ID. |  |
+
+### Return type
+
+[**GetCampaignDraft200Response**](GetCampaignDraft200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Draft |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -982,8 +1749,8 @@ catch (ApiException e)
 | **200** | Participant |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1084,8 +1851,8 @@ catch (ApiException e)
 | **200** | Campaign report |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1188,8 +1955,8 @@ catch (ApiException e)
 | **200** | Submission |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1290,8 +2057,226 @@ catch (ApiException e)
 | **200** | Campaign |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="launchcampaignads"></a>
+# **LaunchCampaignAds**
+> LaunchCampaignAds200Response LaunchCampaignAds (string campaignId, LaunchCampaignAdsRequest launchCampaignAdsRequest, string? idempotencyKey = null)
+
+Launch campaign posts as ads
+
+Runs approved posts of an active campaign as ads, each post on its own: a post that cannot run is reported in `results` and never stops the rest.  A post already launched (or launching) into the same placement is reported as `already_launched` or `in_progress` and never gets a second ad, so a retry is safe.  ### What each post becomes  - **Meta, `identity: brand`**: a new ad from the post media in the existing ad set `adSetId`, under the brand's Page. - **Meta, `identity: creator`**: a Partnership Ad of the Instagram post under the creator's handle. Partnership Ads are a limited release while Meta reviews the permission they need (`capabilities.partnershipAds` in `GET /v1/creator-campaigns/{campaignId}/ad-results`); without it these posts fail with a message to launch them with brand identity. Facebook posts only run with brand identity. - **TikTok** (`identity: creator` only): a Spark Ad of the creator's post in its own ad group with `dailyBudget`, inside the existing campaign `existingCampaignId`. Needs the Spark code the creator pasted on their campaign page (`hasSparkCode` on the submission).  One launch runs on one network: posts from the other network fail with a message to launch them separately. Needs ads access (403 `ads_addon_required`) and room in the managed ads allowance (403 `ads_allowance_exceeded`). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class LaunchCampaignAdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var launchCampaignAdsRequest = new LaunchCampaignAdsRequest(); // LaunchCampaignAdsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Launch campaign posts as ads
+                LaunchCampaignAds200Response result = apiInstance.LaunchCampaignAds(campaignId, launchCampaignAdsRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.LaunchCampaignAds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the LaunchCampaignAdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Launch campaign posts as ads
+    ApiResponse<LaunchCampaignAds200Response> response = apiInstance.LaunchCampaignAdsWithHttpInfo(campaignId, launchCampaignAdsRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.LaunchCampaignAdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **launchCampaignAdsRequest** | [**LaunchCampaignAdsRequest**](LaunchCampaignAdsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**LaunchCampaignAds200Response**](LaunchCampaignAds200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One result per distinct submission ID, in no particular order. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | No ads access (&#x60;ads_addon_required&#x60;), over the managed ads allowance (&#x60;ads_allowance_exceeded&#x60;), or a restricted API key without the &#x60;creator_campaigns&#x60; resource group (&#x60;insufficient_permissions&#x60;). |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listcampaigndrafts"></a>
+# **ListCampaignDrafts**
+> ListCampaignDrafts200Response ListCampaignDrafts (string campaignId, string? status = null, string? participantId = null, int? limit = null, int? skip = null)
+
+List campaign drafts
+
+Lists the drafts creators uploaded for review on a campaign with `requireDraftApproval`, newest first.  Each draft is a chain of versions: a revision is a new version in the same `chainId`. Only the latest version of each chain is listed, so `status` is the chain's current state and `total` counts chains. Earlier versions come with `GET /v1/creator-campaigns/{campaignId}/drafts/{draftId}`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCampaignDraftsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var status = "submitted";  // string? | Only drafts whose latest version is in this status. `submitted` is the review queue. (optional) 
+            var participantId = "participantId_example";  // string? | Only drafts of this participant. (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var skip = 0;  // int? |  (optional)  (default to 0)
+
+            try
+            {
+                // List campaign drafts
+                ListCampaignDrafts200Response result = apiInstance.ListCampaignDrafts(campaignId, status, participantId, limit, skip);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ListCampaignDrafts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCampaignDraftsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List campaign drafts
+    ApiResponse<ListCampaignDrafts200Response> response = apiInstance.ListCampaignDraftsWithHttpInfo(campaignId, status, participantId, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ListCampaignDraftsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **status** | **string?** | Only drafts whose latest version is in this status. &#x60;submitted&#x60; is the review queue. | [optional]  |
+| **participantId** | **string?** | Only drafts of this participant. | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **skip** | **int?** |  | [optional] [default to 0] |
+
+### Return type
+
+[**ListCampaignDrafts200Response**](ListCampaignDrafts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Drafts |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1400,8 +2385,118 @@ catch (ApiException e)
 | **200** | Ledger entries |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listcampaignorders"></a>
+# **ListCampaignOrders**
+> ListCampaignOrders200Response ListCampaignOrders (string campaignId, string? participantId = null, string? status = null, int? limit = null, int? skip = null)
+
+List campaign orders
+
+Lists the store orders a commission or smart retainer campaign credited to its creators, newest first, and every active creator's discount code and tracking link.  An order is `pending` while the store is still attributing it (Shopify does so for a few minutes after checkout), `matched` once it is credited to a creator and `unmatched` when it never was. Commission is approved `holdDays` after the order was placed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCampaignOrdersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var participantId = "participantId_example";  // string? | Only this creator's orders. (optional) 
+            var status = "pending";  // string? |  (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var skip = 0;  // int? |  (optional)  (default to 0)
+
+            try
+            {
+                // List campaign orders
+                ListCampaignOrders200Response result = apiInstance.ListCampaignOrders(campaignId, participantId, status, limit, skip);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ListCampaignOrders: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCampaignOrdersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List campaign orders
+    ApiResponse<ListCampaignOrders200Response> response = apiInstance.ListCampaignOrdersWithHttpInfo(campaignId, participantId, status, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ListCampaignOrdersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **participantId** | **string?** | Only this creator&#39;s orders. | [optional]  |
+| **status** | **string?** |  | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **skip** | **int?** |  | [optional] [default to 0] |
+
+### Return type
+
+[**ListCampaignOrders200Response**](ListCampaignOrders200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Orders and creator codes |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1508,8 +2603,8 @@ catch (ApiException e)
 | **200** | Participants |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1610,8 +2705,8 @@ catch (ApiException e)
 | **200** | Payables |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1716,7 +2811,117 @@ catch (ApiException e)
 | **200** | Payout batches. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listcampaignsamples"></a>
+# **ListCampaignSamples**
+> ListCampaignSamples200Response ListCampaignSamples (string campaignId, string? status = null, string? participantId = null, int? limit = null, int? skip = null)
+
+List campaign sample requests
+
+Lists the free product samples creators asked for, newest first. `contentOwed` marks an approved or shipped sample whose creator submitted no post in the `sampleContentDueDays` since the approval. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCampaignSamplesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var status = "pending";  // string? | Only requests in this status. `pending` is the review queue. (optional) 
+            var participantId = "participantId_example";  // string? | Only requests of this participant. (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var skip = 0;  // int? |  (optional)  (default to 0)
+
+            try
+            {
+                // List campaign sample requests
+                ListCampaignSamples200Response result = apiInstance.ListCampaignSamples(campaignId, status, participantId, limit, skip);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ListCampaignSamples: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCampaignSamplesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List campaign sample requests
+    ApiResponse<ListCampaignSamples200Response> response = apiInstance.ListCampaignSamplesWithHttpInfo(campaignId, status, participantId, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ListCampaignSamplesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **status** | **string?** | Only requests in this status. &#x60;pending&#x60; is the review queue. | [optional]  |
+| **participantId** | **string?** | Only requests of this participant. | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **skip** | **int?** |  | [optional] [default to 0] |
+
+### Return type
+
+[**ListCampaignSamples200Response**](ListCampaignSamples200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample requests |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1839,8 +3044,8 @@ catch (ApiException e)
 | **200** | Submissions |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1949,8 +3154,8 @@ catch (ApiException e)
 | **200** | Campaigns |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2055,9 +3260,9 @@ catch (ApiException e)
 | **200** | Participant moved |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2158,9 +3363,9 @@ catch (ApiException e)
 | **200** | Campaign |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2263,8 +3468,8 @@ catch (ApiException e)
 | **200** | The charge a payout batch would make now. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2369,9 +3574,9 @@ catch (ApiException e)
 | **200** | Budget raised |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2475,9 +3680,119 @@ catch (ApiException e)
 | **200** | Participant reinstated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="rejectcampaigndraft"></a>
+# **RejectCampaignDraft**
+> ApproveCampaignDraft200Response RejectCampaignDraft (string campaignId, string draftId, RejectCampaignDraftRequest rejectCampaignDraftRequest, string? idempotencyKey = null)
+
+Reject campaign draft
+
+Rejects a `submitted` draft version for good, emails the creator and fires `campaign_draft.rejected`. The reason is stored as `reviewNote`. A rejected draft takes no new version and backs no post.  Each version is decided once: a version that is no longer `submitted` answers 409. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RejectCampaignDraftExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var draftId = "draftId_example";  // string | Draft version ID.
+            var rejectCampaignDraftRequest = new RejectCampaignDraftRequest(); // RejectCampaignDraftRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Reject campaign draft
+                ApproveCampaignDraft200Response result = apiInstance.RejectCampaignDraft(campaignId, draftId, rejectCampaignDraftRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.RejectCampaignDraft: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RejectCampaignDraftWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reject campaign draft
+    ApiResponse<ApproveCampaignDraft200Response> response = apiInstance.RejectCampaignDraftWithHttpInfo(campaignId, draftId, rejectCampaignDraftRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.RejectCampaignDraftWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **draftId** | **string** | Draft version ID. |  |
+| **rejectCampaignDraftRequest** | [**RejectCampaignDraftRequest**](RejectCampaignDraftRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ApproveCampaignDraft200Response**](ApproveCampaignDraft200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Draft rejected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2584,9 +3899,9 @@ catch (ApiException e)
 | **200** | Submission rejected |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2690,8 +4005,8 @@ catch (ApiException e)
 | **200** | Participant removed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2796,9 +4111,119 @@ catch (ApiException e)
 | **200** | Submission reopened |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="requestcampaigndraftrevision"></a>
+# **RequestCampaignDraftRevision**
+> ApproveCampaignDraft200Response RequestCampaignDraftRevision (string campaignId, string draftId, RequestCampaignDraftRevisionRequest requestCampaignDraftRevisionRequest, string? idempotencyKey = null)
+
+Request changes on a campaign draft
+
+Marks a `submitted` draft version `revision_requested`, emails the creator and fires `campaign_draft.revision_requested`. The creator answers with one new version (`revisionOf` set to this version).  Send a `note`, at least one entry in `comments`, or both; neither answers 400 `missing_required_field`. A comment with `atMs` is pinned to that moment of the video.  Each version is decided once: a version that is no longer `submitted` answers 409. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RequestCampaignDraftRevisionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var draftId = "draftId_example";  // string | Draft version ID.
+            var requestCampaignDraftRevisionRequest = new RequestCampaignDraftRevisionRequest(); // RequestCampaignDraftRevisionRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Request changes on a campaign draft
+                ApproveCampaignDraft200Response result = apiInstance.RequestCampaignDraftRevision(campaignId, draftId, requestCampaignDraftRevisionRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.RequestCampaignDraftRevision: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RequestCampaignDraftRevisionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Request changes on a campaign draft
+    ApiResponse<ApproveCampaignDraft200Response> response = apiInstance.RequestCampaignDraftRevisionWithHttpInfo(campaignId, draftId, requestCampaignDraftRevisionRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.RequestCampaignDraftRevisionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **draftId** | **string** | Draft version ID. |  |
+| **requestCampaignDraftRevisionRequest** | [**RequestCampaignDraftRevisionRequest**](RequestCampaignDraftRevisionRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ApproveCampaignDraft200Response**](ApproveCampaignDraft200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Changes requested |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2904,9 +4329,9 @@ catch (ApiException e)
 | **200** | Invite email sent again |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3013,9 +4438,119 @@ catch (ApiException e)
 | **201** | Settlement recorded |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="shipcampaignsample"></a>
+# **ShipCampaignSample**
+> ApproveCampaignSample200Response ShipCampaignSample (string campaignId, string sampleId, string? idempotencyKey = null, ShipCampaignSampleRequest? shipCampaignSampleRequest = null)
+
+Mark campaign sample shipped
+
+Records that you sent an `approved` sample yourself, with an optional tracking link, emails the creator and fires `campaign_sample.shipped`. No store call or money is involved. Any other status answers 409. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ShipCampaignSampleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CreatorCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Campaign ID.
+            var sampleId = "sampleId_example";  // string | Sample request ID.
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+            var shipCampaignSampleRequest = new ShipCampaignSampleRequest?(); // ShipCampaignSampleRequest? | Optional: no body marks the sample shipped without a tracking link. (optional) 
+
+            try
+            {
+                // Mark campaign sample shipped
+                ApproveCampaignSample200Response result = apiInstance.ShipCampaignSample(campaignId, sampleId, idempotencyKey, shipCampaignSampleRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CreatorCampaignsApi.ShipCampaignSample: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ShipCampaignSampleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Mark campaign sample shipped
+    ApiResponse<ApproveCampaignSample200Response> response = apiInstance.ShipCampaignSampleWithHttpInfo(campaignId, sampleId, idempotencyKey, shipCampaignSampleRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CreatorCampaignsApi.ShipCampaignSampleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Campaign ID. |  |
+| **sampleId** | **string** | Sample request ID. |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+| **shipCampaignSampleRequest** | [**ShipCampaignSampleRequest?**](ShipCampaignSampleRequest?.md) | Optional: no body marks the sample shipped without a tracking link. | [optional]  |
+
+### Return type
+
+[**ApproveCampaignSample200Response**](ApproveCampaignSample200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample marked shipped |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -3119,9 +4654,9 @@ catch (ApiException e)
 | **200** | Participant suspended |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3224,9 +4759,9 @@ catch (ApiException e)
 | **200** | Campaign updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
-| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
-| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+| **403** | Refused.  - Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace   that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;;   contact support to switch). - Code &#x60;feature_not_available&#x60;: the campaign reached &#x60;caps.maxParticipants&#x60; (invites, joins and   approving a pending creator). - Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant, submission, draft or sample request does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant, submission, draft or sample request is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

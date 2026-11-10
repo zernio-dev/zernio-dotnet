@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Platform** | **string** |  | 
 **PostId** | **string** |  | 
+**HasSparkCode** | **bool** | A TikTok post whose Spark code the creator pasted, so the brand can run it as a Spark Ad. The code itself is never returned. | 
 **Url** | **string** |  | 
 **Status** | **string** |  | 
 **SubmittedAt** | **DateTime** |  | 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **RejectReason** | **string** |  | 
 **Flags** | **List&lt;CreatorPortalSubmission.FlagsEnum&gt;** | Creator-safe flags only. Every other review flag shows as &#x60;under_review&#x60;. | 
 **TrackingEndsAt** | **DateTime?** |  | 
+**DraftId** | **string** | The approved draft this post publishes. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

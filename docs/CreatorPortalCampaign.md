@@ -22,6 +22,10 @@ Name | Type | Description | Notes
 **HoldDays** | **int** | Days approved earnings stay owed before they become payable. | 
 **TrackingDays** | **int** | Days each submitted post is tracked for views. | 
 **MaxAccountsPerParticipant** | **int?** | How many connected accounts can submit posts. Null means no limit. | 
+**JoinApproval** | **string** | manual: a creator who joins through the open link waits &#x60;pending&#x60; until the campaign team accepts them. | 
+**RequireDraftApproval** | **bool** | The creator uploads a draft for review first, and submits the live post for an approved draft. | 
+**SampleProducts** | [**List&lt;CreatorCampaignSampleProduct&gt;**](CreatorCampaignSampleProduct.md) | Products the creator can ask a free sample of; empty when the campaign offers none. | 
+**SampleContentDueDays** | **int** | Days after a sample is approved by which a post is expected. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

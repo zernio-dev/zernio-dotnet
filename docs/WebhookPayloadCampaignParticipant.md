@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadCampaignParticipant
-Webhook payload for `campaign_participant.joined`, `campaign_participant.suspended` and `campaign_participant.removed`. `participant.status` is the status after the change. `participant.joinedAt` is null for a participant removed before they ever joined. 
+Webhook payload for `campaign_participant.joined`, `campaign_participant.pending`, `campaign_participant.approved`, `campaign_participant.denied`, `campaign_participant.suspended` and `campaign_participant.removed`. `participant.status` is the status after the change. `participant.joinedAt` is null for a participant who never joined (pending, denied, or removed before joining). 
 
 ## Properties
 

@@ -28,6 +28,11 @@ Name | Type | Description | Notes
 **BudgetExhaustedAt** | **DateTime?** |  | 
 **ClosedAt** | **DateTime?** |  | 
 **PayableScannedAt** | **DateTime?** | Internal watermark of the payable scan. | 
+**JoinApproval** | **string** | auto: creators who join through the open link are active at once. manual: they land &#x60;pending&#x60; until you approve or deny them. Personal invites are never held. | 
+**RequireDraftApproval** | **bool** | Creators upload a draft for review first, and submit the live post for an approved draft (&#x60;draftId&#x60;). | 
+**StoreAccountId** | **string** | The connected store (Shopify or WooCommerce) whose orders pay commission and whose products creators can ask as samples. Null when the campaign has neither. | 
+**SampleProducts** | [**List&lt;CreatorCampaignSampleProduct&gt;**](CreatorCampaignSampleProduct.md) | Products creators can ask a free sample of. | 
+**SampleContentDueDays** | **int** | Days after a sample is approved before a creator with no post since shows as owing content (&#x60;contentOwed&#x60;). | 
 **CreatedAt** | **DateTime** |  | 
 **UpdatedAt** | **DateTime** |  | 
 **HasOpenInvite** | **bool** | True once an open invite link was created. The link itself is returned only when it is created. | 
@@ -35,6 +40,11 @@ Name | Type | Description | Notes
 **ParticipantCount** | **int** |  | 
 **SubmissionCounts** | [**CampaignSubmissionCounts**](CampaignSubmissionCounts.md) |  | 
 **PayableCents** | **int** | What the campaign&#39;s creators can be paid now, summed over every participant&#39;s payable balance. | 
+**LandingUrl** | **string** | The page creator tracking links open. | [optional] 
+**CodeDiscountPercent** | **int?** | What each creator discount code takes off. | [optional] 
+**PendingParticipantCount** | **int** | Creators who asked to join through the open link and wait for a decision. Not counted in &#x60;participantCount&#x60;. | 
+**DraftCounts** | [**CampaignDraftCounts**](CampaignDraftCounts.md) |  | 
+**SampleCounts** | [**CampaignSampleCounts**](CampaignSampleCounts.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
