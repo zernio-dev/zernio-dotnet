@@ -177,7 +177,7 @@ namespace Zernio.Model
         /// <param name="customMedia">customMedia.</param>
         /// <param name="scheduledFor">Optional per-platform scheduled time override (uses post.scheduledFor when omitted).</param>
         /// <param name="platformSpecificData">The platform-specific options stored on this target, echoed back as sent.  Typed per platform on the way in (see the *PlatformData schemas on the request body); free-form on the way out. A response is not guaranteed to match exactly one variant, and generated clients that pick a variant by structure reject the entire response when it doesn&#39;t.  Zernio&#39;s internal publishing state (snapshots, container ids, publish stage) is never returned here. The key is omitted rather than sent as an empty object. .</param>
-        /// <param name="status">Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok accepted the post and is still processing it: this can last up to 48 hours, the post stays publishing meanwhile, and the entry then becomes published or failed on its own..</param>
+        /// <param name="status">Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok is still processing the post. It can last up to 48 hours and then settles on its own..</param>
         /// <param name="platformPostId">The native post ID on the platform (populated after successful publish).</param>
         /// <param name="platformPostUrl">Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time.  Empty when the platform confirmed the publish without returning an id a permalink can be built from (TikTok returns a publish id for some uploads). The TikTok reconcile cron backfills it later. If TikTok never returns one, /v1/analytics reports that entry as syncStatus unavailable. .</param>
         /// <param name="publishedAt">Timestamp when the post was published to this platform. YouTube uploads a scheduled public video up to 15 minutes early as private with YouTube&#39;s own release time, so its entry is published with this set to scheduledFor, the moment the video goes public..</param>
@@ -257,9 +257,9 @@ namespace Zernio.Model
         public Dictionary<string, Object> PlatformSpecificData { get; set; }
 
         /// <summary>
-        /// Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok accepted the post and is still processing it: this can last up to 48 hours, the post stays publishing meanwhile, and the entry then becomes published or failed on its own.
+        /// Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok is still processing the post. It can last up to 48 hours and then settles on its own.
         /// </summary>
-        /// <value>Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok accepted the post and is still processing it: this can last up to 48 hours, the post stays publishing meanwhile, and the entry then becomes published or failed on its own.</value>
+        /// <value>Platform-specific status: pending, processing, uploading, published, failed, cancelled (removed from the platform via POST /v1/posts/{postId}/unpublish). On TikTok, uploading means TikTok is still processing the post. It can last up to 48 hours and then settles on its own.</value>
         /*
         <example>pending</example>
         */
