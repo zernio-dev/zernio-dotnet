@@ -3502,6 +3502,9 @@ docs/WebhookPayloadConversationControlChanged.md
 docs/WebhookPayloadConversationControlChangedControl.md
 docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
+docs/WebhookPayloadConversion.md
+docs/WebhookPayloadConversionConversion.md
+docs/WebhookPayloadConversionConversionCampaign.md
 docs/WebhookPayloadCreatorCampaign.md
 docs/WebhookPayloadCreatorCampaignCampaign.md
 docs/WebhookPayloadEmailBounced.md
@@ -7205,6 +7208,9 @@ src/Zernio.Test/Model/WebhookPayloadConversationControlChangedControlTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationControlChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversionConversionCampaignTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversionConversionTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversionTests.cs
 src/Zernio.Test/Model/WebhookPayloadCreatorCampaignCampaignTests.cs
 src/Zernio.Test/Model/WebhookPayloadCreatorCampaignTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailBouncedBounceTests.cs
@@ -10920,6 +10926,9 @@ src/Zernio/Model/WebhookPayloadConversationControlChanged.cs
 src/Zernio/Model/WebhookPayloadConversationControlChangedControl.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
 src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
+src/Zernio/Model/WebhookPayloadConversion.cs
+src/Zernio/Model/WebhookPayloadConversionConversion.cs
+src/Zernio/Model/WebhookPayloadConversionConversionCampaign.cs
 src/Zernio/Model/WebhookPayloadCreatorCampaign.cs
 src/Zernio/Model/WebhookPayloadCreatorCampaignCampaign.cs
 src/Zernio/Model/WebhookPayloadEmailBounced.cs

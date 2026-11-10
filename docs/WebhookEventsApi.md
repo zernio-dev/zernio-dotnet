@@ -85,6 +85,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnContactUpdated**](WebhookEventsApi.md#oncontactupdated) | **POST** /contact.updated | Contact updated |
 | [**OnConversationControlChanged**](WebhookEventsApi.md#onconversationcontrolchanged) | **POST** /conversation.control_changed | Conversation control changed event |
 | [**OnConversationStarted**](WebhookEventsApi.md#onconversationstarted) | **POST** /conversation.started | Conversation started event |
+| [**OnConversionReceived**](WebhookEventsApi.md#onconversionreceived) | **POST** /conversion.received | Conversion received event |
 | [**OnCreatorCampaignBudgetExhausted**](WebhookEventsApi.md#oncreatorcampaignbudgetexhausted) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**OnCreatorCampaignClosed**](WebhookEventsApi.md#oncreatorcampaignclosed) | **POST** /creator_campaign.closed | Creator campaign closed event |
 | [**OnEmailBounced**](WebhookEventsApi.md#onemailbounced) | **POST** /email.bounced | Email bounced |
@@ -7753,6 +7754,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadConversationStarted** | [**WebhookPayloadConversationStarted**](WebhookPayloadConversationStarted.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onconversionreceived"></a>
+# **OnConversionReceived**
+> void OnConversionReceived (WebhookPayloadConversion webhookPayloadConversion)
+
+Conversion received event
+
+Zernio stored an event: one sent to `POST /v1/events` or `POST /v1/ads/conversions`, or one a connected source sent for you (a lead form lead, a Shopify or WooCommerce order, a HubSpot deal). It fires again when a newer version of the same event is stored, such as an order that changed.  `conversion` has the fields of `GET /v1/events/{eventId}`, plus `source`, `campaign` (the campaign the event counts for, or null) and `campaignMatch` (why there is none). Personal data is never sent: `hasEmail`, `hasPhone` and `hasExternalId` only say what the event carried.  ### Deduplication  The event `id` follows the stored event and its version, so a resend of the same version carries the same `id`. Deduplicate on it.  ### Not sent for  Test events (they are never stored), corrections made with `PATCH` or `DELETE /v1/events/{eventId}`, and the hourly re-match that ties an earlier event to its campaign. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnConversionReceivedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadConversion = new WebhookPayloadConversion(); // WebhookPayloadConversion | 
+
+            try
+            {
+                // Conversion received event
+                apiInstance.OnConversionReceived(webhookPayloadConversion);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnConversionReceived: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnConversionReceivedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Conversion received event
+    apiInstance.OnConversionReceivedWithHttpInfo(webhookPayloadConversion);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnConversionReceivedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadConversion** | [**WebhookPayloadConversion**](WebhookPayloadConversion.md) |  |  |
 
 ### Return type
 
