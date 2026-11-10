@@ -76,7 +76,8 @@ namespace Zernio.Model
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar..</param>
         /// <param name="status">status (required).</param>
         /// <param name="comment">comment.</param>
-        public RsvpCalendarEventRequest(string accountId = default, string calendarId = default, StatusEnum status = default, string comment = default)
+        /// <param name="sendResponse">false records the response without emailing the organizer. (default to true).</param>
+        public RsvpCalendarEventRequest(string accountId = default, string calendarId = default, StatusEnum status = default, string comment = default, bool sendResponse = true)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -87,6 +88,7 @@ namespace Zernio.Model
             this.Status = status;
             this.CalendarId = calendarId;
             this.Comment = comment;
+            this.SendResponse = sendResponse;
         }
 
         /// <summary>
@@ -109,6 +111,13 @@ namespace Zernio.Model
         public string Comment { get; set; }
 
         /// <summary>
+        /// false records the response without emailing the organizer.
+        /// </summary>
+        /// <value>false records the response without emailing the organizer.</value>
+        [DataMember(Name = "sendResponse", EmitDefaultValue = true)]
+        public bool SendResponse { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -120,6 +129,7 @@ namespace Zernio.Model
             sb.Append("  CalendarId: ").Append(CalendarId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Comment: ").Append(Comment).Append("\n");
+            sb.Append("  SendResponse: ").Append(SendResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -90,6 +90,39 @@ namespace Zernio.Model
         [DataMember(Name = "visibility", EmitDefaultValue = false)]
         public VisibilityEnum? Visibility { get; set; }
         /// <summary>
+        /// Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account.
+        /// </summary>
+        /// <value>Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum NotifyParticipantsEnum
+        {
+            /// <summary>
+            /// Enum All for value: all
+            /// </summary>
+            [EnumMember(Value = "all")]
+            All = 1,
+
+            /// <summary>
+            /// Enum External for value: external
+            /// </summary>
+            [EnumMember(Value = "external")]
+            External = 2,
+
+            /// <summary>
+            /// Enum None for value: none
+            /// </summary>
+            [EnumMember(Value = "none")]
+            None = 3
+        }
+
+
+        /// <summary>
+        /// Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account.
+        /// </summary>
+        /// <value>Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account.</value>
+        [DataMember(Name = "notifyParticipants", EmitDefaultValue = false)]
+        public NotifyParticipantsEnum? NotifyParticipants { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCalendarEventRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -103,17 +136,18 @@ namespace Zernio.Model
         /// <param name="start">ISO date-time, or a date (&#x60;YYYY-MM-DD&#x60;) for all-day events..</param>
         /// <param name="end">Exclusive for all-day events..</param>
         /// <param name="allDay">allDay.</param>
-        /// <param name="timezone">IANA zone the event is scheduled in. Default UTC..</param>
+        /// <param name="timezone">IANA zone the event is scheduled in. Defaults to the calendar&#39;s zone on Google and the mailbox&#39;s working-hours zone on Microsoft (UTC when Outlook has none, as on personal accounts). A PATCH that moves an event without a zone keeps the zone the event already has..</param>
         /// <param name="participants">participants.</param>
         /// <param name="recurrence">RRULE lines, e.g. &#x60;RRULE:FREQ&#x3D;WEEKLY;BYDAY&#x3D;MO,WE;COUNT&#x3D;10&#x60;..</param>
         /// <param name="reminders">reminders.</param>
         /// <param name="conferencing">conferencing.</param>
         /// <param name="busy">busy.</param>
         /// <param name="visibility">visibility.</param>
-        /// <param name="metadata">metadata.</param>
+        /// <param name="metadata">String pairs stored on the event and returned on reads, on Google and Microsoft..</param>
+        /// <param name="notifyParticipants">Who gets an invitation or update email for this write: everyone, only guests outside the organizer&#39;s domain, or nobody. Google only; Outlook always notifies, so &#x60;external&#x60; and &#x60;none&#x60; answer 400 &#x60;unsupported_for_provider&#x60; on a Microsoft account. (default to NotifyParticipantsEnum.All).</param>
         /// <param name="accountId">accountId (required).</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar..</param>
-        public UpdateCalendarEventRequest(string title = default, string description = default, string location = default, string start = default, string end = default, bool allDay = default, string timezone = default, List<EmailAddress> participants = default, List<string> recurrence = default, CalendarEventFieldsReminders reminders = default, ConferencingEnum? conferencing = default, bool busy = default, VisibilityEnum? visibility = default, Dictionary<string, string> metadata = default, string accountId = default, string calendarId = default)
+        public UpdateCalendarEventRequest(string title = default, string description = default, string location = default, string start = default, string end = default, bool allDay = default, string timezone = default, List<EmailAddress> participants = default, List<string> recurrence = default, CalendarEventFieldsReminders reminders = default, ConferencingEnum? conferencing = default, bool busy = default, VisibilityEnum? visibility = default, Dictionary<string, string> metadata = default, NotifyParticipantsEnum? notifyParticipants = NotifyParticipantsEnum.All, string accountId = default, string calendarId = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -135,6 +169,7 @@ namespace Zernio.Model
             this.Busy = busy;
             this.Visibility = visibility;
             this.Metadata = metadata;
+            this.NotifyParticipants = notifyParticipants;
             this.CalendarId = calendarId;
         }
 
@@ -178,9 +213,9 @@ namespace Zernio.Model
         public bool AllDay { get; set; }
 
         /// <summary>
-        /// IANA zone the event is scheduled in. Default UTC.
+        /// IANA zone the event is scheduled in. Defaults to the calendar&#39;s zone on Google and the mailbox&#39;s working-hours zone on Microsoft (UTC when Outlook has none, as on personal accounts). A PATCH that moves an event without a zone keeps the zone the event already has.
         /// </summary>
-        /// <value>IANA zone the event is scheduled in. Default UTC.</value>
+        /// <value>IANA zone the event is scheduled in. Defaults to the calendar&#39;s zone on Google and the mailbox&#39;s working-hours zone on Microsoft (UTC when Outlook has none, as on personal accounts). A PATCH that moves an event without a zone keeps the zone the event already has.</value>
         [DataMember(Name = "timezone", EmitDefaultValue = false)]
         public string Timezone { get; set; }
 
@@ -210,8 +245,9 @@ namespace Zernio.Model
         public bool Busy { get; set; }
 
         /// <summary>
-        /// Gets or Sets Metadata
+        /// String pairs stored on the event and returned on reads, on Google and Microsoft.
         /// </summary>
+        /// <value>String pairs stored on the event and returned on reads, on Google and Microsoft.</value>
         [DataMember(Name = "metadata", EmitDefaultValue = false)]
         public Dictionary<string, string> Metadata { get; set; }
 
@@ -250,6 +286,7 @@ namespace Zernio.Model
             sb.Append("  Busy: ").Append(Busy).Append("\n");
             sb.Append("  Visibility: ").Append(Visibility).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  NotifyParticipants: ").Append(NotifyParticipants).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  CalendarId: ").Append(CalendarId).Append("\n");
             sb.Append("}\n");

@@ -317,7 +317,7 @@ catch (ApiException e)
 
 <a id="deletecalendarevent"></a>
 # **DeleteCalendarEvent**
-> DeleteEmailDraft200Response DeleteCalendarEvent (string eventId, string accountId, string? calendarId = null)
+> DeleteEmailDraft200Response DeleteCalendarEvent (string eventId, string accountId, string? calendarId = null, string? notifyParticipants = null)
 
 Delete an event
 
@@ -348,11 +348,12 @@ namespace Example
             var eventId = "eventId_example";  // string | 
             var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var calendarId = "calendarId_example";  // string? | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional) 
+            var notifyParticipants = "all";  // string? | Who gets the cancellation email. Google only; `external` and `none` answer 400 on a Microsoft account. (optional)  (default to all)
 
             try
             {
                 // Delete an event
-                DeleteEmailDraft200Response result = apiInstance.DeleteCalendarEvent(eventId, accountId, calendarId);
+                DeleteEmailDraft200Response result = apiInstance.DeleteCalendarEvent(eventId, accountId, calendarId, notifyParticipants);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -373,7 +374,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete an event
-    ApiResponse<DeleteEmailDraft200Response> response = apiInstance.DeleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
+    ApiResponse<DeleteEmailDraft200Response> response = apiInstance.DeleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, notifyParticipants);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -393,6 +394,7 @@ catch (ApiException e)
 | **eventId** | **string** |  |  |
 | **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **calendarId** | **string?** | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional]  |
+| **notifyParticipants** | **string?** | Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. | [optional] [default to all] |
 
 ### Return type
 
@@ -531,7 +533,7 @@ catch (ApiException e)
 
 List events in a window
 
-Recurring series are expanded into their occurrences inside the window by default (`expandRecurring=false` lists the masters instead). `title` and `location` are substring matches applied to the fetched page.
+Recurring series are expanded into their occurrences inside the window by default (`expandRecurring=false` lists the masters instead, including series that started before `from` and still recur in the window). Events that overlap the window edges are included. `title` and `location` are substring matches applied to the fetched page.
 
 ### Example
 ```csharp
@@ -566,7 +568,7 @@ namespace Example
             var showCancelled = false;  // bool? |  (optional)  (default to false)
             var expandRecurring = true;  // bool? |  (optional)  (default to true)
             var icalUid = "icalUid_example";  // string? |  (optional) 
-            var sortOrder = "asc";  // string? |  (optional)  (default to asc)
+            var sortOrder = "asc";  // string? | Order by start time across the whole window. On Google, `desc` reads the window in full, so a window over 2,500 events answers 400; narrow `from` and `to`. (optional)  (default to asc)
             var cursor = "cursor_example";  // string? |  (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
             var timezone = "timezone_example";  // string? | IANA zone the `start` and `end` offsets are rendered in. Default UTC. (optional) 
@@ -621,7 +623,7 @@ catch (ApiException e)
 | **showCancelled** | **bool?** |  | [optional] [default to false] |
 | **expandRecurring** | **bool?** |  | [optional] [default to true] |
 | **icalUid** | **string?** |  | [optional]  |
-| **sortOrder** | **string?** |  | [optional] [default to asc] |
+| **sortOrder** | **string?** | Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. | [optional] [default to asc] |
 | **cursor** | **string?** |  | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |
 | **timezone** | **string?** | IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. | [optional]  |
@@ -758,7 +760,7 @@ catch (ApiException e)
 
 Respond to an invitation
 
-Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless `sendResponse` is false.
 
 ### Example
 ```csharp

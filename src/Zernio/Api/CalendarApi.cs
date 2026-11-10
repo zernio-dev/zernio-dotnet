@@ -95,8 +95,9 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <returns>DeleteEmailDraft200Response</returns>
-        DeleteEmailDraft200Response DeleteCalendarEvent(string eventId, string accountId, string? calendarId = default);
+        DeleteEmailDraft200Response DeleteCalendarEvent(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default);
 
         /// <summary>
         /// Delete an event
@@ -108,8 +109,9 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <returns>ApiResponse of DeleteEmailDraft200Response</returns>
-        ApiResponse<DeleteEmailDraft200Response> DeleteCalendarEventWithHttpInfo(string eventId, string accountId, string? calendarId = default);
+        ApiResponse<DeleteEmailDraft200Response> DeleteCalendarEventWithHttpInfo(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default);
         /// <summary>
         /// Get an event
         /// </summary>
@@ -138,7 +140,7 @@ namespace Zernio.Api
         /// List events in a window
         /// </summary>
         /// <remarks>
-        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -150,7 +152,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -161,7 +163,7 @@ namespace Zernio.Api
         /// List events in a window
         /// </summary>
         /// <remarks>
-        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -173,7 +175,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -204,7 +206,7 @@ namespace Zernio.Api
         /// Respond to an invitation
         /// </summary>
         /// <remarks>
-        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -216,7 +218,7 @@ namespace Zernio.Api
         /// Respond to an invitation
         /// </summary>
         /// <remarks>
-        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -331,9 +333,10 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteEmailDraft200Response</returns>
-        System.Threading.Tasks.Task<DeleteEmailDraft200Response> DeleteCalendarEventAsync(string eventId, string accountId, string? calendarId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<DeleteEmailDraft200Response> DeleteCalendarEventAsync(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete an event
@@ -345,9 +348,10 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteEmailDraft200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteEmailDraft200Response>> DeleteCalendarEventWithHttpInfoAsync(string eventId, string accountId, string? calendarId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<DeleteEmailDraft200Response>> DeleteCalendarEventWithHttpInfoAsync(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get an event
         /// </summary>
@@ -381,7 +385,7 @@ namespace Zernio.Api
         /// List events in a window
         /// </summary>
         /// <remarks>
-        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -393,7 +397,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -405,7 +409,7 @@ namespace Zernio.Api
         /// List events in a window
         /// </summary>
         /// <remarks>
-        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -417,7 +421,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -451,7 +455,7 @@ namespace Zernio.Api
         /// Respond to an invitation
         /// </summary>
         /// <remarks>
-        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -464,7 +468,7 @@ namespace Zernio.Api
         /// Respond to an invitation
         /// </summary>
         /// <remarks>
-        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -1104,10 +1108,11 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <returns>DeleteEmailDraft200Response</returns>
-        public DeleteEmailDraft200Response DeleteCalendarEvent(string eventId, string accountId, string? calendarId = default)
+        public DeleteEmailDraft200Response DeleteCalendarEvent(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default)
         {
-            Zernio.Client.ApiResponse<DeleteEmailDraft200Response> localVarResponse = DeleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
+            Zernio.Client.ApiResponse<DeleteEmailDraft200Response> localVarResponse = DeleteCalendarEventWithHttpInfo(eventId, accountId, calendarId, notifyParticipants);
             return localVarResponse.Data;
         }
 
@@ -1118,8 +1123,9 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <returns>ApiResponse of DeleteEmailDraft200Response</returns>
-        public Zernio.Client.ApiResponse<DeleteEmailDraft200Response> DeleteCalendarEventWithHttpInfo(string eventId, string accountId, string? calendarId = default)
+        public Zernio.Client.ApiResponse<DeleteEmailDraft200Response> DeleteCalendarEventWithHttpInfo(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default)
         {
             // verify the required parameter 'eventId' is set
             if (eventId == null)
@@ -1150,6 +1156,10 @@ namespace Zernio.Api
             if (calendarId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "calendarId", calendarId));
+            }
+            if (notifyParticipants != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "notifyParticipants", notifyParticipants));
             }
 
             // authentication (bearerAuth) required
@@ -1178,11 +1188,12 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteEmailDraft200Response</returns>
-        public async System.Threading.Tasks.Task<DeleteEmailDraft200Response> DeleteCalendarEventAsync(string eventId, string accountId, string? calendarId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<DeleteEmailDraft200Response> DeleteCalendarEventAsync(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DeleteEmailDraft200Response> localVarResponse = await DeleteCalendarEventWithHttpInfoAsync(eventId, accountId, calendarId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<DeleteEmailDraft200Response> localVarResponse = await DeleteCalendarEventWithHttpInfoAsync(eventId, accountId, calendarId, notifyParticipants, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1193,9 +1204,10 @@ namespace Zernio.Api
         /// <param name="eventId"></param>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
         /// <param name="calendarId">The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional)</param>
+        /// <param name="notifyParticipants">Who gets the cancellation email. Google only; &#x60;external&#x60; and &#x60;none&#x60; answer 400 on a Microsoft account. (optional, default to all)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteEmailDraft200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteEmailDraft200Response>> DeleteCalendarEventWithHttpInfoAsync(string eventId, string accountId, string? calendarId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteEmailDraft200Response>> DeleteCalendarEventWithHttpInfoAsync(string eventId, string accountId, string? calendarId = default, string? notifyParticipants = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'eventId' is set
             if (eventId == null)
@@ -1228,6 +1240,10 @@ namespace Zernio.Api
             if (calendarId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "calendarId", calendarId));
+            }
+            if (notifyParticipants != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "notifyParticipants", notifyParticipants));
             }
 
             // authentication (bearerAuth) required
@@ -1416,7 +1432,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -1428,7 +1444,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -1440,7 +1456,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -1452,7 +1468,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -1543,7 +1559,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -1555,7 +1571,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -1568,7 +1584,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead). &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
+        /// List events in a window Recurring series are expanded into their occurrences inside the window by default (&#x60;expandRecurring&#x3D;false&#x60; lists the masters instead, including series that started before &#x60;from&#x60; and still recur in the window). Events that overlap the window edges are included. &#x60;title&#x60; and &#x60;location&#x60; are substring matches applied to the fetched page.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The connected Google, Microsoft or IMAP account.</param>
@@ -1580,7 +1596,7 @@ namespace Zernio.Api
         /// <param name="showCancelled"> (optional, default to false)</param>
         /// <param name="expandRecurring"> (optional, default to true)</param>
         /// <param name="icalUid"> (optional)</param>
-        /// <param name="sortOrder"> (optional, default to asc)</param>
+        /// <param name="sortOrder">Order by start time across the whole window. On Google, &#x60;desc&#x60; reads the window in full, so a window over 2,500 events answers 400; narrow &#x60;from&#x60; and &#x60;to&#x60;. (optional, default to asc)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="timezone">IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. Default UTC. (optional)</param>
@@ -1802,7 +1818,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -1815,7 +1831,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -1871,7 +1887,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>
@@ -1885,7 +1901,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer.
+        /// Respond to an invitation Accepts, declines or tentatively accepts on behalf of the mailbox and notifies the organizer, unless &#x60;sendResponse&#x60; is false.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="eventId"></param>

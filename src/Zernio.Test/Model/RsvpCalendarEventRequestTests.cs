@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Comment'
         }
+
+        /// <summary>
+        /// Test the property 'SendResponse'
+        /// </summary>
+        [Fact]
+        public void SendResponseTest()
+        {
+            // TODO unit test for the property 'SendResponse'
+        }
     }
 }

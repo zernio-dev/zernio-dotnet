@@ -100,7 +100,8 @@ namespace Zernio.Test.Api
             //string eventId = null;
             //string accountId = null;
             //string? calendarId = null;
-            //var response = instance.DeleteCalendarEvent(eventId, accountId, calendarId);
+            //string? notifyParticipants = null;
+            //var response = instance.DeleteCalendarEvent(eventId, accountId, calendarId, notifyParticipants);
             //Assert.IsType<DeleteEmailDraft200Response>(response);
         }
 

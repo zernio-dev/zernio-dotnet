@@ -182,6 +182,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'NotifyParticipants'
+        /// </summary>
+        [Fact]
+        public void NotifyParticipantsTest()
+        {
+            // TODO unit test for the property 'NotifyParticipants'
+        }
+
+        /// <summary>
         /// Test the property 'AccountId'
         /// </summary>
         [Fact]
