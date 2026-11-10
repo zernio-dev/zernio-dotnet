@@ -234,7 +234,7 @@ catch (ApiException e)
 
 Delete a label
 
-Deletes a Gmail user label or an Outlook category, by id or name (URL-encode a slash). Gmail removes the label from every message. Deleting an Outlook category needs mailbox settings access and returns 412 without it.
+Deletes a Gmail user label or an Outlook category, by id or name (URL-encode a slash). Gmail removes the label from every message. Outlook keeps a deleted category on messages that already carry it; 412 when the organization blocks the category list.
 
 ### Example
 ```csharp
@@ -854,7 +854,7 @@ catch (ApiException e)
 
 List labels
 
-Gmail labels, system and user, or the Outlook category list. Reading the Outlook list needs mailbox settings access, which Zernio does not request, so it can come back empty while categories still apply to messages by name.
+Gmail labels, system and user, or the Outlook category list. If an organization blocks reading the Outlook list, it comes back empty and categories still apply to messages by name.
 
 ### Example
 ```csharp
