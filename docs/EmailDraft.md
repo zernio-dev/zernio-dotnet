@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **Clean** | [**EmailClean**](EmailClean.md) |  | [optional] 
 **DraftId** | **string** | On a mail sent from a draft (&#x60;POST /v1/email/drafts/{draftId}/send&#x60;): the draft it was. The sent mail has a new id. | [optional] 
 **ForwardedFrom** | **string** | On a forward: the message it forwarded. | [optional] 
-**Object** | **string** |  | [optional] 
+**Object** | **EmailDraftObject** |  | [optional] 
 **Kind** | **string** | Fixed when the draft is created. A draft the user wrote in their mail client is read from its headers. | [optional] 
 **VarVersion** | **string** | Changes on every edit, the user&#39;s in their mail app included. Pass it as &#x60;If-Match&#x60; to update or send only that version. Also the &#x60;ETag&#x60; response header. | [optional] 
 **MessageId** | **string** | The provider message behind the draft. Volatile: Gmail replaces it on every save. | [optional] 

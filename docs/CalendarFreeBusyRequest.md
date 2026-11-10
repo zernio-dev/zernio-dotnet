@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountIds** | **List&lt;string&gt;** |  | 
+**AccountIds** | **List&lt;string&gt;** | Accounts to read with their defaults. Send this or &#x60;accounts&#x60;. | [optional] 
+**Accounts** | [**List&lt;CalendarFreeBusyRequestAccountsInner&gt;**](CalendarFreeBusyRequestAccountsInner.md) | Accounts with per-account options. Send this or &#x60;accountIds&#x60;. | [optional] 
 **From** | **DateTime** |  | 
 **To** | **DateTime** |  | 
 

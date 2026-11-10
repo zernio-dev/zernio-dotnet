@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateCalendarEvent**](CalendarApi.md#createcalendarevent) | **POST** /v1/calendar/events | Create an event |
 | [**DeleteCalendarEvent**](CalendarApi.md#deletecalendarevent) | **DELETE** /v1/calendar/events/{eventId} | Delete an event |
 | [**GetCalendarEvent**](CalendarApi.md#getcalendarevent) | **GET** /v1/calendar/events/{eventId} | Get an event |
+| [**ListCalendarEventInstances**](CalendarApi.md#listcalendareventinstances) | **GET** /v1/calendar/events/{eventId}/instances | List the occurrences of a recurring event |
 | [**ListCalendarEvents**](CalendarApi.md#listcalendarevents) | **GET** /v1/calendar/events | List events in a window |
 | [**ListCalendars**](CalendarApi.md#listcalendars) | **GET** /v1/calendar/calendars | List calendars |
 | [**RsvpCalendarEvent**](CalendarApi.md#rsvpcalendarevent) | **POST** /v1/calendar/events/{eventId}/rsvp | Respond to an invitation |
@@ -120,6 +121,8 @@ catch (ApiException e)
 > CalendarFreeBusy200Response CalendarFreeBusy (CalendarFreeBusyRequest calendarFreeBusyRequest)
 
 Busy blocks for one or more accounts
+
+Reads busy time for up to 10 connected accounts, Google and Microsoft mixed, in parallel.  By default a Google account reads every calendar shown in Google Calendar, and a Microsoft account reads the mailbox's schedule. Name calendars with `accounts[].calendarIds`.  Check coworkers who never connected with `accounts[].emails`, read through that account (Google: up to 50 calendars and addresses per account; Microsoft: up to 19 coworkers, work accounts only).  An account that cannot be read gets `busy: null` and an `error`, and the others still answer. When no account can be read, the first error is returned as the response. 
 
 ### Example
 ```csharp
@@ -520,6 +523,122 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The connected account cannot serve this request until something outside the request changes. Two codes:  - &#x60;account_scope_missing&#x60;: the account was connected without the area this endpoint needs (&#x60;details.grantedAreas&#x60;, &#x60;details.missingArea&#x60;), or Google reports the grant lacks a permission. Reconnect with a wider &#x60;scopes&#x3D;&#x60;. - &#x60;admin_consent_required&#x60; (Microsoft): the tenant requires an administrator&#39;s approval. &#x60;details.adminConsentUrl&#x60; is the Microsoft Entra admin-consent link to hand to one; it opens in a browser with no API key and stays valid for one hour. &#x60;GET /v1/connect/microsoft/admin-consent&#x60; mints a fresh one.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listcalendareventinstances"></a>
+# **ListCalendarEventInstances**
+> ListCalendarEventInstances200Response ListCalendarEventInstances (string eventId, string accountId, DateTime from, DateTime to, string? calendarId = null, string? timezone = null, string? cursor = null, int? limit = null)
+
+List the occurrences of a recurring event
+
+Lists the occurrences and exceptions of a series between `from` and `to`. Each one has its own `id` to read, update or delete just that occurrence, and `originalStart` for its place in the pattern.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCalendarEventInstancesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CalendarApi(httpClient, config, httpClientHandler);
+            var eventId = "eventId_example";  // string | The series (master) event id.
+            var accountId = "accountId_example";  // string | 
+            var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | 
+            var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | 
+            var calendarId = "calendarId_example";  // string? | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional) 
+            var timezone = "timezone_example";  // string? | IANA zone the `start` and `end` offsets are rendered in. (optional) 
+            var cursor = "cursor_example";  // string? |  (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+
+            try
+            {
+                // List the occurrences of a recurring event
+                ListCalendarEventInstances200Response result = apiInstance.ListCalendarEventInstances(eventId, accountId, from, to, calendarId, timezone, cursor, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CalendarApi.ListCalendarEventInstances: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCalendarEventInstancesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the occurrences of a recurring event
+    ApiResponse<ListCalendarEventInstances200Response> response = apiInstance.ListCalendarEventInstancesWithHttpInfo(eventId, accountId, from, to, calendarId, timezone, cursor, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CalendarApi.ListCalendarEventInstancesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **eventId** | **string** | The series (master) event id. |  |
+| **accountId** | **string** |  |  |
+| **from** | **DateTime** |  |  |
+| **to** | **DateTime** |  |  |
+| **calendarId** | **string?** | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional]  |
+| **timezone** | **string?** | IANA zone the &#x60;start&#x60; and &#x60;end&#x60; offsets are rendered in. | [optional]  |
+| **cursor** | **string?** |  | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+
+### Return type
+
+[**ListCalendarEventInstances200Response**](ListCalendarEventInstances200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Occurrences in the window |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

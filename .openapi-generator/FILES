@@ -449,13 +449,17 @@ docs/CalendarAvailabilityRequestParticipantsInner.md
 docs/CalendarEvent.md
 docs/CalendarEventConferencing.md
 docs/CalendarEventFields.md
+docs/CalendarEventFieldsParticipantsInner.md
 docs/CalendarEventFieldsReminders.md
 docs/CalendarEventFieldsRemindersOverridesInner.md
 docs/CalendarEventParticipantsInner.md
 docs/CalendarEventReminders.md
 docs/CalendarFreeBusy200Response.md
 docs/CalendarFreeBusy200ResponseDataInner.md
+docs/CalendarFreeBusy200ResponseDataInnerCalendarsInner.md
+docs/CalendarFreeBusy200ResponseDataInnerPeopleInner.md
 docs/CalendarFreeBusyRequest.md
+docs/CalendarFreeBusyRequestAccountsInner.md
 docs/CallRecord.md
 docs/CallRecordBilling.md
 docs/CallRecordCallErrorsInner.md
@@ -985,6 +989,7 @@ docs/CreatorCampaignAdResultsSubmissionsInnerAdsInner.md
 docs/CreatorCampaignAdResultsSubmissionsInnerCreator.md
 docs/CreatorCampaignAdResultsSubmissionsInnerLaunchesInner.md
 docs/CreatorCampaignAdResultsTotals.md
+docs/CreatorCampaignAutoPayout.md
 docs/CreatorCampaignBranding.md
 docs/CreatorCampaignCaps.md
 docs/CreatorCampaignCommissionTerms.md
@@ -1153,6 +1158,7 @@ docs/EmailClean.md
 docs/EmailCleanForwarded.md
 docs/EmailCleanRemoved.md
 docs/EmailDraft.md
+docs/EmailDraftObject.md
 docs/EmailFolder.md
 docs/EmailLabel.md
 docs/EmailLabelColor.md
@@ -1231,6 +1237,7 @@ docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
 docs/ForwardingRule.md
+docs/FreeBusyError.md
 docs/FromASharedTemplate.md
 docs/FromAZernioTemplate.md
 docs/FromYourAutomations.md
@@ -2043,6 +2050,8 @@ docs/ListBusinessAgentSkills200Response.md
 docs/ListBusinessAgentUiSkills200Response.md
 docs/ListBusinessAgentWebsites200Response.md
 docs/ListBusinessPartners200Response.md
+docs/ListCalendarEventInstances200Response.md
+docs/ListCalendarEventInstances200ResponsePagination.md
 docs/ListCalendarEvents200Response.md
 docs/ListCalendars200Response.md
 docs/ListCalls200Response.md
@@ -2128,7 +2137,6 @@ docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
 docs/ListFacebookVisitorPosts200Response.md
 docs/ListFiles200Response.md
-docs/ListFiles200ResponsePagination.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
@@ -4196,14 +4204,18 @@ src/Zernio.Test/Model/CalendarAvailabilityRequestBufferTests.cs
 src/Zernio.Test/Model/CalendarAvailabilityRequestParticipantsInnerTests.cs
 src/Zernio.Test/Model/CalendarAvailabilityRequestTests.cs
 src/Zernio.Test/Model/CalendarEventConferencingTests.cs
+src/Zernio.Test/Model/CalendarEventFieldsParticipantsInnerTests.cs
 src/Zernio.Test/Model/CalendarEventFieldsRemindersOverridesInnerTests.cs
 src/Zernio.Test/Model/CalendarEventFieldsRemindersTests.cs
 src/Zernio.Test/Model/CalendarEventFieldsTests.cs
 src/Zernio.Test/Model/CalendarEventParticipantsInnerTests.cs
 src/Zernio.Test/Model/CalendarEventRemindersTests.cs
 src/Zernio.Test/Model/CalendarEventTests.cs
+src/Zernio.Test/Model/CalendarFreeBusy200ResponseDataInnerCalendarsInnerTests.cs
+src/Zernio.Test/Model/CalendarFreeBusy200ResponseDataInnerPeopleInnerTests.cs
 src/Zernio.Test/Model/CalendarFreeBusy200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/CalendarFreeBusy200ResponseTests.cs
+src/Zernio.Test/Model/CalendarFreeBusyRequestAccountsInnerTests.cs
 src/Zernio.Test/Model/CalendarFreeBusyRequestTests.cs
 src/Zernio.Test/Model/CalendarTests.cs
 src/Zernio.Test/Model/CallRecordBillingTests.cs
@@ -4724,6 +4736,7 @@ src/Zernio.Test/Model/CreatorCampaignAdResultsSubmissionsInnerLaunchesInnerTests
 src/Zernio.Test/Model/CreatorCampaignAdResultsSubmissionsInnerTests.cs
 src/Zernio.Test/Model/CreatorCampaignAdResultsTests.cs
 src/Zernio.Test/Model/CreatorCampaignAdResultsTotalsTests.cs
+src/Zernio.Test/Model/CreatorCampaignAutoPayoutTests.cs
 src/Zernio.Test/Model/CreatorCampaignBrandingTests.cs
 src/Zernio.Test/Model/CreatorCampaignCapsTests.cs
 src/Zernio.Test/Model/CreatorCampaignCommissionTermsTests.cs
@@ -4887,6 +4900,7 @@ src/Zernio.Test/Model/EmailCapabilitiesTests.cs
 src/Zernio.Test/Model/EmailCleanForwardedTests.cs
 src/Zernio.Test/Model/EmailCleanRemovedTests.cs
 src/Zernio.Test/Model/EmailCleanTests.cs
+src/Zernio.Test/Model/EmailDraftObjectTests.cs
 src/Zernio.Test/Model/EmailDraftTests.cs
 src/Zernio.Test/Model/EmailFolderTests.cs
 src/Zernio.Test/Model/EmailLabelColorTests.cs
@@ -4964,6 +4978,7 @@ src/Zernio.Test/Model/FoodMenuSectionTests.cs
 src/Zernio.Test/Model/FoodMenuTests.cs
 src/Zernio.Test/Model/ForwardEmailRequestTests.cs
 src/Zernio.Test/Model/ForwardingRuleTests.cs
+src/Zernio.Test/Model/FreeBusyErrorTests.cs
 src/Zernio.Test/Model/FromASharedTemplateTests.cs
 src/Zernio.Test/Model/FromAZernioTemplateTests.cs
 src/Zernio.Test/Model/FromYourAutomationsTests.cs
@@ -5761,6 +5776,8 @@ src/Zernio.Test/Model/ListBusinessAgentSkills200ResponseTests.cs
 src/Zernio.Test/Model/ListBusinessAgentUiSkills200ResponseTests.cs
 src/Zernio.Test/Model/ListBusinessAgentWebsites200ResponseTests.cs
 src/Zernio.Test/Model/ListBusinessPartners200ResponseTests.cs
+src/Zernio.Test/Model/ListCalendarEventInstances200ResponsePaginationTests.cs
+src/Zernio.Test/Model/ListCalendarEventInstances200ResponseTests.cs
 src/Zernio.Test/Model/ListCalendarEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListCalendars200ResponseTests.cs
 src/Zernio.Test/Model/ListCalls200ResponseCallsInnerTests.cs
@@ -5845,7 +5862,6 @@ src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookTaggedPosts200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookVisitorPosts200ResponseTests.cs
-src/Zernio.Test/Model/ListFiles200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListFiles200ResponseTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseMetaTests.cs
@@ -7899,13 +7915,17 @@ src/Zernio/Model/CalendarAvailabilityRequestParticipantsInner.cs
 src/Zernio/Model/CalendarEvent.cs
 src/Zernio/Model/CalendarEventConferencing.cs
 src/Zernio/Model/CalendarEventFields.cs
+src/Zernio/Model/CalendarEventFieldsParticipantsInner.cs
 src/Zernio/Model/CalendarEventFieldsReminders.cs
 src/Zernio/Model/CalendarEventFieldsRemindersOverridesInner.cs
 src/Zernio/Model/CalendarEventParticipantsInner.cs
 src/Zernio/Model/CalendarEventReminders.cs
 src/Zernio/Model/CalendarFreeBusy200Response.cs
 src/Zernio/Model/CalendarFreeBusy200ResponseDataInner.cs
+src/Zernio/Model/CalendarFreeBusy200ResponseDataInnerCalendarsInner.cs
+src/Zernio/Model/CalendarFreeBusy200ResponseDataInnerPeopleInner.cs
 src/Zernio/Model/CalendarFreeBusyRequest.cs
+src/Zernio/Model/CalendarFreeBusyRequestAccountsInner.cs
 src/Zernio/Model/CallRecord.cs
 src/Zernio/Model/CallRecordBilling.cs
 src/Zernio/Model/CallRecordCallErrorsInner.cs
@@ -8425,6 +8445,7 @@ src/Zernio/Model/CreatorCampaignAdResultsSubmissionsInnerAdsInner.cs
 src/Zernio/Model/CreatorCampaignAdResultsSubmissionsInnerCreator.cs
 src/Zernio/Model/CreatorCampaignAdResultsSubmissionsInnerLaunchesInner.cs
 src/Zernio/Model/CreatorCampaignAdResultsTotals.cs
+src/Zernio/Model/CreatorCampaignAutoPayout.cs
 src/Zernio/Model/CreatorCampaignBranding.cs
 src/Zernio/Model/CreatorCampaignCaps.cs
 src/Zernio/Model/CreatorCampaignCommissionTerms.cs
@@ -8588,6 +8609,7 @@ src/Zernio/Model/EmailClean.cs
 src/Zernio/Model/EmailCleanForwarded.cs
 src/Zernio/Model/EmailCleanRemoved.cs
 src/Zernio/Model/EmailDraft.cs
+src/Zernio/Model/EmailDraftObject.cs
 src/Zernio/Model/EmailFolder.cs
 src/Zernio/Model/EmailLabel.cs
 src/Zernio/Model/EmailLabelColor.cs
@@ -8664,6 +8686,7 @@ src/Zernio/Model/FoodMenuLabel.cs
 src/Zernio/Model/FoodMenuSection.cs
 src/Zernio/Model/ForwardEmailRequest.cs
 src/Zernio/Model/ForwardingRule.cs
+src/Zernio/Model/FreeBusyError.cs
 src/Zernio/Model/FromASharedTemplate.cs
 src/Zernio/Model/FromAZernioTemplate.cs
 src/Zernio/Model/FromYourAutomations.cs
@@ -9461,6 +9484,8 @@ src/Zernio/Model/ListBusinessAgentSkills200Response.cs
 src/Zernio/Model/ListBusinessAgentUiSkills200Response.cs
 src/Zernio/Model/ListBusinessAgentWebsites200Response.cs
 src/Zernio/Model/ListBusinessPartners200Response.cs
+src/Zernio/Model/ListCalendarEventInstances200Response.cs
+src/Zernio/Model/ListCalendarEventInstances200ResponsePagination.cs
 src/Zernio/Model/ListCalendarEvents200Response.cs
 src/Zernio/Model/ListCalendars200Response.cs
 src/Zernio/Model/ListCalls200Response.cs
@@ -9546,7 +9571,6 @@ src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
 src/Zernio/Model/ListFacebookVisitorPosts200Response.cs
 src/Zernio/Model/ListFiles200Response.cs
-src/Zernio/Model/ListFiles200ResponsePagination.cs
 src/Zernio/Model/ListFormLeads200Response.cs
 src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListFormLeads200ResponseMeta.cs

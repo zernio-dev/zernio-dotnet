@@ -42,6 +42,7 @@ Name | Type | Description | Notes
 **PayableCents** | **int** | What the campaign&#39;s creators can be paid now, summed over every participant&#39;s payable balance. | 
 **LandingUrl** | **string** | The page creator tracking links open. | [optional] 
 **CodeDiscountPercent** | **int?** | What each creator discount code takes off. | [optional] 
+**AutoPayout** | [**CreatorCampaignAutoPayout**](CreatorCampaignAutoPayout.md) |  | [optional] 
 **PendingParticipantCount** | **int** | Creators who asked to join through the open link and wait for a decision. Not counted in &#x60;participantCount&#x60;. | 
 **DraftCounts** | [**CampaignDraftCounts**](CampaignDraftCounts.md) |  | 
 **SampleCounts** | [**CampaignSampleCounts**](CampaignSampleCounts.md) |  | 
