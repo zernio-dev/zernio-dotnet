@@ -799,6 +799,8 @@ docs/CreateEventDestinationRequest.md
 docs/CreateFilePickerSession201Response.md
 docs/CreateFilePickerSessionRequest.md
 docs/CreateFolderRequest.md
+docs/CreateForwardingRule201Response.md
+docs/CreateForwardingRuleRequest.md
 docs/CreateGoogleAdAccountRequest.md
 docs/CreateGoogleAssetGroup200Response.md
 docs/CreateGoogleAssetGroup201Response.md
@@ -1185,6 +1187,7 @@ docs/EstimateAdReachRequest.md
 docs/EventAutomationCheck.md
 docs/EventAutomationCheckSubject.md
 docs/EventAutomationDefinition.md
+docs/EventCorrection.md
 docs/EventDestination.md
 docs/Expired.md
 docs/ExternalPostMediaItem.md
@@ -1227,6 +1230,7 @@ docs/FoodMenuItemOptionsInner.md
 docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
+docs/ForwardingRule.md
 docs/FromASharedTemplate.md
 docs/FromAZernioTemplate.md
 docs/FromYourAutomations.md
@@ -2128,6 +2132,7 @@ docs/ListFiles200ResponsePagination.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
+docs/ListForwardingRules200Response.md
 docs/ListGoogleAnalyticsProperties200Response.md
 docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md
 docs/ListGoogleAssetGroups200Response.md
@@ -2638,10 +2643,13 @@ docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md
 docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RespondToSmsRegistrationReviewRequestAnswersInner.md
+docs/RestateEvent200Response.md
+docs/RestateEventRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/ResyncPageWebhookSubscription200Response.md
 docs/Retainer.md
+docs/RetractEvent200Response.md
 docs/RetryPost207Response.md
 docs/RetryPost402Response.md
 docs/RetweetPost200Response.md
@@ -4531,6 +4539,8 @@ src/Zernio.Test/Model/CreateEventDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateFilePickerSession201ResponseTests.cs
 src/Zernio.Test/Model/CreateFilePickerSessionRequestTests.cs
 src/Zernio.Test/Model/CreateFolderRequestTests.cs
+src/Zernio.Test/Model/CreateForwardingRule201ResponseTests.cs
+src/Zernio.Test/Model/CreateForwardingRuleRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleAdAccountRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleAssetGroup201ResponseAssetGroupTests.cs
@@ -4912,6 +4922,7 @@ src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
 src/Zernio.Test/Model/EventAutomationCheckSubjectTests.cs
 src/Zernio.Test/Model/EventAutomationCheckTests.cs
 src/Zernio.Test/Model/EventAutomationDefinitionTests.cs
+src/Zernio.Test/Model/EventCorrectionTests.cs
 src/Zernio.Test/Model/EventDestinationTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
 src/Zernio.Test/Model/ExternalPostMediaItemTests.cs
@@ -4952,6 +4963,7 @@ src/Zernio.Test/Model/FoodMenuLabelTests.cs
 src/Zernio.Test/Model/FoodMenuSectionTests.cs
 src/Zernio.Test/Model/FoodMenuTests.cs
 src/Zernio.Test/Model/ForwardEmailRequestTests.cs
+src/Zernio.Test/Model/ForwardingRuleTests.cs
 src/Zernio.Test/Model/FromASharedTemplateTests.cs
 src/Zernio.Test/Model/FromAZernioTemplateTests.cs
 src/Zernio.Test/Model/FromYourAutomationsTests.cs
@@ -5838,6 +5850,7 @@ src/Zernio.Test/Model/ListFiles200ResponseTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseTests.cs
+src/Zernio.Test/Model/ListForwardingRules200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleAnalyticsProperties200ResponsePropertiesInnerTests.cs
 src/Zernio.Test/Model/ListGoogleAnalyticsProperties200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleAssetGroups200ResponseTests.cs
@@ -6334,10 +6347,13 @@ src/Zernio.Test/Model/RespondToPhoneNumberReviewerRequestTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReview200ResponseTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestAnswersInnerTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestTests.cs
+src/Zernio.Test/Model/RestateEvent200ResponseTests.cs
+src/Zernio.Test/Model/RestateEventRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/ResyncPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/RetainerTests.cs
+src/Zernio.Test/Model/RetractEvent200ResponseTests.cs
 src/Zernio.Test/Model/RetryPost207ResponseTests.cs
 src/Zernio.Test/Model/RetryPost402ResponseTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
@@ -8223,6 +8239,8 @@ src/Zernio/Model/CreateEventDestinationRequest.cs
 src/Zernio/Model/CreateFilePickerSession201Response.cs
 src/Zernio/Model/CreateFilePickerSessionRequest.cs
 src/Zernio/Model/CreateFolderRequest.cs
+src/Zernio/Model/CreateForwardingRule201Response.cs
+src/Zernio/Model/CreateForwardingRuleRequest.cs
 src/Zernio/Model/CreateGoogleAdAccountRequest.cs
 src/Zernio/Model/CreateGoogleAssetGroup200Response.cs
 src/Zernio/Model/CreateGoogleAssetGroup201Response.cs
@@ -8604,6 +8622,7 @@ src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/EventAutomationCheck.cs
 src/Zernio/Model/EventAutomationCheckSubject.cs
 src/Zernio/Model/EventAutomationDefinition.cs
+src/Zernio/Model/EventCorrection.cs
 src/Zernio/Model/EventDestination.cs
 src/Zernio/Model/Expired.cs
 src/Zernio/Model/ExternalPostMediaItem.cs
@@ -8644,6 +8663,7 @@ src/Zernio/Model/FoodMenuItemOptionsInner.cs
 src/Zernio/Model/FoodMenuLabel.cs
 src/Zernio/Model/FoodMenuSection.cs
 src/Zernio/Model/ForwardEmailRequest.cs
+src/Zernio/Model/ForwardingRule.cs
 src/Zernio/Model/FromASharedTemplate.cs
 src/Zernio/Model/FromAZernioTemplate.cs
 src/Zernio/Model/FromYourAutomations.cs
@@ -9530,6 +9550,7 @@ src/Zernio/Model/ListFiles200ResponsePagination.cs
 src/Zernio/Model/ListFormLeads200Response.cs
 src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListFormLeads200ResponseMeta.cs
+src/Zernio/Model/ListForwardingRules200Response.cs
 src/Zernio/Model/ListGoogleAnalyticsProperties200Response.cs
 src/Zernio/Model/ListGoogleAnalyticsProperties200ResponsePropertiesInner.cs
 src/Zernio/Model/ListGoogleAssetGroups200Response.cs
@@ -10026,10 +10047,13 @@ src/Zernio/Model/RespondToPhoneNumberReviewerRequestDocumentsInner.cs
 src/Zernio/Model/RespondToSmsRegistrationReview200Response.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequest.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequestAnswersInner.cs
+src/Zernio/Model/RestateEvent200Response.cs
+src/Zernio/Model/RestateEventRequest.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/ResyncPageWebhookSubscription200Response.cs
 src/Zernio/Model/Retainer.cs
+src/Zernio/Model/RetractEvent200Response.cs
 src/Zernio/Model/RetryPost207Response.cs
 src/Zernio/Model/RetryPost402Response.cs
 src/Zernio/Model/RetweetPost200Response.cs
