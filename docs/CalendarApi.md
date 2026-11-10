@@ -317,7 +317,7 @@ catch (ApiException e)
 
 <a id="deletecalendarevent"></a>
 # **DeleteCalendarEvent**
-> DeleteCalendarEvent200Response DeleteCalendarEvent (string eventId, string accountId, string? calendarId = null)
+> DeleteEmailLabel200Response DeleteCalendarEvent (string eventId, string accountId, string? calendarId = null)
 
 Delete an event
 
@@ -352,7 +352,7 @@ namespace Example
             try
             {
                 // Delete an event
-                DeleteCalendarEvent200Response result = apiInstance.DeleteCalendarEvent(eventId, accountId, calendarId);
+                DeleteEmailLabel200Response result = apiInstance.DeleteCalendarEvent(eventId, accountId, calendarId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -373,7 +373,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete an event
-    ApiResponse<DeleteCalendarEvent200Response> response = apiInstance.DeleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
+    ApiResponse<DeleteEmailLabel200Response> response = apiInstance.DeleteCalendarEventWithHttpInfo(eventId, accountId, calendarId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -396,7 +396,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**DeleteCalendarEvent200Response**](DeleteCalendarEvent200Response.md)
+[**DeleteEmailLabel200Response**](DeleteEmailLabel200Response.md)
 
 ### Authorization
 

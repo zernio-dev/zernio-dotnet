@@ -1,10 +1,10 @@
-# Zernio.Model.DeleteCalendarEvent200Response
+# Zernio.Model.DeleteEmailLabel200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**DeleteCalendarEvent200ResponseData**](DeleteCalendarEvent200ResponseData.md) |  | [optional] 
+**Data** | [**DeleteEmailLabel200ResponseData**](DeleteEmailLabel200ResponseData.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
