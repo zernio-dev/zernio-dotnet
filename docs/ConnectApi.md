@@ -28,6 +28,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetConnectHandoff**](ConnectApi.md#getconnecthandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**GetConnectUrl**](ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**GetConnectWelcomeScreen**](ConnectApi.md#getconnectwelcomescreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
+| [**GetEmailConnectUrl**](ConnectApi.md#getemailconnecturl) | **GET** /v1/connect/email | Get a hosted link to connect any mailbox |
 | [**GetFacebookPages**](ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**GetGmbLocations**](ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
 | [**GetGoogleAnalyticsConnectUrl**](ConnectApi.md#getgoogleanalyticsconnecturl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
@@ -2619,6 +2620,114 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The saved settings. A workspace that never saved any gets &#x60;showByDefault&#x60; false and null fields. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getemailconnecturl"></a>
+# **GetEmailConnectUrl**
+> GetEmailConnectUrl200Response GetEmailConnectUrl (string profileId, string? redirectUrl = null, string? email = null, string? name = null, string? reconnectAccountId = null)
+
+Get a hosted link to connect any mailbox
+
+One link for any address. The page asks for the email first, sends Gmail, Google Workspace, Outlook.com and Microsoft 365 (found by domain or MX) to their OAuth connect, and every other mailbox to IMAP with the provider's app-password steps. Valid for one hour.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetEmailConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | 
+            var redirectUrl = "redirectUrl_example";  // string? | Where the page sends the user afterwards, with status, accountId, platform and email (or status=error and error). (optional) 
+            var email = "email_example";  // string? | Prefills the address and skips the first screen. (optional) 
+            var name = "name_example";  // string? | Display name for sent mail; the page asks for it when absent. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. (optional) 
+
+            try
+            {
+                // Get a hosted link to connect any mailbox
+                GetEmailConnectUrl200Response result = apiInstance.GetEmailConnectUrl(profileId, redirectUrl, email, name, reconnectAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetEmailConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetEmailConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a hosted link to connect any mailbox
+    ApiResponse<GetEmailConnectUrl200Response> response = apiInstance.GetEmailConnectUrlWithHttpInfo(profileId, redirectUrl, email, name, reconnectAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetEmailConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** |  |  |
+| **redirectUrl** | **string?** | Where the page sends the user afterwards, with status, accountId, platform and email (or status&#x3D;error and error). | [optional]  |
+| **email** | **string?** | Prefills the address and skips the first screen. | [optional]  |
+| **name** | **string?** | Display name for sent mail; the page asks for it when absent. | [optional]  |
+| **reconnectAccountId** | **string?** | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. | [optional]  |
+
+### Return type
+
+[**GetEmailConnectUrl200Response**](GetEmailConnectUrl200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The hosted page URL |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

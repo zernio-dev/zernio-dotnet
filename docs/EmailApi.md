@@ -8,11 +8,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateEmailDraft**](EmailApi.md#createemaildraft) | **POST** /v1/email/drafts | Create a draft |
 | [**CreateEmailLabel**](EmailApi.md#createemaillabel) | **POST** /v1/email/labels | Create a label |
 | [**CreateEmailSignature**](EmailApi.md#createemailsignature) | **POST** /v1/email/signatures | Create a signature |
+| [**CreateImapAccount**](EmailApi.md#createimapaccount) | **POST** /v1/email/imap/accounts | Connect an IMAP mailbox |
 | [**DeclareEmailSendAs**](EmailApi.md#declareemailsendas) | **POST** /v1/email/send-as | Declare a send-as address |
 | [**DeleteEmailDraft**](EmailApi.md#deleteemaildraft) | **DELETE** /v1/email/drafts/{draftId} | Delete a draft |
 | [**DeleteEmailLabel**](EmailApi.md#deleteemaillabel) | **DELETE** /v1/email/labels/{labelId} | Delete a label |
 | [**DeleteEmailSendAs**](EmailApi.md#deleteemailsendas) | **DELETE** /v1/email/send-as/{email} | Remove a declared send-as address |
 | [**DeleteEmailSignature**](EmailApi.md#deleteemailsignature) | **DELETE** /v1/email/signatures/{signatureId} | Delete a signature |
+| [**DiscoverImapSettings**](EmailApi.md#discoverimapsettings) | **POST** /v1/email/imap/discover | Find the mail settings for an address |
 | [**DownloadEmailAttachment**](EmailApi.md#downloademailattachment) | **GET** /v1/email/attachments/{attachmentId} | Download an attachment |
 | [**ForwardEmailMessage**](EmailApi.md#forwardemailmessage) | **POST** /v1/email/messages/{messageId}/forward | Forward a message |
 | [**GetEmailDraft**](EmailApi.md#getemaildraft) | **GET** /v1/email/drafts/{draftId} | Get a draft |
@@ -445,6 +447,109 @@ catch (ApiException e)
 | **201** | The signature was created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createimapaccount"></a>
+# **CreateImapAccount**
+> ImapConnectResult CreateImapAccount (CreateImapAccountRequest createImapAccountRequest)
+
+Connect an IMAP mailbox
+
+Connects any IMAP/SMTP mailbox without the hosted page. Email and password are enough when discovery finds the servers. Every check runs before anything is stored; a failure answers 422 with the failing stage's code. An address already on the profile is updated in place and keeps its accountId.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateImapAccountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var createImapAccountRequest = new CreateImapAccountRequest(); // CreateImapAccountRequest | 
+
+            try
+            {
+                // Connect an IMAP mailbox
+                ImapConnectResult result = apiInstance.CreateImapAccount(createImapAccountRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.CreateImapAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateImapAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect an IMAP mailbox
+    ApiResponse<ImapConnectResult> response = apiInstance.CreateImapAccountWithHttpInfo(createImapAccountRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.CreateImapAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createImapAccountRequest** | [**CreateImapAccountRequest**](CreateImapAccountRequest.md) |  |  |
+
+### Return type
+
+[**ImapConnectResult**](ImapConnectResult.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A dry run passed, or an existing account was updated in place |  -  |
+| **201** | The mailbox was connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **422** | A check failed. code names the stage (imap_auth_failed, app_password_required, use_oauth, imap_disabled, imap_unreachable, tls_hostname_mismatch, tls_untrusted, smtp_unreachable, smtp_auth_failed, provider_unsupported, discovery_failed); details.stages says which checks passed. |  -  |
+| **429** | too_many_attempts: the provider is refusing sign-ins; wait before retrying. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -955,6 +1060,106 @@ catch (ApiException e)
 | **200** | The signature was deleted |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="discoverimapsettings"></a>
+# **DiscoverImapSettings**
+> DiscoverImapSettings200Response DiscoverImapSettings (DiscoverImapSettingsRequest discoverImapSettingsRequest)
+
+Find the mail settings for an address
+
+The routing decision the hosted page makes, for your own connect form: Google or Microsoft OAuth, IMAP with the servers and the provider's app-password steps, or unsupported. Sources run in parallel inside 15 seconds: presets, MX, autoconfig, Thunderbird's ISPDB (sent the domain only), SRV records, then a probe.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DiscoverImapSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
+            var discoverImapSettingsRequest = new DiscoverImapSettingsRequest(); // DiscoverImapSettingsRequest | 
+
+            try
+            {
+                // Find the mail settings for an address
+                DiscoverImapSettings200Response result = apiInstance.DiscoverImapSettings(discoverImapSettingsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling EmailApi.DiscoverImapSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DiscoverImapSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Find the mail settings for an address
+    ApiResponse<DiscoverImapSettings200Response> response = apiInstance.DiscoverImapSettingsWithHttpInfo(discoverImapSettingsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling EmailApi.DiscoverImapSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **discoverImapSettingsRequest** | [**DiscoverImapSettingsRequest**](DiscoverImapSettingsRequest.md) |  |  |
+
+### Return type
+
+[**DiscoverImapSettings200Response**](DiscoverImapSettings200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Where this address connects, and how |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
