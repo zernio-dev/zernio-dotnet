@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="enabled">Turns auto top-up on or off. A rule switched off by failed charges stays off until the card is updated..</param>
         /// <param name="belowCents">Auto top-up charges the card when the balance drops below this, in cents. At least $5..</param>
         /// <param name="toCents">Top back up to this, in cents. More than $5 above belowCents..</param>
-        /// <param name="monthlyLimitCents">Most auto top-up may add per calendar month (UTC), before tax. Null for no limit..</param>
+        /// <param name="monthlyLimitCents">Most auto top-up may add per calendar month (UTC), before tax. At least toCents while auto top-up is on. Null for no limit..</param>
         /// <param name="alertBelowCents">Email the billing owner once each time the balance drops below this. Null for no email..</param>
         public UpdateAutoRechargeRequest(bool enabled = default, int belowCents = default, int toCents = default, int? monthlyLimitCents = default, int? alertBelowCents = default)
         {
@@ -73,9 +73,9 @@ namespace Zernio.Model
         public int ToCents { get; set; }
 
         /// <summary>
-        /// Most auto top-up may add per calendar month (UTC), before tax. Null for no limit.
+        /// Most auto top-up may add per calendar month (UTC), before tax. At least toCents while auto top-up is on. Null for no limit.
         /// </summary>
-        /// <value>Most auto top-up may add per calendar month (UTC), before tax. Null for no limit.</value>
+        /// <value>Most auto top-up may add per calendar month (UTC), before tax. At least toCents while auto top-up is on. Null for no limit.</value>
         [DataMember(Name = "monthlyLimitCents", EmitDefaultValue = true)]
         public int? MonthlyLimitCents { get; set; }
 
