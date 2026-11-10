@@ -2100,6 +2100,9 @@ docs/ListCommerceProductMetafields200Response.md
 docs/ListCommerceProducts200Response.md
 docs/ListCommerceRedirects200Response.md
 docs/ListConnectedApps200Response.md
+docs/ListContactGroups200Response.md
+docs/ListContactGroups200ResponseDataInner.md
+docs/ListContactGroups200ResponseMeta.md
 docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
@@ -5835,6 +5838,9 @@ src/Zernio.Test/Model/ListCommerceProductMetafields200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceRedirects200ResponseTests.cs
 src/Zernio.Test/Model/ListConnectedApps200ResponseTests.cs
+src/Zernio.Test/Model/ListContactGroups200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/ListContactGroups200ResponseMetaTests.cs
+src/Zernio.Test/Model/ListContactGroups200ResponseTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseContactsInnerTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseFiltersTests.cs
 src/Zernio.Test/Model/ListContacts200ResponsePaginationTests.cs
@@ -9552,6 +9558,9 @@ src/Zernio/Model/ListCommerceProductMetafields200Response.cs
 src/Zernio/Model/ListCommerceProducts200Response.cs
 src/Zernio/Model/ListCommerceRedirects200Response.cs
 src/Zernio/Model/ListConnectedApps200Response.cs
+src/Zernio/Model/ListContactGroups200Response.cs
+src/Zernio/Model/ListContactGroups200ResponseDataInner.cs
+src/Zernio/Model/ListContactGroups200ResponseMeta.cs
 src/Zernio/Model/ListContacts200Response.cs
 src/Zernio/Model/ListContacts200ResponseContactsInner.cs
 src/Zernio/Model/ListContacts200ResponseFilters.cs

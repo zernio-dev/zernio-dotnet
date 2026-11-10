@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteContact**](ContactsApi.md#deletecontact) | **DELETE** /v1/contacts/{contactId} | Delete contact |
 | [**GetContact**](ContactsApi.md#getcontact) | **GET** /v1/contacts/{contactId} | Get contact |
 | [**GetContactChannels**](ContactsApi.md#getcontactchannels) | **GET** /v1/contacts/{contactId}/channels | List channels for a contact |
+| [**ListContactGroups**](ContactsApi.md#listcontactgroups) | **GET** /v1/contacts/groups | List contact groups |
 | [**ListContacts**](ContactsApi.md#listcontacts) | **GET** /v1/contacts | List contacts |
 | [**UpdateContact**](ContactsApi.md#updatecontact) | **PATCH** /v1/contacts/{contactId} | Update contact |
 
@@ -512,9 +513,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listcontactgroups"></a>
+# **ListContactGroups**
+> ListContactGroups200Response ListContactGroups (string accountId)
+
+List contact groups
+
+Lists the groups of a Google or Microsoft account's address book, read live from the provider: Google contact labels, and Outlook contact folders and categories. The account needs the contacts area.  Each group id is what synced contacts carry in their channel's metadata.groups, and what the group filter of GET /v1/contacts takes.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListContactGroupsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ContactsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | A Google or Microsoft account connected with the contacts area.
+
+            try
+            {
+                // List contact groups
+                ListContactGroups200Response result = apiInstance.ListContactGroups(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ContactsApi.ListContactGroups: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListContactGroupsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List contact groups
+    ApiResponse<ListContactGroups200Response> response = apiInstance.ListContactGroupsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ContactsApi.ListContactGroupsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | A Google or Microsoft account connected with the contacts area. |  |
+
+### Return type
+
+[**ListContactGroups200Response**](ListContactGroups200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The account&#39;s contact groups |  -  |
+| **400** | Invalid request, or the account is not a Google or Microsoft account |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The account was connected without the contacts area |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listcontacts"></a>
 # **ListContacts**
-> ListContacts200Response ListContacts (string? profileId = null, string? accountId = null, string? search = null, string? tag = null, string? tags = null, string? platform = null, string? isSubscribed = null, int? limit = null, int? skip = null)
+> ListContacts200Response ListContacts (string? profileId = null, string? accountId = null, string? search = null, string? tag = null, string? tags = null, string? platform = null, string? group = null, string? isSubscribed = null, int? limit = null, int? skip = null)
 
 List contacts
 
@@ -550,6 +653,7 @@ namespace Example
             var tag = "tag_example";  // string? |  (optional) 
             var tags = "tags_example";  // string? | Comma-separated tags, matches contacts carrying any of them (optional) 
             var platform = "instagram";  // string? |  (optional) 
+            var group = "group_example";  // string? | A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off. (optional) 
             var isSubscribed = "true";  // string? |  (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
             var skip = 0;  // int? |  (optional)  (default to 0)
@@ -557,7 +661,7 @@ namespace Example
             try
             {
                 // List contacts
-                ListContacts200Response result = apiInstance.ListContacts(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
+                ListContacts200Response result = apiInstance.ListContacts(profileId, accountId, search, tag, tags, platform, group, isSubscribed, limit, skip);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -578,7 +682,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List contacts
-    ApiResponse<ListContacts200Response> response = apiInstance.ListContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, isSubscribed, limit, skip);
+    ApiResponse<ListContacts200Response> response = apiInstance.ListContactsWithHttpInfo(profileId, accountId, search, tag, tags, platform, group, isSubscribed, limit, skip);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -601,6 +705,7 @@ catch (ApiException e)
 | **tag** | **string?** |  | [optional]  |
 | **tags** | **string?** | Comma-separated tags, matches contacts carrying any of them | [optional]  |
 | **platform** | **string?** |  | [optional]  |
+| **group** | **string?** | A group id from GET /v1/contacts/groups, such as contactGroups/abc, folder:default or category:VIP. Returns the contacts the Google or Outlook contacts sync filed in that group on the account. Requires accountId. Memberships are not stored while content retention is off. | [optional]  |
 | **isSubscribed** | **string?** |  | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |
 | **skip** | **int?** |  | [optional] [default to 0] |
