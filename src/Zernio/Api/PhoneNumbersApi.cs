@@ -473,7 +473,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -485,7 +485,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1209,7 +1209,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -1222,7 +1222,7 @@ namespace Zernio.Api
         /// Reply to the regulatory reviewer
         /// </summary>
         /// <remarks>
-        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4374,7 +4374,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4387,7 +4387,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4443,7 +4443,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -4457,7 +4457,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A reply to a comment-style ask moves the number back to \&quot;in review\&quot;. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation. Use it for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;).  Requires text or at least one attachment. Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files).  ### What happens next  - A text reply to a comment-style ask moves the number back to \&quot;in review\&quot;. A reply with only files keeps the ask open, so send the fix through the structured form or add a written answer. - A reply on a formal decline is supplementary, and you must still resubmit the fix. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
