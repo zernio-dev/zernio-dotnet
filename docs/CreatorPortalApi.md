@@ -1021,7 +1021,7 @@ No authorization required
 
 Start connecting a creator account
 
-Returns the authorization URL that connects one of the creator's own social accounts, read-only, so their posts can be verified. Send the creator's browser to `authUrl`; they come back to their participant page. Only the campaign's platforms are accepted. 
+Returns the URL that connects one of the creator's own social accounts, read-only, so their posts can be verified. Only the campaign's platforms are accepted.  `authUrl` opens the welcome screen in the campaign's brand, then the platform's sign-in.  The creator comes back to their participant page, or to the connect window's result screen when `windowUrl` is sent. 
 
 ### Example
 ```csharp
@@ -1109,7 +1109,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Authorization URL. |  -  |
-| **400** | The platform is not part of the campaign (&#x60;invalid_field_value&#x60;), the campaign allows no more connected accounts (\&quot;This campaign allows N connected accounts.\&quot;), or the campaign has ended (&#x60;invalid_resource_state&#x60;). |  -  |
+| **400** | The platform or &#x60;windowUrl&#x60; is not accepted (&#x60;invalid_field_value&#x60;), the campaign allows no more connected accounts, or the campaign has ended (&#x60;invalid_resource_state&#x60;). |  -  |
 | **404** | The token is malformed, unknown or expired. Every case answers the same, so a link can never be probed. |  -  |
 | **409** | The creator&#39;s participation was suspended or removed (&#x60;invalid_resource_state&#x60;). |  -  |
 

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Subject** | **string** |  | 
 **Text** | **string** | Plain-text body. One of &#x60;text&#x60; or &#x60;html&#x60; is required. | [optional] 
 **Html** | **string** |  | [optional] 
-**Attachments** | [**List&lt;SendEmailRequestAttachmentsInner&gt;**](SendEmailRequestAttachmentsInner.md) | 25 MB in total; 3 MB per attachment on Microsoft. | [optional] 
+**Attachments** | [**List&lt;SendEmailRequestAttachmentsInner&gt;**](SendEmailRequestAttachmentsInner.md) | 25 MB in total on every provider. Send files over 4 MB by url: request bodies are capped at 4.5 MB. | [optional] 
 **Headers** | **Dictionary&lt;string, string&gt;** | Custom &#x60;X-&#x60; headers only. &#x60;List-Unsubscribe&#x60; is dropped on Microsoft and reported in &#x60;metadata.droppedHeaders&#x60;. | [optional] 
 **Metadata** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 **ScheduledFor** | **DateTime** | Send later, between 1 minute and 30 days from now. The request answers 202 with the scheduled send; it leaves within a minute of this time through the same caps as an immediate send. List or cancel it under &#x60;/v1/email/messages/scheduled&#x60;. | [optional] 
