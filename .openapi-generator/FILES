@@ -3507,6 +3507,8 @@ docs/WebhookPayloadCreatorCampaignCampaign.md
 docs/WebhookPayloadEmailBounced.md
 docs/WebhookPayloadEmailBouncedBounce.md
 docs/WebhookPayloadEmailBouncedEmail.md
+docs/WebhookPayloadEmailDeleted.md
+docs/WebhookPayloadEmailDeletedEmail.md
 docs/WebhookPayloadEmailLinkClicked.md
 docs/WebhookPayloadEmailLinkClickedClick.md
 docs/WebhookPayloadEmailOpened.md
@@ -3518,8 +3520,12 @@ docs/WebhookPayloadEmailSentEmail.md
 docs/WebhookPayloadEmailThreadReplied.md
 docs/WebhookPayloadEmailThreadRepliedReply.md
 docs/WebhookPayloadEmailThreadRepliedReplyClean.md
+docs/WebhookPayloadEmailUpdated.md
+docs/WebhookPayloadEmailUpdatedChanges.md
+docs/WebhookPayloadEmailUpdatedEmail.md
 docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadFile.md
+docs/WebhookPayloadFileFile.md
 docs/WebhookPayloadFilePicked.md
 docs/WebhookPayloadFilePickedPicker.md
 docs/WebhookPayloadFilePickedPickerFilesInner.md
@@ -7204,6 +7210,8 @@ src/Zernio.Test/Model/WebhookPayloadCreatorCampaignTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailBouncedBounceTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailBouncedEmailTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailBouncedTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailDeletedEmailTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailDeletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailLinkClickedClickTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailLinkClickedTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailOpenedOpenTests.cs
@@ -7215,7 +7223,11 @@ src/Zernio.Test/Model/WebhookPayloadEmailSentTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailThreadRepliedReplyCleanTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailThreadRepliedReplyTests.cs
 src/Zernio.Test/Model/WebhookPayloadEmailThreadRepliedTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailUpdatedChangesTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailUpdatedEmailTests.cs
+src/Zernio.Test/Model/WebhookPayloadEmailUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadExternalPostTests.cs
+src/Zernio.Test/Model/WebhookPayloadFileFileTests.cs
 src/Zernio.Test/Model/WebhookPayloadFilePickedPickerFilesInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadFilePickedPickerTests.cs
 src/Zernio.Test/Model/WebhookPayloadFilePickedTests.cs
@@ -10913,6 +10925,8 @@ src/Zernio/Model/WebhookPayloadCreatorCampaignCampaign.cs
 src/Zernio/Model/WebhookPayloadEmailBounced.cs
 src/Zernio/Model/WebhookPayloadEmailBouncedBounce.cs
 src/Zernio/Model/WebhookPayloadEmailBouncedEmail.cs
+src/Zernio/Model/WebhookPayloadEmailDeleted.cs
+src/Zernio/Model/WebhookPayloadEmailDeletedEmail.cs
 src/Zernio/Model/WebhookPayloadEmailLinkClicked.cs
 src/Zernio/Model/WebhookPayloadEmailLinkClickedClick.cs
 src/Zernio/Model/WebhookPayloadEmailOpened.cs
@@ -10924,8 +10938,12 @@ src/Zernio/Model/WebhookPayloadEmailSentEmail.cs
 src/Zernio/Model/WebhookPayloadEmailThreadReplied.cs
 src/Zernio/Model/WebhookPayloadEmailThreadRepliedReply.cs
 src/Zernio/Model/WebhookPayloadEmailThreadRepliedReplyClean.cs
+src/Zernio/Model/WebhookPayloadEmailUpdated.cs
+src/Zernio/Model/WebhookPayloadEmailUpdatedChanges.cs
+src/Zernio/Model/WebhookPayloadEmailUpdatedEmail.cs
 src/Zernio/Model/WebhookPayloadExternalPost.cs
 src/Zernio/Model/WebhookPayloadFile.cs
+src/Zernio/Model/WebhookPayloadFileFile.cs
 src/Zernio/Model/WebhookPayloadFilePicked.cs
 src/Zernio/Model/WebhookPayloadFilePickedPicker.cs
 src/Zernio/Model/WebhookPayloadFilePickedPickerFilesInner.cs

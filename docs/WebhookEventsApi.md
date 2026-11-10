@@ -88,11 +88,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCreatorCampaignBudgetExhausted**](WebhookEventsApi.md#oncreatorcampaignbudgetexhausted) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**OnCreatorCampaignClosed**](WebhookEventsApi.md#oncreatorcampaignclosed) | **POST** /creator_campaign.closed | Creator campaign closed event |
 | [**OnEmailBounced**](WebhookEventsApi.md#onemailbounced) | **POST** /email.bounced | Email bounced |
+| [**OnEmailDeleted**](WebhookEventsApi.md#onemaildeleted) | **POST** /email.deleted | Email deleted |
 | [**OnEmailLinkClicked**](WebhookEventsApi.md#onemaillinkclicked) | **POST** /email.link_clicked | Email link clicked |
 | [**OnEmailOpened**](WebhookEventsApi.md#onemailopened) | **POST** /email.opened | Email opened |
 | [**OnEmailSendFailed**](WebhookEventsApi.md#onemailsendfailed) | **POST** /email.send_failed | Scheduled email failed |
 | [**OnEmailSent**](WebhookEventsApi.md#onemailsent) | **POST** /email.sent | Email sent |
 | [**OnEmailThreadReplied**](WebhookEventsApi.md#onemailthreadreplied) | **POST** /email.thread_replied | Email thread replied |
+| [**OnEmailUpdated**](WebhookEventsApi.md#onemailupdated) | **POST** /email.updated | Email updated |
 | [**OnFileCreated**](WebhookEventsApi.md#onfilecreated) | **POST** /file.created | File created |
 | [**OnFileDeleted**](WebhookEventsApi.md#onfiledeleted) | **POST** /file.deleted | File deleted |
 | [**OnFilePicked**](WebhookEventsApi.md#onfilepicked) | **POST** /file.picked | Files picked |
@@ -8055,6 +8057,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onemaildeleted"></a>
+# **OnEmailDeleted**
+> void OnEmailDeleted (WebhookPayloadEmailDeleted webhookPayloadEmailDeleted)
+
+Email deleted
+
+A message was deleted from the mailbox for good. Moving it to Trash is `email.updated` with `folder: \"trash\"`. IMAP mailboxes do not send it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailDeletedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailDeleted = new WebhookPayloadEmailDeleted(); // WebhookPayloadEmailDeleted | 
+
+            try
+            {
+                // Email deleted
+                apiInstance.OnEmailDeleted(webhookPayloadEmailDeleted);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailDeleted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailDeletedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email deleted
+    apiInstance.OnEmailDeletedWithHttpInfo(webhookPayloadEmailDeleted);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailDeletedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailDeleted** | [**WebhookPayloadEmailDeleted**](WebhookPayloadEmailDeleted.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onemaillinkclicked"></a>
 # **OnEmailLinkClicked**
 > void OnEmailLinkClicked (WebhookPayloadEmailLinkClicked webhookPayloadEmailLinkClicked)
@@ -8503,6 +8599,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadEmailThreadReplied** | [**WebhookPayloadEmailThreadReplied**](WebhookPayloadEmailThreadReplied.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onemailupdated"></a>
+# **OnEmailUpdated**
+> void OnEmailUpdated (WebhookPayloadEmailUpdated webhookPayloadEmailUpdated)
+
+Email updated
+
+A message in the mailbox changed: it was read or marked unread, starred or flagged, labelled or categorized, archived, trashed or moved. Covers the Inbox, and Sent on Gmail. A change can arrive more than once; key on `email.messageId`.  Gmail reports exactly what changed in `changes`. Outlook reports the message as it is now, with `changes: null`. A message deleted for good fires `email.deleted` instead. IMAP mailboxes do not send it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailUpdatedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailUpdated = new WebhookPayloadEmailUpdated(); // WebhookPayloadEmailUpdated | 
+
+            try
+            {
+                // Email updated
+                apiInstance.OnEmailUpdated(webhookPayloadEmailUpdated);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailUpdated: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailUpdatedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email updated
+    apiInstance.OnEmailUpdatedWithHttpInfo(webhookPayloadEmailUpdated);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailUpdatedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailUpdated** | [**WebhookPayloadEmailUpdated**](WebhookPayloadEmailUpdated.md) |  |  |
 
 ### Return type
 
