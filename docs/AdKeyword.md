@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **Negative** | **bool** |  | [optional] 
 **QualityScore** | **int?** | Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated. | [optional] 
 **Quality** | [**AdKeywordQuality**](AdKeywordQuality.md) |  | [optional] 
-**SyncedAt** | **DateTime?** |  | [optional] 
+**SyncedAt** | **DateTime?** | When Zernio last read this keyword from Google: the last successful keyword sync of its ad account, or a later edit through Zernio. | [optional] 
 **Metrics** | [**AdKeywordMetrics**](AdKeywordMetrics.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
