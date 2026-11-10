@@ -76,9 +76,11 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnConversationStarted**](WebhookEventsApi.md#onconversationstarted) | **POST** /conversation.started | Conversation started event |
 | [**OnCreatorCampaignBudgetExhausted**](WebhookEventsApi.md#oncreatorcampaignbudgetexhausted) | **POST** /creator_campaign.budget_exhausted | Creator campaign budget exhausted event |
 | [**OnCreatorCampaignClosed**](WebhookEventsApi.md#oncreatorcampaignclosed) | **POST** /creator_campaign.closed | Creator campaign closed event |
+| [**OnEmailBounced**](WebhookEventsApi.md#onemailbounced) | **POST** /email.bounced | Email bounced |
 | [**OnEmailLinkClicked**](WebhookEventsApi.md#onemaillinkclicked) | **POST** /email.link_clicked | Email link clicked |
 | [**OnEmailOpened**](WebhookEventsApi.md#onemailopened) | **POST** /email.opened | Email opened |
 | [**OnEmailSendFailed**](WebhookEventsApi.md#onemailsendfailed) | **POST** /email.send_failed | Scheduled email failed |
+| [**OnEmailSent**](WebhookEventsApi.md#onemailsent) | **POST** /email.sent | Email sent |
 | [**OnEmailThreadReplied**](WebhookEventsApi.md#onemailthreadreplied) | **POST** /email.thread_replied | Email thread replied |
 | [**OnFileCreated**](WebhookEventsApi.md#onfilecreated) | **POST** /file.created | File created |
 | [**OnFileDeleted**](WebhookEventsApi.md#onfiledeleted) | **POST** /file.deleted | File deleted |
@@ -6914,6 +6916,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onemailbounced"></a>
+# **OnEmailBounced**
+> void OnEmailBounced (WebhookPayloadEmailBounced webhookPayloadEmailBounced)
+
+Email bounced
+
+A delivery failure report for mail the mailbox sent arrived: the receiving server refused it for a recipient. Fires for every send from the mailbox, once per failed recipient. Delayed-delivery warnings and out-of-office replies do not fire it.  Act on `recommendedAction`: `remove` means the address does not take mail. Refusals on the sending side (`auth_failure`, `blocklisted`, `spam_blocked`, `policy_blocked`) never say `remove`. The report also arrives as `message.received`, and it does not count as a reply for `email.thread_replied`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailBouncedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailBounced = new WebhookPayloadEmailBounced(); // WebhookPayloadEmailBounced | 
+
+            try
+            {
+                // Email bounced
+                apiInstance.OnEmailBounced(webhookPayloadEmailBounced);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailBounced: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailBouncedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email bounced
+    apiInstance.OnEmailBouncedWithHttpInfo(webhookPayloadEmailBounced);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailBouncedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailBounced** | [**WebhookPayloadEmailBounced**](WebhookPayloadEmailBounced.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onemaillinkclicked"></a>
 # **OnEmailLinkClicked**
 > void OnEmailLinkClicked (WebhookPayloadEmailLinkClicked webhookPayloadEmailLinkClicked)
@@ -7196,13 +7292,107 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onemailsent"></a>
+# **OnEmailSent**
+> void OnEmailSent (WebhookPayloadEmailSent webhookPayloadEmailSent)
+
+Email sent
+
+A mail left through the email API. Exactly one event per mail, whichever path sent it: `source` is `send`, `reply`, `forward`, `draft` or `scheduled`. A scheduled draft carries both `scheduleId` and `draftId`.  Use it to record sends in your own system with the `metadata` you passed. The sent copy also arrives as `message.sent` in the inbox. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnEmailSentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadEmailSent = new WebhookPayloadEmailSent(); // WebhookPayloadEmailSent | 
+
+            try
+            {
+                // Email sent
+                apiInstance.OnEmailSent(webhookPayloadEmailSent);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnEmailSent: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnEmailSentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Email sent
+    apiInstance.OnEmailSentWithHttpInfo(webhookPayloadEmailSent);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnEmailSentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadEmailSent** | [**WebhookPayloadEmailSent**](WebhookPayloadEmailSent.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onemailthreadreplied"></a>
 # **OnEmailThreadReplied**
 > void OnEmailThreadReplied (WebhookPayloadEmailThreadReplied webhookPayloadEmailThreadReplied)
 
 Email thread replied
 
-Mail from someone other than the mailbox arrived in the thread of a message sent with `trackReplies: true`. Works on text and html sends. Auto-replies and bounce reports in the thread count as replies.  The reply also arrives as `message.received` with its full content. 
+Mail from someone other than the mailbox arrived in the thread of a message sent with `trackReplies: true`. Works on text and html sends. Auto-replies count as replies; bounce reports do not and fire `email.bounced` instead.  `reply.clean.text` is the reply without the quoted history, so an agent can act on it without reading the message. The reply also arrives as `message.received` with its full content. 
 
 ### Example
 ```csharp
