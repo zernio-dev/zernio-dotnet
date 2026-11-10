@@ -1097,6 +1097,7 @@ docs/EmailLabelColor.md
 docs/EmailListMeta.md
 docs/EmailMessage.md
 docs/EmailMessagePatch.md
+docs/EmailSendAs.md
 docs/EmailThread.md
 docs/EnableSmsOnNumber200Response.md
 docs/EnableSmsOnNumber200ResponseReusable.md
@@ -2025,6 +2026,8 @@ docs/ListDiscordScheduledEvents200Response.md
 docs/ListEmailFolders200Response.md
 docs/ListEmailLabels200Response.md
 docs/ListEmailMessages200Response.md
+docs/ListEmailSendAs200Response.md
+docs/ListEmailSendAs200ResponseMeta.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
@@ -4706,6 +4709,7 @@ src/Zernio.Test/Model/EmailLabelTests.cs
 src/Zernio.Test/Model/EmailListMetaTests.cs
 src/Zernio.Test/Model/EmailMessagePatchTests.cs
 src/Zernio.Test/Model/EmailMessageTests.cs
+src/Zernio.Test/Model/EmailSendAsTests.cs
 src/Zernio.Test/Model/EmailThreadTests.cs
 src/Zernio.Test/Model/EnableSmsOnNumber200ResponseReusableTests.cs
 src/Zernio.Test/Model/EnableSmsOnNumber200ResponseTests.cs
@@ -5617,6 +5621,8 @@ src/Zernio.Test/Model/ListDiscordScheduledEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailFolders200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailMessages200ResponseTests.cs
+src/Zernio.Test/Model/ListEmailSendAs200ResponseMetaTests.cs
+src/Zernio.Test/Model/ListEmailSendAs200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseTests.cs
@@ -8280,6 +8286,7 @@ src/Zernio/Model/EmailLabelColor.cs
 src/Zernio/Model/EmailListMeta.cs
 src/Zernio/Model/EmailMessage.cs
 src/Zernio/Model/EmailMessagePatch.cs
+src/Zernio/Model/EmailSendAs.cs
 src/Zernio/Model/EmailThread.cs
 src/Zernio/Model/EnableSmsOnNumber200Response.cs
 src/Zernio/Model/EnableSmsOnNumber200ResponseReusable.cs
@@ -9191,6 +9198,8 @@ src/Zernio/Model/ListDiscordScheduledEvents200Response.cs
 src/Zernio/Model/ListEmailFolders200Response.cs
 src/Zernio/Model/ListEmailLabels200Response.cs
 src/Zernio/Model/ListEmailMessages200Response.cs
+src/Zernio/Model/ListEmailSendAs200Response.cs
+src/Zernio/Model/ListEmailSendAs200ResponseMeta.cs
 src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
 src/Zernio/Model/ListEvents200Response.cs
