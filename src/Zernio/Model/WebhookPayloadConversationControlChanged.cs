@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Who answers a conversation changed under Meta&#39;s handover protocol. WhatsApp: Meta Business Agent took it over, handed it to you, or another partner app took it. Facebook and Instagram: another app passed the thread to you, or took or received it. 
+    /// Who answers a conversation changed. WhatsApp: Meta Business Agent took it over, handed it to you, or another partner app took it. Facebook and Instagram (Meta&#39;s conversation routing): another app passed the thread to you or took it from you. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadConversationControlChanged")]
     public partial class WebhookPayloadConversationControlChanged : IValidatableObject
