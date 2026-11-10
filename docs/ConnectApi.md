@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**AddOrgConnectionMailbox**](ConnectApi.md#addorgconnectionmailbox) | **POST** /v1/org-connections/{orgConnectionId}/mailboxes | Add a mailbox from an organization connection |
 | [**AssignGoogleBusinessLocation**](ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile |
 | [**CompleteMetaAdsBusinessLogin**](ConnectApi.md#completemetaadsbusinesslogin) | **GET** /v1/connect/meta-ads/callback | Complete Meta business login |
 | [**CompleteTelegramConnect**](ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status |
@@ -20,11 +21,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConnectWhatsAppEmbeddedSignup**](ConnectApi.md#connectwhatsappembeddedsignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
 | [**ConnectWhopAdsCredentials**](ConnectApi.md#connectwhopadscredentials) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account |
 | [**ConnectWordPressWithApplicationPassword**](ConnectApi.md#connectwordpresswithapplicationpassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
+| [**CreateGoogleOrgConnection**](ConnectApi.md#creategoogleorgconnection) | **POST** /v1/connect/google/org | Start a Google Workspace organization connection |
+| [**CreateMicrosoftOrgConnection**](ConnectApi.md#createmicrosoftorgconnection) | **POST** /v1/connect/microsoft/org | Start a Microsoft 365 organization connection |
 | [**CreateOAuthApp**](ConnectApi.md#createoauthapp) | **POST** /v1/connect/oauth-apps | Add an OAuth app |
 | [**CreatePinterestBoard**](ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**CreatePlatformInvite**](ConnectApi.md#createplatforminvite) | **POST** /v1/platform-invites | Create a connect link |
 | [**CreateYoutubePlaylist**](ConnectApi.md#createyoutubeplaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
 | [**DeleteOAuthApp**](ConnectApi.md#deleteoauthapp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
+| [**DeleteOrgConnection**](ConnectApi.md#deleteorgconnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
 | [**GetConnectHandoff**](ConnectApi.md#getconnecthandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**GetConnectUrl**](ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**GetConnectWelcomeScreen**](ConnectApi.md#getconnectwelcomescreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
@@ -35,6 +39,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetHubSpotConnectUrl**](ConnectApi.md#gethubspotconnecturl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**GetLinkedInOrganizations**](ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**GetOAuthApp**](ConnectApi.md#getoauthapp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
+| [**GetOrgConnection**](ConnectApi.md#getorgconnection) | **GET** /v1/org-connections/{orgConnectionId} | Get an organization connection |
 | [**GetPageWebhookSubscription**](ConnectApi.md#getpagewebhooksubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read an account&#39;s webhook subscription |
 | [**GetPendingOAuthData**](ConnectApi.md#getpendingoauthdata) | **GET** /v1/connect/pending-data | Get pending OAuth data |
 | [**GetPinterestBoards**](ConnectApi.md#getpinterestboards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards |
@@ -57,6 +62,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListInstagramPages**](ConnectApi.md#listinstagrampages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account |
 | [**ListLinkedInOrganizations**](ConnectApi.md#listlinkedinorganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
 | [**ListOAuthApps**](ConnectApi.md#listoauthapps) | **GET** /v1/connect/oauth-apps | List your OAuth apps |
+| [**ListOrgConnectionUsers**](ConnectApi.md#listorgconnectionusers) | **GET** /v1/org-connections/{orgConnectionId}/users | List an organization&#39;s users |
+| [**ListOrgConnections**](ConnectApi.md#listorgconnections) | **GET** /v1/org-connections | List organization connections |
 | [**ListPinterestBoardsForSelection**](ConnectApi.md#listpinterestboardsforselection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
 | [**ListSlackChannels**](ConnectApi.md#listslackchannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker |
 | [**ListSnapchatProfiles**](ConnectApi.md#listsnapchatprofiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
@@ -77,10 +84,118 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateGmbLocation**](ConnectApi.md#updategmblocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update Google Business Profile location |
 | [**UpdateLinkedInOrganization**](ConnectApi.md#updatelinkedinorganization) | **PUT** /v1/accounts/{accountId}/linkedin-organization | Switch LinkedIn account type |
 | [**UpdateOAuthApp**](ConnectApi.md#updateoauthapp) | **PATCH** /v1/connect/oauth-apps/{appId} | Update an OAuth app |
+| [**UpdateOrgConnection**](ConnectApi.md#updateorgconnection) | **PATCH** /v1/org-connections/{orgConnectionId} | Update an organization connection |
 | [**UpdatePinterestBoards**](ConnectApi.md#updatepinterestboards) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board |
 | [**UpdateRedditSubreddits**](ConnectApi.md#updateredditsubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**UpdateYoutubeDefaultPlaylist**](ConnectApi.md#updateyoutubedefaultplaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
+| [**VerifyOrgConnection**](ConnectApi.md#verifyorgconnection) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection |
 | [**VoteRedditThing**](ConnectApi.md#voteredditthing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
+
+<a id="addorgconnectionmailbox"></a>
+# **AddOrgConnectionMailbox**
+> InlineObject1 AddOrgConnectionMailbox (string orgConnectionId, AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest)
+
+Add a mailbox from an organization connection
+
+Adds one mailbox from an active organization connection, with no sign-in from its user. It becomes a `google` or `microsoft` account on the connection's profile and works with every email, calendar, files and contacts endpoint.  `201` for a new account, `200` when the address was already on the profile and now runs on the organization grant. `account.connected` fires. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AddOrgConnectionMailboxExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var orgConnectionId = "orgConnectionId_example";  // string | 
+            var addOrgConnectionMailboxRequest = new AddOrgConnectionMailboxRequest(); // AddOrgConnectionMailboxRequest | 
+
+            try
+            {
+                // Add a mailbox from an organization connection
+                InlineObject1 result = apiInstance.AddOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.AddOrgConnectionMailbox: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AddOrgConnectionMailboxWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add a mailbox from an organization connection
+    ApiResponse<InlineObject1> response = apiInstance.AddOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.AddOrgConnectionMailboxWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orgConnectionId** | **string** |  |  |
+| **addOrgConnectionMailboxRequest** | [**AddOrgConnectionMailboxRequest**](AddOrgConnectionMailboxRequest.md) |  |  |
+
+### Return type
+
+[**InlineObject1**](InlineObject1.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The mailbox account |  -  |
+| **201** | The mailbox account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="assigngooglebusinesslocation"></a>
 # **AssignGoogleBusinessLocation**
@@ -1766,6 +1881,208 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="creategoogleorgconnection"></a>
+# **CreateGoogleOrgConnection**
+> CreateGoogleOrgConnection201Response CreateGoogleOrgConnection (CreateGoogleOrgConnectionRequest createGoogleOrgConnectionRequest)
+
+Start a Google Workspace organization connection
+
+Creates an organization connection for a Google Workspace domain. A super admin then delegates Zernio's client ID with the returned scopes, and you add mailboxes without each user signing in.  ### Flow  1. Add `setup.dnsRecord` (a TXT record) to the domain. It proves the domain's owner set up this connection. 2. A super admin adds `setup.clientId` with `setup.scopes` under domain-wide delegation in the Admin console. 3. Call `POST /v1/org-connections/{orgConnectionId}/verify` with any mailbox in the domain. 4. Add mailboxes with `POST /v1/org-connections/{orgConnectionId}/mailboxes`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateGoogleOrgConnectionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var createGoogleOrgConnectionRequest = new CreateGoogleOrgConnectionRequest(); // CreateGoogleOrgConnectionRequest | 
+
+            try
+            {
+                // Start a Google Workspace organization connection
+                CreateGoogleOrgConnection201Response result = apiInstance.CreateGoogleOrgConnection(createGoogleOrgConnectionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.CreateGoogleOrgConnection: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateGoogleOrgConnectionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Start a Google Workspace organization connection
+    ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.CreateGoogleOrgConnectionWithHttpInfo(createGoogleOrgConnectionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.CreateGoogleOrgConnectionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createGoogleOrgConnectionRequest** | [**CreateGoogleOrgConnectionRequest**](CreateGoogleOrgConnectionRequest.md) |  |  |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The connection, pending until verified |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createmicrosoftorgconnection"></a>
+# **CreateMicrosoftOrgConnection**
+> CreateGoogleOrgConnection201Response CreateMicrosoftOrgConnection (CreateMicrosoftOrgConnectionRequest createMicrosoftOrgConnectionRequest)
+
+Start a Microsoft 365 organization connection
+
+Creates an organization connection for a Microsoft 365 tenant. An administrator opens `setup.adminConsentUrl` and approves Zernio's application permissions once, then you add mailboxes without each user signing in.  After consent Microsoft sends the administrator to `redirectUrl` with `orgConnectionId`, `status` (`active`, `pending` or `denied`) and `tenant`.  Application permissions reach every mailbox in the tenant. Administrators can scope them with an Exchange Online application access policy or RBAC for Applications. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateMicrosoftOrgConnectionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var createMicrosoftOrgConnectionRequest = new CreateMicrosoftOrgConnectionRequest(); // CreateMicrosoftOrgConnectionRequest | 
+
+            try
+            {
+                // Start a Microsoft 365 organization connection
+                CreateGoogleOrgConnection201Response result = apiInstance.CreateMicrosoftOrgConnection(createMicrosoftOrgConnectionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.CreateMicrosoftOrgConnection: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateMicrosoftOrgConnectionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Start a Microsoft 365 organization connection
+    ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.CreateMicrosoftOrgConnectionWithHttpInfo(createMicrosoftOrgConnectionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.CreateMicrosoftOrgConnectionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createMicrosoftOrgConnectionRequest** | [**CreateMicrosoftOrgConnectionRequest**](CreateMicrosoftOrgConnectionRequest.md) |  |  |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The connection, pending until an administrator consents |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The key cannot write to the profile, the plan cannot take another account, or the address is not on &#x60;allowedEmails&#x60;. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="createoauthapp"></a>
 # **CreateOAuthApp**
 > CreateOAuthApp201Response CreateOAuthApp (CreateOAuthAppRequest createOAuthAppRequest)
@@ -2283,6 +2600,106 @@ catch (ApiException e)
 | **403** | The caller cannot change workspace settings (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Accounts are still connected through the app (OAUTH_APP_IN_USE); resend with confirm&#x3D;true. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteorgconnection"></a>
+# **DeleteOrgConnection**
+> DeleteOrgConnection200Response DeleteOrgConnection (string orgConnectionId)
+
+Delete an organization connection
+
+Deletes the connection. Mailboxes added from it stay on the profile and answer `401` `reconnect_required` until you disconnect them or connect them another way.  `mailboxAccountIds` lists them. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteOrgConnectionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var orgConnectionId = "orgConnectionId_example";  // string | 
+
+            try
+            {
+                // Delete an organization connection
+                DeleteOrgConnection200Response result = apiInstance.DeleteOrgConnection(orgConnectionId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.DeleteOrgConnection: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteOrgConnectionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete an organization connection
+    ApiResponse<DeleteOrgConnection200Response> response = apiInstance.DeleteOrgConnectionWithHttpInfo(orgConnectionId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.DeleteOrgConnectionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orgConnectionId** | **string** |  |  |
+
+### Return type
+
+[**DeleteOrgConnection200Response**](DeleteOrgConnection200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deleted |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3358,6 +3775,106 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The app. |  -  |
 | **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getorgconnection"></a>
+# **GetOrgConnection**
+> CreateGoogleOrgConnection201Response GetOrgConnection (string orgConnectionId)
+
+Get an organization connection
+
+One organization connection with its status and setup instructions.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetOrgConnectionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var orgConnectionId = "orgConnectionId_example";  // string | 
+
+            try
+            {
+                // Get an organization connection
+                CreateGoogleOrgConnection201Response result = apiInstance.GetOrgConnection(orgConnectionId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetOrgConnection: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetOrgConnectionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get an organization connection
+    ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.GetOrgConnectionWithHttpInfo(orgConnectionId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetOrgConnectionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orgConnectionId** | **string** |  |  |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The connection |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -5686,6 +6203,209 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listorgconnectionusers"></a>
+# **ListOrgConnectionUsers**
+> ListOrgConnectionUsers200Response ListOrgConnectionUsers (string orgConnectionId, string? cursor = null)
+
+List an organization's users
+
+The organization's users, 100 per page, with whether each is allowed and the `accountId` of those already added.  Google needs `adminEmail` on the connection and the directory scope delegated. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListOrgConnectionUsersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var orgConnectionId = "orgConnectionId_example";  // string | 
+            var cursor = "cursor_example";  // string? |  (optional) 
+
+            try
+            {
+                // List an organization's users
+                ListOrgConnectionUsers200Response result = apiInstance.ListOrgConnectionUsers(orgConnectionId, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ListOrgConnectionUsers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListOrgConnectionUsersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List an organization's users
+    ApiResponse<ListOrgConnectionUsers200Response> response = apiInstance.ListOrgConnectionUsersWithHttpInfo(orgConnectionId, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ListOrgConnectionUsersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orgConnectionId** | **string** |  |  |
+| **cursor** | **string?** |  | [optional]  |
+
+### Return type
+
+[**ListOrgConnectionUsers200Response**](ListOrgConnectionUsers200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of users |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listorgconnections"></a>
+# **ListOrgConnections**
+> ListOrgConnections200Response ListOrgConnections (string profileId)
+
+List organization connections
+
+The Google Workspace and Microsoft 365 organization connections on a profile, newest first.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListOrgConnectionsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | 
+
+            try
+            {
+                // List organization connections
+                ListOrgConnections200Response result = apiInstance.ListOrgConnections(profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ListOrgConnections: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListOrgConnectionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List organization connections
+    ApiResponse<ListOrgConnections200Response> response = apiInstance.ListOrgConnectionsWithHttpInfo(profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ListOrgConnectionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** |  |  |
+
+### Return type
+
+[**ListOrgConnections200Response**](ListOrgConnections200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The connections |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listpinterestboardsforselection"></a>
 # **ListPinterestBoardsForSelection**
 > ListPinterestBoardsForSelection200Response ListPinterestBoardsForSelection (string xConnectToken, string profileId, string tempToken)
@@ -7785,6 +8505,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="updateorgconnection"></a>
+# **UpdateOrgConnection**
+> CreateGoogleOrgConnection201Response UpdateOrgConnection (string orgConnectionId, UpdateOrgConnectionRequest updateOrgConnectionRequest)
+
+Update an organization connection
+
+Changes the allowlist or the Google directory admin.  Mailboxes already added that a narrowed allowlist excludes answer `401` `reconnect_required` until it includes them again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateOrgConnectionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var orgConnectionId = "orgConnectionId_example";  // string | 
+            var updateOrgConnectionRequest = new UpdateOrgConnectionRequest(); // UpdateOrgConnectionRequest | 
+
+            try
+            {
+                // Update an organization connection
+                CreateGoogleOrgConnection201Response result = apiInstance.UpdateOrgConnection(orgConnectionId, updateOrgConnectionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.UpdateOrgConnection: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateOrgConnectionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update an organization connection
+    ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.UpdateOrgConnectionWithHttpInfo(orgConnectionId, updateOrgConnectionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.UpdateOrgConnectionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orgConnectionId** | **string** |  |  |
+| **updateOrgConnectionRequest** | [**UpdateOrgConnectionRequest**](UpdateOrgConnectionRequest.md) |  |  |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated connection |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updatepinterestboards"></a>
 # **UpdatePinterestBoards**
 > ConnectBlueskyCredentials200Response UpdatePinterestBoards (string accountId, UpdatePinterestBoardsRequest updatePinterestBoardsRequest)
@@ -8092,6 +8915,110 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="verifyorgconnection"></a>
+# **VerifyOrgConnection**
+> CreateGoogleOrgConnection201Response VerifyOrgConnection (string orgConnectionId, VerifyOrgConnectionRequest? verifyOrgConnectionRequest = null)
+
+Verify an organization connection
+
+Checks the administrator's grant and activates the connection.  Google: the domain's TXT record and a token for `email` with every delegated scope. Microsoft: a tenant token carrying every application permission the areas need.  `409` `org_grant_incomplete` says what is still missing. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class VerifyOrgConnectionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var orgConnectionId = "orgConnectionId_example";  // string | 
+            var verifyOrgConnectionRequest = new VerifyOrgConnectionRequest?(); // VerifyOrgConnectionRequest? |  (optional) 
+
+            try
+            {
+                // Verify an organization connection
+                CreateGoogleOrgConnection201Response result = apiInstance.VerifyOrgConnection(orgConnectionId, verifyOrgConnectionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.VerifyOrgConnection: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the VerifyOrgConnectionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Verify an organization connection
+    ApiResponse<CreateGoogleOrgConnection201Response> response = apiInstance.VerifyOrgConnectionWithHttpInfo(orgConnectionId, verifyOrgConnectionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.VerifyOrgConnectionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orgConnectionId** | **string** |  |  |
+| **verifyOrgConnectionRequest** | [**VerifyOrgConnectionRequest?**](VerifyOrgConnectionRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**CreateGoogleOrgConnection201Response**](CreateGoogleOrgConnection201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The active connection |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | &#x60;org_grant_incomplete&#x60;: the TXT record, the delegation, the consent or a permission is missing, or the connection is not active yet. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

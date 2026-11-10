@@ -1,14 +1,14 @@
-# Zernio.Model.InlineObject3Details
+# Zernio.Model.ListOrgConnectionUsers200ResponseDataInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CurrentCount** | **int** |  | [optional] 
-**Limit** | **int** |  | [optional] 
-**RetryAfterSeconds** | **int** |  | [optional] 
-**Scope** | **string** |  | [optional] 
-**Window** | **string** |  | [optional] 
+**Id** | **string** |  | [optional] 
+**Email** | **string** |  | [optional] 
+**Name** | **string** |  | [optional] 
+**Allowed** | **bool** |  | [optional] 
+**AccountId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

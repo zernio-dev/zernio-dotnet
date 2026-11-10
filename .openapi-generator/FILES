@@ -156,6 +156,7 @@ docs/AddImessageSandboxContact201Response.md
 docs/AddImessageSandboxContactRequest.md
 docs/AddMessageReaction200Response.md
 docs/AddMessageReactionRequest.md
+docs/AddOrgConnectionMailboxRequest.md
 docs/AddRcsTestDevice201Response.md
 docs/AddRcsTestDeviceRequest.md
 docs/AddTrackingTagSharedAccount201Response.md
@@ -820,6 +821,8 @@ docs/CreateGoogleBusinessMedia200Response.md
 docs/CreateGoogleBusinessMediaRequest.md
 docs/CreateGoogleBusinessPlaceAction200Response.md
 docs/CreateGoogleBusinessPlaceActionRequest.md
+docs/CreateGoogleOrgConnection201Response.md
+docs/CreateGoogleOrgConnectionRequest.md
 docs/CreateHighDemandPeriod201Response.md
 docs/CreateHighDemandPeriodRequest.md
 docs/CreateImapAccountRequest.md
@@ -862,6 +865,7 @@ docs/CreateMessagingAd200ResponseResultsInner.md
 docs/CreateMessagingAd201Response.md
 docs/CreateMessagingAdRequest.md
 docs/CreateMetaAdAccountRequest.md
+docs/CreateMicrosoftOrgConnectionRequest.md
 docs/CreateOAuthApp201Response.md
 docs/CreateOAuthAppRequest.md
 docs/CreatePayeeOnboardingLink200Response.md
@@ -1089,6 +1093,8 @@ docs/DeleteInboxConversation200ResponseData.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteOAuthApp200Response.md
+docs/DeleteOrgConnection200Response.md
+docs/DeleteOrgConnection200ResponseData.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
 docs/DeleteTrackingTagEvent200Response.md
@@ -1871,11 +1877,13 @@ docs/InitiateWhatsAppCall200Response.md
 docs/InitiateWhatsAppCallRequest.md
 docs/InlineObject.md
 docs/InlineObject1.md
+docs/InlineObject1Data.md
 docs/InlineObject2.md
 docs/InlineObject3.md
-docs/InlineObject3Details.md
 docs/InlineObject4.md
 docs/InlineObject4Details.md
+docs/InlineObject5.md
+docs/InlineObject5Details.md
 docs/InstagramAccountInsightsResponse.md
 docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
@@ -2226,6 +2234,9 @@ docs/ListMetaBusinessUsers200Response.md
 docs/ListMetaBusinesses200Response.md
 docs/ListOAuthApps200Response.md
 docs/ListOAuthApps200ResponsePagination.md
+docs/ListOrgConnectionUsers200Response.md
+docs/ListOrgConnectionUsers200ResponseDataInner.md
+docs/ListOrgConnections200Response.md
 docs/ListPageUsers200Response.md
 docs/ListPartnershipAdContent200Response.md
 docs/ListPartnershipAdContent200ResponseMediaInner.md
@@ -2437,6 +2448,9 @@ docs/OpenTrackingWindowRequest.md
 docs/OrderImessageSender202Response.md
 docs/OrderImessageSenderRequest.md
 docs/OrderImessageSenderRequestContact.md
+docs/OrgConnection.md
+docs/OrgConnectionSetup.md
+docs/OrgConnectionSetupDnsRecord.md
 docs/OwnedPhoneNumber.md
 docs/OwnedPhoneNumberFeatures.md
 docs/OwnedPhoneNumberProfileId.md
@@ -3240,6 +3254,7 @@ docs/UpdateLeadRequest.md
 docs/UpdateLinkedInOrganization200Response.md
 docs/UpdateLinkedInOrganizationRequest.md
 docs/UpdateOAuthAppRequest.md
+docs/UpdateOrgConnectionRequest.md
 docs/UpdatePinterestBoardsRequest.md
 docs/UpdatePostMetadata200Response.md
 docs/UpdatePostMetadataRequest.md
@@ -3372,6 +3387,7 @@ docs/ValueRuleSet.md
 docs/Verification.md
 docs/VerifyApi.md
 docs/VerifyCredential200Response.md
+docs/VerifyOrgConnectionRequest.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VerifyWhatsAppCallerIdRequest.md
@@ -3941,6 +3957,7 @@ src/Zernio.Test/Model/AddImessageSandboxContact201ResponseTests.cs
 src/Zernio.Test/Model/AddImessageSandboxContactRequestTests.cs
 src/Zernio.Test/Model/AddMessageReaction200ResponseTests.cs
 src/Zernio.Test/Model/AddMessageReactionRequestTests.cs
+src/Zernio.Test/Model/AddOrgConnectionMailboxRequestTests.cs
 src/Zernio.Test/Model/AddRcsTestDevice201ResponseTests.cs
 src/Zernio.Test/Model/AddRcsTestDeviceRequestTests.cs
 src/Zernio.Test/Model/AddTrackingTagSharedAccount201ResponseTests.cs
@@ -4588,6 +4605,8 @@ src/Zernio.Test/Model/CreateGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessMediaRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessPlaceAction200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessPlaceActionRequestTests.cs
+src/Zernio.Test/Model/CreateGoogleOrgConnection201ResponseTests.cs
+src/Zernio.Test/Model/CreateGoogleOrgConnectionRequestTests.cs
 src/Zernio.Test/Model/CreateHighDemandPeriod201ResponseTests.cs
 src/Zernio.Test/Model/CreateHighDemandPeriodRequestTests.cs
 src/Zernio.Test/Model/CreateImapAccountRequestIdentitiesInnerTests.cs
@@ -4630,6 +4649,7 @@ src/Zernio.Test/Model/CreateMessagingAd200ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateMessagingAdRequestTests.cs
 src/Zernio.Test/Model/CreateMetaAdAccountRequestTests.cs
+src/Zernio.Test/Model/CreateMicrosoftOrgConnectionRequestTests.cs
 src/Zernio.Test/Model/CreateOAuthApp201ResponseTests.cs
 src/Zernio.Test/Model/CreateOAuthAppRequestTests.cs
 src/Zernio.Test/Model/CreatePayeeOnboardingLink200ResponseTests.cs
@@ -4854,6 +4874,8 @@ src/Zernio.Test/Model/DeleteInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteOAuthApp200ResponseTests.cs
+src/Zernio.Test/Model/DeleteOrgConnection200ResponseDataTests.cs
+src/Zernio.Test/Model/DeleteOrgConnection200ResponseTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTestLead200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTrackingTagEvent200ResponseTests.cs
@@ -5620,12 +5642,14 @@ src/Zernio.Test/Model/InitiateTelegramConnect200ResponseTests.cs
 src/Zernio.Test/Model/InitiateTelegramConnectRequestTests.cs
 src/Zernio.Test/Model/InitiateWhatsAppCall200ResponseTests.cs
 src/Zernio.Test/Model/InitiateWhatsAppCallRequestTests.cs
+src/Zernio.Test/Model/InlineObject1DataTests.cs
 src/Zernio.Test/Model/InlineObject1Tests.cs
 src/Zernio.Test/Model/InlineObject2Tests.cs
-src/Zernio.Test/Model/InlineObject3DetailsTests.cs
 src/Zernio.Test/Model/InlineObject3Tests.cs
 src/Zernio.Test/Model/InlineObject4DetailsTests.cs
 src/Zernio.Test/Model/InlineObject4Tests.cs
+src/Zernio.Test/Model/InlineObject5DetailsTests.cs
+src/Zernio.Test/Model/InlineObject5Tests.cs
 src/Zernio.Test/Model/InlineObjectTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseDateRangeTests.cs
 src/Zernio.Test/Model/InstagramAccountInsightsResponseMetricsValueBreakdownsInnerTests.cs
@@ -5972,6 +5996,9 @@ src/Zernio.Test/Model/ListMetaBusinessUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinesses200ResponseTests.cs
 src/Zernio.Test/Model/ListOAuthApps200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListOAuthApps200ResponseTests.cs
+src/Zernio.Test/Model/ListOrgConnectionUsers200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/ListOrgConnectionUsers200ResponseTests.cs
+src/Zernio.Test/Model/ListOrgConnections200ResponseTests.cs
 src/Zernio.Test/Model/ListPageUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListPartnershipAdContent200ResponseMediaInnerTests.cs
 src/Zernio.Test/Model/ListPartnershipAdContent200ResponseTests.cs
@@ -6178,6 +6205,9 @@ src/Zernio.Test/Model/OpenTrackingWindowRequestTests.cs
 src/Zernio.Test/Model/OrderImessageSender202ResponseTests.cs
 src/Zernio.Test/Model/OrderImessageSenderRequestContactTests.cs
 src/Zernio.Test/Model/OrderImessageSenderRequestTests.cs
+src/Zernio.Test/Model/OrgConnectionSetupDnsRecordTests.cs
+src/Zernio.Test/Model/OrgConnectionSetupTests.cs
+src/Zernio.Test/Model/OrgConnectionTests.cs
 src/Zernio.Test/Model/OwnedPhoneNumberFeaturesTests.cs
 src/Zernio.Test/Model/OwnedPhoneNumberProfileIdOneOfTests.cs
 src/Zernio.Test/Model/OwnedPhoneNumberProfileIdTests.cs
@@ -6964,6 +6994,7 @@ src/Zernio.Test/Model/UpdateLeadRequestTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganization200ResponseTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganizationRequestTests.cs
 src/Zernio.Test/Model/UpdateOAuthAppRequestTests.cs
+src/Zernio.Test/Model/UpdateOrgConnectionRequestTests.cs
 src/Zernio.Test/Model/UpdatePinterestBoardsRequestTests.cs
 src/Zernio.Test/Model/UpdatePostMetadata200ResponseTests.cs
 src/Zernio.Test/Model/UpdatePostMetadataRequestTests.cs
@@ -7092,6 +7123,7 @@ src/Zernio.Test/Model/ValueRuleSetTests.cs
 src/Zernio.Test/Model/ValueRuleTests.cs
 src/Zernio.Test/Model/VerificationTests.cs
 src/Zernio.Test/Model/VerifyCredential200ResponseTests.cs
+src/Zernio.Test/Model/VerifyOrgConnectionRequestTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppCallerIdRequestTests.cs
@@ -7669,6 +7701,7 @@ src/Zernio/Model/AddImessageSandboxContact201Response.cs
 src/Zernio/Model/AddImessageSandboxContactRequest.cs
 src/Zernio/Model/AddMessageReaction200Response.cs
 src/Zernio/Model/AddMessageReactionRequest.cs
+src/Zernio/Model/AddOrgConnectionMailboxRequest.cs
 src/Zernio/Model/AddRcsTestDevice201Response.cs
 src/Zernio/Model/AddRcsTestDeviceRequest.cs
 src/Zernio/Model/AddTrackingTagSharedAccount201Response.cs
@@ -8316,6 +8349,8 @@ src/Zernio/Model/CreateGoogleBusinessMedia200Response.cs
 src/Zernio/Model/CreateGoogleBusinessMediaRequest.cs
 src/Zernio/Model/CreateGoogleBusinessPlaceAction200Response.cs
 src/Zernio/Model/CreateGoogleBusinessPlaceActionRequest.cs
+src/Zernio/Model/CreateGoogleOrgConnection201Response.cs
+src/Zernio/Model/CreateGoogleOrgConnectionRequest.cs
 src/Zernio/Model/CreateHighDemandPeriod201Response.cs
 src/Zernio/Model/CreateHighDemandPeriodRequest.cs
 src/Zernio/Model/CreateImapAccountRequest.cs
@@ -8358,6 +8393,7 @@ src/Zernio/Model/CreateMessagingAd200ResponseResultsInner.cs
 src/Zernio/Model/CreateMessagingAd201Response.cs
 src/Zernio/Model/CreateMessagingAdRequest.cs
 src/Zernio/Model/CreateMetaAdAccountRequest.cs
+src/Zernio/Model/CreateMicrosoftOrgConnectionRequest.cs
 src/Zernio/Model/CreateOAuthApp201Response.cs
 src/Zernio/Model/CreateOAuthAppRequest.cs
 src/Zernio/Model/CreatePayeeOnboardingLink200Response.cs
@@ -8582,6 +8618,8 @@ src/Zernio/Model/DeleteInboxConversation200ResponseData.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteOAuthApp200Response.cs
+src/Zernio/Model/DeleteOrgConnection200Response.cs
+src/Zernio/Model/DeleteOrgConnection200ResponseData.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteTestLead200Response.cs
 src/Zernio/Model/DeleteTrackingTagEvent200Response.cs
@@ -9350,11 +9388,13 @@ src/Zernio/Model/InitiateWhatsAppCall200Response.cs
 src/Zernio/Model/InitiateWhatsAppCallRequest.cs
 src/Zernio/Model/InlineObject.cs
 src/Zernio/Model/InlineObject1.cs
+src/Zernio/Model/InlineObject1Data.cs
 src/Zernio/Model/InlineObject2.cs
 src/Zernio/Model/InlineObject3.cs
-src/Zernio/Model/InlineObject3Details.cs
 src/Zernio/Model/InlineObject4.cs
 src/Zernio/Model/InlineObject4Details.cs
+src/Zernio/Model/InlineObject5.cs
+src/Zernio/Model/InlineObject5Details.cs
 src/Zernio/Model/InstagramAccountInsightsResponse.cs
 src/Zernio/Model/InstagramAccountInsightsResponseDateRange.cs
 src/Zernio/Model/InstagramAccountInsightsResponseMetricsValue.cs
@@ -9700,6 +9740,9 @@ src/Zernio/Model/ListMetaBusinessUsers200Response.cs
 src/Zernio/Model/ListMetaBusinesses200Response.cs
 src/Zernio/Model/ListOAuthApps200Response.cs
 src/Zernio/Model/ListOAuthApps200ResponsePagination.cs
+src/Zernio/Model/ListOrgConnectionUsers200Response.cs
+src/Zernio/Model/ListOrgConnectionUsers200ResponseDataInner.cs
+src/Zernio/Model/ListOrgConnections200Response.cs
 src/Zernio/Model/ListPageUsers200Response.cs
 src/Zernio/Model/ListPartnershipAdContent200Response.cs
 src/Zernio/Model/ListPartnershipAdContent200ResponseMediaInner.cs
@@ -9906,6 +9949,9 @@ src/Zernio/Model/OpenTrackingWindowRequest.cs
 src/Zernio/Model/OrderImessageSender202Response.cs
 src/Zernio/Model/OrderImessageSenderRequest.cs
 src/Zernio/Model/OrderImessageSenderRequestContact.cs
+src/Zernio/Model/OrgConnection.cs
+src/Zernio/Model/OrgConnectionSetup.cs
+src/Zernio/Model/OrgConnectionSetupDnsRecord.cs
 src/Zernio/Model/OwnedPhoneNumber.cs
 src/Zernio/Model/OwnedPhoneNumberFeatures.cs
 src/Zernio/Model/OwnedPhoneNumberProfileId.cs
@@ -10692,6 +10738,7 @@ src/Zernio/Model/UpdateLeadRequest.cs
 src/Zernio/Model/UpdateLinkedInOrganization200Response.cs
 src/Zernio/Model/UpdateLinkedInOrganizationRequest.cs
 src/Zernio/Model/UpdateOAuthAppRequest.cs
+src/Zernio/Model/UpdateOrgConnectionRequest.cs
 src/Zernio/Model/UpdatePinterestBoardsRequest.cs
 src/Zernio/Model/UpdatePostMetadata200Response.cs
 src/Zernio/Model/UpdatePostMetadataRequest.cs
@@ -10820,6 +10867,7 @@ src/Zernio/Model/ValueRuleCriterion.cs
 src/Zernio/Model/ValueRuleSet.cs
 src/Zernio/Model/Verification.cs
 src/Zernio/Model/VerifyCredential200Response.cs
+src/Zernio/Model/VerifyOrgConnectionRequest.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
 src/Zernio/Model/VerifyWhatsAppCallerIdRequest.cs
