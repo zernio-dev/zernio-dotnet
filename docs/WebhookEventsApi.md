@@ -44,6 +44,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCallFailed**](WebhookEventsApi.md#oncallfailed) | **POST** /call.failed | Call failed event |
 | [**OnCallPermissionRequest**](WebhookEventsApi.md#oncallpermissionrequest) | **POST** /call.permission_request | Call permission request reply event |
 | [**OnCallReceived**](WebhookEventsApi.md#oncallreceived) | **POST** /call.received | Call received event |
+| [**OnCallRecordingReady**](WebhookEventsApi.md#oncallrecordingready) | **POST** /call.recording_ready | Call recording ready event |
+| [**OnCallTranscriptSegment**](WebhookEventsApi.md#oncalltranscriptsegment) | **POST** /call.transcript_segment | Call transcript segment event |
 | [**OnCampaignBudgetDepleted**](WebhookEventsApi.md#oncampaignbudgetdepleted) | **POST** /campaign.budget.depleted | Campaign budget depleted event |
 | [**OnCampaignCreated**](WebhookEventsApi.md#oncampaigncreated) | **POST** /campaign.created | Campaign created event |
 | [**OnCampaignParticipantJoined**](WebhookEventsApi.md#oncampaignparticipantjoined) | **POST** /campaign_participant.joined | Campaign participant joined event |
@@ -83,6 +85,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnFilePicked**](WebhookEventsApi.md#onfilepicked) | **POST** /file.picked | Files picked |
 | [**OnFileUpdated**](WebhookEventsApi.md#onfileupdated) | **POST** /file.updated | File updated |
 | [**OnLeadReceived**](WebhookEventsApi.md#onleadreceived) | **POST** /lead.received | Lead received event |
+| [**OnMentionReceived**](WebhookEventsApi.md#onmentionreceived) | **POST** /mention.received | Mention received event |
 | [**OnMessageDeleted**](WebhookEventsApi.md#onmessagedeleted) | **POST** /message.deleted | Message deleted event |
 | [**OnMessageDelivered**](WebhookEventsApi.md#onmessagedelivered) | **POST** /message.delivered | Message delivered event |
 | [**OnMessageEdited**](WebhookEventsApi.md#onmessageedited) | **POST** /message.edited | Message edited event |
@@ -3903,6 +3906,194 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="oncallrecordingready"></a>
+# **OnCallRecordingReady**
+> void OnCallRecordingReady (WebhookPayloadCallRecordingReady webhookPayloadCallRecordingReady)
+
+Call recording ready event
+
+A call recording is ready to download.  ### When it fires  Only for teams with zero content retention, on calls with recording on, and only while a webhook listens to it. Zernio keeps no recording for these teams, and the copy behind the link expires after about 3 days. Download the file before `recording.expiresAt`.  ### Payload notes  `call.isVoicemail` tells a voicemail from a recorded call. If the recording could not be copied, no event fires and `call.ended` lists it in `callErrors`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCallRecordingReadyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCallRecordingReady = new WebhookPayloadCallRecordingReady(); // WebhookPayloadCallRecordingReady | 
+
+            try
+            {
+                // Call recording ready event
+                apiInstance.OnCallRecordingReady(webhookPayloadCallRecordingReady);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCallRecordingReady: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCallRecordingReadyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Call recording ready event
+    apiInstance.OnCallRecordingReadyWithHttpInfo(webhookPayloadCallRecordingReady);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCallRecordingReadyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCallRecordingReady** | [**WebhookPayloadCallRecordingReady**](WebhookPayloadCallRecordingReady.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncalltranscriptsegment"></a>
+# **OnCallTranscriptSegment**
+> void OnCallTranscriptSegment (WebhookPayloadCallTranscriptSegment webhookPayloadCallTranscriptSegment)
+
+Call transcript segment event
+
+One final segment of a live call transcript.  ### When it fires  Only for teams with zero content retention, on calls with transcription on: once per final segment, while the call is live. Zernio stores no transcript for these teams, so it cannot be fetched later. Store each segment when it arrives.  ### Payload notes  `segment.text` is the final text, `segment.confidence` the recognition confidence and `segment.at` when it was transcribed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCallTranscriptSegmentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCallTranscriptSegment = new WebhookPayloadCallTranscriptSegment(); // WebhookPayloadCallTranscriptSegment | 
+
+            try
+            {
+                // Call transcript segment event
+                apiInstance.OnCallTranscriptSegment(webhookPayloadCallTranscriptSegment);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCallTranscriptSegment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCallTranscriptSegmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Call transcript segment event
+    apiInstance.OnCallTranscriptSegmentWithHttpInfo(webhookPayloadCallTranscriptSegment);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCallTranscriptSegmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCallTranscriptSegment** | [**WebhookPayloadCallTranscriptSegment**](WebhookPayloadCallTranscriptSegment.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="oncampaignbudgetdepleted"></a>
 # **OnCampaignBudgetDepleted**
 > void OnCampaignBudgetDepleted (WebhookPayloadCampaignBudgetDepleted webhookPayloadCampaignBudgetDepleted)
@@ -7547,6 +7738,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadLead** | [**WebhookPayloadLead**](WebhookPayloadLead.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onmentionreceived"></a>
+# **OnMentionReceived**
+> void OnMentionReceived (WebhookPayloadMention webhookPayloadMention)
+
+Mention received event
+
+A connected Instagram, Facebook or LinkedIn account was mentioned in a post, caption or comment.  ### When it fires  Once per mention, the first time Zernio sees it. Delivery is at most once: reconcile with `GET /v1/inbox/mentions`.  - Instagram and Facebook arrive in real time from the platform's webhook. - LinkedIn arrives from its webhook or from polling, so delivery can take minutes. A newly connected account can receive mentions from the last 48 hours once.  ### Payload notes  Carries the same fields as `GET /v1/inbox/mentions`. Fields a platform does not provide are null. A LinkedIn mention found by polling for a team that does not retain content has no author, and an Instagram mention has no content if the live read fails. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnMentionReceivedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadMention = new WebhookPayloadMention(); // WebhookPayloadMention | 
+
+            try
+            {
+                // Mention received event
+                apiInstance.OnMentionReceived(webhookPayloadMention);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnMentionReceived: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnMentionReceivedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Mention received event
+    apiInstance.OnMentionReceivedWithHttpInfo(webhookPayloadMention);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnMentionReceivedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadMention** | [**WebhookPayloadMention**](WebhookPayloadMention.md) |  |  |
 
 ### Return type
 

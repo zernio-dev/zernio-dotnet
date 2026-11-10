@@ -633,6 +633,8 @@ docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
 docs/ContactsApi.md
+docs/ContentRetentionApi.md
+docs/ContentRetentionResponse.md
 docs/ConversationAdAttribution.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
@@ -1050,6 +1052,7 @@ docs/DiscordPlatformDataEmbedsInner.md
 docs/DiscordPlatformDataEmbedsInnerAuthor.md
 docs/DiscordPlatformDataEmbedsInnerFieldsInner.md
 docs/DiscordPlatformDataEmbedsInnerFooter.md
+docs/DiscordPlatformDataEmbedsInnerImage.md
 docs/DiscordPlatformDataPoll.md
 docs/DiscordPlatformDataPollAnswersInner.md
 docs/DiscordPlatformDataPollAnswersInnerPollMedia.md
@@ -2507,6 +2510,7 @@ docs/ReplyToInboxPost400Response.md
 docs/ReplyToInboxPost400ResponseDetails.md
 docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
+docs/ReplyToInboxReview200ResponseReply.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
@@ -3019,6 +3023,7 @@ docs/UpdateConnectWelcomeScreenRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
+docs/UpdateContentRetentionRequest.md
 docs/UpdateConversionAction200Response.md
 docs/UpdateConversionAction200ResponseAction.md
 docs/UpdateConversionActionRequest.md
@@ -3318,6 +3323,12 @@ docs/WebhookPayloadCallPermissionRequest.md
 docs/WebhookPayloadCallPermissionRequestPermission.md
 docs/WebhookPayloadCallReceived.md
 docs/WebhookPayloadCallReceivedCall.md
+docs/WebhookPayloadCallRecordingReady.md
+docs/WebhookPayloadCallRecordingReadyCall.md
+docs/WebhookPayloadCallRecordingReadyRecording.md
+docs/WebhookPayloadCallTranscriptSegment.md
+docs/WebhookPayloadCallTranscriptSegmentCall.md
+docs/WebhookPayloadCallTranscriptSegmentSegment.md
 docs/WebhookPayloadCampaignBudgetDepleted.md
 docs/WebhookPayloadCampaignBudgetDepletedAdObject.md
 docs/WebhookPayloadCampaignBudgetDepletedBudget.md
@@ -3375,6 +3386,9 @@ docs/WebhookPayloadFilePickedPickerFilesInner.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
 docs/WebhookPayloadLeadLead.md
+docs/WebhookPayloadMention.md
+docs/WebhookPayloadMentionAccount.md
+docs/WebhookPayloadMentionMention.md
 docs/WebhookPayloadMessage.md
 docs/WebhookPayloadMessageDeleted.md
 docs/WebhookPayloadMessageDeliveryStatus.md
@@ -3567,6 +3581,7 @@ src/Zernio.Test/Api/CommerceApiTests.cs
 src/Zernio.Test/Api/ConnectApiTests.cs
 src/Zernio.Test/Api/ConnectedAppsApiTests.cs
 src/Zernio.Test/Api/ContactsApiTests.cs
+src/Zernio.Test/Api/ContentRetentionApiTests.cs
 src/Zernio.Test/Api/ConversionsApiTests.cs
 src/Zernio.Test/Api/CreatorCampaignsApiTests.cs
 src/Zernio.Test/Api/CreatorPortalApiTests.cs
@@ -4228,6 +4243,7 @@ src/Zernio.Test/Model/ConnectWordPressWithApplicationPasswordRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
+src/Zernio.Test/Model/ContentRetentionResponseTests.cs
 src/Zernio.Test/Model/ConversationAdAttributionTests.cs
 src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
 src/Zernio.Test/Model/ConversionActionTests.cs
@@ -4638,6 +4654,7 @@ src/Zernio.Test/Model/DiscordGuildMemberUserTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerAuthorTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerFieldsInnerTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerFooterTests.cs
+src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerImageTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataPollAnswersInnerPollMediaTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataPollAnswersInnerTests.cs
@@ -6064,6 +6081,7 @@ src/Zernio.Test/Model/ReplyToInboxPost200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost400ResponseDetailsTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost400ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxPostRequestTests.cs
+src/Zernio.Test/Model/ReplyToInboxReview200ResponseReplyTests.cs
 src/Zernio.Test/Model/ReplyToInboxReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToMention200ResponseTests.cs
@@ -6569,6 +6587,7 @@ src/Zernio.Test/Model/UpdateConnectWelcomeScreenRequestTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseTests.cs
 src/Zernio.Test/Model/UpdateContactRequestTests.cs
+src/Zernio.Test/Model/UpdateContentRetentionRequestTests.cs
 src/Zernio.Test/Model/UpdateConversionAction200ResponseActionTests.cs
 src/Zernio.Test/Model/UpdateConversionAction200ResponseTests.cs
 src/Zernio.Test/Model/UpdateConversionActionRequestTests.cs
@@ -6861,6 +6880,12 @@ src/Zernio.Test/Model/WebhookPayloadCallPermissionRequestPermissionTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallPermissionRequestTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallReceivedCallTests.cs
 src/Zernio.Test/Model/WebhookPayloadCallReceivedTests.cs
+src/Zernio.Test/Model/WebhookPayloadCallRecordingReadyCallTests.cs
+src/Zernio.Test/Model/WebhookPayloadCallRecordingReadyRecordingTests.cs
+src/Zernio.Test/Model/WebhookPayloadCallRecordingReadyTests.cs
+src/Zernio.Test/Model/WebhookPayloadCallTranscriptSegmentCallTests.cs
+src/Zernio.Test/Model/WebhookPayloadCallTranscriptSegmentSegmentTests.cs
+src/Zernio.Test/Model/WebhookPayloadCallTranscriptSegmentTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedAdObjectTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedBudgetTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignBudgetDepletedTests.cs
@@ -6918,6 +6943,9 @@ src/Zernio.Test/Model/WebhookPayloadFileTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadLeadTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadTests.cs
+src/Zernio.Test/Model/WebhookPayloadMentionAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadMentionMentionTests.cs
+src/Zernio.Test/Model/WebhookPayloadMentionTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeliveryStatusErrorTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeliveryStatusTests.cs
@@ -7103,6 +7131,7 @@ src/Zernio/Api/CommerceApi.cs
 src/Zernio/Api/ConnectApi.cs
 src/Zernio/Api/ConnectedAppsApi.cs
 src/Zernio/Api/ContactsApi.cs
+src/Zernio/Api/ContentRetentionApi.cs
 src/Zernio/Api/ConversionsApi.cs
 src/Zernio/Api/CreatorCampaignsApi.cs
 src/Zernio/Api/CreatorPortalApi.cs
@@ -7782,6 +7811,7 @@ src/Zernio/Model/ConnectWordPressWithApplicationPasswordRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
 src/Zernio/Model/ConnectedApp.cs
+src/Zernio/Model/ContentRetentionResponse.cs
 src/Zernio/Model/ConversationAdAttribution.cs
 src/Zernio/Model/ConversionAction.cs
 src/Zernio/Model/ConversionActionTagSnippetsInner.cs
@@ -8194,6 +8224,7 @@ src/Zernio/Model/DiscordPlatformDataEmbedsInner.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInnerAuthor.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInnerFieldsInner.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInnerFooter.cs
+src/Zernio/Model/DiscordPlatformDataEmbedsInnerImage.cs
 src/Zernio/Model/DiscordPlatformDataPoll.cs
 src/Zernio/Model/DiscordPlatformDataPollAnswersInner.cs
 src/Zernio/Model/DiscordPlatformDataPollAnswersInnerPollMedia.cs
@@ -9619,6 +9650,7 @@ src/Zernio/Model/ReplyToInboxPost400Response.cs
 src/Zernio/Model/ReplyToInboxPost400ResponseDetails.cs
 src/Zernio/Model/ReplyToInboxPostRequest.cs
 src/Zernio/Model/ReplyToInboxReview200Response.cs
+src/Zernio/Model/ReplyToInboxReview200ResponseReply.cs
 src/Zernio/Model/ReplyToInboxReviewRequest.cs
 src/Zernio/Model/ReplyToMention200Response.cs
 src/Zernio/Model/ReplyToMentionRequest.cs
@@ -10123,6 +10155,7 @@ src/Zernio/Model/UpdateConnectWelcomeScreenRequest.cs
 src/Zernio/Model/UpdateContact200Response.cs
 src/Zernio/Model/UpdateContact200ResponseContact.cs
 src/Zernio/Model/UpdateContactRequest.cs
+src/Zernio/Model/UpdateContentRetentionRequest.cs
 src/Zernio/Model/UpdateConversionAction200Response.cs
 src/Zernio/Model/UpdateConversionAction200ResponseAction.cs
 src/Zernio/Model/UpdateConversionActionRequest.cs
@@ -10416,6 +10449,12 @@ src/Zernio/Model/WebhookPayloadCallPermissionRequest.cs
 src/Zernio/Model/WebhookPayloadCallPermissionRequestPermission.cs
 src/Zernio/Model/WebhookPayloadCallReceived.cs
 src/Zernio/Model/WebhookPayloadCallReceivedCall.cs
+src/Zernio/Model/WebhookPayloadCallRecordingReady.cs
+src/Zernio/Model/WebhookPayloadCallRecordingReadyCall.cs
+src/Zernio/Model/WebhookPayloadCallRecordingReadyRecording.cs
+src/Zernio/Model/WebhookPayloadCallTranscriptSegment.cs
+src/Zernio/Model/WebhookPayloadCallTranscriptSegmentCall.cs
+src/Zernio/Model/WebhookPayloadCallTranscriptSegmentSegment.cs
 src/Zernio/Model/WebhookPayloadCampaignBudgetDepleted.cs
 src/Zernio/Model/WebhookPayloadCampaignBudgetDepletedAdObject.cs
 src/Zernio/Model/WebhookPayloadCampaignBudgetDepletedBudget.cs
@@ -10473,6 +10512,9 @@ src/Zernio/Model/WebhookPayloadFilePickedPickerFilesInner.cs
 src/Zernio/Model/WebhookPayloadLead.cs
 src/Zernio/Model/WebhookPayloadLeadAccount.cs
 src/Zernio/Model/WebhookPayloadLeadLead.cs
+src/Zernio/Model/WebhookPayloadMention.cs
+src/Zernio/Model/WebhookPayloadMentionAccount.cs
+src/Zernio/Model/WebhookPayloadMentionMention.cs
 src/Zernio/Model/WebhookPayloadMessage.cs
 src/Zernio/Model/WebhookPayloadMessageDeleted.cs
 src/Zernio/Model/WebhookPayloadMessageDeliveryStatus.cs

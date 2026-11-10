@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | [optional] 
 **CurrentNodeId** | **string** |  | [optional] 
 **WaitingFor** | [**ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor**](ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.md) |  | [optional] 
-**Variables** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
+**Variables** | **Dictionary&lt;string, Object&gt;** | Empty once the run finishes when the team does not retain content. | [optional] 
 **PlatformIdentifier** | **string** |  | [optional] 
 **ConversationId** | **string** | Null only while a comment-triggered run has not sent its private reply yet. | [optional] 
 **StepCount** | **int** |  | [optional] 

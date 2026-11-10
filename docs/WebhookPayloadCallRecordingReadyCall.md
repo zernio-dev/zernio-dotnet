@@ -1,0 +1,19 @@
+# Zernio.Model.WebhookPayloadCallRecordingReadyCall
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **string** | Internal Zernio Call doc id | [optional] 
+**MetaCallId** | **string** | Meta wacid.* call id when known | [optional] 
+**AccountId** | **string** |  | [optional] 
+**PhoneNumberId** | **string** | Meta phone_number_id | [optional] 
+**Direction** | **string** |  | [optional] 
+**From** | **string** | Consumer wa_id / E.164 | [optional] 
+**To** | **string** | Business number (E.164) | [optional] 
+**ContactId** | **string** |  | [optional] 
+**ConversationId** | **string** |  | [optional] 
+**IsVoicemail** | **bool** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

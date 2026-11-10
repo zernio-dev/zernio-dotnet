@@ -432,7 +432,7 @@ catch (ApiException e)
 
 Update profile
 
-Updates a profile's name, description, color, default timezone, externalId, or default status.
+Updates a profile's name, description, color, default timezone, externalId, default status, or zero content retention.
 
 ### Example
 ```csharp
@@ -525,8 +525,9 @@ catch (ApiException e)
 | **200** | Updated |  -  |
 | **400** | Invalid request, including an unknown timezone or a body that carries none of name, description, color, timezone, externalId or isDefault (code: missing_required_field). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Only the team owner can change contentRetention, with a session or a full-access key. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | A profile with this name (code: profile_name_conflict) or this externalId (code: profile_external_id_conflict) already exists. |  -  |
+| **409** | A profile with this name (code: profile_name_conflict) or this externalId (code: profile_external_id_conflict) already exists, or contentRetention cannot change now: the whole team uses zero content retention, or a Zernio number of this profile has a WhatsApp verification in progress. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Content** | **string** |  | 
+**Content** | **string** | Absent once publishing finishes when the team does not retain content. | [optional] 
+**ContentNotRetained** | **bool** | True when this team does not retain content and the post text was already cleared. | [optional] 
 **Status** | **string** |  | 
 **ScheduledFor** | **DateTime** |  | 
 **PublishedAt** | **DateTime** |  | [optional] 
