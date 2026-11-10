@@ -346,7 +346,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CalendarApi(httpClient, config, httpClientHandler);
             var eventId = "eventId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var calendarId = "calendarId_example";  // string? | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional) 
 
             try
@@ -391,7 +391,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **eventId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **calendarId** | **string?** | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional]  |
 
 ### Return type
@@ -450,7 +450,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CalendarApi(httpClient, config, httpClientHandler);
             var eventId = "eventId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var calendarId = "calendarId_example";  // string? | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. (optional) 
             var timezone = "timezone_example";  // string? |  (optional) 
 
@@ -496,7 +496,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **eventId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **calendarId** | **string?** | The calendar holding the event (an id from GET /v1/calendar/calendars). Defaults to the primary calendar. | [optional]  |
 | **timezone** | **string?** |  | [optional]  |
 
@@ -557,7 +557,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CalendarApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | 
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime | 
             var calendarId = "calendarId_example";  // string? | Defaults to the primary calendar. (optional) 
@@ -612,7 +612,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **from** | **DateTime** |  |  |
 | **to** | **DateTime** |  |  |
 | **calendarId** | **string?** | Defaults to the primary calendar. | [optional]  |
@@ -683,7 +683,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CalendarApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -726,7 +726,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 

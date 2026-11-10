@@ -73,7 +73,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var scheduleId = "scheduleId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -117,7 +117,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **scheduleId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -150,7 +150,7 @@ catch (ApiException e)
 
 Create a draft
 
-Saves a draft in the user's mailbox, where they see it in Gmail or Outlook. Recipients and subject can come later. `inReplyTo` makes a reply draft in that thread and `forwardOf` a forward draft with the original's attachments; the `kind` is fixed for the life of the draft.  Send it with `POST /v1/email/drafts/{draftId}/send`. Edits the user makes in their mail client are what goes out. Store the draft `id`, and pass its `version` as `If-Match` so an update or send applies only to the version you saw. 
+Saves a draft in the user's mailbox, where they see it in their mail app. Recipients and subject can come later. `inReplyTo` makes a reply draft in that thread and `forwardOf` a forward draft with the original's attachments; the `kind` is fixed for the life of the draft.  Send it with `POST /v1/email/drafts/{draftId}/send`. Edits the user makes in their mail client are what goes out. Store the draft `id`, and pass its `version` as `If-Match` so an update or send applies only to the version you saw. 
 
 ### Example
 ```csharp
@@ -686,7 +686,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var draftId = "draftId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -730,7 +730,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **draftId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -790,7 +790,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var labelId = "labelId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -834,7 +834,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **labelId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -894,7 +894,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var email = "email_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -938,7 +938,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **email** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -1196,7 +1196,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var attachmentId = "attachmentId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var messageId = "messageId_example";  // string | 
 
             try
@@ -1241,7 +1241,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **attachmentId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **messageId** | **string** |  |  |
 
 ### Return type
@@ -1411,7 +1411,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var draftId = "draftId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -1455,7 +1455,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **draftId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -1513,10 +1513,10 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var messageId = "messageId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var includeHeaders = false;  // bool? | Include the raw internet headers under `headers`. (optional)  (default to false)
             var raw = false;  // bool? | Include the MIME source under `raw`. (optional)  (default to false)
-            var clean = false;  // bool? | Add `cleanText`: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM. (optional)  (default to false)
+            var clean = false;  // bool? | Add a `clean` object: the new text without quoted replies, footers or tracking pixels, the `signature` on its own (it also stays in `text`), and a parsed `forwarded` header. Ready to hand to an LLM. (optional)  (default to false)
 
             try
             {
@@ -1560,10 +1560,10 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **messageId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **includeHeaders** | **bool?** | Include the raw internet headers under &#x60;headers&#x60;. | [optional] [default to false] |
 | **raw** | **bool?** | Include the MIME source under &#x60;raw&#x60;. | [optional] [default to false] |
-| **clean** | **bool?** | Add &#x60;cleanText&#x60;: the new text only, without quoted replies, forwarded history, signature or tracking pixels. Ready to hand to an LLM. | [optional] [default to false] |
+| **clean** | **bool?** | Add a &#x60;clean&#x60; object: the new text without quoted replies, footers or tracking pixels, the &#x60;signature&#x60; on its own (it also stays in &#x60;text&#x60;), and a parsed &#x60;forwarded&#x60; header. Ready to hand to an LLM. | [optional] [default to false] |
 
 ### Return type
 
@@ -1719,8 +1719,8 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var threadId = "threadId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
-            var clean = false;  // bool? | Add `cleanText` to every message: what each one added to the conversation, without the quoted history. (optional)  (default to false)
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
+            var clean = false;  // bool? | Add a `clean` object to every message: the text each one added, without quoted replies, footers or tracking pixels, plus its `signature` and a parsed `forwarded` header. (optional)  (default to false)
 
             try
             {
@@ -1764,8 +1764,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **threadId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
-| **clean** | **bool?** | Add &#x60;cleanText&#x60; to every message: what each one added to the conversation, without the quoted history. | [optional] [default to false] |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
+| **clean** | **bool?** | Add a &#x60;clean&#x60; object to every message: the text each one added, without quoted replies, footers or tracking pixels, plus its &#x60;signature&#x60; and a parsed &#x60;forwarded&#x60; header. | [optional] [default to false] |
 
 ### Return type
 
@@ -1823,7 +1823,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var scheduleId = "scheduleId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -1867,7 +1867,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **scheduleId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -1925,7 +1925,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -1968,7 +1968,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -2000,7 +2000,7 @@ catch (ApiException e)
 
 List drafts
 
-The mailbox's drafts, newest first, including drafts the user wrote in Gmail or Outlook. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
+The mailbox's drafts, newest first, including drafts the user wrote in their mail app. Drafts in the trash are left out. Rows carry no bodies on Google; get a draft to read them.
 
 ### Example
 ```csharp
@@ -2026,7 +2026,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? |  (optional) 
 
@@ -2071,7 +2071,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** |  | [optional]  |
 
@@ -2132,7 +2132,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -2175,7 +2175,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -2233,7 +2233,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -2276,7 +2276,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -2334,7 +2334,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var folder = "folder_example";  // string? |  (optional) 
             var unread = true;  // bool? |  (optional) 
             var starred = true;  // bool? |  (optional) 
@@ -2393,7 +2393,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **folder** | **string?** |  | [optional]  |
 | **unread** | **bool?** |  | [optional]  |
 | **starred** | **bool?** |  | [optional]  |
@@ -2468,7 +2468,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -2511,7 +2511,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -2643,7 +2643,7 @@ catch (ApiException e)
 
 List email threads
 
-Threads of a connected Google or Microsoft mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in `meta.filteredClientSide`, so a filtered page can hold fewer than `limit` items while `pagination.hasMore` stays true.  On Google, folders are Gmail labels: `folder` takes a well-known name or a label id, `archive` means mail carrying none of the inbox, trash or spam labels, and `sortOrder=asc` reverses the fetched page (Gmail lists newest first only).  The account must have been connected with `scopes=email` (412 `account_scope_missing` otherwise). 
+Threads of a connected Google, Microsoft or IMAP mailbox, newest first. Every filter that the provider cannot apply server-side is applied to the fetched page instead and named in `meta.filteredClientSide`, so a filtered page can hold fewer than `limit` items while `pagination.hasMore` stays true.  On Google, folders are Gmail labels: `folder` takes a well-known name or a label id, `archive` means mail carrying none of the inbox, trash or spam labels, and `sortOrder=asc` reverses the fetched page (Gmail lists newest first only).  The account must have been connected with `scopes=email` (412 `account_scope_missing` otherwise). 
 
 ### Example
 ```csharp
@@ -2669,7 +2669,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var folder = "folder_example";  // string? | Well-known folder (`inbox`, `sent`, `drafts`, `trash`, `spam`, `archive`) or a provider folder id from `GET /v1/email/folders`. Default inbox. (optional) 
             var unread = true;  // bool? |  (optional) 
             var starred = true;  // bool? |  (optional) 
@@ -2728,7 +2728,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **folder** | **string?** | Well-known folder (&#x60;inbox&#x60;, &#x60;sent&#x60;, &#x60;drafts&#x60;, &#x60;trash&#x60;, &#x60;spam&#x60;, &#x60;archive&#x60;) or a provider folder id from &#x60;GET /v1/email/folders&#x60;. Default inbox. | [optional]  |
 | **unread** | **bool?** |  | [optional]  |
 | **starred** | **bool?** |  | [optional]  |
@@ -2803,7 +2803,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var status = "scheduled";  // string? |  (optional) 
             var cursor = "cursor_example";  // string? | `pagination.nextCursor` of the previous page. (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
@@ -2849,7 +2849,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **status** | **string?** |  | [optional]  |
 | **cursor** | **string?** | &#x60;pagination.nextCursor&#x60; of the previous page. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |
@@ -2993,7 +2993,7 @@ catch (ApiException e)
 
 Send a draft
 
-Sends the draft as it stands in the mailbox now, edits made in Gmail or Outlook included, and returns the sent message with `draftId`. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 `draft_not_found`.  With `If-Match` it goes out only if it is still the version the approver saw (412 `draft_conflict` otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires `email.sent` with `source: draft`.  Tracking set when the draft was created applies, and its `metadata` comes back on the sent message. Same protection, caps and headers as sending. 
+Sends the draft as it stands in the mailbox now, edits made in their mail app included, and returns the sent message with `draftId`. The draft needs at least one recipient. A draft the user deleted or already sent answers 404 `draft_not_found`.  With `If-Match` it goes out only if it is still the version the approver saw (412 `draft_conflict` otherwise). If the user removed the open pixel or rewrote links, tracking is put back before it is sent. Fires `email.sent` with `source: draft`.  Tracking set when the draft was created applies, and its `metadata` comes back on the sent message. Same protection, caps and headers as sending. 
 
 ### Example
 ```csharp
@@ -3237,7 +3237,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EmailApi(httpClient, config, httpClientHandler);
             var messageId = "messageId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -3281,7 +3281,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **messageId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 

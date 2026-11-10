@@ -248,7 +248,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new FilesApi(httpClient, config, httpClientHandler);
             var fileId = "fileId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -292,7 +292,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **fileId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -352,7 +352,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new FilesApi(httpClient, config, httpClientHandler);
             var fileId = "fileId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -396,7 +396,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **fileId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -456,7 +456,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new FilesApi(httpClient, config, httpClientHandler);
             var fileId = "fileId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -500,7 +500,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **fileId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
@@ -559,7 +559,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new FilesApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
             var folderId = "folderId_example";  // string? | Provider folder id; omit for the root. (optional) 
             var q = "q_example";  // string? | Name search. (optional) 
             var cursor = "cursor_example";  // string? |  (optional) 
@@ -606,7 +606,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 | **folderId** | **string?** | Provider folder id; omit for the root. | [optional]  |
 | **q** | **string?** | Name search. | [optional]  |
 | **cursor** | **string?** |  | [optional]  |
@@ -669,7 +669,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new FilesApi(httpClient, config, httpClientHandler);
             var fileId = "fileId_example";  // string | 
-            var accountId = "accountId_example";  // string | The connected Google or Microsoft account.
+            var accountId = "accountId_example";  // string | The connected Google, Microsoft or IMAP account.
 
             try
             {
@@ -713,7 +713,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **fileId** | **string** |  |  |
-| **accountId** | **string** | The connected Google or Microsoft account. |  |
+| **accountId** | **string** | The connected Google, Microsoft or IMAP account. |  |
 
 ### Return type
 
