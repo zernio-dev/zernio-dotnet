@@ -627,6 +627,9 @@ docs/ConnectHandoff.md
 docs/ConnectHandoffAccountsInner.md
 docs/ConnectHandoffError.md
 docs/ConnectHandoffLink.md
+docs/ConnectLineCredentials200Response.md
+docs/ConnectLineCredentials200ResponseWebhook.md
+docs/ConnectLineCredentialsRequest.md
 docs/ConnectOpenAIAdsCredentials200Response.md
 docs/ConnectOpenAIAdsCredentialsRequest.md
 docs/ConnectShopifyWithToken200Response.md
@@ -636,6 +639,9 @@ docs/ConnectSlackChannelRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
+docs/ConnectWechatCredentials200Response.md
+docs/ConnectWechatCredentials200ResponseServer.md
+docs/ConnectWechatCredentialsRequest.md
 docs/ConnectWelcomeScreen.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
@@ -652,6 +658,7 @@ docs/Connected.md
 docs/ConnectedAccount.md
 docs/ConnectedApp.md
 docs/ConnectedAppsApi.md
+docs/ConnectedMessagingAccount.md
 docs/ContactsApi.md
 docs/ContentRetentionApi.md
 docs/ContentRetentionResponse.md
@@ -1694,6 +1701,7 @@ docs/GetWebflowConnectUrl200Response.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
+docs/GetWechatIpWhitelist200Response.md
 docs/GetWhatsAppBlockStatus200Response.md
 docs/GetWhatsAppBlockedUsers200Response.md
 docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
@@ -4424,6 +4432,9 @@ src/Zernio.Test/Model/ConnectHandoffAccountsInnerTests.cs
 src/Zernio.Test/Model/ConnectHandoffErrorTests.cs
 src/Zernio.Test/Model/ConnectHandoffLinkTests.cs
 src/Zernio.Test/Model/ConnectHandoffTests.cs
+src/Zernio.Test/Model/ConnectLineCredentials200ResponseTests.cs
+src/Zernio.Test/Model/ConnectLineCredentials200ResponseWebhookTests.cs
+src/Zernio.Test/Model/ConnectLineCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectOpenAIAdsCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectOpenAIAdsCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseAccountTests.cs
@@ -4433,6 +4444,9 @@ src/Zernio.Test/Model/ConnectSlackChannelRequestTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteToken200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteToken200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteTokenRequestTests.cs
+src/Zernio.Test/Model/ConnectWechatCredentials200ResponseServerTests.cs
+src/Zernio.Test/Model/ConnectWechatCredentials200ResponseTests.cs
+src/Zernio.Test/Model/ConnectWechatCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectWelcomeScreenTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseTests.cs
@@ -4447,6 +4461,7 @@ src/Zernio.Test/Model/ConnectWordPressWithApplicationPassword200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWordPressWithApplicationPasswordRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedAppTests.cs
+src/Zernio.Test/Model/ConnectedMessagingAccountTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
 src/Zernio.Test/Model/ContentRetentionResponseTests.cs
 src/Zernio.Test/Model/ConversationAdAttributionTests.cs
@@ -5472,6 +5487,7 @@ src/Zernio.Test/Model/GetWebflowConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
+src/Zernio.Test/Model/GetWechatIpWhitelist200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockStatus200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockedUsers200ResponseTests.cs
@@ -8177,6 +8193,9 @@ src/Zernio/Model/ConnectHandoff.cs
 src/Zernio/Model/ConnectHandoffAccountsInner.cs
 src/Zernio/Model/ConnectHandoffError.cs
 src/Zernio/Model/ConnectHandoffLink.cs
+src/Zernio/Model/ConnectLineCredentials200Response.cs
+src/Zernio/Model/ConnectLineCredentials200ResponseWebhook.cs
+src/Zernio/Model/ConnectLineCredentialsRequest.cs
 src/Zernio/Model/ConnectOpenAIAdsCredentials200Response.cs
 src/Zernio/Model/ConnectOpenAIAdsCredentialsRequest.cs
 src/Zernio/Model/ConnectShopifyWithToken200Response.cs
@@ -8186,6 +8205,9 @@ src/Zernio/Model/ConnectSlackChannelRequest.cs
 src/Zernio/Model/ConnectWebflowWithSiteToken200Response.cs
 src/Zernio/Model/ConnectWebflowWithSiteToken200ResponseAccount.cs
 src/Zernio/Model/ConnectWebflowWithSiteTokenRequest.cs
+src/Zernio/Model/ConnectWechatCredentials200Response.cs
+src/Zernio/Model/ConnectWechatCredentials200ResponseServer.cs
+src/Zernio/Model/ConnectWechatCredentialsRequest.cs
 src/Zernio/Model/ConnectWelcomeScreen.cs
 src/Zernio/Model/ConnectWhatsAppCredentials200Response.cs
 src/Zernio/Model/ConnectWhatsAppCredentials200ResponseAccount.cs
@@ -8201,6 +8223,7 @@ src/Zernio/Model/ConnectWordPressWithApplicationPasswordRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
 src/Zernio/Model/ConnectedApp.cs
+src/Zernio/Model/ConnectedMessagingAccount.cs
 src/Zernio/Model/ContentRetentionResponse.cs
 src/Zernio/Model/ConversationAdAttribution.cs
 src/Zernio/Model/ConversionAction.cs
@@ -9225,6 +9248,7 @@ src/Zernio/Model/GetWebflowConnectUrl200Response.cs
 src/Zernio/Model/GetWebhookLogs200Response.cs
 src/Zernio/Model/GetWebhookLogs200ResponsePagination.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
+src/Zernio/Model/GetWechatIpWhitelist200Response.cs
 src/Zernio/Model/GetWhatsAppBlockStatus200Response.cs
 src/Zernio/Model/GetWhatsAppBlockedUsers200Response.cs
 src/Zernio/Model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.cs

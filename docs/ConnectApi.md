@@ -13,10 +13,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConnectAds**](ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**ConnectBlueskyCredentials**](ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**ConnectDiscordChannel**](ConnectApi.md#connectdiscordchannel) | **POST** /v1/connect/discord | Connect a Discord channel |
+| [**ConnectLineCredentials**](ConnectApi.md#connectlinecredentials) | **POST** /v1/connect/line/credentials | Connect LINE Official Account |
 | [**ConnectOpenAIAdsCredentials**](ConnectApi.md#connectopenaiadscredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**ConnectShopifyWithToken**](ConnectApi.md#connectshopifywithtoken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token |
 | [**ConnectSlackChannel**](ConnectApi.md#connectslackchannel) | **POST** /v1/connect/slack | Connect a Slack channel |
 | [**ConnectWebflowWithSiteToken**](ConnectApi.md#connectwebflowwithsitetoken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
+| [**ConnectWechatCredentials**](ConnectApi.md#connectwechatcredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
 | [**ConnectWhatsAppCredentials**](ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**ConnectWhatsAppEmbeddedSignup**](ConnectApi.md#connectwhatsappembeddedsignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
 | [**ConnectWhopAdsCredentials**](ConnectApi.md#connectwhopadscredentials) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account |
@@ -50,6 +52,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetSubredditRules**](ConnectApi.md#getsubredditrules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules |
 | [**GetTelegramConnectStatus**](ConnectApi.md#gettelegramconnectstatus) | **GET** /v1/connect/telegram | Generate Telegram code |
 | [**GetWebflowConnectUrl**](ConnectApi.md#getwebflowconnecturl) | **GET** /v1/connect/webflow | Get Webflow OAuth URL |
+| [**GetWechatIpWhitelist**](ConnectApi.md#getwechatipwhitelist) | **GET** /v1/connect/wechat/ip-whitelist | Get WeChat IP whitelist |
 | [**GetWhatsAppSdkConfig**](ConnectApi.md#getwhatsappsdkconfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config |
 | [**GetWixConnectUrl**](ConnectApi.md#getwixconnecturl) | **GET** /v1/connect/wix | Get Wix site install URL |
 | [**GetWordPressAuthUrl**](ConnectApi.md#getwordpressauthurl) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL |
@@ -1052,6 +1055,107 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="connectlinecredentials"></a>
+# **ConnectLineCredentials**
+> ConnectLineCredentials200Response ConnectLineCredentials (ConnectLineCredentialsRequest connectLineCredentialsRequest)
+
+Connect LINE Official Account
+
+Connect a LINE Official Account with the Channel ID and Channel secret of its Messaging API channel (LINE Official Account Manager > Settings > Messaging API, also shown in the LINE Developers Console under the channel's Basic settings).  Zernio issues a channel access token, reads the bot's profile and sets the channel's webhook URL for you. A channel has one webhook URL, so if it already pointed somewhere else, that integration stops receiving events; the response names it in `webhook.previousUrl`.  Two settings stay on the customer's side, in LINE Official Account Manager > Settings > Response settings. `nextSteps` in the response lists them:  - Turn on Webhooks. Until it is on, LINE delivers nothing to Zernio. - Turn off auto-response and greeting messages.  Reconnecting the same channel on the same profile updates the existing account. To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectLineCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectLineCredentialsRequest = new ConnectLineCredentialsRequest(); // ConnectLineCredentialsRequest | 
+
+            try
+            {
+                // Connect LINE Official Account
+                ConnectLineCredentials200Response result = apiInstance.ConnectLineCredentials(connectLineCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectLineCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectLineCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect LINE Official Account
+    ApiResponse<ConnectLineCredentials200Response> response = apiInstance.ConnectLineCredentialsWithHttpInfo(connectLineCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectLineCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectLineCredentialsRequest** | [**ConnectLineCredentialsRequest**](ConnectLineCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectLineCredentials200Response**](ConnectLineCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | LINE connected |  -  |
+| **400** | Invalid request. &#x60;code&#x60; is &#x60;invalid_field_value&#x60; with &#x60;param&#x60; &#x60;channelSecret&#x60; when LINE rejected the Channel ID and Channel secret. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="connectopenaiadscredentials"></a>
 # **ConnectOpenAIAdsCredentials**
 > ConnectOpenAIAdsCredentials200Response ConnectOpenAIAdsCredentials (ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest)
@@ -1461,6 +1565,107 @@ catch (ApiException e)
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **502** | Webflow returned an unclassified upstream error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connectwechatcredentials"></a>
+# **ConnectWechatCredentials**
+> ConnectWechatCredentials200Response ConnectWechatCredentials (ConnectWechatCredentialsRequest connectWechatCredentialsRequest)
+
+Connect WeChat Official Account
+
+Connect a verified WeChat Official Account (Service Account) with its AppID and AppSecret (Weixin Official Accounts Platform > Settings and Development > Basic Configuration).  Before calling this, add every IP from GET /v1/connect/wechat/ip-whitelist to the account's API IP whitelist on the same page. WeChat refuses calls from any other IP, and this endpoint then returns 400 with code `wechat_ip_not_whitelisted`.  The response carries a Server URL, a Token and an EncodingAESKey. Paste them into Server Configuration on the same page, choose Safe mode for message encryption, and enable the configuration. Until then WeChat delivers nothing to Zernio.  Enabling Server Configuration turns off the auto-replies and menus set in the WeChat dashboard.  Reconnecting the same AppID on the same profile keeps the existing Token and EncodingAESKey, so nothing has to be pasted again. To get your userId for the state parameter, call GET /v1/users which includes a currentUserId field. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectWechatCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectWechatCredentialsRequest = new ConnectWechatCredentialsRequest(); // ConnectWechatCredentialsRequest | 
+
+            try
+            {
+                // Connect WeChat Official Account
+                ConnectWechatCredentials200Response result = apiInstance.ConnectWechatCredentials(connectWechatCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectWechatCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectWechatCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect WeChat Official Account
+    ApiResponse<ConnectWechatCredentials200Response> response = apiInstance.ConnectWechatCredentialsWithHttpInfo(connectWechatCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectWechatCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectWechatCredentialsRequest** | [**ConnectWechatCredentialsRequest**](ConnectWechatCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectWechatCredentials200Response**](ConnectWechatCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | WeChat connected |  -  |
+| **400** | Invalid request. &#x60;code&#x60; is &#x60;wechat_ip_not_whitelisted&#x60; when WeChat refused the call because Zernio&#39;s IPs are not on the account&#39;s API IP whitelist (&#x60;details.ips&#x60; lists them), and &#x60;invalid_field_value&#x60; with &#x60;param&#x60; set to &#x60;appId&#x60; or &#x60;appSecret&#x60; when WeChat rejected that value. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4926,6 +5131,102 @@ catch (ApiException e)
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **503** | The Webflow app or state signing is not configured. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwechatipwhitelist"></a>
+# **GetWechatIpWhitelist**
+> GetWechatIpWhitelist200Response GetWechatIpWhitelist ()
+
+Get WeChat IP whitelist
+
+The IPs Zernio calls WeChat from. Add all of them to the Official Account's API IP whitelist before calling POST /v1/connect/wechat/credentials.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWechatIpWhitelistExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // Get WeChat IP whitelist
+                GetWechatIpWhitelist200Response result = apiInstance.GetWechatIpWhitelist();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetWechatIpWhitelist: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWechatIpWhitelistWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get WeChat IP whitelist
+    ApiResponse<GetWechatIpWhitelist200Response> response = apiInstance.GetWechatIpWhitelistWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetWechatIpWhitelistWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**GetWechatIpWhitelist200Response**](GetWechatIpWhitelist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The IPs to whitelist |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
