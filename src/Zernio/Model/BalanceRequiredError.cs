@@ -112,7 +112,8 @@ namespace Zernio.Model
         /// <param name="docsUrl">Email API: where this &#x60;code&#x60; is documented..</param>
         /// <param name="details">details.</param>
         /// <param name="fundingUrl">Dashboard link to Billing that opens the Add funds drawer (the add-card drawer first when there is no card). Send the user there, then retry. (required).</param>
-        public BalanceRequiredError(string error = default, TypeEnum? type = default, string code = default, string param = default, string docUrl = default, string platform = default, Dictionary<string, Object> platformError = default, string provider = default, ErrorResponseProviderError providerError = default, bool retryable = default, string requestId = default, string docsUrl = default, ErrorResponseDetails details = default, string fundingUrl = default)
+        /// <param name="requiredCents">Only when an item debited later (a phone number&#39;s first month, all numbers of the order) is refused: what the balance must hold, in cents..</param>
+        public BalanceRequiredError(string error = default, TypeEnum? type = default, string code = default, string param = default, string docUrl = default, string platform = default, Dictionary<string, Object> platformError = default, string provider = default, ErrorResponseProviderError providerError = default, bool retryable = default, string requestId = default, string docsUrl = default, ErrorResponseDetails details = default, string fundingUrl = default, int requiredCents = default)
         {
             // to ensure "fundingUrl" is required (not null)
             if (fundingUrl == null)
@@ -133,6 +134,7 @@ namespace Zernio.Model
             this.RequestId = requestId;
             this.DocsUrl = docsUrl;
             this.Details = details;
+            this.RequiredCents = requiredCents;
         }
 
         /// <summary>
@@ -225,6 +227,13 @@ namespace Zernio.Model
         public string FundingUrl { get; set; }
 
         /// <summary>
+        /// Only when an item debited later (a phone number&#39;s first month, all numbers of the order) is refused: what the balance must hold, in cents.
+        /// </summary>
+        /// <value>Only when an item debited later (a phone number&#39;s first month, all numbers of the order) is refused: what the balance must hold, in cents.</value>
+        [DataMember(Name = "required_cents", EmitDefaultValue = false)]
+        public int RequiredCents { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -246,6 +255,7 @@ namespace Zernio.Model
             sb.Append("  DocsUrl: ").Append(DocsUrl).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("  FundingUrl: ").Append(FundingUrl).Append("\n");
+            sb.Append("  RequiredCents: ").Append(RequiredCents).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

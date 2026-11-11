@@ -180,5 +180,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'FundingUrl'
         }
+
+        /// <summary>
+        /// Test the property 'RequiredCents'
+        /// </summary>
+        [Fact]
+        public void RequiredCentsTest()
+        {
+            // TODO unit test for the property 'RequiredCents'
+        }
     }
 }
