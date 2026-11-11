@@ -24,6 +24,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetConversionMetrics**](ConversionsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**GetConversionsQuality**](ConversionsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**GetEvent**](ConversionsApi.md#getevent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
+| [**GetEventsOverview**](ConversionsApi.md#geteventsoverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**ListAdConversionAssociations**](ConversionsApi.md#listadconversionassociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**ListAdConversionDestinations**](ConversionsApi.md#listadconversiondestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations |
 | [**ListAdConversionGoals**](ConversionsApi.md#listadconversiongoals) | **GET** /v1/ads/conversions/goals | List account conversion goals |
@@ -2162,6 +2163,107 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event and its deliveries. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="geteventsoverview"></a>
+# **GetEventsOverview**
+> GetEventsOverview200Response GetEventsOverview (string profileId)
+
+Get today's tracking overview
+
+How a profile's conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule's destination, each event source and, when the profile has a tracking site, the site's funnel. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetEventsOverviewExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | 
+
+            try
+            {
+                // Get today's tracking overview
+                GetEventsOverview200Response result = apiInstance.GetEventsOverview(profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.GetEventsOverview: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetEventsOverviewWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get today's tracking overview
+    ApiResponse<GetEventsOverview200Response> response = apiInstance.GetEventsOverviewWithHttpInfo(profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.GetEventsOverviewWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** |  |  |
+
+### Return type
+
+[**GetEventsOverview200Response**](GetEventsOverview200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The profile&#39;s tracking overview. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

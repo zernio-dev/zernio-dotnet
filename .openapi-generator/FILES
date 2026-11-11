@@ -1450,6 +1450,12 @@ docs/GetEmailThread200Response.md
 docs/GetEmailThread200ResponseData.md
 docs/GetEvent200Response.md
 docs/GetEvent200ResponseDeliveriesInner.md
+docs/GetEventsOverview200Response.md
+docs/GetEventsOverview200ResponsePlatformsInner.md
+docs/GetEventsOverview200ResponseSourcesInner.md
+docs/GetEventsOverview200ResponseToday.md
+docs/GetEventsOverview200ResponseWebsite.md
+docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
 docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
@@ -2164,6 +2170,8 @@ docs/ListEmailSignatures200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
 docs/ListEvents200Response.md
+docs/ListEvents200ResponseEventsInner.md
+docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -5236,6 +5244,12 @@ src/Zernio.Test/Model/GetEmailThread200ResponseDataTests.cs
 src/Zernio.Test/Model/GetEmailThread200ResponseTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseDeliveriesInnerTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponsePlatformsInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseSourcesInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseTodayTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseWebsiteStepsInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseWebsiteTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsCountryInnerTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseTests.cs
@@ -5942,6 +5956,8 @@ src/Zernio.Test/Model/ListEmailSharedMailboxes200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailSignatures200ResponseTests.cs
 src/Zernio.Test/Model/ListEmailThreads200ResponseTests.cs
 src/Zernio.Test/Model/ListEventDestinations200ResponseTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseEventsInnerAllOfDeliveriesInnerTests.cs
+src/Zernio.Test/Model/ListEvents200ResponseEventsInnerTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
@@ -8997,6 +9013,12 @@ src/Zernio/Model/GetEmailThread200Response.cs
 src/Zernio/Model/GetEmailThread200ResponseData.cs
 src/Zernio/Model/GetEvent200Response.cs
 src/Zernio/Model/GetEvent200ResponseDeliveriesInner.cs
+src/Zernio/Model/GetEventsOverview200Response.cs
+src/Zernio/Model/GetEventsOverview200ResponsePlatformsInner.cs
+src/Zernio/Model/GetEventsOverview200ResponseSourcesInner.cs
+src/Zernio/Model/GetEventsOverview200ResponseToday.cs
+src/Zernio/Model/GetEventsOverview200ResponseWebsite.cs
+src/Zernio/Model/GetEventsOverview200ResponseWebsiteStepsInner.cs
 src/Zernio/Model/GetFacebookDemographics200Response.cs
 src/Zernio/Model/GetFacebookDemographics200ResponseDemographics.cs
 src/Zernio/Model/GetFacebookDemographics200ResponseDemographicsCountryInner.cs
@@ -9704,6 +9726,8 @@ src/Zernio/Model/ListEmailSignatures200Response.cs
 src/Zernio/Model/ListEmailThreads200Response.cs
 src/Zernio/Model/ListEventDestinations200Response.cs
 src/Zernio/Model/ListEvents200Response.cs
+src/Zernio/Model/ListEvents200ResponseEventsInner.cs
+src/Zernio/Model/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
