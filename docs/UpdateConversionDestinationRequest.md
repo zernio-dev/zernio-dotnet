@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **PostClickAttributionWindowSize** | **int** | 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types.  | [optional] 
 **ViewThroughAttributionWindowSize** | **int** | 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types.  | [optional] 
 **ValueType** | **string** |  | [optional] 
-**Value** | [**UpdateConversionDestinationRequestValue**](UpdateConversionDestinationRequestValue.md) |  | [optional] 
+**Value** | [**UpdateAdConversionDestinationRequestValue**](UpdateAdConversionDestinationRequestValue.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1030,7 +1030,7 @@ catch (ApiException e)
 
 Create custom conversion
 
-Creates a Meta custom conversion for ads to optimise toward, reusing an existing one with the same name and pixel.  It provisions the Meta custom conversion an ads flow optimises toward, and hands back the `customConversionId` for `promotedObject.customConversionId` on POST /v1/ads/create. This removes the manual \"create it in Ads Manager first\" step.  ### Reuse is ours, not Meta's  Meta's create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original's optimisation history.  A non-archived conversion with the same `name` on the same `pixelId` is returned instead of created, with `reused: true` and a 200 rather than a 201.  ### Rule  `rule` is forwarded verbatim in Meta's own grammar (e.g. `{\"url\": {\"i_contains\": \"thank-you\"}}`). Meta validates it and rejects a malformed one with \"A conversion rule is required at creation time\". 
+The first path of `POST /v1/ads/conversions/custom-conversions` (`createAdCustomConversion`), which does the same with `accountId` as a parameter. It keeps working. 
 
 ### Example
 ```csharp
@@ -4945,11 +4945,11 @@ catch (ApiException e)
 
 <a id="listcustomconversions"></a>
 # **ListCustomConversions**
-> ListCustomConversions200Response ListCustomConversions (string accountId, string adAccountId)
+> ListAdCustomConversions200Response ListCustomConversions (string accountId, string adAccountId)
 
 List custom conversions
 
-Lists a Meta ad account's custom conversions, including archived ones.  The ad account's Meta custom conversions, including archived ones (`isArchived`). 
+The first path of `GET /v1/ads/conversions/custom-conversions` (`listAdCustomConversions`), which does the same with `accountId` as a parameter. It keeps working. 
 
 ### Example
 ```csharp
@@ -4981,7 +4981,7 @@ namespace Example
             try
             {
                 // List custom conversions
-                ListCustomConversions200Response result = apiInstance.ListCustomConversions(accountId, adAccountId);
+                ListAdCustomConversions200Response result = apiInstance.ListCustomConversions(accountId, adAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5002,7 +5002,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List custom conversions
-    ApiResponse<ListCustomConversions200Response> response = apiInstance.ListCustomConversionsWithHttpInfo(accountId, adAccountId);
+    ApiResponse<ListAdCustomConversions200Response> response = apiInstance.ListCustomConversionsWithHttpInfo(accountId, adAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5024,7 +5024,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**ListCustomConversions200Response**](ListCustomConversions200Response.md)
+[**ListAdCustomConversions200Response**](ListAdCustomConversions200Response.md)
 
 ### Authorization
 
