@@ -3128,7 +3128,7 @@ catch (ApiException e)
 
 <a id="listevents"></a>
 # **ListEvents**
-> ListEvents200Response ListEvents (string profileId, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? cursor = null)
+> ListEvents200Response ListEvents (string profileId, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? cursor = null)
 
 List stored events
 
@@ -3163,12 +3163,13 @@ namespace Example
             var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events at or after this time (ISO 8601, on the event time). (optional) 
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events before this time (ISO 8601, on the event time). (optional) 
             var eventName = "eventName_example";  // string? | Only events with this name, such as `Purchase`. (optional) 
+            var source = "api";  // string? | Only events from this source, such as `stripe` for the payments of a connected Stripe account. (optional) 
             var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
 
             try
             {
                 // List stored events
-                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, cursor);
+                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, source, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3189,7 +3190,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List stored events
-    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, cursor);
+    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3211,6 +3212,7 @@ catch (ApiException e)
 | **from** | **DateTime?** | Only events at or after this time (ISO 8601, on the event time). | [optional]  |
 | **to** | **DateTime?** | Only events before this time (ISO 8601, on the event time). | [optional]  |
 | **eventName** | **string?** | Only events with this name, such as &#x60;Purchase&#x60;. | [optional]  |
+| **source** | **string?** | Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional]  |
 | **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
 
 ### Return type

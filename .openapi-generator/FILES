@@ -1648,6 +1648,7 @@ docs/GetSmsRegistration200ResponseCampaignContent.md
 docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
+docs/GetStripeConnectUrl200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
 docs/GetTelegramCommands200Response.md
@@ -5421,6 +5422,7 @@ src/Zernio.Test/Model/GetSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTotalsTests.cs
+src/Zernio.Test/Model/GetStripeConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseRulesInnerTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseDataInnerTests.cs
@@ -9169,6 +9171,7 @@ src/Zernio/Model/GetSmsRegistration200ResponseCampaignContent.cs
 src/Zernio/Model/GetSmsUsage200Response.cs
 src/Zernio/Model/GetSmsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetSmsUsage200ResponseTotals.cs
+src/Zernio/Model/GetStripeConnectUrl200Response.cs
 src/Zernio/Model/GetSubredditRules200Response.cs
 src/Zernio/Model/GetSubredditRules200ResponseRulesInner.cs
 src/Zernio/Model/GetTelegramCommands200Response.cs
