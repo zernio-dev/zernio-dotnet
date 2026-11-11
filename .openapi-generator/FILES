@@ -1376,6 +1376,7 @@ docs/GetAutomationCatalog200ResponseTriggersInner.md
 docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md
 docs/GetAutomationControls200Response.md
 docs/GetBalance200Response.md
+docs/GetBalance200ResponseHeld.md
 docs/GetBalance200ResponsePayoutLocksInner.md
 docs/GetBalance200ResponsePendingReleasesInner.md
 docs/GetBalance200ResponseRecentCreditRechargesInner.md
@@ -5176,6 +5177,7 @@ src/Zernio.Test/Model/GetAutomationCatalog200ResponseTests.cs
 src/Zernio.Test/Model/GetAutomationCatalog200ResponseTriggersInnerFactsInnerTests.cs
 src/Zernio.Test/Model/GetAutomationCatalog200ResponseTriggersInnerTests.cs
 src/Zernio.Test/Model/GetAutomationControls200ResponseTests.cs
+src/Zernio.Test/Model/GetBalance200ResponseHeldTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePayoutLocksInnerTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePendingReleasesInnerTests.cs
 src/Zernio.Test/Model/GetBalance200ResponseRecentCreditRechargesInnerTests.cs
@@ -8953,6 +8955,7 @@ src/Zernio/Model/GetAutomationCatalog200ResponseTriggersInner.cs
 src/Zernio/Model/GetAutomationCatalog200ResponseTriggersInnerFactsInner.cs
 src/Zernio/Model/GetAutomationControls200Response.cs
 src/Zernio/Model/GetBalance200Response.cs
+src/Zernio/Model/GetBalance200ResponseHeld.cs
 src/Zernio/Model/GetBalance200ResponsePayoutLocksInner.cs
 src/Zernio/Model/GetBalance200ResponsePendingReleasesInner.cs
 src/Zernio/Model/GetBalance200ResponseRecentCreditRechargesInner.cs
