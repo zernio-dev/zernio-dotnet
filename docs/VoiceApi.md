@@ -122,7 +122,7 @@ catch (ApiException e)
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number&#39;s first month (the message says how much to add). - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 | **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. Also returned when the API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
@@ -227,7 +227,7 @@ catch (ApiException e)
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number&#39;s first month (the message says how much to add). - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 | **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **409** | The team trunk limit was reached (code invalid_resource_state). |  -  |
 | **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
@@ -333,7 +333,7 @@ catch (ApiException e)
 | **200** | Call originated; lifecycle continues asynchronously. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number&#39;s first month (the message says how much to add). - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
@@ -736,7 +736,7 @@ catch (ApiException e)
 | **200** | Call originated; answer/bridge continue asynchronously. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty. - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
+| **402** | Balance billing only. The balance is at or below $0 and auto top-up could not lift it, so new pay-per-use is refused.  - &#x60;insufficient_balance&#x60;: the balance is empty, or, when buying a phone number with auto top-up off, it is below the number&#39;s first month (the message says how much to add). - &#x60;usage_limit_reached&#x60;: the monthly limit kept it there.  &#x60;funding_url&#x60; opens Billing with the Add funds drawer (the add-card drawer first when there is no card). Inbound traffic and connected calls are never refused.  |  -  |
 | **422** | Invalid or unknown WebRTC credential, or no voice-enabled number matches &#x60;fromNumber&#x60; |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed |  -  |
