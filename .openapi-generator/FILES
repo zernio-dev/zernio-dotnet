@@ -1649,6 +1649,7 @@ docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
 docs/GetStripeConnectUrl200Response.md
+docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
 docs/GetTelegramCommands200Response.md
@@ -2957,6 +2958,7 @@ docs/StoredEvent.md
 docs/StoredEventAd.md
 docs/StoredEventClickIds.md
 docs/StoredEventUtm.md
+docs/StripeSettings.md
 docs/SubmitCreatorDraft201Response.md
 docs/SubmitCreatorDraftRequest.md
 docs/SubmitCreatorPost201Response.md
@@ -3280,6 +3282,8 @@ docs/UpdateSequenceRequest.md
 docs/UpdateSequenceRequestStepsInner.md
 docs/UpdateSequenceRequestStepsInnerTemplate.md
 docs/UpdateSlackSettingsRequest.md
+docs/UpdateStripeSettings200Response.md
+docs/UpdateStripeSettingsRequest.md
 docs/UpdateTrackingTagRequest.md
 docs/UpdateValueRuleSet200Response.md
 docs/UpdateValueRuleSetRequest.md
@@ -5423,6 +5427,7 @@ src/Zernio.Test/Model/GetSmsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTotalsTests.cs
 src/Zernio.Test/Model/GetStripeConnectUrl200ResponseTests.cs
+src/Zernio.Test/Model/GetStripeSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseRulesInnerTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseDataInnerTests.cs
@@ -6706,6 +6711,7 @@ src/Zernio.Test/Model/StoredEventAdTests.cs
 src/Zernio.Test/Model/StoredEventClickIdsTests.cs
 src/Zernio.Test/Model/StoredEventTests.cs
 src/Zernio.Test/Model/StoredEventUtmTests.cs
+src/Zernio.Test/Model/StripeSettingsTests.cs
 src/Zernio.Test/Model/SubmitCreatorDraft201ResponseTests.cs
 src/Zernio.Test/Model/SubmitCreatorDraftRequestTests.cs
 src/Zernio.Test/Model/SubmitCreatorPost201ResponseTests.cs
@@ -7025,6 +7031,8 @@ src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestTests.cs
 src/Zernio.Test/Model/UpdateSlackSettingsRequestTests.cs
+src/Zernio.Test/Model/UpdateStripeSettings200ResponseTests.cs
+src/Zernio.Test/Model/UpdateStripeSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/UpdateValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/UpdateValueRuleSetRequestTests.cs
@@ -9172,6 +9180,7 @@ src/Zernio/Model/GetSmsUsage200Response.cs
 src/Zernio/Model/GetSmsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetSmsUsage200ResponseTotals.cs
 src/Zernio/Model/GetStripeConnectUrl200Response.cs
+src/Zernio/Model/GetStripeSettings200Response.cs
 src/Zernio/Model/GetSubredditRules200Response.cs
 src/Zernio/Model/GetSubredditRules200ResponseRulesInner.cs
 src/Zernio/Model/GetTelegramCommands200Response.cs
@@ -10455,6 +10464,7 @@ src/Zernio/Model/StoredEvent.cs
 src/Zernio/Model/StoredEventAd.cs
 src/Zernio/Model/StoredEventClickIds.cs
 src/Zernio/Model/StoredEventUtm.cs
+src/Zernio/Model/StripeSettings.cs
 src/Zernio/Model/SubmitCreatorDraft201Response.cs
 src/Zernio/Model/SubmitCreatorDraftRequest.cs
 src/Zernio/Model/SubmitCreatorPost201Response.cs
@@ -10774,6 +10784,8 @@ src/Zernio/Model/UpdateSequenceRequest.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInner.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/UpdateSlackSettingsRequest.cs
+src/Zernio/Model/UpdateStripeSettings200Response.cs
+src/Zernio/Model/UpdateStripeSettingsRequest.cs
 src/Zernio/Model/UpdateTrackingTagRequest.cs
 src/Zernio/Model/UpdateValueRuleSet200Response.cs
 src/Zernio/Model/UpdateValueRuleSetRequest.cs
