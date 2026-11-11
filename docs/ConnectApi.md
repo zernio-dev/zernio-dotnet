@@ -3012,7 +3012,7 @@ catch (ApiException e)
 
 <a id="getconnecturl"></a>
 # **GetConnectUrl**
-> GetConnectUrl200Response GetConnectUrl (string platform, string profileId, string? reconnectAccountId = null, string? oauthAppId = null, string? expectedPlatformUserId = null, string? expectedUsername = null, bool? forceReauth = null, string? redirectUrl = null, string? scopes = null, string? loginHint = null, bool? headless = null, string? loginMethod = null, string? onboarding = null, string? signup = null, string? brandName = null, string? primaryColor = null, bool? welcome = null, string? welcomeTheme = null, string? logoUrl = null, string? language = null, bool? handoff = null)
+> GetConnectUrl200Response GetConnectUrl (string platform, string profileId, string? reconnectAccountId = null, string? oauthAppId = null, string? purpose = null, string? expectedPlatformUserId = null, string? expectedUsername = null, bool? forceReauth = null, string? redirectUrl = null, string? scopes = null, string? loginHint = null, bool? headless = null, string? loginMethod = null, string? onboarding = null, string? signup = null, string? brandName = null, string? primaryColor = null, bool? welcome = null, string? welcomeTheme = null, string? logoUrl = null, string? language = null, bool? handoff = null)
 
 Get OAuth connect URL
 
@@ -3046,6 +3046,7 @@ namespace Example
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.
             var reconnectAccountId = "reconnectAccountId_example";  // string? | Refresh this existing account: a Zernio account id of the same platform on this profile (otherwise 400).  The OAuth callback and the selection endpoints (select-page, select-organization, select-board, select-location, Instagram and Snapchat selection) refuse with `reconnect_account_mismatch` a login that would write to a different account of the platform on this profile instead of this one.  In headless mode the marker travels in the redirect_url we hand you, so pass that URL back unchanged to the selection endpoint. On X it counts toward the OAuth state limit described under redirect_url.  (optional) 
             var oauthAppId = "oauthAppId_example";  // string? | Connect through one of your own OAuth apps (see /v1/connect/oauth-apps), so the consent screen shows your app and the platform's limits are your app's. Without it the connect runs on Zernio's app, whatever apps the workspace has saved.  - Only platforms listed in `platforms` of GET /v1/connect/oauth-apps accept an app. Any other returns 400, and so do ads connects (`adsConnect=true` in the redirect URL). - Connects that end on a destination picker also return 400, except Facebook Pages, Google Business locations, Pinterest boards and Snapchat public profiles (Instagram through Facebook Login, for example). - A LinkedIn connect through an app saves the member's own profile: organization pages, and mention lookups, stay on Zernio's app. - The connect requests the app's `scopeAreas`. `scopes` may narrow them but not add an area the app does not enable (400). - If the user does not grant every requested area, the account still connects and the redirect carries `missing_permissions=<areas>` (the headless POST returns `missingPermissions`). - If the platform refuses a permission your app is not approved for, the redirect carries `error=oauth_app_scope_not_allowed`.  The account remembers the app, and token refresh, publishing and inbox run on it. Reconnecting through another app, or without one, moves the account to that app.  (optional) 
+            var purpose = "notifications";  // string? | Connect the account for notifications only. Slack and Telegram only: `GET /v1/connect/{platform}` returns 400 for any other platform, and other platforms' own connect endpoints ignore it.  The account is free, receives Zernio notifications, and cannot publish. To publish with it, connect it again without `purpose`. Refused with 400 when the channel or chat is already connected for publishing: connect a separate one for notifications.  (optional) 
             var expectedPlatformUserId = "expectedPlatformUserId_example";  // string? | Only connect if the login lands on this platform account. Any other account ends the flow with `error=account_mismatch` (a 409 `account_mismatch` on POST /v1/connect/instagram/select-account) and nothing is written.  Compared with every id the platform reports for the authorized account:  - Any platform: the `platformUserId` of a Zernio account on this platform. - Instagram: either the app-scoped id or the professional account id (`metadata.instagramScopedId`, the `17841...` id that Facebook Login accounts hold as platformUserId). - TikTok: open_ids are app-scoped, so an id from your own TikTok app never matches. Use expectedUsername there.  Honoured by the OAuth callback (every platform that connects without a selection step, Instagram Login included) and by the Instagram selection step. On the other selection endpoints you choose the destination yourself.  In headless mode the marker travels in the redirect_url we hand you, so pass that URL back unchanged. On X it counts toward the OAuth state limit described under redirect_url.  (optional) 
             var expectedUsername = "expectedUsername_example";  // string? | Only connect if the authorized account's handle is this one (case-insensitive, a leading @ is ignored). Otherwise the flow ends with `error=account_mismatch` and `error_message` naming the handle that was authorized, and nothing is written.  Same coverage and transport as expectedPlatformUserId; when both are sent, both must match. Use this on a first connection, where you hold the handle the user typed but no Zernio id yet.  (optional) 
             var forceReauth = false;  // bool? | Instagram Login only (the default loginMethod); ignored elsewhere. Makes Instagram show its login page and ask for the credentials of the account to connect, even when another Instagram account is logged in on the device or app. Also hides the Facebook login option on that page.  Use it when the person connecting manages several Instagram accounts on one phone: otherwise Instagram logs in, and converts to a professional account, whichever account is active, before any consent screen. Pair it with expectedUsername to also refuse a wrong account at the end.  (optional)  (default to false)
@@ -3067,7 +3068,7 @@ namespace Example
             try
             {
                 // Get OAuth connect URL
-                GetConnectUrl200Response result = apiInstance.GetConnectUrl(platform, profileId, reconnectAccountId, oauthAppId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, loginHint, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
+                GetConnectUrl200Response result = apiInstance.GetConnectUrl(platform, profileId, reconnectAccountId, oauthAppId, purpose, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, loginHint, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3088,7 +3089,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get OAuth connect URL
-    ApiResponse<GetConnectUrl200Response> response = apiInstance.GetConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, oauthAppId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, loginHint, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
+    ApiResponse<GetConnectUrl200Response> response = apiInstance.GetConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, oauthAppId, purpose, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, loginHint, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3109,6 +3110,7 @@ catch (ApiException e)
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. |  |
 | **reconnectAccountId** | **string?** | Refresh this existing account: a Zernio account id of the same platform on this profile (otherwise 400).  The OAuth callback and the selection endpoints (select-page, select-organization, select-board, select-location, Instagram and Snapchat selection) refuse with &#x60;reconnect_account_mismatch&#x60; a login that would write to a different account of the platform on this profile instead of this one.  In headless mode the marker travels in the redirect_url we hand you, so pass that URL back unchanged to the selection endpoint. On X it counts toward the OAuth state limit described under redirect_url.  | [optional]  |
 | **oauthAppId** | **string?** | Connect through one of your own OAuth apps (see /v1/connect/oauth-apps), so the consent screen shows your app and the platform&#39;s limits are your app&#39;s. Without it the connect runs on Zernio&#39;s app, whatever apps the workspace has saved.  - Only platforms listed in &#x60;platforms&#x60; of GET /v1/connect/oauth-apps accept an app. Any other returns 400, and so do ads connects (&#x60;adsConnect&#x3D;true&#x60; in the redirect URL). - Connects that end on a destination picker also return 400, except Facebook Pages, Google Business locations, Pinterest boards and Snapchat public profiles (Instagram through Facebook Login, for example). - A LinkedIn connect through an app saves the member&#39;s own profile: organization pages, and mention lookups, stay on Zernio&#39;s app. - The connect requests the app&#39;s &#x60;scopeAreas&#x60;. &#x60;scopes&#x60; may narrow them but not add an area the app does not enable (400). - If the user does not grant every requested area, the account still connects and the redirect carries &#x60;missing_permissions&#x3D;&lt;areas&gt;&#x60; (the headless POST returns &#x60;missingPermissions&#x60;). - If the platform refuses a permission your app is not approved for, the redirect carries &#x60;error&#x3D;oauth_app_scope_not_allowed&#x60;.  The account remembers the app, and token refresh, publishing and inbox run on it. Reconnecting through another app, or without one, moves the account to that app.  | [optional]  |
+| **purpose** | **string?** | Connect the account for notifications only. Slack and Telegram only: &#x60;GET /v1/connect/{platform}&#x60; returns 400 for any other platform, and other platforms&#39; own connect endpoints ignore it.  The account is free, receives Zernio notifications, and cannot publish. To publish with it, connect it again without &#x60;purpose&#x60;. Refused with 400 when the channel or chat is already connected for publishing: connect a separate one for notifications.  | [optional]  |
 | **expectedPlatformUserId** | **string?** | Only connect if the login lands on this platform account. Any other account ends the flow with &#x60;error&#x3D;account_mismatch&#x60; (a 409 &#x60;account_mismatch&#x60; on POST /v1/connect/instagram/select-account) and nothing is written.  Compared with every id the platform reports for the authorized account:  - Any platform: the &#x60;platformUserId&#x60; of a Zernio account on this platform. - Instagram: either the app-scoped id or the professional account id (&#x60;metadata.instagramScopedId&#x60;, the &#x60;17841...&#x60; id that Facebook Login accounts hold as platformUserId). - TikTok: open_ids are app-scoped, so an id from your own TikTok app never matches. Use expectedUsername there.  Honoured by the OAuth callback (every platform that connects without a selection step, Instagram Login included) and by the Instagram selection step. On the other selection endpoints you choose the destination yourself.  In headless mode the marker travels in the redirect_url we hand you, so pass that URL back unchanged. On X it counts toward the OAuth state limit described under redirect_url.  | [optional]  |
 | **expectedUsername** | **string?** | Only connect if the authorized account&#39;s handle is this one (case-insensitive, a leading @ is ignored). Otherwise the flow ends with &#x60;error&#x3D;account_mismatch&#x60; and &#x60;error_message&#x60; naming the handle that was authorized, and nothing is written.  Same coverage and transport as expectedPlatformUserId; when both are sent, both must match. Use this on a first connection, where you hold the handle the user typed but no Zernio id yet.  | [optional]  |
 | **forceReauth** | **bool?** | Instagram Login only (the default loginMethod); ignored elsewhere. Makes Instagram show its login page and ask for the credentials of the account to connect, even when another Instagram account is logged in on the device or app. Also hides the Facebook login option on that page.  Use it when the person connecting manages several Instagram accounts on one phone: otherwise Instagram logs in, and converts to a professional account, whichever account is active, before any consent screen. Pair it with expectedUsername to also refuse a wrong account at the end.  | [optional] [default to false] |
@@ -4923,7 +4925,7 @@ catch (ApiException e)
 
 <a id="gettelegramconnectstatus"></a>
 # **GetTelegramConnectStatus**
-> GetTelegramConnectStatus200Response GetTelegramConnectStatus (string profileId)
+> GetTelegramConnectStatus200Response GetTelegramConnectStatus (string profileId, string? purpose = null)
 
 Generate Telegram code
 
@@ -4954,11 +4956,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | The profile ID to connect the Telegram account to
+            var purpose = "notifications";  // string? | Connect the account for notifications only. Slack and Telegram only: `GET /v1/connect/{platform}` returns 400 for any other platform, and other platforms' own connect endpoints ignore it.  The account is free, receives Zernio notifications, and cannot publish. To publish with it, connect it again without `purpose`. If the chat is already connected for publishing, the bot refuses the code in the private chat and the code stays pending.  (optional) 
 
             try
             {
                 // Generate Telegram code
-                GetTelegramConnectStatus200Response result = apiInstance.GetTelegramConnectStatus(profileId);
+                GetTelegramConnectStatus200Response result = apiInstance.GetTelegramConnectStatus(profileId, purpose);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4979,7 +4982,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Generate Telegram code
-    ApiResponse<GetTelegramConnectStatus200Response> response = apiInstance.GetTelegramConnectStatusWithHttpInfo(profileId);
+    ApiResponse<GetTelegramConnectStatus200Response> response = apiInstance.GetTelegramConnectStatusWithHttpInfo(profileId, purpose);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4997,6 +5000,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string** | The profile ID to connect the Telegram account to |  |
+| **purpose** | **string?** | Connect the account for notifications only. Slack and Telegram only: &#x60;GET /v1/connect/{platform}&#x60; returns 400 for any other platform, and other platforms&#39; own connect endpoints ignore it.  The account is free, receives Zernio notifications, and cannot publish. To publish with it, connect it again without &#x60;purpose&#x60;. If the chat is already connected for publishing, the bot refuses the code in the private chat and the code stays pending.  | [optional]  |
 
 ### Return type
 
@@ -6928,7 +6932,7 @@ catch (ApiException e)
 
 <a id="listslackchannels"></a>
 # **ListSlackChannels**
-> ListSlackChannels200Response ListSlackChannels (string profileId, string? pendingDataToken = null, string? accountId = null, string? redirectUrl = null, string? scopes = null)
+> ListSlackChannels200Response ListSlackChannels (string profileId, string? pendingDataToken = null, string? accountId = null, string? redirectUrl = null, string? scopes = null, string? purpose = null)
 
 List Slack channels for the channel picker
 
@@ -6963,11 +6967,12 @@ namespace Example
             var accountId = "accountId_example";  // string? | Existing active Slack account (yours or a team member's) whose workspace token is reused. (optional) 
             var redirectUrl = "redirectUrl_example";  // string? | Start-OAuth mode only: where to send the user after the connect completes. `redirectUrl` is accepted as an alias. (optional) 
             var scopes = posting;  // string? | Start-OAuth mode only. Comma-separated permission areas to request instead of the full Slack scope set, same semantics as `scopes` on `GET /v1/connect/{platform}`. Omit it to request everything.  - `posting`: installs the bot with the channel scopes it needs to post. - `messaging`: adds the history, DM and reaction scopes the inbox reads. - `analytics`, `comments`, `ads`: add nothing on Slack.  (optional) 
+            var purpose = "notifications";  // string? | Start-OAuth mode only. Connect the account for notifications only. Slack and Telegram only: `GET /v1/connect/{platform}` returns 400 for any other platform, and other platforms' own connect endpoints ignore it.  The account is free, receives Zernio notifications, and cannot publish. To publish with it, connect it again without `purpose`. Refused with 400 when the channel or chat is already connected for publishing: connect a separate one for notifications.  Adding another channel with `accountId` keeps the notifications-only setting of the account whose workspace token it reuses.  (optional) 
 
             try
             {
                 // List Slack channels for the channel picker
-                ListSlackChannels200Response result = apiInstance.ListSlackChannels(profileId, pendingDataToken, accountId, redirectUrl, scopes);
+                ListSlackChannels200Response result = apiInstance.ListSlackChannels(profileId, pendingDataToken, accountId, redirectUrl, scopes, purpose);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6988,7 +6993,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Slack channels for the channel picker
-    ApiResponse<ListSlackChannels200Response> response = apiInstance.ListSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl, scopes);
+    ApiResponse<ListSlackChannels200Response> response = apiInstance.ListSlackChannelsWithHttpInfo(profileId, pendingDataToken, accountId, redirectUrl, scopes, purpose);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7010,6 +7015,7 @@ catch (ApiException e)
 | **accountId** | **string?** | Existing active Slack account (yours or a team member&#39;s) whose workspace token is reused. | [optional]  |
 | **redirectUrl** | **string?** | Start-OAuth mode only: where to send the user after the connect completes. &#x60;redirectUrl&#x60; is accepted as an alias. | [optional]  |
 | **scopes** | **string?** | Start-OAuth mode only. Comma-separated permission areas to request instead of the full Slack scope set, same semantics as &#x60;scopes&#x60; on &#x60;GET /v1/connect/{platform}&#x60;. Omit it to request everything.  - &#x60;posting&#x60;: installs the bot with the channel scopes it needs to post. - &#x60;messaging&#x60;: adds the history, DM and reaction scopes the inbox reads. - &#x60;analytics&#x60;, &#x60;comments&#x60;, &#x60;ads&#x60;: add nothing on Slack.  | [optional]  |
+| **purpose** | **string?** | Start-OAuth mode only. Connect the account for notifications only. Slack and Telegram only: &#x60;GET /v1/connect/{platform}&#x60; returns 400 for any other platform, and other platforms&#39; own connect endpoints ignore it.  The account is free, receives Zernio notifications, and cannot publish. To publish with it, connect it again without &#x60;purpose&#x60;. Refused with 400 when the channel or chat is already connected for publishing: connect a separate one for notifications.  Adding another channel with &#x60;accountId&#x60; keeps the notifications-only setting of the account whose workspace token it reuses.  | [optional]  |
 
 ### Return type
 
