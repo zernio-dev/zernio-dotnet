@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.581.0
+  version: 1.583.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -199485,6 +199485,7 @@ components:
         lastEventName: lastEventName
         fixUrl: fixUrl
         lastSentAt: 2000-01-23T04:56:07.000+00:00
+        destinationId: destinationId
         platform: platform
         sentToday: 2
       properties:
@@ -199497,6 +199498,10 @@ components:
           type: string
         destinationName:
           description: "The destination (pixel, dataset or conversion action) id."
+          type: string
+        destinationId:
+          description: "The destination (pixel, dataset or conversion action) id,\
+            \ the same as the forwarding rule's destinationId."
           type: string
         sentToday:
           description: Events the platform accepted today.
@@ -199655,6 +199660,7 @@ components:
           lastEventName: lastEventName
           fixUrl: fixUrl
           lastSentAt: 2000-01-23T04:56:07.000+00:00
+          destinationId: destinationId
           platform: platform
           sentToday: 2
         - accountId: accountId
@@ -199665,6 +199671,7 @@ components:
           lastEventName: lastEventName
           fixUrl: fixUrl
           lastSentAt: 2000-01-23T04:56:07.000+00:00
+          destinationId: destinationId
           platform: platform
           sentToday: 2
       properties:

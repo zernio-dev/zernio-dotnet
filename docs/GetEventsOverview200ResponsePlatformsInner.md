@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Platform** | **string** | Ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional] 
 **AccountName** | **string** |  | [optional] 
 **DestinationName** | **string** | The destination (pixel, dataset or conversion action) id. | [optional] 
+**DestinationId** | **string** | The destination (pixel, dataset or conversion action) id, the same as the forwarding rule&#39;s destinationId. | [optional] 
 **SentToday** | **int** | Events the platform accepted today. | [optional] 
 **FailedToday** | **int** | Events that failed for good today. | [optional] 
 **LastSentAt** | **DateTime?** | Last accepted send in the last 30 days. | [optional] 
