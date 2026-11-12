@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.600.0
+  version: 1.601.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45380,6 +45380,10 @@ paths:
             \ workflow"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Code `automation_runs_allowance_exceeded`: the team used its\
+            \ 2,000 free automation runs this month with no payment method on file.\
+            \ Add a card to resume."
         "404":
           $ref: "#/components/responses/NotFound"
       summary: Manually start a workflow run
@@ -45424,6 +45428,10 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Code `automation_runs_allowance_exceeded`: the team used its\
+            \ 2,000 free automation runs this month with no payment method on file.\
+            \ Add a card to resume."
         "404":
           $ref: "#/components/responses/NotFound"
       summary: Start an API-triggered workflow
@@ -45864,6 +45872,10 @@ paths:
           description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Code `automation_runs_allowance_exceeded`: the team used its\
+            \ 2,000 free automation runs this month with no payment method on file.\
+            \ Add a card to resume."
         "404":
           $ref: "#/components/responses/NotFound"
       summary: Enroll contacts in a sequence
@@ -124318,12 +124330,15 @@ components:
           format: date-time
           type: string
         outcome:
+          description: "`paused`: the team used its free automation runs with no payment\
+            \ method on file, so the check did not run. `error` says why."
           enum:
           - triggered
           - no_match
           - cooldown
           - daily_limit
           - failed
+          - paused
           type: string
         evaluated:
           type: integer
@@ -124379,12 +124394,15 @@ components:
           format: date-time
           type: string
         outcome:
+          description: "`paused`: the team used its free automation runs with no payment\
+            \ method on file, so the check did not run. `error` says why."
           enum:
           - triggered
           - no_match
           - cooldown
           - daily_limit
           - failed
+          - paused
           type: string
         evaluated:
           description: Posts judged.
@@ -220330,12 +220348,15 @@ components:
           format: date-time
           type: string
         outcome:
+          description: "`paused`: the team used its free automation runs with no payment\
+            \ method on file, so the check did not run. `error` says why."
           enum:
           - triggered
           - no_match
           - cooldown
           - daily_limit
           - failed
+          - paused
           type: string
         subjectsEvaluated:
           description: How many objects the check read.

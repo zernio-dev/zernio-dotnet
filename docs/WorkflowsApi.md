@@ -1340,6 +1340,7 @@ catch (ApiException e)
 | **201** | Run started |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Code &#x60;automation_runs_allowance_exceeded&#x60;: the team used its 2,000 free automation runs this month with no payment method on file. Add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1443,6 +1444,7 @@ catch (ApiException e)
 | **200** | Run started |  -  |
 | **400** | Missing target, invalid graph, or &#x60;to&#x60; used on a non-WhatsApp workflow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Code &#x60;automation_runs_allowance_exceeded&#x60;: the team used its 2,000 free automation runs this month with no payment method on file. Add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
