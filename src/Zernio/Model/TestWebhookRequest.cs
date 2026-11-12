@@ -971,10 +971,16 @@ namespace Zernio.Model
             BalanceCharged = 155,
 
             /// <summary>
+            /// Enum NotificationSent for value: notification.sent
+            /// </summary>
+            [EnumMember(Value = "notification.sent")]
+            NotificationSent = 156,
+
+            /// <summary>
             /// Enum ApiChangelogPublished for value: api.changelog.published
             /// </summary>
             [EnumMember(Value = "api.changelog.published")]
-            ApiChangelogPublished = 156
+            ApiChangelogPublished = 157
         }
 
 

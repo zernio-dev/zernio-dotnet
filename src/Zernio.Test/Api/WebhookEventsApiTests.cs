@@ -1221,6 +1221,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnNotificationSent
+        /// </summary>
+        [Fact]
+        public void OnNotificationSentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadNotificationSent webhookPayloadNotificationSent = null;
+            //instance.OnNotificationSent(webhookPayloadNotificationSent);
+        }
+
+        /// <summary>
         /// Test OnPhoneNumberStockAvailable
         /// </summary>
         [Fact]

@@ -973,7 +973,13 @@ namespace Zernio.Model
             /// Enum CampaignSampleDeclined for value: campaign_sample.declined
             /// </summary>
             [EnumMember(Value = "campaign_sample.declined")]
-            CampaignSampleDeclined = 156
+            CampaignSampleDeclined = 156,
+
+            /// <summary>
+            /// Enum NotificationSent for value: notification.sent
+            /// </summary>
+            [EnumMember(Value = "notification.sent")]
+            NotificationSent = 157
         }
 
         /// <summary>
