@@ -21,7 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="createcreatorpayoutlogin"></a>
 # **CreateCreatorPayoutLogin**
-> StartCreatorPayouts200Response CreateCreatorPayoutLogin (string token)
+> CreateCreatorPayoutLogin200Response CreateCreatorPayoutLogin (string token)
 
 Open the creator's Stripe dashboard
 
@@ -53,7 +53,7 @@ namespace Example
             try
             {
                 // Open the creator's Stripe dashboard
-                StartCreatorPayouts200Response result = apiInstance.CreateCreatorPayoutLogin(token);
+                CreateCreatorPayoutLogin200Response result = apiInstance.CreateCreatorPayoutLogin(token);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -74,7 +74,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Open the creator's Stripe dashboard
-    ApiResponse<StartCreatorPayouts200Response> response = apiInstance.CreateCreatorPayoutLoginWithHttpInfo(token);
+    ApiResponse<CreateCreatorPayoutLogin200Response> response = apiInstance.CreateCreatorPayoutLoginWithHttpInfo(token);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -95,7 +95,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**StartCreatorPayouts200Response**](StartCreatorPayouts200Response.md)
+[**CreateCreatorPayoutLogin200Response**](CreateCreatorPayoutLogin200Response.md)
 
 ### Authorization
 

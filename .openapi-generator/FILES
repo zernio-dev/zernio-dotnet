@@ -825,6 +825,7 @@ docs/CreateConversionActionRequest.md
 docs/CreateConversionDestinationRequest.md
 docs/CreateCreatorCampaign201Response.md
 docs/CreateCreatorCampaignRequest.md
+docs/CreateCreatorPayoutLogin200Response.md
 docs/CreateCustomConversionGoalRequest.md
 docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
@@ -4697,6 +4698,7 @@ src/Zernio.Test/Model/CreateConversionActionRequestTests.cs
 src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateCreatorCampaign201ResponseTests.cs
 src/Zernio.Test/Model/CreateCreatorCampaignRequestTests.cs
+src/Zernio.Test/Model/CreateCreatorPayoutLogin200ResponseTests.cs
 src/Zernio.Test/Model/CreateCustomConversionGoalRequestTests.cs
 src/Zernio.Test/Model/CreateCustomConversionRequestTests.cs
 src/Zernio.Test/Model/CreateCustomField200ResponseTests.cs
@@ -8529,6 +8531,7 @@ src/Zernio/Model/CreateConversionActionRequest.cs
 src/Zernio/Model/CreateConversionDestinationRequest.cs
 src/Zernio/Model/CreateCreatorCampaign201Response.cs
 src/Zernio/Model/CreateCreatorCampaignRequest.cs
+src/Zernio/Model/CreateCreatorPayoutLogin200Response.cs
 src/Zernio/Model/CreateCustomConversionGoalRequest.cs
 src/Zernio/Model/CreateCustomConversionRequest.cs
 src/Zernio/Model/CreateCustomField200Response.cs
