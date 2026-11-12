@@ -17,8 +17,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateCommerceCatalogSync**](CommerceApi.md#createcommercecatalogsync) | **POST** /v1/commerce/catalog-syncs | Sync a store into a Meta catalog |
 | [**CreateCommerceCollection**](CommerceApi.md#createcommercecollection) | **POST** /v1/commerce/collections | Create a collection |
 | [**CreateCommerceDiscount**](CommerceApi.md#createcommercediscount) | **POST** /v1/commerce/discounts | Create a discount |
+| [**CreateCommerceDraftOrder**](CommerceApi.md#createcommercedraftorder) | **POST** /v1/commerce/draft-orders | Create a draft order |
 | [**CreateCommerceMenu**](CommerceApi.md#createcommercemenu) | **POST** /v1/commerce/menus | Create a navigation menu |
 | [**CreateCommerceMetaobject**](CommerceApi.md#createcommercemetaobject) | **POST** /v1/commerce/metaobjects | Create a metaobject |
+| [**CreateCommerceOrderEdit**](CommerceApi.md#createcommerceorderedit) | **POST** /v1/commerce/orders/{orderId}/edits | Edit an order |
 | [**CreateCommercePage**](CommerceApi.md#createcommercepage) | **POST** /v1/commerce/pages | Create a page |
 | [**CreateCommerceProduct**](CommerceApi.md#createcommerceproduct) | **POST** /v1/commerce/products | Create a product |
 | [**CreateCommerceProductOptions**](CommerceApi.md#createcommerceproductoptions) | **POST** /v1/commerce/products/{productId}/options | Add options |
@@ -43,6 +45,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetCommerceCollection**](CommerceApi.md#getcommercecollection) | **GET** /v1/commerce/collections/{collectionId} | Get a collection |
 | [**GetCommerceCustomer**](CommerceApi.md#getcommercecustomer) | **GET** /v1/commerce/customers/{customerId} | Get a customer |
 | [**GetCommerceDiscount**](CommerceApi.md#getcommercediscount) | **GET** /v1/commerce/discounts/{discountId} | Get a discount |
+| [**GetCommerceDraftOrder**](CommerceApi.md#getcommercedraftorder) | **GET** /v1/commerce/draft-orders/{draftOrderId} | Get a draft order |
 | [**GetCommerceMenu**](CommerceApi.md#getcommercemenu) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu |
 | [**GetCommerceMetaobject**](CommerceApi.md#getcommercemetaobject) | **GET** /v1/commerce/metaobjects/{metaobjectId} | Get a metaobject |
 | [**GetCommerceOrder**](CommerceApi.md#getcommerceorder) | **GET** /v1/commerce/orders/{orderId} | Get an order |
@@ -71,6 +74,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ReorderCommerceCollectionProducts**](CommerceApi.md#reordercommercecollectionproducts) | **POST** /v1/commerce/collections/{collectionId}/reorder | Reorder products in a collection |
 | [**ReorderCommerceProductImages**](CommerceApi.md#reordercommerceproductimages) | **POST** /v1/commerce/products/{productId}/images/reorder | Reorder images |
 | [**RunCommerceCatalogSync**](CommerceApi.md#runcommercecatalogsync) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now |
+| [**SendCommerceDraftOrderInvoice**](CommerceApi.md#sendcommercedraftorderinvoice) | **POST** /v1/commerce/draft-orders/{draftOrderId}/invoice | Send a draft order invoice |
 | [**SetCommerceCollectionMetafields**](CommerceApi.md#setcommercecollectionmetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
 | [**SetCommerceDiscountActive**](CommerceApi.md#setcommercediscountactive) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount |
 | [**SetCommercePriceListPrices**](CommerceApi.md#setcommercepricelistprices) | **PUT** /v1/commerce/price-lists/{priceListId}/prices | Set fixed prices |
@@ -1440,6 +1444,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createcommercedraftorder"></a>
+# **CreateCommerceDraftOrder**
+> CreateCommerceDraftOrder201Response CreateCommerceDraftOrder (CreateCommerceDraftOrderRequest createCommerceDraftOrderRequest, string? idempotencyKey = null)
+
+Create a draft order
+
+Creates a draft order for a customer, for a replacement, a phone order or a custom quote. Needs draft_orders.write.  Send the buyer its checkout link with the invoice endpoint; the draft becomes an order once they pay. Amounts in the response are in the currency the buyer pays in; custom prices you send are in the store currency. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateCommerceDraftOrderExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var createCommerceDraftOrderRequest = new CreateCommerceDraftOrderRequest(); // CreateCommerceDraftOrderRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | A retry with the same key returns the first draft instead of creating another. (optional) 
+
+            try
+            {
+                // Create a draft order
+                CreateCommerceDraftOrder201Response result = apiInstance.CreateCommerceDraftOrder(createCommerceDraftOrderRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.CreateCommerceDraftOrder: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateCommerceDraftOrderWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a draft order
+    ApiResponse<CreateCommerceDraftOrder201Response> response = apiInstance.CreateCommerceDraftOrderWithHttpInfo(createCommerceDraftOrderRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.CreateCommerceDraftOrderWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createCommerceDraftOrderRequest** | [**CreateCommerceDraftOrderRequest**](CreateCommerceDraftOrderRequest.md) |  |  |
+| **idempotencyKey** | **string?** | A retry with the same key returns the first draft instead of creating another. | [optional]  |
+
+### Return type
+
+[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Draft order created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.write (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or store not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="createcommercemenu"></a>
 # **CreateCommerceMenu**
 > CreateCommerceMenu201Response CreateCommerceMenu (CreateCommerceMenuRequest createCommerceMenuRequest)
@@ -1642,6 +1751,113 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createcommerceorderedit"></a>
+# **CreateCommerceOrderEdit**
+> CreateCommerceOrderEdit200Response CreateCommerceOrderEdit (string orderId, CreateCommerceOrderEditRequest createCommerceOrderEditRequest, string? idempotencyKey = null)
+
+Edit an order
+
+Adds products to an order and changes or removes its lines. Needs orders.edit.  - Preview first with `validateOnly: true`: it returns the new totals and what the buyer would owe, and changes nothing. - A real edit needs an `Idempotency-Key` header (a UUID per edit): a retry with the same key never applies it twice. - When the edit raises the total, the buyer owes `outstanding`; `notifyCustomer` emails them the change. When it lowers it, refund the difference with the refunds endpoint. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateCommerceOrderEditExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var orderId = "orderId_example";  // string | Platform-native order id.
+            var createCommerceOrderEditRequest = new CreateCommerceOrderEditRequest(); // CreateCommerceOrderEditRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Required unless validateOnly is true. (optional) 
+
+            try
+            {
+                // Edit an order
+                CreateCommerceOrderEdit200Response result = apiInstance.CreateCommerceOrderEdit(orderId, createCommerceOrderEditRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.CreateCommerceOrderEdit: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateCommerceOrderEditWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Edit an order
+    ApiResponse<CreateCommerceOrderEdit200Response> response = apiInstance.CreateCommerceOrderEditWithHttpInfo(orderId, createCommerceOrderEditRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.CreateCommerceOrderEditWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **orderId** | **string** | Platform-native order id. |  |
+| **createCommerceOrderEditRequest** | [**CreateCommerceOrderEditRequest**](CreateCommerceOrderEditRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Required unless validateOnly is true. | [optional]  |
+
+### Return type
+
+[**CreateCommerceOrderEdit200Response**](CreateCommerceOrderEdit200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The edit, applied (with the updated order) or previewed (validateOnly) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted orders.edit (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or order or line item not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4161,6 +4377,111 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcommercedraftorder"></a>
+# **GetCommerceDraftOrder**
+> CreateCommerceDraftOrder201Response GetCommerceDraftOrder (string draftOrderId, string accountId)
+
+Get a draft order
+
+One draft order with its status, checkout link and, once paid, the order it became. Needs draft_orders.read.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCommerceDraftOrderExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var draftOrderId = "draftOrderId_example";  // string | Platform-native draft order id.
+            var accountId = "accountId_example";  // string | Connected store SocialAccount id.
+
+            try
+            {
+                // Get a draft order
+                CreateCommerceDraftOrder201Response result = apiInstance.GetCommerceDraftOrder(draftOrderId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.GetCommerceDraftOrder: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCommerceDraftOrderWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a draft order
+    ApiResponse<CreateCommerceDraftOrder201Response> response = apiInstance.GetCommerceDraftOrderWithHttpInfo(draftOrderId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.GetCommerceDraftOrderWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **draftOrderId** | **string** | Platform-native draft order id. |  |
+| **accountId** | **string** | Connected store SocialAccount id. |  |
+
+### Return type
+
+[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The draft order |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or draft order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -7130,6 +7451,111 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Catalog sync not found (code resource_not_found). |  -  |
 | **409** | A run is already in progress (code catalog_sync_conflict). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="sendcommercedraftorderinvoice"></a>
+# **SendCommerceDraftOrderInvoice**
+> CreateCommerceDraftOrder201Response SendCommerceDraftOrderInvoice (string draftOrderId, SendCommerceDraftOrderInvoiceRequest sendCommerceDraftOrderInvoiceRequest)
+
+Send a draft order invoice
+
+Emails the buyer the draft's checkout link. The draft becomes an order when they pay. Needs draft_orders.write.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SendCommerceDraftOrderInvoiceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new CommerceApi(httpClient, config, httpClientHandler);
+            var draftOrderId = "draftOrderId_example";  // string | Platform-native draft order id.
+            var sendCommerceDraftOrderInvoiceRequest = new SendCommerceDraftOrderInvoiceRequest(); // SendCommerceDraftOrderInvoiceRequest | 
+
+            try
+            {
+                // Send a draft order invoice
+                CreateCommerceDraftOrder201Response result = apiInstance.SendCommerceDraftOrderInvoice(draftOrderId, sendCommerceDraftOrderInvoiceRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CommerceApi.SendCommerceDraftOrderInvoice: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SendCommerceDraftOrderInvoiceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Send a draft order invoice
+    ApiResponse<CreateCommerceDraftOrder201Response> response = apiInstance.SendCommerceDraftOrderInvoiceWithHttpInfo(draftOrderId, sendCommerceDraftOrderInvoiceRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CommerceApi.SendCommerceDraftOrderInvoiceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **draftOrderId** | **string** | Platform-native draft order id. |  |
+| **sendCommerceDraftOrderInvoiceRequest** | [**SendCommerceDraftOrderInvoiceRequest**](SendCommerceDraftOrderInvoiceRequest.md) |  |  |
+
+### Return type
+
+[**CreateCommerceDraftOrder201Response**](CreateCommerceDraftOrder201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invoice sent |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The store has not granted draft_orders.write (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **404** | Account not found (code account_not_found) or draft order not found (code resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
