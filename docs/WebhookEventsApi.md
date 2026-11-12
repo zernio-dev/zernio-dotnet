@@ -110,7 +110,6 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnMessageRead**](WebhookEventsApi.md#onmessageread) | **POST** /message.read | Message read event |
 | [**OnMessageReceived**](WebhookEventsApi.md#onmessagereceived) | **POST** /message.received | Message received event |
 | [**OnMessageSent**](WebhookEventsApi.md#onmessagesent) | **POST** /message.sent | Message sent event |
-| [**OnNotificationSent**](WebhookEventsApi.md#onnotificationsent) | **POST** /notification.sent | Notification sent event |
 | [**OnPhoneNumberStockAvailable**](WebhookEventsApi.md#onphonenumberstockavailable) | **POST** /phone_number.stock_available | Phone-number stock available event |
 | [**OnPostAuthenticityChanged**](WebhookEventsApi.md#onpostauthenticitychanged) | **POST** /post.authenticity_changed | Post authenticity changed event |
 | [**OnPostCancelled**](WebhookEventsApi.md#onpostcancelled) | **POST** /post.cancelled | Post cancelled event |
@@ -10105,100 +10104,6 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadMessageSent** | [**WebhookPayloadMessageSent**](WebhookPayloadMessageSent.md) |  |  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Webhook received successfully |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="onnotificationsent"></a>
-# **OnNotificationSent**
-> void OnNotificationSent (WebhookPayloadNotificationSent webhookPayloadNotificationSent)
-
-Notification sent event
-
-A notification we would email the account owner: a scheduled post failed to publish (`type: post_failed`), or a connected account was disconnected (`type: account_disconnected`). Built for agents: it carries the email's `subject` and `text`, references to the post or account, and the `actions` that act on it.  ### When it fires  Once for each such notification, in near real time, regardless of the user's email toggles, and even when the owner has no email address or the email is held back by the sender's limits. It fires alongside `post.failed` and `account.disconnected`, which stay as they are.  The user's notification channel (Slack or Telegram) follows the email toggles, so it only receives the alerts whose toggle is on.  - `post_failed`: once the failure is final (a permanent error, or a temporary one on its last retry), once per publish attempt that failed, for scheduled posts only (not \"post now\"). `refs.platforms` lists every platform that failed in that attempt. - `account_disconnected`: every time an account is disconnected, never for creator-profile accounts. `reason` says why.  ### Payload notes  `text` is the email body without the greeting. When your content retention is set to keep no content, the post text is replaced by `Content not retained` and each platform error by a generic description of its category.  ### How to act  Each entry of `actions` is a public API call with the ids already in the path: `retry_post` (`retryPost`, `POST /v1/posts/{postId}/retry`), `reconnect_account` (`getConnectUrl`, `GET /v1/connect/{platform}`) and `check_account` (`getAccountHealth`, `GET /v1/accounts/{accountId}/health`).  ### Who receives it  Endpoints subscribed to `notification.sent`. Scoped endpoints receive it for their profiles and accounts. Restricted keys need the `publishing` resource group. 
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Zernio.Api;
-using Zernio.Client;
-using Zernio.Model;
-
-namespace Example
-{
-    public class OnNotificationSentExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
-            var webhookPayloadNotificationSent = new WebhookPayloadNotificationSent(); // WebhookPayloadNotificationSent | 
-
-            try
-            {
-                // Notification sent event
-                apiInstance.OnNotificationSent(webhookPayloadNotificationSent);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling WebhookEventsApi.OnNotificationSent: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the OnNotificationSentWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Notification sent event
-    apiInstance.OnNotificationSentWithHttpInfo(webhookPayloadNotificationSent);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling WebhookEventsApi.OnNotificationSentWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **webhookPayloadNotificationSent** | [**WebhookPayloadNotificationSent**](WebhookPayloadNotificationSent.md) |  |  |
 
 ### Return type
 
