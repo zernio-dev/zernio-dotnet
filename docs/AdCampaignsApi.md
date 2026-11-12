@@ -2838,7 +2838,7 @@ catch (ApiException e)
 
 <a id="getadtree"></a>
 # **GetAdTree**
-> AdTreeResponse GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, string? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, string? campaignId = null, DateTime? updatedSince = null, string? search = null, DateOnly? fromDate = null, DateOnly? toDate = null, bool? hasDelivery = null, decimal? minSpend = null, string? sort = null, int? timeIncrement = null, string? dailyLevel = null, string? compare = null, bool? results = null)
+> AdTreeResponse GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, string? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, string? campaignId = null, DateTime? updatedSince = null, string? search = null, DateOnly? fromDate = null, DateOnly? toDate = null, bool? hasDelivery = null, decimal? minSpend = null, string? sort = null, int? timeIncrement = null, string? dailyLevel = null, string? compare = null, bool? results = null, string? depth = null)
 
 Get campaign tree
 
@@ -2889,11 +2889,12 @@ namespace Example
             var dailyLevel = "campaign";  // string? | Which tree levels get the `daily[]` series when `timeIncrement=1`. Ignored when `timeIncrement` is unset.  - `campaign` (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - `adset`: on ad sets too. - `ad`: on every ad in `ads[]` as well. Heaviest (a long range × up to 100 ads per ad set); scope with `campaignId` to keep responses small. (optional)  (default to campaign)
             var compare = "previous";  // string? | Set to `previous` to also read the period of the same length that ends the day before `fromDate`. Every campaign, ad set and ad gains `previousMetrics` (same fields as `metrics`) and the response gains `previousRange`, so a table can show the change against the previous period in one call. (optional) 
             var results = true;  // bool? | Set to `true` to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains `results`, the values you sent for the range plus each formula they allow, and the response gains `resultMetrics` to label them. (optional) 
+            var depth = "campaign";  // string? | How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - `ad` (default): campaigns, their ad sets and each ad set's ads. - `adset`: campaigns and ad sets; every `ads[]` is empty and `adCount` still counts the ads. - `campaign`: campaigns only; every `adSets[]` is empty and `adSetCount` / `adCount` still count them. (optional)  (default to ad)
 
             try
             {
                 // Get campaign tree
-                AdTreeResponse result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results);
+                AdTreeResponse result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2914,7 +2915,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get campaign tree
-    ApiResponse<AdTreeResponse> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results);
+    ApiResponse<AdTreeResponse> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2952,6 +2953,7 @@ catch (ApiException e)
 | **dailyLevel** | **string?** | Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. Ignored when &#x60;timeIncrement&#x60; is unset.  - &#x60;campaign&#x60; (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - &#x60;adset&#x60;: on ad sets too. - &#x60;ad&#x60;: on every ad in &#x60;ads[]&#x60; as well. Heaviest (a long range × up to 100 ads per ad set); scope with &#x60;campaignId&#x60; to keep responses small. | [optional] [default to campaign] |
 | **compare** | **string?** | Set to &#x60;previous&#x60; to also read the period of the same length that ends the day before &#x60;fromDate&#x60;. Every campaign, ad set and ad gains &#x60;previousMetrics&#x60; (same fields as &#x60;metrics&#x60;) and the response gains &#x60;previousRange&#x60;, so a table can show the change against the previous period in one call. | [optional]  |
 | **results** | **bool?** | Set to &#x60;true&#x60; to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains &#x60;results&#x60;, the values you sent for the range plus each formula they allow, and the response gains &#x60;resultMetrics&#x60; to label them. | [optional]  |
+| **depth** | **string?** | How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - &#x60;ad&#x60; (default): campaigns, their ad sets and each ad set&#39;s ads. - &#x60;adset&#x60;: campaigns and ad sets; every &#x60;ads[]&#x60; is empty and &#x60;adCount&#x60; still counts the ads. - &#x60;campaign&#x60;: campaigns only; every &#x60;adSets[]&#x60; is empty and &#x60;adSetCount&#x60; / &#x60;adCount&#x60; still count them. | [optional] [default to ad] |
 
 ### Return type
 
@@ -4106,7 +4108,7 @@ catch (ApiException e)
 
 <a id="listadsets"></a>
 # **ListAdSets**
-> ListAdSets200Response ListAdSets (string? accountId = null, string? adAccountId = null, string? campaignId = null, string? adSetId = null, string? platform = null, AdStatus? status = null, int? page = null, int? limit = null, bool? live = null)
+> ListAdSets200Response ListAdSets (string? accountId = null, string? adAccountId = null, string? campaignId = null, string? adSetId = null, string? platform = null, AdStatus? status = null, int? page = null, int? limit = null, bool? live = null, string? view = null)
 
 List ad sets
 
@@ -4145,11 +4147,12 @@ namespace Example
             var page = 1;  // int? |  (optional)  (default to 1)
             var limit = 500;  // int? |  (optional)  (default to 500)
             var live = false;  // bool? | Read the on/off switches live from the platform instead of returning synced values. See \"Status freshness\" in the operation description.  - The fresh values are stored (later reads return them too), and the response carries `statusReadAt`, the time of the read. - At most 20 platform objects are read per request. - Where a read fails (credentials, platform error, no reader on that platform), stored values come back with `statusReadAt: null`.  **On GET /v1/ads/{adId} for a TikTok ad** the creative is read live too: ad text, call to action, landing page, video, format and identity, returned over the stored creative and never stored. See \"Status freshness\" in GET /v1/ads/{adId}.  **On X** the budget is read live too:  - GET /v1/ads/{adId}: `budget`, `adSetBudget`, `campaignBudget` and `budgetLevel` are the line item and campaign budgets X holds now (stored like the switches). - Ad set and campaign listings: `budget` is what that line item or campaign holds now (returned, not stored). A row whose budget the other level holds keeps its synced `budget`.  (optional)  (default to false)
+            var view = "full";  // string? | `full` returns every field. `summary` leaves `targeting` out of each ad set, which is most of a row's size; read one ad set's targeting with `adSetId` and `view=full`. (optional)  (default to full)
 
             try
             {
                 // List ad sets
-                ListAdSets200Response result = apiInstance.ListAdSets(accountId, adAccountId, campaignId, adSetId, platform, status, page, limit, live);
+                ListAdSets200Response result = apiInstance.ListAdSets(accountId, adAccountId, campaignId, adSetId, platform, status, page, limit, live, view);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4170,7 +4173,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ad sets
-    ApiResponse<ListAdSets200Response> response = apiInstance.ListAdSetsWithHttpInfo(accountId, adAccountId, campaignId, adSetId, platform, status, page, limit, live);
+    ApiResponse<ListAdSets200Response> response = apiInstance.ListAdSetsWithHttpInfo(accountId, adAccountId, campaignId, adSetId, platform, status, page, limit, live, view);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4196,6 +4199,7 @@ catch (ApiException e)
 | **page** | **int?** |  | [optional] [default to 1] |
 | **limit** | **int?** |  | [optional] [default to 500] |
 | **live** | **bool?** | Read the on/off switches live from the platform instead of returning synced values. See \&quot;Status freshness\&quot; in the operation description.  - The fresh values are stored (later reads return them too), and the response carries &#x60;statusReadAt&#x60;, the time of the read. - At most 20 platform objects are read per request. - Where a read fails (credentials, platform error, no reader on that platform), stored values come back with &#x60;statusReadAt: null&#x60;.  **On GET /v1/ads/{adId} for a TikTok ad** the creative is read live too: ad text, call to action, landing page, video, format and identity, returned over the stored creative and never stored. See \&quot;Status freshness\&quot; in GET /v1/ads/{adId}.  **On X** the budget is read live too:  - GET /v1/ads/{adId}: &#x60;budget&#x60;, &#x60;adSetBudget&#x60;, &#x60;campaignBudget&#x60; and &#x60;budgetLevel&#x60; are the line item and campaign budgets X holds now (stored like the switches). - Ad set and campaign listings: &#x60;budget&#x60; is what that line item or campaign holds now (returned, not stored). A row whose budget the other level holds keeps its synced &#x60;budget&#x60;.  | [optional] [default to false] |
+| **view** | **string?** | &#x60;full&#x60; returns every field. &#x60;summary&#x60; leaves &#x60;targeting&#x60; out of each ad set, which is most of a row&#39;s size; read one ad set&#39;s targeting with &#x60;adSetId&#x60; and &#x60;view&#x3D;full&#x60;. | [optional] [default to full] |
 
 ### Return type
 
@@ -4223,7 +4227,7 @@ catch (ApiException e)
 
 <a id="listads"></a>
 # **ListAds**
-> AdsListResponse ListAds (int? page = null, int? limit = null, string? source = null, AdStatus? status = null, string? platform = null, string? accountId = null, string? adAccountId = null, string? pageId = null, string? profileId = null, string? campaignId = null, string? adSetId = null, string? platformAdId = null, string? effectiveObjectStoryId = null, string? effectiveInstagramMediaId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
+> AdsListResponse ListAds (int? page = null, int? limit = null, string? source = null, AdStatus? status = null, string? platform = null, string? accountId = null, string? adAccountId = null, string? pageId = null, string? profileId = null, string? campaignId = null, string? adSetId = null, string? platformAdId = null, string? effectiveObjectStoryId = null, string? effectiveInstagramMediaId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? view = null)
 
 List ads
 
@@ -4269,11 +4273,12 @@ namespace Example
             var effectiveInstagramMediaId = "effectiveInstagramMediaId_example";  // string? | Instagram media ID of the boosted post (Meta `effective_instagram_media_id`). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional) 
+            var view = "full";  // string? | `full` (default) returns every field. `summary` is about 80% smaller per ad and keeps only:  - `_id`, `name`, `platform`, `status`, `platformStatus`, `servingStatuses` (left out when empty), `configuredStatus`, `reviewStatus`, `rejectionReason`, `goal`. - The platform ids, `accountId`, `profileId`, `campaignName`, `adSetName`, `budget`, `currency`, `isExternal`, `creativeType`, `platformCreatedAt`, `createdAt`. - `postId` as the post id, not the expanded post. - `creative` with only `headline`, `body` (cut to 200 characters), `linkUrl`, `callToAction` and `effectiveObjectStoryId`. - `metrics` without `costPerAction` and without any metric that is 0: an absent metric means 0.  Read one ad with `platformAdId` and `view=full` for the rest. (optional)  (default to full)
 
             try
             {
                 // List ads
-                AdsListResponse result = apiInstance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+                AdsListResponse result = apiInstance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, view);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4294,7 +4299,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ads
-    ApiResponse<AdsListResponse> response = apiInstance.ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+    ApiResponse<AdsListResponse> response = apiInstance.ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, view);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4327,6 +4332,7 @@ catch (ApiException e)
 | **effectiveInstagramMediaId** | **string?** | Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. | [optional]  |
 | **fromDate** | **DateOnly?** | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional]  |
+| **view** | **string?** | &#x60;full&#x60; (default) returns every field. &#x60;summary&#x60; is about 80% smaller per ad and keeps only:  - &#x60;_id&#x60;, &#x60;name&#x60;, &#x60;platform&#x60;, &#x60;status&#x60;, &#x60;platformStatus&#x60;, &#x60;servingStatuses&#x60; (left out when empty), &#x60;configuredStatus&#x60;, &#x60;reviewStatus&#x60;, &#x60;rejectionReason&#x60;, &#x60;goal&#x60;. - The platform ids, &#x60;accountId&#x60;, &#x60;profileId&#x60;, &#x60;campaignName&#x60;, &#x60;adSetName&#x60;, &#x60;budget&#x60;, &#x60;currency&#x60;, &#x60;isExternal&#x60;, &#x60;creativeType&#x60;, &#x60;platformCreatedAt&#x60;, &#x60;createdAt&#x60;. - &#x60;postId&#x60; as the post id, not the expanded post. - &#x60;creative&#x60; with only &#x60;headline&#x60;, &#x60;body&#x60; (cut to 200 characters), &#x60;linkUrl&#x60;, &#x60;callToAction&#x60; and &#x60;effectiveObjectStoryId&#x60;. - &#x60;metrics&#x60; without &#x60;costPerAction&#x60; and without any metric that is 0: an absent metric means 0.  Read one ad with &#x60;platformAdId&#x60; and &#x60;view&#x3D;full&#x60; for the rest. | [optional] [default to full] |
 
 ### Return type
 

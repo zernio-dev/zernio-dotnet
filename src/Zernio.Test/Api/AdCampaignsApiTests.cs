@@ -418,7 +418,8 @@ namespace Zernio.Test.Api
             //string? dailyLevel = null;
             //string? compare = null;
             //bool? results = null;
-            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results);
+            //string? depth = null;
+            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
             //Assert.IsType<AdTreeResponse>(response);
         }
 
@@ -602,7 +603,8 @@ namespace Zernio.Test.Api
             //int? page = null;
             //int? limit = null;
             //bool? live = null;
-            //var response = instance.ListAdSets(accountId, adAccountId, campaignId, adSetId, platform, status, page, limit, live);
+            //string? view = null;
+            //var response = instance.ListAdSets(accountId, adAccountId, campaignId, adSetId, platform, status, page, limit, live, view);
             //Assert.IsType<ListAdSets200Response>(response);
         }
 
@@ -629,7 +631,8 @@ namespace Zernio.Test.Api
             //string? effectiveInstagramMediaId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
-            //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+            //string? view = null;
+            //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, pageId, profileId, campaignId, adSetId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, view);
             //Assert.IsType<AdsListResponse>(response);
         }
 
