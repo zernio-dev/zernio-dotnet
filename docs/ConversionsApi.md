@@ -3231,7 +3231,7 @@ catch (ApiException e)
 
 <a id="listevents"></a>
 # **ListEvents**
-> ListEvents200Response ListEvents (string profileId, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? cursor = null)
+> ListEvents200Response ListEvents (string profileId, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? platform = null, string? deliveryStatus = null, string? cursor = null)
 
 List stored events
 
@@ -3267,12 +3267,14 @@ namespace Example
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events before this time (ISO 8601, on the event time). (optional) 
             var eventName = "eventName_example";  // string? | Only events with this name, such as `Purchase`. (optional) 
             var source = "api";  // string? | Only events from this source, such as `stripe` for the payments of a connected Stripe account. (optional) 
+            var platform = "platform_example";  // string? | Only events sent to this ad platform, such as `metaads` or `googleads`. (optional) 
+            var deliveryStatus = "sent";  // string? | Only events whose latest send to a destination (of `platform`, when given) was accepted (`sent`) or was not (`failed`: failed or still retrying). (optional) 
             var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
 
             try
             {
                 // List stored events
-                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, source, cursor);
+                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3293,7 +3295,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List stored events
-    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, cursor);
+    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3316,6 +3318,8 @@ catch (ApiException e)
 | **to** | **DateTime?** | Only events before this time (ISO 8601, on the event time). | [optional]  |
 | **eventName** | **string?** | Only events with this name, such as &#x60;Purchase&#x60;. | [optional]  |
 | **source** | **string?** | Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional]  |
+| **platform** | **string?** | Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional]  |
+| **deliveryStatus** | **string?** | Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). | [optional]  |
 | **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
 
 ### Return type
