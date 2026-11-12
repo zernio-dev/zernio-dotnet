@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 **ShippingLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) |  | [optional] 
 **FeeLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) | WooCommerce fees. Always empty on Shopify. | [optional] 
 **TaxLines** | [**List&lt;CommerceTaxLine&gt;**](CommerceTaxLine.md) | Order tax by rate, line items and shipping together. | [optional] 
-**Refunds** | [**List&lt;CommerceOrderRefundsInner&gt;**](CommerceOrderRefundsInner.md) |  | [optional] 
+**Refunds** | [**List&lt;CommerceOrderRefund&gt;**](CommerceOrderRefund.md) |  | [optional] 
 **Fulfillments** | [**List&lt;CommerceOrderFulfillmentsInner&gt;**](CommerceOrderFulfillmentsInner.md) |  | [optional] 
 **PlatformData** | **Dictionary&lt;string, Object&gt;** | Platform-only fields. Null when the platform has none. | [optional] 
 

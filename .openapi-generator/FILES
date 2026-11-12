@@ -515,6 +515,9 @@ docs/CampaignSubmissionFlag.md
 docs/CampaignSubmissionPost.md
 docs/CampaignSubmissionWindow.md
 docs/CancelBroadcast200Response.md
+docs/CancelCommerceOrder200Response.md
+docs/CancelCommerceOrder202Response.md
+docs/CancelCommerceOrderRequest.md
 docs/CancelPhoneNumberPortIn200Response.md
 docs/ChangeCommerceCollectionChannels200Response.md
 docs/ChangeCommerceCollectionProducts200Response.md
@@ -568,6 +571,7 @@ docs/CommerceCapability.md
 docs/CommerceCatalogSync.md
 docs/CommerceChannel.md
 docs/CommerceCollection.md
+docs/CommerceCustomer.md
 docs/CommerceDiscount.md
 docs/CommerceDiscountAppliesTo.md
 docs/CommerceDiscountMinimum.md
@@ -595,8 +599,8 @@ docs/CommerceOrderChargeLine.md
 docs/CommerceOrderCustomer.md
 docs/CommerceOrderFulfillmentsInner.md
 docs/CommerceOrderLineItemsInner.md
-docs/CommerceOrderRefundsInner.md
-docs/CommerceOrderRefundsInnerLineItemsInner.md
+docs/CommerceOrderRefund.md
+docs/CommerceOrderRefundLineItemsInner.md
 docs/CommerceOrderStatus.md
 docs/CommerceOrderVisit.md
 docs/CommerceOrderVisitUtm.md
@@ -605,6 +609,14 @@ docs/CommercePriceList.md
 docs/CommerceProduct.md
 docs/CommerceProductStatus.md
 docs/CommerceRedirect.md
+docs/CommerceRefundPreview.md
+docs/CommerceRefundPreviewLineItemsInner.md
+docs/CommerceRefundPreviewTransactionsInner.md
+docs/CommerceRefundRequest.md
+docs/CommerceRefundRequestLineItemsInner.md
+docs/CommerceRefundRequestShipping.md
+docs/CommerceRefundRequestShippingOneOf.md
+docs/CommerceRefundRequestShippingOneOf1.md
 docs/CommerceStore.md
 docs/CommerceTaxLine.md
 docs/CommerceVariant.md
@@ -784,6 +796,9 @@ docs/CreateCommerceProductVariantsRequestVariantsInner.md
 docs/CreateCommerceProductVariantsRequestVariantsInnerOptionsInner.md
 docs/CreateCommerceRedirect201Response.md
 docs/CreateCommerceRedirectRequest.md
+docs/CreateCommerceRefund200Response.md
+docs/CreateCommerceRefund201Response.md
+docs/CreateCommerceRefundRequest.md
 docs/CreateContact200Response.md
 docs/CreateContact200ResponseChannel.md
 docs/CreateContact200ResponseContact.md
@@ -1418,6 +1433,7 @@ docs/GetCampaignTargeting200ResponseLanguagesInner.md
 docs/GetCampaignTargeting200ResponseLocationsInner.md
 docs/GetCommentAutomation200Response.md
 docs/GetCommentAutomation200ResponseAutomation.md
+docs/GetCommerceCustomer200Response.md
 docs/GetCommerceOrder200Response.md
 docs/GetCommerceStore200Response.md
 docs/GetConnectUrl200Response.md
@@ -2127,6 +2143,7 @@ docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommerceCatalogSyncs200Response.md
 docs/ListCommerceChannels200Response.md
 docs/ListCommerceCollections200Response.md
+docs/ListCommerceCustomers200Response.md
 docs/ListCommerceDiscounts200Response.md
 docs/ListCommerceInventory200Response.md
 docs/ListCommerceLocations200Response.md
@@ -4334,6 +4351,9 @@ src/Zernio.Test/Model/CampaignSubmissionPostTests.cs
 src/Zernio.Test/Model/CampaignSubmissionTests.cs
 src/Zernio.Test/Model/CampaignSubmissionWindowTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
+src/Zernio.Test/Model/CancelCommerceOrder200ResponseTests.cs
+src/Zernio.Test/Model/CancelCommerceOrder202ResponseTests.cs
+src/Zernio.Test/Model/CancelCommerceOrderRequestTests.cs
 src/Zernio.Test/Model/CancelPhoneNumberPortIn200ResponseTests.cs
 src/Zernio.Test/Model/ChangeCommerceCollectionChannels200ResponseTests.cs
 src/Zernio.Test/Model/ChangeCommerceCollectionProducts200ResponseTests.cs
@@ -4383,6 +4403,7 @@ src/Zernio.Test/Model/CommerceCapabilityTests.cs
 src/Zernio.Test/Model/CommerceCatalogSyncTests.cs
 src/Zernio.Test/Model/CommerceChannelTests.cs
 src/Zernio.Test/Model/CommerceCollectionTests.cs
+src/Zernio.Test/Model/CommerceCustomerTests.cs
 src/Zernio.Test/Model/CommerceDiscountAppliesToTests.cs
 src/Zernio.Test/Model/CommerceDiscountMinimumTests.cs
 src/Zernio.Test/Model/CommerceDiscountTests.cs
@@ -4409,8 +4430,8 @@ src/Zernio.Test/Model/CommerceOrderChargeLineTests.cs
 src/Zernio.Test/Model/CommerceOrderCustomerTests.cs
 src/Zernio.Test/Model/CommerceOrderFulfillmentsInnerTests.cs
 src/Zernio.Test/Model/CommerceOrderLineItemsInnerTests.cs
-src/Zernio.Test/Model/CommerceOrderRefundsInnerLineItemsInnerTests.cs
-src/Zernio.Test/Model/CommerceOrderRefundsInnerTests.cs
+src/Zernio.Test/Model/CommerceOrderRefundLineItemsInnerTests.cs
+src/Zernio.Test/Model/CommerceOrderRefundTests.cs
 src/Zernio.Test/Model/CommerceOrderStatusTests.cs
 src/Zernio.Test/Model/CommerceOrderTests.cs
 src/Zernio.Test/Model/CommerceOrderVisitTests.cs
@@ -4420,6 +4441,14 @@ src/Zernio.Test/Model/CommercePriceListTests.cs
 src/Zernio.Test/Model/CommerceProductStatusTests.cs
 src/Zernio.Test/Model/CommerceProductTests.cs
 src/Zernio.Test/Model/CommerceRedirectTests.cs
+src/Zernio.Test/Model/CommerceRefundPreviewLineItemsInnerTests.cs
+src/Zernio.Test/Model/CommerceRefundPreviewTests.cs
+src/Zernio.Test/Model/CommerceRefundPreviewTransactionsInnerTests.cs
+src/Zernio.Test/Model/CommerceRefundRequestLineItemsInnerTests.cs
+src/Zernio.Test/Model/CommerceRefundRequestShippingOneOf1Tests.cs
+src/Zernio.Test/Model/CommerceRefundRequestShippingOneOfTests.cs
+src/Zernio.Test/Model/CommerceRefundRequestShippingTests.cs
+src/Zernio.Test/Model/CommerceRefundRequestTests.cs
 src/Zernio.Test/Model/CommerceStoreTests.cs
 src/Zernio.Test/Model/CommerceTaxLineTests.cs
 src/Zernio.Test/Model/CommerceVariantTests.cs
@@ -4594,6 +4623,9 @@ src/Zernio.Test/Model/CreateCommerceProductVariantsRequestVariantsInnerOptionsIn
 src/Zernio.Test/Model/CreateCommerceProductVariantsRequestVariantsInnerTests.cs
 src/Zernio.Test/Model/CreateCommerceRedirect201ResponseTests.cs
 src/Zernio.Test/Model/CreateCommerceRedirectRequestTests.cs
+src/Zernio.Test/Model/CreateCommerceRefund200ResponseTests.cs
+src/Zernio.Test/Model/CreateCommerceRefund201ResponseTests.cs
+src/Zernio.Test/Model/CreateCommerceRefundRequestTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseChannelTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseTests.cs
@@ -5213,6 +5245,7 @@ src/Zernio.Test/Model/GetCampaignTargeting200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/GetCampaignTargeting200ResponseTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseAutomationTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseTests.cs
+src/Zernio.Test/Model/GetCommerceCustomer200ResponseTests.cs
 src/Zernio.Test/Model/GetCommerceOrder200ResponseTests.cs
 src/Zernio.Test/Model/GetCommerceStore200ResponseTests.cs
 src/Zernio.Test/Model/GetConnectUrl200ResponseTests.cs
@@ -5915,6 +5948,7 @@ src/Zernio.Test/Model/ListCommentAutomations200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceCatalogSyncs200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceChannels200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceCollections200ResponseTests.cs
+src/Zernio.Test/Model/ListCommerceCustomers200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceDiscounts200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceInventory200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceLocations200ResponseTests.cs
@@ -8104,6 +8138,9 @@ src/Zernio/Model/CampaignSubmissionFlag.cs
 src/Zernio/Model/CampaignSubmissionPost.cs
 src/Zernio/Model/CampaignSubmissionWindow.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
+src/Zernio/Model/CancelCommerceOrder200Response.cs
+src/Zernio/Model/CancelCommerceOrder202Response.cs
+src/Zernio/Model/CancelCommerceOrderRequest.cs
 src/Zernio/Model/CancelPhoneNumberPortIn200Response.cs
 src/Zernio/Model/ChangeCommerceCollectionChannels200Response.cs
 src/Zernio/Model/ChangeCommerceCollectionProducts200Response.cs
@@ -8153,6 +8190,7 @@ src/Zernio/Model/CommerceCapability.cs
 src/Zernio/Model/CommerceCatalogSync.cs
 src/Zernio/Model/CommerceChannel.cs
 src/Zernio/Model/CommerceCollection.cs
+src/Zernio/Model/CommerceCustomer.cs
 src/Zernio/Model/CommerceDiscount.cs
 src/Zernio/Model/CommerceDiscountAppliesTo.cs
 src/Zernio/Model/CommerceDiscountMinimum.cs
@@ -8180,8 +8218,8 @@ src/Zernio/Model/CommerceOrderChargeLine.cs
 src/Zernio/Model/CommerceOrderCustomer.cs
 src/Zernio/Model/CommerceOrderFulfillmentsInner.cs
 src/Zernio/Model/CommerceOrderLineItemsInner.cs
-src/Zernio/Model/CommerceOrderRefundsInner.cs
-src/Zernio/Model/CommerceOrderRefundsInnerLineItemsInner.cs
+src/Zernio/Model/CommerceOrderRefund.cs
+src/Zernio/Model/CommerceOrderRefundLineItemsInner.cs
 src/Zernio/Model/CommerceOrderStatus.cs
 src/Zernio/Model/CommerceOrderVisit.cs
 src/Zernio/Model/CommerceOrderVisitUtm.cs
@@ -8190,6 +8228,14 @@ src/Zernio/Model/CommercePriceList.cs
 src/Zernio/Model/CommerceProduct.cs
 src/Zernio/Model/CommerceProductStatus.cs
 src/Zernio/Model/CommerceRedirect.cs
+src/Zernio/Model/CommerceRefundPreview.cs
+src/Zernio/Model/CommerceRefundPreviewLineItemsInner.cs
+src/Zernio/Model/CommerceRefundPreviewTransactionsInner.cs
+src/Zernio/Model/CommerceRefundRequest.cs
+src/Zernio/Model/CommerceRefundRequestLineItemsInner.cs
+src/Zernio/Model/CommerceRefundRequestShipping.cs
+src/Zernio/Model/CommerceRefundRequestShippingOneOf.cs
+src/Zernio/Model/CommerceRefundRequestShippingOneOf1.cs
 src/Zernio/Model/CommerceStore.cs
 src/Zernio/Model/CommerceTaxLine.cs
 src/Zernio/Model/CommerceVariant.cs
@@ -8364,6 +8410,9 @@ src/Zernio/Model/CreateCommerceProductVariantsRequestVariantsInner.cs
 src/Zernio/Model/CreateCommerceProductVariantsRequestVariantsInnerOptionsInner.cs
 src/Zernio/Model/CreateCommerceRedirect201Response.cs
 src/Zernio/Model/CreateCommerceRedirectRequest.cs
+src/Zernio/Model/CreateCommerceRefund200Response.cs
+src/Zernio/Model/CreateCommerceRefund201Response.cs
+src/Zernio/Model/CreateCommerceRefundRequest.cs
 src/Zernio/Model/CreateContact200Response.cs
 src/Zernio/Model/CreateContact200ResponseChannel.cs
 src/Zernio/Model/CreateContact200ResponseContact.cs
@@ -8983,6 +9032,7 @@ src/Zernio/Model/GetCampaignTargeting200ResponseLanguagesInner.cs
 src/Zernio/Model/GetCampaignTargeting200ResponseLocationsInner.cs
 src/Zernio/Model/GetCommentAutomation200Response.cs
 src/Zernio/Model/GetCommentAutomation200ResponseAutomation.cs
+src/Zernio/Model/GetCommerceCustomer200Response.cs
 src/Zernio/Model/GetCommerceOrder200Response.cs
 src/Zernio/Model/GetCommerceStore200Response.cs
 src/Zernio/Model/GetConnectUrl200Response.cs
@@ -9685,6 +9735,7 @@ src/Zernio/Model/ListCommentAutomations200ResponseAutomationsInner.cs
 src/Zernio/Model/ListCommerceCatalogSyncs200Response.cs
 src/Zernio/Model/ListCommerceChannels200Response.cs
 src/Zernio/Model/ListCommerceCollections200Response.cs
+src/Zernio/Model/ListCommerceCustomers200Response.cs
 src/Zernio/Model/ListCommerceDiscounts200Response.cs
 src/Zernio/Model/ListCommerceInventory200Response.cs
 src/Zernio/Model/ListCommerceLocations200Response.cs
