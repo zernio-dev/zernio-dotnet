@@ -83,6 +83,18 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutomationAdFilter" /> class
+        /// with the <see cref="AutomationAdFilterOneOf4" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of AutomationAdFilterOneOf4.</param>
+        public AutomationAdFilter(AutomationAdFilterOneOf4 actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -113,9 +125,13 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(AutomationAdFilterOneOf4) || value is AutomationAdFilterOneOf4)
+                {
+                    this._actualInstance = value;
+                }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AutomationAdFilterOneOf, AutomationAdFilterOneOf1, AutomationAdFilterOneOf2, AutomationAdFilterOneOf3, AutomationAdFilterOneOf4");
                 }
             }
         }
@@ -158,6 +174,16 @@ namespace Zernio.Model
         public AutomationAdFilterOneOf3 GetAutomationAdFilterOneOf3()
         {
             return (AutomationAdFilterOneOf3)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `AutomationAdFilterOneOf4`. If the actual instance is not `AutomationAdFilterOneOf4`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of AutomationAdFilterOneOf4</returns>
+        public AutomationAdFilterOneOf4 GetAutomationAdFilterOneOf4()
+        {
+            return (AutomationAdFilterOneOf4)this.ActualInstance;
         }
 
         /// <summary>
@@ -276,6 +302,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AutomationAdFilterOneOf3: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(AutomationAdFilterOneOf4).GetProperty("AdditionalProperties") == null)
+                {
+                    newAutomationAdFilter = new AutomationAdFilter(JsonConvert.DeserializeObject<AutomationAdFilterOneOf4>(jsonString, AutomationAdFilter.SerializerSettings));
+                }
+                else
+                {
+                    newAutomationAdFilter = new AutomationAdFilter(JsonConvert.DeserializeObject<AutomationAdFilterOneOf4>(jsonString, AutomationAdFilter.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("AutomationAdFilterOneOf4");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AutomationAdFilterOneOf4: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)

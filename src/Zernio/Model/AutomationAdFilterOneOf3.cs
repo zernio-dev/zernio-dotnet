@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Where the budget sits: on the campaign (Meta CBO, every Google campaign) or on each ad set.
+    /// Days since the campaign&#39;s budget, bidding, status or goal last changed, from the platform&#39;s change history. Campaign rules on Meta and Google only.
     /// </summary>
     [DataContract(Name = "AutomationAdFilter_oneOf_3")]
     public partial class AutomationAdFilterOneOf3 : IValidatableObject
@@ -40,10 +40,10 @@ namespace Zernio.Model
         public enum FieldEnum
         {
             /// <summary>
-            /// Enum BudgetLevel for value: budget_level
+            /// Enum DaysSinceChange for value: days_since_change
             /// </summary>
-            [EnumMember(Value = "budget_level")]
-            BudgetLevel = 1
+            [EnumMember(Value = "days_since_change")]
+            DaysSinceChange = 1
         }
 
 
@@ -53,16 +53,59 @@ namespace Zernio.Model
         [DataMember(Name = "field", IsRequired = true, EmitDefaultValue = true)]
         public FieldEnum Field { get; set; }
         /// <summary>
+        /// Defines Change
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ChangeEnum
+        {
+            /// <summary>
+            /// Enum Budget for value: budget
+            /// </summary>
+            [EnumMember(Value = "budget")]
+            Budget = 1,
+
+            /// <summary>
+            /// Enum Bidding for value: bidding
+            /// </summary>
+            [EnumMember(Value = "bidding")]
+            Bidding = 2,
+
+            /// <summary>
+            /// Enum Status for value: status
+            /// </summary>
+            [EnumMember(Value = "status")]
+            Status = 3,
+
+            /// <summary>
+            /// Enum Goal for value: goal
+            /// </summary>
+            [EnumMember(Value = "goal")]
+            Goal = 4
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Change
+        /// </summary>
+        [DataMember(Name = "change", IsRequired = true, EmitDefaultValue = true)]
+        public ChangeEnum Change { get; set; }
+        /// <summary>
         /// Defines Op
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OpEnum
         {
             /// <summary>
-            /// Enum Equals for value: equals
+            /// Enum GreaterThanOrEqualTo for value: &gt;&#x3D;
             /// </summary>
-            [EnumMember(Value = "equals")]
-            Equals = 1
+            [EnumMember(Value = ">=")]
+            GreaterThanOrEqualTo = 1,
+
+            /// <summary>
+            /// Enum LessThan for value: &lt;
+            /// </summary>
+            [EnumMember(Value = "<")]
+            LessThan = 2
         }
 
 
@@ -72,31 +115,6 @@ namespace Zernio.Model
         [DataMember(Name = "op", IsRequired = true, EmitDefaultValue = true)]
         public OpEnum Op { get; set; }
         /// <summary>
-        /// Defines Value
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ValueEnum
-        {
-            /// <summary>
-            /// Enum Campaign for value: campaign
-            /// </summary>
-            [EnumMember(Value = "campaign")]
-            Campaign = 1,
-
-            /// <summary>
-            /// Enum Adset for value: adset
-            /// </summary>
-            [EnumMember(Value = "adset")]
-            Adset = 2
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Value
-        /// </summary>
-        [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
-        public ValueEnum Value { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="AutomationAdFilterOneOf3" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -105,14 +123,22 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="AutomationAdFilterOneOf3" /> class.
         /// </summary>
         /// <param name="field">field (required).</param>
+        /// <param name="change">change (required).</param>
         /// <param name="op">op (required).</param>
         /// <param name="value">value (required).</param>
-        public AutomationAdFilterOneOf3(FieldEnum field = default, OpEnum op = default, ValueEnum value = default)
+        public AutomationAdFilterOneOf3(FieldEnum field = default, ChangeEnum change = default, OpEnum op = default, int value = default)
         {
             this.Field = field;
+            this.Change = change;
             this.Op = op;
             this.Value = value;
         }
+
+        /// <summary>
+        /// Gets or Sets Value
+        /// </summary>
+        [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
+        public int Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -123,6 +149,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AutomationAdFilterOneOf3 {\n");
             sb.Append("  Field: ").Append(Field).Append("\n");
+            sb.Append("  Change: ").Append(Change).Append("\n");
             sb.Append("  Op: ").Append(Op).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
@@ -145,6 +172,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Value (int) maximum
+            if (this.Value > (int)28)
+            {
+                yield return new ValidationResult("Invalid value for Value, must be a value less than or equal to 28.", new [] { "Value" });
+            }
+
+            // Value (int) minimum
+            if (this.Value < (int)1)
+            {
+                yield return new ValidationResult("Invalid value for Value, must be a value greater than or equal to 1.", new [] { "Value" });
+            }
+
             yield break;
         }
     }

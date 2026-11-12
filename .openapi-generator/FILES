@@ -253,6 +253,7 @@ docs/AutomationAdFilterOneOf.md
 docs/AutomationAdFilterOneOf1.md
 docs/AutomationAdFilterOneOf2.md
 docs/AutomationAdFilterOneOf3.md
+docs/AutomationAdFilterOneOf4.md
 docs/AutomationAlert.md
 docs/AutomationApproval.md
 docs/AutomationApprovalChange.md
@@ -1078,6 +1079,7 @@ docs/CustomConversion.md
 docs/CustomConversionResult.md
 docs/CustomFieldsApi.md
 docs/DaysLive.md
+docs/DaysSinceChange.md
 docs/DeactivateSmsRegistration200Response.md
 docs/DeclareEmailSendAs200Response.md
 docs/DeclareEmailSendAsRequest.md
@@ -4094,6 +4096,7 @@ src/Zernio.Test/Model/AutomationAdAccountControlsTests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf1Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf2Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf3Tests.cs
+src/Zernio.Test/Model/AutomationAdFilterOneOf4Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOfTests.cs
 src/Zernio.Test/Model/AutomationAdFilterTests.cs
 src/Zernio.Test/Model/AutomationAlertTests.cs
@@ -4903,6 +4906,7 @@ src/Zernio.Test/Model/CursorPaginationTests.cs
 src/Zernio.Test/Model/CustomConversionResultTests.cs
 src/Zernio.Test/Model/CustomConversionTests.cs
 src/Zernio.Test/Model/DaysLiveTests.cs
+src/Zernio.Test/Model/DaysSinceChangeTests.cs
 src/Zernio.Test/Model/DeactivateSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/DeclareEmailSendAs200ResponseTests.cs
 src/Zernio.Test/Model/DeclareEmailSendAsRequestTests.cs
@@ -7885,6 +7889,7 @@ src/Zernio/Model/AutomationAdFilterOneOf.cs
 src/Zernio/Model/AutomationAdFilterOneOf1.cs
 src/Zernio/Model/AutomationAdFilterOneOf2.cs
 src/Zernio/Model/AutomationAdFilterOneOf3.cs
+src/Zernio/Model/AutomationAdFilterOneOf4.cs
 src/Zernio/Model/AutomationAlert.cs
 src/Zernio/Model/AutomationApproval.cs
 src/Zernio/Model/AutomationApprovalChange.cs
@@ -8691,6 +8696,7 @@ src/Zernio/Model/CursorPagination.cs
 src/Zernio/Model/CustomConversion.cs
 src/Zernio/Model/CustomConversionResult.cs
 src/Zernio/Model/DaysLive.cs
+src/Zernio/Model/DaysSinceChange.cs
 src/Zernio/Model/DeactivateSmsRegistration200Response.cs
 src/Zernio/Model/DeclareEmailSendAs200Response.cs
 src/Zernio/Model/DeclareEmailSendAsRequest.cs

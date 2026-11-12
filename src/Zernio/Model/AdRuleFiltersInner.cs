@@ -83,6 +83,18 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdRuleFiltersInner" /> class
+        /// with the <see cref="DaysSinceChange" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of DaysSinceChange.</param>
+        public AdRuleFiltersInner(DaysSinceChange actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -105,6 +117,10 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(DaysSinceChange) || value is DaysSinceChange)
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(Ids) || value is Ids)
                 {
                     this._actualInstance = value;
@@ -115,7 +131,7 @@ namespace Zernio.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: BudgetLevel, DaysLive, Ids, NameOrGoal");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: BudgetLevel, DaysLive, DaysSinceChange, Ids, NameOrGoal");
                 }
             }
         }
@@ -158,6 +174,16 @@ namespace Zernio.Model
         public DaysLive GetDaysLive()
         {
             return (DaysLive)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `DaysSinceChange`. If the actual instance is not `DaysSinceChange`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of DaysSinceChange</returns>
+        public DaysSinceChange GetDaysSinceChange()
+        {
+            return (DaysSinceChange)this.ActualInstance;
         }
 
         /// <summary>
@@ -236,6 +262,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into DaysLive: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(DaysSinceChange).GetProperty("AdditionalProperties") == null)
+                {
+                    newAdRuleFiltersInner = new AdRuleFiltersInner(JsonConvert.DeserializeObject<DaysSinceChange>(jsonString, AdRuleFiltersInner.SerializerSettings));
+                }
+                else
+                {
+                    newAdRuleFiltersInner = new AdRuleFiltersInner(JsonConvert.DeserializeObject<DaysSinceChange>(jsonString, AdRuleFiltersInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("DaysSinceChange");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into DaysSinceChange: {1}", jsonString, exception.ToString()));
             }
 
             try

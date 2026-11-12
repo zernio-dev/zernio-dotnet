@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Change'
+        /// </summary>
+        [Fact]
+        public void ChangeTest()
+        {
+            // TODO unit test for the property 'Change'
+        }
+
+        /// <summary>
         /// Test the property 'Op'
         /// </summary>
         [Fact]
