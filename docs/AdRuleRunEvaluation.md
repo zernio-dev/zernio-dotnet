@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Timezone** | **string** |  | [optional] 
 **TimezoneAssumed** | **bool** |  | [optional] 
 **Currency** | **string** |  | [optional] 
+**HourlyThrough** | **DateTime?** | Where the run&#39;s hourly windows ended. Absent on runs recorded before November 2026. | [optional] 
 **Matched** | [**List&lt;AdRuleObjectEvaluation&gt;**](AdRuleObjectEvaluation.md) |  | [optional] 
 **Actions** | [**List&lt;AdRuleRunEvaluationActionsInner&gt;**](AdRuleRunEvaluationActionsInner.md) |  | [optional] 
 **Notification** | [**AdRuleRunEvaluationNotification**](AdRuleRunEvaluationNotification.md) |  | [optional] 
