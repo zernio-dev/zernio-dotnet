@@ -17,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetMessengerIceBreakers**](AccountSettingsApi.md#getmessengericebreakers) | **GET** /v1/accounts/{accountId}/messenger-ice-breakers | Get FB ice breakers |
 | [**GetMessengerMenu**](AccountSettingsApi.md#getmessengermenu) | **GET** /v1/accounts/{accountId}/messenger-menu | Get persistent menu |
 | [**GetTelegramCommands**](AccountSettingsApi.md#gettelegramcommands) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands |
+| [**GetWechatServerConfig**](AccountSettingsApi.md#getwechatserverconfig) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config |
 | [**SetInstagramIceBreakers**](AccountSettingsApi.md#setinstagramicebreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers |
 | [**SetMessengerGetStarted**](AccountSettingsApi.md#setmessengergetstarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button |
 | [**SetMessengerGreeting**](AccountSettingsApi.md#setmessengergreeting) | **PUT** /v1/accounts/{accountId}/messenger-greeting | Set FB greeting text |
@@ -1321,6 +1322,108 @@ catch (ApiException e)
 | **200** | Bot commands list |  -  |
 | **400** | Not a Telegram account |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwechatserverconfig"></a>
+# **GetWechatServerConfig**
+> GetWechatServerConfig200Response GetWechatServerConfig (string accountId)
+
+Get WeChat server config
+
+Returns the Server URL, Token and EncodingAESKey of a connected WeChat Official Account: the same values the connect response carries, for pasting into Server Configuration in the Official Accounts Platform (Safe mode). The AppSecret is never returned.  Needs write access from a session or an API key: read-only team members, read-only API keys and OAuth access tokens get 403. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWechatServerConfigExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountSettingsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Get WeChat server config
+                GetWechatServerConfig200Response result = apiInstance.GetWechatServerConfig(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountSettingsApi.GetWechatServerConfig: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWechatServerConfigWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get WeChat server config
+    ApiResponse<GetWechatServerConfig200Response> response = apiInstance.GetWechatServerConfigWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountSettingsApi.GetWechatServerConfigWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**GetWechatServerConfig200Response**](GetWechatServerConfig200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Server configuration |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Read-only team member, read-only API key or OAuth access token (code &#x60;insufficient_permissions&#x60;), or an API key without access to the account&#39;s profile. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

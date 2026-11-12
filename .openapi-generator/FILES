@@ -1751,6 +1751,8 @@ docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
 docs/GetWechatIpWhitelist200Response.md
+docs/GetWechatServerConfig200Response.md
+docs/GetWechatServerConfig200ResponseServer.md
 docs/GetWhatsAppBlockStatus200Response.md
 docs/GetWhatsAppBlockedUsers200Response.md
 docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
@@ -5609,6 +5611,8 @@ src/Zernio.Test/Model/GetWebhookLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetWechatIpWhitelist200ResponseTests.cs
+src/Zernio.Test/Model/GetWechatServerConfig200ResponseServerTests.cs
+src/Zernio.Test/Model/GetWechatServerConfig200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockStatus200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockedUsers200ResponseTests.cs
@@ -9442,6 +9446,8 @@ src/Zernio/Model/GetWebhookLogs200Response.cs
 src/Zernio/Model/GetWebhookLogs200ResponsePagination.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
 src/Zernio/Model/GetWechatIpWhitelist200Response.cs
+src/Zernio/Model/GetWechatServerConfig200Response.cs
+src/Zernio/Model/GetWechatServerConfig200ResponseServer.cs
 src/Zernio/Model/GetWhatsAppBlockStatus200Response.cs
 src/Zernio/Model/GetWhatsAppBlockedUsers200Response.cs
 src/Zernio/Model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.cs
