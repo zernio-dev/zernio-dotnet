@@ -153,7 +153,7 @@ catch (ApiException e)
 
 <a id="getanalytics"></a>
 # **GetAnalytics**
-> GetAnalytics200Response GetAnalytics (string? postId = null, string? platform = null, string? profileId = null, string? accountId = null, string? source = null, DateOnly? fromDate = null, DateOnly? toDate = null, int? limit = null, int? page = null, string? sortBy = null, string? order = null, string? tags = null)
+> GetAnalytics200Response GetAnalytics (string? postId = null, string? platform = null, string? profileId = null, string? accountId = null, string? source = null, DateOnly? fromDate = null, DateOnly? toDate = null, int? limit = null, int? page = null, string? sortBy = null, string? order = null, string? tags = null, string? view = null)
 
 Get post analytics
 
@@ -195,11 +195,12 @@ namespace Example
             var sortBy = "date";  // string? | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional)  (default to date)
             var order = "asc";  // string? | Sort order (optional)  (default to desc)
             var tags = job;  // string? | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional) 
+            var view = "full";  // string? | full returns the listing as before. summary leaves out the accounts list, each platform entry's copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional)  (default to full)
 
             try
             {
                 // Get post analytics
-                GetAnalytics200Response result = apiInstance.GetAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
+                GetAnalytics200Response result = apiInstance.GetAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -220,7 +221,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get post analytics
-    ApiResponse<GetAnalytics200Response> response = apiInstance.GetAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
+    ApiResponse<GetAnalytics200Response> response = apiInstance.GetAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -249,6 +250,7 @@ catch (ApiException e)
 | **sortBy** | **string?** | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. | [optional] [default to date] |
 | **order** | **string?** | Sort order | [optional] [default to desc] |
 | **tags** | **string?** | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. | [optional]  |
+| **view** | **string?** | full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. | [optional] [default to full] |
 
 ### Return type
 

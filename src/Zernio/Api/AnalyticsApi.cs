@@ -68,8 +68,9 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <returns>GetAnalytics200Response</returns>
-        GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default);
+        GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default);
 
         /// <summary>
         /// Get post analytics
@@ -90,8 +91,9 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <returns>ApiResponse of GetAnalytics200Response</returns>
-        ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default);
+        ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default);
         /// <summary>
         /// Get an analytics dashboard
         /// </summary>
@@ -1293,9 +1295,10 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAnalytics200Response</returns>
-        System.Threading.Tasks.Task<GetAnalytics200Response> GetAnalyticsAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAnalytics200Response> GetAnalyticsAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get post analytics
@@ -1316,9 +1319,10 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAnalytics200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAnalytics200Response>> GetAnalyticsWithHttpInfoAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAnalytics200Response>> GetAnalyticsWithHttpInfoAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get an analytics dashboard
         /// </summary>
@@ -2909,10 +2913,11 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <returns>GetAnalytics200Response</returns>
-        public GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default)
+        public GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default)
         {
-            Zernio.Client.ApiResponse<GetAnalytics200Response> localVarResponse = GetAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
+            Zernio.Client.ApiResponse<GetAnalytics200Response> localVarResponse = GetAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view);
             return localVarResponse.Data;
         }
 
@@ -2932,8 +2937,9 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <returns>ApiResponse of GetAnalytics200Response</returns>
-        public Zernio.Client.ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default)
+        public Zernio.Client.ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -2998,6 +3004,10 @@ namespace Zernio.Api
             if (tags != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tags", tags));
+            }
+            if (view != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "view", view));
             }
 
             // authentication (bearerAuth) required
@@ -3035,11 +3045,12 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAnalytics200Response</returns>
-        public async System.Threading.Tasks.Task<GetAnalytics200Response> GetAnalyticsAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAnalytics200Response> GetAnalyticsAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAnalytics200Response> localVarResponse = await GetAnalyticsWithHttpInfoAsync(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAnalytics200Response> localVarResponse = await GetAnalyticsWithHttpInfoAsync(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3059,9 +3070,10 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="tags">Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. (optional)</param>
+        /// <param name="view">full returns the listing as before. summary leaves out the accounts list, each platform entry&#39;s copy of analytics, the impressionSources, audienceTypes, audienceCountries and retentionCurve maps, and mediaItems (thumbnailUrl stays). Ignored when postId is set. (optional, default to full)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAnalytics200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAnalytics200Response>> GetAnalyticsWithHttpInfoAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAnalytics200Response>> GetAnalyticsWithHttpInfoAsync(string? postId = default, string? platform = default, string? profileId = default, string? accountId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, string? tags = default, string? view = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3128,6 +3140,10 @@ namespace Zernio.Api
             if (tags != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tags", tags));
+            }
+            if (view != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "view", view));
             }
 
             // authentication (bearerAuth) required

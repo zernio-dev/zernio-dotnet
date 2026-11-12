@@ -85,7 +85,8 @@ namespace Zernio.Test.Api
             //string? sortBy = null;
             //string? order = null;
             //string? tags = null;
-            //var response = instance.GetAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
+            //string? view = null;
+            //var response = instance.GetAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags, view);
             //Assert.IsType<GetAnalytics200Response>(response);
         }
 
