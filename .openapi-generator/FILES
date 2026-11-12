@@ -254,6 +254,7 @@ docs/AutomationAdFilterOneOf1.md
 docs/AutomationAdFilterOneOf2.md
 docs/AutomationAdFilterOneOf3.md
 docs/AutomationAdFilterOneOf4.md
+docs/AutomationAdFilterOneOf5.md
 docs/AutomationAlert.md
 docs/AutomationApproval.md
 docs/AutomationApprovalChange.md
@@ -537,6 +538,7 @@ docs/ChangelogApi.md
 docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
+docs/ChannelType.md
 docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberAvailability200ResponseAreaAvailability.md
 docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.md
@@ -4119,6 +4121,7 @@ src/Zernio.Test/Model/AutomationAdFilterOneOf1Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf2Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf3Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf4Tests.cs
+src/Zernio.Test/Model/AutomationAdFilterOneOf5Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOfTests.cs
 src/Zernio.Test/Model/AutomationAdFilterTests.cs
 src/Zernio.Test/Model/AutomationAlertTests.cs
@@ -4397,6 +4400,7 @@ src/Zernio.Test/Model/ChangeCommerceProductTagsRequestTests.cs
 src/Zernio.Test/Model/ChannelPickerChannelsInnerTests.cs
 src/Zernio.Test/Model/ChannelPickerTeamTests.cs
 src/Zernio.Test/Model/ChannelPickerTests.cs
+src/Zernio.Test/Model/ChannelTypeTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInnerTests.cs
@@ -7934,6 +7938,7 @@ src/Zernio/Model/AutomationAdFilterOneOf1.cs
 src/Zernio/Model/AutomationAdFilterOneOf2.cs
 src/Zernio/Model/AutomationAdFilterOneOf3.cs
 src/Zernio/Model/AutomationAdFilterOneOf4.cs
+src/Zernio/Model/AutomationAdFilterOneOf5.cs
 src/Zernio/Model/AutomationAlert.cs
 src/Zernio/Model/AutomationApproval.cs
 src/Zernio/Model/AutomationApprovalChange.cs
@@ -8209,6 +8214,7 @@ src/Zernio/Model/ChangeCommerceProductTagsRequest.cs
 src/Zernio/Model/ChannelPicker.cs
 src/Zernio/Model/ChannelPickerChannelsInner.cs
 src/Zernio/Model/ChannelPickerTeam.cs
+src/Zernio/Model/ChannelType.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200Response.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaAvailability.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.cs

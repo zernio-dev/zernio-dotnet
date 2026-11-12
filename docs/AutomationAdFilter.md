@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Field** | **string** |  | 
 **Op** | **string** |  | 
 **Value** | **string** |  | 
-**Values** | **List&lt;string&gt;** |  | 
+**Values** | **List&lt;AutomationAdFilter.ValuesEnum&gt;** |  | 
 **Change** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

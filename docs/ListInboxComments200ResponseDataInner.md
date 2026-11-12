@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **AccountUsername** | **string** |  | [optional] 
 **Content** | **string** | The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption. The creative text isn&#39;t exposed here. | [optional] 
 **Picture** | **string** | Post media thumbnail. On ad rows this is the ad creative thumbnail. | [optional] 
+**ContentTruncated** | **bool** | Only with view&#x3D;summary, and only when &#x60;content&#x60; was cut to 280 characters. | [optional] 
 **Permalink** | **string** | Public URL of the post. On ad rows: the Facebook dark-post URL (facebook placement) or the IG media permalink (instagram placement); may be null when unknown. | [optional] 
 **CreatedTime** | **DateTime** |  | [optional] 
 **CommentCount** | **int** |  | [optional] 

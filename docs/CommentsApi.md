@@ -236,7 +236,7 @@ catch (ApiException e)
 
 <a id="getinboxpostcomments"></a>
 # **GetInboxPostComments**
-> GetInboxPostComments200Response GetInboxPostComments (string postId, string accountId, string? subreddit = null, int? limit = null, string? cursor = null, string? commentId = null)
+> GetInboxPostComments200Response GetInboxPostComments (string postId, string accountId, string? subreddit = null, int? limit = null, string? cursor = null, string? commentId = null, string? view = null)
 
 Get post comments
 
@@ -272,11 +272,12 @@ namespace Example
             var limit = 25;  // int? | Maximum number of comments to return (optional)  (default to 25)
             var cursor = "cursor_example";  // string? | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional) 
             var commentId = "commentId_example";  // string? | (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level `comment` field and comments[] holds its replies. (optional) 
+            var view = "full";  // string? | `full` returns every comment as before. `summary` is a lighter page for agents and large polls:  - Each comment leaves out `from.picture`, `url`, `platform` and every flag that is false. - At most 3 nested replies per comment. A comment with more replies than it carries has `repliesHasMore: true`: fetch the rest with `commentId` (Facebook, Instagram, Reddit, TikTok) or with view=full. - `post` leaves out `thumbnailUrl` and `mediaUrl`.  (optional)  (default to full)
 
             try
             {
                 // Get post comments
-                GetInboxPostComments200Response result = apiInstance.GetInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId);
+                GetInboxPostComments200Response result = apiInstance.GetInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId, view);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -297,7 +298,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get post comments
-    ApiResponse<GetInboxPostComments200Response> response = apiInstance.GetInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId);
+    ApiResponse<GetInboxPostComments200Response> response = apiInstance.GetInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId, view);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -320,6 +321,7 @@ catch (ApiException e)
 | **limit** | **int?** | Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **string?** | Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional]  |
 | **commentId** | **string?** | (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level &#x60;comment&#x60; field and comments[] holds its replies. | [optional]  |
+| **view** | **string?** | &#x60;full&#x60; returns every comment as before. &#x60;summary&#x60; is a lighter page for agents and large polls:  - Each comment leaves out &#x60;from.picture&#x60;, &#x60;url&#x60;, &#x60;platform&#x60; and every flag that is false. - At most 3 nested replies per comment. A comment with more replies than it carries has &#x60;repliesHasMore: true&#x60;: fetch the rest with &#x60;commentId&#x60; (Facebook, Instagram, Reddit, TikTok) or with view&#x3D;full. - &#x60;post&#x60; leaves out &#x60;thumbnailUrl&#x60; and &#x60;mediaUrl&#x60;.  | [optional] [default to full] |
 
 ### Return type
 
@@ -665,7 +667,7 @@ catch (ApiException e)
 
 <a id="listinboxcomments"></a>
 # **ListInboxComments**
-> ListInboxComments200Response ListInboxComments (string? profileId = null, string? platform = null, int? minComments = null, DateTime? since = null, string? sortBy = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null)
+> ListInboxComments200Response ListInboxComments (string? profileId = null, string? platform = null, int? minComments = null, DateTime? since = null, string? sortBy = null, string? sortOrder = null, int? limit = null, string? view = null, string? cursor = null, string? accountId = null)
 
 List commented posts
 
@@ -702,13 +704,14 @@ namespace Example
             var sortBy = "date";  // string? | Sort field (optional)  (default to date)
             var sortOrder = "asc";  // string? | Sort order (optional)  (default to desc)
             var limit = 50;  // int? |  (optional)  (default to 50)
+            var view = "full";  // string? | full returns every post as before. summary leaves out `picture` and cuts `content` to 280 characters, marking a cut caption with `contentTruncated: true`. (optional)  (default to full)
             var cursor = "cursor_example";  // string? |  (optional) 
             var accountId = "accountId_example";  // string? | Filter by specific account ID.  With `platform=metaads` it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that connection's ad rows.  A Facebook or Instagram account with no Meta Ads connection returns no rows. An account on any other platform returns 400.  (optional) 
 
             try
             {
                 // List commented posts
-                ListInboxComments200Response result = apiInstance.ListInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
+                ListInboxComments200Response result = apiInstance.ListInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, view, cursor, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -729,7 +732,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List commented posts
-    ApiResponse<ListInboxComments200Response> response = apiInstance.ListInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
+    ApiResponse<ListInboxComments200Response> response = apiInstance.ListInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, view, cursor, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -753,6 +756,7 @@ catch (ApiException e)
 | **sortBy** | **string?** | Sort field | [optional] [default to date] |
 | **sortOrder** | **string?** | Sort order | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 50] |
+| **view** | **string?** | full returns every post as before. summary leaves out &#x60;picture&#x60; and cuts &#x60;content&#x60; to 280 characters, marking a cut caption with &#x60;contentTruncated: true&#x60;. | [optional] [default to full] |
 | **cursor** | **string?** |  | [optional]  |
 | **accountId** | **string?** | Filter by specific account ID.  With &#x60;platform&#x3D;metaads&#x60; it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that connection&#39;s ad rows.  A Facebook or Instagram account with no Meta Ads connection returns no rows. An account on any other platform returns 400.  | [optional]  |
 
