@@ -1493,6 +1493,7 @@ docs/GetEvent200Response.md
 docs/GetEvent200ResponseDeliveriesInner.md
 docs/GetEventsOverview200Response.md
 docs/GetEventsOverview200ResponsePlatformsInner.md
+docs/GetEventsOverview200ResponseSitesInner.md
 docs/GetEventsOverview200ResponseSourcesInner.md
 docs/GetEventsOverview200ResponseToday.md
 docs/GetEventsOverview200ResponseWebsite.md
@@ -5343,6 +5344,7 @@ src/Zernio.Test/Model/GetEmailThread200ResponseTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseDeliveriesInnerTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponsePlatformsInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseSitesInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseSourcesInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseTodayTests.cs
@@ -9170,6 +9172,7 @@ src/Zernio/Model/GetEvent200Response.cs
 src/Zernio/Model/GetEvent200ResponseDeliveriesInner.cs
 src/Zernio/Model/GetEventsOverview200Response.cs
 src/Zernio/Model/GetEventsOverview200ResponsePlatformsInner.cs
+src/Zernio/Model/GetEventsOverview200ResponseSitesInner.cs
 src/Zernio/Model/GetEventsOverview200ResponseSourcesInner.cs
 src/Zernio/Model/GetEventsOverview200ResponseToday.cs
 src/Zernio/Model/GetEventsOverview200ResponseWebsite.cs
