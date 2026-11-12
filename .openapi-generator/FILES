@@ -3578,6 +3578,10 @@ docs/WebhookPayloadCampaignPayoutPayoutFailure.md
 docs/WebhookPayloadCampaignPayoutPayoutSettlement.md
 docs/WebhookPayloadCampaignSample.md
 docs/WebhookPayloadCampaignSampleSample.md
+docs/WebhookPayloadCampaignStatusChanged.md
+docs/WebhookPayloadCampaignStatusChangedCampaign.md
+docs/WebhookPayloadCampaignStatusChangedReasons.md
+docs/WebhookPayloadCampaignStatusChangedStatus.md
 docs/WebhookPayloadCampaignSubmission.md
 docs/WebhookPayloadCampaignSubmissionCreator.md
 docs/WebhookPayloadCampaignSubmissionParticipant.md
@@ -7394,6 +7398,10 @@ src/Zernio.Test/Model/WebhookPayloadCampaignPayoutPayoutTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignPayoutTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSampleSampleTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSampleTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignStatusChangedCampaignTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignStatusChangedReasonsTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignStatusChangedStatusTests.cs
+src/Zernio.Test/Model/WebhookPayloadCampaignStatusChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionCreatorTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionParticipantTests.cs
 src/Zernio.Test/Model/WebhookPayloadCampaignSubmissionSubmissionFlagsInnerTests.cs
@@ -11222,6 +11230,10 @@ src/Zernio/Model/WebhookPayloadCampaignPayoutPayoutFailure.cs
 src/Zernio/Model/WebhookPayloadCampaignPayoutPayoutSettlement.cs
 src/Zernio/Model/WebhookPayloadCampaignSample.cs
 src/Zernio/Model/WebhookPayloadCampaignSampleSample.cs
+src/Zernio/Model/WebhookPayloadCampaignStatusChanged.cs
+src/Zernio/Model/WebhookPayloadCampaignStatusChangedCampaign.cs
+src/Zernio/Model/WebhookPayloadCampaignStatusChangedReasons.cs
+src/Zernio/Model/WebhookPayloadCampaignStatusChangedStatus.cs
 src/Zernio/Model/WebhookPayloadCampaignSubmission.cs
 src/Zernio/Model/WebhookPayloadCampaignSubmissionCreator.cs
 src/Zernio/Model/WebhookPayloadCampaignSubmissionParticipant.cs

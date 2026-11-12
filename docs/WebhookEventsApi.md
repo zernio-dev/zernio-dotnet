@@ -65,6 +65,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnCampaignSampleDeclined**](WebhookEventsApi.md#oncampaignsampledeclined) | **POST** /campaign_sample.declined | Campaign sample declined event |
 | [**OnCampaignSampleRequested**](WebhookEventsApi.md#oncampaignsamplerequested) | **POST** /campaign_sample.requested | Campaign sample requested event |
 | [**OnCampaignSampleShipped**](WebhookEventsApi.md#oncampaignsampleshipped) | **POST** /campaign_sample.shipped | Campaign sample shipped event |
+| [**OnCampaignStatusChanged**](WebhookEventsApi.md#oncampaignstatuschanged) | **POST** /campaign.status_changed | Campaign status changed event |
 | [**OnCampaignSubmissionApproved**](WebhookEventsApi.md#oncampaignsubmissionapproved) | **POST** /campaign_submission.approved | Campaign submission approved event |
 | [**OnCampaignSubmissionFlagged**](WebhookEventsApi.md#oncampaignsubmissionflagged) | **POST** /campaign_submission.flagged | Campaign submission flagged event |
 | [**OnCampaignSubmissionPendingReview**](WebhookEventsApi.md#oncampaignsubmissionpendingreview) | **POST** /campaign_submission.pending_review | Campaign submission pending review event |
@@ -5875,6 +5876,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadCampaignSample** | [**WebhookPayloadCampaignSample**](WebhookPayloadCampaignSample.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="oncampaignstatuschanged"></a>
+# **OnCampaignStatusChanged**
+> void OnCampaignStatusChanged (WebhookPayloadCampaignStatusChanged webhookPayloadCampaignStatusChanged)
+
+Campaign status changed event
+
+A campaign Zernio already tracked changed its platform status or, on Google, the reasons behind it.  ### When it fires  Fires when the ads sync reads a tracked campaign with a different status than it stored, up to one sync interval late. Covers every ad network.  ### Status values  On Google, `status` is the campaign's `primary_status` (`ELIGIBLE`, `LIMITED`, `NOT_ELIGIBLE`, `PAUSED`, ...) and `reasons` its sorted `primary_status_reasons`, so a campaign turning budget limited fires. Elsewhere `status` is the campaign's own platform status (Meta `effective_status`) and `reasons` is empty.  ### When it does not fire  A campaign seen for the first time, or the same change from the same previous status again within an hour (a retried sync). A change made through Zernio, such as a pause, fires on the next sync, once the sync reads it from the platform. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnCampaignStatusChangedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadCampaignStatusChanged = new WebhookPayloadCampaignStatusChanged(); // WebhookPayloadCampaignStatusChanged | 
+
+            try
+            {
+                // Campaign status changed event
+                apiInstance.OnCampaignStatusChanged(webhookPayloadCampaignStatusChanged);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnCampaignStatusChanged: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnCampaignStatusChangedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Campaign status changed event
+    apiInstance.OnCampaignStatusChangedWithHttpInfo(webhookPayloadCampaignStatusChanged);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnCampaignStatusChangedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadCampaignStatusChanged** | [**WebhookPayloadCampaignStatusChanged**](WebhookPayloadCampaignStatusChanged.md) |  |  |
 
 ### Return type
 
