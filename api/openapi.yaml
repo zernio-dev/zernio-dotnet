@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.583.0
+  version: 1.584.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -68327,6 +68327,44 @@ paths:
       tags:
       - Conversions
       x-resource-group: ads
+    patch:
+      description: |
+        Replaces the `apiSecret` of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.
+      operationId: updateForwardingRule
+      parameters:
+      - description: The rule `id`.
+        explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateForwardingRule_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createForwardingRule_201_response"
+          description: Secret saved.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Change a forwarding rule's API secret
+      tags:
+      - Conversions
+      x-resource-group: ads
   /v1/ads/campaigns/{campaignId}/conversion-goals:
     get:
       description: |-
@@ -126145,6 +126183,7 @@ components:
         sources:
         - api
         - api
+        apiSecretVerified: true
         profileId: profileId
         eventNames:
         - eventNames
@@ -126188,6 +126227,12 @@ components:
             type: string
           nullable: true
           type: array
+        apiSecretVerified:
+          description: "Only when an `apiSecret` was saved by this request. Google\
+            \ Analytics never confirms a Measurement Protocol API secret, so it is\
+            \ `false` there: the first events in GA4 Realtime prove the secret is\
+            \ right."
+          type: boolean
         createdAt:
           format: date-time
           type: string
@@ -199922,6 +199967,7 @@ components:
           sources:
           - api
           - api
+          apiSecretVerified: true
           profileId: profileId
           eventNames:
           - eventNames
@@ -199933,6 +199979,7 @@ components:
           sources:
           - api
           - api
+          apiSecretVerified: true
           profileId: profileId
           eventNames:
           - eventNames
@@ -199953,8 +200000,8 @@ components:
           description: Connected ads account ID that owns the destination.
           type: string
         destinationId:
-          description: "The platform destination: a pixel, a conversion action or\
-            \ a conversion rule."
+          description: "The platform destination: a pixel, a conversion action, a\
+            \ conversion rule, or a GA4 web stream measurement id (`G-…`)."
           type: string
         eventNames:
           items:
@@ -199981,6 +200028,15 @@ components:
             type: string
           minItems: 1
           type: array
+        apiSecret:
+          description: "Google Analytics destinations only, and required for them:\
+            \ the data stream's Measurement Protocol API secret, from GA4 Admin ›\
+            \ Data streams › Measurement Protocol API secrets. Checked with one hit\
+            \ to Google's validation server (which cannot confirm the secret itself),\
+            \ stored encrypted and never returned. Change it later with `PATCH /v1/events/forwarding-rules/{ruleId}`."
+          maxLength: 200
+          type: string
+          writeOnly: true
       required:
       - accountId
       - destinationId
@@ -199993,6 +200049,7 @@ components:
           sources:
           - api
           - api
+          apiSecretVerified: true
           profileId: profileId
           eventNames:
           - eventNames
@@ -200002,6 +200059,15 @@ components:
       properties:
         forwardingRule:
           $ref: "#/components/schemas/ForwardingRule"
+    updateForwardingRule_request:
+      additionalProperties: {}
+      properties:
+        apiSecret:
+          maxLength: 200
+          type: string
+          writeOnly: true
+      required:
+      - apiSecret
     getCampaignConversionGoals_200_response:
       allOf:
       - $ref: "#/components/schemas/GoogleCampaignConversionGoals"

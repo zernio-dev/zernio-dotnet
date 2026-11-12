@@ -48,6 +48,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateConversionAction**](ConversionsApi.md#updateconversionaction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings |
 | [**UpdateConversionDestination**](ConversionsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**UpdateCustomConversionGoal**](ConversionsApi.md#updatecustomconversiongoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
+| [**UpdateForwardingRule**](ConversionsApi.md#updateforwardingrule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
 
 <a id="addadconversionassociations"></a>
 # **AddAdConversionAssociations**
@@ -4720,6 +4721,109 @@ catch (ApiException e)
 | **404** | Goal not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateforwardingrule"></a>
+# **UpdateForwardingRule**
+> CreateForwardingRule201Response UpdateForwardingRule (string ruleId, UpdateForwardingRuleRequest updateForwardingRuleRequest)
+
+Change a forwarding rule's API secret
+
+Replaces the `apiSecret` of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateForwardingRuleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var ruleId = "ruleId_example";  // string | The rule `id`.
+            var updateForwardingRuleRequest = new UpdateForwardingRuleRequest(); // UpdateForwardingRuleRequest | 
+
+            try
+            {
+                // Change a forwarding rule's API secret
+                CreateForwardingRule201Response result = apiInstance.UpdateForwardingRule(ruleId, updateForwardingRuleRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.UpdateForwardingRule: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateForwardingRuleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Change a forwarding rule's API secret
+    ApiResponse<CreateForwardingRule201Response> response = apiInstance.UpdateForwardingRuleWithHttpInfo(ruleId, updateForwardingRuleRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.UpdateForwardingRuleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **ruleId** | **string** | The rule &#x60;id&#x60;. |  |
+| **updateForwardingRuleRequest** | [**UpdateForwardingRuleRequest**](UpdateForwardingRuleRequest.md) |  |  |
+
+### Return type
+
+[**CreateForwardingRule201Response**](CreateForwardingRule201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Secret saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

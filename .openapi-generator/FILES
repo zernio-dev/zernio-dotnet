@@ -3241,6 +3241,7 @@ docs/UpdateFacebookPage200ResponseSelectedPage.md
 docs/UpdateFacebookPageInfoRequest.md
 docs/UpdateFacebookPageRequest.md
 docs/UpdateFileRequest.md
+docs/UpdateForwardingRuleRequest.md
 docs/UpdateGmbLocation200Response.md
 docs/UpdateGmbLocationRequest.md
 docs/UpdateGoogleAssetGroup200Response.md
@@ -7024,6 +7025,7 @@ src/Zernio.Test/Model/UpdateFacebookPage200ResponseTests.cs
 src/Zernio.Test/Model/UpdateFacebookPageInfoRequestTests.cs
 src/Zernio.Test/Model/UpdateFacebookPageRequestTests.cs
 src/Zernio.Test/Model/UpdateFileRequestTests.cs
+src/Zernio.Test/Model/UpdateForwardingRuleRequestTests.cs
 src/Zernio.Test/Model/UpdateGmbLocation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateGmbLocationRequestTests.cs
 src/Zernio.Test/Model/UpdateGoogleAssetGroup200ResponseTests.cs
@@ -10811,6 +10813,7 @@ src/Zernio/Model/UpdateFacebookPage200ResponseSelectedPage.cs
 src/Zernio/Model/UpdateFacebookPageInfoRequest.cs
 src/Zernio/Model/UpdateFacebookPageRequest.cs
 src/Zernio/Model/UpdateFileRequest.cs
+src/Zernio/Model/UpdateForwardingRuleRequest.cs
 src/Zernio/Model/UpdateGmbLocation200Response.cs
 src/Zernio/Model/UpdateGmbLocationRequest.cs
 src/Zernio/Model/UpdateGoogleAssetGroup200Response.cs
