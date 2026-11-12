@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Platform-specific account stats from the latest daily snapshot. Fields vary by platform. Only present if metadata has been captured. 
+    /// Platform-specific account counters from the latest daily snapshot. Each platform reports its own subset of the keys below, and no other key is returned. Absent when the platform reports none of them. 
     /// </summary>
     [DataContract(Name = "AccountWithFollowerStats_allOf_accountStats")]
     public partial class AccountWithFollowerStatsAllOfAccountStats : IValidatableObject
@@ -36,7 +36,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountWithFollowerStatsAllOfAccountStats" /> class.
         /// </summary>
-        /// <param name="followingCount">Number of accounts being followed.</param>
+        /// <param name="followingCount">Number of accounts being followed (TikTok, X, Pinterest, Bluesky).</param>
+        /// <param name="followsCount">Number of accounts being followed (Instagram).</param>
         /// <param name="mediaCount">Total media posts (Instagram).</param>
         /// <param name="videoCount">Total videos (YouTube, TikTok).</param>
         /// <param name="tweetCount">Total tweets (X).</param>
@@ -44,12 +45,13 @@ namespace Zernio.Model
         /// <param name="pinCount">Total pins (Pinterest).</param>
         /// <param name="totalViews">Total channel views (YouTube).</param>
         /// <param name="likesCount">Total likes received (TikTok).</param>
-        /// <param name="monthlyViews">Monthly profile views (Pinterest).</param>
+        /// <param name="monthlyViews">Monthly profile views (Pinterest). null when Pinterest reports no window.</param>
         /// <param name="listedCount">Lists the user appears on (X).</param>
         /// <param name="boardCount">Total boards (Pinterest).</param>
-        public AccountWithFollowerStatsAllOfAccountStats(decimal followingCount = default, decimal mediaCount = default, decimal videoCount = default, decimal tweetCount = default, decimal postsCount = default, decimal pinCount = default, decimal totalViews = default, decimal likesCount = default, decimal monthlyViews = default, decimal listedCount = default, decimal boardCount = default)
+        public AccountWithFollowerStatsAllOfAccountStats(decimal followingCount = default, decimal followsCount = default, decimal mediaCount = default, decimal videoCount = default, decimal tweetCount = default, decimal postsCount = default, decimal pinCount = default, decimal totalViews = default, decimal likesCount = default, decimal? monthlyViews = default, decimal listedCount = default, decimal boardCount = default)
         {
             this.FollowingCount = followingCount;
+            this.FollowsCount = followsCount;
             this.MediaCount = mediaCount;
             this.VideoCount = videoCount;
             this.TweetCount = tweetCount;
@@ -63,11 +65,18 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Number of accounts being followed
+        /// Number of accounts being followed (TikTok, X, Pinterest, Bluesky)
         /// </summary>
-        /// <value>Number of accounts being followed</value>
+        /// <value>Number of accounts being followed (TikTok, X, Pinterest, Bluesky)</value>
         [DataMember(Name = "followingCount", EmitDefaultValue = false)]
         public decimal FollowingCount { get; set; }
+
+        /// <summary>
+        /// Number of accounts being followed (Instagram)
+        /// </summary>
+        /// <value>Number of accounts being followed (Instagram)</value>
+        [DataMember(Name = "followsCount", EmitDefaultValue = false)]
+        public decimal FollowsCount { get; set; }
 
         /// <summary>
         /// Total media posts (Instagram)
@@ -119,11 +128,11 @@ namespace Zernio.Model
         public decimal LikesCount { get; set; }
 
         /// <summary>
-        /// Monthly profile views (Pinterest)
+        /// Monthly profile views (Pinterest). null when Pinterest reports no window
         /// </summary>
-        /// <value>Monthly profile views (Pinterest)</value>
-        [DataMember(Name = "monthlyViews", EmitDefaultValue = false)]
-        public decimal MonthlyViews { get; set; }
+        /// <value>Monthly profile views (Pinterest). null when Pinterest reports no window</value>
+        [DataMember(Name = "monthlyViews", EmitDefaultValue = true)]
+        public decimal? MonthlyViews { get; set; }
 
         /// <summary>
         /// Lists the user appears on (X)
@@ -148,6 +157,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AccountWithFollowerStatsAllOfAccountStats {\n");
             sb.Append("  FollowingCount: ").Append(FollowingCount).Append("\n");
+            sb.Append("  FollowsCount: ").Append(FollowsCount).Append("\n");
             sb.Append("  MediaCount: ").Append(MediaCount).Append("\n");
             sb.Append("  VideoCount: ").Append(VideoCount).Append("\n");
             sb.Append("  TweetCount: ").Append(TweetCount).Append("\n");

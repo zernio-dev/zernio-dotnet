@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'FollowsCount'
+        /// </summary>
+        [Fact]
+        public void FollowsCountTest()
+        {
+            // TODO unit test for the property 'FollowsCount'
+        }
+
+        /// <summary>
         /// Test the property 'MediaCount'
         /// </summary>
         [Fact]
