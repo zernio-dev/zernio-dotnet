@@ -1386,6 +1386,7 @@ docs/GetAdReview200ResponseReviewPolicyTopicsInner.md
 docs/GetAdReview200ResponseReviewRejectionsInner.md
 docs/GetAdReview200ResponseReviewRejectionsInnerContent.md
 docs/GetAdReview200ResponseReviewReviewFeedback.md
+docs/GetAdRuleHourlyWindows200Response.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdSetTargeting200Response.md
 docs/GetAdTrackingTags200Response.md
@@ -5248,6 +5249,7 @@ src/Zernio.Test/Model/GetAdReview200ResponseReviewRejectionsInnerTests.cs
 src/Zernio.Test/Model/GetAdReview200ResponseReviewReviewFeedbackTests.cs
 src/Zernio.Test/Model/GetAdReview200ResponseReviewTests.cs
 src/Zernio.Test/Model/GetAdReview200ResponseTests.cs
+src/Zernio.Test/Model/GetAdRuleHourlyWindows200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetTargeting200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
@@ -9085,6 +9087,7 @@ src/Zernio/Model/GetAdReview200ResponseReviewPolicyTopicsInner.cs
 src/Zernio/Model/GetAdReview200ResponseReviewRejectionsInner.cs
 src/Zernio/Model/GetAdReview200ResponseReviewRejectionsInnerContent.cs
 src/Zernio/Model/GetAdReview200ResponseReviewReviewFeedback.cs
+src/Zernio/Model/GetAdRuleHourlyWindows200Response.cs
 src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdSetTargeting200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs

@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateAdRule**](AdRulesApi.md#createadrule) | **POST** /v1/ads/rules | Create an ad rule |
 | [**DeleteAdRule**](AdRulesApi.md#deleteadrule) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule |
 | [**GetAdRule**](AdRulesApi.md#getadrule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
+| [**GetAdRuleHourlyWindows**](AdRulesApi.md#getadrulehourlywindows) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows |
 | [**ListAdRuleActivity**](AdRulesApi.md#listadruleactivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**ListAdRuleAlerts**](AdRulesApi.md#listadrulealerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts |
 | [**ListAdRuleRuns**](AdRulesApi.md#listadruleruns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
@@ -319,6 +320,109 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadrulehourlywindows"></a>
+# **GetAdRuleHourlyWindows**
+> GetAdRuleHourlyWindows200Response GetAdRuleHourlyWindows (string accountId, string adAccountId)
+
+Check whether an ad account has hourly windows
+
+Hourly windows (`last_complete_hour`, `last_3h`, `today_so_far`) read campaign totals hour by hour, which Zernio syncs only for some Meta and Google ad accounts.  On an ad account without them, an hourly condition always reads as unknown and never matches. `hourlyWindows` says which case applies. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdRuleHourlyWindowsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdRulesApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ads connection.
+            var adAccountId = "adAccountId_example";  // string | The ad account on that connection.
+
+            try
+            {
+                // Check whether an ad account has hourly windows
+                GetAdRuleHourlyWindows200Response result = apiInstance.GetAdRuleHourlyWindows(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdRulesApi.GetAdRuleHourlyWindows: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdRuleHourlyWindowsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check whether an ad account has hourly windows
+    ApiResponse<GetAdRuleHourlyWindows200Response> response = apiInstance.GetAdRuleHourlyWindowsWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdRulesApi.GetAdRuleHourlyWindowsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ads connection. |  |
+| **adAccountId** | **string** | The ad account on that connection. |  |
+
+### Return type
+
+[**GetAdRuleHourlyWindows200Response**](GetAdRuleHourlyWindows200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Whether hourly windows read data on the ad account. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
