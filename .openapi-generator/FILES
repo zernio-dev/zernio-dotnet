@@ -464,6 +464,7 @@ docs/CalendarEventFieldsReminders.md
 docs/CalendarEventFieldsRemindersOverridesInner.md
 docs/CalendarEventParticipantsInner.md
 docs/CalendarEventReminders.md
+docs/CalendarEventRemindersOverridesInner.md
 docs/CalendarFreeBusy200Response.md
 docs/CalendarFreeBusy200ResponseDataInner.md
 docs/CalendarFreeBusy200ResponseDataInnerCalendarsInner.md
@@ -4347,6 +4348,7 @@ src/Zernio.Test/Model/CalendarEventFieldsRemindersOverridesInnerTests.cs
 src/Zernio.Test/Model/CalendarEventFieldsRemindersTests.cs
 src/Zernio.Test/Model/CalendarEventFieldsTests.cs
 src/Zernio.Test/Model/CalendarEventParticipantsInnerTests.cs
+src/Zernio.Test/Model/CalendarEventRemindersOverridesInnerTests.cs
 src/Zernio.Test/Model/CalendarEventRemindersTests.cs
 src/Zernio.Test/Model/CalendarEventTests.cs
 src/Zernio.Test/Model/CalendarFreeBusy200ResponseDataInnerCalendarsInnerTests.cs
@@ -8186,6 +8188,7 @@ src/Zernio/Model/CalendarEventFieldsReminders.cs
 src/Zernio/Model/CalendarEventFieldsRemindersOverridesInner.cs
 src/Zernio/Model/CalendarEventParticipantsInner.cs
 src/Zernio/Model/CalendarEventReminders.cs
+src/Zernio/Model/CalendarEventRemindersOverridesInner.cs
 src/Zernio/Model/CalendarFreeBusy200Response.cs
 src/Zernio/Model/CalendarFreeBusy200ResponseDataInner.cs
 src/Zernio/Model/CalendarFreeBusy200ResponseDataInnerCalendarsInner.cs
