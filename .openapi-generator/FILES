@@ -1214,6 +1214,7 @@ docs/EmailCapabilitiesForward.md
 docs/EmailCapabilitiesLabels.md
 docs/EmailCapabilitiesScheduledSend.md
 docs/EmailCapabilitiesSendAs.md
+docs/EmailCapabilitiesSentItems.md
 docs/EmailCapabilitiesSignatures.md
 docs/EmailCapabilitiesSync.md
 docs/EmailClean.md
@@ -5083,6 +5084,7 @@ src/Zernio.Test/Model/EmailCapabilitiesForwardTests.cs
 src/Zernio.Test/Model/EmailCapabilitiesLabelsTests.cs
 src/Zernio.Test/Model/EmailCapabilitiesScheduledSendTests.cs
 src/Zernio.Test/Model/EmailCapabilitiesSendAsTests.cs
+src/Zernio.Test/Model/EmailCapabilitiesSentItemsTests.cs
 src/Zernio.Test/Model/EmailCapabilitiesSignaturesTests.cs
 src/Zernio.Test/Model/EmailCapabilitiesSyncTests.cs
 src/Zernio.Test/Model/EmailCapabilitiesTests.cs
@@ -8919,6 +8921,7 @@ src/Zernio/Model/EmailCapabilitiesForward.cs
 src/Zernio/Model/EmailCapabilitiesLabels.cs
 src/Zernio/Model/EmailCapabilitiesScheduledSend.cs
 src/Zernio/Model/EmailCapabilitiesSendAs.cs
+src/Zernio/Model/EmailCapabilitiesSentItems.cs
 src/Zernio/Model/EmailCapabilitiesSignatures.cs
 src/Zernio/Model/EmailCapabilitiesSync.cs
 src/Zernio/Model/EmailClean.cs

@@ -6,6 +6,7 @@ On Google, Microsoft and IMAP accounts with email access: what this mailbox prov
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sync** | [**EmailCapabilitiesSync**](EmailCapabilitiesSync.md) |  | [optional] 
+**SentItems** | [**EmailCapabilitiesSentItems**](EmailCapabilitiesSentItems.md) |  | [optional] 
 **Drafts** | [**EmailCapabilitiesDrafts**](EmailCapabilitiesDrafts.md) |  | [optional] 
 **Forward** | [**EmailCapabilitiesForward**](EmailCapabilitiesForward.md) |  | [optional] 
 **SendAs** | [**EmailCapabilitiesSendAs**](EmailCapabilitiesSendAs.md) |  | [optional] 
