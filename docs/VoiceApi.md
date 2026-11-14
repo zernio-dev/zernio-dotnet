@@ -944,7 +944,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
-| **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
+| **409** | This number is attached to a SIP trunk (detach it first), or it is a Zernio number that is not active yet or was released (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
