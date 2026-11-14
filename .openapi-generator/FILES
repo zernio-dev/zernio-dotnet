@@ -1324,6 +1324,7 @@ docs/GenerateKeywordIdeas200ResponsePaging.md
 docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccountHealth200Response.md
+docs/GetAccountHealth200ResponseLineWebhook.md
 docs/GetAccountHealth200ResponseMessagingRestriction.md
 docs/GetAccountHealth200ResponsePermissions.md
 docs/GetAccountHealth200ResponsePermissionsPostingInner.md
@@ -5186,6 +5187,7 @@ src/Zernio.Test/Model/GenerateKeywordIdeas200ResponsePagingTests.cs
 src/Zernio.Test/Model/GenerateKeywordIdeas200ResponseTests.cs
 src/Zernio.Test/Model/GenerateKeywordIdeasRequestTests.cs
 src/Zernio.Test/Model/GeoRestrictionTests.cs
+src/Zernio.Test/Model/GetAccountHealth200ResponseLineWebhookTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseMessagingRestrictionTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsPostingInnerTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsTests.cs
@@ -9025,6 +9027,7 @@ src/Zernio/Model/GenerateKeywordIdeas200ResponsePaging.cs
 src/Zernio/Model/GenerateKeywordIdeasRequest.cs
 src/Zernio/Model/GeoRestriction.cs
 src/Zernio/Model/GetAccountHealth200Response.cs
+src/Zernio/Model/GetAccountHealth200ResponseLineWebhook.cs
 src/Zernio/Model/GetAccountHealth200ResponseMessagingRestriction.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissions.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissionsPostingInner.cs
