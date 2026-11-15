@@ -1,5 +1,5 @@
 # Zernio.Model.GetEventsOverview200ResponseWebsite
-`null` when the profile has no tracking site. Hit counts are approximate distinct counts.
+`null` when no profile covered has a tracking site. Hit counts are approximate distinct counts.
 
 ## Properties
 

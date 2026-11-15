@@ -2171,11 +2171,11 @@ catch (ApiException e)
 
 <a id="geteventsoverview"></a>
 # **GetEventsOverview**
-> GetEventsOverview200Response GetEventsOverview (string profileId)
+> GetEventsOverview200Response GetEventsOverview (string? profileId = null)
 
 Get today's tracking overview
 
-How a profile's conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule's destination, each event source and, when the profile has a tracking site, the site's funnel. Requires the Ads add-on. 
+How a profile's conversion tracking is doing today (UTC day): events stored, how many reached the ad platforms, each forwarding rule's destination, each event source and, when the profile has a tracking site, the site's funnel.  Without `profileId` it covers every profile you can access, summed across them. Requires the Ads add-on. 
 
 ### Example
 ```csharp
@@ -2201,7 +2201,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
-            var profileId = "profileId_example";  // string | 
+            var profileId = "profileId_example";  // string? | The profile to read. Omit to cover every profile you can access, summed across them. (optional) 
 
             try
             {
@@ -2244,7 +2244,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **profileId** | **string** |  |  |
+| **profileId** | **string?** | The profile to read. Omit to cover every profile you can access, summed across them. | [optional]  |
 
 ### Return type
 
@@ -3231,11 +3231,11 @@ catch (ApiException e)
 
 <a id="listevents"></a>
 # **ListEvents**
-> ListEvents200Response ListEvents (string profileId, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? platform = null, string? deliveryStatus = null, string? cursor = null)
+> ListEvents200Response ListEvents (string? profileId = null, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? platform = null, string? deliveryStatus = null, string? cursor = null)
 
 List stored events
 
-Lists the conversion events stored for a profile by `POST /v1/events`, newest first. Personal data is never returned: `hasEmail`, `hasPhone` and `hasExternalId` only say whether the event carried that identifier. Events sent with `testCode` are not stored, so they never appear here.  Paginate with `cursor`: pass the `nextCursor` of the previous page until it comes back `null`. 
+Lists the conversion events stored by `POST /v1/events`, newest first: for one profile, or for every profile you can access when `profileId` is omitted.  Personal data is never returned: `hasEmail`, `hasPhone` and `hasExternalId` only say whether the event carried that identifier. Events sent with `testCode` are not stored, so they never appear here.  Paginate with `cursor`: pass the `nextCursor` of the previous page until it comes back `null`. 
 
 ### Example
 ```csharp
@@ -3261,7 +3261,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
-            var profileId = "profileId_example";  // string | 
+            var profileId = "profileId_example";  // string? | The profile to list. Omit to cover every profile you can access. (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
             var from = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events at or after this time (ISO 8601, on the event time). (optional) 
             var to = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only events before this time (ISO 8601, on the event time). (optional) 
@@ -3312,7 +3312,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **profileId** | **string** |  |  |
+| **profileId** | **string?** | The profile to list. Omit to cover every profile you can access. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |
 | **from** | **DateTime?** | Only events at or after this time (ISO 8601, on the event time). | [optional]  |
 | **to** | **DateTime?** | Only events before this time (ISO 8601, on the event time). | [optional]  |
