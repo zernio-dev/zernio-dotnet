@@ -6949,11 +6949,11 @@ catch (ApiException e)
 
 <a id="listorgconnections"></a>
 # **ListOrgConnections**
-> ListOrgConnections200Response ListOrgConnections (string profileId)
+> ListOrgConnections200Response ListOrgConnections (string? profileId = null)
 
 List organization connections
 
-The Google Workspace and Microsoft 365 organization connections on a profile, newest first.
+The Google Workspace and Microsoft 365 organization connections, newest first. Pass `profileId` to list one profile; omit it to list every profile the API key can access (a profile-restricted key or team member only sees its own profiles).
 
 ### Example
 ```csharp
@@ -6979,7 +6979,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
-            var profileId = "profileId_example";  // string | 
+            var profileId = "profileId_example";  // string? | Limit the list to one profile. Omit to list across every accessible profile. (optional) 
 
             try
             {
@@ -7022,7 +7022,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **profileId** | **string** |  |  |
+| **profileId** | **string?** | Limit the list to one profile. Omit to list across every accessible profile. | [optional]  |
 
 ### Return type
 
