@@ -1014,6 +1014,7 @@ docs/CreateValueRuleSetRequest.md
 docs/CreateVerificationRequest.md
 docs/CreateVoiceCall200Response.md
 docs/CreateVoiceCallRequest.md
+docs/CreateVoiceWebInboundSession200Response.md
 docs/CreateVoiceWebSession200Response.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppDataset200Response.md
@@ -4898,6 +4899,7 @@ src/Zernio.Test/Model/CreateValueRuleSetRequestTests.cs
 src/Zernio.Test/Model/CreateVerificationRequestTests.cs
 src/Zernio.Test/Model/CreateVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/CreateVoiceCallRequestTests.cs
+src/Zernio.Test/Model/CreateVoiceWebInboundSession200ResponseTests.cs
 src/Zernio.Test/Model/CreateVoiceWebSession200ResponseTests.cs
 src/Zernio.Test/Model/CreateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppDataset200ResponseTests.cs
@@ -8742,6 +8744,7 @@ src/Zernio/Model/CreateValueRuleSetRequest.cs
 src/Zernio/Model/CreateVerificationRequest.cs
 src/Zernio/Model/CreateVoiceCall200Response.cs
 src/Zernio/Model/CreateVoiceCallRequest.cs
+src/Zernio/Model/CreateVoiceWebInboundSession200Response.cs
 src/Zernio/Model/CreateVoiceWebSession200Response.cs
 src/Zernio/Model/CreateWebhookSettingsRequest.cs
 src/Zernio/Model/CreateWhatsAppDataset200Response.cs

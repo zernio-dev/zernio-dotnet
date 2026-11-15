@@ -63,6 +63,7 @@ Name | Type | Description | Notes
 **ForwardCallerId** | **string** |  | [optional] 
 **PstnVoiceEnabled** | **bool** | Whether Calls (PSTN voice) is on. | [optional] 
 **PstnForwardTo** | **string** |  | [optional] 
+**RingInBrowser** | **bool** | Inbound calls ring the owner&#39;s open dashboard tabs first, then take the forward or voicemail. | [optional] 
 **VoicemailEnabled** | **bool** |  | [optional] 
 **VoicemailGreeting** | **string** |  | [optional] 
 **BusinessHoursEnabled** | **bool** |  | [optional] 

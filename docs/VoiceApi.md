@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**AttachNumberToSipTrunk**](VoiceApi.md#attachnumbertosiptrunk) | **POST** /v1/phone-numbers/{id}/sip-trunk | Attach a number to a SIP trunk |
 | [**CreateSipTrunk**](VoiceApi.md#createsiptrunk) | **POST** /v1/phone-numbers/sip-trunks | Create a SIP trunk |
 | [**CreateVoiceCall**](VoiceApi.md#createvoicecall) | **POST** /v1/voice/calls | Place an outbound phone call |
+| [**CreateVoiceWebInboundSession**](VoiceApi.md#createvoicewebinboundsession) | **POST** /v1/voice/calls/web/inbound | Register a browser to receive calls |
 | [**CreateVoiceWebSession**](VoiceApi.md#createvoicewebsession) | **POST** /v1/voice/calls/web | Mint a browser softphone session |
 | [**DeleteSipTrunk**](VoiceApi.md#deletesiptrunk) | **DELETE** /v1/phone-numbers/sip-trunks/{id} | Delete a SIP trunk |
 | [**DetachNumberFromSipTrunk**](VoiceApi.md#detachnumberfromsiptrunk) | **DELETE** /v1/phone-numbers/{id}/sip-trunk | Detach a number from its SIP trunk |
@@ -337,6 +338,102 @@ catch (ApiException e)
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createvoicewebinboundsession"></a>
+# **CreateVoiceWebInboundSession**
+> CreateVoiceWebInboundSession200Response CreateVoiceWebInboundSession ()
+
+Register a browser to receive calls
+
+Mints a login token for the `@telnyx/webrtc` SDK so a browser can receive inbound calls to numbers with `ringInBrowser` on.  The token belongs to one long-lived credential per number owner, so every registered tab (including teammates' with calls access) rings together. Tokens last about 24 hours; request a new one to re-register.  Dashboard sessions only: API keys and connector tokens get `403`. Returns `{ enabled: false }` when none of the owner's numbers ring in the browser. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateVoiceWebInboundSessionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new VoiceApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // Register a browser to receive calls
+                CreateVoiceWebInboundSession200Response result = apiInstance.CreateVoiceWebInboundSession();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling VoiceApi.CreateVoiceWebInboundSession: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateVoiceWebInboundSessionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Register a browser to receive calls
+    ApiResponse<CreateVoiceWebInboundSession200Response> response = apiInstance.CreateVoiceWebInboundSessionWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling VoiceApi.CreateVoiceWebInboundSessionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**CreateVoiceWebInboundSession200Response**](CreateVoiceWebInboundSession200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Token minted, or browser ringing is off. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not a dashboard session, or calls are turned off for this team member |  -  |
+| **502** | Failed to mint the WebRTC token |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
