@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Minimum** | [**CommerceDiscountMinimum**](CommerceDiscountMinimum.md) |  | [optional] 
 **UsageLimit** | **int?** |  | [optional] 
 **OncePerCustomer** | **bool** |  | [optional] 
+**LimitedToCustomers** | **bool** | True when only the customers chosen at creation (customerIds) can use the code. | [optional] 
 **UsageCount** | **int** |  | [optional] 
 **StartsAt** | **DateTime** |  | [optional] 
 **EndsAt** | **DateTime?** |  | [optional] 

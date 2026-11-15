@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 **FeeLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) | WooCommerce fees. Always empty on Shopify. | [optional] 
 **TaxLines** | [**List&lt;CommerceTaxLine&gt;**](CommerceTaxLine.md) | Order tax by rate, line items and shipping together. | [optional] 
 **Refunds** | [**List&lt;CommerceOrderRefund&gt;**](CommerceOrderRefund.md) |  | [optional] 
-**Fulfillments** | [**List&lt;CommerceOrderFulfillmentsInner&gt;**](CommerceOrderFulfillmentsInner.md) |  | [optional] 
+**Fulfillments** | [**List&lt;CommerceOrderFulfillmentsInner&gt;**](CommerceOrderFulfillmentsInner.md) | One entry per tracking number. A shipment without tracking still has one entry, with the tracking fields null. Always empty on WooCommerce. | [optional] 
 **PlatformData** | **Dictionary&lt;string, Object&gt;** | Platform-only fields. Null when the platform has none. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

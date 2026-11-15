@@ -3247,6 +3247,8 @@ docs/UpdateCommerceCollectionRequest.md
 docs/UpdateCommerceDiscountRequest.md
 docs/UpdateCommerceMenuRequest.md
 docs/UpdateCommerceMetaobjectRequest.md
+docs/UpdateCommerceOrderRequest.md
+docs/UpdateCommerceOrderRequestShippingAddress.md
 docs/UpdateCommercePageRequest.md
 docs/UpdateCommerceProductPricesRequest.md
 docs/UpdateCommerceProductPricesRequestVariantsInner.md
@@ -7082,6 +7084,8 @@ src/Zernio.Test/Model/UpdateCommerceCollectionRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceDiscountRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceMenuRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceMetaobjectRequestTests.cs
+src/Zernio.Test/Model/UpdateCommerceOrderRequestShippingAddressTests.cs
+src/Zernio.Test/Model/UpdateCommerceOrderRequestTests.cs
 src/Zernio.Test/Model/UpdateCommercePageRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceProductPricesRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceProductPricesRequestVariantsInnerPriceTests.cs
@@ -10921,6 +10925,8 @@ src/Zernio/Model/UpdateCommerceCollectionRequest.cs
 src/Zernio/Model/UpdateCommerceDiscountRequest.cs
 src/Zernio/Model/UpdateCommerceMenuRequest.cs
 src/Zernio/Model/UpdateCommerceMetaobjectRequest.cs
+src/Zernio/Model/UpdateCommerceOrderRequest.cs
+src/Zernio/Model/UpdateCommerceOrderRequestShippingAddress.cs
 src/Zernio/Model/UpdateCommercePageRequest.cs
 src/Zernio/Model/UpdateCommerceProductPricesRequest.cs
 src/Zernio/Model/UpdateCommerceProductPricesRequestVariantsInner.cs

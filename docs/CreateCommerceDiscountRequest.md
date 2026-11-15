@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **EndsAt** | **DateTime?** |  | [optional] 
 **ProductIds** | **List&lt;string&gt;** |  | [optional] 
 **CollectionIds** | **List&lt;string&gt;** |  | [optional] 
+**CustomerIds** | **List&lt;string&gt;** | Only these customers can use the code (&#x60;customer.id&#x60; on an order, or &#x60;id&#x60; from the customers endpoints). Code discounts on Shopify only; WooCommerce answers 400. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
