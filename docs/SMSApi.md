@@ -5,8 +5,10 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AppealSmsRegistration**](SMSApi.md#appealsmsregistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign |
+| [**CreateSmsOptOut**](SMSApi.md#createsmsoptout) | **POST** /v1/sms/opt-outs | Record an SMS opt-out |
 | [**CreateSmsSenderId**](SMSApi.md#createsmssenderid) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID |
 | [**DeactivateSmsRegistration**](SMSApi.md#deactivatesmsregistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration |
+| [**DeleteSmsOptOut**](SMSApi.md#deletesmsoptout) | **DELETE** /v1/sms/opt-outs | Remove an SMS opt-out |
 | [**DeleteSmsSenderId**](SMSApi.md#deletesmssenderid) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID |
 | [**DisableSmsOnNumber**](SMSApi.md#disablesmsonnumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number |
 | [**EnableSmsOnNumber**](SMSApi.md#enablesmsonnumber) | **POST** /v1/phone-numbers/{id}/sms | Enable SMS on a number |
@@ -128,6 +130,107 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createsmsoptout"></a>
+# **CreateSmsOptOut**
+> CreateSmsOptOut200Response CreateSmsOptOut (SmsOptOutRequest smsOptOutRequest)
+
+Record an SMS opt-out
+
+Marks a recipient as opted out on one of your SMS numbers. Use it for opt-outs you collect yourself (for example keywords like UNSUB or REVOKE, which the carrier does not recognize). Sends from that number to the recipient are then refused with `409 recipient_opted_out`.  Idempotent. If the recipient is already opted out, the call succeeds and `source` keeps the original value (`inbound_stop` when they texted STOP). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateSmsOptOutExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var smsOptOutRequest = new SmsOptOutRequest(); // SmsOptOutRequest | 
+
+            try
+            {
+                // Record an SMS opt-out
+                CreateSmsOptOut200Response result = apiInstance.CreateSmsOptOut(smsOptOutRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.CreateSmsOptOut: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateSmsOptOutWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Record an SMS opt-out
+    ApiResponse<CreateSmsOptOut200Response> response = apiInstance.CreateSmsOptOutWithHttpInfo(smsOptOutRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.CreateSmsOptOutWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **smsOptOutRequest** | [**SmsOptOutRequest**](SmsOptOutRequest.md) |  |  |
+
+### Return type
+
+[**CreateSmsOptOut200Response**](CreateSmsOptOut200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recipient is opted out |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -334,6 +437,108 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletesmsoptout"></a>
+# **DeleteSmsOptOut**
+> DeleteSmsOptOut200Response DeleteSmsOptOut (SmsOptOutRequest smsOptOutRequest)
+
+Remove an SMS opt-out
+
+Re-subscribes a recipient you opted out with `POST /v1/sms/opt-outs`. Succeeds as a no-op when the recipient is not opted out.  An opt-out the recipient made themselves (texting STOP) cannot be removed here: the carrier keeps blocking the number until they text START, so this returns `409 recipient_opted_out`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteSmsOptOutExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var smsOptOutRequest = new SmsOptOutRequest(); // SmsOptOutRequest | 
+
+            try
+            {
+                // Remove an SMS opt-out
+                DeleteSmsOptOut200Response result = apiInstance.DeleteSmsOptOut(smsOptOutRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.DeleteSmsOptOut: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteSmsOptOutWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove an SMS opt-out
+    ApiResponse<DeleteSmsOptOut200Response> response = apiInstance.DeleteSmsOptOutWithHttpInfo(smsOptOutRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.DeleteSmsOptOutWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **smsOptOutRequest** | [**SmsOptOutRequest**](SmsOptOutRequest.md) |  |  |
+
+### Return type
+
+[**DeleteSmsOptOut200Response**](DeleteSmsOptOut200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recipient is subscribed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The recipient opted out by texting STOP. Only they can re-subscribe, by texting START. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -750,7 +955,7 @@ catch (ApiException e)
 
 List SMS opt-outs
 
-The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass `format=csv` to download a CSV instead of JSON. 
+The recipients who opted out of SMS across your numbers, most recent first: those who replied STOP and those you recorded with `POST /v1/sms/opt-outs`. `source` says which. Compliance surface: you must be able to see and export your opt-out list. Pass `format=csv` to download a CSV instead of JSON. 
 
 ### Example
 ```csharp

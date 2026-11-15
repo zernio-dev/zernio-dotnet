@@ -965,6 +965,7 @@ docs/CreateSharedBudgetRequest.md
 docs/CreateSipTrunk201Response.md
 docs/CreateSipTrunk201ResponseTermination.md
 docs/CreateSipTrunkRequest.md
+docs/CreateSmsOptOut200Response.md
 docs/CreateSmsSenderId200Response.md
 docs/CreateSmsSenderIdRequest.md
 docs/CreateStandaloneAd200Response.md
@@ -1146,6 +1147,7 @@ docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteOAuthApp200Response.md
 docs/DeleteOrgConnection200Response.md
 docs/DeleteOrgConnection200ResponseData.md
+docs/DeleteSmsOptOut200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
 docs/DeleteTrackingTagEvent200Response.md
@@ -3001,6 +3003,7 @@ docs/SharedAdAccount.md
 docs/ShipCampaignSampleRequest.md
 docs/SlackApi.md
 docs/SlackPlatformData.md
+docs/SmsOptOutRequest.md
 docs/SmsRegistrationReviewRequest.md
 docs/SmsRegistrationReviewRequestPointsInner.md
 docs/SnapchatPlatformData.md
@@ -4846,6 +4849,7 @@ src/Zernio.Test/Model/CreateSharedBudgetRequestTests.cs
 src/Zernio.Test/Model/CreateSipTrunk201ResponseTerminationTests.cs
 src/Zernio.Test/Model/CreateSipTrunk201ResponseTests.cs
 src/Zernio.Test/Model/CreateSipTrunkRequestTests.cs
+src/Zernio.Test/Model/CreateSmsOptOut200ResponseTests.cs
 src/Zernio.Test/Model/CreateSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/CreateSmsSenderIdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd200ResponseResultsInnerTests.cs
@@ -5024,6 +5028,7 @@ src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteOAuthApp200ResponseTests.cs
 src/Zernio.Test/Model/DeleteOrgConnection200ResponseDataTests.cs
 src/Zernio.Test/Model/DeleteOrgConnection200ResponseTests.cs
+src/Zernio.Test/Model/DeleteSmsOptOut200ResponseTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTestLead200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTrackingTagEvent200ResponseTests.cs
@@ -6842,6 +6847,7 @@ src/Zernio.Test/Model/ShareSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/SharedAdAccountTests.cs
 src/Zernio.Test/Model/ShipCampaignSampleRequestTests.cs
 src/Zernio.Test/Model/SlackPlatformDataTests.cs
+src/Zernio.Test/Model/SmsOptOutRequestTests.cs
 src/Zernio.Test/Model/SmsRegistrationReviewRequestPointsInnerTests.cs
 src/Zernio.Test/Model/SmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
@@ -8687,6 +8693,7 @@ src/Zernio/Model/CreateSharedBudgetRequest.cs
 src/Zernio/Model/CreateSipTrunk201Response.cs
 src/Zernio/Model/CreateSipTrunk201ResponseTermination.cs
 src/Zernio/Model/CreateSipTrunkRequest.cs
+src/Zernio/Model/CreateSmsOptOut200Response.cs
 src/Zernio/Model/CreateSmsSenderId200Response.cs
 src/Zernio/Model/CreateSmsSenderIdRequest.cs
 src/Zernio/Model/CreateStandaloneAd200Response.cs
@@ -8865,6 +8872,7 @@ src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteOAuthApp200Response.cs
 src/Zernio/Model/DeleteOrgConnection200Response.cs
 src/Zernio/Model/DeleteOrgConnection200ResponseData.cs
+src/Zernio/Model/DeleteSmsOptOut200Response.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteTestLead200Response.cs
 src/Zernio/Model/DeleteTrackingTagEvent200Response.cs
@@ -10683,6 +10691,7 @@ src/Zernio/Model/ShareSmsRegistrationRequest.cs
 src/Zernio/Model/SharedAdAccount.cs
 src/Zernio/Model/ShipCampaignSampleRequest.cs
 src/Zernio/Model/SlackPlatformData.cs
+src/Zernio/Model/SmsOptOutRequest.cs
 src/Zernio/Model/SmsRegistrationReviewRequest.cs
 src/Zernio/Model/SmsRegistrationReviewRequestPointsInner.cs
 src/Zernio/Model/SnapchatPlatformData.cs
