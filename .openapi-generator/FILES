@@ -989,6 +989,7 @@ docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
 docs/CreateStandaloneAdRequestDynamicCreative.md
 docs/CreateStandaloneAdRequestImages.md
+docs/CreateStandaloneAdRequestMerchantCenter.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestRegionsInner.md
@@ -4888,6 +4889,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestDynamicCreativeTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestImagesTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestMerchantCenterTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerOneOfTests.cs
@@ -8749,6 +8751,7 @@ src/Zernio/Model/CreateStandaloneAdRequestCreativesInnerVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestCustomLocationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestDynamicCreative.cs
 src/Zernio/Model/CreateStandaloneAdRequestImages.cs
+src/Zernio/Model/CreateStandaloneAdRequestMerchantCenter.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
