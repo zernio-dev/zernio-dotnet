@@ -64,7 +64,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateAdCampaign**](AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**UpdateAdCampaignStatus**](AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 | [**UpdateAdGroupAssets**](AdCampaignsApi.md#updateadgroupassets) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets |
-| [**UpdateAdKeyword**](AdCampaignsApi.md#updateadkeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
+| [**UpdateAdKeyword**](AdCampaignsApi.md#updateadkeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Update a Search keyword |
 | [**UpdateAdSet**](AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**UpdateAdSetStatus**](AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
 | [**UpdateAdStatus**](AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
@@ -6652,9 +6652,9 @@ catch (ApiException e)
 # **UpdateAdKeyword**
 > UpdateAdKeyword200Response UpdateAdKeyword (string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest)
 
-Pause or enable a Search keyword
+Update a Search keyword
 
-Pauses or re-enables a single Google Search keyword.  Changes `ad_group_criterion.status` for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+Pauses, re-enables or sets the bid of a single Google Search keyword. Send `status`, `cpcBid` or both.  Changes `ad_group_criterion.status` (M.140) and `ad_group_criterion.cpc_bid_micros` for one keyword criterion.  `cpcBid` is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back `cpcBid: null` and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
 
 ### Example
 ```csharp
@@ -6685,7 +6685,7 @@ namespace Example
 
             try
             {
-                // Pause or enable a Search keyword
+                // Update a Search keyword
                 UpdateAdKeyword200Response result = apiInstance.UpdateAdKeyword(keywordId, updateAdKeywordRequest);
                 Debug.WriteLine(result);
             }
@@ -6706,7 +6706,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Pause or enable a Search keyword
+    // Update a Search keyword
     ApiResponse<UpdateAdKeyword200Response> response = apiInstance.UpdateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -6750,7 +6750,7 @@ catch (ApiException e)
 | **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
+| **422** | Negative keywords have no status or bid on Google; they cannot be paused, enabled or given a bid. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6969,7 +6969,7 @@ catch (ApiException e)
 
 <a id="updateadstatus"></a>
 # **UpdateAdStatus**
-> UpdateAdStatus200Response UpdateAdStatus (string adId, UpdateAdKeywordRequest updateAdKeywordRequest)
+> UpdateAdStatus200Response UpdateAdStatus (string adId, UpdateAdStatusRequest updateAdStatusRequest)
 
 Pause or resume a single ad
 
@@ -7000,12 +7000,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
-            var updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+            var updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
 
             try
             {
                 // Pause or resume a single ad
-                UpdateAdStatus200Response result = apiInstance.UpdateAdStatus(adId, updateAdKeywordRequest);
+                UpdateAdStatus200Response result = apiInstance.UpdateAdStatus(adId, updateAdStatusRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7026,7 +7026,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Pause or resume a single ad
-    ApiResponse<UpdateAdStatus200Response> response = apiInstance.UpdateAdStatusWithHttpInfo(adId, updateAdKeywordRequest);
+    ApiResponse<UpdateAdStatus200Response> response = apiInstance.UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7044,7 +7044,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. |  |
-| **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md) |  |  |
+| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md) |  |  |
 
 ### Return type
 

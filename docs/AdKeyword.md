@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **MatchType** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **Negative** | **bool** |  | [optional] 
+**CpcBid** | **decimal?** | Max CPC bid set on this keyword, in the ad account currency. Null when the keyword uses its ad group bid. Takes effect only under Manual CPC bidding. | [optional] 
 **QualityScore** | **int?** | Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated. | [optional] 
 **Quality** | [**AdKeywordQuality**](AdKeywordQuality.md) |  | [optional] 
 **SyncedAt** | **DateTime?** | When Zernio last read this keyword from Google: the last successful keyword sync of its ad account, or a later edit through Zernio. | [optional] 

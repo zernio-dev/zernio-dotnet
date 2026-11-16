@@ -56,21 +56,25 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
-        public StatusEnum Status { get; set; }
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdKeywordRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UpdateAdKeywordRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateAdKeywordRequest" /> class.
-        /// </summary>
-        /// <param name="status">status (required).</param>
-        public UpdateAdKeywordRequest(StatusEnum status = default)
+        /// <param name="status">status.</param>
+        /// <param name="cpcBid">Max CPC bid for this keyword, in the ad account currency. Takes effect only under Manual CPC bidding..</param>
+        public UpdateAdKeywordRequest(StatusEnum? status = default, decimal cpcBid = default)
         {
             this.Status = status;
+            this.CpcBid = cpcBid;
         }
+
+        /// <summary>
+        /// Max CPC bid for this keyword, in the ad account currency. Takes effect only under Manual CPC bidding.
+        /// </summary>
+        /// <value>Max CPC bid for this keyword, in the ad account currency. Takes effect only under Manual CPC bidding.</value>
+        [DataMember(Name = "cpcBid", EmitDefaultValue = false)]
+        public decimal CpcBid { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -81,6 +85,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateAdKeywordRequest {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  CpcBid: ").Append(CpcBid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

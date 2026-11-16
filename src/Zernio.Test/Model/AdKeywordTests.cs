@@ -209,6 +209,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CpcBid'
+        /// </summary>
+        [Fact]
+        public void CpcBidTest()
+        {
+            // TODO unit test for the property 'CpcBid'
+        }
+
+        /// <summary>
         /// Test the property 'QualityScore'
         /// </summary>
         [Fact]

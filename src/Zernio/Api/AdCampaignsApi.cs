@@ -1611,10 +1611,10 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateCampaignAssets200Response</returns>
         ApiResponse<UpdateCampaignAssets200Response> UpdateAdGroupAssetsWithHttpInfo(string adSetId, UpdateCampaignAssetsRequest updateCampaignAssetsRequest);
         /// <summary>
-        /// Pause or enable a Search keyword
+        /// Update a Search keyword
         /// </summary>
         /// <remarks>
-        /// Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -1623,10 +1623,10 @@ namespace Zernio.Api
         UpdateAdKeyword200Response UpdateAdKeyword(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest);
 
         /// <summary>
-        /// Pause or enable a Search keyword
+        /// Update a Search keyword
         /// </summary>
         /// <remarks>
-        /// Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -1687,9 +1687,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <returns>UpdateAdStatus200Response</returns>
-        UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdKeywordRequest updateAdKeywordRequest);
+        UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdStatusRequest updateAdStatusRequest);
 
         /// <summary>
         /// Pause or resume a single ad
@@ -1699,9 +1699,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
-        ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdKeywordRequest updateAdKeywordRequest);
+        ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdStatusRequest updateAdStatusRequest);
         /// <summary>
         /// Update portfolio bid strategy
         /// </summary>
@@ -3554,10 +3554,10 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateCampaignAssets200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateCampaignAssets200Response>> UpdateAdGroupAssetsWithHttpInfoAsync(string adSetId, UpdateCampaignAssetsRequest updateCampaignAssetsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Pause or enable a Search keyword
+        /// Update a Search keyword
         /// </summary>
         /// <remarks>
-        /// Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -3567,10 +3567,10 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<UpdateAdKeyword200Response> UpdateAdKeywordAsync(string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Pause or enable a Search keyword
+        /// Update a Search keyword
         /// </summary>
         /// <remarks>
-        /// Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -3636,10 +3636,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateAdStatus200Response</returns>
-        System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Pause or resume a single ad
@@ -3649,10 +3649,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update portfolio bid strategy
         /// </summary>
@@ -13653,7 +13653,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or enable a Search keyword Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Update a Search keyword Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -13666,7 +13666,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or enable a Search keyword Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Update a Search keyword Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -13722,7 +13722,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or enable a Search keyword Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Update a Search keyword Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -13736,7 +13736,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Pause or enable a Search keyword Pauses or re-enables a single Google Search keyword.  Changes &#x60;ad_group_criterion.status&#x60; for one keyword criterion (M.140). Negative keywords have no status on Google and cannot be paused or enabled. 
+        /// Update a Search keyword Pauses, re-enables or sets the bid of a single Google Search keyword. Send &#x60;status&#x60;, &#x60;cpcBid&#x60; or both.  Changes &#x60;ad_group_criterion.status&#x60; (M.140) and &#x60;ad_group_criterion.cpc_bid_micros&#x60; for one keyword criterion.  &#x60;cpcBid&#x60; is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back &#x60;cpcBid: null&#x60; and uses its ad group bid.  Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="keywordId">Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.</param>
@@ -14086,11 +14086,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <returns>UpdateAdStatus200Response</returns>
-        public UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdKeywordRequest updateAdKeywordRequest)
+        public UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdStatusRequest updateAdStatusRequest)
         {
-            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = UpdateAdStatusWithHttpInfo(adId, updateAdKeywordRequest);
+            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
             return localVarResponse.Data;
         }
 
@@ -14099,17 +14099,17 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdKeywordRequest updateAdKeywordRequest)
+        public Zernio.Client.ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdStatusRequest updateAdStatusRequest)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdCampaignsApi->UpdateAdStatus");
 
-            // verify the required parameter 'updateAdKeywordRequest' is set
-            if (updateAdKeywordRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdKeywordRequest' when calling AdCampaignsApi->UpdateAdStatus");
+            // verify the required parameter 'updateAdStatusRequest' is set
+            if (updateAdStatusRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdStatusRequest' when calling AdCampaignsApi->UpdateAdStatus");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -14129,7 +14129,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
-            localVarRequestOptions.Data = updateAdKeywordRequest;
+            localVarRequestOptions.Data = updateAdStatusRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -14155,12 +14155,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateAdStatus200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = await UpdateAdStatusWithHttpInfoAsync(adId, updateAdKeywordRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = await UpdateAdStatusWithHttpInfoAsync(adId, updateAdStatusRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -14169,18 +14169,18 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
-        /// <param name="updateAdKeywordRequest"></param>
+        /// <param name="updateAdStatusRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdKeywordRequest updateAdKeywordRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdCampaignsApi->UpdateAdStatus");
 
-            // verify the required parameter 'updateAdKeywordRequest' is set
-            if (updateAdKeywordRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdKeywordRequest' when calling AdCampaignsApi->UpdateAdStatus");
+            // verify the required parameter 'updateAdStatusRequest' is set
+            if (updateAdStatusRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdStatusRequest' when calling AdCampaignsApi->UpdateAdStatus");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -14202,7 +14202,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
-            localVarRequestOptions.Data = updateAdKeywordRequest;
+            localVarRequestOptions.Data = updateAdStatusRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required

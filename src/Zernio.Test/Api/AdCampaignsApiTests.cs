@@ -982,8 +982,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string adId = null;
-            //UpdateAdKeywordRequest updateAdKeywordRequest = null;
-            //var response = instance.UpdateAdStatus(adId, updateAdKeywordRequest);
+            //UpdateAdStatusRequest updateAdStatusRequest = null;
+            //var response = instance.UpdateAdStatus(adId, updateAdStatusRequest);
             //Assert.IsType<UpdateAdStatus200Response>(response);
         }
 

@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Status'
         }
+
+        /// <summary>
+        /// Test the property 'CpcBid'
+        /// </summary>
+        [Fact]
+        public void CpcBidTest()
+        {
+            // TODO unit test for the property 'CpcBid'
+        }
     }
 }
