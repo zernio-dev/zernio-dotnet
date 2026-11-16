@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateProfile**](ProfilesApi.md#createprofile) | **POST** /v1/profiles | Create profile |
 | [**DeleteProfile**](ProfilesApi.md#deleteprofile) | **DELETE** /v1/profiles/{profileId} | Delete profile |
 | [**GetProfile**](ProfilesApi.md#getprofile) | **GET** /v1/profiles/{profileId} | Get profile |
+| [**GetProfileLimits**](ProfilesApi.md#getprofilelimits) | **GET** /v1/profiles/{profileId}/limits | Get profile call limits |
 | [**ListProfiles**](ProfilesApi.md#listprofiles) | **GET** /v1/profiles | List profiles |
 | [**UpdateProfile**](ProfilesApi.md#updateprofile) | **PUT** /v1/profiles/{profileId} | Update profile |
 
@@ -318,6 +319,108 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getprofilelimits"></a>
+# **GetProfileLimits**
+> ProfileCallLimitsResponse GetProfileLimits (string profileId)
+
+Get profile call limits
+
+Returns every voice call limit that applies to calls on this profile's numbers: the profile's own limits (set with `maxOutboundCallsPerHour`, `maxDailyCallSpendUsd` and `maxForwardedMinutesPerDay` on the profile) and the team limits they sit inside.  Each entry has the limit, what is used in its window and what remains. Spend entries are in billed USD, the unit `maxDailyCallSpendUsd` uses.  A null `limit` (and `remaining`) means the profile sets no limit there; only the team limits apply. Past any limit an outbound call returns 429 `call_limit_reached` and a forward to a phone goes to voicemail. A profile-scoped API key can read its own profile. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetProfileLimitsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ProfilesApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | 
+
+            try
+            {
+                // Get profile call limits
+                ProfileCallLimitsResponse result = apiInstance.GetProfileLimits(profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ProfilesApi.GetProfileLimits: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetProfileLimitsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get profile call limits
+    ApiResponse<ProfileCallLimitsResponse> response = apiInstance.GetProfileLimitsWithHttpInfo(profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ProfilesApi.GetProfileLimitsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** |  |  |
+
+### Return type
+
+[**ProfileCallLimitsResponse**](ProfileCallLimitsResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Limits and usage |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key or user cannot access this profile. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listprofiles"></a>
 # **ListProfiles**
 > ProfilesListResponse ListProfiles (bool? includeOverLimit = null, string? name = null, string? externalId = null, int? limit = null, int? skip = null)
@@ -432,7 +535,7 @@ catch (ApiException e)
 
 Update profile
 
-Updates a profile's name, description, color, default timezone, externalId, default status, or zero content retention.
+Updates a profile's name, description, color, default timezone, externalId, default status, zero content retention, or call limits.
 
 ### Example
 ```csharp

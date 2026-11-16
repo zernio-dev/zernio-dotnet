@@ -2607,6 +2607,10 @@ docs/ProductSeo.md
 docs/ProductVariant.md
 docs/ProductsApi.md
 docs/Profile.md
+docs/ProfileCallLimit.md
+docs/ProfileCallLimitsResponse.md
+docs/ProfileCallLimitsResponseProfile.md
+docs/ProfileCallLimitsResponseTeam.md
 docs/ProfileCreateResponse.md
 docs/ProfileDeleteResponse.md
 docs/ProfileGetResponse.md
@@ -6489,6 +6493,10 @@ src/Zernio.Test/Model/ProductOptionsInnerTests.cs
 src/Zernio.Test/Model/ProductSeoTests.cs
 src/Zernio.Test/Model/ProductTests.cs
 src/Zernio.Test/Model/ProductVariantTests.cs
+src/Zernio.Test/Model/ProfileCallLimitTests.cs
+src/Zernio.Test/Model/ProfileCallLimitsResponseProfileTests.cs
+src/Zernio.Test/Model/ProfileCallLimitsResponseTeamTests.cs
+src/Zernio.Test/Model/ProfileCallLimitsResponseTests.cs
 src/Zernio.Test/Model/ProfileCreateResponseTests.cs
 src/Zernio.Test/Model/ProfileDeleteResponseTests.cs
 src/Zernio.Test/Model/ProfileGetResponseTests.cs
@@ -10364,6 +10372,10 @@ src/Zernio/Model/ProductOptionsInner.cs
 src/Zernio/Model/ProductSeo.cs
 src/Zernio/Model/ProductVariant.cs
 src/Zernio/Model/Profile.cs
+src/Zernio/Model/ProfileCallLimit.cs
+src/Zernio/Model/ProfileCallLimitsResponse.cs
+src/Zernio/Model/ProfileCallLimitsResponseProfile.cs
+src/Zernio/Model/ProfileCallLimitsResponseTeam.cs
 src/Zernio/Model/ProfileCreateResponse.cs
 src/Zernio/Model/ProfileDeleteResponse.cs
 src/Zernio/Model/ProfileGetResponse.cs
