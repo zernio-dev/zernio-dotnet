@@ -14,10 +14,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateCustomConversionGoal**](ConversionsApi.md#createcustomconversiongoal) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
 | [**CreateEventDestination**](ConversionsApi.md#createeventdestination) | **POST** /v1/events/destinations | Add an event destination |
 | [**CreateForwardingRule**](ConversionsApi.md#createforwardingrule) | **POST** /v1/events/forwarding-rules | Add a forwarding rule |
+| [**CreateTrackingSite**](ConversionsApi.md#createtrackingsite) | **POST** /v1/tracking-sites | Turn on server-side tracking for a website |
 | [**DeleteAdConversionDestination**](ConversionsApi.md#deleteadconversiondestination) | **DELETE** /v1/ads/conversions/destinations/{destinationId} | Delete a conversion destination |
 | [**DeleteConversionDestination**](ConversionsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**DeleteEventDestination**](ConversionsApi.md#deleteeventdestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
 | [**DeleteForwardingRule**](ConversionsApi.md#deleteforwardingrule) | **DELETE** /v1/events/forwarding-rules/{ruleId} | Remove a forwarding rule |
+| [**DeleteTrackingSite**](ConversionsApi.md#deletetrackingsite) | **DELETE** /v1/tracking-sites/{siteId} | Delete a tracking site |
 | [**GetAdConversionDestination**](ConversionsApi.md#getadconversiondestination) | **GET** /v1/ads/conversions/destinations/{destinationId} | Get a conversion destination |
 | [**GetAdConversionMetrics**](ConversionsApi.md#getadconversionmetrics) | **GET** /v1/ads/conversions/destinations/{destinationId}/metrics | Get attribution metrics |
 | [**GetConversionDestination**](ConversionsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
@@ -25,6 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetConversionsQuality**](ConversionsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**GetEvent**](ConversionsApi.md#getevent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**GetEventsOverview**](ConversionsApi.md#geteventsoverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
+| [**GetTrackingSite**](ConversionsApi.md#gettrackingsite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**ListAdConversionAssociations**](ConversionsApi.md#listadconversionassociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**ListAdConversionDestinations**](ConversionsApi.md#listadconversiondestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations |
 | [**ListAdConversionGoals**](ConversionsApi.md#listadconversiongoals) | **GET** /v1/ads/conversions/goals | List account conversion goals |
@@ -36,11 +39,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListEventDestinations**](ConversionsApi.md#listeventdestinations) | **GET** /v1/events/destinations | List event destinations |
 | [**ListEvents**](ConversionsApi.md#listevents) | **GET** /v1/events | List stored events |
 | [**ListForwardingRules**](ConversionsApi.md#listforwardingrules) | **GET** /v1/events/forwarding-rules | List forwarding rules |
+| [**ListTrackingSites**](ConversionsApi.md#listtrackingsites) | **GET** /v1/tracking-sites | List tracking sites |
 | [**RemoveAdConversionAssociations**](ConversionsApi.md#removeadconversionassociations) | **DELETE** /v1/ads/conversions/destinations/{destinationId}/associations | Remove associated campaigns |
 | [**RemoveConversionAssociations**](ConversionsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**RemoveCustomConversionGoal**](ConversionsApi.md#removecustomconversiongoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**RestateEvent**](ConversionsApi.md#restateevent) | **PATCH** /v1/events/{eventId} | Change a stored event&#39;s value |
 | [**RetractEvent**](ConversionsApi.md#retractevent) | **DELETE** /v1/events/{eventId} | Retract a stored event |
+| [**RotateTrackingSiteKey**](ConversionsApi.md#rotatetrackingsitekey) | **POST** /v1/tracking-sites/{siteId}/rotate-key | Rotate a tracking site&#39;s key |
 | [**SendConversions**](ConversionsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events |
 | [**SendEvents**](ConversionsApi.md#sendevents) | **POST** /v1/events | Send events to every destination |
 | [**UpdateAdConversionDestination**](ConversionsApi.md#updateadconversiondestination) | **PATCH** /v1/ads/conversions/destinations/{destinationId} | Update a conversion destination |
@@ -49,6 +54,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateConversionDestination**](ConversionsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**UpdateCustomConversionGoal**](ConversionsApi.md#updatecustomconversiongoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
 | [**UpdateForwardingRule**](ConversionsApi.md#updateforwardingrule) | **PATCH** /v1/events/forwarding-rules/{ruleId} | Change a forwarding rule&#39;s API secret |
+| [**UpdateTrackingSite**](ConversionsApi.md#updatetrackingsite) | **PATCH** /v1/tracking-sites/{siteId} | Update a tracking site |
 
 <a id="addadconversionassociations"></a>
 # **AddAdConversionAssociations**
@@ -1102,6 +1108,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createtrackingsite"></a>
+# **CreateTrackingSite**
+> CreateTrackingSite201Response CreateTrackingSite (string idempotencyKey, CreateTrackingSiteRequest createTrackingSiteRequest)
+
+Turn on server-side tracking for a website
+
+Creates a tracking site. With `storeAccountId`, Zernio installs its tag on the connected Shopify, WordPress (WooCommerce), Wix or Webflow store. With only `url`, paste the returned `install.snippet` into the site.  The ad accounts you picked for each connection get a forwarding rule, so website conversions reach them at once. `checks` shows each step; `setup.status` turns `ready` when all have passed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateTrackingSiteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var idempotencyKey = "idempotencyKey_example";  // string | A unique key per site you create, such as a UUID. A retry with the same key and body returns the same site.
+            var createTrackingSiteRequest = new CreateTrackingSiteRequest(); // CreateTrackingSiteRequest | 
+
+            try
+            {
+                // Turn on server-side tracking for a website
+                CreateTrackingSite201Response result = apiInstance.CreateTrackingSite(idempotencyKey, createTrackingSiteRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.CreateTrackingSite: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateTrackingSiteWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Turn on server-side tracking for a website
+    ApiResponse<CreateTrackingSite201Response> response = apiInstance.CreateTrackingSiteWithHttpInfo(idempotencyKey, createTrackingSiteRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.CreateTrackingSiteWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **idempotencyKey** | **string** | A unique key per site you create, such as a UUID. A retry with the same key and body returns the same site. |  |
+| **createTrackingSiteRequest** | [**CreateTrackingSiteRequest**](CreateTrackingSiteRequest.md) |  |  |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Site created. |  -  |
+| **400** | Invalid body, an unsupported store (code &#x60;store_not_supported&#x60;) or a store with no known address (code &#x60;store_url_unknown&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The store already has a site (code &#x60;store_already_tracked&#x60;, with &#x60;details.siteId&#x60;) or is disconnected (code &#x60;reconnect_required&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteadconversiondestination"></a>
 # **DeleteAdConversionDestination**
 > void DeleteAdConversionDestination (string accountId, string destinationId, string? adAccountId = null)
@@ -1508,6 +1618,103 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Rule removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletetrackingsite"></a>
+# **DeleteTrackingSite**
+> void DeleteTrackingSite (string siteId)
+
+Delete a tracking site
+
+Stops collecting at once, removes the tag from the connected store and releases the custom subdomain. Events already stored are kept.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteTrackingSiteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var siteId = "siteId_example";  // string | 
+
+            try
+            {
+                // Delete a tracking site
+                apiInstance.DeleteTrackingSite(siteId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.DeleteTrackingSite: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteTrackingSiteWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a tracking site
+    apiInstance.DeleteTrackingSiteWithHttpInfo(siteId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.DeleteTrackingSiteWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **siteId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Site deleted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -2267,6 +2474,107 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettrackingsite"></a>
+# **GetTrackingSite**
+> CreateTrackingSite201Response GetTrackingSite (string siteId)
+
+Get a tracking site
+
+One site, with its snippet, its custom subdomain and the latest result of each setup check.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetTrackingSiteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var siteId = "siteId_example";  // string | 
+
+            try
+            {
+                // Get a tracking site
+                CreateTrackingSite201Response result = apiInstance.GetTrackingSite(siteId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.GetTrackingSite: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTrackingSiteWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a tracking site
+    ApiResponse<CreateTrackingSite201Response> response = apiInstance.GetTrackingSiteWithHttpInfo(siteId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.GetTrackingSiteWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **siteId** | **string** |  |  |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | No site with this id in your workspace (code &#x60;tracking_site_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3447,6 +3755,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listtrackingsites"></a>
+# **ListTrackingSites**
+> ListTrackingSites200Response ListTrackingSites (string? profileId = null, int? limit = null, string? cursor = null)
+
+List tracking sites
+
+The websites whose visits and conversions Zernio collects, newest first. Pass `profileId` to list one profile's sites.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListTrackingSitesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string? |  (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var cursor = "cursor_example";  // string? | `pagination.nextCursor` from the previous page. (optional) 
+
+            try
+            {
+                // List tracking sites
+                ListTrackingSites200Response result = apiInstance.ListTrackingSites(profileId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.ListTrackingSites: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTrackingSitesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List tracking sites
+    ApiResponse<ListTrackingSites200Response> response = apiInstance.ListTrackingSitesWithHttpInfo(profileId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.ListTrackingSitesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string?** |  | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **cursor** | **string?** | &#x60;pagination.nextCursor&#x60; from the previous page. | [optional]  |
+
+### Return type
+
+[**ListTrackingSites200Response**](ListTrackingSites200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of sites. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="removeadconversionassociations"></a>
 # **RemoveAdConversionAssociations**
 > RemoveAdConversionAssociations200Response RemoveAdConversionAssociations (string accountId, string destinationId, string adAccountId, string campaignIds)
@@ -3979,6 +4391,109 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The event was retracted. Check each destination. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="rotatetrackingsitekey"></a>
+# **RotateTrackingSiteKey**
+> CreateTrackingSite201Response RotateTrackingSiteKey (string siteId, string idempotencyKey)
+
+Rotate a tracking site's key
+
+Issues a new `siteKey`. The old key keeps working for 7 days, so update the snippet on your site within that time.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RotateTrackingSiteKeyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var siteId = "siteId_example";  // string | 
+            var idempotencyKey = "idempotencyKey_example";  // string | A unique key per rotation, such as a UUID.
+
+            try
+            {
+                // Rotate a tracking site's key
+                CreateTrackingSite201Response result = apiInstance.RotateTrackingSiteKey(siteId, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.RotateTrackingSiteKey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RotateTrackingSiteKeyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Rotate a tracking site's key
+    ApiResponse<CreateTrackingSite201Response> response = apiInstance.RotateTrackingSiteKeyWithHttpInfo(siteId, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.RotateTrackingSiteKeyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **siteId** | **string** |  |  |
+| **idempotencyKey** | **string** | A unique key per rotation, such as a UUID. |  |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site with its new key and snippet. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -4828,6 +5343,111 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatetrackingsite"></a>
+# **UpdateTrackingSite**
+> CreateTrackingSite201Response UpdateTrackingSite (string siteId, UpdateTrackingSiteRequest updateTrackingSiteRequest)
+
+Update a tracking site
+
+Changes the site's name, domains, consent mode or custom subdomain. Send at least one field.  `customHostname` sets a subdomain of the site, such as `t.brand.com`; create the CNAME in `customHostname.dnsRecord`. The snippet switches to it once its status is `active`. `null` removes it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateTrackingSiteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var siteId = "siteId_example";  // string | 
+            var updateTrackingSiteRequest = new UpdateTrackingSiteRequest(); // UpdateTrackingSiteRequest | 
+
+            try
+            {
+                // Update a tracking site
+                CreateTrackingSite201Response result = apiInstance.UpdateTrackingSite(siteId, updateTrackingSiteRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.UpdateTrackingSite: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateTrackingSiteWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a tracking site
+    ApiResponse<CreateTrackingSite201Response> response = apiInstance.UpdateTrackingSiteWithHttpInfo(siteId, updateTrackingSiteRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.UpdateTrackingSiteWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **siteId** | **string** |  |  |
+| **updateTrackingSiteRequest** | [**UpdateTrackingSiteRequest**](UpdateTrackingSiteRequest.md) |  |  |
+
+### Return type
+
+[**CreateTrackingSite201Response**](CreateTrackingSite201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated site. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | Another site already uses this subdomain (code &#x60;custom_hostname_taken&#x60;). |  -  |
+| **502** | The subdomain could not be registered for now (code &#x60;provider_unavailable&#x60;). Try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
