@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **ConsecutiveMatches** | **int** |  | 
 **OpenedAt** | **DateTime?** |  | 
 **LastMatchedAt** | **DateTime** |  | 
+**LastEvaluatedAt** | **DateTime** | When a run last evaluated the object of this alert. Older than the latest run means that run did not evaluate it. | 
 **ResolvedAt** | **DateTime?** |  | 
 **ResolvedReason** | **string** |  | 
 
