@@ -95,6 +95,7 @@ docs/AdRuleLevel.md
 docs/AdRuleLifecycle.md
 docs/AdRuleObjectEvaluation.md
 docs/AdRuleObjectEvaluationConditionsInner.md
+docs/AdRuleObjectEvaluationReadingsInner.md
 docs/AdRuleRun.md
 docs/AdRuleRunEvaluation.md
 docs/AdRuleRunEvaluationActionsInner.md
@@ -4024,6 +4025,7 @@ src/Zernio.Test/Model/AdRuleGroupsInnerTests.cs
 src/Zernio.Test/Model/AdRuleLevelTests.cs
 src/Zernio.Test/Model/AdRuleLifecycleTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationConditionsInnerTests.cs
+src/Zernio.Test/Model/AdRuleObjectEvaluationReadingsInnerTests.cs
 src/Zernio.Test/Model/AdRuleObjectEvaluationTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationActionsInnerTests.cs
 src/Zernio.Test/Model/AdRuleRunEvaluationNotificationTests.cs
@@ -7900,6 +7902,7 @@ src/Zernio/Model/AdRuleLevel.cs
 src/Zernio/Model/AdRuleLifecycle.cs
 src/Zernio/Model/AdRuleObjectEvaluation.cs
 src/Zernio/Model/AdRuleObjectEvaluationConditionsInner.cs
+src/Zernio/Model/AdRuleObjectEvaluationReadingsInner.cs
 src/Zernio/Model/AdRuleRun.cs
 src/Zernio/Model/AdRuleRunEvaluation.cs
 src/Zernio/Model/AdRuleRunEvaluationActionsInner.cs
