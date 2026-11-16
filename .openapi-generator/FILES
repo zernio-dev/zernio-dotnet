@@ -3528,6 +3528,10 @@ docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
 docs/WebhookPayloadAccountPermissionsChanged.md
 docs/WebhookPayloadAccountPermissionsChangedAccount.md
+docs/WebhookPayloadAccountPrivacyRequest.md
+docs/WebhookPayloadAccountPrivacyRequestAccount.md
+docs/WebhookPayloadAccountPrivacyRequestPrivacyRequest.md
+docs/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer.md
 docs/WebhookPayloadAccountRateLimited.md
 docs/WebhookPayloadAccountRateLimitedAccount.md
 docs/WebhookPayloadAdAccountStatusChanged.md
@@ -7385,6 +7389,10 @@ src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountPermissionsChangedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountPermissionsChangedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountPrivacyRequestAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomerTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountPrivacyRequestPrivacyRequestTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountPrivacyRequestTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountRateLimitedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountRateLimitedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAdAccountStatusChangedAdAccountTests.cs
@@ -11254,6 +11262,10 @@ src/Zernio/Model/WebhookPayloadAccountDisconnected.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnectedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountPermissionsChanged.cs
 src/Zernio/Model/WebhookPayloadAccountPermissionsChangedAccount.cs
+src/Zernio/Model/WebhookPayloadAccountPrivacyRequest.cs
+src/Zernio/Model/WebhookPayloadAccountPrivacyRequestAccount.cs
+src/Zernio/Model/WebhookPayloadAccountPrivacyRequestPrivacyRequest.cs
+src/Zernio/Model/WebhookPayloadAccountPrivacyRequestPrivacyRequestCustomer.cs
 src/Zernio/Model/WebhookPayloadAccountRateLimited.cs
 src/Zernio/Model/WebhookPayloadAccountRateLimitedAccount.cs
 src/Zernio/Model/WebhookPayloadAdAccountStatusChanged.cs

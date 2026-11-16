@@ -10,6 +10,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountConnected**](WebhookEventsApi.md#onaccountconnected) | **POST** /account.connected | Account connected event |
 | [**OnAccountDisconnected**](WebhookEventsApi.md#onaccountdisconnected) | **POST** /account.disconnected | Account disconnected event |
 | [**OnAccountPermissionsChanged**](WebhookEventsApi.md#onaccountpermissionschanged) | **POST** /account.permissions_changed | Account permissions changed event |
+| [**OnAccountPrivacyRequest**](WebhookEventsApi.md#onaccountprivacyrequest) | **POST** /account.privacy_request | Store privacy request |
 | [**OnAccountRateLimited**](WebhookEventsApi.md#onaccountratelimited) | **POST** /account.rate_limited | Mailbox sending cooldown started |
 | [**OnAdAccountStatusChanged**](WebhookEventsApi.md#onadaccountstatuschanged) | **POST** /ad_account.status_changed | Ad account status changed event |
 | [**OnAdCreated**](WebhookEventsApi.md#onadcreated) | **POST** /ad.created | Ad created event |
@@ -706,6 +707,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadAccountPermissionsChanged** | [**WebhookPayloadAccountPermissionsChanged**](WebhookPayloadAccountPermissionsChanged.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onaccountprivacyrequest"></a>
+# **OnAccountPrivacyRequest**
+> void OnAccountPrivacyRequest (WebhookPayloadAccountPrivacyRequest webhookPayloadAccountPrivacyRequest)
+
+Store privacy request
+
+A Shopify merchant asked to export or erase customer data, or the shop's data after uninstalling the app. Shopify sends these to the installed app, which is Zernio's, so we pass them on to you.  ### What to do  `privacyRequest.type` says which request it is. Export or erase your own copy of the data. Zernio handles its own copy.  ### Who receives it  A customer request goes to every account connected to the shop when it arrives. `shop_redact` arrives 48 hours after the uninstall, when the account is already disconnected, and goes to the accounts that were connected to the shop. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAccountPrivacyRequestExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAccountPrivacyRequest = new WebhookPayloadAccountPrivacyRequest(); // WebhookPayloadAccountPrivacyRequest | 
+
+            try
+            {
+                // Store privacy request
+                apiInstance.OnAccountPrivacyRequest(webhookPayloadAccountPrivacyRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAccountPrivacyRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAccountPrivacyRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store privacy request
+    apiInstance.OnAccountPrivacyRequestWithHttpInfo(webhookPayloadAccountPrivacyRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAccountPrivacyRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAccountPrivacyRequest** | [**WebhookPayloadAccountPrivacyRequest**](WebhookPayloadAccountPrivacyRequest.md) |  |  |
 
 ### Return type
 
