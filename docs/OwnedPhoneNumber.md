@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
 **PhoneNumber** | **string** |  | [optional] 
+**RequestedPhoneNumber** | **string** | The specific number you asked for at purchase (&#x60;phoneNumber&#x60; in the purchase body). Absent when you did not pick one. When it differs from &#x60;phoneNumber&#x60;, WhatsApp refused the picked number (it was likely registered on WhatsApp before), so a different number was issued. | [optional] 
 **Country** | **string** |  | [optional] 
 **NumberType** | **string** | For example local, mobile, national or toll_free. | [optional] 
 **Status** | **string** |  | [optional] 
