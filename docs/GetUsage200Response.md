@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **AutoUpgradeEnabled** | **bool** | Stripe-only. Always false for accounts on usage-based billing. | [optional] 
 **Limits** | [**UsageStatsLimits**](UsageStatsLimits.md) |  | [optional] 
 **Usage** | [**UsageStatsUsage**](UsageStatsUsage.md) |  | [optional] 
+**Profiles** | [**List&lt;UsageStatsProfilesInner&gt;**](UsageStatsProfilesInner.md) | Profile-scoped API keys and members only, without a filter: one block per profile the caller can see, shaped like &#x60;profile&#x60;. | [optional] 
+**Profile** | [**UsageStatsProfile**](UsageStatsProfile.md) |  | [optional] 
 **Spend** | [**UsageStatsSpend**](UsageStatsSpend.md) |  | [optional] 
 **Supported** | **bool** | False for legacy Stripe accounts (no usage-based invoice to split); &#x60;days&#x60; and &#x60;totals&#x60; are then empty/zero. | [optional] 
 **Granularity** | **string** |  | [optional] 

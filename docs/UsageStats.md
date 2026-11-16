@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **AutoUpgradeEnabled** | **bool** | Stripe-only. Always false for accounts on usage-based billing. | [optional] 
 **Limits** | [**UsageStatsLimits**](UsageStatsLimits.md) |  | [optional] 
 **Usage** | [**UsageStatsUsage**](UsageStatsUsage.md) |  | [optional] 
+**Profiles** | [**List&lt;UsageStatsProfilesInner&gt;**](UsageStatsProfilesInner.md) | Profile-scoped API keys and members only, without a filter: one block per profile the caller can see, shaped like &#x60;profile&#x60;. | [optional] 
+**Profile** | [**UsageStatsProfile**](UsageStatsProfile.md) |  | [optional] 
 **Spend** | [**UsageStatsSpend**](UsageStatsSpend.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

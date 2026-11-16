@@ -1653,11 +1653,11 @@ This endpoint does not need any parameter.
 
 <a id="listvoicecalls"></a>
 # **ListVoiceCalls**
-> ListVoiceCalls200Response ListVoiceCalls (string? status = null, string? direction = null, string? number = null, DateTime? before = null, int? limit = null)
+> ListVoiceCalls200Response ListVoiceCalls (string? status = null, string? direction = null, string? number = null, DateTime? before = null, int? limit = null, string? profileId = null, string? externalId = null)
 
 List phone calls
 
-Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned `nextCursor` as `before` for the next page. For a history that also includes WhatsApp calls, use `GET /v1/calls`. 
+Your PSTN voice calls (inbound + outbound), newest first. Cursor pagination: pass the returned `nextCursor` as `before` for the next page. For a history that also includes WhatsApp calls, use `GET /v1/calls`.  `profileId` or `externalId` lists one profile's calls: a call belongs to the profile of the account (number) it was placed on.  A profile-scoped API key or member only ever lists its own profiles' calls, with or without a filter (since 1.630.0). Full-access keys and sessions list the whole team's. 
 
 ### Example
 ```csharp
@@ -1688,11 +1688,13 @@ namespace Example
             var number = "number_example";  // string? | Exact filter: calls involving this number (typically one of your DIDs). E.164, leading + optional. (optional) 
             var before = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
+            var profileId = "profileId_example";  // string? | Only calls of this profile. Mutually exclusive with `externalId`. 404 when the profile is not in your team or outside a scoped key's profiles. (optional) 
+            var externalId = "externalId_example";  // string? | Same as `profileId`, naming the profile by the `externalId` you set on it. 404 when none of your visible profiles carries it; 400 when two of them do. (optional) 
 
             try
             {
                 // List phone calls
-                ListVoiceCalls200Response result = apiInstance.ListVoiceCalls(status, direction, number, before, limit);
+                ListVoiceCalls200Response result = apiInstance.ListVoiceCalls(status, direction, number, before, limit, profileId, externalId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1713,7 +1715,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List phone calls
-    ApiResponse<ListVoiceCalls200Response> response = apiInstance.ListVoiceCallsWithHttpInfo(status, direction, number, before, limit);
+    ApiResponse<ListVoiceCalls200Response> response = apiInstance.ListVoiceCallsWithHttpInfo(status, direction, number, before, limit, profileId, externalId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1735,6 +1737,8 @@ catch (ApiException e)
 | **number** | **string?** | Exact filter: calls involving this number (typically one of your DIDs). E.164, leading + optional. | [optional]  |
 | **before** | **DateTime?** |  | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |
+| **profileId** | **string?** | Only calls of this profile. Mutually exclusive with &#x60;externalId&#x60;. 404 when the profile is not in your team or outside a scoped key&#39;s profiles. | [optional]  |
+| **externalId** | **string?** | Same as &#x60;profileId&#x60;, naming the profile by the &#x60;externalId&#x60; you set on it. 404 when none of your visible profiles carries it; 400 when two of them do. | [optional]  |
 
 ### Return type
 
@@ -1754,7 +1758,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
+| **400** | Invalid query parameter, &#x60;profileId&#x60; together with &#x60;externalId&#x60;, or an &#x60;externalId&#x60; shared by two of your profiles. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The profile named by &#x60;profileId&#x60; / &#x60;externalId&#x60; is not visible to the caller. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
