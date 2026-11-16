@@ -27,6 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetConversionsQuality**](ConversionsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**GetEvent**](ConversionsApi.md#getevent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**GetEventsOverview**](ConversionsApi.md#geteventsoverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
+| [**GetEventsOverviewDaily**](ConversionsApi.md#geteventsoverviewdaily) | **GET** /v1/events/overview/daily | Get daily tracking figures |
 | [**GetTrackingSite**](ConversionsApi.md#gettrackingsite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**ListAdConversionAssociations**](ConversionsApi.md#listadconversionassociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**ListAdConversionDestinations**](ConversionsApi.md#listadconversiondestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations |
@@ -37,6 +38,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListConversionDestinations**](ConversionsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
 | [**ListCustomConversionGoals**](ConversionsApi.md#listcustomconversiongoals) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
 | [**ListEventDestinations**](ConversionsApi.md#listeventdestinations) | **GET** /v1/events/destinations | List event destinations |
+| [**ListEventNames**](ConversionsApi.md#listeventnames) | **GET** /v1/events/names | List stored event names |
 | [**ListEvents**](ConversionsApi.md#listevents) | **GET** /v1/events | List stored events |
 | [**ListForwardingRules**](ConversionsApi.md#listforwardingrules) | **GET** /v1/events/forwarding-rules | List forwarding rules |
 | [**ListTrackingSites**](ConversionsApi.md#listtrackingsites) | **GET** /v1/tracking-sites | List tracking sites |
@@ -2477,6 +2479,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="geteventsoverviewdaily"></a>
+# **GetEventsOverviewDaily**
+> GetEventsOverviewDaily200Response GetEventsOverviewDaily (string? profileId = null, string? period = null)
+
+Get daily tracking figures
+
+The tracking figures of a period, day by day (UTC): events stored, events sent to the ad platforms and how many they accepted, plus the period's totals in the same shape as the overview's `today`.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without `profileId` it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetEventsOverviewDailyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string? | The profile to read. Omit to cover every profile you can access, summed across them. (optional) 
+            var period = "today";  // string? | The days to cover, each ending today (UTC): `today`, the last 7 days or the last 30 days. (optional)  (default to 7d)
+
+            try
+            {
+                // Get daily tracking figures
+                GetEventsOverviewDaily200Response result = apiInstance.GetEventsOverviewDaily(profileId, period);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.GetEventsOverviewDaily: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetEventsOverviewDailyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get daily tracking figures
+    ApiResponse<GetEventsOverviewDaily200Response> response = apiInstance.GetEventsOverviewDailyWithHttpInfo(profileId, period);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.GetEventsOverviewDailyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string?** | The profile to read. Omit to cover every profile you can access, summed across them. | [optional]  |
+| **period** | **string?** | The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7 days or the last 30 days. | [optional] [default to 7d] |
+
+### Return type
+
+[**GetEventsOverviewDaily200Response**](GetEventsOverviewDaily200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The period&#39;s daily figures. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="gettrackingsite"></a>
 # **GetTrackingSite**
 > CreateTrackingSite201Response GetTrackingSite (string siteId)
@@ -3531,6 +3636,107 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listeventnames"></a>
+# **ListEventNames**
+> ListEventNames200Response ListEventNames (string? profileId = null)
+
+List stored event names
+
+The event names stored for a profile in the last 30 days, with how many events carry each, most used first. It includes custom names, such as a site's own events, so you can filter `GET /v1/events` by `eventName`.  Without `profileId` it covers every profile you can access. Retracted events are left out. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListEventNamesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string? | The profile to read. Omit to cover every profile you can access. (optional) 
+
+            try
+            {
+                // List stored event names
+                ListEventNames200Response result = apiInstance.ListEventNames(profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.ListEventNames: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListEventNamesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List stored event names
+    ApiResponse<ListEventNames200Response> response = apiInstance.ListEventNamesWithHttpInfo(profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.ListEventNamesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string?** | The profile to read. Omit to cover every profile you can access. | [optional]  |
+
+### Return type
+
+[**ListEventNames200Response**](ListEventNames200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The event names, up to 200. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
