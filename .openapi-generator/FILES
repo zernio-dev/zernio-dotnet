@@ -1927,6 +1927,7 @@ docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/HubSpotSettings.md
+docs/HubSpotSettingsSyncIssue.md
 docs/IMessageApi.md
 docs/Ids.md
 docs/ImapConnectResult.md
@@ -5848,6 +5849,7 @@ src/Zernio.Test/Model/HideAdComment200ResponseTests.cs
 src/Zernio.Test/Model/HideAdCommentRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
+src/Zernio.Test/Model/HubSpotSettingsSyncIssueTests.cs
 src/Zernio.Test/Model/HubSpotSettingsTests.cs
 src/Zernio.Test/Model/IdsTests.cs
 src/Zernio.Test/Model/ImapConnectResultAccountTests.cs
@@ -9746,6 +9748,7 @@ src/Zernio/Model/HideAdCommentRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
 src/Zernio/Model/HubSpotSettings.cs
+src/Zernio/Model/HubSpotSettingsSyncIssue.cs
 src/Zernio/Model/Ids.cs
 src/Zernio/Model/ImapConnectResult.cs
 src/Zernio/Model/ImapConnectResultAccount.cs
