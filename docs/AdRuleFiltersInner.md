@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** |  | 
 **Op** | **string** |  | 
-**Value** | **int** |  | 
+**Value** | **bool** |  | 
 **Values** | **List&lt;AdRuleFiltersInner.ValuesEnum&gt;** |  | 
 **Change** | **string** |  | 
 

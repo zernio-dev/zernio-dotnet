@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Platform ID of the campaign or ad set. | 
-**Name** | **string** |  | 
+**Id** | **string** | Platform ID of the campaign, ad set or ad. A keyword is &#x60;{adGroupId}~{criterionId}&#x60;, a search term &#x60;{adGroupId}~{term}&#x60;. | 
+**Name** | **string** | The object&#39;s name: the keyword text or the search term. | 
 **CampaignId** | **string** |  | 
+**CampaignName** | **string** | Absent on runs recorded before November 2026. | [optional] 
 **Matched** | **bool** | True when every condition holds. | 
 **Group** | **string** | For a rule with groups: the group this campaign was judged in. &#x60;matched&#x60; and &#x60;conditions&#x60; are the group&#39;s. | [optional] 
 **Conditions** | [**List&lt;AdRuleObjectEvaluationConditionsInner&gt;**](AdRuleObjectEvaluationConditionsInner.md) |  | 

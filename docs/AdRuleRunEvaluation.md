@@ -11,7 +11,8 @@ Name | Type | Description | Notes
 **TimezoneAssumed** | **bool** |  | [optional] 
 **Currency** | **string** |  | [optional] 
 **HourlyThrough** | **DateTime?** | Where the run&#39;s hourly windows ended. Absent on runs recorded before November 2026. | [optional] 
-**Matched** | [**List&lt;AdRuleObjectEvaluation&gt;**](AdRuleObjectEvaluation.md) |  | [optional] 
+**Matched** | [**List&lt;AdRuleObjectEvaluation&gt;**](AdRuleObjectEvaluation.md) | The matched objects, at most 200. &#x60;matchedTotal&#x60; has the full count. | [optional] 
+**MatchedTotal** | **int** | How many objects matched, including those past the 200 recorded. Absent on runs recorded before November 2026. | [optional] 
 **Actions** | [**List&lt;AdRuleRunEvaluationActionsInner&gt;**](AdRuleRunEvaluationActionsInner.md) |  | [optional] 
 **Notification** | [**AdRuleRunEvaluationNotification**](AdRuleRunEvaluationNotification.md) |  | [optional] 
 

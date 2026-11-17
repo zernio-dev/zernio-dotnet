@@ -257,6 +257,9 @@ docs/AutomationAdFilterOneOf2.md
 docs/AutomationAdFilterOneOf3.md
 docs/AutomationAdFilterOneOf4.md
 docs/AutomationAdFilterOneOf5.md
+docs/AutomationAdFilterOneOf6.md
+docs/AutomationAdFilterOneOf7.md
+docs/AutomationAdFilterOneOf8.md
 docs/AutomationAlert.md
 docs/AutomationApproval.md
 docs/AutomationApprovalChange.md
@@ -362,6 +365,7 @@ docs/BlockWhatsAppUsers200Response.md
 docs/BlockWhatsAppUsers200ResponseBlockedInner.md
 docs/BlockWhatsAppUsers200ResponseFailedInner.md
 docs/BlockWhatsAppUsersRequest.md
+docs/BlockedByANegative.md
 docs/Blog.md
 docs/BlogArticle.md
 docs/BlogArticleImage.md
@@ -2443,6 +2447,7 @@ docs/ListedAccount.md
 docs/LogsApi.md
 docs/LookupSmsNumber200Response.md
 docs/MarkConversationRead200Response.md
+docs/MatchType.md
 docs/MediaApi.md
 docs/MediaContentType.md
 docs/MediaItem.md
@@ -2837,6 +2842,7 @@ docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
+docs/SearchTermStatus.md
 docs/SearchTikTokLocations200Response.md
 docs/SearchTikTokLocations200ResponseLocationsInner.md
 docs/SearchTweets200Response.md
@@ -4192,6 +4198,9 @@ src/Zernio.Test/Model/AutomationAdFilterOneOf2Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf3Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf4Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOf5Tests.cs
+src/Zernio.Test/Model/AutomationAdFilterOneOf6Tests.cs
+src/Zernio.Test/Model/AutomationAdFilterOneOf7Tests.cs
+src/Zernio.Test/Model/AutomationAdFilterOneOf8Tests.cs
 src/Zernio.Test/Model/AutomationAdFilterOneOfTests.cs
 src/Zernio.Test/Model/AutomationAdFilterTests.cs
 src/Zernio.Test/Model/AutomationAlertTests.cs
@@ -4299,6 +4308,7 @@ src/Zernio.Test/Model/BlockWhatsAppUsers200ResponseBlockedInnerTests.cs
 src/Zernio.Test/Model/BlockWhatsAppUsers200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/BlockWhatsAppUsers200ResponseTests.cs
 src/Zernio.Test/Model/BlockWhatsAppUsersRequestTests.cs
+src/Zernio.Test/Model/BlockedByANegativeTests.cs
 src/Zernio.Test/Model/BlogArticleImageTests.cs
 src/Zernio.Test/Model/BlogArticleTests.cs
 src/Zernio.Test/Model/BlogTests.cs
@@ -6342,6 +6352,7 @@ src/Zernio.Test/Model/ListWorkflows200ResponseWorkflowsInnerTests.cs
 src/Zernio.Test/Model/ListedAccountTests.cs
 src/Zernio.Test/Model/LookupSmsNumber200ResponseTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
+src/Zernio.Test/Model/MatchTypeTests.cs
 src/Zernio.Test/Model/MediaContentTypeTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaSubtitleTests.cs
@@ -6721,6 +6732,7 @@ src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaTests.cs
 src/Zernio.Test/Model/SearchInboxConversations200ResponseTests.cs
 src/Zernio.Test/Model/SearchInstagramAudio200ResponseTests.cs
 src/Zernio.Test/Model/SearchReddit200ResponseTests.cs
+src/Zernio.Test/Model/SearchTermStatusTests.cs
 src/Zernio.Test/Model/SearchTikTokLocations200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/SearchTikTokLocations200ResponseTests.cs
 src/Zernio.Test/Model/SearchTweets200ResponseMetaTests.cs
@@ -8077,6 +8089,9 @@ src/Zernio/Model/AutomationAdFilterOneOf2.cs
 src/Zernio/Model/AutomationAdFilterOneOf3.cs
 src/Zernio/Model/AutomationAdFilterOneOf4.cs
 src/Zernio/Model/AutomationAdFilterOneOf5.cs
+src/Zernio/Model/AutomationAdFilterOneOf6.cs
+src/Zernio/Model/AutomationAdFilterOneOf7.cs
+src/Zernio/Model/AutomationAdFilterOneOf8.cs
 src/Zernio/Model/AutomationAlert.cs
 src/Zernio/Model/AutomationApproval.cs
 src/Zernio/Model/AutomationApprovalChange.cs
@@ -8181,6 +8196,7 @@ src/Zernio/Model/BlockWhatsAppUsers200Response.cs
 src/Zernio/Model/BlockWhatsAppUsers200ResponseBlockedInner.cs
 src/Zernio/Model/BlockWhatsAppUsers200ResponseFailedInner.cs
 src/Zernio/Model/BlockWhatsAppUsersRequest.cs
+src/Zernio/Model/BlockedByANegative.cs
 src/Zernio/Model/Blog.cs
 src/Zernio/Model/BlogArticle.cs
 src/Zernio/Model/BlogArticleImage.cs
@@ -10224,6 +10240,7 @@ src/Zernio/Model/ListWorkflows200ResponseWorkflowsInner.cs
 src/Zernio/Model/ListedAccount.cs
 src/Zernio/Model/LookupSmsNumber200Response.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
+src/Zernio/Model/MatchType.cs
 src/Zernio/Model/MediaContentType.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaSubtitle.cs
@@ -10603,6 +10620,7 @@ src/Zernio/Model/SearchInboxConversations200ResponseMeta.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMetaFailedAccountsInner.cs
 src/Zernio/Model/SearchInstagramAudio200Response.cs
 src/Zernio/Model/SearchReddit200Response.cs
+src/Zernio/Model/SearchTermStatus.cs
 src/Zernio/Model/SearchTikTokLocations200Response.cs
 src/Zernio/Model/SearchTikTokLocations200ResponseLocationsInner.cs
 src/Zernio/Model/SearchTweets200Response.cs

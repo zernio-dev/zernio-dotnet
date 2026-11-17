@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** |  | 
 **Op** | **string** |  | 
-**Value** | **string** |  | 
+**Value** | **bool** |  | 
 **Values** | **List&lt;AutomationAdFilter.ValuesEnum&gt;** |  | 
 **Change** | **string** |  | 
 
