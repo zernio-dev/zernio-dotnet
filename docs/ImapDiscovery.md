@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Preflight** | [**List&lt;ImapDiscoveryPreflightInner&gt;**](ImapDiscoveryPreflightInner.md) | What to switch on at the provider first, such as IMAP access on GMX or Yandex. | [optional] 
 **ReconnectCause** | **string** |  | [optional] 
 **Reason** | **string** |  | [optional] 
-**UnsupportedReason** | **string** |  | [optional] 
+**UnsupportedReason** | **string** | proton_requires_bridge: Proton Mail only works through its local bridge. forwarding_only: the domain forwards mail (Cloudflare Email Routing) and stores none, so connect the mailbox it forwards to. | [optional] 
 **AppPasswordFallback** | **Object** | Google only: Gmail over IMAP with an app password, for accounts whose admin blocks Google sign-in for other apps. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
