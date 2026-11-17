@@ -453,6 +453,7 @@ namespace Zernio.Test.Api
             //string? purpose = null;
             //string? expectedPlatformUserId = null;
             //string? expectedUsername = null;
+            //string? expectedPhoneNumber = null;
             //bool? forceReauth = null;
             //bool? allowNoLocation = null;
             //string? redirectUrl = null;
@@ -469,7 +470,7 @@ namespace Zernio.Test.Api
             //string? logoUrl = null;
             //string? language = null;
             //bool? handoff = null;
-            //var response = instance.GetConnectUrl(platform, profileId, reconnectAccountId, oauthAppId, purpose, expectedPlatformUserId, expectedUsername, forceReauth, allowNoLocation, redirectUrl, scopes, loginHint, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
+            //var response = instance.GetConnectUrl(platform, profileId, reconnectAccountId, oauthAppId, purpose, expectedPlatformUserId, expectedUsername, expectedPhoneNumber, forceReauth, allowNoLocation, redirectUrl, scopes, loginHint, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
             //Assert.IsType<GetConnectUrl200Response>(response);
         }
 
