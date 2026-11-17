@@ -3399,7 +3399,7 @@ namespace Example
             var redirectUrl = "redirectUrl_example";  // string? | Where the page sends the user afterwards, with status, accountId, platform and email (or status=error and error). (optional) 
             var email = "email_example";  // string? | Prefills the address and skips the first screen. (optional) 
             var name = "name_example";  // string? | Display name for sent mail; the page asks for it when absent. (optional) 
-            var reconnectAccountId = "reconnectAccountId_example";  // string? | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | An IMAP, Google or Microsoft account on this profile to reconnect; its accountId stays the same. IMAP asks only for the new password. Google and Microsoft open that provider's sign-in with the address as the hint and the held areas asked again. Other platforms answer 400, unknown ids 404. (optional) 
 
             try
             {
@@ -3446,7 +3446,7 @@ catch (ApiException e)
 | **redirectUrl** | **string?** | Where the page sends the user afterwards, with status, accountId, platform and email (or status&#x3D;error and error). | [optional]  |
 | **email** | **string?** | Prefills the address and skips the first screen. | [optional]  |
 | **name** | **string?** | Display name for sent mail; the page asks for it when absent. | [optional]  |
-| **reconnectAccountId** | **string?** | Opens the reconnect variant for an IMAP account: only the new password is asked for, and the accountId stays the same. | [optional]  |
+| **reconnectAccountId** | **string?** | An IMAP, Google or Microsoft account on this profile to reconnect; its accountId stays the same. IMAP asks only for the new password. Google and Microsoft open that provider&#39;s sign-in with the address as the hint and the held areas asked again. Other platforms answer 400, unknown ids 404. | [optional]  |
 
 ### Return type
 
