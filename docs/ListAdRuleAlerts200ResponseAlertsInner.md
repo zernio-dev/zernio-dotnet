@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**ObjectId** | **string** | Platform campaign, ad set or ad ID. | 
+**ObjectId** | **string** | Platform campaign, ad set or ad ID, or the id of the keyword or search term. | 
 **State** | **string** |  | 
 **Severity** | **string** |  | 
 **ConsecutiveMatches** | **int** |  | 

@@ -2065,6 +2065,8 @@ docs/ListAccountSitelinks200Response.md
 docs/ListAccountSitelinks200ResponseSitelinksInner.md
 docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
+docs/ListAdAccountRuleAlerts200Response.md
+docs/ListAdAccountRuleAlerts200ResponseAlertsInner.md
 docs/ListAdAccountUserInvitationApprovals200Response.md
 docs/ListAdAccountUserInvitations200Response.md
 docs/ListAdAccountUsers200Response.md
@@ -5972,6 +5974,8 @@ src/Zernio.Test/Model/ListAccountSitelinks200ResponseSitelinksInnerTests.cs
 src/Zernio.Test/Model/ListAccountSitelinks200ResponseTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInnerTests.cs
 src/Zernio.Test/Model/ListAccountStructuredSnippets200ResponseTests.cs
+src/Zernio.Test/Model/ListAdAccountRuleAlerts200ResponseAlertsInnerTests.cs
+src/Zernio.Test/Model/ListAdAccountRuleAlerts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccountUserInvitationApprovals200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccountUserInvitations200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccountUsers200ResponseTests.cs
@@ -9861,6 +9865,8 @@ src/Zernio/Model/ListAccountSitelinks200Response.cs
 src/Zernio/Model/ListAccountSitelinks200ResponseSitelinksInner.cs
 src/Zernio/Model/ListAccountStructuredSnippets200Response.cs
 src/Zernio/Model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.cs
+src/Zernio/Model/ListAdAccountRuleAlerts200Response.cs
+src/Zernio/Model/ListAdAccountRuleAlerts200ResponseAlertsInner.cs
 src/Zernio/Model/ListAdAccountUserInvitationApprovals200Response.cs
 src/Zernio/Model/ListAdAccountUserInvitations200Response.cs
 src/Zernio/Model/ListAdAccountUsers200Response.cs

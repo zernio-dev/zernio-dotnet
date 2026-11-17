@@ -8,6 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAdRule**](AdRulesApi.md#deleteadrule) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule |
 | [**GetAdRule**](AdRulesApi.md#getadrule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
 | [**GetAdRuleHourlyWindows**](AdRulesApi.md#getadrulehourlywindows) | **GET** /v1/ads/rules/hourly-windows | Check whether an ad account has hourly windows |
+| [**ListAdAccountRuleAlerts**](AdRulesApi.md#listadaccountrulealerts) | **GET** /v1/ads/rules/alerts | List an ad account&#39;s open alerts |
 | [**ListAdRuleActivity**](AdRulesApi.md#listadruleactivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**ListAdRuleAlerts**](AdRulesApi.md#listadrulealerts) | **GET** /v1/ads/rules/{ruleId}/alerts | List a rule&#39;s alerts |
 | [**ListAdRuleRuns**](AdRulesApi.md#listadruleruns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
@@ -23,7 +24,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create an ad rule
 
-Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.  Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use `POST /v1/ads/rules/{ruleId}/preview` to see what a rule would match before enabling it.  ### Evaluation  Each object is evaluated on its own, over the ad account's calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.  ### Actions  A rule can notify (the `ad_rule.triggered` webhook), and take at most one of:  - `pause` - `activate` - `adjust_budget`  A keyword rule can notify and pause; a search term rule only notifies.  ### Cooldown  After acting on an object, the rule leaves that object alone for `cooldownMinutes`. A rule that pauses, activates or adjusts budgets needs a cooldown at least as long as its schedule.  ### How `activate` works  `activate` only reactivates objects a rule paused, never ones you paused yourself, and only once the cooldown has passed since that pause.  If you reactivate and pause such an object yourself between two runs of a rule, Zernio cannot tell your pause from the rule's, and an `activate` rule may reactivate it. 
+Creates a rule that checks the campaigns, ad sets, ads, keywords or search terms of one ad account on a schedule and acts on each one that meets every condition.  Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Keyword and search term rules are Google only. Use `POST /v1/ads/rules/{ruleId}/preview` to see what a rule would match before enabling it.  ### Evaluation  Each object is evaluated on its own, over the ad account's calendar days. Campaigns, ad sets and ads read the metrics Zernio syncs; keywords and search terms are summed from the daily history Zernio keeps of them.  ### Actions  A rule can notify (the `ad_rule.triggered` webhook), and take at most one of:  - `pause` - `activate` - `adjust_budget` - `adjust_bid` - `adjust_target` - `reallocate_budget` - `duplicate` - `edit_name`  A keyword rule can notify and pause; a search term rule only notifies.  ### Cooldown  After acting on an object, the rule leaves that object alone for `cooldownMinutes`. A rule that changes ads (any action but `notify`) needs a cooldown at least as long as its schedule.  ### How `activate` works  `activate` only reactivates objects a rule paused, never ones you paused yourself (unless `includeManuallyPaused` is true), and only once the cooldown has passed since that pause.  A rule on set times (`schedule.times`) does not wait for the cooldown: it restarts only what a rule on set times paused, such as a morning restart after a night pause.  If you reactivate and pause such an object yourself between two runs of a rule, Zernio cannot tell your pause from the rule's, and an `activate` rule may reactivate it. 
 
 ### Example
 ```csharp
@@ -427,13 +428,119 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listadaccountrulealerts"></a>
+# **ListAdAccountRuleAlerts**
+> ListAdAccountRuleAlerts200Response ListAdAccountRuleAlerts (string accountId, string adAccountId, int? limit = null, string? cursor = null)
+
+List an ad account's open alerts
+
+The open alerts of every rule of one ad account, newest first, in one call: each alert names its rule in `ruleId`. Only `open` alerts are listed. For one rule's pending and resolved alerts, use `GET /v1/ads/rules/{ruleId}/alerts`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdAccountRuleAlertsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdRulesApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The connected ads account the rules run on.
+            var adAccountId = "adAccountId_example";  // string | The platform ad account ID.
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
+
+            try
+            {
+                // List an ad account's open alerts
+                ListAdAccountRuleAlerts200Response result = apiInstance.ListAdAccountRuleAlerts(accountId, adAccountId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdRulesApi.ListAdAccountRuleAlerts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdAccountRuleAlertsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List an ad account's open alerts
+    ApiResponse<ListAdAccountRuleAlerts200Response> response = apiInstance.ListAdAccountRuleAlertsWithHttpInfo(accountId, adAccountId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdRulesApi.ListAdAccountRuleAlertsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The connected ads account the rules run on. |  |
+| **adAccountId** | **string** | The platform ad account ID. |  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdAccountRuleAlerts200Response**](ListAdAccountRuleAlerts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Open alerts, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadruleactivity"></a>
 # **ListAdRuleActivity**
 > ListAdRuleActivity200Response ListAdRuleActivity (string? ruleId = null, string? accountId = null, string? type = null, DateTime? from = null, DateTime? to = null, int? limit = null, string? cursor = null)
 
 List every change ad rules made
 
-The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach. Entries stay after a rule is renamed or deleted; `ruleName` is the rule's name when it acted. 
+What your rules did over the last 31 days, newest first, across all rules of the profiles the key can reach.  There is one entry per change a rule made or tried: pause, reactivation, budget, bid or target change, copy or name tag. Skipped and failed attempts are included.  Entries stay for those 31 days after a rule is renamed or deleted; `ruleName` is the rule's name when it acted. 
 
 ### Example
 ```csharp
@@ -653,7 +760,7 @@ catch (ApiException e)
 
 List an ad rule's runs
 
-Lists a rule's scheduled runs, newest first: what each run evaluated, matched and did. Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days. For every change across all rules, use `GET /v1/ads/rules/activity`. 
+Lists a rule's scheduled runs, newest first: what each run evaluated, matched and did. A run that matched nothing or did not happen (`no_match`, `paused`) is kept 7 days, any other run 31 days. For every change across all rules, use `GET /v1/ads/rules/activity`. 
 
 ### Example
 ```csharp
@@ -1053,7 +1160,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | A keyword or search term rule is still loading its daily history from Google, a few days per run (&#x60;history_loading&#x60;). The message says how many days are in. Try again later. |  -  |
+| **409** | A keyword or search term rule is still loading its daily history from Google (&#x60;history_loading&#x60;). Loading starts when the rule is saved and a 30-day window takes about two minutes. The message says how many days are loaded. Try again shortly. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
