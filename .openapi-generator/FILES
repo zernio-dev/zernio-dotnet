@@ -3111,6 +3111,7 @@ docs/TrackingSiteCustomHostname.md
 docs/TrackingSiteCustomHostnameDnsRecord.md
 docs/TrackingSiteInstall.md
 docs/TrackingSitePeriodTotals.md
+docs/TrackingSiteProxy.md
 docs/TrackingSiteSetup.md
 docs/TrackingTag.md
 docs/TrackingTagDiagnostic.md
@@ -6997,6 +6998,7 @@ src/Zernio.Test/Model/TrackingSiteCustomHostnameDnsRecordTests.cs
 src/Zernio.Test/Model/TrackingSiteCustomHostnameTests.cs
 src/Zernio.Test/Model/TrackingSiteInstallTests.cs
 src/Zernio.Test/Model/TrackingSitePeriodTotalsTests.cs
+src/Zernio.Test/Model/TrackingSiteProxyTests.cs
 src/Zernio.Test/Model/TrackingSiteSetupTests.cs
 src/Zernio.Test/Model/TrackingSiteTests.cs
 src/Zernio.Test/Model/TrackingTagDiagnosticTests.cs
@@ -10886,6 +10888,7 @@ src/Zernio/Model/TrackingSiteCustomHostname.cs
 src/Zernio/Model/TrackingSiteCustomHostnameDnsRecord.cs
 src/Zernio/Model/TrackingSiteInstall.cs
 src/Zernio/Model/TrackingSitePeriodTotals.cs
+src/Zernio/Model/TrackingSiteProxy.cs
 src/Zernio/Model/TrackingSiteSetup.cs
 src/Zernio/Model/TrackingTag.cs
 src/Zernio/Model/TrackingTagDiagnostic.cs

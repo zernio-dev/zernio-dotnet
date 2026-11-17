@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **SiteKey** | **string** | Public key that names the site in the snippet, such as &#x60;zs_...&#x60;. | [optional] 
 **Domains** | **List&lt;string&gt;** |  | [optional] 
 **CustomHostname** | [**TrackingSiteCustomHostname**](TrackingSiteCustomHostname.md) |  | [optional] 
+**Proxy** | [**TrackingSiteProxy**](TrackingSiteProxy.md) |  | [optional] 
 **ConsentMode** | **TrackingSiteConsentMode** |  | [optional] 
 **Checks** | [**List&lt;TrackingSiteChecksInner&gt;**](TrackingSiteChecksInner.md) | One per setup step: &#x60;script&#x60; for the install, then one per ad account the site sends to, keyed by its platform and ids. | [optional] 
 **Setup** | [**TrackingSiteSetup**](TrackingSiteSetup.md) |  | [optional] 
