@@ -6642,7 +6642,7 @@ catch (ApiException e)
 
 <a id="listlinkedinorganizations"></a>
 # **ListLinkedInOrganizations**
-> ListLinkedInOrganizations200Response ListLinkedInOrganizations (string tempToken, string orgIds)
+> ListLinkedInOrganizations200Response ListLinkedInOrganizations (string orgIds, string? tempToken = null, string? xTempToken = null)
 
 List LinkedIn orgs
 
@@ -6672,13 +6672,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
-            var tempToken = "tempToken_example";  // string | The temporary LinkedIn access token from the OAuth redirect
             var orgIds = 12345678,87654321,11111111;  // string | Comma-separated list of organization IDs to fetch details for (max 100)
+            var tempToken = "tempToken_example";  // string? | The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional) 
+            var xTempToken = "xTempToken_example";  // string? | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional) 
 
             try
             {
                 // List LinkedIn orgs
-                ListLinkedInOrganizations200Response result = apiInstance.ListLinkedInOrganizations(tempToken, orgIds);
+                ListLinkedInOrganizations200Response result = apiInstance.ListLinkedInOrganizations(orgIds, tempToken, xTempToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6699,7 +6700,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List LinkedIn orgs
-    ApiResponse<ListLinkedInOrganizations200Response> response = apiInstance.ListLinkedInOrganizationsWithHttpInfo(tempToken, orgIds);
+    ApiResponse<ListLinkedInOrganizations200Response> response = apiInstance.ListLinkedInOrganizationsWithHttpInfo(orgIds, tempToken, xTempToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6716,8 +6717,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **tempToken** | **string** | The temporary LinkedIn access token from the OAuth redirect |  |
 | **orgIds** | **string** | Comma-separated list of organization IDs to fetch details for (max 100) |  |
+| **tempToken** | **string?** | The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. | [optional]  |
+| **xTempToken** | **string?** | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional]  |
 
 ### Return type
 

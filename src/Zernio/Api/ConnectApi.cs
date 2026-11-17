@@ -1510,10 +1510,11 @@ namespace Zernio.Api
         /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <returns>ListLinkedInOrganizations200Response</returns>
-        ListLinkedInOrganizations200Response ListLinkedInOrganizations(string tempToken, string orgIds);
+        ListLinkedInOrganizations200Response ListLinkedInOrganizations(string orgIds, string? tempToken = default, string? xTempToken = default);
 
         /// <summary>
         /// List LinkedIn orgs
@@ -1522,10 +1523,11 @@ namespace Zernio.Api
         /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <returns>ApiResponse of ListLinkedInOrganizations200Response</returns>
-        ApiResponse<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsWithHttpInfo(string tempToken, string orgIds);
+        ApiResponse<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsWithHttpInfo(string orgIds, string? tempToken = default, string? xTempToken = default);
         /// <summary>
         /// List your OAuth apps
         /// </summary>
@@ -3828,11 +3830,12 @@ namespace Zernio.Api
         /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLinkedInOrganizations200Response</returns>
-        System.Threading.Tasks.Task<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsAsync(string tempToken, string orgIds, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsAsync(string orgIds, string? tempToken = default, string? xTempToken = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List LinkedIn orgs
@@ -3841,11 +3844,12 @@ namespace Zernio.Api
         /// Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLinkedInOrganizations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListLinkedInOrganizations200Response>> ListLinkedInOrganizationsWithHttpInfoAsync(string tempToken, string orgIds, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListLinkedInOrganizations200Response>> ListLinkedInOrganizationsWithHttpInfoAsync(string orgIds, string? tempToken = default, string? xTempToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List your OAuth apps
         /// </summary>
@@ -13897,12 +13901,13 @@ namespace Zernio.Api
         /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <returns>ListLinkedInOrganizations200Response</returns>
-        public ListLinkedInOrganizations200Response ListLinkedInOrganizations(string tempToken, string orgIds)
+        public ListLinkedInOrganizations200Response ListLinkedInOrganizations(string orgIds, string? tempToken = default, string? xTempToken = default)
         {
-            Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response> localVarResponse = ListLinkedInOrganizationsWithHttpInfo(tempToken, orgIds);
+            Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response> localVarResponse = ListLinkedInOrganizationsWithHttpInfo(orgIds, tempToken, xTempToken);
             return localVarResponse.Data;
         }
 
@@ -13910,15 +13915,12 @@ namespace Zernio.Api
         /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <returns>ApiResponse of ListLinkedInOrganizations200Response</returns>
-        public Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsWithHttpInfo(string tempToken, string orgIds)
+        public Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsWithHttpInfo(string orgIds, string? tempToken = default, string? xTempToken = default)
         {
-            // verify the required parameter 'tempToken' is set
-            if (tempToken == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tempToken' when calling ConnectApi->ListLinkedInOrganizations");
-
             // verify the required parameter 'orgIds' is set
             if (orgIds == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'orgIds' when calling ConnectApi->ListLinkedInOrganizations");
@@ -13939,8 +13941,15 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+            if (tempToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+            }
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "orgIds", orgIds));
+            if (xTempToken != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Temp-Token", Zernio.Client.ClientUtils.ParameterToString(xTempToken)); // header parameter
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -13965,13 +13974,14 @@ namespace Zernio.Api
         /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLinkedInOrganizations200Response</returns>
-        public async System.Threading.Tasks.Task<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsAsync(string tempToken, string orgIds, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListLinkedInOrganizations200Response> ListLinkedInOrganizationsAsync(string orgIds, string? tempToken = default, string? xTempToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response> localVarResponse = await ListLinkedInOrganizationsWithHttpInfoAsync(tempToken, orgIds, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response> localVarResponse = await ListLinkedInOrganizationsWithHttpInfoAsync(orgIds, tempToken, xTempToken, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -13979,16 +13989,13 @@ namespace Zernio.Api
         /// List LinkedIn orgs Fetch full LinkedIn organization details (logos, vanity names, websites) for custom UI. No authentication required, only the tempToken from OAuth.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect</param>
         /// <param name="orgIds">Comma-separated list of organization IDs to fetch details for (max 100)</param>
+        /// <param name="tempToken">The temporary LinkedIn access token from the OAuth redirect. Required unless sent in the X-Temp-Token header. (optional)</param>
+        /// <param name="xTempToken">The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLinkedInOrganizations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response>> ListLinkedInOrganizationsWithHttpInfoAsync(string tempToken, string orgIds, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLinkedInOrganizations200Response>> ListLinkedInOrganizationsWithHttpInfoAsync(string orgIds, string? tempToken = default, string? xTempToken = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'tempToken' is set
-            if (tempToken == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'tempToken' when calling ConnectApi->ListLinkedInOrganizations");
-
             // verify the required parameter 'orgIds' is set
             if (orgIds == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'orgIds' when calling ConnectApi->ListLinkedInOrganizations");
@@ -14011,8 +14018,15 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+            if (tempToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+            }
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "orgIds", orgIds));
+            if (xTempToken != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Temp-Token", Zernio.Client.ClientUtils.ParameterToString(xTempToken)); // header parameter
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

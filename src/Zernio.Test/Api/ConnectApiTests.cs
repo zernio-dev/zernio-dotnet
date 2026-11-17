@@ -889,9 +889,10 @@ namespace Zernio.Test.Api
         public void ListLinkedInOrganizationsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string tempToken = null;
             //string orgIds = null;
-            //var response = instance.ListLinkedInOrganizations(tempToken, orgIds);
+            //string? tempToken = null;
+            //string? xTempToken = null;
+            //var response = instance.ListLinkedInOrganizations(orgIds, tempToken, xTempToken);
             //Assert.IsType<ListLinkedInOrganizations200Response>(response);
         }
 
