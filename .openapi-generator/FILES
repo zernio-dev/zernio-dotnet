@@ -1712,6 +1712,8 @@ docs/GetRedditFlairs200ResponseFlairsInner.md
 docs/GetRedditPostComments200Response.md
 docs/GetRedditSubreddits200Response.md
 docs/GetRedditSubreddits200ResponseSubredditsInner.md
+docs/GetSalesforceConnectUrl200Response.md
+docs/GetSalesforceSettings200Response.md
 docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
@@ -2811,6 +2813,8 @@ docs/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.md
 docs/RunGoogleAnalyticsReportRequest.md
 docs/RunGoogleAnalyticsReportRequestAllOfDateRangesInner.md
 docs/SMSApi.md
+docs/SalesforceSettings.md
+docs/SalesforceSettingsSyncIssue.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
 docs/ScheduleBroadcast200ResponseBroadcast.md
@@ -3393,6 +3397,8 @@ docs/UpdateProfileRequest.md
 docs/UpdateQueueSlotRequest.md
 docs/UpdateRcsAgentRequest.md
 docs/UpdateRedditSubredditsRequest.md
+docs/UpdateSalesforceSettings200Response.md
+docs/UpdateSalesforceSettingsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
 docs/UpdateSequenceRequest.md
@@ -5628,6 +5634,8 @@ src/Zernio.Test/Model/GetRedditFlairs200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditPostComments200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditSubreddits200ResponseSubredditsInnerTests.cs
 src/Zernio.Test/Model/GetRedditSubreddits200ResponseTests.cs
+src/Zernio.Test/Model/GetSalesforceConnectUrl200ResponseTests.cs
+src/Zernio.Test/Model/GetSalesforceSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceTests.cs
@@ -6704,6 +6712,8 @@ src/Zernio.Test/Model/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesIn
 src/Zernio.Test/Model/RunGoogleAnalyticsRealtimeReportRequestTests.cs
 src/Zernio.Test/Model/RunGoogleAnalyticsReportRequestAllOfDateRangesInnerTests.cs
 src/Zernio.Test/Model/RunGoogleAnalyticsReportRequestTests.cs
+src/Zernio.Test/Model/SalesforceSettingsSyncIssueTests.cs
+src/Zernio.Test/Model/SalesforceSettingsTests.cs
 src/Zernio.Test/Model/SavedTargetingAudienceTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseTests.cs
@@ -7280,6 +7290,8 @@ src/Zernio.Test/Model/UpdateProfileRequestTests.cs
 src/Zernio.Test/Model/UpdateQueueSlotRequestTests.cs
 src/Zernio.Test/Model/UpdateRcsAgentRequestTests.cs
 src/Zernio.Test/Model/UpdateRedditSubredditsRequestTests.cs
+src/Zernio.Test/Model/UpdateSalesforceSettings200ResponseTests.cs
+src/Zernio.Test/Model/UpdateSalesforceSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTemplateTests.cs
@@ -9519,6 +9531,8 @@ src/Zernio/Model/GetRedditFlairs200ResponseFlairsInner.cs
 src/Zernio/Model/GetRedditPostComments200Response.cs
 src/Zernio/Model/GetRedditSubreddits200Response.cs
 src/Zernio/Model/GetRedditSubreddits200ResponseSubredditsInner.cs
+src/Zernio/Model/GetSalesforceConnectUrl200Response.cs
+src/Zernio/Model/GetSalesforceSettings200Response.cs
 src/Zernio/Model/GetSequence200Response.cs
 src/Zernio/Model/GetSequence200ResponseSequence.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInner.cs
@@ -10595,6 +10609,8 @@ src/Zernio/Model/RunGoogleAnalyticsRealtimeReportRequest.cs
 src/Zernio/Model/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.cs
 src/Zernio/Model/RunGoogleAnalyticsReportRequest.cs
 src/Zernio/Model/RunGoogleAnalyticsReportRequestAllOfDateRangesInner.cs
+src/Zernio/Model/SalesforceSettings.cs
+src/Zernio/Model/SalesforceSettingsSyncIssue.cs
 src/Zernio/Model/SavedTargetingAudience.cs
 src/Zernio/Model/ScheduleBroadcast200Response.cs
 src/Zernio/Model/ScheduleBroadcast200ResponseBroadcast.cs
@@ -11171,6 +11187,8 @@ src/Zernio/Model/UpdateProfileRequest.cs
 src/Zernio/Model/UpdateQueueSlotRequest.cs
 src/Zernio/Model/UpdateRcsAgentRequest.cs
 src/Zernio/Model/UpdateRedditSubredditsRequest.cs
+src/Zernio/Model/UpdateSalesforceSettings200Response.cs
+src/Zernio/Model/UpdateSalesforceSettingsRequest.cs
 src/Zernio/Model/UpdateSequence200Response.cs
 src/Zernio/Model/UpdateSequence200ResponseSequence.cs
 src/Zernio/Model/UpdateSequenceRequest.cs
