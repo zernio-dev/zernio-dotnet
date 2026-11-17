@@ -513,7 +513,7 @@ catch (ApiException e)
 
 <a id="completewhatsappphoneselection"></a>
 # **CompleteWhatsAppPhoneSelection**
-> CompleteWhatsAppPhoneSelection200Response CompleteWhatsAppPhoneSelection (CompleteWhatsAppPhoneSelectionRequest completeWhatsAppPhoneSelectionRequest, string? xConnectToken = null)
+> CompleteWhatsAppPhoneSelection200Response CompleteWhatsAppPhoneSelection (CompleteWhatsAppPhoneSelectionRequest completeWhatsAppPhoneSelectionRequest, string? xConnectToken = null, string? xTempToken = null)
 
 Complete number selection
 
@@ -545,11 +545,12 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var completeWhatsAppPhoneSelectionRequest = new CompleteWhatsAppPhoneSelectionRequest(); // CompleteWhatsAppPhoneSelectionRequest | 
             var xConnectToken = "xConnectToken_example";  // string? | Alternative auth for API users' end customers (optional) 
+            var xTempToken = "xTempToken_example";  // string? | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional) 
 
             try
             {
                 // Complete number selection
-                CompleteWhatsAppPhoneSelection200Response result = apiInstance.CompleteWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken);
+                CompleteWhatsAppPhoneSelection200Response result = apiInstance.CompleteWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken, xTempToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -570,7 +571,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Complete number selection
-    ApiResponse<CompleteWhatsAppPhoneSelection200Response> response = apiInstance.CompleteWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken);
+    ApiResponse<CompleteWhatsAppPhoneSelection200Response> response = apiInstance.CompleteWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken, xTempToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -589,6 +590,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **completeWhatsAppPhoneSelectionRequest** | [**CompleteWhatsAppPhoneSelectionRequest**](CompleteWhatsAppPhoneSelectionRequest.md) |  |  |
 | **xConnectToken** | **string?** | Alternative auth for API users&#39; end customers | [optional]  |
+| **xTempToken** | **string?** | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional]  |
 
 ### Return type
 
@@ -608,7 +610,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone number connected successfully |  -  |
-| **400** | Missing required fields (profileId, phoneNumberId, wabaId, or tempToken) |  -  |
+| **400** | Missing required fields (profileId, phoneNumberId, wabaId), or none of tempToken, the X-Temp-Token header or connectFlow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
@@ -7375,7 +7377,7 @@ catch (ApiException e)
 
 <a id="listwhatsappphonenumbers"></a>
 # **ListWhatsAppPhoneNumbers**
-> ListWhatsAppPhoneNumbers200Response ListWhatsAppPhoneNumbers (string profileId, string tempToken, string? xConnectToken = null)
+> ListWhatsAppPhoneNumbers200Response ListWhatsAppPhoneNumbers (string profileId, string? tempToken = null, string? xTempToken = null, string? connectFlow = null, string? xConnectToken = null)
 
 List numbers for selection
 
@@ -7406,13 +7408,15 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | The Zernio profile ID from the headless redirect
-            var tempToken = "tempToken_example";  // string | The temporary access token from the headless redirect
+            var tempToken = "tempToken_example";  // string? | The temporary access token from the headless redirect. Required unless sent in the X-Temp-Token header. (optional) 
+            var xTempToken = "xTempToken_example";  // string? | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. (optional) 
+            var connectFlow = "connectFlow_example";  // string? | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. (optional) 
             var xConnectToken = "xConnectToken_example";  // string? | Alternative auth for API users' end customers (used when the bearer token is scoped to a different user) (optional) 
 
             try
             {
                 // List numbers for selection
-                ListWhatsAppPhoneNumbers200Response result = apiInstance.ListWhatsAppPhoneNumbers(profileId, tempToken, xConnectToken);
+                ListWhatsAppPhoneNumbers200Response result = apiInstance.ListWhatsAppPhoneNumbers(profileId, tempToken, xTempToken, connectFlow, xConnectToken);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7433,7 +7437,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List numbers for selection
-    ApiResponse<ListWhatsAppPhoneNumbers200Response> response = apiInstance.ListWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xConnectToken);
+    ApiResponse<ListWhatsAppPhoneNumbers200Response> response = apiInstance.ListWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xTempToken, connectFlow, xConnectToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7451,7 +7455,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string** | The Zernio profile ID from the headless redirect |  |
-| **tempToken** | **string** | The temporary access token from the headless redirect |  |
+| **tempToken** | **string?** | The temporary access token from the headless redirect. Required unless sent in the X-Temp-Token header. | [optional]  |
+| **xTempToken** | **string?** | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional]  |
+| **connectFlow** | **string?** | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional]  |
 | **xConnectToken** | **string?** | Alternative auth for API users&#39; end customers (used when the bearer token is scoped to a different user) | [optional]  |
 
 ### Return type
@@ -7472,7 +7478,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone numbers fetched successfully |  -  |
-| **400** | Missing profileId or tempToken |  -  |
+| **400** | Missing profileId, or none of tempToken, the X-Temp-Token header or connectFlow |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch phone numbers (Meta API error, expired token, or insufficient permissions) |  -  |
 
