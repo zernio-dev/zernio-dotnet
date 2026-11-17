@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **HasEmail** | **bool** |  | [optional] 
 **HasPhone** | **bool** |  | [optional] 
 **HasExternalId** | **bool** |  | [optional] 
+**PairedEventId** | **string** | In a &#x60;GET /v1/events&#x60; page: the other copy of the same conversion, when a website tag (&#x60;web&#x60;) and a server send both stored it under different event ids (same event name, a shared identifier, at most 30 minutes apart). &#x60;null&#x60; otherwise, and always &#x60;null&#x60; from &#x60;GET /v1/events/{eventId}&#x60;. | [optional] 
 **Ad** | [**StoredEventAd**](StoredEventAd.md) |  | [optional] 
 **Deliveries** | [**List&lt;ListEvents200ResponseEventsInnerAllOfDeliveriesInner&gt;**](ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md) | Each destination the event was forwarded to, with its latest send status. The full detail is on GET /v1/events/{eventId}. | [optional] 
 
