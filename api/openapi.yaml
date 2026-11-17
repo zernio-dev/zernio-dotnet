@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.636.0
+  version: 1.637.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -50377,6 +50377,14 @@ paths:
             \ usage-based plans include it by default."
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "A keyword or search term rule is still loading its daily history\
+            \ from Google, a few days per run (`history_loading`). The message says\
+            \ how many days are in. Try again later."
       security:
       - bearerAuth: []
       summary: Preview an ad rule
