@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.647.0
+  version: 1.647.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15092,6 +15092,8 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
   /v1/connect/salesforce:
     get:
       description: |
@@ -15172,6 +15174,8 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-platforms:
+      - salesforce
   /v1/connect/stripe:
     get:
       description: |
@@ -23591,6 +23595,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
     patch:
       description: "Turn contact sync, message logging or deal reporting on or off\
         \ for a connected HubSpot portal. Send at least one field; omitted fields\
@@ -23627,6 +23633,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - hubspot
   /v1/accounts/{accountId}/salesforce-settings:
     get:
       description: Read a connected Salesforce org and what Zernio syncs to it.
@@ -23656,6 +23664,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - salesforce
     patch:
       description: "Turn person creation, conversation logging or delivery marks on\
         \ or off for a connected Salesforce org, or choose whether new people become\
@@ -23693,6 +23703,8 @@ paths:
       tags:
       - Accounts
       x-resource-group: accounts
+      x-platforms:
+      - salesforce
   /v1/accounts/{accountId}/stripe-settings:
     get:
       description: Read a connected Stripe account and whether its sales go to the
