@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.650.0
+  version: 1.651.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44794,6 +44794,8 @@ paths:
           - whatsapp
           - slack
           - sms
+          - rcs
+          - tiktok
           - line
           - wechat
           type: string
@@ -171062,6 +171064,8 @@ components:
           - whatsapp
           - slack
           - sms
+          - rcs
+          - tiktok
           - line
           - wechat
           type: string
