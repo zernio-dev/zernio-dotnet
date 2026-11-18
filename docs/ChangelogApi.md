@@ -8,7 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="listchangelog"></a>
 # **ListChangelog**
-> ListChangelog200Response ListChangelog (string? type = null, string? impact = null, string? platform = null, DateTime? before = null, int? limit = null)
+> ListChangelog200Response ListChangelog (string? type = null, string? impact = null, string? platform = null, DateTime? before = null, DateTime? cursor = null, int? limit = null)
 
 List API changelog entries
 
@@ -39,12 +39,13 @@ namespace Example
             var impact = "none";  // string? | Only entries with this impact. `action_required` lists the changes an integration may need to act on. (optional) 
             var platform = whatsapp;  // string? | Only entries tagged with this platform or area slug (see `platforms` on the entry). One slug per request. (optional) 
             var before = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only entries published strictly before this instant. Pass the previous page's `nextCursor`. (optional) 
+            var cursor = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Same as `before`, for clients that send `nextCursor` back as `cursor`. `before` wins when both are set. (optional) 
             var limit = 20;  // int? |  (optional)  (default to 20)
 
             try
             {
                 // List API changelog entries
-                ListChangelog200Response result = apiInstance.ListChangelog(type, impact, platform, before, limit);
+                ListChangelog200Response result = apiInstance.ListChangelog(type, impact, platform, before, cursor, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -65,7 +66,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List API changelog entries
-    ApiResponse<ListChangelog200Response> response = apiInstance.ListChangelogWithHttpInfo(type, impact, platform, before, limit);
+    ApiResponse<ListChangelog200Response> response = apiInstance.ListChangelogWithHttpInfo(type, impact, platform, before, cursor, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -86,6 +87,7 @@ catch (ApiException e)
 | **impact** | **string?** | Only entries with this impact. &#x60;action_required&#x60; lists the changes an integration may need to act on. | [optional]  |
 | **platform** | **string?** | Only entries tagged with this platform or area slug (see &#x60;platforms&#x60; on the entry). One slug per request. | [optional]  |
 | **before** | **DateTime?** | Only entries published strictly before this instant. Pass the previous page&#39;s &#x60;nextCursor&#x60;. | [optional]  |
+| **cursor** | **DateTime?** | Same as &#x60;before&#x60;, for clients that send &#x60;nextCursor&#x60; back as &#x60;cursor&#x60;. &#x60;before&#x60; wins when both are set. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 20] |
 
 ### Return type
