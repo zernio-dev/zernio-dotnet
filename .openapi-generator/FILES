@@ -995,6 +995,7 @@ docs/CreateStandaloneAdRequestAdditionalHeadlinesInner.md
 docs/CreateStandaloneAdRequestBehaviorsInner.md
 docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCarouselCardsInner.md
+docs/CreateStandaloneAdRequestCarouselCardsInnerVideo.md
 docs/CreateStandaloneAdRequestCatalogIntroCardsInner.md
 docs/CreateStandaloneAdRequestCitiesInner.md
 docs/CreateStandaloneAdRequestCitiesInnerOneOf.md
@@ -2499,6 +2500,7 @@ docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
 docs/MessagingCarouselCard.md
+docs/MessagingCarouselCardVideo.md
 docs/MessengerGreeting.md
 docs/MessengerIceBreakerLocale.md
 docs/MessengerIceBreakerLocaleCallToActionsInner.md
@@ -4985,6 +4987,7 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestAdditionalHeadlinesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBehaviorsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBrandIdentityTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCarouselCardsInnerTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestCarouselCardsInnerVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCatalogIntroCardsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerTests.cs
@@ -6463,6 +6466,7 @@ src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaSubtitleTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MessagingCarouselCardTests.cs
+src/Zernio.Test/Model/MessagingCarouselCardVideoTests.cs
 src/Zernio.Test/Model/MessengerGreetingTests.cs
 src/Zernio.Test/Model/MessengerIceBreakerLocaleCallToActionsInnerTests.cs
 src/Zernio.Test/Model/MessengerIceBreakerLocaleTests.cs
@@ -8937,6 +8941,7 @@ src/Zernio/Model/CreateStandaloneAdRequestAdditionalHeadlinesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestBehaviorsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestBrandIdentity.cs
 src/Zernio/Model/CreateStandaloneAdRequestCarouselCardsInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestCarouselCardsInnerVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestCatalogIntroCardsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInnerOneOf.cs
@@ -10414,6 +10419,7 @@ src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaSubtitle.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/MessagingCarouselCard.cs
+src/Zernio/Model/MessagingCarouselCardVideo.cs
 src/Zernio/Model/MessengerGreeting.cs
 src/Zernio/Model/MessengerIceBreakerLocale.cs
 src/Zernio/Model/MessengerIceBreakerLocaleCallToActionsInner.cs

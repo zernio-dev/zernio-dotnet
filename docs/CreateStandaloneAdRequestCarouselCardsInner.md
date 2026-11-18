@@ -1,10 +1,12 @@
 # Zernio.Model.CreateStandaloneAdRequestCarouselCardsInner
+Exactly one of `imageUrl` or `video` (a 400 otherwise).
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ImageUrl** | **string** | Card image; uploaded to the ad account and referenced by hash. | 
+**ImageUrl** | **string** | Image card: the card image, uploaded to the ad account and referenced by hash. | [optional] 
+**Video** | [**CreateStandaloneAdRequestCarouselCardsInnerVideo**](CreateStandaloneAdRequestCarouselCardsInnerVideo.md) |  | [optional] 
 **LinkUrl** | **string** | Card destination URL. Defaults to the top-level linkUrl, or Meta&#39;s lead-form link when leadGenFormId is set and neither is provided. | [optional] 
 **Headline** | **string** | Card headline, shown below the card image. | [optional] 
 **Description** | **string** | Card description, shown under the headline. | [optional] 
