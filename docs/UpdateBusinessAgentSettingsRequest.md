@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rollout** | [**UpdateBusinessAgentSettingsRequestRollout**](UpdateBusinessAgentSettingsRequestRollout.md) |  | [optional] 
+**Rollout** | [**SetTagNewAds200Response**](SetTagNewAds200Response.md) |  | [optional] 
 **Handoff** | [**UpdateBusinessAgentSettingsRequestHandoff**](UpdateBusinessAgentSettingsRequestHandoff.md) |  | [optional] 
 **Followup** | [**UpdateBusinessAgentSettingsRequestFollowup**](UpdateBusinessAgentSettingsRequestFollowup.md) |  | [optional] 
 **AiAudience** | **string** |  | [optional] 

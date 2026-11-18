@@ -1761,6 +1761,7 @@ docs/GetStripeConnectUrl200Response.md
 docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
+docs/GetTagNewAds200Response.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
 docs/GetTelegramConnectStatus200Response.md
@@ -1966,6 +1967,7 @@ docs/ImapConnectResultSettings.md
 docs/ImapConnectResultStages.md
 docs/ImapDiscovery.md
 docs/ImapDiscoveryAuth.md
+docs/ImapDiscoveryHostReplacementsInner.md
 docs/ImapDiscoveryImap.md
 docs/ImapDiscoveryPreflightInner.md
 docs/ImapDiscoveryProvider.md
@@ -3073,6 +3075,8 @@ docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
 docs/SetRedditPostFlairRequest.md
+docs/SetTagNewAds200Response.md
+docs/SetTagNewAdsRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SetUpAdAccountBilling200Response.md
@@ -3323,7 +3327,6 @@ docs/UpdateBroadcastRequestTemplateVariableMappingValue.md
 docs/UpdateBusinessAgentSettingsRequest.md
 docs/UpdateBusinessAgentSettingsRequestFollowup.md
 docs/UpdateBusinessAgentSettingsRequestHandoff.md
-docs/UpdateBusinessAgentSettingsRequestRollout.md
 docs/UpdateCalendarEventRequest.md
 docs/UpdateCampaignAdSchedule200Response.md
 docs/UpdateCampaignAdScheduleRequest.md
@@ -5748,6 +5751,7 @@ src/Zernio.Test/Model/GetStripeConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetStripeSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseRulesInnerTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseTests.cs
+src/Zernio.Test/Model/GetTagNewAds200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramConnectStatus200ResponseTests.cs
@@ -5951,6 +5955,7 @@ src/Zernio.Test/Model/ImapConnectResultSettingsTests.cs
 src/Zernio.Test/Model/ImapConnectResultStagesTests.cs
 src/Zernio.Test/Model/ImapConnectResultTests.cs
 src/Zernio.Test/Model/ImapDiscoveryAuthTests.cs
+src/Zernio.Test/Model/ImapDiscoveryHostReplacementsInnerTests.cs
 src/Zernio.Test/Model/ImapDiscoveryImapTests.cs
 src/Zernio.Test/Model/ImapDiscoveryPreflightInnerTests.cs
 src/Zernio.Test/Model/ImapDiscoveryProviderTests.cs
@@ -7036,6 +7041,8 @@ src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermission200ResponseTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
+src/Zernio.Test/Model/SetTagNewAds200ResponseTests.cs
+src/Zernio.Test/Model/SetTagNewAdsRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
 src/Zernio.Test/Model/SetUpAdAccountBilling200ResponseTests.cs
@@ -7279,7 +7286,6 @@ src/Zernio.Test/Model/UpdateBroadcastRequestTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestTests.cs
 src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestFollowupTests.cs
 src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestHandoffTests.cs
-src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestRolloutTests.cs
 src/Zernio.Test/Model/UpdateBusinessAgentSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateCalendarEventRequestTests.cs
 src/Zernio.Test/Model/UpdateCampaignAdSchedule200ResponseTests.cs
@@ -9709,6 +9715,7 @@ src/Zernio/Model/GetStripeConnectUrl200Response.cs
 src/Zernio/Model/GetStripeSettings200Response.cs
 src/Zernio/Model/GetSubredditRules200Response.cs
 src/Zernio/Model/GetSubredditRules200ResponseRulesInner.cs
+src/Zernio/Model/GetTagNewAds200Response.cs
 src/Zernio/Model/GetTelegramCommands200Response.cs
 src/Zernio/Model/GetTelegramCommands200ResponseDataInner.cs
 src/Zernio/Model/GetTelegramConnectStatus200Response.cs
@@ -9913,6 +9920,7 @@ src/Zernio/Model/ImapConnectResultSettings.cs
 src/Zernio/Model/ImapConnectResultStages.cs
 src/Zernio/Model/ImapDiscovery.cs
 src/Zernio/Model/ImapDiscoveryAuth.cs
+src/Zernio/Model/ImapDiscoveryHostReplacementsInner.cs
 src/Zernio/Model/ImapDiscoveryImap.cs
 src/Zernio/Model/ImapDiscoveryPreflightInner.cs
 src/Zernio/Model/ImapDiscoveryProvider.cs
@@ -10997,6 +11005,8 @@ src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetPartnershipAdPermission200Response.cs
 src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
+src/Zernio/Model/SetTagNewAds200Response.cs
+src/Zernio/Model/SetTagNewAdsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
 src/Zernio/Model/SetUpAdAccountBilling200Response.cs
@@ -11241,7 +11251,6 @@ src/Zernio/Model/UpdateBroadcastRequestTemplateVariableMappingValue.cs
 src/Zernio/Model/UpdateBusinessAgentSettingsRequest.cs
 src/Zernio/Model/UpdateBusinessAgentSettingsRequestFollowup.cs
 src/Zernio/Model/UpdateBusinessAgentSettingsRequestHandoff.cs
-src/Zernio/Model/UpdateBusinessAgentSettingsRequestRollout.cs
 src/Zernio/Model/UpdateCalendarEventRequest.cs
 src/Zernio/Model/UpdateCampaignAdSchedule200Response.cs
 src/Zernio/Model/UpdateCampaignAdScheduleRequest.cs

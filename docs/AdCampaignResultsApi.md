@@ -7,10 +7,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetCampaignResultEvents**](AdCampaignResultsApi.md#getcampaignresultevents) | **GET** /v1/ads/campaign-results/events | List the events that count as campaign results |
 | [**GetCampaignResultsTotals**](AdCampaignResultsApi.md#getcampaignresultstotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**GetCampaignResultsUpload**](AdCampaignResultsApi.md#getcampaignresultsupload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
+| [**GetTagNewAds**](AdCampaignResultsApi.md#gettagnewads) | **GET** /v1/ads/campaign-results/tag-new-ads | Get the Tag new ads setting |
 | [**ListCampaignResultMetrics**](AdCampaignResultsApi.md#listcampaignresultmetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**ListCampaignResults**](AdCampaignResultsApi.md#listcampaignresults) | **GET** /v1/ads/campaign-results | List your results per campaign |
 | [**SetCampaignResultEvents**](AdCampaignResultsApi.md#setcampaignresultevents) | **PUT** /v1/ads/campaign-results/events | Choose the events that count as campaign results |
 | [**SetCampaignResultMetric**](AdCampaignResultsApi.md#setcampaignresultmetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
+| [**SetTagNewAds**](AdCampaignResultsApi.md#settagnewads) | **PUT** /v1/ads/campaign-results/tag-new-ads | Turn Tag new ads on or off |
 | [**UploadCampaignResults**](AdCampaignResultsApi.md#uploadcampaignresults) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 
 <a id="getcampaignresultevents"></a>
@@ -310,6 +312,100 @@ catch (ApiException e)
 | **200** | The upload&#39;s outcome. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettagnewads"></a>
+# **GetTagNewAds**
+> GetTagNewAds200Response GetTagNewAds ()
+
+Get the Tag new ads setting
+
+Whether new Meta and Google ads created through Zernio carry the Zernio ad tag (`zrn=<platform ad id>` on the landing URL) when the create request does not set `tracking.zernioTag`. Off until you turn it on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetTagNewAdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignResultsApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // Get the Tag new ads setting
+                GetTagNewAds200Response result = apiInstance.GetTagNewAds();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignResultsApi.GetTagNewAds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTagNewAdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get the Tag new ads setting
+    ApiResponse<GetTagNewAds200Response> response = apiInstance.GetTagNewAdsWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignResultsApi.GetTagNewAdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**GetTagNewAds200Response**](GetTagNewAds200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -714,6 +810,106 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The metric. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="settagnewads"></a>
+# **SetTagNewAds**
+> SetTagNewAds200Response SetTagNewAds (SetTagNewAdsRequest setTagNewAdsRequest)
+
+Turn Tag new ads on or off
+
+With `enabled: true`, every new Meta and Google ad created through `POST /v1/ads/create` carries `zrn=<platform ad id>` on its landing URL, so the conversions it brings are tied to its campaign. A request that sets `tracking.zernioTag` keeps its own choice.  The same rules as `tracking.zernioTag` apply: lead forms, call ads, existing creatives and app promotion are skipped, and a Google ad is tagged only when it inherits no final URL suffix. Existing ads are never changed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SetTagNewAdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignResultsApi(httpClient, config, httpClientHandler);
+            var setTagNewAdsRequest = new SetTagNewAdsRequest(); // SetTagNewAdsRequest | 
+
+            try
+            {
+                // Turn Tag new ads on or off
+                SetTagNewAds200Response result = apiInstance.SetTagNewAds(setTagNewAdsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignResultsApi.SetTagNewAds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SetTagNewAdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Turn Tag new ads on or off
+    ApiResponse<SetTagNewAds200Response> response = apiInstance.SetTagNewAdsWithHttpInfo(setTagNewAdsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignResultsApi.SetTagNewAdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **setTagNewAdsRequest** | [**SetTagNewAdsRequest**](SetTagNewAdsRequest.md) |  |  |
+
+### Return type
+
+[**SetTagNewAds200Response**](SetTagNewAds200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The setting now in force. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
