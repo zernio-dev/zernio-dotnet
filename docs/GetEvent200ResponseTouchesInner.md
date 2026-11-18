@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **AdAccountId** | **string** |  | [optional] 
 **CampaignId** | **string** | The campaign the touch resolved to; null for a touch that named none (search, referral). | [optional] 
-**Credit** | **Dictionary&lt;string, decimal&gt;** | The share of the event (0 to 1) this touch gets per model: first_touch, last_non_direct, linear, position_based, time_decay. | [optional] 
+**Credit** | **Dictionary&lt;string, decimal&gt;** | The share of the event (0 to 1) this touch gets per model: first_touch, last_non_direct, linear, position_based, time_decay, w_shaped. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

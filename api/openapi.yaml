@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.676.0
+  version: 1.677.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -52384,6 +52384,7 @@ paths:
           - linear
           - position_based
           - time_decay
+          - w_shaped
           type: string
         style: form
       - description: "Comma-separated platform campaign ids, at most 500. Omit for\
@@ -52594,6 +52595,7 @@ paths:
           - linear
           - position_based
           - time_decay
+          - w_shaped
           type: string
         style: form
       - description: "Comma-separated platform ad account ids, at most 100. Omit for\
@@ -55671,6 +55673,7 @@ paths:
           - linear
           - position_based
           - time_decay
+          - w_shaped
           type: string
         style: form
       - description: |-
@@ -70862,6 +70865,7 @@ paths:
           - stripe
           - web
           - salesforce
+          - postback
           type: string
         style: form
       - description: "Only events sent to this ad platform, such as `metaads` or `googleads`."
@@ -88696,7 +88700,8 @@ components:
         source:
           description: "Where the event came from: `api`, `relay`, `web`, `shopify`,\
             \ `woocommerce`, `stripe`, `hubspot`, `salesforce`, `meta_leads`, `google_leads`,\
-            \ `linkedin_leads` or `tiktok_leads`."
+            \ `linkedin_leads`, `tiktok_leads` or `postback` (an affiliate network's\
+            \ postback to a tracking link)."
           type: string
         eventName:
           type: string
@@ -131726,6 +131731,7 @@ components:
             - stripe
             - web
             - salesforce
+            - postback
             type: string
           nullable: true
           type: array
@@ -208275,7 +208281,7 @@ components:
           additionalProperties:
             type: number
           description: "The share of the event (0 to 1) this touch gets per model:\
-            \ first_touch, last_non_direct, linear, position_based, time_decay."
+            \ first_touch, last_non_direct, linear, position_based, time_decay, w_shaped."
           example:
             linear: 0.5
             first_touch: 1
@@ -208358,10 +208364,10 @@ components:
             $ref: "#/components/schemas/getEvent_200_response_deliveries_inner"
           type: array
         touches:
-          description: "The touches of the person before the event that its credit\
-            \ is split across, oldest first: website visits from somewhere (an ad\
-            \ click, search, a tagged link) and earlier lead forms or sales. Empty\
-            \ when the event counts whole for its own campaign under every model."
+          description: "The touches the event is split across, oldest first: website\
+            \ visits (an ad click, search, a tagged link), the first and latest visits\
+            \ HubSpot recorded for a deal, and earlier lead forms or sales. Empty\
+            \ when the event counts whole for its own campaign."
           items:
             $ref: "#/components/schemas/getEvent_200_response_touches_inner"
           type: array
@@ -208555,6 +208561,7 @@ components:
             - stripe
             - web
             - salesforce
+            - postback
             type: string
           minItems: 1
           type: array
@@ -225055,7 +225062,8 @@ components:
         source:
           description: "Who sent it: `api`, `relay`, a lead form (`meta_leads`, `google_leads`,\
             \ `linkedin_leads`, `tiktok_leads`), a store (`shopify`, `woocommerce`),\
-            \ `stripe`, `hubspot` or `salesforce`."
+            \ `stripe`, `hubspot`, `salesforce`, `web` or `postback` (an affiliate\
+            \ network's postback to a tracking link)."
           type: string
         actionSource:
           nullable: true
