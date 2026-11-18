@@ -454,6 +454,7 @@ docs/BusinessAgentWebsiteInput.md
 docs/BusinessCenter.md
 docs/BusyBlock.md
 docs/CPM.md
+docs/CRMApi.md
 docs/Calendar.md
 docs/CalendarApi.md
 docs/CalendarAvailability200Response.md
@@ -836,6 +837,10 @@ docs/CreateConversionDestinationRequest.md
 docs/CreateCreatorCampaign201Response.md
 docs/CreateCreatorCampaignRequest.md
 docs/CreateCreatorPayoutLogin200Response.md
+docs/CreateCrmActivity201Response.md
+docs/CreateCrmActivityRequest.md
+docs/CreateCrmContact201Response.md
+docs/CreateCrmContactRequest.md
 docs/CreateCustomConversionGoalRequest.md
 docs/CreateCustomConversionRequest.md
 docs/CreateCustomField200Response.md
@@ -1097,6 +1102,12 @@ docs/CreatorPortalReferralOrdersInner.md
 docs/CreatorPortalReferralTotals.md
 docs/CreatorPortalSample.md
 docs/CreatorPortalSubmission.md
+docs/CrmActivity.md
+docs/CrmContact.md
+docs/CrmContactInput.md
+docs/CrmDeal.md
+docs/CrmNativePropertiesValue.md
+docs/CrmOwner.md
 docs/CrosspostDiscordMessage200Response.md
 docs/CtwaAdRequestBody.md
 docs/CtwaAdRequestBodyCitiesInner.md
@@ -1494,6 +1505,7 @@ docs/GetConversionsQuality200ResponseRowsInner.md
 docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md
 docs/GetCreatorPayouts200Response.md
 docs/GetCreatorPortal200Response.md
+docs/GetCrmDeal200Response.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -2224,6 +2236,8 @@ docs/ListContacts200ResponseFilters.md
 docs/ListContacts200ResponsePagination.md
 docs/ListConversionActions200Response.md
 docs/ListCreatorCampaigns200Response.md
+docs/ListCrmDeals200Response.md
+docs/ListCrmOwners200Response.md
 docs/ListCustomConversionGoals200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
@@ -2838,6 +2852,7 @@ docs/SearchAvailablePhoneNumbers200Response.md
 docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md
 docs/SearchAvailableWhatsAppNumbers200Response.md
 docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md
+docs/SearchCrmContacts200Response.md
 docs/SearchDiscordGuildMembers200Response.md
 docs/SearchGoogleBusinessLocations200Response.md
 docs/SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.md
@@ -3313,6 +3328,7 @@ docs/UpdateConversionAction200ResponseAction.md
 docs/UpdateConversionActionRequest.md
 docs/UpdateConversionDestinationRequest.md
 docs/UpdateCreatorCampaignRequest.md
+docs/UpdateCrmDealRequest.md
 docs/UpdateCustomConversionGoal200Response.md
 docs/UpdateCustomConversionGoalRequest.md
 docs/UpdateCustomField200Response.md
@@ -3904,6 +3920,7 @@ src/Zernio.Test/Api/BlogsApiTests.cs
 src/Zernio.Test/Api/BrandedCallingApiTests.cs
 src/Zernio.Test/Api/BroadcastsApiTests.cs
 src/Zernio.Test/Api/BusinessAgentApiTests.cs
+src/Zernio.Test/Api/CRMApiTests.cs
 src/Zernio.Test/Api/CalendarApiTests.cs
 src/Zernio.Test/Api/CallsApiTests.cs
 src/Zernio.Test/Api/ChangelogApiTests.cs
@@ -4776,6 +4793,10 @@ src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/CreateCreatorCampaign201ResponseTests.cs
 src/Zernio.Test/Model/CreateCreatorCampaignRequestTests.cs
 src/Zernio.Test/Model/CreateCreatorPayoutLogin200ResponseTests.cs
+src/Zernio.Test/Model/CreateCrmActivity201ResponseTests.cs
+src/Zernio.Test/Model/CreateCrmActivityRequestTests.cs
+src/Zernio.Test/Model/CreateCrmContact201ResponseTests.cs
+src/Zernio.Test/Model/CreateCrmContactRequestTests.cs
 src/Zernio.Test/Model/CreateCustomConversionGoalRequestTests.cs
 src/Zernio.Test/Model/CreateCustomConversionRequestTests.cs
 src/Zernio.Test/Model/CreateCustomField200ResponseTests.cs
@@ -5035,6 +5056,12 @@ src/Zernio.Test/Model/CreatorPortalReferralTests.cs
 src/Zernio.Test/Model/CreatorPortalReferralTotalsTests.cs
 src/Zernio.Test/Model/CreatorPortalSampleTests.cs
 src/Zernio.Test/Model/CreatorPortalSubmissionTests.cs
+src/Zernio.Test/Model/CrmActivityTests.cs
+src/Zernio.Test/Model/CrmContactInputTests.cs
+src/Zernio.Test/Model/CrmContactTests.cs
+src/Zernio.Test/Model/CrmDealTests.cs
+src/Zernio.Test/Model/CrmNativePropertiesValueTests.cs
+src/Zernio.Test/Model/CrmOwnerTests.cs
 src/Zernio.Test/Model/CrosspostDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCitiesInnerTests.cs
 src/Zernio.Test/Model/CtwaAdRequestBodyCreativesInnerTests.cs
@@ -5419,6 +5446,7 @@ src/Zernio.Test/Model/GetConversionsQuality200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetConversionsQuality200ResponseTests.cs
 src/Zernio.Test/Model/GetCreatorPayouts200ResponseTests.cs
 src/Zernio.Test/Model/GetCreatorPortal200ResponseTests.cs
+src/Zernio.Test/Model/GetCrmDeal200ResponseTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerMetricsTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponsePlatformBreakdownInnerTests.cs
@@ -6142,6 +6170,8 @@ src/Zernio.Test/Model/ListContacts200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionActions200ResponseTests.cs
 src/Zernio.Test/Model/ListCreatorCampaigns200ResponseTests.cs
+src/Zernio.Test/Model/ListCrmDeals200ResponseTests.cs
+src/Zernio.Test/Model/ListCrmOwners200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseTests.cs
@@ -6740,6 +6770,7 @@ src/Zernio.Test/Model/SearchAvailablePhoneNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/SearchAvailablePhoneNumbers200ResponseTests.cs
 src/Zernio.Test/Model/SearchAvailableWhatsAppNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/SearchAvailableWhatsAppNumbers200ResponseTests.cs
+src/Zernio.Test/Model/SearchCrmContacts200ResponseTests.cs
 src/Zernio.Test/Model/SearchDiscordGuildMembers200ResponseTests.cs
 src/Zernio.Test/Model/SearchGoogleBusinessLocations200ResponseGoogleLocationsInnerTests.cs
 src/Zernio.Test/Model/SearchGoogleBusinessLocations200ResponseTests.cs
@@ -7209,6 +7240,7 @@ src/Zernio.Test/Model/UpdateConversionAction200ResponseTests.cs
 src/Zernio.Test/Model/UpdateConversionActionRequestTests.cs
 src/Zernio.Test/Model/UpdateConversionDestinationRequestTests.cs
 src/Zernio.Test/Model/UpdateCreatorCampaignRequestTests.cs
+src/Zernio.Test/Model/UpdateCrmDealRequestTests.cs
 src/Zernio.Test/Model/UpdateCustomConversionGoal200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCustomConversionGoalRequestTests.cs
 src/Zernio.Test/Model/UpdateCustomField200ResponseFieldTests.cs
@@ -7786,6 +7818,7 @@ src/Zernio/Api/BlogsApi.cs
 src/Zernio/Api/BrandedCallingApi.cs
 src/Zernio/Api/BroadcastsApi.cs
 src/Zernio/Api/BusinessAgentApi.cs
+src/Zernio/Api/CRMApi.cs
 src/Zernio/Api/CalendarApi.cs
 src/Zernio/Api/CallsApi.cs
 src/Zernio/Api/ChangelogApi.cs
@@ -8676,6 +8709,10 @@ src/Zernio/Model/CreateConversionDestinationRequest.cs
 src/Zernio/Model/CreateCreatorCampaign201Response.cs
 src/Zernio/Model/CreateCreatorCampaignRequest.cs
 src/Zernio/Model/CreateCreatorPayoutLogin200Response.cs
+src/Zernio/Model/CreateCrmActivity201Response.cs
+src/Zernio/Model/CreateCrmActivityRequest.cs
+src/Zernio/Model/CreateCrmContact201Response.cs
+src/Zernio/Model/CreateCrmContactRequest.cs
 src/Zernio/Model/CreateCustomConversionGoalRequest.cs
 src/Zernio/Model/CreateCustomConversionRequest.cs
 src/Zernio/Model/CreateCustomField200Response.cs
@@ -8935,6 +8972,12 @@ src/Zernio/Model/CreatorPortalReferralOrdersInner.cs
 src/Zernio/Model/CreatorPortalReferralTotals.cs
 src/Zernio/Model/CreatorPortalSample.cs
 src/Zernio/Model/CreatorPortalSubmission.cs
+src/Zernio/Model/CrmActivity.cs
+src/Zernio/Model/CrmContact.cs
+src/Zernio/Model/CrmContactInput.cs
+src/Zernio/Model/CrmDeal.cs
+src/Zernio/Model/CrmNativePropertiesValue.cs
+src/Zernio/Model/CrmOwner.cs
 src/Zernio/Model/CrosspostDiscordMessage200Response.cs
 src/Zernio/Model/CtwaAdRequestBody.cs
 src/Zernio/Model/CtwaAdRequestBodyCitiesInner.cs
@@ -9319,6 +9362,7 @@ src/Zernio/Model/GetConversionsQuality200ResponseRowsInner.cs
 src/Zernio/Model/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.cs
 src/Zernio/Model/GetCreatorPayouts200Response.cs
 src/Zernio/Model/GetCreatorPortal200Response.cs
+src/Zernio/Model/GetCrmDeal200Response.cs
 src/Zernio/Model/GetDailyMetrics200Response.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInner.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInnerMetrics.cs
@@ -10042,6 +10086,8 @@ src/Zernio/Model/ListContacts200ResponseFilters.cs
 src/Zernio/Model/ListContacts200ResponsePagination.cs
 src/Zernio/Model/ListConversionActions200Response.cs
 src/Zernio/Model/ListCreatorCampaigns200Response.cs
+src/Zernio/Model/ListCrmDeals200Response.cs
+src/Zernio/Model/ListCrmOwners200Response.cs
 src/Zernio/Model/ListCustomConversionGoals200Response.cs
 src/Zernio/Model/ListCustomFields200Response.cs
 src/Zernio/Model/ListCustomFields200ResponseFieldsInner.cs
@@ -10640,6 +10686,7 @@ src/Zernio/Model/SearchAvailablePhoneNumbers200Response.cs
 src/Zernio/Model/SearchAvailablePhoneNumbers200ResponseNumbersInner.cs
 src/Zernio/Model/SearchAvailableWhatsAppNumbers200Response.cs
 src/Zernio/Model/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.cs
+src/Zernio/Model/SearchCrmContacts200Response.cs
 src/Zernio/Model/SearchDiscordGuildMembers200Response.cs
 src/Zernio/Model/SearchGoogleBusinessLocations200Response.cs
 src/Zernio/Model/SearchGoogleBusinessLocations200ResponseGoogleLocationsInner.cs
@@ -11109,6 +11156,7 @@ src/Zernio/Model/UpdateConversionAction200ResponseAction.cs
 src/Zernio/Model/UpdateConversionActionRequest.cs
 src/Zernio/Model/UpdateConversionDestinationRequest.cs
 src/Zernio/Model/UpdateCreatorCampaignRequest.cs
+src/Zernio/Model/UpdateCrmDealRequest.cs
 src/Zernio/Model/UpdateCustomConversionGoal200Response.cs
 src/Zernio/Model/UpdateCustomConversionGoalRequest.cs
 src/Zernio/Model/UpdateCustomField200Response.cs
