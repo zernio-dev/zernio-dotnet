@@ -24,6 +24,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdConversionMetrics**](ConversionsApi.md#getadconversionmetrics) | **GET** /v1/ads/conversions/destinations/{destinationId}/metrics | Get attribution metrics |
 | [**GetConversionDestination**](ConversionsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**GetConversionMetrics**](ConversionsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
+| [**GetConversionPaths**](ConversionsApi.md#getconversionpaths) | **GET** /v1/events/paths | List the touch paths that lead to conversions |
 | [**GetConversionsQuality**](ConversionsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**GetEvent**](ConversionsApi.md#getevent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**GetEventsOverview**](ConversionsApi.md#geteventsoverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
@@ -2168,6 +2169,112 @@ catch (ApiException e)
 | **405** | Platform does not support metrics readback. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **429** | LinkedIn analytics rate limit hit. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getconversionpaths"></a>
+# **GetConversionPaths**
+> GetConversionPaths200Response GetConversionPaths (DateOnly fromDate, DateOnly toDate, string? profileId = null, int? limit = null)
+
+List the touch paths that lead to conversions
+
+The most frequent sequences of touches people made before a conversion (sale, lead or another counted event) whose time falls in the range: ad clicks, tagged visits, search, referrals and earlier lead forms, oldest first.  Only conversions with more than one touch have a path. Without `profileId` it covers every profile you can access. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetConversionPathsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Inclusive. At most 400 days after `fromDate`.
+            var profileId = "profileId_example";  // string? | The profile to read. Omit for every profile you can access. (optional) 
+            var limit = 10;  // int? |  (optional)  (default to 10)
+
+            try
+            {
+                // List the touch paths that lead to conversions
+                GetConversionPaths200Response result = apiInstance.GetConversionPaths(fromDate, toDate, profileId, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.GetConversionPaths: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetConversionPathsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the touch paths that lead to conversions
+    ApiResponse<GetConversionPaths200Response> response = apiInstance.GetConversionPathsWithHttpInfo(fromDate, toDate, profileId, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.GetConversionPathsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **fromDate** | **DateOnly** |  |  |
+| **toDate** | **DateOnly** | Inclusive. At most 400 days after &#x60;fromDate&#x60;. |  |
+| **profileId** | **string?** | The profile to read. Omit for every profile you can access. | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 10] |
+
+### Return type
+
+[**GetConversionPaths200Response**](GetConversionPaths200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The paths, most frequent first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1501,6 +1501,8 @@ docs/GetContactChannels200Response.md
 docs/GetContactChannels200ResponseChannelsInner.md
 docs/GetContentDecay200Response.md
 docs/GetContentDecay200ResponseBucketsInner.md
+docs/GetConversionPaths200Response.md
+docs/GetConversionPaths200ResponsePathsInner.md
 docs/GetConversionsQuality200Response.md
 docs/GetConversionsQuality200ResponseRowsInner.md
 docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md
@@ -5470,6 +5472,8 @@ src/Zernio.Test/Model/GetContactChannels200ResponseChannelsInnerTests.cs
 src/Zernio.Test/Model/GetContactChannels200ResponseTests.cs
 src/Zernio.Test/Model/GetContentDecay200ResponseBucketsInnerTests.cs
 src/Zernio.Test/Model/GetContentDecay200ResponseTests.cs
+src/Zernio.Test/Model/GetConversionPaths200ResponsePathsInnerTests.cs
+src/Zernio.Test/Model/GetConversionPaths200ResponseTests.cs
 src/Zernio.Test/Model/GetConversionsQuality200ResponseRowsInnerMatchKeysInnerTests.cs
 src/Zernio.Test/Model/GetConversionsQuality200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetConversionsQuality200ResponseTests.cs
@@ -9414,6 +9418,8 @@ src/Zernio/Model/GetContactChannels200Response.cs
 src/Zernio/Model/GetContactChannels200ResponseChannelsInner.cs
 src/Zernio/Model/GetContentDecay200Response.cs
 src/Zernio/Model/GetContentDecay200ResponseBucketsInner.cs
+src/Zernio/Model/GetConversionPaths200Response.cs
+src/Zernio/Model/GetConversionPaths200ResponsePathsInner.cs
 src/Zernio/Model/GetConversionsQuality200Response.cs
 src/Zernio/Model/GetConversionsQuality200ResponseRowsInner.cs
 src/Zernio/Model/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.cs
