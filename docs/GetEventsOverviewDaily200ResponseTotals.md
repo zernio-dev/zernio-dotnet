@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Sent** | **int** | Events first sent to a destination in the period, one per event and destination. | [optional] 
 **Accepted** | **int** | Those whose latest send the platform accepted. | [optional] 
 **Matched** | **int** | The period&#39;s events matched to an ad campaign. | [optional] 
+**Counted** | **int** | The period&#39;s events that count as campaign results, the ones looked up for a campaign. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

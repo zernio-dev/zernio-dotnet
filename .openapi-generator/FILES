@@ -1478,6 +1478,7 @@ docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignDraft200Response.md
 docs/GetCampaignParticipant200Response.md
 docs/GetCampaignReport200Response.md
+docs/GetCampaignResultEvents200Response.md
 docs/GetCampaignResultsTotals200Response.md
 docs/GetCampaignResultsUpload200Response.md
 docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md
@@ -3028,6 +3029,8 @@ docs/SetBusinessAgentConnectorCredentialsRequest.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf1.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf2.md
+docs/SetCampaignResultEvents200Response.md
+docs/SetCampaignResultEventsRequest.md
 docs/SetCampaignResultMetric200Response.md
 docs/SetCampaignResultMetricRequest.md
 docs/SetCommentModerationRequest.md
@@ -5440,6 +5443,7 @@ src/Zernio.Test/Model/GetCampaignConversionGoals200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignDraft200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignParticipant200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignReport200ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignResultEvents200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignResultsTotals200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignResultsUpload200ResponseTests.cs
 src/Zernio.Test/Model/GetCampaignResultsUpload200ResponseUnmatchedInnerTests.cs
@@ -6966,6 +6970,8 @@ src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestOneOf1Tests.cs
 src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestOneOf2Tests.cs
 src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestOneOfTests.cs
 src/Zernio.Test/Model/SetBusinessAgentConnectorCredentialsRequestTests.cs
+src/Zernio.Test/Model/SetCampaignResultEvents200ResponseTests.cs
+src/Zernio.Test/Model/SetCampaignResultEventsRequestTests.cs
 src/Zernio.Test/Model/SetCampaignResultMetric200ResponseTests.cs
 src/Zernio.Test/Model/SetCampaignResultMetricRequestTests.cs
 src/Zernio.Test/Model/SetCommentModerationRequestTests.cs
@@ -9377,6 +9383,7 @@ src/Zernio/Model/GetCampaignConversionGoals200Response.cs
 src/Zernio/Model/GetCampaignDraft200Response.cs
 src/Zernio/Model/GetCampaignParticipant200Response.cs
 src/Zernio/Model/GetCampaignReport200Response.cs
+src/Zernio/Model/GetCampaignResultEvents200Response.cs
 src/Zernio/Model/GetCampaignResultsTotals200Response.cs
 src/Zernio/Model/GetCampaignResultsUpload200Response.cs
 src/Zernio/Model/GetCampaignResultsUpload200ResponseUnmatchedInner.cs
@@ -10903,6 +10910,8 @@ src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequest.cs
 src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequestOneOf.cs
 src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequestOneOf1.cs
 src/Zernio/Model/SetBusinessAgentConnectorCredentialsRequestOneOf2.cs
+src/Zernio/Model/SetCampaignResultEvents200Response.cs
+src/Zernio/Model/SetCampaignResultEventsRequest.cs
 src/Zernio/Model/SetCampaignResultMetric200Response.cs
 src/Zernio/Model/SetCampaignResultMetricRequest.cs
 src/Zernio/Model/SetCommentModerationRequest.cs
