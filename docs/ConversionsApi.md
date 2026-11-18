@@ -2481,11 +2481,11 @@ catch (ApiException e)
 
 <a id="geteventsoverviewdaily"></a>
 # **GetEventsOverviewDaily**
-> GetEventsOverviewDaily200Response GetEventsOverviewDaily (string? profileId = null, string? period = null)
+> GetEventsOverviewDaily200Response GetEventsOverviewDaily (string? profileId = null, string? period = null, string? eventName = null, string? sources = null, string? platform = null)
 
 Get daily tracking figures
 
-The tracking figures of a period, day by day (UTC): events stored, events sent to the ad platforms and how many they accepted, plus the period's totals in the same shape as the overview's `today`.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without `profileId` it covers every profile you can access. Requires the Ads add-on. 
+The tracking figures of a period, day by day (UTC): events stored per event name, events sent to each ad platform and how many it accepted, the period's totals in the same shape as the overview's `today`, and how many website conversions each platform's browser pixel missed.  An event sent to a destination counts once, on the day of its first send, by its latest outcome. Without `profileId` it covers every profile you can access. `eventName`, `sources` and `platform` narrow every figure. Requires the Ads add-on. 
 
 ### Example
 ```csharp
@@ -2512,12 +2512,15 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string? | The profile to read. Omit to cover every profile you can access, summed across them. (optional) 
-            var period = "today";  // string? | The days to cover, each ending today (UTC): `today`, the last 7 days or the last 30 days. (optional)  (default to 7d)
+            var period = "today";  // string? | The days to cover, each ending today (UTC): `today`, the last 7, 30 or 90 days. (optional)  (default to 7d)
+            var eventName = "eventName_example";  // string? | Only events of this name, such as `Purchase`. (optional) 
+            var sources = "sources_example";  // string? | Comma-separated sources (`web`, `shopify`, `stripe`, `api`...). Only events from them. (optional) 
+            var platform = "platform_example";  // string? | Only sends to this platform (`metaads`, `googleads`...), and only the events sent to it. (optional) 
 
             try
             {
                 // Get daily tracking figures
-                GetEventsOverviewDaily200Response result = apiInstance.GetEventsOverviewDaily(profileId, period);
+                GetEventsOverviewDaily200Response result = apiInstance.GetEventsOverviewDaily(profileId, period, eventName, sources, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2538,7 +2541,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get daily tracking figures
-    ApiResponse<GetEventsOverviewDaily200Response> response = apiInstance.GetEventsOverviewDailyWithHttpInfo(profileId, period);
+    ApiResponse<GetEventsOverviewDaily200Response> response = apiInstance.GetEventsOverviewDailyWithHttpInfo(profileId, period, eventName, sources, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2556,7 +2559,10 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string?** | The profile to read. Omit to cover every profile you can access, summed across them. | [optional]  |
-| **period** | **string?** | The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7 days or the last 30 days. | [optional] [default to 7d] |
+| **period** | **string?** | The days to cover, each ending today (UTC): &#x60;today&#x60;, the last 7, 30 or 90 days. | [optional] [default to 7d] |
+| **eventName** | **string?** | Only events of this name, such as &#x60;Purchase&#x60;. | [optional]  |
+| **sources** | **string?** | Comma-separated sources (&#x60;web&#x60;, &#x60;shopify&#x60;, &#x60;stripe&#x60;, &#x60;api&#x60;...). Only events from them. | [optional]  |
+| **platform** | **string?** | Only sends to this platform (&#x60;metaads&#x60;, &#x60;googleads&#x60;...), and only the events sent to it. | [optional]  |
 
 ### Return type
 

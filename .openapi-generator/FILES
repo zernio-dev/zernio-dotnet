@@ -1535,6 +1535,9 @@ docs/GetEventsOverview200ResponseWebsite.md
 docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetEventsOverviewDaily200Response.md
 docs/GetEventsOverviewDaily200ResponseDaysInner.md
+docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md
+docs/GetEventsOverviewDaily200ResponsePlatformsInner.md
+docs/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.md
 docs/GetEventsOverviewDaily200ResponseTotals.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
@@ -5499,6 +5502,9 @@ src/Zernio.Test/Model/GetEventsOverview200ResponseTodayTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseWebsiteStepsInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseWebsiteTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponseDaysInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePixelMissedInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePlatformsInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponseTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponseTotalsTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsCountryInnerTests.cs
@@ -9440,6 +9446,9 @@ src/Zernio/Model/GetEventsOverview200ResponseWebsite.cs
 src/Zernio/Model/GetEventsOverview200ResponseWebsiteStepsInner.cs
 src/Zernio/Model/GetEventsOverviewDaily200Response.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponseDaysInner.cs
+src/Zernio/Model/GetEventsOverviewDaily200ResponsePixelMissedInner.cs
+src/Zernio/Model/GetEventsOverviewDaily200ResponsePlatformsInner.cs
+src/Zernio/Model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponseTotals.cs
 src/Zernio/Model/GetFacebookDemographics200Response.cs
 src/Zernio/Model/GetFacebookDemographics200ResponseDemographics.cs
