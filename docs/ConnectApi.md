@@ -40,6 +40,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetFacebookPages**](ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**GetGmbLocations**](ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
 | [**GetGoogleAnalyticsConnectUrl**](ConnectApi.md#getgoogleanalyticsconnecturl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
+| [**GetGoogleSearchConsoleConnectUrl**](ConnectApi.md#getgooglesearchconsoleconnecturl) | **GET** /v1/connect/googlesearchconsole | Get Google Search Console OAuth connect URL |
 | [**GetHubSpotConnectUrl**](ConnectApi.md#gethubspotconnecturl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
 | [**GetLinkedInOrganizations**](ConnectApi.md#getlinkedinorganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**GetOAuthApp**](ConnectApi.md#getoauthapp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app |
@@ -67,6 +68,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListGoogleAnalyticsProperties**](ConnectApi.md#listgoogleanalyticsproperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
 | [**ListGoogleBusinessCategories**](ConnectApi.md#listgooglebusinesscategories) | **GET** /v1/accounts/{accountId}/gmb-categories | List Google Business Profile categories |
 | [**ListGoogleBusinessLocations**](ConnectApi.md#listgooglebusinesslocations) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations |
+| [**ListGoogleSearchConsoleSites**](ConnectApi.md#listgooglesearchconsolesites) | **GET** /v1/connect/googlesearchconsole/sites | List Search Console sites for a pending connect |
 | [**ListInstagramPages**](ConnectApi.md#listinstagrampages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account |
 | [**ListLinkedInOrganizations**](ConnectApi.md#listlinkedinorganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
 | [**ListOAuthApps**](ConnectApi.md#listoauthapps) | **GET** /v1/connect/oauth-apps | List your OAuth apps |
@@ -81,6 +83,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SelectFacebookPage**](ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**SelectGoogleAnalyticsProperty**](ConnectApi.md#selectgoogleanalyticsproperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
 | [**SelectGoogleBusinessLocation**](ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
+| [**SelectGoogleSearchConsoleSite**](ConnectApi.md#selectgooglesearchconsolesite) | **POST** /v1/connect/googlesearchconsole/select-site | Connect the chosen Search Console site |
 | [**SelectInstagramAccount**](ConnectApi.md#selectinstagramaccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect |
 | [**SelectLinkedInOrganization**](ConnectApi.md#selectlinkedinorganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org |
 | [**SelectPinterestBoard**](ConnectApi.md#selectpinterestboard) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board |
@@ -3902,6 +3905,118 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getgooglesearchconsoleconnecturl"></a>
+# **GetGoogleSearchConsoleConnectUrl**
+> GetGoogleAnalyticsConnectUrl200Response GetGoogleSearchConsoleConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+
+Get Google Search Console OAuth connect URL
+
+Starts OAuth for Google Search Console. Each connected site becomes its own account with platform `googlesearchconsole`; it reads Google Search data and does not post.  Requested scope: `https://www.googleapis.com/auth/webmasters.readonly`.  ### Flow  Redirect the user to `authUrl`.  - **One verified site:** Zernio connects it and redirects to `redirect_url` (or the dashboard) with `connected=googlesearchconsole`, `profileId`, `accountId` and `username` (the site, such as `acme.com`). - **Several sites:** the user first picks one on a Zernio-hosted page, which then redirects the same way.  ### Your own site picker  Add `headless=true` to `redirect_url`. Zernio then redirects there with `step=select_site`, `profileId`, `platform=googlesearchconsole` and a `pendingDataToken` for `GET /v1/connect/googlesearchconsole/sites` and `POST /v1/connect/googlesearchconsole/select-site`.  ### Errors  On failure the redirect carries `error`, `platform=googlesearchconsole` and `error_message`. Errors include:  - `googlesearchconsole_scope_missing`: the user unticked Search Console access. - `googlesearchconsole_no_sites`: the Google account has no verified Search Console site. - `googlesearchconsole_no_refresh_token`: Google returned no refresh token; connect again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGoogleSearchConsoleConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
+            var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account. (optional) 
+
+            try
+            {
+                // Get Google Search Console OAuth connect URL
+                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetGoogleSearchConsoleConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetGoogleSearchConsoleConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGoogleSearchConsoleConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Google Search Console OAuth connect URL
+    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetGoogleSearchConsoleConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetGoogleSearchConsoleConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
+| **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account. | [optional]  |
+
+### Return type
+
+[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Google Search Console OAuth is not configured. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="gethubspotconnecturl"></a>
 # **GetHubSpotConnectUrl**
 > GetHubSpotConnectUrl200Response GetHubSpotConnectUrl (string profileId, string? redirectUrl = null)
@@ -6749,6 +6864,112 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listgooglesearchconsolesites"></a>
+# **ListGoogleSearchConsoleSites**
+> ListGoogleSearchConsoleSites200Response ListGoogleSearchConsoleSites (string pendingDataToken)
+
+List Search Console sites for a pending connect
+
+For headless flows: lists the verified Search Console sites of a pending connect, so you can show your own picker.  ### Flow  1. The connect started with `redirect_url=...?headless=true`, and the Google account has several verified sites. 2. Zernio redirects to your `redirect_url` with `step=select_site`, `profileId`, `platform=googlesearchconsole` and a `pendingDataToken`. 3. Call this to list the sites and show your own picker. 4. Call `POST /v1/connect/googlesearchconsole/select-site`.  ### Token  - Listing does not consume the token. - A headless token passes through your own URLs, so it is honored only together with your API key (or connect token) for the same profile. - It expires after one hour. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListGoogleSearchConsoleSitesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var pendingDataToken = "pendingDataToken_example";  // string | Token from the headless redirect.
+
+            try
+            {
+                // List Search Console sites for a pending connect
+                ListGoogleSearchConsoleSites200Response result = apiInstance.ListGoogleSearchConsoleSites(pendingDataToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ListGoogleSearchConsoleSites: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListGoogleSearchConsoleSitesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Search Console sites for a pending connect
+    ApiResponse<ListGoogleSearchConsoleSites200Response> response = apiInstance.ListGoogleSearchConsoleSitesWithHttpInfo(pendingDataToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ListGoogleSearchConsoleSitesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pendingDataToken** | **string** | Token from the headless redirect. |  |
+
+### Return type
+
+[**ListGoogleSearchConsoleSites200Response**](ListGoogleSearchConsoleSites200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sites the Google account can read |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listinstagrampages"></a>
 # **ListInstagramPages**
 > ListInstagramPages200Response ListInstagramPages (string profileId, string? tempToken = null, string? xTempToken = null, string? connectFlow = null)
@@ -8230,6 +8451,112 @@ catch (ApiException e)
 | **404** | Selected location not found in available locations |  -  |
 | **422** | locations only. None of the locations could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **500** | Failed to save Google Business Profile connection |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="selectgooglesearchconsolesite"></a>
+# **SelectGoogleSearchConsoleSite**
+> SelectGoogleSearchConsoleSite200Response SelectGoogleSearchConsoleSite (SelectGoogleSearchConsoleSiteRequest selectGoogleSearchConsoleSiteRequest)
+
+Connect the chosen Search Console site
+
+For headless flows. Connects the site the user picked as a `googlesearchconsole` account and returns where to send the user next.  - On success: your `redirect_url` with `connected=googlesearchconsole`, `profileId`, `accountId` and `username`. - When the connect was refused (for example a billing block): an `error`.  Consumes the `pendingDataToken`; a refused or failed attempt leaves it usable for a retry.  Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SelectGoogleSearchConsoleSiteExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var selectGoogleSearchConsoleSiteRequest = new SelectGoogleSearchConsoleSiteRequest(); // SelectGoogleSearchConsoleSiteRequest | 
+
+            try
+            {
+                // Connect the chosen Search Console site
+                SelectGoogleSearchConsoleSite200Response result = apiInstance.SelectGoogleSearchConsoleSite(selectGoogleSearchConsoleSiteRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.SelectGoogleSearchConsoleSite: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SelectGoogleSearchConsoleSiteWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect the chosen Search Console site
+    ApiResponse<SelectGoogleSearchConsoleSite200Response> response = apiInstance.SelectGoogleSearchConsoleSiteWithHttpInfo(selectGoogleSearchConsoleSiteRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.SelectGoogleSearchConsoleSiteWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **selectGoogleSearchConsoleSiteRequest** | [**SelectGoogleSearchConsoleSiteRequest**](SelectGoogleSearchConsoleSiteRequest.md) |  |  |
+
+### Return type
+
+[**SelectGoogleSearchConsoleSite200Response**](SelectGoogleSearchConsoleSite200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The site is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
