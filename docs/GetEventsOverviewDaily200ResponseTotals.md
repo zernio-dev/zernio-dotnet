@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Accepted** | **int** | Those whose latest send the platform accepted. | [optional] 
 **Matched** | **int** | The period&#39;s events matched to an ad campaign. | [optional] 
 **Counted** | **int** | The period&#39;s events that count as campaign results, the ones looked up for a campaign. | [optional] 
+**FromAds** | **int** | Of the counted events, those that came from an ad: they named a campaign or carried a UTM campaign, a Google click id or a Zernio ad id (&#x60;zrn&#x60;), their own or the website visit&#39;s behind them. &#x60;matched&#x60; over &#x60;fromAds&#x60; is the share tied to a campaign. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
