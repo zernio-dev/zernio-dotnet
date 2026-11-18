@@ -2839,7 +2839,7 @@ catch (ApiException e)
 
 <a id="getadtree"></a>
 # **GetAdTree**
-> AdTreeResponse GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, string? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, string? campaignId = null, DateTime? updatedSince = null, string? search = null, DateOnly? fromDate = null, DateOnly? toDate = null, bool? hasDelivery = null, decimal? minSpend = null, string? sort = null, int? timeIncrement = null, string? dailyLevel = null, string? compare = null, bool? results = null, string? depth = null)
+> AdTreeResponse GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, string? status = null, string? adAccountId = null, string? pageId = null, string? accountId = null, string? profileId = null, string? campaignId = null, DateTime? updatedSince = null, string? search = null, DateOnly? fromDate = null, DateOnly? toDate = null, bool? hasDelivery = null, decimal? minSpend = null, string? sort = null, int? timeIncrement = null, string? dailyLevel = null, string? compare = null, bool? results = null, string? model = null, string? depth = null)
 
 Get campaign tree
 
@@ -2890,12 +2890,13 @@ namespace Example
             var dailyLevel = "campaign";  // string? | Which tree levels get the `daily[]` series when `timeIncrement=1`. Ignored when `timeIncrement` is unset.  - `campaign` (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - `adset`: on ad sets too. - `ad`: on every ad in `ads[]` as well. Heaviest (a long range × up to 100 ads per ad set); scope with `campaignId` to keep responses small. (optional)  (default to campaign)
             var compare = "previous";  // string? | Set to `previous` to also read the period of the same length that ends the day before `fromDate`. Every campaign, ad set and ad gains `previousMetrics` (same fields as `metrics`) and the response gains `previousRange`, so a table can show the change against the previous period in one call. (optional) 
             var results = true;  // bool? | Set to `true` to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains `results`, the values you sent for the range plus each formula they allow, and the response gains `resultMetrics` to label them. (optional) 
+            var model = "last_click";  // string? | With `results=true`: the attribution model your stored sales and leads count under in `results`. Uploaded values are the same under every model. (optional)  (default to last_click)
             var depth = "campaign";  // string? | How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - `ad` (default): campaigns, their ad sets and each ad set's ads. - `adset`: campaigns and ad sets; every `ads[]` is empty and `adCount` still counts the ads. - `campaign`: campaigns only; every `adSets[]` is empty and `adSetCount` / `adCount` still count them. (optional)  (default to ad)
 
             try
             {
                 // Get campaign tree
-                AdTreeResponse result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
+                AdTreeResponse result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, model, depth);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2916,7 +2917,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get campaign tree
-    ApiResponse<AdTreeResponse> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, depth);
+    ApiResponse<AdTreeResponse> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare, results, model, depth);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2954,6 +2955,7 @@ catch (ApiException e)
 | **dailyLevel** | **string?** | Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. Ignored when &#x60;timeIncrement&#x60; is unset.  - &#x60;campaign&#x60; (default): on campaign nodes only. The common per-campaign-trend case, and the smallest payload. - &#x60;adset&#x60;: on ad sets too. - &#x60;ad&#x60;: on every ad in &#x60;ads[]&#x60; as well. Heaviest (a long range × up to 100 ads per ad set); scope with &#x60;campaignId&#x60; to keep responses small. | [optional] [default to campaign] |
 | **compare** | **string?** | Set to &#x60;previous&#x60; to also read the period of the same length that ends the day before &#x60;fromDate&#x60;. Every campaign, ad set and ad gains &#x60;previousMetrics&#x60; (same fields as &#x60;metrics&#x60;) and the response gains &#x60;previousRange&#x60;, so a table can show the change against the previous period in one call. | [optional]  |
 | **results** | **bool?** | Set to &#x60;true&#x60; to add your own results (see [Campaign results](/guides/campaign-results)): every campaign gains &#x60;results&#x60;, the values you sent for the range plus each formula they allow, and the response gains &#x60;resultMetrics&#x60; to label them. | [optional]  |
+| **model** | **string?** | With &#x60;results&#x3D;true&#x60;: the attribution model your stored sales and leads count under in &#x60;results&#x60;. Uploaded values are the same under every model. | [optional] [default to last_click] |
 | **depth** | **string?** | How deep the tree goes. Metrics always roll up over every ad, whatever the depth.  - &#x60;ad&#x60; (default): campaigns, their ad sets and each ad set&#39;s ads. - &#x60;adset&#x60;: campaigns and ad sets; every &#x60;ads[]&#x60; is empty and &#x60;adCount&#x60; still counts the ads. - &#x60;campaign&#x60;: campaigns only; every &#x60;adSets[]&#x60; is empty and &#x60;adSetCount&#x60; / &#x60;adCount&#x60; still count them. | [optional] [default to ad] |
 
 ### Return type
