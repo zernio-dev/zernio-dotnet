@@ -3795,7 +3795,7 @@ catch (ApiException e)
 
 <a id="getgoogleanalyticsconnecturl"></a>
 # **GetGoogleAnalyticsConnectUrl**
-> GetGoogleAnalyticsConnectUrl200Response GetGoogleAnalyticsConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+> GetGoogleAnalyticsConnectUrl200Response GetGoogleAnalyticsConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null, bool? welcome = null, string? brandName = null, string? logoUrl = null, string? primaryColor = null, string? welcomeTheme = null)
 
 Get Google Analytics OAuth connect URL
 
@@ -3832,11 +3832,16 @@ namespace Example
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
             var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Google Analytics account being reconnected. Picking a different property then fails instead of adding a second account. (optional) 
+            var welcome = true;  // bool? | When `true`, `authUrl` opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming Google Analytics.  - With no `redirect_url`, the flow ends on the branded result page instead of the Zernio dashboard. - When left out, the screen shows if the workspace saved it as on by default (`PUT /v1/connect/welcome-screen`). Pass `false` to skip it. - Cannot be combined with `headless=true` in `redirect_url` (400 `INVALID_FIELD_VALUE`).  (optional) 
+            var brandName = "brandName_example";  // string? | Welcome screen only: your product name in its heading. Same rules as on GET /v1/connect/{platform}. (optional) 
+            var logoUrl = "logoUrl_example";  // string? | Welcome screen only: https URL of your square logo. Rejected with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown. (optional) 
+            var primaryColor = "primaryColor_example";  // string? | Welcome screen only: hex colour (`#RRGGBB`) of its button. (optional) 
+            var welcomeTheme = "welcomeTheme_example";  // string? | Welcome screen only: a URL-encoded JSON object restyling and rewording the welcome screen and the result page, with the keys documented on GET /v1/connect/{platform}. Rejected when the welcome screen is not shown. (optional) 
 
             try
             {
                 // Get Google Analytics OAuth connect URL
-                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetGoogleAnalyticsConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetGoogleAnalyticsConnectUrl(profileId, redirectUrl, reconnectAccountId, welcome, brandName, logoUrl, primaryColor, welcomeTheme);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3857,7 +3862,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Google Analytics OAuth connect URL
-    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetGoogleAnalyticsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetGoogleAnalyticsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId, welcome, brandName, logoUrl, primaryColor, welcomeTheme);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3877,6 +3882,11 @@ catch (ApiException e)
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
 | **reconnectAccountId** | **string?** | Zernio account ID of the Google Analytics account being reconnected. Picking a different property then fails instead of adding a second account. | [optional]  |
+| **welcome** | **bool?** | When &#x60;true&#x60;, &#x60;authUrl&#x60; opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming Google Analytics.  - With no &#x60;redirect_url&#x60;, the flow ends on the branded result page instead of the Zernio dashboard. - When left out, the screen shows if the workspace saved it as on by default (&#x60;PUT /v1/connect/welcome-screen&#x60;). Pass &#x60;false&#x60; to skip it. - Cannot be combined with &#x60;headless&#x3D;true&#x60; in &#x60;redirect_url&#x60; (400 &#x60;INVALID_FIELD_VALUE&#x60;).  | [optional]  |
+| **brandName** | **string?** | Welcome screen only: your product name in its heading. Same rules as on GET /v1/connect/{platform}. | [optional]  |
+| **logoUrl** | **string?** | Welcome screen only: https URL of your square logo. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; when the welcome screen is not shown. | [optional]  |
+| **primaryColor** | **string?** | Welcome screen only: hex colour (&#x60;#RRGGBB&#x60;) of its button. | [optional]  |
+| **welcomeTheme** | **string?** | Welcome screen only: a URL-encoded JSON object restyling and rewording the welcome screen and the result page, with the keys documented on GET /v1/connect/{platform}. Rejected when the welcome screen is not shown. | [optional]  |
 
 ### Return type
 
@@ -3907,7 +3917,7 @@ catch (ApiException e)
 
 <a id="getgooglesearchconsoleconnecturl"></a>
 # **GetGoogleSearchConsoleConnectUrl**
-> GetGoogleAnalyticsConnectUrl200Response GetGoogleSearchConsoleConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+> GetGoogleAnalyticsConnectUrl200Response GetGoogleSearchConsoleConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null, bool? welcome = null, string? brandName = null, string? logoUrl = null, string? primaryColor = null, string? welcomeTheme = null)
 
 Get Google Search Console OAuth connect URL
 
@@ -3944,11 +3954,16 @@ namespace Example
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
             var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account. (optional) 
+            var welcome = true;  // bool? | When `true`, `authUrl` opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming Google Search Console.  - With no `redirect_url`, the flow ends on the branded result page instead of the Zernio dashboard. - When left out, the screen shows if the workspace saved it as on by default (`PUT /v1/connect/welcome-screen`). Pass `false` to skip it. - Cannot be combined with `headless=true` in `redirect_url` (400 `INVALID_FIELD_VALUE`).  (optional) 
+            var brandName = "brandName_example";  // string? | Welcome screen only: your product name in its heading. Same rules as on GET /v1/connect/{platform}. (optional) 
+            var logoUrl = "logoUrl_example";  // string? | Welcome screen only: https URL of your square logo. Rejected with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown. (optional) 
+            var primaryColor = "primaryColor_example";  // string? | Welcome screen only: hex colour (`#RRGGBB`) of its button. (optional) 
+            var welcomeTheme = "welcomeTheme_example";  // string? | Welcome screen only: a URL-encoded JSON object restyling and rewording the welcome screen and the result page, with the keys documented on GET /v1/connect/{platform}. Rejected when the welcome screen is not shown. (optional) 
 
             try
             {
                 // Get Google Search Console OAuth connect URL
-                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetGoogleSearchConsoleConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetGoogleSearchConsoleConnectUrl(profileId, redirectUrl, reconnectAccountId, welcome, brandName, logoUrl, primaryColor, welcomeTheme);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3969,7 +3984,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Google Search Console OAuth connect URL
-    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetGoogleSearchConsoleConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetGoogleSearchConsoleConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId, welcome, brandName, logoUrl, primaryColor, welcomeTheme);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3989,6 +4004,11 @@ catch (ApiException e)
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
 | **reconnectAccountId** | **string?** | Zernio account ID of the Google Search Console account being reconnected. Picking a different site then fails instead of adding a second account. | [optional]  |
+| **welcome** | **bool?** | When &#x60;true&#x60;, &#x60;authUrl&#x60; opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming Google Search Console.  - With no &#x60;redirect_url&#x60;, the flow ends on the branded result page instead of the Zernio dashboard. - When left out, the screen shows if the workspace saved it as on by default (&#x60;PUT /v1/connect/welcome-screen&#x60;). Pass &#x60;false&#x60; to skip it. - Cannot be combined with &#x60;headless&#x3D;true&#x60; in &#x60;redirect_url&#x60; (400 &#x60;INVALID_FIELD_VALUE&#x60;).  | [optional]  |
+| **brandName** | **string?** | Welcome screen only: your product name in its heading. Same rules as on GET /v1/connect/{platform}. | [optional]  |
+| **logoUrl** | **string?** | Welcome screen only: https URL of your square logo. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; when the welcome screen is not shown. | [optional]  |
+| **primaryColor** | **string?** | Welcome screen only: hex colour (&#x60;#RRGGBB&#x60;) of its button. | [optional]  |
+| **welcomeTheme** | **string?** | Welcome screen only: a URL-encoded JSON object restyling and rewording the welcome screen and the result page, with the keys documented on GET /v1/connect/{platform}. Rejected when the welcome screen is not shown. | [optional]  |
 
 ### Return type
 
