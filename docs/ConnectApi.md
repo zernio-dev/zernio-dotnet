@@ -18,6 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConnectOpenAIAdsCredentials**](ConnectApi.md#connectopenaiadscredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**ConnectShopifyWithToken**](ConnectApi.md#connectshopifywithtoken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token |
 | [**ConnectSlackChannel**](ConnectApi.md#connectslackchannel) | **POST** /v1/connect/slack | Connect a Slack channel |
+| [**ConnectSnapchatAdsCredentials**](ConnectApi.md#connectsnapchatadscredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel |
 | [**ConnectWebflowWithSiteToken**](ConnectApi.md#connectwebflowwithsitetoken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**ConnectWechatCredentials**](ConnectApi.md#connectwechatcredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
 | [**ConnectWhatsAppCredentials**](ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
@@ -1570,6 +1571,109 @@ void (empty response body)
 | **403** | Slack connections are temporarily unavailable, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **422** | channelIds only. None of the channels could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connectsnapchatadscredentials"></a>
+# **ConnectSnapchatAdsCredentials**
+> ConnectSnapchatAdsCredentials200Response ConnectSnapchatAdsCredentials (ConnectSnapchatAdsCredentialsRequest connectSnapchatAdsCredentialsRequest)
+
+Connect a Snapchat Ads pixel
+
+Connect a Snap Pixel with its Pixel ID and a Conversions API token generated in Snapchat Ads Manager (Business Details, Conversions API Tokens, visible to Organization Admins).  Zernio checks the token against the pixel on Snap's validate endpoint before saving it. The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules). Connecting the same pixel again replaces its token.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectSnapchatAdsCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectSnapchatAdsCredentialsRequest = new ConnectSnapchatAdsCredentialsRequest(); // ConnectSnapchatAdsCredentialsRequest | 
+
+            try
+            {
+                // Connect a Snapchat Ads pixel
+                ConnectSnapchatAdsCredentials200Response result = apiInstance.ConnectSnapchatAdsCredentials(connectSnapchatAdsCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectSnapchatAdsCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectSnapchatAdsCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect a Snapchat Ads pixel
+    ApiResponse<ConnectSnapchatAdsCredentials200Response> response = apiInstance.ConnectSnapchatAdsCredentialsWithHttpInfo(connectSnapchatAdsCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectSnapchatAdsCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectSnapchatAdsCredentialsRequest** | [**ConnectSnapchatAdsCredentialsRequest**](ConnectSnapchatAdsCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectSnapchatAdsCredentials200Response**](ConnectSnapchatAdsCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Snapchat Ads pixel connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or Snapchat did not accept the Conversions API token for this pixel (code invalid_credentials). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **502** | Snapchat could not confirm the token right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

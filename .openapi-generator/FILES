@@ -665,6 +665,8 @@ docs/ConnectShopifyWithToken200Response.md
 docs/ConnectShopifyWithToken200ResponseAccount.md
 docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
+docs/ConnectSnapchatAdsCredentials200Response.md
+docs/ConnectSnapchatAdsCredentialsRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
@@ -4658,6 +4660,8 @@ src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithTokenRequestTests.cs
 src/Zernio.Test/Model/ConnectSlackChannelRequestTests.cs
+src/Zernio.Test/Model/ConnectSnapchatAdsCredentials200ResponseTests.cs
+src/Zernio.Test/Model/ConnectSnapchatAdsCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteToken200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteToken200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteTokenRequestTests.cs
@@ -8607,6 +8611,8 @@ src/Zernio/Model/ConnectShopifyWithToken200Response.cs
 src/Zernio/Model/ConnectShopifyWithToken200ResponseAccount.cs
 src/Zernio/Model/ConnectShopifyWithTokenRequest.cs
 src/Zernio/Model/ConnectSlackChannelRequest.cs
+src/Zernio/Model/ConnectSnapchatAdsCredentials200Response.cs
+src/Zernio/Model/ConnectSnapchatAdsCredentialsRequest.cs
 src/Zernio/Model/ConnectWebflowWithSiteToken200Response.cs
 src/Zernio/Model/ConnectWebflowWithSiteToken200ResponseAccount.cs
 src/Zernio/Model/ConnectWebflowWithSiteTokenRequest.cs
