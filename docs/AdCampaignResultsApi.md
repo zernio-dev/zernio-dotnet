@@ -109,7 +109,7 @@ This endpoint does not need any parameter.
 
 <a id="getcampaignresultstotals"></a>
 # **GetCampaignResultsTotals**
-> GetCampaignResultsTotals200Response GetCampaignResultsTotals (DateOnly fromDate, DateOnly toDate, string? adAccountIds = null)
+> GetCampaignResultsTotals200Response GetCampaignResultsTotals (DateOnly fromDate, DateOnly toDate, string? model = null, string? adAccountIds = null)
 
 Get your results totals
 
@@ -141,12 +141,13 @@ namespace Example
             var apiInstance = new AdCampaignResultsApi(httpClient, config, httpClientHandler);
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Inclusive. At most 400 days after `fromDate`.
+            var model = "last_click";  // string? | Attribution model your stored sales and leads count under. `last_click` (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. (optional)  (default to last_click)
             var adAccountIds = "adAccountIds_example";  // string? | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. (optional) 
 
             try
             {
                 // Get your results totals
-                GetCampaignResultsTotals200Response result = apiInstance.GetCampaignResultsTotals(fromDate, toDate, adAccountIds);
+                GetCampaignResultsTotals200Response result = apiInstance.GetCampaignResultsTotals(fromDate, toDate, model, adAccountIds);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -167,7 +168,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get your results totals
-    ApiResponse<GetCampaignResultsTotals200Response> response = apiInstance.GetCampaignResultsTotalsWithHttpInfo(fromDate, toDate, adAccountIds);
+    ApiResponse<GetCampaignResultsTotals200Response> response = apiInstance.GetCampaignResultsTotalsWithHttpInfo(fromDate, toDate, model, adAccountIds);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -186,6 +187,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **fromDate** | **DateOnly** |  |  |
 | **toDate** | **DateOnly** | Inclusive. At most 400 days after &#x60;fromDate&#x60;. |  |
+| **model** | **string?** | Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] |
 | **adAccountIds** | **string?** | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional]  |
 
 ### Return type
@@ -407,7 +409,7 @@ This endpoint does not need any parameter.
 
 <a id="listcampaignresults"></a>
 # **ListCampaignResults**
-> ListCampaignResults200Response ListCampaignResults (DateOnly fromDate, DateOnly toDate, string? campaignIds = null, int? limit = null, string? cursor = null)
+> ListCampaignResults200Response ListCampaignResults (DateOnly fromDate, DateOnly toDate, string? model = null, string? campaignIds = null, int? limit = null, string? cursor = null)
 
 List your results per campaign
 
@@ -439,6 +441,7 @@ namespace Example
             var apiInstance = new AdCampaignResultsApi(httpClient, config, httpClientHandler);
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Inclusive. At most 400 days after `fromDate`.
+            var model = "last_click";  // string? | Attribution model your stored sales and leads count under. `last_click` (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. (optional)  (default to last_click)
             var campaignIds = "campaignIds_example";  // string? | Comma-separated platform campaign ids, at most 500. Omit for all campaigns. (optional) 
             var limit = 100;  // int? | Campaigns per page. (optional)  (default to 100)
             var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
@@ -446,7 +449,7 @@ namespace Example
             try
             {
                 // List your results per campaign
-                ListCampaignResults200Response result = apiInstance.ListCampaignResults(fromDate, toDate, campaignIds, limit, cursor);
+                ListCampaignResults200Response result = apiInstance.ListCampaignResults(fromDate, toDate, model, campaignIds, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -467,7 +470,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List your results per campaign
-    ApiResponse<ListCampaignResults200Response> response = apiInstance.ListCampaignResultsWithHttpInfo(fromDate, toDate, campaignIds, limit, cursor);
+    ApiResponse<ListCampaignResults200Response> response = apiInstance.ListCampaignResultsWithHttpInfo(fromDate, toDate, model, campaignIds, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -486,6 +489,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **fromDate** | **DateOnly** |  |  |
 | **toDate** | **DateOnly** | Inclusive. At most 400 days after &#x60;fromDate&#x60;. |  |
+| **model** | **string?** | Attribution model your stored sales and leads count under. &#x60;last_click&#x60; (default) counts each event whole for the campaign it matched. The others split it across the campaigns of its earlier touches, so counts and revenue can be fractional. Uploads read the same under every model. | [optional] [default to last_click] |
 | **campaignIds** | **string?** | Comma-separated platform campaign ids, at most 500. Omit for all campaigns. | [optional]  |
 | **limit** | **int?** | Campaigns per page. | [optional] [default to 100] |
 | **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |

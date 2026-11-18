@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FromDate** | **DateOnly** |  | 
 **ToDate** | **DateOnly** |  | 
+**Model** | **string** | The attribution model the results are counted under. | 
 **Campaigns** | [**List&lt;ListCampaignResults200ResponseCampaignsInner&gt;**](ListCampaignResults200ResponseCampaignsInner.md) |  | 
 **NextCursor** | **string** |  | 
 
