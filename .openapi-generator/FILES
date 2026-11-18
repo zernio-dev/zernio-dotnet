@@ -1021,6 +1021,8 @@ docs/CreateTestLeadRequest.md
 docs/CreateTestLeadRequestFieldDataInner.md
 docs/CreateTopup201Response.md
 docs/CreateTopupRequest.md
+docs/CreateTrackingLink201Response.md
+docs/CreateTrackingLinkRequest.md
 docs/CreateTrackingSite201Response.md
 docs/CreateTrackingSiteRequest.md
 docs/CreateTrackingTag201Response.md
@@ -2438,6 +2440,7 @@ docs/ListTikTokSmartPlusReviews200ResponseListing.md
 docs/ListTikTokSmartPlusReviews200ResponseListingError.md
 docs/ListTikTokSmartPlusReviews200ResponseReviewError.md
 docs/ListTopups200Response.md
+docs/ListTrackingLinks200Response.md
 docs/ListTrackingSites200Response.md
 docs/ListTrackingSites200ResponsePagination.md
 docs/ListTrackingTagEvents200Response.md
@@ -3164,6 +3167,10 @@ docs/TikTokReviewRejectionContent.md
 docs/TikTokSmartPlusAdLevelReview.md
 docs/TikTokSmartPlusMaterialReview.md
 docs/TikTokSmartPlusReviewStatus.md
+docs/TrackingLink.md
+docs/TrackingLinkCampaign.md
+docs/TrackingLinkDestination.md
+docs/TrackingLinksApi.md
 docs/TrackingSite.md
 docs/TrackingSiteChecksInner.md
 docs/TrackingSiteConsentMode.md
@@ -3463,6 +3470,7 @@ docs/UpdateSequenceRequestStepsInnerTemplate.md
 docs/UpdateSlackSettingsRequest.md
 docs/UpdateStripeSettings200Response.md
 docs/UpdateStripeSettingsRequest.md
+docs/UpdateTrackingLinkRequest.md
 docs/UpdateTrackingSiteRequest.md
 docs/UpdateTrackingTagRequest.md
 docs/UpdateValueRuleSet200Response.md
@@ -4010,6 +4018,7 @@ src/Zernio.Test/Api/SMSApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
 src/Zernio.Test/Api/SlackApiTests.cs
 src/Zernio.Test/Api/SupportAssistantApiTests.cs
+src/Zernio.Test/Api/TrackingLinksApiTests.cs
 src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TreasuryApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
@@ -5014,6 +5023,8 @@ src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestTests.cs
 src/Zernio.Test/Model/CreateTopup201ResponseTests.cs
 src/Zernio.Test/Model/CreateTopupRequestTests.cs
+src/Zernio.Test/Model/CreateTrackingLink201ResponseTests.cs
+src/Zernio.Test/Model/CreateTrackingLinkRequestTests.cs
 src/Zernio.Test/Model/CreateTrackingSite201ResponseTests.cs
 src/Zernio.Test/Model/CreateTrackingSiteRequestTests.cs
 src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
@@ -6409,6 +6420,7 @@ src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseListingTests.cs
 src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseReviewErrorTests.cs
 src/Zernio.Test/Model/ListTikTokSmartPlusReviews200ResponseTests.cs
 src/Zernio.Test/Model/ListTopups200ResponseTests.cs
+src/Zernio.Test/Model/ListTrackingLinks200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingSites200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListTrackingSites200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagEvents200ResponseTests.cs
@@ -7116,6 +7128,9 @@ src/Zernio.Test/Model/TikTokReviewRejectionTests.cs
 src/Zernio.Test/Model/TikTokSmartPlusAdLevelReviewTests.cs
 src/Zernio.Test/Model/TikTokSmartPlusMaterialReviewTests.cs
 src/Zernio.Test/Model/TikTokSmartPlusReviewStatusTests.cs
+src/Zernio.Test/Model/TrackingLinkCampaignTests.cs
+src/Zernio.Test/Model/TrackingLinkDestinationTests.cs
+src/Zernio.Test/Model/TrackingLinkTests.cs
 src/Zernio.Test/Model/TrackingSiteChecksInnerTests.cs
 src/Zernio.Test/Model/TrackingSiteConsentModeTests.cs
 src/Zernio.Test/Model/TrackingSiteCustomHostnameDnsRecordTests.cs
@@ -7412,6 +7427,7 @@ src/Zernio.Test/Model/UpdateSequenceRequestTests.cs
 src/Zernio.Test/Model/UpdateSlackSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateStripeSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateStripeSettingsRequestTests.cs
+src/Zernio.Test/Model/UpdateTrackingLinkRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingSiteRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/UpdateValueRuleSet200ResponseTests.cs
@@ -7945,6 +7961,7 @@ src/Zernio/Api/SMSApi.cs
 src/Zernio/Api/SequencesApi.cs
 src/Zernio/Api/SlackApi.cs
 src/Zernio/Api/SupportAssistantApi.cs
+src/Zernio/Api/TrackingLinksApi.cs
 src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TreasuryApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
@@ -8967,6 +8984,8 @@ src/Zernio/Model/CreateTestLeadRequest.cs
 src/Zernio/Model/CreateTestLeadRequestFieldDataInner.cs
 src/Zernio/Model/CreateTopup201Response.cs
 src/Zernio/Model/CreateTopupRequest.cs
+src/Zernio/Model/CreateTrackingLink201Response.cs
+src/Zernio/Model/CreateTrackingLinkRequest.cs
 src/Zernio/Model/CreateTrackingSite201Response.cs
 src/Zernio/Model/CreateTrackingSiteRequest.cs
 src/Zernio/Model/CreateTrackingTag201Response.cs
@@ -10362,6 +10381,7 @@ src/Zernio/Model/ListTikTokSmartPlusReviews200ResponseListing.cs
 src/Zernio/Model/ListTikTokSmartPlusReviews200ResponseListingError.cs
 src/Zernio/Model/ListTikTokSmartPlusReviews200ResponseReviewError.cs
 src/Zernio/Model/ListTopups200Response.cs
+src/Zernio/Model/ListTrackingLinks200Response.cs
 src/Zernio/Model/ListTrackingSites200Response.cs
 src/Zernio/Model/ListTrackingSites200ResponsePagination.cs
 src/Zernio/Model/ListTrackingTagEvents200Response.cs
@@ -11069,6 +11089,9 @@ src/Zernio/Model/TikTokReviewRejectionContent.cs
 src/Zernio/Model/TikTokSmartPlusAdLevelReview.cs
 src/Zernio/Model/TikTokSmartPlusMaterialReview.cs
 src/Zernio/Model/TikTokSmartPlusReviewStatus.cs
+src/Zernio/Model/TrackingLink.cs
+src/Zernio/Model/TrackingLinkCampaign.cs
+src/Zernio/Model/TrackingLinkDestination.cs
 src/Zernio/Model/TrackingSite.cs
 src/Zernio/Model/TrackingSiteChecksInner.cs
 src/Zernio/Model/TrackingSiteConsentMode.cs
@@ -11365,6 +11388,7 @@ src/Zernio/Model/UpdateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/UpdateSlackSettingsRequest.cs
 src/Zernio/Model/UpdateStripeSettings200Response.cs
 src/Zernio/Model/UpdateStripeSettingsRequest.cs
+src/Zernio/Model/UpdateTrackingLinkRequest.cs
 src/Zernio/Model/UpdateTrackingSiteRequest.cs
 src/Zernio/Model/UpdateTrackingTagRequest.cs
 src/Zernio/Model/UpdateValueRuleSet200Response.cs
