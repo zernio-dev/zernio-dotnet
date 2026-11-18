@@ -595,7 +595,7 @@ namespace Example
             var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of fromDate, kept for existing callers (optional) 
             var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? | Alias of toDate, kept for existing callers (optional) 
             var includeHidden = false;  // bool? |  (optional)  (default to false)
-            var search = "search_example";  // string? | Search posts by text content. (optional) 
+            var search = "search_example";  // string? | Search posts by text content. Not available with `source=external` (400). (optional) 
             var tags = job,engineering;  // string? | Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. `tag` is accepted as an alias. (optional) 
             var sortBy = "scheduled-desc";  // string? | Sort order for results. (optional)  (default to scheduled-desc)
             var accountId = "accountId_example";  // string? | Filter posts to those published via a specific account (24-char hex ObjectId). (optional) 
@@ -658,7 +658,7 @@ catch (ApiException e)
 | **dateFrom** | **DateOnly?** | Alias of fromDate, kept for existing callers | [optional]  |
 | **dateTo** | **DateOnly?** | Alias of toDate, kept for existing callers | [optional]  |
 | **includeHidden** | **bool?** |  | [optional] [default to false] |
-| **search** | **string?** | Search posts by text content. | [optional]  |
+| **search** | **string?** | Search posts by text content. Not available with &#x60;source&#x3D;external&#x60; (400). | [optional]  |
 | **tags** | **string?** | Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. &#x60;tag&#x60; is accepted as an alias. | [optional]  |
 | **sortBy** | **string?** | Sort order for results. | [optional] [default to scheduled-desc] |
 | **accountId** | **string?** | Filter posts to those published via a specific account (24-char hex ObjectId). | [optional]  |
