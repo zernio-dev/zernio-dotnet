@@ -1687,6 +1687,9 @@ docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.md
 docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.md
 docs/GetLinkedInSupplyForecastRequest.md
 docs/GetLinkedInSupplyForecastRequestCompetingBid.md
+docs/GetLtvCohorts200Response.md
+docs/GetLtvCohorts200ResponseCohortsInner.md
+docs/GetLtvCohorts200ResponseCohortsInnerRevenue.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
@@ -5658,6 +5661,9 @@ src/Zernio.Test/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSerie
 src/Zernio.Test/Model/GetLinkedInSupplyForecast200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInSupplyForecastRequestCompetingBidTests.cs
 src/Zernio.Test/Model/GetLinkedInSupplyForecastRequestTests.cs
+src/Zernio.Test/Model/GetLtvCohorts200ResponseCohortsInnerRevenueTests.cs
+src/Zernio.Test/Model/GetLtvCohorts200ResponseCohortsInnerTests.cs
+src/Zernio.Test/Model/GetLtvCohorts200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
 src/Zernio.Test/Model/GetMessageAttachment200ResponseTests.cs
@@ -9604,6 +9610,9 @@ src/Zernio/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInne
 src/Zernio/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.cs
 src/Zernio/Model/GetLinkedInSupplyForecastRequest.cs
 src/Zernio/Model/GetLinkedInSupplyForecastRequestCompetingBid.cs
+src/Zernio/Model/GetLtvCohorts200Response.cs
+src/Zernio/Model/GetLtvCohorts200ResponseCohortsInner.cs
+src/Zernio/Model/GetLtvCohorts200ResponseCohortsInnerRevenue.cs
 src/Zernio/Model/GetMediaPresignedUrl200Response.cs
 src/Zernio/Model/GetMediaPresignedUrlRequest.cs
 src/Zernio/Model/GetMessageAttachment200Response.cs

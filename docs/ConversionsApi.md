@@ -29,6 +29,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetEvent**](ConversionsApi.md#getevent) | **GET** /v1/events/{eventId} | Get one stored event and its deliveries |
 | [**GetEventsOverview**](ConversionsApi.md#geteventsoverview) | **GET** /v1/events/overview | Get today&#39;s tracking overview |
 | [**GetEventsOverviewDaily**](ConversionsApi.md#geteventsoverviewdaily) | **GET** /v1/events/overview/daily | Get daily tracking figures |
+| [**GetLtvCohorts**](ConversionsApi.md#getltvcohorts) | **GET** /v1/events/ltv | Get buyer cohorts by first purchase month and first channel |
 | [**GetTrackingSite**](ConversionsApi.md#gettrackingsite) | **GET** /v1/tracking-sites/{siteId} | Get a tracking site |
 | [**ListAdConversionAssociations**](ConversionsApi.md#listadconversionassociations) | **GET** /v1/ads/conversions/destinations/{destinationId}/associations | List associated campaigns |
 | [**ListAdConversionDestinations**](ConversionsApi.md#listadconversiondestinations) | **GET** /v1/ads/conversions/destinations | List conversion destinations |
@@ -2692,6 +2693,110 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getltvcohorts"></a>
+# **GetLtvCohorts**
+> GetLtvCohorts200Response GetLtvCohorts (string fromMonth, string toMonth, string? profileId = null)
+
+Get buyer cohorts by first purchase month and first channel
+
+Buyers grouped by the month of their first purchase and the platform that first brought them, with their purchases added up over the year after (months 0, 1, 3, 6 and 12).  A buyer is a hashed email, else external id, else phone. The first channel is the first touch's platform, else the first purchase's own campaign, else `none`. Values stay in each purchase's currency, one row per currency. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetLtvCohortsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
+            var fromMonth = 2026-01;  // string | 
+            var toMonth = 2026-11;  // string | 
+            var profileId = "profileId_example";  // string? | The profile to read. Omit for every profile you can access. (optional) 
+
+            try
+            {
+                // Get buyer cohorts by first purchase month and first channel
+                GetLtvCohorts200Response result = apiInstance.GetLtvCohorts(fromMonth, toMonth, profileId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConversionsApi.GetLtvCohorts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetLtvCohortsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get buyer cohorts by first purchase month and first channel
+    ApiResponse<GetLtvCohorts200Response> response = apiInstance.GetLtvCohortsWithHttpInfo(fromMonth, toMonth, profileId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConversionsApi.GetLtvCohortsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **fromMonth** | **string** |  |  |
+| **toMonth** | **string** |  |  |
+| **profileId** | **string?** | The profile to read. Omit for every profile you can access. | [optional]  |
+
+### Return type
+
+[**GetLtvCohorts200Response**](GetLtvCohorts200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The cohorts, newest first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
