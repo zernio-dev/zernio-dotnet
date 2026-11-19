@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiKey** | **string** | Conversion API key from the Keys page of Axon Ads Manager. | 
 **EventKey** | **string** | Event Key from the Keys page of Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores. | 
+**ReportKey** | **string** | Optional Report Key from the Keys page of your AppLovin account. With it, Zernio syncs AppLovin spend per campaign. | [optional] 
 **Name** | **string** | Optional display name for the account. | [optional] 
 **ProfileId** | **string** | Your Zernio profile ID | 
 **State** | **string** | Optional state passthrough for the connect flow. | [optional] 

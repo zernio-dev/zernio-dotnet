@@ -3174,6 +3174,9 @@ docs/TikTokSmartPlusReviewStatus.md
 docs/TrackingLink.md
 docs/TrackingLinkCampaign.md
 docs/TrackingLinkDestination.md
+docs/TrackingLinkStats.md
+docs/TrackingLinkStatsDestinationsInner.md
+docs/TrackingLinkStatsRevenueInner.md
 docs/TrackingLinksApi.md
 docs/TrackingSite.md
 docs/TrackingSiteChecksInner.md
@@ -7137,6 +7140,9 @@ src/Zernio.Test/Model/TikTokSmartPlusMaterialReviewTests.cs
 src/Zernio.Test/Model/TikTokSmartPlusReviewStatusTests.cs
 src/Zernio.Test/Model/TrackingLinkCampaignTests.cs
 src/Zernio.Test/Model/TrackingLinkDestinationTests.cs
+src/Zernio.Test/Model/TrackingLinkStatsDestinationsInnerTests.cs
+src/Zernio.Test/Model/TrackingLinkStatsRevenueInnerTests.cs
+src/Zernio.Test/Model/TrackingLinkStatsTests.cs
 src/Zernio.Test/Model/TrackingLinkTests.cs
 src/Zernio.Test/Model/TrackingSiteChecksInnerTests.cs
 src/Zernio.Test/Model/TrackingSiteConsentModeTests.cs
@@ -11102,6 +11108,9 @@ src/Zernio/Model/TikTokSmartPlusReviewStatus.cs
 src/Zernio/Model/TrackingLink.cs
 src/Zernio/Model/TrackingLinkCampaign.cs
 src/Zernio/Model/TrackingLinkDestination.cs
+src/Zernio/Model/TrackingLinkStats.cs
+src/Zernio/Model/TrackingLinkStatsDestinationsInner.cs
+src/Zernio/Model/TrackingLinkStatsRevenueInner.cs
 src/Zernio/Model/TrackingSite.cs
 src/Zernio/Model/TrackingSiteChecksInner.cs
 src/Zernio/Model/TrackingSiteConsentMode.cs

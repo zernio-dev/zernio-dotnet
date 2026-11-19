@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateTrackingLink**](TrackingLinksApi.md#createtrackinglink) | **POST** /v1/tracking-links | Create a tracking link |
 | [**DeleteTrackingLink**](TrackingLinksApi.md#deletetrackinglink) | **DELETE** /v1/tracking-links/{linkId} | Delete a tracking link |
 | [**GetTrackingLink**](TrackingLinksApi.md#gettrackinglink) | **GET** /v1/tracking-links/{linkId} | Get a tracking link |
+| [**GetTrackingLinkStats**](TrackingLinksApi.md#gettrackinglinkstats) | **GET** /v1/tracking-links/{linkId}/stats | Get a tracking link&#39;s results |
 | [**ListTrackingLinks**](TrackingLinksApi.md#listtrackinglinks) | **GET** /v1/tracking-links | List tracking links |
 | [**RotateTrackingLinkPostbackToken**](TrackingLinksApi.md#rotatetrackinglinkpostbacktoken) | **POST** /v1/tracking-links/{linkId}/rotate-postback-token | Rotate a tracking link&#39;s postback URL |
 | [**UpdateTrackingLink**](TrackingLinksApi.md#updatetrackinglink) | **PATCH** /v1/tracking-links/{linkId} | Update a tracking link |
@@ -309,6 +310,111 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No link with this id in your workspace (code &#x60;tracking_link_not_found&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettrackinglinkstats"></a>
+# **GetTrackingLinkStats**
+> TrackingLinkStats GetTrackingLinkStats (string linkId, DateOnly fromDate, DateOnly toDate)
+
+Get a tracking link's results
+
+Clicks, conversions and revenue of one link over a range of days (UTC), and its clicks per destination, the result of a split test. Clicks leave out bots.  Conversions are the link's postbacks plus website conversions carrying the click id of one of its clicks, less any retracted. The range is at most 90 days, the time clicks are kept. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetTrackingLinkStatsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingLinksApi(httpClient, config, httpClientHandler);
+            var linkId = "linkId_example";  // string | 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly | First day of the range, `YYYY-MM-DD`.
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Last day of the range, `YYYY-MM-DD`.
+
+            try
+            {
+                // Get a tracking link's results
+                TrackingLinkStats result = apiInstance.GetTrackingLinkStats(linkId, fromDate, toDate);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingLinksApi.GetTrackingLinkStats: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTrackingLinkStatsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a tracking link's results
+    ApiResponse<TrackingLinkStats> response = apiInstance.GetTrackingLinkStatsWithHttpInfo(linkId, fromDate, toDate);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingLinksApi.GetTrackingLinkStatsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **linkId** | **string** |  |  |
+| **fromDate** | **DateOnly** | First day of the range, &#x60;YYYY-MM-DD&#x60;. |  |
+| **toDate** | **DateOnly** | Last day of the range, &#x60;YYYY-MM-DD&#x60;. |  |
+
+### Return type
+
+[**TrackingLinkStats**](TrackingLinkStats.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The link&#39;s results. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
