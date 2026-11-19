@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.694.0
+  version: 1.694.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -70352,7 +70352,7 @@ paths:
 
           - Meta CDN links are signed and expire: download what you need before each item's `expires_at`.
           - `media` is `null` when Meta would not render the snapshot for that ad, and `[]` for a text-only ad.
-          - Every row costs one extra page render, so responses are slower: use a small `limit`.
+          - Every ad is rendered in a browser, so responses take several seconds longer, and `limit` is capped at 25 (`limit` > 25 is a 400).
           - With a `fields` override, include `ad_snapshot_url` or no row gets `media`.
         explode: true
         in: query
