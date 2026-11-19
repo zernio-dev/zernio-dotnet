@@ -106,7 +106,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="addorgconnectionmailbox"></a>
 # **AddOrgConnectionMailbox**
-> InlineObject1 AddOrgConnectionMailbox (string orgConnectionId, AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest)
+> InlineObject2 AddOrgConnectionMailbox (string orgConnectionId, AddOrgConnectionMailboxRequest addOrgConnectionMailboxRequest)
 
 Add a mailbox from an organization connection
 
@@ -142,7 +142,7 @@ namespace Example
             try
             {
                 // Add a mailbox from an organization connection
-                InlineObject1 result = apiInstance.AddOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest);
+                InlineObject2 result = apiInstance.AddOrgConnectionMailbox(orgConnectionId, addOrgConnectionMailboxRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -163,7 +163,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add a mailbox from an organization connection
-    ApiResponse<InlineObject1> response = apiInstance.AddOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest);
+    ApiResponse<InlineObject2> response = apiInstance.AddOrgConnectionMailboxWithHttpInfo(orgConnectionId, addOrgConnectionMailboxRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -185,7 +185,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject1**](InlineObject1.md)
+[**InlineObject2**](InlineObject2.md)
 
 ### Authorization
 

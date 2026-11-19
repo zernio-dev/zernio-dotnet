@@ -794,7 +794,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentconnector"></a>
 # **DeleteBusinessAgentConnector**
-> InlineObject DeleteBusinessAgentConnector (string accountId, string connectorId)
+> InlineObject1 DeleteBusinessAgentConnector (string accountId, string connectorId)
 
 Delete a connector
 
@@ -828,7 +828,7 @@ namespace Example
             try
             {
                 // Delete a connector
-                InlineObject result = apiInstance.DeleteBusinessAgentConnector(accountId, connectorId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentConnector(accountId, connectorId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -849,7 +849,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a connector
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentConnectorWithHttpInfo(accountId, connectorId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentConnectorWithHttpInfo(accountId, connectorId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -871,7 +871,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -896,7 +896,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentconnectortool"></a>
 # **DeleteBusinessAgentConnectorTool**
-> InlineObject DeleteBusinessAgentConnectorTool (string accountId, string connectorId, string toolId)
+> InlineObject1 DeleteBusinessAgentConnectorTool (string accountId, string connectorId, string toolId)
 
 Delete a connector tool
 
@@ -931,7 +931,7 @@ namespace Example
             try
             {
                 // Delete a connector tool
-                InlineObject result = apiInstance.DeleteBusinessAgentConnectorTool(accountId, connectorId, toolId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentConnectorTool(accountId, connectorId, toolId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -952,7 +952,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a connector tool
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentConnectorToolWithHttpInfo(accountId, connectorId, toolId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentConnectorToolWithHttpInfo(accountId, connectorId, toolId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -975,7 +975,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -1000,7 +1000,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentfaq"></a>
 # **DeleteBusinessAgentFaq**
-> InlineObject DeleteBusinessAgentFaq (string accountId, string faqId)
+> InlineObject1 DeleteBusinessAgentFaq (string accountId, string faqId)
 
 Delete a FAQ
 
@@ -1034,7 +1034,7 @@ namespace Example
             try
             {
                 // Delete a FAQ
-                InlineObject result = apiInstance.DeleteBusinessAgentFaq(accountId, faqId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentFaq(accountId, faqId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1055,7 +1055,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a FAQ
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentFaqWithHttpInfo(accountId, faqId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentFaqWithHttpInfo(accountId, faqId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1077,7 +1077,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -1102,7 +1102,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentfile"></a>
 # **DeleteBusinessAgentFile**
-> InlineObject DeleteBusinessAgentFile (string accountId, string fileId)
+> InlineObject1 DeleteBusinessAgentFile (string accountId, string fileId)
 
 Delete a knowledge file
 
@@ -1136,7 +1136,7 @@ namespace Example
             try
             {
                 // Delete a knowledge file
-                InlineObject result = apiInstance.DeleteBusinessAgentFile(accountId, fileId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentFile(accountId, fileId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1157,7 +1157,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a knowledge file
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentFileWithHttpInfo(accountId, fileId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentFileWithHttpInfo(accountId, fileId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1179,7 +1179,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -1204,7 +1204,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentskill"></a>
 # **DeleteBusinessAgentSkill**
-> InlineObject DeleteBusinessAgentSkill (string accountId, string skillId)
+> InlineObject1 DeleteBusinessAgentSkill (string accountId, string skillId)
 
 Delete a skill
 
@@ -1238,7 +1238,7 @@ namespace Example
             try
             {
                 // Delete a skill
-                InlineObject result = apiInstance.DeleteBusinessAgentSkill(accountId, skillId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentSkill(accountId, skillId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1259,7 +1259,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a skill
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentSkillWithHttpInfo(accountId, skillId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentSkillWithHttpInfo(accountId, skillId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1281,7 +1281,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -1306,7 +1306,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentuiskill"></a>
 # **DeleteBusinessAgentUiSkill**
-> InlineObject DeleteBusinessAgentUiSkill (string accountId, string uiSkillId)
+> InlineObject1 DeleteBusinessAgentUiSkill (string accountId, string uiSkillId)
 
 Delete a UI skill
 
@@ -1340,7 +1340,7 @@ namespace Example
             try
             {
                 // Delete a UI skill
-                InlineObject result = apiInstance.DeleteBusinessAgentUiSkill(accountId, uiSkillId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentUiSkill(accountId, uiSkillId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1361,7 +1361,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a UI skill
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentUiSkillWithHttpInfo(accountId, uiSkillId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentUiSkillWithHttpInfo(accountId, uiSkillId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1383,7 +1383,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -1408,7 +1408,7 @@ catch (ApiException e)
 
 <a id="deletebusinessagentwebsite"></a>
 # **DeleteBusinessAgentWebsite**
-> InlineObject DeleteBusinessAgentWebsite (string accountId, string websiteId)
+> InlineObject1 DeleteBusinessAgentWebsite (string accountId, string websiteId)
 
 Remove a crawled website
 
@@ -1442,7 +1442,7 @@ namespace Example
             try
             {
                 // Remove a crawled website
-                InlineObject result = apiInstance.DeleteBusinessAgentWebsite(accountId, websiteId);
+                InlineObject1 result = apiInstance.DeleteBusinessAgentWebsite(accountId, websiteId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1463,7 +1463,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a crawled website
-    ApiResponse<InlineObject> response = apiInstance.DeleteBusinessAgentWebsiteWithHttpInfo(accountId, websiteId);
+    ApiResponse<InlineObject1> response = apiInstance.DeleteBusinessAgentWebsiteWithHttpInfo(accountId, websiteId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1485,7 +1485,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -3985,7 +3985,7 @@ catch (ApiException e)
 
 <a id="removebusinessagentallowlistentry"></a>
 # **RemoveBusinessAgentAllowlistEntry**
-> InlineObject RemoveBusinessAgentAllowlistEntry (string accountId, string entryId)
+> InlineObject1 RemoveBusinessAgentAllowlistEntry (string accountId, string entryId)
 
 Remove an allowlisted consumer
 
@@ -4019,7 +4019,7 @@ namespace Example
             try
             {
                 // Remove an allowlisted consumer
-                InlineObject result = apiInstance.RemoveBusinessAgentAllowlistEntry(accountId, entryId);
+                InlineObject1 result = apiInstance.RemoveBusinessAgentAllowlistEntry(accountId, entryId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4040,7 +4040,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove an allowlisted consumer
-    ApiResponse<InlineObject> response = apiInstance.RemoveBusinessAgentAllowlistEntryWithHttpInfo(accountId, entryId);
+    ApiResponse<InlineObject1> response = apiInstance.RemoveBusinessAgentAllowlistEntryWithHttpInfo(accountId, entryId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4062,7 +4062,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
@@ -4295,7 +4295,7 @@ catch (ApiException e)
 
 <a id="resetbusinessagentbusinessinformation"></a>
 # **ResetBusinessAgentBusinessInformation**
-> InlineObject ResetBusinessAgentBusinessInformation (string accountId)
+> InlineObject1 ResetBusinessAgentBusinessInformation (string accountId)
 
 Reset business information
 
@@ -4328,7 +4328,7 @@ namespace Example
             try
             {
                 // Reset business information
-                InlineObject result = apiInstance.ResetBusinessAgentBusinessInformation(accountId);
+                InlineObject1 result = apiInstance.ResetBusinessAgentBusinessInformation(accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4349,7 +4349,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Reset business information
-    ApiResponse<InlineObject> response = apiInstance.ResetBusinessAgentBusinessInformationWithHttpInfo(accountId);
+    ApiResponse<InlineObject1> response = apiInstance.ResetBusinessAgentBusinessInformationWithHttpInfo(accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4370,7 +4370,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**InlineObject**](InlineObject.md)
+[**InlineObject1**](InlineObject1.md)
 
 ### Authorization
 
