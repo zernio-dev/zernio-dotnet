@@ -1545,6 +1545,7 @@ docs/GetEmailConnectUrl200Response.md
 docs/GetEmailThread200Response.md
 docs/GetEmailThread200ResponseData.md
 docs/GetEvent200Response.md
+docs/GetEvent200ResponseAfterInner.md
 docs/GetEvent200ResponseDeliveriesInner.md
 docs/GetEvent200ResponseTouchesInner.md
 docs/GetEvent200ResponseTouchesInnerDetail.md
@@ -5622,6 +5623,7 @@ src/Zernio.Test/Model/GetDsaRecommendations200ResponseTests.cs
 src/Zernio.Test/Model/GetEmailConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetEmailThread200ResponseDataTests.cs
 src/Zernio.Test/Model/GetEmailThread200ResponseTests.cs
+src/Zernio.Test/Model/GetEvent200ResponseAfterInnerTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseDeliveriesInnerTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTouchesInnerDetailTests.cs
@@ -9674,6 +9676,7 @@ src/Zernio/Model/GetEmailConnectUrl200Response.cs
 src/Zernio/Model/GetEmailThread200Response.cs
 src/Zernio/Model/GetEmailThread200ResponseData.cs
 src/Zernio/Model/GetEvent200Response.cs
+src/Zernio/Model/GetEvent200ResponseAfterInner.cs
 src/Zernio/Model/GetEvent200ResponseDeliveriesInner.cs
 src/Zernio/Model/GetEvent200ResponseTouchesInner.cs
 src/Zernio/Model/GetEvent200ResponseTouchesInnerDetail.cs

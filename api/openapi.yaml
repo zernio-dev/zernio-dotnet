@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.693.1
+  version: 1.694.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -214146,6 +214146,31 @@ components:
             linear: 0.5
             first_touch: 1
             time_decay: 0.35
+    getEvent_200_response_after_inner:
+      example:
+        eventId: eventId
+        eventTime: 2000-01-23T04:56:07.000+00:00
+        eventName: eventName
+        currency: currency
+        source: source
+        value: 5.962133916683182
+      properties:
+        eventId:
+          type: string
+        eventName:
+          type: string
+        source:
+          description: "Where it came from: `stripe`, `shopify`, `api`, `web`..."
+          type: string
+        eventTime:
+          format: date-time
+          type: string
+        value:
+          nullable: true
+          type: number
+        currency:
+          nullable: true
+          type: string
     getEvent_200_response:
       example:
         touches:
@@ -214185,6 +214210,19 @@ components:
             time_decay: 0.35
           campaignName: campaignName
           platform: platform
+        after:
+        - eventId: eventId
+          eventTime: 2000-01-23T04:56:07.000+00:00
+          eventName: eventName
+          currency: currency
+          source: source
+          value: 5.962133916683182
+        - eventId: eventId
+          eventTime: 2000-01-23T04:56:07.000+00:00
+          eventName: eventName
+          currency: currency
+          source: source
+          value: 5.962133916683182
         event:
           eventId: eventId
           ad:
@@ -214256,6 +214294,14 @@ components:
             \ for its own campaign."
           items:
             $ref: "#/components/schemas/getEvent_200_response_touches_inner"
+          type: array
+        after:
+          description: "The same person's events in the 180 days after this one, oldest\
+            \ first, up to 50, like a Stripe payment after a sign-up. People match\
+            \ on email, phone, external id or visitor id. Copies of this event, and\
+            \ website copies of a sale a server reported, are left out."
+          items:
+            $ref: "#/components/schemas/getEvent_200_response_after_inner"
           type: array
     retractEvent_200_response:
       example:
