@@ -4,7 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TelnyxCostUSD** | **decimal** |  | [optional] 
+**TelnyxCostUSD** | **decimal** | Raw Telnyx cost: carrierCostUSD plus callControlCostUSD. | [optional] 
+**CarrierCostUSD** | **decimal** | Raw carrier cost of the legs, without call control. | [optional] 
+**CallControlCostUSD** | **decimal** | Voice API call-control fee, part of telnyxCostUSD. 0 on trunk calls. | [optional] 
 **RecordingCostUSD** | **decimal** |  | [optional] 
 **TranscriptionCostUSD** | **decimal** |  | [optional] 
 **BrandedCallUSD** | **decimal** | Branded Calling surcharge, 0 unless &#x60;from&#x60; is a verified branded number calling a US destination. | [optional] 

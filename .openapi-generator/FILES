@@ -1814,7 +1814,10 @@ docs/GetUser200ResponseUser.md
 docs/GetValueRuleSet200Response.md
 docs/GetVoiceCall200Response.md
 docs/GetVoiceCallEstimate200Response.md
+docs/GetVoiceCallEstimate200ResponseBillingIncrementSeconds.md
 docs/GetVoiceCallEstimate200ResponseBreakdown.md
+docs/GetVoiceCallEstimate200ResponseRates.md
+docs/GetVoiceCallEstimate200ResponseTrunk.md
 docs/GetWebflowConnectUrl200Response.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
@@ -3625,6 +3628,8 @@ docs/VerifyWhatsAppCallerIdRequest.md
 docs/VerifyWhatsAppNumber200Response.md
 docs/VerifyWhatsAppNumberRequest.md
 docs/VoiceApi.md
+docs/VoiceCallLineRates.md
+docs/VoiceCallLineRatesNetworksInner.md
 docs/VoteRedditThingRequest.md
 docs/Webhook.md
 docs/WebhookAdsAccount.md
@@ -5830,8 +5835,11 @@ src/Zernio.Test/Model/GetUser200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
 src/Zernio.Test/Model/GetValueRuleSet200ResponseTests.cs
 src/Zernio.Test/Model/GetVoiceCall200ResponseTests.cs
+src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseBillingIncrementSecondsTests.cs
 src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseBreakdownTests.cs
+src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseRatesTests.cs
 src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseTests.cs
+src/Zernio.Test/Model/GetVoiceCallEstimate200ResponseTrunkTests.cs
 src/Zernio.Test/Model/GetWebflowConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponseTests.cs
@@ -7607,6 +7615,8 @@ src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppCallerIdRequestTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppNumber200ResponseTests.cs
 src/Zernio.Test/Model/VerifyWhatsAppNumberRequestTests.cs
+src/Zernio.Test/Model/VoiceCallLineRatesNetworksInnerTests.cs
+src/Zernio.Test/Model/VoiceCallLineRatesTests.cs
 src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
 src/Zernio.Test/Model/WebhookAdsAccountTests.cs
 src/Zernio.Test/Model/WebhookAdsSyncAccountTests.cs
@@ -9822,7 +9832,10 @@ src/Zernio/Model/GetUser200ResponseUser.cs
 src/Zernio/Model/GetValueRuleSet200Response.cs
 src/Zernio/Model/GetVoiceCall200Response.cs
 src/Zernio/Model/GetVoiceCallEstimate200Response.cs
+src/Zernio/Model/GetVoiceCallEstimate200ResponseBillingIncrementSeconds.cs
 src/Zernio/Model/GetVoiceCallEstimate200ResponseBreakdown.cs
+src/Zernio/Model/GetVoiceCallEstimate200ResponseRates.cs
+src/Zernio/Model/GetVoiceCallEstimate200ResponseTrunk.cs
 src/Zernio/Model/GetWebflowConnectUrl200Response.cs
 src/Zernio/Model/GetWebhookLogs200Response.cs
 src/Zernio/Model/GetWebhookLogs200ResponsePagination.cs
@@ -11598,6 +11611,8 @@ src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
 src/Zernio/Model/VerifyWhatsAppCallerIdRequest.cs
 src/Zernio/Model/VerifyWhatsAppNumber200Response.cs
 src/Zernio/Model/VerifyWhatsAppNumberRequest.cs
+src/Zernio/Model/VoiceCallLineRates.cs
+src/Zernio/Model/VoiceCallLineRatesNetworksInner.cs
 src/Zernio/Model/VoteRedditThingRequest.cs
 src/Zernio/Model/Webhook.cs
 src/Zernio/Model/WebhookAdsAccount.cs
