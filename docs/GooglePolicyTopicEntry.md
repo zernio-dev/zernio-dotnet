@@ -1,4 +1,5 @@
-# Zernio.Model.GetAdReview200ResponseReviewPolicyTopicsInner
+# Zernio.Model.GooglePolicyTopicEntry
+One Google PolicyTopicEntry: the policy a finding is about and its effect on serving.
 
 ## Properties
 
