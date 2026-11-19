@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.694.1
+  version: 1.695.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -2669,6 +2669,8 @@ paths:
     get:
       description: |
         Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats.
+
+        To keep a local copy in sync, do not poll this endpoint per account or per post. Subscribe to the `analytics.synced` webhook and read only what changed from `GET /v1/analytics/delta`.
 
         - Accepts both Zernio Post IDs and External Post IDs (auto-resolved).
         - fromDate defaults to 90 days ago if omitted, max range 366 days.
@@ -11049,10 +11051,10 @@ paths:
       x-resource-group: billing
   /v1/posts:
     get:
-      description: "Returns a paginated list of posts. Published posts include platformPostUrl\
-        \ with the public URL on each platform. A query parameter that is not listed\
-        \ here returns 400 naming it and the accepted parameters, so a misspelled\
-        \ filter never silently returns the unfiltered list."
+      description: |
+        Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform. A query parameter that is not listed here returns 400 naming it and the accepted parameters, so a misspelled filter never silently returns the unfiltered list.
+
+        To learn when posts publish or fail, subscribe to the `post.published`, `post.failed` and `post.partial` webhooks instead of re-reading this list.
       operationId: listPosts
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -11971,21 +11973,31 @@ paths:
             - `ACCOUNT_DISCONNECTED`: a target account's platform connection is no longer active (token expired or revoked, or disconnected). Reconnect it, then refresh account IDs from `GET /v1/accounts` (connection state is in `isActive`). The disconnect is also emitted as the `account.disconnected` webhook event.
             - `ACCOUNT_NOT_ENABLED_FOR_POSTING`: a target account was connected for ads only (`enabled: false`). Connect it as a posting account (it then counts as a connected account), then refresh account IDs from `GET /v1/accounts`.
             - `PROFILE_OVER_LIMIT`: a target account belongs to a profile beyond the plan's profile limit.
-            - No `code`: a target `accountId` does not belong to the authenticated user (or is outside the API key's profile scope).
+            - No `code`: a target `accountId` exists but does not belong to the authenticated user (or is outside the API key's profile scope). A nonexistent `accountId` returns 404 instead.
           x-summary: "A target account is disconnected, ads-only, over the profile\
             \ limit or not yours: reconnect it or connect it for posting."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createPost_404_response"
+          description: |
+            `code: account_not_found`. A target `accountId` does not exist, usually because the account was deleted or reconnected under a new ID. Retrying with the same ID never succeeds: refresh account IDs from `GET /v1/accounts` and drop the stale one.
+          x-summary: "A target accountId no longer exists: refresh account IDs from\
+            \ GET /v1/accounts. Retrying the same ID never succeeds."
         "409":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/createPost_409_response"
           description: |
-            Duplicate content detected. Returned when the requested post matches an existing one on `(platform, accountId, content-hash)` within the last 24 hours, AND the request was NOT an `x-request-id` retry. Distinct from same-`x-request-id` retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).
+            Duplicate content detected (`code: duplicate_content`). Returned when the requested post matches an existing one on `(platform, accountId, content-hash)` within the last 24 hours, AND the request was NOT an `x-request-id` retry. Distinct from same-`x-request-id` retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).
 
             Also returned with `code: idempotency_conflict` and a `Retry-After` header when a request with the same `Idempotency-Key` is still being processed. Retry after the delay to get the original post.
 
             Body fields:
             - `error`: human-readable message
+            - `code`: `duplicate_content`, or `idempotency_conflict` for the `Idempotency-Key` case above
             - `details.accountId`: the account that already has this content
             - `details.platform`: the platform that already has this content
             - `details.existingPostId`: Zernio `_id` of the original post
@@ -12309,7 +12321,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Cannot delete published posts
+          description: "Cannot delete published posts (`code: invalid_resource_state`).\
+            \ Use `POST /v1/posts/{postId}/unpublish` to delete it from the platforms."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -12327,6 +12340,8 @@ paths:
     get:
       description: |
         Fetch a single post by ID. For published posts, this returns platformPostUrl for each platform.
+
+        To wait for a post to publish, subscribe to the `post.published`, `post.failed` and `post.partial` webhooks instead of polling this endpoint. Each event carries the post, so no follow-up read is needed.
       operationId: getPost
       parameters:
       - explode: false
@@ -12460,7 +12475,7 @@ paths:
       x-resource-group: publishing
     put:
       description: |
-        Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.
+        Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated: to change the text of a live post, use `POST /v1/posts/{postId}/edit`.
 
         To promote a draft to scheduled, send `isDraft: false` together with `scheduledFor` (or `publishNow: true`, or `queuedFromProfile`). If `isDraft` is omitted the post keeps its current draft status, so sending only `scheduledFor` to a draft returns 200 but the post remains a draft.
 
@@ -12539,9 +12554,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Forbidden
+          description: "Forbidden. A target `accountId` exists but does not belong\
+            \ to the authenticated user, or is disconnected (`code: ACCOUNT_DISCONNECTED`)."
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The post does not exist, or a target `accountId` does not\
+            \ exist (`code: account_not_found`: the account was deleted or reconnected\
+            \ under a new ID, so refresh account IDs from `GET /v1/accounts`)."
         "409":
           content:
             application/json:
@@ -145952,6 +145974,22 @@ components:
           - ACCOUNT_NOT_ENABLED_FOR_POSTING
           - PROFILE_OVER_LIMIT
           type: string
+    createPost_404_response:
+      example:
+        code: account_not_found
+        error: "One or more accounts do not belong to this user: 6a0f6d2e520992756d96bb6c.\
+          \ No account with this ID exists: it was deleted, or reconnected under a\
+          \ new ID. Refresh your account IDs from GET /v1/accounts."
+      properties:
+        error:
+          example: "One or more accounts do not belong to this user: 6a0f6d2e520992756d96bb6c.\
+            \ No account with this ID exists: it was deleted, or reconnected under\
+            \ a new ID. Refresh your account IDs from GET /v1/accounts."
+          type: string
+        code:
+          enum:
+          - account_not_found
+          type: string
     createPost_409_response_details:
       example:
         existingPostId: existingPostId
@@ -145966,6 +146004,7 @@ components:
           type: string
     createPost_409_response:
       example:
+        code: duplicate_content
         details:
           existingPostId: existingPostId
           accountId: accountId
@@ -145976,6 +146015,11 @@ components:
         error:
           example: "This exact content is already scheduled, publishing, or was posted\
             \ to this account within the last 24 hours."
+          type: string
+        code:
+          enum:
+          - duplicate_content
+          - idempotency_conflict
           type: string
         details:
           $ref: "#/components/schemas/createPost_409_response_details"

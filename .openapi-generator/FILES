@@ -969,6 +969,7 @@ docs/CreatePost200Response.md
 docs/CreatePost400Response.md
 docs/CreatePost400ResponseDetails.md
 docs/CreatePost403Response.md
+docs/CreatePost404Response.md
 docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
 docs/CreatePost429Response.md
@@ -5063,6 +5064,7 @@ src/Zernio.Test/Model/CreatePost200ResponseTests.cs
 src/Zernio.Test/Model/CreatePost400ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost400ResponseTests.cs
 src/Zernio.Test/Model/CreatePost403ResponseTests.cs
+src/Zernio.Test/Model/CreatePost404ResponseTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseTests.cs
 src/Zernio.Test/Model/CreatePost429ResponseTests.cs
@@ -9115,6 +9117,7 @@ src/Zernio/Model/CreatePost200Response.cs
 src/Zernio/Model/CreatePost400Response.cs
 src/Zernio/Model/CreatePost400ResponseDetails.cs
 src/Zernio/Model/CreatePost403Response.cs
+src/Zernio/Model/CreatePost404Response.cs
 src/Zernio/Model/CreatePost409Response.cs
 src/Zernio/Model/CreatePost409ResponseDetails.cs
 src/Zernio/Model/CreatePost429Response.cs
