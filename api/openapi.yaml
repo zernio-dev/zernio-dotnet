@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.696.0
+  version: 1.697.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -93838,19 +93838,20 @@ components:
     TreasuryTopup:
       example:
         chargedCents: 1
-        feeCents: 7
+        feeCents: 1
         succeededAt: 2000-01-23T04:56:07.000+00:00
         method: card
         purpose: balance
-        netCents: 6
+        netCents: 7
         hasInvoice: true
         taxCents: 1
         payoutBatch:
           campaignId: campaignId
           id: id
+        bonusCents: 1
         createdAt: 2000-01-23T04:56:07.000+00:00
-        amountCents: 4
-        stripeFeeCents: 1
+        amountCents: 7
+        stripeFeeCents: 6
         id: id
         feeCoveredByZernio: true
         status: pending
@@ -93930,6 +93931,11 @@ components:
             \ credit balance), and Checkout payments before 2026-10-29. Every paid\
             \ payment has a card receipt (getTopupReceipt)."
           type: boolean
+        bonusCents:
+          description: "Bonus credit added with this payment and not taken back, in\
+            \ cents. Null when there is none."
+          nullable: true
+          type: integer
     AutoRecharge:
       example:
         disabledReason: payment_failed
@@ -142734,7 +142740,7 @@ components:
         \ number activates, returned if it is declined. Not part of availableCents\
         \ or spendableCents."
       example:
-        count: 5
+        count: 2
         cents: 5
       properties:
         cents:
@@ -142748,7 +142754,7 @@ components:
       - count
     getBalance_200_response_payoutLocks_inner:
       example:
-        amountCents: 7
+        amountCents: 9
         chargedAt: 2000-01-23T04:56:07.000+00:00
         topupId: topupId
         unlocksAt: 2000-01-23T04:56:07.000+00:00
@@ -142771,7 +142777,7 @@ components:
       - unlocksAt
     getBalance_200_response_pendingReleases_inner:
       example:
-        amountCents: 3
+        amountCents: 2
         topupId: topupId
         availableAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -142790,7 +142796,7 @@ components:
     getBalance_200_response_recentCreditRecharges_inner:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
-        amountCents: 7
+        amountCents: 4
         id: id
       properties:
         id:
@@ -142809,73 +142815,76 @@ components:
       example:
         availableCents: 0
         held:
-          count: 5
+          count: 2
           cents: 5
         recentTopups:
         - chargedCents: 1
-          feeCents: 7
+          feeCents: 1
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 6
+          netCents: 7
           hasInvoice: true
           taxCents: 1
           payoutBatch:
             campaignId: campaignId
             id: id
+          bonusCents: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 4
-          stripeFeeCents: 1
+          amountCents: 7
+          stripeFeeCents: 6
           id: id
           feeCoveredByZernio: true
           status: pending
         - chargedCents: 1
-          feeCents: 7
+          feeCents: 1
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 6
+          netCents: 7
           hasInvoice: true
           taxCents: 1
           payoutBatch:
             campaignId: campaignId
             id: id
+          bonusCents: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 4
-          stripeFeeCents: 1
+          amountCents: 7
+          stripeFeeCents: 6
           id: id
           feeCoveredByZernio: true
           status: pending
         spendableCents: 6
         payoutLocks:
-        - amountCents: 7
+        - amountCents: 9
           chargedAt: 2000-01-23T04:56:07.000+00:00
           topupId: topupId
           unlocksAt: 2000-01-23T04:56:07.000+00:00
-        - amountCents: 7
+        - amountCents: 9
           chargedAt: 2000-01-23T04:56:07.000+00:00
           topupId: topupId
           unlocksAt: 2000-01-23T04:56:07.000+00:00
-        pendingTopupCents: 2
+        bonusCents: 5
+        pendingTopupCents: 4
         balanceBilling: true
         pendingReleases:
-        - amountCents: 3
+        - amountCents: 2
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
-        - amountCents: 3
+        - amountCents: 2
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
         recentCreditRecharges:
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
+          amountCents: 4
           id: id
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 7
+          amountCents: 4
           id: id
         promoCents: 1
-        payoutLockedCents: 2
+        payoutLockedCents: 7
         currency: usd
-        pendingCents: 9
+        pendingCents: 3
       properties:
         availableCents:
           description: "Your balance. It goes negative after a dispute or refund of\
@@ -142890,13 +142899,18 @@ components:
           type: boolean
         spendableCents:
           description: "Balance billing only (absent otherwise). What pay-per-use\
-            \ can still spend: availableCents plus promoCents, minus usage not yet\
-            \ posted. At 0 or below, new pay-per-use answers 402 `insufficient_balance`."
+            \ can still spend: availableCents plus promoCents plus bonusCents, minus\
+            \ usage not yet posted. At 0 or below, new pay-per-use answers 402 `insufficient_balance`."
           type: integer
         promoCents:
           description: Balance billing only (absent otherwise). Promotional and support
             credit Zernio added to your balance. Pay-per-use spends it before availableCents.
             It is never paid out to payees and is not part of availableCents.
+          type: integer
+        bonusCents:
+          description: "Balance billing only (absent otherwise). Bonus credit in the\
+            \ balance, usually 0. Pay-per-use spends it after availableCents. It is\
+            \ not cash, never paid out or refunded, and not part of availableCents."
           type: integer
         held:
           $ref: "#/components/schemas/getBalance_200_response_held"
@@ -142984,36 +142998,38 @@ components:
       example:
         topups:
         - chargedCents: 1
-          feeCents: 7
+          feeCents: 1
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 6
+          netCents: 7
           hasInvoice: true
           taxCents: 1
           payoutBatch:
             campaignId: campaignId
             id: id
+          bonusCents: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 4
-          stripeFeeCents: 1
+          amountCents: 7
+          stripeFeeCents: 6
           id: id
           feeCoveredByZernio: true
           status: pending
         - chargedCents: 1
-          feeCents: 7
+          feeCents: 1
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 6
+          netCents: 7
           hasInvoice: true
           taxCents: 1
           payoutBatch:
             campaignId: campaignId
             id: id
+          bonusCents: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 4
-          stripeFeeCents: 1
+          amountCents: 7
+          stripeFeeCents: 6
           id: id
           feeCoveredByZernio: true
           status: pending
