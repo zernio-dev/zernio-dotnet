@@ -3132,6 +3132,7 @@ docs/StorePixelInstall.md
 docs/StorePixelInstallTagsInner.md
 docs/StoredEvent.md
 docs/StoredEventAd.md
+docs/StoredEventCampaign.md
 docs/StoredEventClickIds.md
 docs/StoredEventUtm.md
 docs/StripeSettings.md
@@ -7107,6 +7108,7 @@ src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
 src/Zernio.Test/Model/StorePixelInstallTagsInnerTests.cs
 src/Zernio.Test/Model/StorePixelInstallTests.cs
 src/Zernio.Test/Model/StoredEventAdTests.cs
+src/Zernio.Test/Model/StoredEventCampaignTests.cs
 src/Zernio.Test/Model/StoredEventClickIdsTests.cs
 src/Zernio.Test/Model/StoredEventTests.cs
 src/Zernio.Test/Model/StoredEventUtmTests.cs
@@ -11083,6 +11085,7 @@ src/Zernio/Model/StorePixelInstall.cs
 src/Zernio/Model/StorePixelInstallTagsInner.cs
 src/Zernio/Model/StoredEvent.cs
 src/Zernio/Model/StoredEventAd.cs
+src/Zernio/Model/StoredEventCampaign.cs
 src/Zernio/Model/StoredEventClickIds.cs
 src/Zernio/Model/StoredEventUtm.cs
 src/Zernio/Model/StripeSettings.cs

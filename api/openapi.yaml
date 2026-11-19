@@ -70955,6 +70955,24 @@ paths:
           - failed
           type: string
         style: form
+      - description: "`true`: only events carrying an ad click or a campaign (a gclid,\
+          \ gbraid or wbraid, a `zrn`, or a matched campaign). `false`: only the others."
+        explode: true
+        in: query
+        name: fromAd
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Only events of this ad platform campaign id: matched to it,\
+          \ or behind a Google click of it."
+        explode: true
+        in: query
+        name: campaignId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: '`nextCursor` from the previous page.'
         explode: true
         in: query
@@ -88805,6 +88823,12 @@ components:
         eventTime: 2000-01-23T04:56:07.000+00:00
         hasPhone: true
         eventName: eventName
+        campaign:
+          adName: adName
+          adGroupName: adGroupName
+          name: name
+          id: id
+          via: google_click
         currency: currency
         pairedEventId: pairedEventId
         value: 0.8008281904610115
@@ -88869,6 +88893,8 @@ components:
           type: string
         ad:
           $ref: "#/components/schemas/StoredEvent_ad"
+        campaign:
+          $ref: "#/components/schemas/StoredEvent_campaign"
     ConnectedMessagingAccount:
       description: The account a credentials connect created or updated.
       example:
@@ -207812,6 +207838,12 @@ components:
         eventTime: 2000-01-23T04:56:07.000+00:00
         hasPhone: true
         eventName: eventName
+        campaign:
+          adName: adName
+          adGroupName: adGroupName
+          name: name
+          id: id
+          via: google_click
         currency: currency
         pairedEventId: pairedEventId
         value: 0.8008281904610115
@@ -207852,6 +207884,12 @@ components:
           eventTime: 2000-01-23T04:56:07.000+00:00
           hasPhone: true
           eventName: eventName
+          campaign:
+            adName: adName
+            adGroupName: adGroupName
+            name: name
+            id: id
+            via: google_click
           currency: currency
           pairedEventId: pairedEventId
           value: 0.8008281904610115
@@ -207888,6 +207926,12 @@ components:
           eventTime: 2000-01-23T04:56:07.000+00:00
           hasPhone: true
           eventName: eventName
+          campaign:
+            adName: adName
+            adGroupName: adGroupName
+            name: name
+            id: id
+            via: google_click
           currency: currency
           pairedEventId: pairedEventId
           value: 0.8008281904610115
@@ -209060,6 +209104,12 @@ components:
           eventTime: 2000-01-23T04:56:07.000+00:00
           hasPhone: true
           eventName: eventName
+          campaign:
+            adName: adName
+            adGroupName: adGroupName
+            name: name
+            id: id
+            via: google_click
           currency: currency
           pairedEventId: pairedEventId
           value: 0.8008281904610115
@@ -220940,6 +220990,42 @@ components:
           nullable: true
           type: string
         adId:
+          nullable: true
+          type: string
+    StoredEvent_campaign:
+      description: "The campaign behind the event and how Zernio knows it, with the\
+        \ names Zernio holds for its campaign, ad group or ad set and ad. `null` when\
+        \ nothing ties the event to a campaign; a Google click shows here the day\
+        \ after it, once Google reports it."
+      example:
+        adName: adName
+        adGroupName: adGroupName
+        name: name
+        id: id
+        via: google_click
+      properties:
+        via:
+          description: "`google_click`: the click behind `clickIds.gclid`. `zernio_tag`:\
+            \ the `zrn` ad. `matched`: the campaign Zernio matched the event to. `utm`:\
+            \ only its `utm_campaign`, as `name`."
+          enum:
+          - google_click
+          - zernio_tag
+          - matched
+          - utm
+          type: string
+        id:
+          description: The ad platform campaign id; `null` for `utm`.
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        adGroupName:
+          description: The Google ad group or Meta ad set.
+          nullable: true
+          type: string
+        adName:
           nullable: true
           type: string
     CPM:

@@ -3963,7 +3963,7 @@ catch (ApiException e)
 
 <a id="listevents"></a>
 # **ListEvents**
-> ListEvents200Response ListEvents (string? profileId = null, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? platform = null, string? deliveryStatus = null, string? cursor = null)
+> ListEvents200Response ListEvents (string? profileId = null, int? limit = null, DateTime? from = null, DateTime? to = null, string? eventName = null, string? source = null, string? platform = null, string? deliveryStatus = null, bool? fromAd = null, string? campaignId = null, string? cursor = null)
 
 List stored events
 
@@ -4001,12 +4001,14 @@ namespace Example
             var source = "api";  // string? | Only events from this source, such as `stripe` for the payments of a connected Stripe account. (optional) 
             var platform = "platform_example";  // string? | Only events sent to this ad platform, such as `metaads` or `googleads`. (optional) 
             var deliveryStatus = "sent";  // string? | Only events whose latest send to a destination (of `platform`, when given) was accepted (`sent`) or was not (`failed`: failed or still retrying). (optional) 
+            var fromAd = true;  // bool? | `true`: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a `zrn`, or a matched campaign). `false`: only the others. (optional) 
+            var campaignId = "campaignId_example";  // string? | Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional) 
             var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
 
             try
             {
                 // List stored events
-                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
+                ListEvents200Response result = apiInstance.ListEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4027,7 +4029,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List stored events
-    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
+    ApiResponse<ListEvents200Response> response = apiInstance.ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4052,6 +4054,8 @@ catch (ApiException e)
 | **source** | **string?** | Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. | [optional]  |
 | **platform** | **string?** | Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. | [optional]  |
 | **deliveryStatus** | **string?** | Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). | [optional]  |
+| **fromAd** | **bool?** | &#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. | [optional]  |
+| **campaignId** | **string?** | Only events of this ad platform campaign id: matched to it, or behind a Google click of it. | [optional]  |
 | **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
 
 ### Return type

@@ -932,9 +932,11 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <returns>ListEvents200Response</returns>
-        ListEvents200Response ListEvents(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default);
+        ListEvents200Response ListEvents(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default);
 
         /// <summary>
         /// List stored events
@@ -951,9 +953,11 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <returns>ApiResponse of ListEvents200Response</returns>
-        ApiResponse<ListEvents200Response> ListEventsWithHttpInfo(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default);
+        ApiResponse<ListEvents200Response> ListEventsWithHttpInfo(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default);
         /// <summary>
         /// List forwarding rules
         /// </summary>
@@ -2346,10 +2350,12 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListEvents200Response</returns>
-        System.Threading.Tasks.Task<ListEvents200Response> ListEventsAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListEvents200Response> ListEventsAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List stored events
@@ -2366,10 +2372,12 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListEvents200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListEvents200Response>> ListEventsWithHttpInfoAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListEvents200Response>> ListEventsWithHttpInfoAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List forwarding rules
         /// </summary>
@@ -8369,11 +8377,13 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <returns>ListEvents200Response</returns>
-        public ListEvents200Response ListEvents(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default)
+        public ListEvents200Response ListEvents(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default)
         {
-            Zernio.Client.ApiResponse<ListEvents200Response> localVarResponse = ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
+            Zernio.Client.ApiResponse<ListEvents200Response> localVarResponse = ListEventsWithHttpInfo(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor);
             return localVarResponse.Data;
         }
 
@@ -8389,9 +8399,11 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <returns>ApiResponse of ListEvents200Response</returns>
-        public Zernio.Client.ApiResponse<ListEvents200Response> ListEventsWithHttpInfo(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default)
+        public Zernio.Client.ApiResponse<ListEvents200Response> ListEventsWithHttpInfo(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -8440,6 +8452,14 @@ namespace Zernio.Api
             if (deliveryStatus != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "deliveryStatus", deliveryStatus));
+            }
+            if (fromAd != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromAd", fromAd));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
             if (cursor != null)
             {
@@ -8477,12 +8497,14 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListEvents200Response</returns>
-        public async System.Threading.Tasks.Task<ListEvents200Response> ListEventsAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListEvents200Response> ListEventsAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListEvents200Response> localVarResponse = await ListEventsWithHttpInfoAsync(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListEvents200Response> localVarResponse = await ListEventsWithHttpInfoAsync(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -8498,10 +8520,12 @@ namespace Zernio.Api
         /// <param name="source">Only events from this source, such as &#x60;stripe&#x60; for the payments of a connected Stripe account. (optional)</param>
         /// <param name="platform">Only events sent to this ad platform, such as &#x60;metaads&#x60; or &#x60;googleads&#x60;. (optional)</param>
         /// <param name="deliveryStatus">Only events whose latest send to a destination (of &#x60;platform&#x60;, when given) was accepted (&#x60;sent&#x60;) or was not (&#x60;failed&#x60;: failed or still retrying). (optional)</param>
+        /// <param name="fromAd">&#x60;true&#x60;: only events carrying an ad click or a campaign (a gclid, gbraid or wbraid, a &#x60;zrn&#x60;, or a matched campaign). &#x60;false&#x60;: only the others. (optional)</param>
+        /// <param name="campaignId">Only events of this ad platform campaign id: matched to it, or behind a Google click of it. (optional)</param>
         /// <param name="cursor">&#x60;nextCursor&#x60; from the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListEvents200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListEvents200Response>> ListEventsWithHttpInfoAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListEvents200Response>> ListEventsWithHttpInfoAsync(string? profileId = default, int? limit = default, DateTime? from = default, DateTime? to = default, string? eventName = default, string? source = default, string? platform = default, string? deliveryStatus = default, bool? fromAd = default, string? campaignId = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -8552,6 +8576,14 @@ namespace Zernio.Api
             if (deliveryStatus != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "deliveryStatus", deliveryStatus));
+            }
+            if (fromAd != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromAd", fromAd));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
             if (cursor != null)
             {

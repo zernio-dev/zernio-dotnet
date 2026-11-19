@@ -556,8 +556,10 @@ namespace Zernio.Test.Api
             //string? source = null;
             //string? platform = null;
             //string? deliveryStatus = null;
+            //bool? fromAd = null;
+            //string? campaignId = null;
             //string? cursor = null;
-            //var response = instance.ListEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, cursor);
+            //var response = instance.ListEvents(profileId, limit, from, to, eventName, source, platform, deliveryStatus, fromAd, campaignId, cursor);
             //Assert.IsType<ListEvents200Response>(response);
         }
 

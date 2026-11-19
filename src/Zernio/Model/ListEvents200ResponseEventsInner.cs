@@ -55,8 +55,9 @@ namespace Zernio.Model
         /// <param name="hasExternalId">hasExternalId.</param>
         /// <param name="pairedEventId">In a &#x60;GET /v1/events&#x60; page: the other copy of the same conversion, when a website tag (&#x60;web&#x60;) and a server send both stored it under different event ids (same event name, a shared identifier, at most 30 minutes apart). &#x60;null&#x60; otherwise, and always &#x60;null&#x60; from &#x60;GET /v1/events/{eventId}&#x60;..</param>
         /// <param name="ad">ad.</param>
+        /// <param name="campaign">campaign.</param>
         /// <param name="deliveries">Each destination the event was forwarded to, with its latest send status. The full detail is on GET /v1/events/{eventId}..</param>
-        public ListEvents200ResponseEventsInner(string eventId = default, string profileId = default, string source = default, string eventName = default, DateTime eventTime = default, DateTime receivedAt = default, string actionSource = default, decimal value = default, string currency = default, string sourceUrl = default, StoredEventUtm utm = default, string zrn = default, StoredEventClickIds clickIds = default, int destinationsSent = default, bool hasEmail = default, bool hasPhone = default, bool hasExternalId = default, string pairedEventId = default, StoredEventAd ad = default, List<ListEvents200ResponseEventsInnerAllOfDeliveriesInner> deliveries = default)
+        public ListEvents200ResponseEventsInner(string eventId = default, string profileId = default, string source = default, string eventName = default, DateTime eventTime = default, DateTime receivedAt = default, string actionSource = default, decimal value = default, string currency = default, string sourceUrl = default, StoredEventUtm utm = default, string zrn = default, StoredEventClickIds clickIds = default, int destinationsSent = default, bool hasEmail = default, bool hasPhone = default, bool hasExternalId = default, string pairedEventId = default, StoredEventAd ad = default, StoredEventCampaign campaign = default, List<ListEvents200ResponseEventsInnerAllOfDeliveriesInner> deliveries = default)
         {
             this.EventId = eventId;
             this.ProfileId = profileId;
@@ -77,6 +78,7 @@ namespace Zernio.Model
             this.HasExternalId = hasExternalId;
             this.PairedEventId = pairedEventId;
             this.Ad = ad;
+            this.Campaign = campaign;
             this.Deliveries = deliveries;
         }
 
@@ -201,6 +203,12 @@ namespace Zernio.Model
         public StoredEventAd Ad { get; set; }
 
         /// <summary>
+        /// Gets or Sets Campaign
+        /// </summary>
+        [DataMember(Name = "campaign", EmitDefaultValue = false)]
+        public StoredEventCampaign Campaign { get; set; }
+
+        /// <summary>
         /// Each destination the event was forwarded to, with its latest send status. The full detail is on GET /v1/events/{eventId}.
         /// </summary>
         /// <value>Each destination the event was forwarded to, with its latest send status. The full detail is on GET /v1/events/{eventId}.</value>
@@ -234,6 +242,7 @@ namespace Zernio.Model
             sb.Append("  HasExternalId: ").Append(HasExternalId).Append("\n");
             sb.Append("  PairedEventId: ").Append(PairedEventId).Append("\n");
             sb.Append("  Ad: ").Append(Ad).Append("\n");
+            sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  Deliveries: ").Append(Deliveries).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

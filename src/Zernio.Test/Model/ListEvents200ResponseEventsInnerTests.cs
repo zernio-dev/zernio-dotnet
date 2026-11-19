@@ -227,6 +227,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Campaign'
+        /// </summary>
+        [Fact]
+        public void CampaignTest()
+        {
+            // TODO unit test for the property 'Campaign'
+        }
+
+        /// <summary>
         /// Test the property 'Deliveries'
         /// </summary>
         [Fact]
