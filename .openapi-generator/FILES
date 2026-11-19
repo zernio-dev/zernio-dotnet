@@ -1550,8 +1550,10 @@ docs/GetEventsOverview200ResponseWebsiteStepsInner.md
 docs/GetEventsOverviewDaily200Response.md
 docs/GetEventsOverviewDaily200ResponseDaysInner.md
 docs/GetEventsOverviewDaily200ResponsePixelMissedInner.md
+docs/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.md
 docs/GetEventsOverviewDaily200ResponsePlatformsInner.md
 docs/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.md
+docs/GetEventsOverviewDaily200ResponsePrevious.md
 docs/GetEventsOverviewDaily200ResponseTotals.md
 docs/GetFacebookDemographics200Response.md
 docs/GetFacebookDemographics200ResponseDemographics.md
@@ -1767,6 +1769,8 @@ docs/GetStripeConnectUrl200Response.md
 docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
 docs/GetSubredditRules200ResponseRulesInner.md
+docs/GetSurveyAnswers200Response.md
+docs/GetSurveyAnswers200ResponseAnswersInner.md
 docs/GetTagNewAds200Response.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
@@ -5555,9 +5559,11 @@ src/Zernio.Test/Model/GetEventsOverview200ResponseTodayTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseWebsiteStepsInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseWebsiteTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponseDaysInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePixelMissedInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePlatformsInnerTests.cs
+src/Zernio.Test/Model/GetEventsOverviewDaily200ResponsePreviousTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponseTests.cs
 src/Zernio.Test/Model/GetEventsOverviewDaily200ResponseTotalsTests.cs
 src/Zernio.Test/Model/GetFacebookDemographics200ResponseDemographicsCountryInnerTests.cs
@@ -5774,6 +5780,8 @@ src/Zernio.Test/Model/GetStripeConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetStripeSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseRulesInnerTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseTests.cs
+src/Zernio.Test/Model/GetSurveyAnswers200ResponseAnswersInnerTests.cs
+src/Zernio.Test/Model/GetSurveyAnswers200ResponseTests.cs
 src/Zernio.Test/Model/GetTagNewAds200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseTests.cs
@@ -9538,8 +9546,10 @@ src/Zernio/Model/GetEventsOverview200ResponseWebsiteStepsInner.cs
 src/Zernio/Model/GetEventsOverviewDaily200Response.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponseDaysInner.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponsePixelMissedInner.cs
+src/Zernio/Model/GetEventsOverviewDaily200ResponsePixelMissedInnerDaysInner.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponsePlatformsInner.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponsePlatformsInnerDaysInner.cs
+src/Zernio/Model/GetEventsOverviewDaily200ResponsePrevious.cs
 src/Zernio/Model/GetEventsOverviewDaily200ResponseTotals.cs
 src/Zernio/Model/GetFacebookDemographics200Response.cs
 src/Zernio/Model/GetFacebookDemographics200ResponseDemographics.cs
@@ -9755,6 +9765,8 @@ src/Zernio/Model/GetStripeConnectUrl200Response.cs
 src/Zernio/Model/GetStripeSettings200Response.cs
 src/Zernio/Model/GetSubredditRules200Response.cs
 src/Zernio/Model/GetSubredditRules200ResponseRulesInner.cs
+src/Zernio/Model/GetSurveyAnswers200Response.cs
+src/Zernio/Model/GetSurveyAnswers200ResponseAnswersInner.cs
 src/Zernio/Model/GetTagNewAds200Response.cs
 src/Zernio/Model/GetTelegramCommands200Response.cs
 src/Zernio/Model/GetTelegramCommands200ResponseDataInner.cs
