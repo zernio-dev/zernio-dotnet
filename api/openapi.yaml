@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.695.0
+  version: 1.696.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -481,7 +481,7 @@ tags:
     - Messages: `message.received`, `message.sent`, `message.edited`, `message.deleted`, `message.delivered`, `message.read`, `message.played`, `message.failed`, `reaction.received`, `referral.received`, `conversation.started`, `conversation.control_changed`
     - Calls: `call.received`, `call.ended`, `call.failed`, `call.permission_request`, `call.transcript_segment`, `call.recording_ready`
     - Engagement and leads: `comment.received`, `mention.received`, `review.new`, `review.updated`, `review.deleted`, `review.restored`, `lead.received`
-    - Ads: `ad.status_changed`, `ad.created`, `ad.updated`, `campaign.created`, `campaign.updated`, `ad_set.created`, `ad_set.updated`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `campaign.status_changed`, `ad.video.processed`, `ad_rule.triggered`
+    - Ads: `ad.status_changed`, `ad.created`, `ad.updated`, `campaign.created`, `campaign.updated`, `ad_set.created`, `ad_set.updated`, `ad.review.approved`, `ad.review.rejected`, `ad.delivery_issue`, `campaign.budget.depleted`, `ad_account.status_changed`, `campaign.status_changed`, `ad.video.processed`, `ad_rule.triggered`, `tracking_site.ready`
     - WhatsApp: `whatsapp.template.status_updated`, `whatsapp.template.category_updated`, `whatsapp.account.name_status_updated`, `whatsapp.account.quality_updated`, `whatsapp.account.status_updated`, `whatsapp.account.alert_received`, `whatsapp.contact.identity_changed`, `whatsapp.automatic_event`
     - WhatsApp numbers: `whatsapp.number.activated`, `whatsapp.number.declined`, `whatsapp.number.action_required`, `whatsapp.number.verification_required`, `whatsapp.number.suspended`, `whatsapp.number.reactivated`, `whatsapp.number.released`, `whatsapp.number.kyc_submitted`
     - Telephony: `phone_number.stock_available`, `verification.approved`, `verification.failed`, `sms.registration.action_required`, `sms.registration.status_updated`, `branded_calling.identity.status_updated`, `branded_calling.identity.action_required`, `branded_calling.number.status_updated`, `rcs.agent.status_updated`
@@ -12737,8 +12737,14 @@ paths:
       x-resource-group: publishing
   /v1/posts/{postId}/retry:
     post:
-      description: Immediately retries publishing a failed post. Returns the updated
-        post with its new status.
+      description: |
+        Immediately retries publishing a failed or partial post and returns the updated post with a per-platform result.
+
+        - Without a body, every failed or pending platform is retried.
+        - Pass `platforms` to retry only some of them, for example the one platform that failed on a partial post. Platforms not listed are left alone.
+        - Prefer this over creating the post again, which posts a second time to the platforms that already published.
+
+        A retry never collides with its own post in the 24-hour duplicate-content check. It still answers 409 when another post with identical content published, or is about to publish, to the same account.
       operationId: retryPost
       parameters:
       - explode: false
@@ -12748,12 +12754,30 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              platforms:
+              - platform: twitter
+            schema:
+              $ref: "#/components/schemas/PostRetryRequest"
+        required: false
       responses:
         "200":
           content:
             application/json:
               example:
-                message: Post published successfully
+                message: Post retry successful
+                platformResults:
+                - platform: twitter
+                  accountId: 64e1f0a9e2b5af0012ab34ce
+                  retried: true
+                  status: published
+                  error: null
+                  errorCategory: null
+                  errorSource: null
+                  platformErrorCode: null
                 post:
                   _id: 65f1c0a9e2b5af0012ab34cd
                   content: Check out our new product!
@@ -12779,13 +12803,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/retryPost_207_response"
+                $ref: "#/components/schemas/PostRetryResponse"
           description: |
             The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.
 
             **207 is a 2xx status**, so `fetch(...).ok` is `true` and axios resolves. Branch on the status code explicitly.
 
-            This response carries no `platformResults`. Read `post.status` (`partial`, `failed`, or `scheduled` when transient errors will be retried automatically) and `post.platforms[]` for per-platform detail.
+            `platformResults` says, per platform, whether this request retried it and how it ended (`status`, `error`, `errorCategory`). `post.status` is `partial`, `failed`, or `scheduled` when transient errors will be retried automatically.
           x-summary: "The retry ran but publishing did not fully succeed: check `post.status`\
             \ and retry the failed platforms."
         "400":
@@ -12793,9 +12817,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: "Invalid state. `code: ACCOUNT_NOTIFICATION_ONLY` means the\
-            \ account of a leg is connected for notifications only (`purpose=notifications`)\
-            \ and cannot publish; reconnect it without the purpose, then retry."
+          description: |
+            Invalid request or state. Distinguish by the `code` field:
+
+            - `ACCOUNT_NOTIFICATION_ONLY`: the account of a platform is connected for notifications only (`purpose=notifications`) and cannot publish. Reconnect it without the purpose, then retry.
+            - `invalid_field_value`: the post has no platform matching an entry of `platforms`.
+            - `invalid_resource_state`: the matching platform is not failed or pending (for example it already published).
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
@@ -12831,7 +12858,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Post is currently publishing
+          description: "The post is currently publishing, or another post with identical\
+            \ content is already active for the account within 24 hours (`details`\
+            \ carries `platform`, `accountId` and `existingPostId`). The post was\
+            \ not changed."
         "422":
           content:
             application/json:
@@ -100949,6 +100979,7 @@ components:
             - review.restored
             - lead.received
             - conversion.received
+            - tracking_site.ready
             - ad.status_changed
             - ad.created
             - ad.updated
@@ -105696,6 +105727,104 @@ components:
       - id
       - post
       - timestamp
+    WebhookPayloadTrackingSite:
+      description: Webhook payload for tracking_site.ready events.
+      example:
+        test: true
+        profileId: profileId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        trackingSite:
+          googleTagIds:
+          - googleTagIds
+          - googleTagIds
+          customHostname:
+            hostname: hostname
+            dnsRecord:
+              name: name
+              type: CNAME
+              target: target
+            status: pending
+          storeOrders: true
+          domains:
+          - domains
+          - domains
+          proxy:
+            path: path
+            secret: secret
+            googleTags:
+            - src: src
+              id: id
+            - src: src
+              id: id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          siteKey: siteKey
+          checks:
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          - checkedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+            key: key
+            status: pending
+          consentMode: eu_opt_in
+          install:
+            snippet: snippet
+            storeAccountId: storeAccountId
+            method: shopify
+          profileId: profileId
+          name: name
+          setup:
+            status: pending
+          id: id
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        event: tracking_site.ready
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header. It follows the site and the moment its tag\
+            \ was confirmed."
+          type: string
+        profiles:
+          description: |
+            The profiles this event belongs to, each with the externalId you set on it (null when none is set). Use it to route the event to your tenant without storing Zernio profile ids.
+
+            Present on every event tied to a profile, absent on events that belong to none. Events spanning several profiles (a post published to accounts of different profiles) list each once.
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - tracking_site.ready
+          type: string
+        trackingSite:
+          $ref: "#/components/schemas/TrackingSite"
+        profileId:
+          type: string
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - event
+      - id
+      - profileId
+      - timestamp
+      - trackingSite
     WebhookPayloadConversion:
       description: Webhook payload for conversion.received events.
       example:
@@ -121123,6 +121252,81 @@ components:
       properties:
         message:
           type: string
+    PostRetryRequest:
+      description: Optional. Omit the body to retry every failed or pending platform
+        of the post.
+      example:
+        platforms:
+        - accountId: accountId
+          platform: twitter
+        - accountId: accountId
+          platform: twitter
+      properties:
+        platforms:
+          description: "Retry only these platforms. Platforms not listed are left\
+            \ as they are, so a platform that already published is never posted twice.\
+            \ Each entry matches the post platforms with that `platform` and, when\
+            \ given, that `accountId`."
+          items:
+            $ref: "#/components/schemas/PostRetryRequest_platforms_inner"
+          minItems: 1
+          type: array
+    PostRetryPlatformResult:
+      example:
+        retried: true
+        accountId: accountId
+        errorCategory: user_content
+        errorSource: user
+        platformErrorCode: 0
+        error: error
+        platform: platform
+        status: failed
+      properties:
+        platform:
+          description: "Platform slug, matching `post.platforms[].platform`."
+          type: string
+        accountId:
+          description: Account id of this platform.
+          type: string
+        retried:
+          description: "Whether this request retried the platform. False for a platform\
+            \ that had already published, or one left out of `platforms`."
+          type: boolean
+        status:
+          description: "Status after the retry: pending, processing, published, failed,\
+            \ cancelled, uploading."
+          example: failed
+          type: string
+        error:
+          description: "Failure message for this platform, or null when it did not\
+            \ fail."
+          nullable: true
+          type: string
+        errorCategory:
+          description: "Stable failure category (for example `auth_expired`, `account_issue`,\
+            \ `user_content`, `platform_error`), or null."
+          example: user_content
+          nullable: true
+          type: string
+        errorSource:
+          description: "Who caused the failure (`user`, `platform` or `system`), or\
+            \ null."
+          example: user
+          nullable: true
+          type: string
+        platformErrorCode:
+          description: "Error code returned by the platform, when it sent one."
+          nullable: true
+          type: integer
+      required:
+      - accountId
+      - error
+      - errorCategory
+      - errorSource
+      - platform
+      - platformErrorCode
+      - retried
+      - status
     PostRetryResponse:
       example:
         post:
@@ -121352,10 +121556,38 @@ components:
           _id: _id
           status: draft
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        platformResults:
+        - retried: true
+          accountId: accountId
+          errorCategory: user_content
+          errorSource: user
+          platformErrorCode: 0
+          error: error
+          platform: platform
+          status: failed
+        - retried: true
+          accountId: accountId
+          errorCategory: user_content
+          errorSource: user
+          platformErrorCode: 0
+          error: error
+          platform: platform
+          status: failed
         message: message
+        error: error
       properties:
         message:
           type: string
+        error:
+          description: "Present on a 207 only: summary of why the retry did not fully\
+            \ succeed."
+          type: string
+        platformResults:
+          description: "One entry per platform of the post, in `post.platforms[]`\
+            \ order."
+          items:
+            $ref: "#/components/schemas/PostRetryPlatformResult"
+          type: array
         post:
           $ref: "#/components/schemas/Post"
     ProfilesListResponse:
@@ -146273,245 +146505,6 @@ components:
         file:
           format: binary
           type: string
-    retryPost_207_response:
-      example:
-        post:
-          queueId: queueId
-          metadata:
-            key: ""
-          hashtags:
-          - hashtags
-          - hashtags
-          visibility: public
-          timezone: timezone
-          recycling:
-            recycleCount: 3
-            gap: 2
-            expireCount: 7
-            lastRecycledAt: 2000-01-23T04:56:07.000+00:00
-            expireDate: 2000-01-23T04:56:07.000+00:00
-            nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 9
-            gapFreq: week
-            enabled: true
-            startDate: 2000-01-23T04:56:07.000+00:00
-            contentVariations:
-            - contentVariations
-            - contentVariations
-          recycledFromPostId: recycledFromPostId
-          title: title
-          userId: Post_userId
-          content: content
-          contentNotRetained: true
-          platforms:
-          - platformSpecificData:
-              key: ""
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            errorSource: user
-            errorMessage: errorMessage
-            platform: twitter
-            accountId: PlatformTarget_accountId
-            customContent: customContent
-            trialGraduationStrategy: MANUAL
-            isTrialReel: true
-            errorCategory: auth_expired
-            scheduledFor: 2000-01-23T04:56:07.000+00:00
-            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
-            publishAttempts: 6
-            platformError:
-              code: 5
-              subcode: 5
-              message: message
-            publishRetries: 1
-            customMedia:
-            - subtitles:
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              thumbnail: https://openapi-generator.tech
-              altText: altText
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-              accountId: accountId
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              fileId: fileId
-            - subtitles:
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              thumbnail: https://openapi-generator.tech
-              altText: altText
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-              accountId: accountId
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              fileId: fileId
-            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
-            status: pending
-            platformPostId: "1234567890123456789"
-          - platformSpecificData:
-              key: ""
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            errorSource: user
-            errorMessage: errorMessage
-            platform: twitter
-            accountId: PlatformTarget_accountId
-            customContent: customContent
-            trialGraduationStrategy: MANUAL
-            isTrialReel: true
-            errorCategory: auth_expired
-            scheduledFor: 2000-01-23T04:56:07.000+00:00
-            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
-            publishAttempts: 6
-            platformError:
-              code: 5
-              subcode: 5
-              message: message
-            publishRetries: 1
-            customMedia:
-            - subtitles:
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              thumbnail: https://openapi-generator.tech
-              altText: altText
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-              accountId: accountId
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              fileId: fileId
-            - subtitles:
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              - language: en
-                url: https://media.zernio.com/temp/walkthrough.en.srt
-              thumbnail: https://openapi-generator.tech
-              altText: altText
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-              accountId: accountId
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              fileId: fileId
-            removedFromPlatformAt: 2000-01-23T04:56:07.000+00:00
-            status: pending
-            platformPostId: "1234567890123456789"
-          tags:
-          - tags
-          - tags
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          mediaItems:
-          - subtitles:
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            thumbnail: https://openapi-generator.tech
-            altText: altText
-            tiktokProcessed: true
-            mimeType: mimeType
-            type: image
-            title: title
-            url: https://openapi-generator.tech
-            accountId: accountId
-            filename: filename
-            size: 0
-            instagramThumbnail: https://openapi-generator.tech
-            fileId: fileId
-          - subtitles:
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            - language: en
-              url: https://media.zernio.com/temp/walkthrough.en.srt
-            thumbnail: https://openapi-generator.tech
-            altText: altText
-            tiktokProcessed: true
-            mimeType: mimeType
-            type: image
-            title: title
-            url: https://openapi-generator.tech
-            accountId: accountId
-            filename: filename
-            size: 0
-            instagramThumbnail: https://openapi-generator.tech
-            fileId: fileId
-          queuedFromProfile: queuedFromProfile
-          profileId: profileId
-          scheduledFor: 2000-01-23T04:56:07.000+00:00
-          mentions:
-          - mentions
-          - mentions
-          _id: _id
-          status: draft
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        message: message
-        error: error
-      properties:
-        message:
-          type: string
-        error:
-          description: Summary of why the retry did not fully succeed.
-          type: string
-        post:
-          $ref: "#/components/schemas/Post"
     retryPost_402_response:
       anyOf:
       - $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
@@ -159107,6 +159100,7 @@ components:
             - review.restored
             - lead.received
             - conversion.received
+            - tracking_site.ready
             - ad.status_changed
             - ad.created
             - ad.updated
@@ -159357,6 +159351,7 @@ components:
             - review.restored
             - lead.received
             - conversion.received
+            - tracking_site.ready
             - ad.status_changed
             - ad.created
             - ad.updated
@@ -159728,6 +159723,7 @@ components:
           - automation.alert.resolved
           - lead.received
           - conversion.received
+          - tracking_site.ready
           - whatsapp.template.status_updated
           - whatsapp.template.category_updated
           - whatsapp.account.name_status_updated
@@ -239529,6 +239525,21 @@ components:
       - error
       - platform
       - status
+    PostRetryRequest_platforms_inner:
+      example:
+        accountId: accountId
+        platform: twitter
+      properties:
+        platform:
+          description: "Platform slug, matching `post.platforms[].platform`."
+          example: twitter
+          type: string
+        accountId:
+          description: Account id of the platform to retry. Needed only when the post
+            targets the same platform on more than one account.
+          type: string
+      required:
+      - platform
     AccountsListResponse_pagination:
       description: "Present on a paginated request: `{ page, limit, total, pages }`\
         \ with page and limit, `{ limit, nextCursor }` with cursor paging (limit alone\
@@ -247101,6 +247112,7 @@ x-documentation:
     - `review.deleted` - Google Business Profile stopped returning this review, for example after Google's spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to `review.deleted` or `review.restored`. If the review comes back, `review.restored` fires. May arrive for a review id you never received `review.new` for. A review hidden and restored by Google may produce `review.deleted` followed by `review.restored`, and a `review.updated` can arrive for a review previously reported by `review.deleted` (it is restored on the next check).
     - `review.restored` - A review reported by `review.deleted` is returned by Google again. Same payload as `review.new`.
     - `conversion.received` - Zernio stored an event sent to `POST /v1/events`, by the relay or by a connected source (lead forms, stores, HubSpot), new or a newer version. `conversion.campaign` is the campaign it counts for.
+    - `tracking_site.ready` - A tracked website's tag is confirmed on it: by its store or Tag Manager install, or by its first real visit for a pasted line. `trackingSite` is the site as `GET /v1/tracking-sites/{siteId}` returns it.
     - `lead.received` - New lead submitted against a Meta Lead Gen (Instant) Form or a Google Ads lead form (`account.platform` tells them apart). `lead.fields` is the question-key → answer map; `lead.formId`/`lead.adId` give provenance.
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
     - `ad.created` - An ad was created through Zernio (`source` is `zernio`) or detected by the sync (`source` is `platform`). Never for history loaded when an account connects, nor for ads older than 7 days

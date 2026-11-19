@@ -795,11 +795,11 @@ catch (ApiException e)
 
 <a id="retrypost"></a>
 # **RetryPost**
-> PostRetryResponse RetryPost (string postId)
+> PostRetryResponse RetryPost (string postId, PostRetryRequest? postRetryRequest = null)
 
 Retry failed post
 
-Immediately retries publishing a failed post. Returns the updated post with its new status.
+Immediately retries publishing a failed or partial post and returns the updated post with a per-platform result.  - Without a body, every failed or pending platform is retried. - Pass `platforms` to retry only some of them, for example the one platform that failed on a partial post. Platforms not listed are left alone. - Prefer this over creating the post again, which posts a second time to the platforms that already published.  A retry never collides with its own post in the 24-hour duplicate-content check. It still answers 409 when another post with identical content published, or is about to publish, to the same account. 
 
 ### Example
 ```csharp
@@ -826,11 +826,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
             var postId = "postId_example";  // string | 
+            var postRetryRequest = new PostRetryRequest?(); // PostRetryRequest? |  (optional) 
 
             try
             {
                 // Retry failed post
-                PostRetryResponse result = apiInstance.RetryPost(postId);
+                PostRetryResponse result = apiInstance.RetryPost(postId, postRetryRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -851,7 +852,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Retry failed post
-    ApiResponse<PostRetryResponse> response = apiInstance.RetryPostWithHttpInfo(postId);
+    ApiResponse<PostRetryResponse> response = apiInstance.RetryPostWithHttpInfo(postId, postRetryRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -869,6 +870,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **postId** | **string** |  |  |
+| **postRetryRequest** | [**PostRetryRequest?**](PostRetryRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -880,7 +882,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -889,13 +891,13 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Retry successful |  -  |
 | **202** | Balance billing only. The post was saved, but its X platform found the balance at $0 even after auto top-up.  - The X platform is waiting (&#x60;post.platforms[].status: pending&#x60;, &#x60;errorMessage&#x60; says why) instead of publishing. - It publishes within minutes of the balance being funded. - It fails with \&quot;Your balance was $0\&quot; if the balance is still $0 after 24 hours. - Other platforms in &#x60;platformResults&#x60; published or failed as usual.  This is not \&quot;publishing in progress\&quot;: send the user to Billing to add funds. Usually the request is refused with 402 &#x60;insufficient_balance&#x60; before anything is saved; 202 covers a balance that reached $0 during the publish.  |  -  |
-| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
-| **400** | Invalid state. &#x60;code: ACCOUNT_NOTIFICATION_ONLY&#x60; means the account of a leg is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish; reconnect it without the purpose, then retry. |  -  |
+| **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  &#x60;platformResults&#x60; says, per platform, whether this request retried it and how it ended (&#x60;status&#x60;, &#x60;error&#x60;, &#x60;errorCategory&#x60;). &#x60;post.status&#x60; is &#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically.  |  -  |
+| **400** | Invalid request or state. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_NOTIFICATION_ONLY&#x60;: the account of a platform is connected for notifications only (&#x60;purpose&#x3D;notifications&#x60;) and cannot publish. Reconnect it without the purpose, then retry. - &#x60;invalid_field_value&#x60;: the post has no platform matching an entry of &#x60;platforms&#x60;. - &#x60;invalid_resource_state&#x60;: the matching platform is not failed or pending (for example it already published).  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required, and the post was not changed. Either the account owner has a failed payment, or (balance billing) the post retries to X and the balance is at $0 after auto top-up tried the saved card: code &#x60;insufficient_balance&#x60; or &#x60;usage_limit_reached&#x60;, add funds at &#x60;funding_url&#x60;, then retry. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field:  - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account, then retry. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - &#x60;insufficient_permissions&#x60;: the post is not accessible to the caller.  |  -  |
 | **404** | Resource not found |  -  |
-| **409** | Post is currently publishing |  -  |
+| **409** | The post is currently publishing, or another post with identical content is already active for the account within 24 hours (&#x60;details&#x60; carries &#x60;platform&#x60;, &#x60;accountId&#x60; and &#x60;existingPostId&#x60;). The post was not changed. |  -  |
 | **422** | Invalid resource state (&#x60;invalid_resource_state&#x60;): this team does not retain content and the post text was cleared once publishing finished, so the post cannot be changed or published again. Create a new post instead. |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
 

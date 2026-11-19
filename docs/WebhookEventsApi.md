@@ -142,6 +142,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnSmsRegistrationStatusUpdated**](WebhookEventsApi.md#onsmsregistrationstatusupdated) | **POST** /sms.registration.status_updated | SMS registration status updated event |
 | [**OnSupportRunCompleted**](WebhookEventsApi.md#onsupportruncompleted) | **POST** /support.run.completed | Support Assistant finished event |
 | [**OnSupportRunFailed**](WebhookEventsApi.md#onsupportrunfailed) | **POST** /support.run.failed | Support Assistant failed event |
+| [**OnTrackingSiteReady**](WebhookEventsApi.md#ontrackingsiteready) | **POST** /tracking_site.ready | Tracking site ready event |
 | [**OnVerificationApproved**](WebhookEventsApi.md#onverificationapproved) | **POST** /verification.approved | Verification approved event |
 | [**OnVerificationFailed**](WebhookEventsApi.md#onverificationfailed) | **POST** /verification.failed | Verification failed event |
 | [**OnWebhookTest**](WebhookEventsApi.md#onwebhooktest) | **POST** /webhook.test | Webhook test event |
@@ -13115,6 +13116,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadSupportRun** | [**WebhookPayloadSupportRun**](WebhookPayloadSupportRun.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="ontrackingsiteready"></a>
+# **OnTrackingSiteReady**
+> void OnTrackingSiteReady (WebhookPayloadTrackingSite webhookPayloadTrackingSite)
+
+Tracking site ready event
+
+A tracked website's tag is confirmed on it, so its `setup.status` turned `ready`.  ### When it fires  Once the store app or Tag Manager install put the tag on the site, or, for a pasted line (or a Webflow site waiting on its next publish), with the site's first visit that is not a bot. A visit after that fires nothing.  `trackingSite` is the site as `GET /v1/tracking-sites/{siteId}` returns it, without `proxy.secret`.  ### Deduplication  The event `id` follows the site and the moment its tag was confirmed. Deduplicate on it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnTrackingSiteReadyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadTrackingSite = new WebhookPayloadTrackingSite(); // WebhookPayloadTrackingSite | 
+
+            try
+            {
+                // Tracking site ready event
+                apiInstance.OnTrackingSiteReady(webhookPayloadTrackingSite);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnTrackingSiteReady: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnTrackingSiteReadyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Tracking site ready event
+    apiInstance.OnTrackingSiteReadyWithHttpInfo(webhookPayloadTrackingSite);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnTrackingSiteReadyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadTrackingSite** | [**WebhookPayloadTrackingSite**](WebhookPayloadTrackingSite.md) |  |  |
 
 ### Return type
 
