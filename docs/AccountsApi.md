@@ -19,6 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GrantBusinessPartner**](AccountsApi.md#grantbusinesspartner) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business |
 | [**ListAccounts**](AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts |
 | [**ListBusinessPartners**](AccountsApi.md#listbusinesspartners) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page |
+| [**ListHubSpotContactProperties**](AccountsApi.md#listhubspotcontactproperties) | **GET** /v1/accounts/{accountId}/hubspot-settings/contact-properties | List HubSpot contact properties |
 | [**ListTikTokCommercialMusic**](AccountsApi.md#listtiktokcommercialmusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**MoveAccountToProfile**](AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**RevokeBusinessPartner**](AccountsApi.md#revokebusinesspartner) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page |
@@ -1614,6 +1615,107 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listhubspotcontactproperties"></a>
+# **ListHubSpotContactProperties**
+> ListHubSpotContactProperties200Response ListHubSpotContactProperties (string accountId)
+
+List HubSpot contact properties
+
+The connected portal's visible contact properties, with the values of those that have a fixed list. Use it to pick the property and values of `qualifiedLeads`. Cached for 10 minutes.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListHubSpotContactPropertiesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // List HubSpot contact properties
+                ListHubSpotContactProperties200Response result = apiInstance.ListHubSpotContactProperties(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.ListHubSpotContactProperties: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListHubSpotContactPropertiesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List HubSpot contact properties
+    ApiResponse<ListHubSpotContactProperties200Response> response = apiInstance.ListHubSpotContactPropertiesWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListHubSpotContactPropertiesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**ListHubSpotContactProperties200Response**](ListHubSpotContactProperties200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Contact properties, sorted by label |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listtiktokcommercialmusic"></a>
 # **ListTikTokCommercialMusic**
 > ListTikTokCommercialMusic200Response ListTikTokCommercialMusic (string accountId, string? countryCode = null)
@@ -2237,7 +2339,7 @@ void (empty response body)
 
 Update HubSpot account settings
 
-Turn contact sync, message logging, delivery status or deal reporting on or off for a connected HubSpot portal, or set defaults for the contact properties the portal requires. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same portal.
+Turn contact sync, message logging, delivery status, deal reporting or qualified leads on or off for a connected HubSpot portal, or set defaults for the contact properties the portal requires. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same portal.
 
 ### Example
 ```csharp

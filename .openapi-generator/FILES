@@ -1959,6 +1959,9 @@ docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
+docs/HubSpotContactProperty.md
+docs/HubSpotContactPropertyOptionsInner.md
+docs/HubSpotQualifiedLeads.md
 docs/HubSpotSettings.md
 docs/HubSpotSettingsSyncIssue.md
 docs/IMessageApi.md
@@ -2315,6 +2318,7 @@ docs/ListGoogleSearchConsoleSitemaps200ResponseMeta.md
 docs/ListGoogleSearchConsoleSites200Response.md
 docs/ListGoogleSearchConsoleSites200ResponseSitesInner.md
 docs/ListHighDemandPeriods200Response.md
+docs/ListHubSpotContactProperties200Response.md
 docs/ListImessageAudience200Response.md
 docs/ListImessageAvailableNumbers200Response.md
 docs/ListImessageAvailableNumbers200ResponseNumbersInner.md
@@ -3442,6 +3446,7 @@ docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md
 docs/UpdateHubSpotSettings200Response.md
 docs/UpdateHubSpotSettingsRequest.md
+docs/UpdateHubSpotSettingsRequestQualifiedLeads.md
 docs/UpdateImessageGroup200Response.md
 docs/UpdateImessageGroupRequest.md
 docs/UpdateImessageSenderRequest.md
@@ -5955,6 +5960,9 @@ src/Zernio.Test/Model/HideAdComment200ResponseTests.cs
 src/Zernio.Test/Model/HideAdCommentRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
+src/Zernio.Test/Model/HubSpotContactPropertyOptionsInnerTests.cs
+src/Zernio.Test/Model/HubSpotContactPropertyTests.cs
+src/Zernio.Test/Model/HubSpotQualifiedLeadsTests.cs
 src/Zernio.Test/Model/HubSpotSettingsSyncIssueTests.cs
 src/Zernio.Test/Model/HubSpotSettingsTests.cs
 src/Zernio.Test/Model/IdsTests.cs
@@ -6304,6 +6312,7 @@ src/Zernio.Test/Model/ListGoogleSearchConsoleSitemaps200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleSearchConsoleSites200ResponseSitesInnerTests.cs
 src/Zernio.Test/Model/ListGoogleSearchConsoleSites200ResponseTests.cs
 src/Zernio.Test/Model/ListHighDemandPeriods200ResponseTests.cs
+src/Zernio.Test/Model/ListHubSpotContactProperties200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAudience200ResponseTests.cs
 src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/ListImessageAvailableNumbers200ResponseTests.cs
@@ -7407,6 +7416,7 @@ src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStruct
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestTests.cs
 src/Zernio.Test/Model/UpdateHubSpotSettings200ResponseTests.cs
+src/Zernio.Test/Model/UpdateHubSpotSettingsRequestQualifiedLeadsTests.cs
 src/Zernio.Test/Model/UpdateHubSpotSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateImessageGroup200ResponseTests.cs
 src/Zernio.Test/Model/UpdateImessageGroupRequestTests.cs
@@ -9925,6 +9935,9 @@ src/Zernio/Model/HideAdComment200Response.cs
 src/Zernio/Model/HideAdCommentRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
+src/Zernio/Model/HubSpotContactProperty.cs
+src/Zernio/Model/HubSpotContactPropertyOptionsInner.cs
+src/Zernio/Model/HubSpotQualifiedLeads.cs
 src/Zernio/Model/HubSpotSettings.cs
 src/Zernio/Model/HubSpotSettingsSyncIssue.cs
 src/Zernio/Model/Ids.cs
@@ -10274,6 +10287,7 @@ src/Zernio/Model/ListGoogleSearchConsoleSitemaps200ResponseMeta.cs
 src/Zernio/Model/ListGoogleSearchConsoleSites200Response.cs
 src/Zernio/Model/ListGoogleSearchConsoleSites200ResponseSitesInner.cs
 src/Zernio/Model/ListHighDemandPeriods200Response.cs
+src/Zernio/Model/ListHubSpotContactProperties200Response.cs
 src/Zernio/Model/ListImessageAudience200Response.cs
 src/Zernio/Model/ListImessageAvailableNumbers200Response.cs
 src/Zernio/Model/ListImessageAvailableNumbers200ResponseNumbersInner.cs
@@ -11378,6 +11392,7 @@ src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.cs
 src/Zernio/Model/UpdateHubSpotSettings200Response.cs
 src/Zernio/Model/UpdateHubSpotSettingsRequest.cs
+src/Zernio/Model/UpdateHubSpotSettingsRequestQualifiedLeads.cs
 src/Zernio/Model/UpdateImessageGroup200Response.cs
 src/Zernio/Model/UpdateImessageGroupRequest.cs
 src/Zernio/Model/UpdateImessageSenderRequest.cs
