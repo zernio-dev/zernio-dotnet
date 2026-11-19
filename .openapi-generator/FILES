@@ -512,6 +512,7 @@ docs/CampaignReportParticipantsInner.md
 docs/CampaignReportSpend.md
 docs/CampaignReportViews.md
 docs/CampaignResultMetric.md
+docs/CampaignResultProfit.md
 docs/CampaignSample.md
 docs/CampaignSampleCounts.md
 docs/CampaignSampleShippingAddress.md
@@ -3071,6 +3072,7 @@ docs/SetCampaignResultEvents200Response.md
 docs/SetCampaignResultEventsRequest.md
 docs/SetCampaignResultMetric200Response.md
 docs/SetCampaignResultMetricRequest.md
+docs/SetCampaignResultProfitRequest.md
 docs/SetCommentModerationRequest.md
 docs/SetCommerceDiscountActiveRequest.md
 docs/SetCommercePriceListPrices200Response.md
@@ -4551,6 +4553,7 @@ src/Zernio.Test/Model/CampaignReportSpendTests.cs
 src/Zernio.Test/Model/CampaignReportTests.cs
 src/Zernio.Test/Model/CampaignReportViewsTests.cs
 src/Zernio.Test/Model/CampaignResultMetricTests.cs
+src/Zernio.Test/Model/CampaignResultProfitTests.cs
 src/Zernio.Test/Model/CampaignSampleCountsTests.cs
 src/Zernio.Test/Model/CampaignSampleShippingAddressTests.cs
 src/Zernio.Test/Model/CampaignSampleTests.cs
@@ -7062,6 +7065,7 @@ src/Zernio.Test/Model/SetCampaignResultEvents200ResponseTests.cs
 src/Zernio.Test/Model/SetCampaignResultEventsRequestTests.cs
 src/Zernio.Test/Model/SetCampaignResultMetric200ResponseTests.cs
 src/Zernio.Test/Model/SetCampaignResultMetricRequestTests.cs
+src/Zernio.Test/Model/SetCampaignResultProfitRequestTests.cs
 src/Zernio.Test/Model/SetCommentModerationRequestTests.cs
 src/Zernio.Test/Model/SetCommerceDiscountActiveRequestTests.cs
 src/Zernio.Test/Model/SetCommercePriceListPrices200ResponseTests.cs
@@ -8540,6 +8544,7 @@ src/Zernio/Model/CampaignReportParticipantsInner.cs
 src/Zernio/Model/CampaignReportSpend.cs
 src/Zernio/Model/CampaignReportViews.cs
 src/Zernio/Model/CampaignResultMetric.cs
+src/Zernio/Model/CampaignResultProfit.cs
 src/Zernio/Model/CampaignSample.cs
 src/Zernio/Model/CampaignSampleCounts.cs
 src/Zernio/Model/CampaignSampleShippingAddress.cs
@@ -11051,6 +11056,7 @@ src/Zernio/Model/SetCampaignResultEvents200Response.cs
 src/Zernio/Model/SetCampaignResultEventsRequest.cs
 src/Zernio/Model/SetCampaignResultMetric200Response.cs
 src/Zernio/Model/SetCampaignResultMetricRequest.cs
+src/Zernio/Model/SetCampaignResultProfitRequest.cs
 src/Zernio/Model/SetCommentModerationRequest.cs
 src/Zernio/Model/SetCommerceDiscountActiveRequest.cs
 src/Zernio/Model/SetCommercePriceListPrices200Response.cs

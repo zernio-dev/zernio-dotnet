@@ -66,6 +66,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetCampaignResultProfit
+        /// </summary>
+        [Fact]
+        public void GetCampaignResultProfitTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.GetCampaignResultProfit();
+            //Assert.IsType<CampaignResultProfit>(response);
+        }
+
+        /// <summary>
         /// Test GetCampaignResultsTotals
         /// </summary>
         [Fact]
@@ -154,6 +165,18 @@ namespace Zernio.Test.Api
             //SetCampaignResultMetricRequest setCampaignResultMetricRequest = null;
             //var response = instance.SetCampaignResultMetric(key, setCampaignResultMetricRequest);
             //Assert.IsType<SetCampaignResultMetric200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SetCampaignResultProfit
+        /// </summary>
+        [Fact]
+        public void SetCampaignResultProfitTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SetCampaignResultProfitRequest setCampaignResultProfitRequest = null;
+            //var response = instance.SetCampaignResultProfit(setCampaignResultProfitRequest);
+            //Assert.IsType<CampaignResultProfit>(response);
         }
 
         /// <summary>

@@ -48,6 +48,25 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetCampaignResultEvents200Response</returns>
         ApiResponse<GetCampaignResultEvents200Response> GetCampaignResultEventsWithHttpInfo();
         /// <summary>
+        /// Get your profit setting
+        /// </summary>
+        /// <remarks>
+        /// The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>CampaignResultProfit</returns>
+        CampaignResultProfit GetCampaignResultProfit();
+
+        /// <summary>
+        /// Get your profit setting
+        /// </summary>
+        /// <remarks>
+        /// The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of CampaignResultProfit</returns>
+        ApiResponse<CampaignResultProfit> GetCampaignResultProfitWithHttpInfo();
+        /// <summary>
         /// Get your results totals
         /// </summary>
         /// <remarks>
@@ -118,7 +137,7 @@ namespace Zernio.Api
         /// List your result metrics
         /// </summary>
         /// <remarks>
-        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListCampaignResultMetrics200Response</returns>
@@ -128,7 +147,7 @@ namespace Zernio.Api
         /// List your result metrics
         /// </summary>
         /// <remarks>
-        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListCampaignResultMetrics200Response</returns>
@@ -209,6 +228,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SetCampaignResultMetric200Response</returns>
         ApiResponse<SetCampaignResultMetric200Response> SetCampaignResultMetricWithHttpInfo(string key, SetCampaignResultMetricRequest setCampaignResultMetricRequest);
         /// <summary>
+        /// Set your margin and cost per order
+        /// </summary>
+        /// <remarks>
+        /// With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <returns>CampaignResultProfit</returns>
+        CampaignResultProfit SetCampaignResultProfit(SetCampaignResultProfitRequest setCampaignResultProfitRequest);
+
+        /// <summary>
+        /// Set your margin and cost per order
+        /// </summary>
+        /// <remarks>
+        /// With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <returns>ApiResponse of CampaignResultProfit</returns>
+        ApiResponse<CampaignResultProfit> SetCampaignResultProfitWithHttpInfo(SetCampaignResultProfitRequest setCampaignResultProfitRequest);
+        /// <summary>
         /// Turn Tag new ads on or off
         /// </summary>
         /// <remarks>
@@ -282,6 +322,27 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetCampaignResultEvents200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetCampaignResultEvents200Response>> GetCampaignResultEventsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get your profit setting
+        /// </summary>
+        /// <remarks>
+        /// The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CampaignResultProfit</returns>
+        System.Threading.Tasks.Task<CampaignResultProfit> GetCampaignResultProfitAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get your profit setting
+        /// </summary>
+        /// <remarks>
+        /// The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CampaignResultProfit)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CampaignResultProfit>> GetCampaignResultProfitWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get your results totals
         /// </summary>
@@ -359,7 +420,7 @@ namespace Zernio.Api
         /// List your result metrics
         /// </summary>
         /// <remarks>
-        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -370,7 +431,7 @@ namespace Zernio.Api
         /// List your result metrics
         /// </summary>
         /// <remarks>
-        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -457,6 +518,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SetCampaignResultMetric200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SetCampaignResultMetric200Response>> SetCampaignResultMetricWithHttpInfoAsync(string key, SetCampaignResultMetricRequest setCampaignResultMetricRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set your margin and cost per order
+        /// </summary>
+        /// <remarks>
+        /// With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CampaignResultProfit</returns>
+        System.Threading.Tasks.Task<CampaignResultProfit> SetCampaignResultProfitAsync(SetCampaignResultProfitRequest setCampaignResultProfitRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set your margin and cost per order
+        /// </summary>
+        /// <remarks>
+        /// With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CampaignResultProfit)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CampaignResultProfit>> SetCampaignResultProfitWithHttpInfoAsync(SetCampaignResultProfitRequest setCampaignResultProfitRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Turn Tag new ads on or off
         /// </summary>
@@ -825,6 +909,119 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetCampaignResultEvents", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get your profit setting The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>CampaignResultProfit</returns>
+        public CampaignResultProfit GetCampaignResultProfit()
+        {
+            Zernio.Client.ApiResponse<CampaignResultProfit> localVarResponse = GetCampaignResultProfitWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get your profit setting The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of CampaignResultProfit</returns>
+        public Zernio.Client.ApiResponse<CampaignResultProfit> GetCampaignResultProfitWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CampaignResultProfit>("/v1/ads/campaign-results/profit", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCampaignResultProfit", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get your profit setting The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CampaignResultProfit</returns>
+        public async System.Threading.Tasks.Task<CampaignResultProfit> GetCampaignResultProfitAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CampaignResultProfit> localVarResponse = await GetCampaignResultProfitWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get your profit setting The margin and cost per order your team&#39;s profit metrics use. Both are &#x60;null&#x60; until you set them. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CampaignResultProfit)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CampaignResultProfit>> GetCampaignResultProfitWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CampaignResultProfit>("/v1/ads/campaign-results/profit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCampaignResultProfit", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1221,7 +1418,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListCampaignResultMetrics200Response</returns>
@@ -1232,7 +1429,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListCampaignResultMetrics200Response</returns>
@@ -1275,7 +1472,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1287,7 +1484,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+        /// List your result metrics The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;, &#x60;qualified_rate&#x60;).  Once you set a margin with &#x60;PUT /v1/ads/campaign-results/profit&#x60;, the built-ins add &#x60;profit&#x60;, &#x60;poas&#x60; and &#x60;profit_after_ads&#x60;. A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1772,6 +1969,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SetCampaignResultMetric", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set your margin and cost per order With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <returns>CampaignResultProfit</returns>
+        public CampaignResultProfit SetCampaignResultProfit(SetCampaignResultProfitRequest setCampaignResultProfitRequest)
+        {
+            Zernio.Client.ApiResponse<CampaignResultProfit> localVarResponse = SetCampaignResultProfitWithHttpInfo(setCampaignResultProfitRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set your margin and cost per order With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <returns>ApiResponse of CampaignResultProfit</returns>
+        public Zernio.Client.ApiResponse<CampaignResultProfit> SetCampaignResultProfitWithHttpInfo(SetCampaignResultProfitRequest setCampaignResultProfitRequest)
+        {
+            // verify the required parameter 'setCampaignResultProfitRequest' is set
+            if (setCampaignResultProfitRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setCampaignResultProfitRequest' when calling AdCampaignResultsApi->SetCampaignResultProfit");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setCampaignResultProfitRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<CampaignResultProfit>("/v1/ads/campaign-results/profit", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetCampaignResultProfit", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set your margin and cost per order With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CampaignResultProfit</returns>
+        public async System.Threading.Tasks.Task<CampaignResultProfit> SetCampaignResultProfitAsync(SetCampaignResultProfitRequest setCampaignResultProfitRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CampaignResultProfit> localVarResponse = await SetCampaignResultProfitWithHttpInfoAsync(setCampaignResultProfitRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set your margin and cost per order With a &#x60;marginPercent&#x60;, your team gets three built-in formulas, listed in &#x60;GET /v1/ads/campaign-results/metrics&#x60; and readable in &#x60;GET /v1/ads/campaign-results&#x60;, the Campaigns table and ad rules (&#x60;result:profit&#x60;), under every attribution model:  - &#x60;profit&#x60; &#x3D; &#x60;revenue * marginPercent / 100 - sales * costPerOrder&#x60; - &#x60;poas&#x60; &#x3D; &#x60;profit / spend&#x60; (profit on ad spend) - &#x60;profit_after_ads&#x60; &#x3D; &#x60;profit - spend&#x60;  &#x60;revenue&#x60; and &#x60;sales&#x60; are the values counted from &#x60;Purchase&#x60; events or the ones you upload. &#x60;costPerOrder&#x60; is in each ad account&#39;s currency, the one its revenue is counted in. Values are rounded to 2 decimals. Send &#x60;marginPercent: null&#x60; to remove the profit metrics. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setCampaignResultProfitRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CampaignResultProfit)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CampaignResultProfit>> SetCampaignResultProfitWithHttpInfoAsync(SetCampaignResultProfitRequest setCampaignResultProfitRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'setCampaignResultProfitRequest' is set
+            if (setCampaignResultProfitRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setCampaignResultProfitRequest' when calling AdCampaignResultsApi->SetCampaignResultProfit");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setCampaignResultProfitRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<CampaignResultProfit>("/v1/ads/campaign-results/profit", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetCampaignResultProfit", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
