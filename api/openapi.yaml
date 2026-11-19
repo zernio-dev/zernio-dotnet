@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.693.0
+  version: 1.693.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -3408,8 +3408,8 @@ paths:
         Backed by LinkedIn's organizationalEntityShareStatistics,
         organizationalEntityFollowerStatistics, and organizationPageStatistics endpoints.
 
-        Response shape matches /v1/analytics/instagram/account-insights. Max 89 days,
-        defaults to last 30 days.
+        Response shape matches /v1/analytics/instagram/account-insights. Max 365 days,
+        fromDate no older than 365 days ago, defaults to last 30 days.
 
         Scope requirements: r_organization_social, r_organization_followers, and
         r_organization_admin must all be present on the account. Accounts connected before
@@ -3419,12 +3419,9 @@ paths:
           - Page-view metrics accept only metricType=total_value (LinkedIn omits per-day
             segmentation even when the API is called with DAY granularity, so a time-series
             response would be meaningless).
-          - Date range capped at 89 days.
+          - Date range capped at 365 days, starting no more than 365 days ago.
 
-        LinkedIn-side platform limits (not re-enforced here, but worth knowing for larger
-        ranges in a future release):
-          - Follower stats: rolling 12-month window, end must be no later than 2 days ago.
-          - Share stats: rolling 12-month window.
+        LinkedIn keeps about 13 months of follower stats, and they end 2 days before today.
       operationId: getLinkedInOrgAggregateAnalytics
       parameters:
       - description: The Zernio SocialAccount ID for the LinkedIn organization account.
