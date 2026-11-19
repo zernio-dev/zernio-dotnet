@@ -1534,7 +1534,12 @@ docs/GetEmailThread200ResponseData.md
 docs/GetEvent200Response.md
 docs/GetEvent200ResponseDeliveriesInner.md
 docs/GetEvent200ResponseTouchesInner.md
+docs/GetEventsAccuracy200Response.md
+docs/GetEventsAccuracy200ResponseDestinationsInner.md
+docs/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.md
+docs/GetEventsAccuracy200ResponseDestinationsInnerMatch.md
 docs/GetEventsOverview200Response.md
+docs/GetEventsOverview200ResponseEventNamesInner.md
 docs/GetEventsOverview200ResponsePlatformsInner.md
 docs/GetEventsOverview200ResponseSitesInner.md
 docs/GetEventsOverview200ResponseSitesInnerTotals.md
@@ -5536,6 +5541,11 @@ src/Zernio.Test/Model/GetEmailThread200ResponseTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseDeliveriesInnerTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTouchesInnerTests.cs
+src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerDeliveriesTests.cs
+src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerMatchTests.cs
+src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerTests.cs
+src/Zernio.Test/Model/GetEventsAccuracy200ResponseTests.cs
+src/Zernio.Test/Model/GetEventsOverview200ResponseEventNamesInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponsePlatformsInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseSitesInnerTests.cs
 src/Zernio.Test/Model/GetEventsOverview200ResponseSitesInnerTotalsTests.cs
@@ -9512,7 +9522,12 @@ src/Zernio/Model/GetEmailThread200ResponseData.cs
 src/Zernio/Model/GetEvent200Response.cs
 src/Zernio/Model/GetEvent200ResponseDeliveriesInner.cs
 src/Zernio/Model/GetEvent200ResponseTouchesInner.cs
+src/Zernio/Model/GetEventsAccuracy200Response.cs
+src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInner.cs
+src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.cs
+src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInnerMatch.cs
 src/Zernio/Model/GetEventsOverview200Response.cs
+src/Zernio/Model/GetEventsOverview200ResponseEventNamesInner.cs
 src/Zernio/Model/GetEventsOverview200ResponsePlatformsInner.cs
 src/Zernio/Model/GetEventsOverview200ResponseSitesInner.cs
 src/Zernio/Model/GetEventsOverview200ResponseSitesInnerTotals.cs
