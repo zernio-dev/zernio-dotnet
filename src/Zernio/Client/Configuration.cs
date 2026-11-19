@@ -118,7 +118,7 @@ namespace Zernio.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");
+            UserAgent = WebUtility.UrlEncode($"Zernio/{typeof(Configuration).Assembly.GetName().Version?.ToString(3) ?? "unknown"}");
             BasePath = "https://zernio.com/api";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
