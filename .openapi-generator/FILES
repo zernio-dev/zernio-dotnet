@@ -1423,6 +1423,8 @@ docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
 docs/ForwardingRule.md
+docs/ForwardingRuleValueCondition.md
+docs/ForwardingRuleValueOverride.md
 docs/FreeBusyError.md
 docs/FromASharedTemplate.md
 docs/FromAZernioTemplate.md
@@ -5670,6 +5672,8 @@ src/Zernio.Test/Model/FoodMenuSectionTests.cs
 src/Zernio.Test/Model/FoodMenuTests.cs
 src/Zernio.Test/Model/ForwardEmailRequestTests.cs
 src/Zernio.Test/Model/ForwardingRuleTests.cs
+src/Zernio.Test/Model/ForwardingRuleValueConditionTests.cs
+src/Zernio.Test/Model/ForwardingRuleValueOverrideTests.cs
 src/Zernio.Test/Model/FreeBusyErrorTests.cs
 src/Zernio.Test/Model/FromASharedTemplateTests.cs
 src/Zernio.Test/Model/FromAZernioTemplateTests.cs
@@ -9881,6 +9885,8 @@ src/Zernio/Model/FoodMenuLabel.cs
 src/Zernio/Model/FoodMenuSection.cs
 src/Zernio/Model/ForwardEmailRequest.cs
 src/Zernio/Model/ForwardingRule.cs
+src/Zernio/Model/ForwardingRuleValueCondition.cs
+src/Zernio/Model/ForwardingRuleValueOverride.cs
 src/Zernio/Model/FreeBusyError.cs
 src/Zernio/Model/FromASharedTemplate.cs
 src/Zernio/Model/FromAZernioTemplate.cs

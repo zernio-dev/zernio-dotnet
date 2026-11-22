@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.763.1",
+    "version": "1.764.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -55095,10 +55095,101 @@
             "type": "boolean",
             "description": "Only when an `apiSecret` was saved by this request. Google Analytics never confirms a Measurement Protocol API secret, so it is `false` there: the first events in GA4 Realtime prove the secret is right."
           },
+          "eventNameMap": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Renames events for this destination, such as `{ \"Lead\": \"Purchase\" }`; null sends every event under its own name."
+          },
+          "valueOverride": {
+            "$ref": "#/components/schemas/ForwardingRuleValueOverride"
+          },
+          "valueCondition": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ForwardingRuleValueCondition"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Forwards only events whose value matches; null forwards whatever the value."
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
           }
+        }
+      },
+      "ForwardingRuleEventNameMap": {
+        "type": "object",
+        "maxProperties": 50,
+        "additionalProperties": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "description": "Your event name to the name this destination gets, such as `{ \"Lead\": \"Purchase\" }`. Names not in the map are sent unchanged.\n\nA target spelled like a standard event in another case or form (`purchase`, `generate_lead`) is saved as the standard name (`Purchase`, `Lead`), so each platform gets its own standard event.\n\n`eventNames` and `valueCondition` are checked against the name and value as received, before renaming. The event id is never changed, so deduplication still works.",
+        "example": {
+          "Lead": "Purchase"
+        }
+      },
+      "ForwardingRuleValueOverride": {
+        "type": "object",
+        "required": [
+          "mode"
+        ],
+        "description": "The value this destination gets. `original` sends the event's own value; `fixed` sends `amount` for every event; `percent` sends `amount` percent of the event's value (30 sends 30%, rounded to cents), and leaves an event without a value without one. The currency is kept.",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "original",
+              "fixed",
+              "percent"
+            ]
+          },
+          "amount": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Required for `fixed` and `percent` (at most 1000 for `percent`); null for `original`."
+          }
+        },
+        "example": {
+          "mode": "percent",
+          "amount": 30
+        }
+      },
+      "ForwardingRuleValueCondition": {
+        "type": "object",
+        "required": [
+          "operator",
+          "amount"
+        ],
+        "description": "Forward only events whose value is greater than (`gt`), less than (`lt`) or equal to (`eq`) `amount`. An event without a value counts as 0. Checked on the value as received, before `valueOverride`.",
+        "properties": {
+          "operator": {
+            "type": "string",
+            "enum": [
+              "gt",
+              "lt",
+              "eq"
+            ]
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "example": {
+          "operator": "gt",
+          "amount": 10
         }
       },
       "TrackingSiteConsentMode": {
@@ -212697,7 +212788,7 @@
           "Conversions"
         ],
         "summary": "Add a forwarding rule",
-        "description": "Saves where a profile's events go: every event sent to `POST /v1/events` for that profile is then forwarded to this destination.\n\nPick `destinationId` from `GET /v1/ads/conversions/destinations`. Set `eventNames` to forward only those events, such as only `Purchase`; leave it out to forward every event.\n",
+        "description": "Saves where a profile's events go: every event sent to `POST /v1/events` for that profile is then forwarded to this destination.\n\nPick `destinationId` from `GET /v1/ads/conversions/destinations`. Set `eventNames` to forward only those events, such as only `Purchase`; leave it out to forward every event.\n\n- `eventNameMap` renames events for this destination (send your `Lead` as its `Purchase`).\n- `valueOverride` changes the value it gets (a fixed amount or a percent of the event's value).\n- `valueCondition` forwards only events above, below or equal to a value.\n\nEach applies to this rule only: the event is stored, and sent to other rules, as received.\n",
         "security": [
           {
             "bearerAuth": []
@@ -212760,6 +212851,15 @@
                     },
                     "description": "Forward only events from these sources, such as only `web` for a tracked website. Leave it out to forward events from every source."
                   },
+                  "eventNameMap": {
+                    "$ref": "#/components/schemas/ForwardingRuleEventNameMap"
+                  },
+                  "valueOverride": {
+                    "$ref": "#/components/schemas/ForwardingRuleValueOverride"
+                  },
+                  "valueCondition": {
+                    "$ref": "#/components/schemas/ForwardingRuleValueCondition"
+                  },
                   "apiSecret": {
                     "type": "string",
                     "writeOnly": true,
@@ -212816,8 +212916,8 @@
         "tags": [
           "Conversions"
         ],
-        "summary": "Change a forwarding rule's API secret",
-        "description": "Replaces the `apiSecret` of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.\n",
+        "summary": "Update a forwarding rule",
+        "description": "Changes the fields you send and keeps the others. Send `eventNameMap: null` to stop renaming, `valueOverride: { \"mode\": \"original\" }` to send the event's own value again, and `valueCondition: null` to forward whatever the value.\n\n`apiSecret` replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.\n",
         "security": [
           {
             "bearerAuth": []
@@ -212840,16 +212940,50 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "apiSecret"
-                ],
+                "minProperties": 1,
                 "additionalProperties": false,
                 "properties": {
                   "apiSecret": {
                     "type": "string",
                     "writeOnly": true,
                     "maxLength": 200
+                  },
+                  "eventNameMap": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/ForwardingRuleEventNameMap"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "valueOverride": {
+                    "$ref": "#/components/schemas/ForwardingRuleValueOverride"
+                  },
+                  "valueCondition": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/ForwardingRuleValueCondition"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   }
+                }
+              },
+              "example": {
+                "eventNameMap": {
+                  "Lead": "Purchase"
+                },
+                "valueOverride": {
+                  "mode": "percent",
+                  "amount": 30
+                },
+                "valueCondition": {
+                  "operator": "gt",
+                  "amount": 10
                 }
               }
             }
@@ -212857,7 +212991,7 @@
         },
         "responses": {
           "200": {
-            "description": "Secret saved.",
+            "description": "Rule saved.",
             "content": {
               "application/json": {
                 "schema": {
