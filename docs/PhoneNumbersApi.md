@@ -951,7 +951,7 @@ catch (ApiException e)
 
 <a id="getphonenumberkycform"></a>
 # **GetPhoneNumberKycForm**
-> GetPhoneNumberKycForm200Response GetPhoneNumberKycForm (string country, string? numberType = null)
+> GetPhoneNumberKycForm200Response GetPhoneNumberKycForm (string country, string? numberType = null, string? profileId = null)
 
 Get KYC form spec
 
@@ -983,11 +983,12 @@ namespace Example
             var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
             var country = "country_example";  // string | 
             var numberType = "local";  // string? | Requirements and reuse eligibility are per (country, type). Omitted = the country's default type. Pass the same value on the POST. (optional) 
+            var profileId = "profileId_example";  // string? | Profile the order is for. When given, `reusable.options` only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. (optional) 
 
             try
             {
                 // Get KYC form spec
-                GetPhoneNumberKycForm200Response result = apiInstance.GetPhoneNumberKycForm(country, numberType);
+                GetPhoneNumberKycForm200Response result = apiInstance.GetPhoneNumberKycForm(country, numberType, profileId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1008,7 +1009,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get KYC form spec
-    ApiResponse<GetPhoneNumberKycForm200Response> response = apiInstance.GetPhoneNumberKycFormWithHttpInfo(country, numberType);
+    ApiResponse<GetPhoneNumberKycForm200Response> response = apiInstance.GetPhoneNumberKycFormWithHttpInfo(country, numberType, profileId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1027,6 +1028,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **country** | **string** |  |  |
 | **numberType** | **string?** | Requirements and reuse eligibility are per (country, type). Omitted &#x3D; the country&#39;s default type. Pass the same value on the POST. | [optional]  |
+| **profileId** | **string?** | Profile the order is for. When given, &#x60;reusable.options&#x60; only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. | [optional]  |
 
 ### Return type
 
@@ -1046,8 +1048,10 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -5,11 +5,14 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**DeleteAccount**](AccountsApi.md#deleteaccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account |
+| [**GetAccount**](AccountsApi.md#getaccount) | **GET** /v1/accounts/{accountId} | Get account |
 | [**GetAccountHealth**](AccountsApi.md#getaccounthealth) | **GET** /v1/accounts/{accountId}/health | Check account health |
 | [**GetAccountPosts**](AccountsApi.md#getaccountposts) | **GET** /v1/accounts/{accountId}/posts | List posts published on the platform |
 | [**GetAllAccountsHealth**](AccountsApi.md#getallaccountshealth) | **GET** /v1/accounts/health | Check accounts health |
 | [**GetBlueskySettings**](AccountsApi.md#getblueskysettings) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings |
 | [**GetFollowerStats**](AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**GetGohighlevelFunnelTracking**](AccountsApi.md#getgohighlevelfunneltracking) | **GET** /v1/accounts/{accountId}/gohighlevel-funnel-tracking | Get HighLevel funnel tracking |
+| [**GetGohighlevelSettings**](AccountsApi.md#getgohighlevelsettings) | **GET** /v1/accounts/{accountId}/gohighlevel-settings | Get HighLevel account settings |
 | [**GetHubSpotSettings**](AccountsApi.md#gethubspotsettings) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings |
 | [**GetInstagramFollowStatus**](AccountsApi.md#getinstagramfollowstatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account |
 | [**GetSalesforceSettings**](AccountsApi.md#getsalesforcesettings) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings |
@@ -19,17 +22,23 @@ All URIs are relative to *https://zernio.com/api*
 | [**GrantBusinessPartner**](AccountsApi.md#grantbusinesspartner) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business |
 | [**ListAccounts**](AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts |
 | [**ListBusinessPartners**](AccountsApi.md#listbusinesspartners) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page |
+| [**ListGohighlevelAudienceSyncs**](AccountsApi.md#listgohighlevelaudiencesyncs) | **GET** /v1/accounts/{accountId}/gohighlevel-audiences | List HighLevel tag audience syncs |
 | [**ListHubSpotContactProperties**](AccountsApi.md#listhubspotcontactproperties) | **GET** /v1/accounts/{accountId}/hubspot-settings/contact-properties | List HubSpot contact properties |
 | [**ListTikTokCommercialMusic**](AccountsApi.md#listtiktokcommercialmusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**MoveAccountToProfile**](AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**RevokeBusinessPartner**](AccountsApi.md#revokebusinesspartner) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page |
 | [**SearchTikTokLocations**](AccountsApi.md#searchtiktoklocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
+| [**SendGohighlevelPastWonDeals**](AccountsApi.md#sendgohighlevelpastwondeals) | **POST** /v1/accounts/{accountId}/gohighlevel-won-deals-backfill | Send past HighLevel won deals as conversions |
+| [**StartGohighlevelAudienceSync**](AccountsApi.md#startgohighlevelaudiencesync) | **POST** /v1/accounts/{accountId}/gohighlevel-audiences | Sync a HighLevel tag to ad audiences |
+| [**StopGohighlevelAudienceSync**](AccountsApi.md#stopgohighlevelaudiencesync) | **DELETE** /v1/accounts/{accountId}/gohighlevel-audiences/{syncId} | Stop a HighLevel tag audience sync |
 | [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**UpdateBlueskySettings**](AccountsApi.md#updateblueskysettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
+| [**UpdateGohighlevelSettings**](AccountsApi.md#updategohighlevelsettings) | **PATCH** /v1/accounts/{accountId}/gohighlevel-settings | Update HighLevel account settings |
 | [**UpdateHubSpotSettings**](AccountsApi.md#updatehubspotsettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
 | [**UpdateSalesforceSettings**](AccountsApi.md#updatesalesforcesettings) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings |
 | [**UpdateSlackSettings**](AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
 | [**UpdateStripeSettings**](AccountsApi.md#updatestripesettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
+| [**VerifyGohighlevelFunnelTracking**](AccountsApi.md#verifygohighlevelfunneltracking) | **POST** /v1/accounts/{accountId}/gohighlevel-funnel-tracking/verify | Check the Zernio tag on a HighLevel funnel page |
 
 <a id="deleteaccount"></a>
 # **DeleteAccount**
@@ -131,13 +140,115 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getaccount"></a>
+# **GetAccount**
+> GetAccount200Response GetAccount (string accountId)
+
+Get account
+
+Returns one connected account, in the same shape as an item of `GET /v1/accounts`.  The same access rules apply: a key or a team member limited to some profiles gets a 404 for an account outside them.  An account the list leaves out by default is still returned when you name it:  - one over the plan's profile limit - one on a creator profile - an ad account listed behind its ads login  A malformed `accountId` returns 400; an unknown account, or one you cannot access, returns 404. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAccountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Get account
+                GetAccount200Response result = apiInstance.GetAccount(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.GetAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get account
+    ApiResponse<GetAccount200Response> response = apiInstance.GetAccountWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.GetAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**GetAccount200Response**](GetAccount200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The account |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getaccounthealth"></a>
 # **GetAccountHealth**
 > GetAccountHealth200Response GetAccountHealth (string accountId)
 
 Check account health
 
-Returns detailed health info for a specific account including token status, permissions, and recommendations.  A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.  ### Facebook, Instagram and Threads  The token is also probed live. A probe Meta refuses with a dead-token error sets `tokenStatus.valid` to `false` and names Meta's code, subcode and fbtrace in `issues`.  The exception: if an analytics sync succeeded with that token in the last six hours, the token stays `valid` and `issues` reports the probe as inconclusive, since Meta answers a transient 190 to live tokens now and then.  Neither verdict disconnects the account. That happens only when a real operation fails, and `account.disconnected` is sent.  ### WhatsApp  The response also includes `platformConnection`, a live probe of the Meta link behind the channel (the same read as `GET /v1/whatsapp/number-info`).  The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect). So `tokenStatus` alone is not a liveness signal for WhatsApp.  - When the Meta link is dead, `platformConnection.status` is `disconnected` and the overall `status` is `error`. - When Meta reports that the number's inbound message webhook does not reach Zernio, or subscribing the number's WhatsApp Business Account to Zernio's webhooks failed at connect, `platformConnection.inboundWebhookSubscribed` is `false`, an entry is added to `issues`, and the overall `status` is at least `warning`. - When `platformConnection.phoneStatus` is anything other than `CONNECTED`, an entry is added to `issues` and the overall `status` is at least `warning`; `BANNED` makes it `error`. `disconnectReason` stays null, since reconnecting does not lift a Meta status.  ### LINE  The response also includes `lineWebhook`, a live read of the channel's webhook settings at LINE. It is one LINE call per request, given up after a few seconds, and skipped while the account is inactive or needs reconnecting.  If LINE rejects the channel credentials during that read, the account is flagged for reconnection and the overall `status` is `error`.  - `active: false` means Webhooks are turned off in LINE Official Account Manager, so LINE sends nothing to Zernio. An entry is added to `issues` with the fix (Settings > Response settings > Webhooks) and the overall `status` is at least `warning`. - `destination` is `other` when the channel's webhook URL points at another integration, `another_zernio_account` when the same channel is connected to another Zernio account that now receives its events, and `missing` when none is set. Each adds an entry to `issues` and makes the overall `status` at least `warning`. - Both are `null` when LINE could not be read; nothing is added to `issues` then.  ### Standalone ads connections (`googleads`, `redditads`, `microsoftads`)  A connection that cannot serve requests until a fresh OAuth repairs it adds an entry to `issues`. It also adds a recommendation to call `GET /v1/connect/{platform}/ads`, whose `authUrl` reconnects the same account.  On `redditads` this is a connection authorized before Zernio needed a Reddit permission it now uses (for example `adsconversions`). Reddit refuses those requests until the user reconnects and allows every permission on Reddit's consent screen. 
+Returns detailed health info for a specific account including token status, permissions, and recommendations.  A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.  An account the platform has restricted or banned is `error`, with the platform's reason in `issues` and a recommendation that says reconnecting does not lift it.  ### Facebook, Instagram and Threads  The token is also probed live. A probe Meta refuses with a dead-token error sets `tokenStatus.valid` to `false` and names Meta's code, subcode and fbtrace in `issues`.  The exception: if an analytics sync succeeded with that token in the last six hours, the token stays `valid` and `issues` reports the probe as inconclusive, since Meta answers a transient 190 to live tokens now and then.  Neither verdict disconnects the account. That happens only when a real operation fails, and `account.disconnected` is sent.  ### WhatsApp  The response also includes `platformConnection`, a live probe of the Meta link behind the channel (the same read as `GET /v1/whatsapp/number-info`).  The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect). So `tokenStatus` alone is not a liveness signal for WhatsApp.  - When the Meta link is dead, `platformConnection.status` is `disconnected` and the overall `status` is `error`. - When Meta reports that the number's inbound message webhook does not reach Zernio, or subscribing the number's WhatsApp Business Account to Zernio's webhooks failed at connect, `platformConnection.inboundWebhookSubscribed` is `false`, an entry is added to `issues`, and the overall `status` is at least `warning`. - When `platformConnection.phoneStatus` is anything other than `CONNECTED`, an entry is added to `issues` and the overall `status` is at least `warning`; `BANNED` makes it `error`. `disconnectReason` stays null, since reconnecting does not lift a Meta status. - When Meta reports `platformConnection.canSendMessage` as `BLOCKED` (for example a payment-method error on the WhatsApp Business Account), an entry is added to `issues` with Meta's own reason, the recommendation is Meta's suggested fix, and the overall `status` is at least `warning`. `LIMITED` does not change `status`. Reconnecting does not lift it.  ### LINE  The response also includes `lineWebhook`, a live read of the channel's webhook settings at LINE. It is one LINE call per request, given up after a few seconds, and skipped while the account is inactive or needs reconnecting.  If LINE rejects the channel credentials during that read, the account is flagged for reconnection and the overall `status` is `error`.  - `active: false` means Webhooks are turned off in LINE Official Account Manager, so LINE sends nothing to Zernio. An entry is added to `issues` with the fix (Settings > Response settings > Webhooks) and the overall `status` is at least `warning`. - `destination` is `other` when the channel's webhook URL points at another integration, `another_zernio_account` when the same channel is connected to another Zernio account that now receives its events, and `missing` when none is set. Each adds an entry to `issues` and makes the overall `status` at least `warning`. - Both are `null` when LINE could not be read; nothing is added to `issues` then.  ### Standalone ads connections (`googleads`, `redditads`, `microsoftads`)  A connection that cannot serve requests until a fresh OAuth repairs it adds an entry to `issues`. It also adds a recommendation to call `GET /v1/connect/{platform}/ads`, whose `authUrl` reconnects the same account.  On `redditads` this is a connection authorized before Zernio needed a Reddit permission it now uses (for example `adsconversions`). Reddit refuses those requests until the user reconnects and allows every permission on Reddit's consent screen. 
 
 ### Example
 ```csharp
@@ -234,11 +345,11 @@ catch (ApiException e)
 
 <a id="getaccountposts"></a>
 # **GetAccountPosts**
-> GetAccountPosts200Response GetAccountPosts (string accountId)
+> GetAccountPosts200Response GetAccountPosts (string accountId, int? limit = null, string? cursor = null)
 
 List posts published on the platform
 
-Returns the 25 most recent posts that exist on the platform for a connected account, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.  Use it to obtain the platform's own post id, which the analytics endpoints take as input. On YouTube the returned `id` is the video ID that `GET /v1/analytics/youtube/daily-views`, `/video-retention` and `/demographics` expect as `videoId`, so this endpoint is what backs a video picker in your own UI.  ### Platform-specific fields  Not every field applies to every platform. Absent fields are omitted from the response.  - `reactionCount`: Facebook and LinkedIn. - `shareCount`: platform dependent. - `cid`: the Bluesky content id needed to reply. - `subreddit`: Reddit only. - `title`, `description`, `link`, `boardId` and `boardOwnerUsername`: Pinterest only (the native Pin values; `message` keeps title and description joined). - `isOwner`: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep `isOwner: true` to import only its own Pins. On Facebook, false marks a collab post by another Page.  ### Expired tokens  The account's token is refreshed before the call when it has expired. When the refresh cannot recover it, the response is a 401 with code `TOKEN_EXPIRED` and the account has to be reconnected. 
+Returns the most recent posts that exist on the platform for a connected account, newest first, read live from the platform API. This covers everything on the account, including posts that were never created through Zernio.  ### Pagination  Returns `limit` posts (25 by default, up to 100). When `pagination.hasMore` is true, send `pagination.nextCursor` back as `cursor` for the next, older page, until `nextCursor` is null.  On TikTok only the newest page is available for now: `pagination.hasMore` is always false there.  On X:  - Every page, the first one included, is a separate X read billed through your X API usage. You control the cost by choosing whether to fetch the next page. - A page reads `limit` tweets. X reads at least 5 per request, so a `limit` below 5 is billed as 5 tweets. A tweet read again on the same UTC day is not billed twice. - A page can hold fewer than `limit` posts, because replies and reposts are left out. - X serves only the newest 800 tweets of a timeline, so `hasMore` turns false past that.  Use it to obtain the platform's own post id, which the analytics endpoints take as input. On YouTube the returned `id` is the video ID that `GET /v1/analytics/youtube/daily-views`, `/video-retention` and `/demographics` expect as `videoId`, so this endpoint is what backs a video picker in your own UI.  ### Platform-specific fields  Not every field applies to every platform. Absent fields are omitted from the response.  - `reactionCount`: Facebook and LinkedIn. - `shareCount`: platform dependent. - `cid`: the Bluesky content id needed to reply. - `subreddit`: Reddit only. - `title`, `description`, `link`, `boardId` and `boardOwnerUsername`: Pinterest only (the native Pin values; `message` keeps title and description joined). - `isOwner`: Pinterest and Facebook. On Pinterest, true for a Pin the account created and false for a Pin it saved from another user, so keep `isOwner: true` to import only its own Pins. On Facebook, false marks a collab post by another Page.  ### Expired tokens  The account's token is refreshed before the call when it has expired. When the refresh cannot recover it, the response is a 401 with code `TOKEN_EXPIRED` and the account has to be reconnected. 
 
 ### Example
 ```csharp
@@ -265,11 +376,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var limit = 25;  // int? | Page size. Values above the maximum return 400 rather than being clamped. (optional)  (default to 25)
+            var cursor = "cursor_example";  // string? | `pagination.nextCursor` of the previous page, sent back unchanged. An unreadable cursor returns 400. (optional) 
 
             try
             {
                 // List posts published on the platform
-                GetAccountPosts200Response result = apiInstance.GetAccountPosts(accountId);
+                GetAccountPosts200Response result = apiInstance.GetAccountPosts(accountId, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -290,7 +403,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List posts published on the platform
-    ApiResponse<GetAccountPosts200Response> response = apiInstance.GetAccountPostsWithHttpInfo(accountId);
+    ApiResponse<GetAccountPosts200Response> response = apiInstance.GetAccountPostsWithHttpInfo(accountId, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -308,6 +421,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **limit** | **int?** | Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 25] |
+| **cursor** | **string?** | &#x60;pagination.nextCursor&#x60; of the previous page, sent back unchanged. An unreadable cursor returns 400. | [optional]  |
 
 ### Return type
 
@@ -327,7 +442,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Posts list |  -  |
-| **400** | Invalid accountId, platform does not support posts listing, or the account has no access token |  -  |
+| **400** | Invalid accountId, limit or cursor, platform does not support posts listing, or the account has no access token |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
@@ -342,7 +457,7 @@ catch (ApiException e)
 
 Check accounts health
 
-Returns health status of all connected accounts including token validity, permissions, and issues needing attention. A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least warning.
+Returns health status of all connected accounts including token validity, permissions, and issues needing attention. A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least warning.  An account the platform has restricted or banned (for example a WhatsApp number Meta reports as BANNED) is `error`, with the platform's reason in `issues`. `needsReconnect` stays false, since reconnecting does not lift it. 
 
 ### Example
 ```csharp
@@ -651,6 +766,208 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgohighlevelfunneltracking"></a>
+# **GetGohighlevelFunnelTracking**
+> GohighlevelFunnelTracking GetGohighlevelFunnelTracking (string accountId)
+
+Get HighLevel funnel tracking
+
+Get the Zernio tag for a connected HighLevel sub-account's funnels and websites, created on the first call, and the line to paste into each funnel's tracking code (the funnel's Settings, then Head tracking code).  Each funnel and website says whether it already carries the tag, and `live` whether the tag has sent its first visit. Visits on tagged pages tie ad clicks to the leads and sales HighLevel records.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGohighlevelFunnelTrackingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The HighLevel account id from `listAccounts`.
+
+            try
+            {
+                // Get HighLevel funnel tracking
+                GohighlevelFunnelTracking result = apiInstance.GetGohighlevelFunnelTracking(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.GetGohighlevelFunnelTracking: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGohighlevelFunnelTrackingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get HighLevel funnel tracking
+    ApiResponse<GohighlevelFunnelTracking> response = apiInstance.GetGohighlevelFunnelTrackingWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.GetGohighlevelFunnelTrackingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The HighLevel account id from &#x60;listAccounts&#x60;. |  |
+
+### Return type
+
+[**GohighlevelFunnelTracking**](GohighlevelFunnelTracking.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Funnel tracking |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgohighlevelsettings"></a>
+# **GetGohighlevelSettings**
+> GetGohighlevelSettings200Response GetGohighlevelSettings (string accountId)
+
+Get HighLevel account settings
+
+Read a connected HighLevel sub-account and what Zernio relays from it and writes back to it.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGohighlevelSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Get HighLevel account settings
+                GetGohighlevelSettings200Response result = apiInstance.GetGohighlevelSettings(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.GetGohighlevelSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGohighlevelSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get HighLevel account settings
+    ApiResponse<GetGohighlevelSettings200Response> response = apiInstance.GetGohighlevelSettingsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.GetGohighlevelSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**GetGohighlevelSettings200Response**](GetGohighlevelSettings200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | HighLevel settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1615,6 +1932,107 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listgohighlevelaudiencesyncs"></a>
+# **ListGohighlevelAudienceSyncs**
+> GohighlevelAudienceSyncOverview ListGohighlevelAudienceSyncs (string accountId)
+
+List HighLevel tag audience syncs
+
+List the tags of a connected HighLevel sub-account that Zernio keeps as customer list audiences on Meta and Reddit ad accounts, the ad accounts a tag can sync to (`targetChoices`), and the sub-account's tags. Pass a `targetChoices` entry to `startGohighlevelAudienceSync` to start a sync.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListGohighlevelAudienceSyncsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The HighLevel account id from `listAccounts`.
+
+            try
+            {
+                // List HighLevel tag audience syncs
+                GohighlevelAudienceSyncOverview result = apiInstance.ListGohighlevelAudienceSyncs(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.ListGohighlevelAudienceSyncs: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListGohighlevelAudienceSyncsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List HighLevel tag audience syncs
+    ApiResponse<GohighlevelAudienceSyncOverview> response = apiInstance.ListGohighlevelAudienceSyncsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListGohighlevelAudienceSyncsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The HighLevel account id from &#x60;listAccounts&#x60;. |  |
+
+### Return type
+
+[**GohighlevelAudienceSyncOverview**](GohighlevelAudienceSyncOverview.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tag audience syncs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listhubspotcontactproperties"></a>
 # **ListHubSpotContactProperties**
 > ListHubSpotContactProperties200Response ListHubSpotContactProperties (string accountId)
@@ -2130,6 +2548,319 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="sendgohighlevelpastwondeals"></a>
+# **SendGohighlevelPastWonDeals**
+> SendGohighlevelPastWonDeals200Response SendGohighlevelPastWonDeals (string accountId)
+
+Send past HighLevel won deals as conversions
+
+Send the opportunities a connected HighLevel sub-account won in the last 90 days through the conversion relay. Each is stored as a Purchase conversion and forwarded to the profile's ad platforms when `reportToAds` is on.  Each call sends up to 50 and skips deals Zernio already holds, so calling again goes on with the rest. `remaining` says how many are left. A deal that fails is picked again on the next call, so stop when a call sends none.  Returns `relay_off` when the conversion relay is off (`updateGohighlevelSettings`). Needs a read-write key.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SendGohighlevelPastWonDealsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The HighLevel account id from `listAccounts`.
+
+            try
+            {
+                // Send past HighLevel won deals as conversions
+                SendGohighlevelPastWonDeals200Response result = apiInstance.SendGohighlevelPastWonDeals(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.SendGohighlevelPastWonDeals: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SendGohighlevelPastWonDealsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Send past HighLevel won deals as conversions
+    ApiResponse<SendGohighlevelPastWonDeals200Response> response = apiInstance.SendGohighlevelPastWonDealsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.SendGohighlevelPastWonDealsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The HighLevel account id from &#x60;listAccounts&#x60;. |  |
+
+### Return type
+
+[**SendGohighlevelPastWonDeals200Response**](SendGohighlevelPastWonDeals200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Backfill result |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+| **409** | Another call is sending this sub-account&#39;s past won deals. Retry when it ends. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="startgohighlevelaudiencesync"></a>
+# **StartGohighlevelAudienceSync**
+> StartGohighlevelAudienceSync201Response StartGohighlevelAudienceSync (string accountId, StartGohighlevelAudienceSyncRequest startGohighlevelAudienceSyncRequest)
+
+Sync a HighLevel tag to ad audiences
+
+Keep every HighLevel contact with a tag as a customer list audience on one or more Meta or Reddit ad accounts of the profile. Take `targets` from `targetChoices` of `listGohighlevelAudienceSyncs`.  Zernio creates one audience per ad account and fills it within a few minutes. A contact joins or leaves as soon as the tag is added to or removed from it, and every 6 hours Zernio re-reads the tag. Emails and phones are hashed before upload.  A tag syncs once per sub-account; stop it to change its ad accounts. Needs a read-write key.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class StartGohighlevelAudienceSyncExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The HighLevel account id from `listAccounts`.
+            var startGohighlevelAudienceSyncRequest = new StartGohighlevelAudienceSyncRequest(); // StartGohighlevelAudienceSyncRequest | 
+
+            try
+            {
+                // Sync a HighLevel tag to ad audiences
+                StartGohighlevelAudienceSync201Response result = apiInstance.StartGohighlevelAudienceSync(accountId, startGohighlevelAudienceSyncRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.StartGohighlevelAudienceSync: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the StartGohighlevelAudienceSyncWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Sync a HighLevel tag to ad audiences
+    ApiResponse<StartGohighlevelAudienceSync201Response> response = apiInstance.StartGohighlevelAudienceSyncWithHttpInfo(accountId, startGohighlevelAudienceSyncRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.StartGohighlevelAudienceSyncWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The HighLevel account id from &#x60;listAccounts&#x60;. |  |
+| **startGohighlevelAudienceSyncRequest** | [**StartGohighlevelAudienceSyncRequest**](StartGohighlevelAudienceSyncRequest.md) |  |  |
+
+### Return type
+
+[**StartGohighlevelAudienceSync201Response**](StartGohighlevelAudienceSync201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Sync started |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account not found |  -  |
+| **409** | The tag is being set up or synced right now, or is already synced. Retry later, or stop the existing sync first. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="stopgohighlevelaudiencesync"></a>
+# **StopGohighlevelAudienceSync**
+> DeleteAccountGroup200Response StopGohighlevelAudienceSync (string accountId, string syncId)
+
+Stop a HighLevel tag audience sync
+
+Stop keeping a tag in sync. Its audiences stay on the ad accounts with their current members, so running ads keep their targeting; delete an audience with `deleteAdAudience`. Needs a read-write key.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class StopGohighlevelAudienceSyncExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The HighLevel account id from `listAccounts`.
+            var syncId = "syncId_example";  // string | The sync id from `listGohighlevelAudienceSyncs`.
+
+            try
+            {
+                // Stop a HighLevel tag audience sync
+                DeleteAccountGroup200Response result = apiInstance.StopGohighlevelAudienceSync(accountId, syncId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.StopGohighlevelAudienceSync: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the StopGohighlevelAudienceSyncWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Stop a HighLevel tag audience sync
+    ApiResponse<DeleteAccountGroup200Response> response = apiInstance.StopGohighlevelAudienceSyncWithHttpInfo(accountId, syncId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.StopGohighlevelAudienceSyncWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The HighLevel account id from &#x60;listAccounts&#x60;. |  |
+| **syncId** | **string** | The sync id from &#x60;listGohighlevelAudienceSyncs&#x60;. |  |
+
+### Return type
+
+[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sync stopped |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
+| **404** | Account or sync not found |  -  |
+| **409** | The tag is being set up or synced right now, or is already synced. Retry later, or stop the existing sync first. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updateaccount"></a>
 # **UpdateAccount**
 > UpdateAccount200Response UpdateAccount (string accountId, UpdateAccountRequest updateAccountRequest)
@@ -2312,6 +3043,109 @@ catch (ApiException e)
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updategohighlevelsettings"></a>
+# **UpdateGohighlevelSettings**
+> UpdateGohighlevelSettings200Response UpdateGohighlevelSettings (string accountId, UpdateGohighlevelSettingsRequest updateGohighlevelSettingsRequest)
+
+Update HighLevel account settings
+
+Turn the conversion relay, the write-back to HighLevel contacts, forwarding to the profile's ad platforms, contact sync, conversation logging, delivery marks or the ad lead sync on or off for a connected HighLevel sub-account. Send at least one field; omitted fields keep their value. Settings survive reconnecting the same sub-account.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateGohighlevelSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var updateGohighlevelSettingsRequest = new UpdateGohighlevelSettingsRequest(); // UpdateGohighlevelSettingsRequest | 
+
+            try
+            {
+                // Update HighLevel account settings
+                UpdateGohighlevelSettings200Response result = apiInstance.UpdateGohighlevelSettings(accountId, updateGohighlevelSettingsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.UpdateGohighlevelSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateGohighlevelSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update HighLevel account settings
+    ApiResponse<UpdateGohighlevelSettings200Response> response = apiInstance.UpdateGohighlevelSettingsWithHttpInfo(accountId, updateGohighlevelSettingsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.UpdateGohighlevelSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **updateGohighlevelSettingsRequest** | [**UpdateGohighlevelSettingsRequest**](UpdateGohighlevelSettingsRequest.md) |  |  |
+
+### Return type
+
+[**UpdateGohighlevelSettings200Response**](UpdateGohighlevelSettings200Response.md)
 
 ### Authorization
 
@@ -2737,6 +3571,110 @@ catch (ApiException e)
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="verifygohighlevelfunneltracking"></a>
+# **VerifyGohighlevelFunnelTracking**
+> GohighlevelFunnelTracking VerifyGohighlevelFunnelTracking (string accountId, VerifyGohighlevelFunnelTrackingRequest verifyGohighlevelFunnelTrackingRequest)
+
+Check the Zernio tag on a HighLevel funnel page
+
+Load a live funnel or website page and report whether it carries the sub-account's Zernio tag. A page that does adds its domain to the tag's domains, so visits there are tied to the contacts who fill its forms.  Returns the same funnel tracking state as `getGohighlevelFunnelTracking`, with `verified` set. Needs a read-write key.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class VerifyGohighlevelFunnelTrackingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The HighLevel account id from `listAccounts`.
+            var verifyGohighlevelFunnelTrackingRequest = new VerifyGohighlevelFunnelTrackingRequest(); // VerifyGohighlevelFunnelTrackingRequest | 
+
+            try
+            {
+                // Check the Zernio tag on a HighLevel funnel page
+                GohighlevelFunnelTracking result = apiInstance.VerifyGohighlevelFunnelTracking(accountId, verifyGohighlevelFunnelTrackingRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.VerifyGohighlevelFunnelTracking: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the VerifyGohighlevelFunnelTrackingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check the Zernio tag on a HighLevel funnel page
+    ApiResponse<GohighlevelFunnelTracking> response = apiInstance.VerifyGohighlevelFunnelTrackingWithHttpInfo(accountId, verifyGohighlevelFunnelTrackingRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.VerifyGohighlevelFunnelTrackingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The HighLevel account id from &#x60;listAccounts&#x60;. |  |
+| **verifyGohighlevelFunnelTrackingRequest** | [**VerifyGohighlevelFunnelTrackingRequest**](VerifyGohighlevelFunnelTrackingRequest.md) |  |  |
+
+### Return type
+
+[**GohighlevelFunnelTracking**](GohighlevelFunnelTracking.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Funnel tracking, with the page check |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is read-only |  -  |
 | **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

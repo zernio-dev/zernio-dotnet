@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | [optional] 
+**Pixels** | [**List&lt;TrackingSitePixel&gt;**](TrackingSitePixel.md) | The ad pixels the tag loads once consent allows, up to 20, one Microsoft UET tag at most. &#x60;null&#x60; or &#x60;[]&#x60; removes them. | [optional] 
+**ConsentModeBridge** | **bool** | Write the site&#39;s consent banner into Google Consent Mode v2: a denied default in the EEA, UK and Switzerland where the page sets none, then each update. | [optional] 
 **Domains** | **List&lt;string&gt;** | Hosts allowed to send events, such as &#x60;brand.com&#x60;. Events from any other origin are dropped. | [optional] 
 **ConsentMode** | **TrackingSiteConsentMode** |  | [optional] 
 **CustomHostname** | **string** | A subdomain of one of the site&#39;s domains, never the domain itself. &#x60;null&#x60; removes it. | [optional] 

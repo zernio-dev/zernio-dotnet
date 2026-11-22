@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnAccountPermissionsChanged**](WebhookEventsApi.md#onaccountpermissionschanged) | **POST** /account.permissions_changed | Account permissions changed event |
 | [**OnAccountPrivacyRequest**](WebhookEventsApi.md#onaccountprivacyrequest) | **POST** /account.privacy_request | Store privacy request |
 | [**OnAccountRateLimited**](WebhookEventsApi.md#onaccountratelimited) | **POST** /account.rate_limited | Mailbox sending cooldown started |
+| [**OnAccountRecovered**](WebhookEventsApi.md#onaccountrecovered) | **POST** /account.recovered | Account publishing again |
+| [**OnAccountRestricted**](WebhookEventsApi.md#onaccountrestricted) | **POST** /account.restricted | Account restricted from publishing |
 | [**OnAdAccountStatusChanged**](WebhookEventsApi.md#onadaccountstatuschanged) | **POST** /ad_account.status_changed | Ad account status changed event |
 | [**OnAdCreated**](WebhookEventsApi.md#onadcreated) | **POST** /ad.created | Ad created event |
 | [**OnAdDeliveryIssue**](WebhookEventsApi.md#onaddeliveryissue) | **POST** /ad.delivery_issue | Ad delivery issue event |
@@ -35,6 +37,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnBalanceCharged**](WebhookEventsApi.md#onbalancecharged) | **POST** /balance.charged | Balance charged event |
 | [**OnBalanceEmpty**](WebhookEventsApi.md#onbalanceempty) | **POST** /balance.empty | Balance empty event |
 | [**OnBalanceLow**](WebhookEventsApi.md#onbalancelow) | **POST** /balance.low | Balance low event |
+| [**OnBillingPublishingBlocked**](WebhookEventsApi.md#onbillingpublishingblocked) | **POST** /billing.publishing_blocked | Publishing paused for a failed payment |
+| [**OnBillingPublishingUnblocked**](WebhookEventsApi.md#onbillingpublishingunblocked) | **POST** /billing.publishing_unblocked | Publishing resumed after payment |
 | [**OnBrandedCallingIdentityActionRequired**](WebhookEventsApi.md#onbrandedcallingidentityactionrequired) | **POST** /branded_calling.identity.action_required | Caller identity action required event |
 | [**OnBrandedCallingIdentityStatusUpdated**](WebhookEventsApi.md#onbrandedcallingidentitystatusupdated) | **POST** /branded_calling.identity.status_updated | Caller identity status updated event |
 | [**OnBrandedCallingNumberStatusUpdated**](WebhookEventsApi.md#onbrandedcallingnumberstatusupdated) | **POST** /branded_calling.number.status_updated | Branded number status updated event |
@@ -918,6 +922,194 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="onaccountrecovered"></a>
+# **OnAccountRecovered**
+> void OnAccountRecovered (WebhookPayloadAccountRecovered webhookPayloadAccountRecovered)
+
+Account publishing again
+
+A publish succeeded on an account that `account.restricted` reported, so the restriction is lifted and publish-now posts to it are accepted again. A reconnect also lifts it; that sends `account.connected` instead. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAccountRecoveredExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAccountRecovered = new WebhookPayloadAccountRecovered(); // WebhookPayloadAccountRecovered | 
+
+            try
+            {
+                // Account publishing again
+                apiInstance.OnAccountRecovered(webhookPayloadAccountRecovered);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAccountRecovered: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAccountRecoveredWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Account publishing again
+    apiInstance.OnAccountRecoveredWithHttpInfo(webhookPayloadAccountRecovered);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAccountRecoveredWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAccountRecovered** | [**WebhookPayloadAccountRecovered**](WebhookPayloadAccountRecovered.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onaccountrestricted"></a>
+# **OnAccountRestricted**
+> void OnAccountRestricted (WebhookPayloadAccountRestricted webhookPayloadAccountRestricted)
+
+Account restricted from publishing
+
+A social account failed its last three publishes with the same account-level error: the platform suspended or banned it, restricted or locked it, asks for an identity or security check, or stopped accepting its login.  ### When it fires  Once per restriction, on the third identical failure in a row. Further failures do not fire it again.  ### What changes  `POST /v1/posts` with `publishNow` (or a time already past) to this account answers 422 `account_restricted`, because it would fail the same way. Scheduled posts are still accepted.  Fix the account on the platform, then reconnect it to lift the check at once; otherwise the next successful publish lifts it (`account.recovered`). 24 hours after the last failure one publish-now is let through again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnAccountRestrictedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadAccountRestricted = new WebhookPayloadAccountRestricted(); // WebhookPayloadAccountRestricted | 
+
+            try
+            {
+                // Account restricted from publishing
+                apiInstance.OnAccountRestricted(webhookPayloadAccountRestricted);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnAccountRestricted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnAccountRestrictedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Account restricted from publishing
+    apiInstance.OnAccountRestrictedWithHttpInfo(webhookPayloadAccountRestricted);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnAccountRestrictedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadAccountRestricted** | [**WebhookPayloadAccountRestricted**](WebhookPayloadAccountRestricted.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="onadaccountstatuschanged"></a>
 # **OnAdAccountStatusChanged**
 > void OnAdAccountStatusChanged (WebhookPayloadAdAccountStatusChanged webhookPayloadAdAccountStatusChanged)
@@ -1206,7 +1398,7 @@ void (empty response body)
 
 Ad review approved event
 
-An ad Zernio already tracked passed platform review, or a rejected ad was approved on appeal.  ### When it fires  Fires within one sync cycle of the platform's decision, not instantly; on Meta the review poll usually reports sooner. Each outcome is delivered at most once per ad per 24 hours.  ### When it does not fire  Ads seen for the first time by a sync never fire it, including history loaded at connect. On Meta, Google, TikTok and Reddit an ad that leaves review while paused sends no `approved`.  ### Platform notes  Covers every ad network Zernio syncs, with one payload shape. On X, Pinterest and LinkedIn the review is read apart from delivery status, so an ad leaving review while paused still sends `approved`.  ### Payload notes  `review.raw` is the platform's own status string. `adObject.adId` is the Zernio ad id, ready for `GET /v1/ads/{adId}`. Deduplicate on the event `id`. 
+An ad Zernio already tracked passed platform review, or a rejected ad was approved on appeal.  ### When it fires  Fires within one sync cycle of the platform's decision, not instantly; on Meta the review poll usually reports sooner. Each outcome is delivered at most once per ad per 24 hours.  ### When it does not fire  Ads seen for the first time by a sync never fire it, including history loaded at connect. On Google, TikTok and Reddit an ad that leaves review while paused sends no `approved`. On Meta it does when the ad was paused before review ended.  ### Platform notes  Covers every ad network Zernio syncs, with one payload shape. On X, Pinterest and LinkedIn the review is read apart from delivery status, so an ad leaving review while paused still sends `approved`.  ### Payload notes  `review.raw` is the platform's own status string. `adObject.adId` is the Zernio ad id, ready for `GET /v1/ads/{adId}`. Deduplicate on the event `id`. 
 
 ### Example
 ```csharp
@@ -3058,6 +3250,194 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadBalanceLow** | [**WebhookPayloadBalanceLow**](WebhookPayloadBalanceLow.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onbillingpublishingblocked"></a>
+# **OnBillingPublishingBlocked**
+> void OnBillingPublishingBlocked (WebhookPayloadBillingPublishingBlocked webhookPayloadBillingPublishingBlocked)
+
+Publishing paused for a failed payment
+
+A failed payment paused the billing owner's account. Until it is paid, every API call answers 402 `PAYMENT_REQUIRED`.  ### Scheduled posts during the pause  Posts that come due are held, not failed: `platforms[].status` stays `pending` and `errorMessage` says the post waits for the payment. No platform is called.  - Paid within 24 hours of a post's scheduled time: the post publishes within minutes of `billing.publishing_unblocked`. - Not paid by then: the post fails with \"Publishing blocked: payment failed\" and `post.failed` (or `post.partial`) fires as usual. Retry it once paid. - A Terms of Service hold is not a billing pause: its posts fail at once, as before.  ### When it fires  Once per pause. `billing.reason` says why: the card was declined (`payment_failed`), there is no card (`no_payment_method`), or the billing address was refused (`invalid_billing_address`). Pay or replace the card at `billingUrl`.  ### Who receives it  The billing owner's endpoints. Restricted keys need the `money` resource group. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnBillingPublishingBlockedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadBillingPublishingBlocked = new WebhookPayloadBillingPublishingBlocked(); // WebhookPayloadBillingPublishingBlocked | 
+
+            try
+            {
+                // Publishing paused for a failed payment
+                apiInstance.OnBillingPublishingBlocked(webhookPayloadBillingPublishingBlocked);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnBillingPublishingBlocked: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnBillingPublishingBlockedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Publishing paused for a failed payment
+    apiInstance.OnBillingPublishingBlockedWithHttpInfo(webhookPayloadBillingPublishingBlocked);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnBillingPublishingBlockedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadBillingPublishingBlocked** | [**WebhookPayloadBillingPublishingBlocked**](WebhookPayloadBillingPublishingBlocked.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onbillingpublishingunblocked"></a>
+# **OnBillingPublishingUnblocked**
+> void OnBillingPublishingUnblocked (WebhookPayloadBillingPublishingUnblocked webhookPayloadBillingPublishingUnblocked)
+
+Publishing resumed after payment
+
+The account paused by `billing.publishing_blocked` was paid: the API accepts calls again and scheduled posts publish.  Posts held during the pause publish within minutes, unless their scheduled time is more than 24 hours past: those fail with \"Publishing blocked: payment failed\" instead of going out late. Posts that failed stay failed; retry them with `POST /v1/posts/{postId}/retry`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnBillingPublishingUnblockedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadBillingPublishingUnblocked = new WebhookPayloadBillingPublishingUnblocked(); // WebhookPayloadBillingPublishingUnblocked | 
+
+            try
+            {
+                // Publishing resumed after payment
+                apiInstance.OnBillingPublishingUnblocked(webhookPayloadBillingPublishingUnblocked);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnBillingPublishingUnblocked: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnBillingPublishingUnblockedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Publishing resumed after payment
+    apiInstance.OnBillingPublishingUnblockedWithHttpInfo(webhookPayloadBillingPublishingUnblocked);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnBillingPublishingUnblockedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadBillingPublishingUnblocked** | [**WebhookPayloadBillingPublishingUnblocked**](WebhookPayloadBillingPublishingUnblocked.md) |  |  |
 
 ### Return type
 

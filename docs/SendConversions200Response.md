@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **EventsReceived** | **int** | Events accepted by the platform. | [optional] 
 **EventsFailed** | **int** | Events rejected (see failures). | [optional] 
+**EventsDropped** | **int** | Events not sent because the visitor did not consent (see &#x60;consent&#x60;). | [optional] 
+**Drops** | [**List&lt;ConsentDrop&gt;**](ConsentDrop.md) |  | [optional] 
 **Failures** | [**List&lt;SendConversions200ResponseFailuresInner&gt;**](SendConversions200ResponseFailuresInner.md) |  | [optional] 
 **TraceId** | **string** | Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google, request_id for TikTok. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID), OpenAI Ads and Reddit (no trace ID surfaced).  | [optional] 
 **PlatformMessages** | **List&lt;string&gt;** | Meta only. Meta&#39;s &#x60;messages&#x60; (warnings about the events it accepted), each distinct one once, at most 20. Absent when Meta sent none. | [optional] 

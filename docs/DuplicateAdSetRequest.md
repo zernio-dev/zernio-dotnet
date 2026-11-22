@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **RenamePrefix** | **string** | Text prepended to each renamed object&#39;s name. | [optional] 
 **RenameSuffix** | **string** | Text appended to each renamed object&#39;s name. | [optional] 
 **SyncAfter** | **bool** |  | [optional] [default to true]
+**WebsiteOnly** | **bool** | Meta only. Rebuilds each copied ad (new creative and ad) instead of using Meta&#39;s native copy, so the creative carries applink_treatment web_only and Ads Manager shows Website as the only destination.  - Omitted or false: keeps the native copy. - 400 with &#x60;deepCopy: false&#x60;, and when an ad runs an existing post (its creative cannot be rebuilt). - Meta rejects it when the campaign uses Website and App conversion locations.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

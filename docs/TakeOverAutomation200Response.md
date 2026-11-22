@@ -1,0 +1,10 @@
+# Zernio.Model.TakeOverAutomation200Response
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Automation** | [**TakeOverWorkflow200ResponseWorkflow**](TakeOverWorkflow200ResponseWorkflow.md) |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

@@ -12,6 +12,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInsightMetrics**](MetricsApi.md#getinsightmetrics) | **GET** /v1/metrics/insights | Read live account or post insights from the platform |
 | [**GetMetricsCatalog**](MetricsApi.md#getmetricscatalog) | **GET** /v1/metrics/catalog | List the metrics, groupings and limits of each metrics endpoint |
 | [**GetPostMetrics**](MetricsApi.md#getpostmetrics) | **GET** /v1/metrics/posts | Read post metrics by id, day by day, as a list, or grouped |
+| [**QueryGoogleAds**](MetricsApi.md#querygoogleads) | **POST** /v1/metrics/platform-queries/google-ads | Run a Google Ads Query Language search on one customer |
+| [**QueryGoogleAnalytics**](MetricsApi.md#querygoogleanalytics) | **POST** /v1/metrics/platform-queries/google-analytics | Run a GA4 standard or realtime report on one property |
+| [**QueryMetaAds**](MetricsApi.md#querymetaads) | **POST** /v1/metrics/platform-queries/meta-ads | Run a Meta Marketing API insights query on one ad account |
+| [**QueryTikTokAds**](MetricsApi.md#querytiktokads) | **POST** /v1/metrics/platform-queries/tiktok-ads | Run a TikTok Marketing API report on one advertiser |
 
 <a id="getaccountmetrics"></a>
 # **GetAccountMetrics**
@@ -956,6 +960,419 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="querygoogleads"></a>
+# **QueryGoogleAds**
+> PlatformQueryPage QueryGoogleAds (GoogleAdsPlatformQueryBody googleAdsPlatformQueryBody)
+
+Run a Google Ads Query Language search on one customer
+
+Runs a GAQL `SELECT` on one Google Ads customer, read only. Without `adAccountId` it reads the connection's own customer.  Runs a native query on the platform with the account's own token and answers the platform's rows unchanged, with its own field names, plus its headers, counts and quota in `meta`. Use it for what `/v1/metrics/_*` does not store; the stored metrics stay cheaper and faster.  - Up to 120 reads per hour per platform target (the Zernio account plus the ad account or property); past it, 429 with `details.scope` `platform_query_target`.  - Up to 10 queries in flight per team.  - A query must answer within 25 seconds.  - An account of another source answers 400 on `accountId` with the route it belongs to.  - The next page goes in `cursor`, from `pagination.nextCursor`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class QueryGoogleAdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MetricsApi(httpClient, config, httpClientHandler);
+            var googleAdsPlatformQueryBody = new GoogleAdsPlatformQueryBody(); // GoogleAdsPlatformQueryBody | 
+
+            try
+            {
+                // Run a Google Ads Query Language search on one customer
+                PlatformQueryPage result = apiInstance.QueryGoogleAds(googleAdsPlatformQueryBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MetricsApi.QueryGoogleAds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the QueryGoogleAdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Run a Google Ads Query Language search on one customer
+    ApiResponse<PlatformQueryPage> response = apiInstance.QueryGoogleAdsWithHttpInfo(googleAdsPlatformQueryBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetricsApi.QueryGoogleAdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **googleAdsPlatformQueryBody** | [**GoogleAdsPlatformQueryBody**](GoogleAdsPlatformQueryBody.md) |  |  |
+
+### Return type
+
+[**PlatformQueryPage**](PlatformQueryPage.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The platform&#39;s rows for the query. |  -  |
+| **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
+| **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="querygoogleanalytics"></a>
+# **QueryGoogleAnalytics**
+> PlatformQueryPage QueryGoogleAnalytics (GoogleAnalyticsPlatformQueryBody googleAnalyticsPlatformQueryBody)
+
+Run a GA4 standard or realtime report on one property
+
+Runs a GA4 `standard` report over up to 4 date ranges, paged, or a `realtime` report on the last 30 minutes. Needs the Analytics add-on.  Runs a native query on the platform with the account's own token and answers the platform's rows unchanged, with its own field names, plus its headers, counts and quota in `meta`. Use it for what `/v1/metrics/_*` does not store; the stored metrics stay cheaper and faster.  - Up to 120 reads per hour per platform target (the Zernio account plus the ad account or property); past it, 429 with `details.scope` `platform_query_target`.  - Up to 10 queries in flight per team.  - A query must answer within 25 seconds.  - An account of another source answers 400 on `accountId` with the route it belongs to.  - The next page goes in `cursor`, from `pagination.nextCursor`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class QueryGoogleAnalyticsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MetricsApi(httpClient, config, httpClientHandler);
+            var googleAnalyticsPlatformQueryBody = new GoogleAnalyticsPlatformQueryBody(); // GoogleAnalyticsPlatformQueryBody | 
+
+            try
+            {
+                // Run a GA4 standard or realtime report on one property
+                PlatformQueryPage result = apiInstance.QueryGoogleAnalytics(googleAnalyticsPlatformQueryBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MetricsApi.QueryGoogleAnalytics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the QueryGoogleAnalyticsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Run a GA4 standard or realtime report on one property
+    ApiResponse<PlatformQueryPage> response = apiInstance.QueryGoogleAnalyticsWithHttpInfo(googleAnalyticsPlatformQueryBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetricsApi.QueryGoogleAnalyticsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **googleAnalyticsPlatformQueryBody** | [**GoogleAnalyticsPlatformQueryBody**](GoogleAnalyticsPlatformQueryBody.md) |  |  |
+
+### Return type
+
+[**PlatformQueryPage**](PlatformQueryPage.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The platform&#39;s rows for the query. |  -  |
+| **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
+| **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="querymetaads"></a>
+# **QueryMetaAds**
+> PlatformQueryPage QueryMetaAds (MetaAdsPlatformQueryBody metaAdsPlatformQueryBody)
+
+Run a Meta Marketing API insights query on one ad account
+
+Reads Meta's insights for one ad account (`act_<n>`). Read its campaigns, ad sets or ads with `level` and `filtering` on the same ad account.  Runs a native query on the platform with the account's own token and answers the platform's rows unchanged, with its own field names, plus its headers, counts and quota in `meta`. Use it for what `/v1/metrics/_*` does not store; the stored metrics stay cheaper and faster.  - Up to 120 reads per hour per platform target (the Zernio account plus the ad account or property); past it, 429 with `details.scope` `platform_query_target`.  - Up to 10 queries in flight per team.  - A query must answer within 25 seconds.  - An account of another source answers 400 on `accountId` with the route it belongs to.  - The next page goes in `cursor`, from `pagination.nextCursor`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class QueryMetaAdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MetricsApi(httpClient, config, httpClientHandler);
+            var metaAdsPlatformQueryBody = new MetaAdsPlatformQueryBody(); // MetaAdsPlatformQueryBody | 
+
+            try
+            {
+                // Run a Meta Marketing API insights query on one ad account
+                PlatformQueryPage result = apiInstance.QueryMetaAds(metaAdsPlatformQueryBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MetricsApi.QueryMetaAds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the QueryMetaAdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Run a Meta Marketing API insights query on one ad account
+    ApiResponse<PlatformQueryPage> response = apiInstance.QueryMetaAdsWithHttpInfo(metaAdsPlatformQueryBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetricsApi.QueryMetaAdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **metaAdsPlatformQueryBody** | [**MetaAdsPlatformQueryBody**](MetaAdsPlatformQueryBody.md) |  |  |
+
+### Return type
+
+[**PlatformQueryPage**](PlatformQueryPage.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The platform&#39;s rows for the query. |  -  |
+| **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
+| **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="querytiktokads"></a>
+# **QueryTikTokAds**
+> PlatformQueryPage QueryTikTokAds (TikTokAdsPlatformQueryBody tikTokAdsPlatformQueryBody)
+
+Run a TikTok Marketing API report on one advertiser
+
+Runs a synchronous TikTok report (`BASIC` or `AUDIENCE`) for one advertiser at the data level asked.  Runs a native query on the platform with the account's own token and answers the platform's rows unchanged, with its own field names, plus its headers, counts and quota in `meta`. Use it for what `/v1/metrics/_*` does not store; the stored metrics stay cheaper and faster.  - Up to 120 reads per hour per platform target (the Zernio account plus the ad account or property); past it, 429 with `details.scope` `platform_query_target`.  - Up to 10 queries in flight per team.  - A query must answer within 25 seconds.  - An account of another source answers 400 on `accountId` with the route it belongs to.  - The next page goes in `cursor`, from `pagination.nextCursor`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class QueryTikTokAdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MetricsApi(httpClient, config, httpClientHandler);
+            var tikTokAdsPlatformQueryBody = new TikTokAdsPlatformQueryBody(); // TikTokAdsPlatformQueryBody | 
+
+            try
+            {
+                // Run a TikTok Marketing API report on one advertiser
+                PlatformQueryPage result = apiInstance.QueryTikTokAds(tikTokAdsPlatformQueryBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MetricsApi.QueryTikTokAds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the QueryTikTokAdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Run a TikTok Marketing API report on one advertiser
+    ApiResponse<PlatformQueryPage> response = apiInstance.QueryTikTokAdsWithHttpInfo(tikTokAdsPlatformQueryBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MetricsApi.QueryTikTokAdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **tikTokAdsPlatformQueryBody** | [**TikTokAdsPlatformQueryBody**](TikTokAdsPlatformQueryBody.md) |  |  |
+
+### Return type
+
+[**PlatformQueryPage**](PlatformQueryPage.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The platform&#39;s rows for the query. |  -  |
+| **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
 | **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 

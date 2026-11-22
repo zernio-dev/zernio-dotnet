@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. OpenAI Ads: pixel wire id. Reddit: pixel id (&#x60;a2_...&#x60;). Microsoft Advertising: &#x60;accounts/{id}/conversionGoals/{id}&#x60;. X Ads: pixel event id (&#x60;tw-...&#x60;). Snapchat: Snap Pixel ID (a UUID).  | [optional] 
+**Id** | **string** | Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. OpenAI Ads: pixel wire id. Reddit: pixel id (&#x60;a2_...&#x60;). Microsoft Advertising: &#x60;accounts/{id}/conversionGoals/{id}&#x60; or &#x60;accounts/{id}/uetTags/{id}&#x60;. X Ads: pixel event id (&#x60;tw-...&#x60;). Snapchat: Snap Pixel ID (a UUID). Taboola: numeric Account ID.  | [optional] 
 **Name** | **string** |  | [optional] 
 **Type** | **string** | Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules).  | [optional] 
 **Status** | **string** |  | [optional] 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Zernio lead id. | [optional] 
-**Platform** | **string** | The ad network the lead came from. | [optional] 
+**Platform** | **string** | The ad network the lead came from. &#x60;web&#x60; is a lead from your own form: a tracked website with lead capture on, or &#x60;POST /v1/leads&#x60;. | [optional] 
 **LeadgenId** | **string** | Meta lead id. On Google, the lead form submission id; on LinkedIn, the leadFormResponse id. | [optional] 
 **FormId** | **string** |  | [optional] 
 **FormName** | **string** |  | [optional] 
@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **FirstContactedAt** | **DateTime?** | When the first WhatsApp message to the lead was delivered. | [optional] 
 **ConversationId** | **string** | The Inbox conversation a lead_received workflow opened with the lead. | [optional] 
 **WebhookDeliveredAt** | **DateTime?** | Meta leads only. When the &#x60;lead.received&#x60; webhook was delivered; null while it has not been. | [optional] 
+**Attribution** | [**AdLeadAttribution**](AdLeadAttribution.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -331,7 +331,7 @@ catch (ApiException e)
 
 <a id="getwhatsappnumberkycform"></a>
 # **GetWhatsAppNumberKycForm**
-> GetWhatsAppNumberKycForm200Response GetWhatsAppNumberKycForm (string country, string profileId)
+> GetWhatsAppNumberKycForm200Response GetWhatsAppNumberKycForm (string country, string? profileId = null)
 
 Get KYC form spec
 
@@ -362,7 +362,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
             var country = "country_example";  // string | 
-            var profileId = "profileId_example";  // string | 
+            var profileId = "profileId_example";  // string? | Profile the order is for. When given, `reusable.options` only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. (optional) 
 
             try
             {
@@ -406,7 +406,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **country** | **string** |  |  |
-| **profileId** | **string** |  |  |
+| **profileId** | **string?** | Profile the order is for. When given, &#x60;reusable.options&#x60; only lists verifications held by numbers on this profile. A key or team member limited to some profiles must pass it to get any options. | [optional]  |
 
 ### Return type
 
@@ -426,8 +426,10 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

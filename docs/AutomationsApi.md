@@ -31,6 +31,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**PreviewAutomation**](AutomationsApi.md#previewautomation) | **POST** /v1/automations/{automationId}/preview | Preview a saved automation |
 | [**PreviewAutomationDraft**](AutomationsApi.md#previewautomationdraft) | **POST** /v1/automations/preview | Preview an unsaved automation |
 | [**RejectAutomationApproval**](AutomationsApi.md#rejectautomationapproval) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request |
+| [**TakeOverAutomation**](AutomationsApi.md#takeoverautomation) | **POST** /v1/automations/{automationId}/take-over | Take over an automation |
 | [**UpdateAutomation**](AutomationsApi.md#updateautomation) | **PATCH** /v1/automations/{automationId} | Edit an automation |
 | [**UpdateAutomationAdAccountControls**](AutomationsApi.md#updateautomationadaccountcontrols) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls |
 | [**UpdateAutomationControls**](AutomationsApi.md#updateautomationcontrols) | **PATCH** /v1/automations/controls | Turn every ad automation off or on |
@@ -458,7 +459,7 @@ catch (ApiException e)
 
 Create an automation
 
-Creates an automation. Its shape picks the kind:  - **Ad rule**: a `schedule` over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. It stays paused unless `status` is `active`; preview it first with `POST /v1/automations/preview`. - **Event**: a Zernio event in `trigger.type`, such as `post.failed`, with notify steps. It is on unless `status` is `paused`. - **Scheduled**: a `schedule` over a profile's posts, with notify steps and an optional boost. It is on unless `status` is `paused`.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`. 
+Creates an automation. Its trigger picks the kind:  - **Ad rule**: a `schedule` over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. It stays paused unless `status` is `active`; preview it first with `POST /v1/automations/preview`. - **Event**: a Zernio event in `trigger.type`, such as `post.failed`, with notify steps. It is on unless `status` is `paused`. - **Scheduled**: a `schedule` over a profile's posts, with notify steps and an optional boost. It is on unless `status` is `paused`. - **Sequence**: an `enrollment` trigger on one messaging account, with message steps sent over time. It is on unless `status` is `draft`. It needs what `/v1/sequences` needs: the inbox add-on and a key with the `messages` group. - **Comment to DM**: a comment door in `trigger.type`, such as `comment.keyword`, with a `graph` of the shapes `/v1/comment-automations` holds. It is on unless `status` is `paused`, and needs what `/v1/comment-automations` needs. A post that already has an active automation is a 409. - **Flow** (`kind` is `workflow`): a flow trigger such as `inbound_message` (or a `graph` whose trigger node names it) on one account, with the builder's `graph`. It is a draft unless `status` is `active`, which needs a complete graph; `paused` is refused. It needs the inbox add-on and a full-access key.  Everything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`. 
 
 ### Example
 ```csharp
@@ -2311,11 +2312,11 @@ catch (ApiException e)
 
 <a id="listautomations"></a>
 # **ListAutomations**
-> ListAutomations200Response ListAutomations (string? accountId = null, string? adAccountId = null, int? limit = null, string? cursor = null)
+> ListAutomations200Response ListAutomations (string? accountId = null, string? adAccountId = null, string? q = null, string? kind = null, int? limit = null, string? cursor = null)
 
 List automations
 
-Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations and scheduled automations. 
+Lists the automations on the profiles your key can reach, newest first, across every kind: ad rules, event automations, scheduled automations, sequences, comment to DM and flows. One `cursor` pages them all.  Each kind is listed only for callers its own route lets read it; the others are left out, never an error:  - **Sequences and comment to DM** need the inbox add-on and a key with the `messages` group, as `/v1/sequences` and `/v1/comment-automations` do. - **Flows** need the inbox add-on and a full-access key, as `/v1/workflows` does. - **Ad rules, event and scheduled automations** need only access to their profile, as reading, pausing and deleting them does. Creating, editing, activating or previewing an ad rule needs the ads add-on. 
 
 ### Example
 ```csharp
@@ -2341,15 +2342,17 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string? | Only automations on this account: the ads connection of an ad rule, or one of the `accountIds` of an event or scheduled automation. (optional) 
+            var accountId = "accountId_example";  // string? | Only automations on this account: the ads connection of an ad rule, one of the `accountIds` of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Only ad rules checking this platform ad account. (optional) 
+            var q = welcome;  // string? | Only automations whose name contains this text, ignoring case. `%` and `_` match themselves. (optional) 
+            var kind = ad_rule,event;  // string? | Only these kinds, comma separated: `ad_rule`, `event`, `scheduled`, `sequence`, `comment`, `workflow`. (optional) 
             var limit = 50;  // int? |  (optional)  (default to 50)
-            var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
+            var cursor = "cursor_example";  // string? | `nextCursor` from the previous page, sent back unchanged with the same `q`, `kind`, `accountId` and `adAccountId`.  Opaque: it holds the creation time and id of the page's last automation, and the next page is every kind's automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  (optional) 
 
             try
             {
                 // List automations
-                ListAutomations200Response result = apiInstance.ListAutomations(accountId, adAccountId, limit, cursor);
+                ListAutomations200Response result = apiInstance.ListAutomations(accountId, adAccountId, q, kind, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2370,7 +2373,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List automations
-    ApiResponse<ListAutomations200Response> response = apiInstance.ListAutomationsWithHttpInfo(accountId, adAccountId, limit, cursor);
+    ApiResponse<ListAutomations200Response> response = apiInstance.ListAutomationsWithHttpInfo(accountId, adAccountId, q, kind, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2387,10 +2390,12 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string?** | Only automations on this account: the ads connection of an ad rule, or one of the &#x60;accountIds&#x60; of an event or scheduled automation. | [optional]  |
+| **accountId** | **string?** | Only automations on this account: the ads connection of an ad rule, one of the &#x60;accountIds&#x60; of an event or scheduled automation, or the account a sequence, comment to DM or flow runs on. | [optional]  |
 | **adAccountId** | **string?** | Only ad rules checking this platform ad account. | [optional]  |
+| **q** | **string?** | Only automations whose name contains this text, ignoring case. &#x60;%&#x60; and &#x60;_&#x60; match themselves. | [optional]  |
+| **kind** | **string?** | Only these kinds, comma separated: &#x60;ad_rule&#x60;, &#x60;event&#x60;, &#x60;scheduled&#x60;, &#x60;sequence&#x60;, &#x60;comment&#x60;, &#x60;workflow&#x60;. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 50] |
-| **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
+| **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page, sent back unchanged with the same &#x60;q&#x60;, &#x60;kind&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;.  Opaque: it holds the creation time and id of the page&#39;s last automation, and the next page is every kind&#39;s automations strictly older than it, so an automation created meanwhile never shifts or repeats a page.  | [optional]  |
 
 ### Return type
 
@@ -2829,6 +2834,108 @@ catch (ApiException e)
 | **403** | Code &#x60;insufficient_permissions&#x60;: you are not one of the approvers, or &#x60;token&#x60; was sent to someone else. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Code &#x60;invalid_resource_state&#x60;. Nothing was changed. The request was already approved or rejected, it expired, or it was cancelled when the automation stopped asking for approval.  Also returned when the automation no longer asks for approval or never does, and when it is acting on the ad account right now (try again in a minute).  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="takeoverautomation"></a>
+# **TakeOverAutomation**
+> TakeOverAutomation200Response TakeOverAutomation (string automationId)
+
+Take over an automation
+
+Makes the caller the automation's owner, so its AI steps use the caller's own AI key. Only the owner or an admin of the active workspace can take over, from the dashboard.  When the member who made an automation leaves the workspace, its AI steps pause until it is taken over; every other step keeps running. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class TakeOverAutomationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
+            var automationId = "automationId_example";  // string | 
+
+            try
+            {
+                // Take over an automation
+                TakeOverAutomation200Response result = apiInstance.TakeOverAutomation(automationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AutomationsApi.TakeOverAutomation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the TakeOverAutomationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Take over an automation
+    ApiResponse<TakeOverAutomation200Response> response = apiInstance.TakeOverAutomationWithHttpInfo(automationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AutomationsApi.TakeOverAutomationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **automationId** | **string** |  |  |
+
+### Return type
+
+[**TakeOverAutomation200Response**](TakeOverAutomation200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Automation taken over |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not the owner or an admin of the active workspace (insufficient_permissions). |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

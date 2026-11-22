@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **PlatformPostId** | **string** | The platform&#39;s own post/media/video id | [optional] 
 **PlatformPostUrl** | **string** | Canonical URL (permalink) of the post on the platform | [optional] 
 **Content** | **string** | Post caption / text | [optional] 
-**PublishedAt** | **DateTime** | When the post was published on the platform | [optional] 
+**PublishedAt** | **DateTime** | When the post was published on the platform. For a YouTube Premiere or live stream it follows the actual start time once it airs. | [optional] 
 **MediaType** | **string** | Media type (e.g. image, video, carousel) | [optional] 
 **ThumbnailUrl** | **string** | Thumbnail URL | [optional] 
 **MediaItems** | **List&lt;Object&gt;** | Per-item media (for carousels / multi-media posts) | [optional] 
@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **IsAiGenerated** | **bool** | Instagram only: whether Instagram labeled the media as AI-generated. Absent when the platform did not report it. | [optional] 
 **IsSharedToFeed** | **bool** | Instagram reels only: whether the reel is also shared to the main feed. Absent when the platform did not report it. | [optional] 
 **MediaAudioType** | **string** | Instagram only: audio type of the media (MUSIC or ORIGINAL_SOUND). Absent when the platform did not report it. | [optional] 
+**UpcomingStartAt** | **DateTime** | YouTube only. Start time of an upcoming Premiere or scheduled live stream. Absent once it airs. While it is present, publishedAt is the upload time; after it airs, publishedAt is the time it actually started. | [optional] 
 **IsOwner** | **bool?** | Pinterest: true when the account created the Pin, false when it saved it from another user; keep true to import only its own Pins. Facebook: false for a collab post by another Page. Null when unknown and for other platforms. | [optional] 
 **Analytics** | [**ExternalPostSummaryAnalytics**](ExternalPostSummaryAnalytics.md) |  | [optional] 
 

@@ -20,6 +20,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAdNegativeKeywordList**](AdAccountsApi.md#deleteadnegativekeywordlist) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**DeleteValueRuleSet**](AdAccountsApi.md#deletevalueruleset) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**DetachAdLabel**](AdAccountsApi.md#detachadlabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
+| [**EditAdNegativeKeywordListKeywords**](AdAccountsApi.md#editadnegativekeywordlistkeywords) | **PATCH** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Add or remove negative list keywords |
 | [**GetAdAccountBilling**](AdAccountsApi.md#getadaccountbilling) | **GET** /v1/ads/accounts/billing | Get ad account billing |
 | [**GetAdAccountFinance**](AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**GetAdAccountHealth**](AdAccountsApi.md#getadaccounthealth) | **GET** /v1/ads/accounts/health | Check an ad account before creating ads |
@@ -923,7 +924,7 @@ catch (ApiException e)
 
 <a id="createadnegativekeywordlist"></a>
 # **CreateAdNegativeKeywordList**
-> CreateAdNegativeKeywordList201Response CreateAdNegativeKeywordList (CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest)
+> CreateAdNegativeKeywordList201Response CreateAdNegativeKeywordList (CreateAdNegativeKeywordListRequest createAdNegativeKeywordListRequest, string? idempotencyKey = null)
 
 Create a negative keyword list
 
@@ -954,11 +955,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var createAdNegativeKeywordListRequest = new CreateAdNegativeKeywordListRequest(); // CreateAdNegativeKeywordListRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Create a negative keyword list
-                CreateAdNegativeKeywordList201Response result = apiInstance.CreateAdNegativeKeywordList(createAdNegativeKeywordListRequest);
+                CreateAdNegativeKeywordList201Response result = apiInstance.CreateAdNegativeKeywordList(createAdNegativeKeywordListRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -979,7 +981,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a negative keyword list
-    ApiResponse<CreateAdNegativeKeywordList201Response> response = apiInstance.CreateAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest);
+    ApiResponse<CreateAdNegativeKeywordList201Response> response = apiInstance.CreateAdNegativeKeywordListWithHttpInfo(createAdNegativeKeywordListRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -997,6 +999,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **createAdNegativeKeywordListRequest** | [**CreateAdNegativeKeywordListRequest**](CreateAdNegativeKeywordListRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -1454,7 +1457,7 @@ catch (ApiException e)
 
 <a id="deleteadnegativekeywordlist"></a>
 # **DeleteAdNegativeKeywordList**
-> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? adAccountId = null, string? customerId = null, string? platform = null)
+> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? idempotencyKey = null, string? adAccountId = null, string? customerId = null, string? platform = null)
 
 Delete a negative keyword list
 
@@ -1486,6 +1489,7 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var listId = "listId_example";  // string | 
             var accountId = "accountId_example";  // string | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
             var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
             var platform = "facebook";  // string? |  (optional) 
@@ -1493,7 +1497,7 @@ namespace Example
             try
             {
                 // Delete a negative keyword list
-                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
+                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1514,7 +1518,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a negative keyword list
-    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
+    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1533,6 +1537,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **listId** | **string** |  |  |
 | **accountId** | **string** |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 | **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
@@ -1786,6 +1791,116 @@ catch (ApiException e)
 | **404** | Label not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="editadnegativekeywordlistkeywords"></a>
+# **EditAdNegativeKeywordListKeywords**
+> ReplaceAdNegativeKeywordListKeywords200Response EditAdNegativeKeywordListKeywords (string listId, EditAdNegativeKeywordListKeywordsRequest editAdNegativeKeywordListKeywordsRequest, string? idempotencyKey = null)
+
+Add or remove negative list keywords
+
+Adds and removes single keywords in a shared Google Ads negative keyword list without resending the full set, affecting every campaign that uses the list.  - `remove` matches by normalized text and match type, and wins over `add` for the same keyword. - Keywords already in the list are not added twice; keywords not in it are skipped on remove. - Creates and removals are applied atomically in one mutation.  ### Quota  Each create or removal consumes one daily operation; the entire batch must fit the remaining quota. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class EditAdNegativeKeywordListKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
+            var listId = "listId_example";  // string | 
+            var editAdNegativeKeywordListKeywordsRequest = new EditAdNegativeKeywordListKeywordsRequest(); // EditAdNegativeKeywordListKeywordsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Add or remove negative list keywords
+                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.EditAdNegativeKeywordListKeywords(listId, editAdNegativeKeywordListKeywordsRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAccountsApi.EditAdNegativeKeywordListKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EditAdNegativeKeywordListKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add or remove negative list keywords
+    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.EditAdNegativeKeywordListKeywordsWithHttpInfo(listId, editAdNegativeKeywordListKeywordsRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAccountsApi.EditAdNegativeKeywordListKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **listId** | **string** |  |  |
+| **editAdNegativeKeywordListKeywordsRequest** | [**EditAdNegativeKeywordListKeywordsRequest**](EditAdNegativeKeywordListKeywordsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegativeKeywordListKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access and permission to the selected account are required.  Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix it, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6369,7 +6484,7 @@ catch (ApiException e)
 
 <a id="replaceadnegativekeywordlistkeywords"></a>
 # **ReplaceAdNegativeKeywordListKeywords**
-> ReplaceAdNegativeKeywordListKeywords200Response ReplaceAdNegativeKeywordListKeywords (string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest)
+> ReplaceAdNegativeKeywordListKeywords200Response ReplaceAdNegativeKeywordListKeywords (string listId, ReplaceAdNegativeKeywordListKeywordsRequest replaceAdNegativeKeywordListKeywordsRequest, string? idempotencyKey = null)
 
 Replace negative list keywords
 
@@ -6401,11 +6516,12 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var listId = "listId_example";  // string | 
             var replaceAdNegativeKeywordListKeywordsRequest = new ReplaceAdNegativeKeywordListKeywordsRequest(); // ReplaceAdNegativeKeywordListKeywordsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Replace negative list keywords
-                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.ReplaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest);
+                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.ReplaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6426,7 +6542,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Replace negative list keywords
-    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest);
+    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.ReplaceAdNegativeKeywordListKeywordsWithHttpInfo(listId, replaceAdNegativeKeywordListKeywordsRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6445,6 +6561,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **listId** | **string** |  |  |
 | **replaceAdNegativeKeywordListKeywordsRequest** | [**ReplaceAdNegativeKeywordListKeywordsRequest**](ReplaceAdNegativeKeywordListKeywordsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -7125,7 +7242,7 @@ catch (ApiException e)
 
 Update ad account settings
 
-Changes a Meta ad account's name, spend cap or default EU DSA beneficiary and payor.  Pass any combination of fields. On Google Ads, only URL tracking fields apply (see below). Other platforms return 400.  ### Spend cap  `spendCap` is the total the account may spend before Meta pauses every campaign in it, in whole units of the account currency.  - `spendCap: null` removes the cap. - `resetAmountSpent: true` restarts the amount counted against it from zero.  When `name`, `spendCap` or `resetAmountSpent` is passed, the response carries `settings`: the account's finances re-read after the write (same shape as `GET /v1/ads/accounts/finance`). The effective cap can be confirmed in one call.  ### DSA defaults  Sets the default DSA beneficiary and payor on the ad account (EU DSA, Article 26). Set them once and every EU-targeted call to `/v1/ads/create`, `/v1/ads/boost` and `/v1/ads/ctwa` on that ad account can omit `dsaBeneficiary`/`dsaPayor`: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically.  Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use `GET /v1/ads/dsa-recommendations` to offer suggestions in your UI.  If `defaultDsaPayor` is omitted, the beneficiary is also set as the payor. That covers the common case where the same entity benefits from and pays for the ads. Read the current values back with `GET /v1/ads/dsa-defaults`.  ### Google: account-level URL tracking  On a Google Ads connection, `adAccountId` is the customer id and only `trackingUrlTemplate` / `finalUrlSuffix` are accepted (the Meta fields return 400).  - They write `customer.tracking_url_template` and `customer.final_url_suffix`, one update mask leaf per field sent. - An empty string clears the field. - The response carries `urlTracking` with the values written.  For one campaign, send the same fields to PUT /v1/ads/campaigns/{campaignId}. 
+Changes a Meta ad account's name, spend cap or default EU DSA beneficiary and payor.  Pass any combination of fields. On Google Ads, only URL tracking fields apply (see below). Other platforms return 400.  ### Spend cap  `spendCap` is the total the account may spend before Meta pauses every campaign in it, in whole units of the account currency.  - `spendCap: null` removes the cap. - `resetAmountSpent: true` restarts the amount counted against it from zero. - Meta allows 10 spend cap changes per ad account per day (`spendCap`, `resetAmountSpent` and `spendCap: null` all count). Past that the call answers 429 `spend_cap_change_limit_reached` at once, and retrying fails until Meta's window resets.  When `name`, `spendCap` or `resetAmountSpent` is passed, the response carries `settings`: the account's finances re-read after the write (same shape as `GET /v1/ads/accounts/finance`). The effective cap can be confirmed in one call.  ### DSA defaults  Sets the default DSA beneficiary and payor on the ad account (EU DSA, Article 26). Set them once and every EU-targeted call to `/v1/ads/create`, `/v1/ads/boost` and `/v1/ads/ctwa` on that ad account can omit `dsaBeneficiary`/`dsaPayor`: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically.  Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use `GET /v1/ads/dsa-recommendations` to offer suggestions in your UI.  If `defaultDsaPayor` is omitted, the beneficiary is also set as the payor. That covers the common case where the same entity benefits from and pays for the ads. Read the current values back with `GET /v1/ads/dsa-defaults`.  ### Google: account-level URL tracking  On a Google Ads connection, `adAccountId` is the customer id and only `trackingUrlTemplate` / `finalUrlSuffix` are accepted (the Meta fields return 400).  - They write `customer.tracking_url_template` and `customer.final_url_suffix`, one update mask leaf per field sent. - An empty string clears the field. - The response carries `urlTracking` with the values written.  For one campaign, send the same fields to PUT /v1/ads/campaigns/{campaignId}. 
 
 ### Example
 ```csharp
@@ -7436,7 +7553,7 @@ catch (ApiException e)
 
 <a id="updateadnegativekeywordlist"></a>
 # **UpdateAdNegativeKeywordList**
-> UpdateAdNegativeKeywordList200Response UpdateAdNegativeKeywordList (string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest)
+> UpdateAdNegativeKeywordList200Response UpdateAdNegativeKeywordList (string listId, UpdateAdNegativeKeywordListRequest updateAdNegativeKeywordListRequest, string? idempotencyKey = null)
 
 Rename a negative keyword list
 
@@ -7468,11 +7585,12 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var listId = "listId_example";  // string | 
             var updateAdNegativeKeywordListRequest = new UpdateAdNegativeKeywordListRequest(); // UpdateAdNegativeKeywordListRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Rename a negative keyword list
-                UpdateAdNegativeKeywordList200Response result = apiInstance.UpdateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest);
+                UpdateAdNegativeKeywordList200Response result = apiInstance.UpdateAdNegativeKeywordList(listId, updateAdNegativeKeywordListRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7493,7 +7611,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Rename a negative keyword list
-    ApiResponse<UpdateAdNegativeKeywordList200Response> response = apiInstance.UpdateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest);
+    ApiResponse<UpdateAdNegativeKeywordList200Response> response = apiInstance.UpdateAdNegativeKeywordListWithHttpInfo(listId, updateAdNegativeKeywordListRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7512,6 +7630,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **listId** | **string** |  |  |
 | **updateAdNegativeKeywordListRequest** | [**UpdateAdNegativeKeywordListRequest**](UpdateAdNegativeKeywordListRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 

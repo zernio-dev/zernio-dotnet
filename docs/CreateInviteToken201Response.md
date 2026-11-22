@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **InvitedProfileIds** | **List&lt;string&gt;** |  | [optional] 
 **DisabledResourceGroups** | **List&lt;string&gt;** |  | [optional] 
 **ExpiresAt** | **DateTime** |  | [optional] 
+**CreatedAt** | **DateTime** |  | [optional] 
 **InviteUrl** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **UnhealthySince** | **DateTime?** | When the earliest current stored cause was recorded (the start of the outage); for an intentional disconnect, when it was disconnected. Null when the connection is healthy, including when the account is unhealthy for another reason (analytics, messaging restriction, missing analytics scopes, Meta phone status), or when unknown. | [optional] 
 **AnalyticsSync** | [**GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync**](GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.md) |  | [optional] 
 **InboundActivity** | [**InboundActivity**](InboundActivity.md) |  | [optional] 
+**PublishingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.md) |  | [optional] 
 **MessagingRestriction** | [**GetAccountHealth200ResponseMessagingRestriction**](GetAccountHealth200ResponseMessagingRestriction.md) |  | [optional] 
 **PlatformConnection** | [**GetAccountHealth200ResponsePlatformConnection**](GetAccountHealth200ResponsePlatformConnection.md) |  | [optional] 
 **LineWebhook** | [**GetAccountHealth200ResponseLineWebhook**](GetAccountHealth200ResponseLineWebhook.md) |  | [optional] 

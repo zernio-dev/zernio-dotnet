@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **EventsSent** | **int** | Events the platform accepted. | [optional] 
 **EventsFailed** | **int** |  | [optional] 
+**EventsDropped** | **int** | Events this destination did not get because the visitor did not consent (see Consent above). | [optional] 
+**Drops** | [**List&lt;ConsentDrop&gt;**](ConsentDrop.md) |  | [optional] 
 **Failures** | [**List&lt;SendEvents200ResponseDestinationsInnerFailuresInner&gt;**](SendEvents200ResponseDestinationsInnerFailuresInner.md) |  | [optional] 
 **Error** | **string** | Set when the destination could not be reached at all (account disconnected, unsupported platform, platform error). | [optional] 
 **Retrying** | **bool** | The destination failed for now (platform error, timeout, rate limit) and the send is queued for retries; its outcome shows on GET /v1/events/{eventId}. | [optional] 

@@ -6,6 +6,7 @@ All URIs are relative to *https://zernio.com/api*
 |--------|--------------|-------------|
 | [**ArchiveLeadForm**](LeadGenApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**CountLeads**](LeadGenApi.md#countleads) | **GET** /v1/ads/leads/counts | Count leads by status |
+| [**CreateLead**](LeadGenApi.md#createlead) | **POST** /v1/leads | Create a lead from your own form |
 | [**CreateLeadForm**](LeadGenApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**CreateTestLead**](LeadGenApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
 | [**DeleteTestLead**](LeadGenApi.md#deletetestlead) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead |
@@ -220,6 +221,109 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createlead"></a>
+# **CreateLead**
+> CreateLead200Response CreateLead (CreateLeadRequest createLeadRequest)
+
+Create a lead from your own form
+
+Stores a lead from a form on your own site or app, posted by your backend. It joins the leads from ad networks: it is listed on `GET /v1/ads/leads` (`platform: web`), fires `lead.received`, starts lead workflows, and moves through statuses with `PATCH /v1/ads/leads/{id}`.  - **Lead event.** A `Lead` event is stored and sent through the profile's forwarding rules that take the `form_leads` source, like an event sent to `POST /v1/events`. - **Attribution.** Pass the ad click ids from the landing URL in `clickIds` (a raw `fbclid` becomes Meta's `fbc`) and the Zernio tag's visitor id (`_zid` cookie) in `visitorId`. - **Earlier visits.** Zernio adds the click ids it saw on that visitor's, email's or phone's earlier website visits. Qualifying or converting the lead later sends those ids with the stage event. - **Idempotent by `leadId`.** Posting the same `leadId` again returns the stored lead with `created: false` and sends nothing twice. Without `leadId`, every call creates a lead.  A tracked website can capture form leads without any code: turn on lead capture for the site. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateLeadExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
+            var createLeadRequest = new CreateLeadRequest(); // CreateLeadRequest | 
+
+            try
+            {
+                // Create a lead from your own form
+                CreateLead200Response result = apiInstance.CreateLead(createLeadRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling LeadGenApi.CreateLead: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateLeadWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a lead from your own form
+    ApiResponse<CreateLead200Response> response = apiInstance.CreateLeadWithHttpInfo(createLeadRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LeadGenApi.CreateLeadWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createLeadRequest** | [**CreateLeadRequest**](CreateLeadRequest.md) |  |  |
+
+### Return type
+
+[**CreateLead200Response**](CreateLead200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A lead with this &#x60;leadId&#x60; was already stored: it is returned unchanged. |  -  |
+| **201** | The lead was created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+| **404** | The profile is not reachable with this key (&#x60;profile_not_found&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -896,7 +1000,7 @@ namespace Example
             var accountIds = "accountIds_example";  // string? | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. (optional) 
             var status = new,contacted;  // string? | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. (optional) 
             var campaignId = "campaignId_example";  // string? | Meta only. The platform campaign id the lead came from. (optional) 
-            var platform = "meta";  // string? | Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. (optional) 
+            var platform = "meta";  // string? | Only leads of this network.  - `web`: your own website and API forms. - `meta` and `google` list stored leads of that network (no LinkedIn live fetch). - `linkedin` requires accountId to be a LinkedIn ads connection (400 otherwise).  Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. (optional) 
             var q = "q_example";  // string? | Meta only. Case-insensitive text search over the lead's answers and the form name. (optional) 
             var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
@@ -949,7 +1053,7 @@ catch (ApiException e)
 | **accountIds** | **string?** | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional]  |
 | **status** | **string?** | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional]  |
 | **campaignId** | **string?** | Meta only. The platform campaign id the lead came from. | [optional]  |
-| **platform** | **string?** | Only leads of this network. meta and google list stored leads of that network (no LinkedIn live fetch); linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional]  |
+| **platform** | **string?** | Only leads of this network.  - &#x60;web&#x60;: your own website and API forms. - &#x60;meta&#x60; and &#x60;google&#x60; list stored leads of that network (no LinkedIn live fetch). - &#x60;linkedin&#x60; requires accountId to be a LinkedIn ads connection (400 otherwise).  Without it, every stored network is listed, and an accountId that is a LinkedIn ads connection switches to the live fetch. | [optional]  |
 | **q** | **string?** | Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional]  |
 | **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
@@ -988,7 +1092,7 @@ catch (ApiException e)
 
 Update a lead's status
 
-Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.  `{id}` is the Zernio lead id (`id` on `GET /v1/ads/leads`, `leadId` on `GET /v1/ads/lead-forms/{formId}/leads`) or the Meta `leadgenId` together with `accountId` in the body. Requires the Ads add-on. 
+Sets the status of a lead (and optionally its value) so you can track it from lead to sale.  Moving a lead to `qualified` stores a `QualifiedLead` event, and to `converted` a `Purchase` with the lead's value. Moving away from a stage retracts its event.  Each stage event is also sent to the ad platforms, but only through the forwarding rules that list that event name in `eventNames`. A rule taking every event name never gets them, so a won lead is never counted as a second sale next to your store's or Stripe's own.  Meta leads are matched by their lead id. Website and API form leads (`platform: web`) are matched by the email, phone and ad click ids they arrived with, and are sent under the `form_leads` source.  `{id}` is the Zernio lead id (`id` on `GET /v1/ads/leads`, `leadId` on `GET /v1/ads/lead-forms/{formId}/leads`) or the Meta `leadgenId` together with `accountId` in the body. Requires the Ads add-on. 
 
 ### Example
 ```csharp

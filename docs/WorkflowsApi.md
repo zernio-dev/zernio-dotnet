@@ -16,6 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWorkflows**](WorkflowsApi.md#listworkflows) | **GET** /v1/workflows | List workflows |
 | [**PauseWorkflow**](WorkflowsApi.md#pauseworkflow) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
 | [**RestoreWorkflowVersion**](WorkflowsApi.md#restoreworkflowversion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
+| [**TakeOverWorkflow**](WorkflowsApi.md#takeoverworkflow) | **POST** /v1/workflows/{workflowId}/take-over | Take over a workflow |
 | [**TriggerApiCallWorkflow**](WorkflowsApi.md#triggerapicallworkflow) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow |
 | [**TriggerWorkflow**](WorkflowsApi.md#triggerworkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**UpdateWorkflow**](WorkflowsApi.md#updateworkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow |
@@ -726,7 +727,7 @@ catch (ApiException e)
 
 <a id="listworkflowexecutions"></a>
 # **ListWorkflowExecutions**
-> ListWorkflowExecutions200Response ListWorkflowExecutions (string workflowId, string? status = null, int? limit = null, int? skip = null)
+> ListWorkflowExecutions200Response ListWorkflowExecutions (string workflowId, string? status = null, int? limit = null, int? skip = null, string? cursor = null)
 
 List workflow runs
 
@@ -760,11 +761,12 @@ namespace Example
             var status = "running";  // string? |  (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
             var skip = 0;  // int? |  (optional)  (default to 0)
+            var cursor = "cursor_example";  // string? | The previous page's pagination.nextCursor. Pages stay stable while runs start or end; skip applies after it. Page past the first 1000 runs with the cursor: a larger skip may be refused with 400. (optional) 
 
             try
             {
                 // List workflow runs
-                ListWorkflowExecutions200Response result = apiInstance.ListWorkflowExecutions(workflowId, status, limit, skip);
+                ListWorkflowExecutions200Response result = apiInstance.ListWorkflowExecutions(workflowId, status, limit, skip, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -785,7 +787,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List workflow runs
-    ApiResponse<ListWorkflowExecutions200Response> response = apiInstance.ListWorkflowExecutionsWithHttpInfo(workflowId, status, limit, skip);
+    ApiResponse<ListWorkflowExecutions200Response> response = apiInstance.ListWorkflowExecutionsWithHttpInfo(workflowId, status, limit, skip, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -806,6 +808,7 @@ catch (ApiException e)
 | **status** | **string?** |  | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **skip** | **int?** |  | [optional] [default to 0] |
+| **cursor** | **string?** | The previous page&#39;s pagination.nextCursor. Pages stay stable while runs start or end; skip applies after it. Page past the first 1000 runs with the cursor: a larger skip may be refused with 400. | [optional]  |
 
 ### Return type
 
@@ -1237,6 +1240,108 @@ catch (ApiException e)
 | **200** | Workflow restored to the named version |  -  |
 | **400** | Workflow is active, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="takeoverworkflow"></a>
+# **TakeOverWorkflow**
+> TakeOverWorkflow200Response TakeOverWorkflow (string workflowId)
+
+Take over a workflow
+
+Makes the caller the workflow's owner, so its AI steps use the caller's own AI key. Only the owner or an admin of the active workspace can take over, from the dashboard.  When the member who made a workflow leaves the workspace, its AI steps pause (they take the error edge with \"{Name} left this workspace. Add a workspace AI key or take over this automation.\") and every other step keeps running; taking it over starts the AI steps again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class TakeOverWorkflowExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WorkflowsApi(httpClient, config, httpClientHandler);
+            var workflowId = "workflowId_example";  // string | 
+
+            try
+            {
+                // Take over a workflow
+                TakeOverWorkflow200Response result = apiInstance.TakeOverWorkflow(workflowId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkflowsApi.TakeOverWorkflow: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the TakeOverWorkflowWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Take over a workflow
+    ApiResponse<TakeOverWorkflow200Response> response = apiInstance.TakeOverWorkflowWithHttpInfo(workflowId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkflowsApi.TakeOverWorkflowWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **workflowId** | **string** |  |  |
+
+### Return type
+
+[**TakeOverWorkflow200Response**](TakeOverWorkflow200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Workflow taken over |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Not the owner or an admin of the active workspace (insufficient_permissions). |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

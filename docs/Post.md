@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Mentions** | **List&lt;string&gt;** | Stored for reference only. Publishing does not create mentions from this field. | [optional] 
 **Visibility** | **string** |  | [optional] 
 **Metadata** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
+**ExternalId** | **string** | Your own identifier for this post, as set on create or update. Absent when unset. Not unique: filter with &#x60;GET /v1/posts?externalId&#x3D;&#x60;. | [optional] 
 **Recycling** | [**RecyclingState**](RecyclingState.md) |  | [optional] 
 **RecycledFromPostId** | **string** | ID of the original post if this post was created via recycling | [optional] 
 **QueuedFromProfile** | **string** | Profile ID if the post was scheduled via the queue | [optional] 

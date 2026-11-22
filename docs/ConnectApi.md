@@ -12,13 +12,19 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConfigureTikTokAdsBrandIdentity**](ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity |
 | [**ConnectAds**](ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**ConnectAppLovinAdsCredentials**](ConnectApi.md#connectapplovinadscredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account |
+| [**ConnectAttentiveCredentials**](ConnectApi.md#connectattentivecredentials) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company |
+| [**ConnectAwinCredentials**](ConnectApi.md#connectawincredentials) | **POST** /v1/connect/awin/credentials | Connect an Awin advertiser |
 | [**ConnectBlueskyCredentials**](ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**ConnectDiscordChannel**](ConnectApi.md#connectdiscordchannel) | **POST** /v1/connect/discord | Connect a Discord channel |
+| [**ConnectImpactCredentials**](ConnectApi.md#connectimpactcredentials) | **POST** /v1/connect/impact/credentials | Connect an Impact program |
+| [**ConnectKlaviyoCredentials**](ConnectApi.md#connectklaviyocredentials) | **POST** /v1/connect/klaviyo/credentials | Connect a Klaviyo account |
 | [**ConnectLineCredentials**](ConnectApi.md#connectlinecredentials) | **POST** /v1/connect/line/credentials | Connect LINE Official Account |
 | [**ConnectOpenAIAdsCredentials**](ConnectApi.md#connectopenaiadscredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account |
 | [**ConnectShopifyWithToken**](ConnectApi.md#connectshopifywithtoken) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token |
 | [**ConnectSlackChannel**](ConnectApi.md#connectslackchannel) | **POST** /v1/connect/slack | Connect a Slack channel |
 | [**ConnectSnapchatAdsCredentials**](ConnectApi.md#connectsnapchatadscredentials) | **POST** /v1/connect/snapchat-ads/credentials | Connect a Snapchat Ads pixel |
+| [**ConnectTaboolaAdsCredentials**](ConnectApi.md#connecttaboolaadscredentials) | **POST** /v1/connect/taboola-ads/credentials | Connect a Taboola account |
+| [**ConnectTradeDeskAdsCredentials**](ConnectApi.md#connecttradedeskadscredentials) | **POST** /v1/connect/tradedesk-ads/credentials | Connect a Trade Desk tracking tag |
 | [**ConnectWebflowWithSiteToken**](ConnectApi.md#connectwebflowwithsitetoken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token |
 | [**ConnectWechatCredentials**](ConnectApi.md#connectwechatcredentials) | **POST** /v1/connect/wechat/credentials | Connect WeChat Official Account |
 | [**ConnectWhatsAppCredentials**](ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
@@ -34,12 +40,15 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateYoutubePlaylist**](ConnectApi.md#createyoutubeplaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
 | [**DeleteOAuthApp**](ConnectApi.md#deleteoauthapp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
 | [**DeleteOrgConnection**](ConnectApi.md#deleteorgconnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
+| [**GetAmazonAdsConnectUrl**](ConnectApi.md#getamazonadsconnecturl) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL |
+| [**GetCampaignManagerConnectUrl**](ConnectApi.md#getcampaignmanagerconnecturl) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL |
 | [**GetConnectHandoff**](ConnectApi.md#getconnecthandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**GetConnectUrl**](ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**GetConnectWelcomeScreen**](ConnectApi.md#getconnectwelcomescreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
 | [**GetEmailConnectUrl**](ConnectApi.md#getemailconnecturl) | **GET** /v1/connect/email | Get a hosted link to connect any mailbox |
 | [**GetFacebookPages**](ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
 | [**GetGmbLocations**](ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
+| [**GetGohighlevelConnectUrl**](ConnectApi.md#getgohighlevelconnecturl) | **GET** /v1/connect/gohighlevel | Get HighLevel OAuth connect URL |
 | [**GetGoogleAnalyticsConnectUrl**](ConnectApi.md#getgoogleanalyticsconnecturl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL |
 | [**GetGoogleSearchConsoleConnectUrl**](ConnectApi.md#getgooglesearchconsoleconnecturl) | **GET** /v1/connect/googlesearchconsole | Get Google Search Console OAuth connect URL |
 | [**GetHubSpotConnectUrl**](ConnectApi.md#gethubspotconnecturl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL |
@@ -65,6 +74,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetYoutubePlaylists**](ConnectApi.md#getyoutubeplaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists |
 | [**HandleOAuthCallback**](ConnectApi.md#handleoauthcallback) | **POST** /v1/connect/{platform} | Complete OAuth callback |
 | [**InitiateTelegramConnect**](ConnectApi.md#initiatetelegramconnect) | **POST** /v1/connect/telegram | Connect Telegram directly |
+| [**ListCampaignManagerProfiles**](ConnectApi.md#listcampaignmanagerprofiles) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect |
 | [**ListFacebookPages**](ConnectApi.md#listfacebookpages) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**ListGoogleAnalyticsProperties**](ConnectApi.md#listgoogleanalyticsproperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
 | [**ListGoogleBusinessCategories**](ConnectApi.md#listgooglebusinesscategories) | **GET** /v1/accounts/{accountId}/gmb-categories | List Google Business Profile categories |
@@ -81,6 +91,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWhatsAppPhoneNumbers**](ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
 | [**ResyncPageWebhookSubscription**](ConnectApi.md#resyncpagewebhooksubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe an account to Zernio&#39;s webhooks |
 | [**SearchGoogleBusinessLocations**](ConnectApi.md#searchgooglebusinesslocations) | **POST** /v1/accounts/{accountId}/gmb-locations/search | Search existing Google listings |
+| [**SelectCampaignManagerProfile**](ConnectApi.md#selectcampaignmanagerprofile) | **POST** /v1/connect/campaignmanager360/select-profile | Connect the chosen Campaign Manager 360 profile |
 | [**SelectFacebookPage**](ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**SelectGoogleAnalyticsProperty**](ConnectApi.md#selectgoogleanalyticsproperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
 | [**SelectGoogleBusinessLocation**](ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
@@ -967,6 +978,212 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="connectattentivecredentials"></a>
+# **ConnectAttentiveCredentials**
+> ConnectAttentiveCredentials200Response ConnectAttentiveCredentials (ConnectAttentiveCredentialsRequest connectAttentiveCredentialsRequest)
+
+Connect an Attentive company
+
+Connect Attentive with the API key of a custom app (Integrations, Custom apps) that can write Custom Events and eCommerce events.  Zernio reads the key's company from Attentive once to check it, then sends the events you forward to it to Attentive. Connecting the same company again replaces its key.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectAttentiveCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectAttentiveCredentialsRequest = new ConnectAttentiveCredentialsRequest(); // ConnectAttentiveCredentialsRequest | 
+
+            try
+            {
+                // Connect an Attentive company
+                ConnectAttentiveCredentials200Response result = apiInstance.ConnectAttentiveCredentials(connectAttentiveCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectAttentiveCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectAttentiveCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect an Attentive company
+    ApiResponse<ConnectAttentiveCredentials200Response> response = apiInstance.ConnectAttentiveCredentialsWithHttpInfo(connectAttentiveCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectAttentiveCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectAttentiveCredentialsRequest** | [**ConnectAttentiveCredentialsRequest**](ConnectAttentiveCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectAttentiveCredentials200Response**](ConnectAttentiveCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Attentive company connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or Attentive did not accept the key (code invalid_credentials). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **502** | Attentive could not confirm the key right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connectawincredentials"></a>
+# **ConnectAwinCredentials**
+> ConnectAwinCredentials200Response ConnectAwinCredentials (ConnectAwinCredentialsRequest connectAwinCredentialsRequest)
+
+Connect an Awin advertiser
+
+Connect Awin with your advertiser id and an API key (Settings, User settings, API credentials).  Zernio checks the key with one test order (`isTest`, not tracked by Awin) before saving it. Events sent with `testCode` reach Awin the same way.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectAwinCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectAwinCredentialsRequest = new ConnectAwinCredentialsRequest(); // ConnectAwinCredentialsRequest | 
+
+            try
+            {
+                // Connect an Awin advertiser
+                ConnectAwinCredentials200Response result = apiInstance.ConnectAwinCredentials(connectAwinCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectAwinCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectAwinCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect an Awin advertiser
+    ApiResponse<ConnectAwinCredentials200Response> response = apiInstance.ConnectAwinCredentialsWithHttpInfo(connectAwinCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectAwinCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectAwinCredentialsRequest** | [**ConnectAwinCredentialsRequest**](ConnectAwinCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectAwinCredentials200Response**](ConnectAwinCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Awin advertiser connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or Awin did not accept the key for this advertiser (code invalid_credentials). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **502** | Awin could not confirm the key right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="connectblueskycredentials"></a>
 # **ConnectBlueskyCredentials**
 > ConnectBlueskyCredentials200Response ConnectBlueskyCredentials (ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest)
@@ -1166,6 +1383,212 @@ void (empty response body)
 | **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Profile not found |  -  |
 | **422** | channelIds only. None of the channels could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connectimpactcredentials"></a>
+# **ConnectImpactCredentials**
+> ConnectImpactCredentials200Response ConnectImpactCredentials (ConnectImpactCredentialsRequest connectImpactCredentialsRequest)
+
+Connect an Impact program
+
+Connect impact.com with an access token (Settings, API) that can read Campaigns and write Conversions, the program the conversions count in and the event type they count as.  Zernio lists the account's programs once to check the token, then sends the conversions you forward to it to `<programId>:<eventTypeId>`. Another event type of the same account is another forwarding rule with that `destinationId`.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectImpactCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectImpactCredentialsRequest = new ConnectImpactCredentialsRequest(); // ConnectImpactCredentialsRequest | 
+
+            try
+            {
+                // Connect an Impact program
+                ConnectImpactCredentials200Response result = apiInstance.ConnectImpactCredentials(connectImpactCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectImpactCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectImpactCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect an Impact program
+    ApiResponse<ConnectImpactCredentials200Response> response = apiInstance.ConnectImpactCredentialsWithHttpInfo(connectImpactCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectImpactCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectImpactCredentialsRequest** | [**ConnectImpactCredentialsRequest**](ConnectImpactCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectImpactCredentials200Response**](ConnectImpactCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Impact program connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or Impact did not accept the Account SID and Auth Token (code invalid_credentials). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **502** | Impact could not confirm the credentials right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connectklaviyocredentials"></a>
+# **ConnectKlaviyoCredentials**
+> ConnectKlaviyoCredentials200Response ConnectKlaviyoCredentials (ConnectKlaviyoCredentialsRequest connectKlaviyoCredentialsRequest)
+
+Connect a Klaviyo account
+
+Connect Klaviyo with a private API key (Settings, API keys) that has the Events (write) and Accounts (read) scopes.  Zernio reads the key's account once to check it, then sends the events you forward to it (`POST /v1/events`, forwarding rules) to Klaviyo's Events API. Connecting the same account again replaces its key.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectKlaviyoCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectKlaviyoCredentialsRequest = new ConnectKlaviyoCredentialsRequest(); // ConnectKlaviyoCredentialsRequest | 
+
+            try
+            {
+                // Connect a Klaviyo account
+                ConnectKlaviyoCredentials200Response result = apiInstance.ConnectKlaviyoCredentials(connectKlaviyoCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectKlaviyoCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectKlaviyoCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect a Klaviyo account
+    ApiResponse<ConnectKlaviyoCredentials200Response> response = apiInstance.ConnectKlaviyoCredentialsWithHttpInfo(connectKlaviyoCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectKlaviyoCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectKlaviyoCredentialsRequest** | [**ConnectKlaviyoCredentialsRequest**](ConnectKlaviyoCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectKlaviyoCredentials200Response**](ConnectKlaviyoCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Klaviyo account connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized, or Klaviyo did not accept the key (code invalid_credentials). |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **502** | Klaviyo could not confirm the key right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1674,6 +2097,211 @@ catch (ApiException e)
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
 | **403** | Ads add-on required. |  -  |
 | **502** | Snapchat could not confirm the token right now, so nothing was saved (code platform_api_error). Retry in a minute. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connecttaboolaadscredentials"></a>
+# **ConnectTaboolaAdsCredentials**
+> ConnectTaboolaAdsCredentials200Response ConnectTaboolaAdsCredentials (ConnectTaboolaAdsCredentialsRequest connectTaboolaAdsCredentialsRequest)
+
+Connect a Taboola account
+
+Connect a Taboola advertiser account by its numeric Account ID from Taboola Realize. Taboola's S2S postback takes no credential, so nothing secret is stored and nothing is checked with Taboola.  The account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules). Each event needs the Taboola click ID (`clickIds.tblci`).  Taboola counts an event only when its name equals the Event Name of a conversion rule in Realize. Rename events in the forwarding rule when they differ.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectTaboolaAdsCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectTaboolaAdsCredentialsRequest = new ConnectTaboolaAdsCredentialsRequest(); // ConnectTaboolaAdsCredentialsRequest | 
+
+            try
+            {
+                // Connect a Taboola account
+                ConnectTaboolaAdsCredentials200Response result = apiInstance.ConnectTaboolaAdsCredentials(connectTaboolaAdsCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectTaboolaAdsCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectTaboolaAdsCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect a Taboola account
+    ApiResponse<ConnectTaboolaAdsCredentials200Response> response = apiInstance.ConnectTaboolaAdsCredentialsWithHttpInfo(connectTaboolaAdsCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectTaboolaAdsCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectTaboolaAdsCredentialsRequest** | [**ConnectTaboolaAdsCredentialsRequest**](ConnectTaboolaAdsCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectTaboolaAdsCredentials200Response**](ConnectTaboolaAdsCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Taboola account connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
+| **409** | This profile already has another Taboola account connected (code profile_platform_conflict). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="connecttradedeskadscredentials"></a>
+# **ConnectTradeDeskAdsCredentials**
+> ConnectTradeDeskAdsCredentials200Response ConnectTradeDeskAdsCredentials (ConnectTradeDeskAdsCredentialsRequest connectTradeDeskAdsCredentialsRequest)
+
+Connect a Trade Desk tracking tag
+
+Connect a Trade Desk advertiser and the tracking tag your conversions count against, for the Real-Time Conversions API. The API takes no secret, so nothing secret is stored: get the Advertiser ID from Advertiser Preferences and ask your Trade Desk representative for a Real-Time Conversion tracking tag.  The Trade Desk does not check either id when it receives events, so a wrong id loses conversions silently: check the tag's conversions in The Trade Desk after the first sends. Connecting the same tag again replaces its advertiser.  Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConnectTradeDeskAdsCredentialsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var connectTradeDeskAdsCredentialsRequest = new ConnectTradeDeskAdsCredentialsRequest(); // ConnectTradeDeskAdsCredentialsRequest | 
+
+            try
+            {
+                // Connect a Trade Desk tracking tag
+                ConnectTradeDeskAdsCredentials200Response result = apiInstance.ConnectTradeDeskAdsCredentials(connectTradeDeskAdsCredentialsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConnectTradeDeskAdsCredentials: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConnectTradeDeskAdsCredentialsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect a Trade Desk tracking tag
+    ApiResponse<ConnectTradeDeskAdsCredentials200Response> response = apiInstance.ConnectTradeDeskAdsCredentialsWithHttpInfo(connectTradeDeskAdsCredentialsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConnectTradeDeskAdsCredentialsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **connectTradeDeskAdsCredentialsRequest** | [**ConnectTradeDeskAdsCredentialsRequest**](ConnectTradeDeskAdsCredentialsRequest.md) |  |  |
+
+### Return type
+
+[**ConnectTradeDeskAdsCredentials200Response**](ConnectTradeDeskAdsCredentials200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Trade Desk tracking tag connected |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | Ads add-on required. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3235,6 +3863,230 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getamazonadsconnecturl"></a>
+# **GetAmazonAdsConnectUrl**
+> GetAmazonAdsConnectUrl200Response GetAmazonAdsConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+
+Get Amazon Ads OAuth connect URL
+
+Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (`GET /v1/ads/conversions/destinations`).  Errors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAmazonAdsConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
+            var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Amazon Ads account being reconnected. (optional) 
+
+            try
+            {
+                // Get Amazon Ads OAuth connect URL
+                GetAmazonAdsConnectUrl200Response result = apiInstance.GetAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetAmazonAdsConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAmazonAdsConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Amazon Ads OAuth connect URL
+    ApiResponse<GetAmazonAdsConnectUrl200Response> response = apiInstance.GetAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetAmazonAdsConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
+| **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. | [optional]  |
+| **reconnectAccountId** | **string?** | Zernio account ID of the Amazon Ads account being reconnected. | [optional]  |
+
+### Return type
+
+[**GetAmazonAdsConnectUrl200Response**](GetAmazonAdsConnectUrl200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Amazon Ads is not configured on this server, code FEATURE_NOT_AVAILABLE. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcampaignmanagerconnecturl"></a>
+# **GetCampaignManagerConnectUrl**
+> GetGoogleAnalyticsConnectUrl200Response GetCampaignManagerConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+
+Get Campaign Manager 360 OAuth connect URL
+
+Starts Google OAuth for Campaign Manager 360 (Floodlight). Each connected CM360 user profile becomes an account with platform `campaignmanager360`; it receives the conversions you forward to its Floodlight activities and does not post.  Requested scopes: `https://www.googleapis.com/auth/datamanager` (conversions go through Google's Data Manager API) and `https://www.googleapis.com/auth/dfatrafficking` (only to list advertisers and Floodlight activities; Campaign Manager has no read-only trafficking scope).  ### Flow  Redirect the user to `authUrl`.  - **One CM360 user profile:** Zernio connects it and redirects to `redirect_url` (or the dashboard) with `connected=campaignmanager360`, `profileId`, `accountId` and `username`. - **Several:** the user first picks one on a Zernio-hosted page, which then redirects the same way.  Then list the Floodlight activities with `GET /v1/ads/conversions/destinations?accountId=...`.  ### Your own picker  Add `headless=true` to `redirect_url`. Zernio then redirects there with `step=select_profile`, `profileId`, `platform=campaignmanager360` and a `pendingDataToken` for `GET /v1/connect/campaignmanager360/profiles` and `POST /v1/connect/campaignmanager360/select-profile`.  ### Errors  On failure the redirect carries `error`, `platform=campaignmanager360` and `error_message`. Errors include:  - `campaignmanager360_scope_missing`: the user unticked one of the two permissions. - `campaignmanager360_no_profiles`: the Google account has no Campaign Manager 360 user profile. - `campaignmanager360_no_refresh_token`: Google returned no refresh token; connect again. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCampaignManagerConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
+            var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Campaign Manager 360 account being reconnected. Picking a different CM360 profile then fails instead of adding a second account. (optional) 
+
+            try
+            {
+                // Get Campaign Manager 360 OAuth connect URL
+                GetGoogleAnalyticsConnectUrl200Response result = apiInstance.GetCampaignManagerConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetCampaignManagerConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCampaignManagerConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Campaign Manager 360 OAuth connect URL
+    ApiResponse<GetGoogleAnalyticsConnectUrl200Response> response = apiInstance.GetCampaignManagerConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetCampaignManagerConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
+| **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | Zernio account ID of the Campaign Manager 360 account being reconnected. Picking a different CM360 profile then fails instead of adding a second account. | [optional]  |
+
+### Return type
+
+[**GetGoogleAnalyticsConnectUrl200Response**](GetGoogleAnalyticsConnectUrl200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file, even the 1st one, because X API calls are passed through per call. Prepaid-balance accounts never get it: they pay X calls from the balance. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | Campaign Manager 360 OAuth is not configured. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getconnecthandoff"></a>
 # **GetConnectHandoff**
 > ConnectHandoff GetConnectHandoff (Guid handoffId)
@@ -3894,6 +4746,115 @@ catch (ApiException e)
 | **400** | Invalid query parameter (e.g. limit out of range) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getgohighlevelconnecturl"></a>
+# **GetGohighlevelConnectUrl**
+> GetGohighlevelConnectUrl200Response GetGohighlevelConnectUrl (string profileId, string? redirectUrl = null)
+
+Get HighLevel OAuth connect URL
+
+Initiates OAuth (authorization code, no PKCE) for the Zernio HighLevel Marketplace app. Each HighLevel sub-account (location) becomes one connected account with `platform: gohighlevel`. An agency that installs the app across its sub-accounts gets one connected account per installed sub-account.  ### Flow  1. Redirect the user to `authUrl` (HighLevel's install screen). 2. After the install, HighLevel returns the browser to Zernio's callback. 3. Zernio redirects to `redirect_url` (or the dashboard when omitted).  On success the redirect carries `connected=gohighlevel`, `profileId` and `accountId`. On failure it carries `error` (`gohighlevel_access_denied`, `gohighlevel_invalid_state` or `gohighlevel_connection_failed`), `platform=gohighlevel` and `error_message`.  Reconnecting the same sub-account on the same profile updates the stored connection in place and keeps its settings. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetGohighlevelConnectUrlExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
+            var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+
+            try
+            {
+                // Get HighLevel OAuth connect URL
+                GetGohighlevelConnectUrl200Response result = apiInstance.GetGohighlevelConnectUrl(profileId, redirectUrl);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetGohighlevelConnectUrl: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetGohighlevelConnectUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get HighLevel OAuth connect URL
+    ApiResponse<GetGohighlevelConnectUrl200Response> response = apiInstance.GetGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetGohighlevelConnectUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
+| **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+
+### Return type
+
+[**GetGohighlevelConnectUrl200Response**](GetGohighlevelConnectUrl200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | API key does not have access to this profile, or the key is read-only. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | HighLevel OAuth is not configured. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6544,6 +7505,112 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listcampaignmanagerprofiles"></a>
+# **ListCampaignManagerProfiles**
+> ListCampaignManagerProfiles200Response ListCampaignManagerProfiles (string pendingDataToken)
+
+List Campaign Manager 360 profiles for a pending connect
+
+For headless flows: lists the Campaign Manager 360 user profiles (one per CM360 account) of a pending connect, so you can show your own picker.  - Listing does not consume the token. - A headless token is honored only together with your API key (or connect token) for the same profile. - It expires after one hour. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListCampaignManagerProfilesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var pendingDataToken = "pendingDataToken_example";  // string | Token from the headless redirect.
+
+            try
+            {
+                // List Campaign Manager 360 profiles for a pending connect
+                ListCampaignManagerProfiles200Response result = apiInstance.ListCampaignManagerProfiles(pendingDataToken);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ListCampaignManagerProfiles: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListCampaignManagerProfilesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Campaign Manager 360 profiles for a pending connect
+    ApiResponse<ListCampaignManagerProfiles200Response> response = apiInstance.ListCampaignManagerProfilesWithHttpInfo(pendingDataToken);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ListCampaignManagerProfilesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **pendingDataToken** | **string** | Token from the headless redirect. |  |
+
+### Return type
+
+[**ListCampaignManagerProfiles200Response**](ListCampaignManagerProfiles200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | CM360 user profiles the Google account holds |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listfacebookpages"></a>
 # **ListFacebookPages**
 > ListFacebookPages200Response ListFacebookPages (string? profileId = null, string? tempToken = null, string? xTempToken = null, string? connectFlow = null, string? selectionToken = null)
@@ -8251,6 +9318,112 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Read-only API key, or the key is not scoped to this account |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="selectcampaignmanagerprofile"></a>
+# **SelectCampaignManagerProfile**
+> SelectCampaignManagerProfile200Response SelectCampaignManagerProfile (SelectCampaignManagerProfileRequest selectCampaignManagerProfileRequest)
+
+Connect the chosen Campaign Manager 360 profile
+
+For headless flows. Connects the CM360 user profile the user picked as a `campaignmanager360` account and returns where to send the user next.  Consumes the `pendingDataToken`; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SelectCampaignManagerProfileExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure API key authorization: connectToken
+            config.AddApiKey("X-Connect-Token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("X-Connect-Token", "Bearer");
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var selectCampaignManagerProfileRequest = new SelectCampaignManagerProfileRequest(); // SelectCampaignManagerProfileRequest | 
+
+            try
+            {
+                // Connect the chosen Campaign Manager 360 profile
+                SelectCampaignManagerProfile200Response result = apiInstance.SelectCampaignManagerProfile(selectCampaignManagerProfileRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.SelectCampaignManagerProfile: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SelectCampaignManagerProfileWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Connect the chosen Campaign Manager 360 profile
+    ApiResponse<SelectCampaignManagerProfile200Response> response = apiInstance.SelectCampaignManagerProfileWithHttpInfo(selectCampaignManagerProfileRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.SelectCampaignManagerProfileWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **selectCampaignManagerProfileRequest** | [**SelectCampaignManagerProfileRequest**](SelectCampaignManagerProfileRequest.md) |  |  |
+
+### Return type
+
+[**SelectCampaignManagerProfile200Response**](SelectCampaignManagerProfile200Response.md)
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The profile is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

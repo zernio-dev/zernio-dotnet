@@ -659,11 +659,11 @@ catch (ApiException e)
 
 <a id="listblogarticles"></a>
 # **ListBlogArticles**
-> ListBlogArticles200Response ListBlogArticles (string accountId, string blogId, int? limit = null, string? cursor = null)
+> ListBlogArticles200Response ListBlogArticles (string accountId, string blogId, int? limit = null, string? cursor = null, string? handle = null)
 
 List blog articles
 
-Lists the articles of a blog. Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`).  ### Pagination  Cursor-paginated: pass `limit` (1-50, default 20) and the `cursor` from a previous response's `nextCursor`. `nextCursor` is null when there are no more pages. Treat cursors as opaque and pass them unchanged.  ### Platform differences  - WordPress and Wix results include `status`, and include `publishDate` only for scheduled (`future`) posts. - Wix lists return `bodyHtml: null`; get the article for its body. - Webflow results report `status` as `publish` or `draft` only. 
+Lists the articles of a blog. Supported on Shopify (`shopify`), WordPress (`wordpress`), Wix (`wix`) and Webflow (`webflow`).  ### Pagination  Cursor-paginated: pass `limit` (1-50, default 20) and the `cursor` from a previous response's `nextCursor`. `nextCursor` is null when there are no more pages. Treat cursors as opaque and pass them unchanged.  ### Find an article by handle  Pass `handle` to get that one article in any status (published, draft or scheduled), or an empty list. WordPress and Webflow only.  Use it after a `502` on create to see whether the article exists.  ### Platform differences  - WordPress and Wix results include `status`, and include `publishDate` only for scheduled (`future`) posts. - Wix lists return `bodyHtml: null`; get the article for its body. - Webflow results report `status` as `publish` or `draft` only. 
 
 ### Example
 ```csharp
@@ -693,11 +693,12 @@ namespace Example
             var blogId = "blogId_example";  // string | Platform-native blog/site id returned by the list operation.
             var limit = 20;  // int? | Page size (1-50). (optional)  (default to 20)
             var cursor = "cursor_example";  // string? | Opaque cursor from a previous response. Omit for the first page. (optional) 
+            var handle = "handle_example";  // string? | Only the article with this handle, in any status. WordPress and Webflow only. (optional) 
 
             try
             {
                 // List blog articles
-                ListBlogArticles200Response result = apiInstance.ListBlogArticles(accountId, blogId, limit, cursor);
+                ListBlogArticles200Response result = apiInstance.ListBlogArticles(accountId, blogId, limit, cursor, handle);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -718,7 +719,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List blog articles
-    ApiResponse<ListBlogArticles200Response> response = apiInstance.ListBlogArticlesWithHttpInfo(accountId, blogId, limit, cursor);
+    ApiResponse<ListBlogArticles200Response> response = apiInstance.ListBlogArticlesWithHttpInfo(accountId, blogId, limit, cursor, handle);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -739,6 +740,7 @@ catch (ApiException e)
 | **blogId** | **string** | Platform-native blog/site id returned by the list operation. |  |
 | **limit** | **int?** | Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **string?** | Opaque cursor from a previous response. Omit for the first page. | [optional]  |
+| **handle** | **string?** | Only the article with this handle, in any status. WordPress and Webflow only. | [optional]  |
 
 ### Return type
 

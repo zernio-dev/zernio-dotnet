@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**List&lt;ListInboxConversations200ResponseDataInner&gt;**](ListInboxConversations200ResponseDataInner.md) |  | [optional] 
 **Pagination** | [**ListCalendarEventInstances200ResponsePagination**](ListCalendarEventInstances200ResponsePagination.md) |  | [optional] 
+**Sync** | [**ListInboxConversations200ResponseSync**](ListInboxConversations200ResponseSync.md) |  | [optional] 
 **Meta** | [**ListInboxConversations200ResponseMeta**](ListInboxConversations200ResponseMeta.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

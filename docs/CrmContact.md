@@ -1,5 +1,5 @@
 # Zernio.Model.CrmContact
-A person in the connected CRM, in the same shape for HubSpot and Salesforce.
+A person in the connected CRM, in the same shape for HubSpot, Salesforce and HighLevel.
 
 ## Properties
 
@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **LastName** | **string** |  | 
 **Email** | **string** |  | 
 **Phone** | **string** | The phone, else the mobile phone, as stored in the CRM. | 
-**Company** | **string** | HubSpot &#x60;company&#x60;; Salesforce Lead &#x60;Company&#x60; or Contact Account name. | 
+**Company** | **string** | HubSpot &#x60;company&#x60;; Salesforce Lead &#x60;Company&#x60; or Contact Account name; HighLevel &#x60;companyName&#x60;. | 
 **OwnerId** | **string** |  | 
 **CreatedAt** | **DateTime?** |  | 
 **UpdatedAt** | **DateTime?** |  | 

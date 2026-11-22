@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **DestinationId** | **string** | The destination (pixel, dataset or conversion action) id, the same as the forwarding rule&#39;s destinationId. | [optional] 
 **SentToday** | **int** | Events the platform accepted today. | [optional] 
 **FailedToday** | **int** | Events that failed for good today. | [optional] 
+**DroppedToday** | [**GetEventsOverview200ResponsePlatformsInnerDroppedToday**](GetEventsOverview200ResponsePlatformsInnerDroppedToday.md) |  | [optional] 
 **LastSentAt** | **DateTime?** | Last accepted send in the last 30 days. | [optional] 
 **LastEventName** | **string** | Name of the event in that send. | [optional] 
 **LastError** | **string** | The platform&#39;s error on the last failed send in the last 30 days. | [optional] 

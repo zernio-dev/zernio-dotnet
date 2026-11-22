@@ -24,6 +24,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**DuplicateAd**](AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**DuplicateAdCampaign**](AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**DuplicateAdSet**](AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
+| [**EditCampaignNegativeKeywordLists**](AdCampaignsApi.md#editcampaignnegativekeywordlists) | **PATCH** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Attach or detach campaign negative lists |
+| [**EditCampaignNegativeKeywords**](AdCampaignsApi.md#editcampaignnegativekeywords) | **PATCH** /v1/ads/campaigns/{campaignId}/negative-keywords | Add or remove campaign-level negative keywords |
 | [**EditGoogleAssetGroupAssets**](AdCampaignsApi.md#editgoogleassetgroupassets) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets |
 | [**GetAd**](AdCampaignsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdCampaignDetails**](AdCampaignsApi.md#getadcampaigndetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
@@ -77,7 +79,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="addadkeywords"></a>
 # **AddAdKeywords**
-> AddAdKeywords201Response AddAdKeywords (AddAdKeywordsRequest addAdKeywordsRequest)
+> AddAdKeywords201Response AddAdKeywords (AddAdKeywordsRequest addAdKeywordsRequest, string? idempotencyKey = null)
 
 Add Search ad-group keywords
 
@@ -108,11 +110,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var addAdKeywordsRequest = new AddAdKeywordsRequest(); // AddAdKeywordsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Add Search ad-group keywords
-                AddAdKeywords201Response result = apiInstance.AddAdKeywords(addAdKeywordsRequest);
+                AddAdKeywords201Response result = apiInstance.AddAdKeywords(addAdKeywordsRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -133,7 +136,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add Search ad-group keywords
-    ApiResponse<AddAdKeywords201Response> response = apiInstance.AddAdKeywordsWithHttpInfo(addAdKeywordsRequest);
+    ApiResponse<AddAdKeywords201Response> response = apiInstance.AddAdKeywordsWithHttpInfo(addAdKeywordsRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -151,6 +154,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **addAdKeywordsRequest** | [**AddAdKeywordsRequest**](AddAdKeywordsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -609,7 +613,7 @@ catch (ApiException e)
 
 <a id="bulkupdateadcampaignstatus"></a>
 # **BulkUpdateAdCampaignStatus**
-> BulkUpdateAdCampaignStatus200Response BulkUpdateAdCampaignStatus (BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest)
+> BulkUpdateAdCampaignStatus200Response BulkUpdateAdCampaignStatus (BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, string? idempotencyKey = null)
 
 Pause or resume many campaigns
 
@@ -640,11 +644,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var bulkUpdateAdCampaignStatusRequest = new BulkUpdateAdCampaignStatusRequest(); // BulkUpdateAdCampaignStatusRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Pause or resume many campaigns
-                BulkUpdateAdCampaignStatus200Response result = apiInstance.BulkUpdateAdCampaignStatus(bulkUpdateAdCampaignStatusRequest);
+                BulkUpdateAdCampaignStatus200Response result = apiInstance.BulkUpdateAdCampaignStatus(bulkUpdateAdCampaignStatusRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -665,7 +670,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Pause or resume many campaigns
-    ApiResponse<BulkUpdateAdCampaignStatus200Response> response = apiInstance.BulkUpdateAdCampaignStatusWithHttpInfo(bulkUpdateAdCampaignStatusRequest);
+    ApiResponse<BulkUpdateAdCampaignStatus200Response> response = apiInstance.BulkUpdateAdCampaignStatusWithHttpInfo(bulkUpdateAdCampaignStatusRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -683,6 +688,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **bulkUpdateAdCampaignStatusRequest** | [**BulkUpdateAdCampaignStatusRequest**](BulkUpdateAdCampaignStatusRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -705,6 +711,7 @@ catch (ApiException e)
 | **400** | Invalid input |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2093,7 +2100,7 @@ catch (ApiException e)
 
 Duplicate an ad set
 
-Copies an ad set, optionally with its ads and into another campaign, created paused so you can review it before launch.  The copy is created paused so callers can review before launching. `campaignId` retargets the copy into another campaign; omitted = the source's own campaign.  **Meta:** ads and creatives are included by default (`deepCopy: true`).  - The ad set is copied with Meta's `/copies` endpoint, then each of its ads (DELETED and ARCHIVED ones are skipped) into the new ad set. - So an ad set with any number of ads copies: Meta refuses a single deep copy of 3 or more objects. - `statusOption` applies to the ad set and every ad. - If an ad copy fails, the partial ad set copy is deleted and the request fails with Meta's error. - A sync discovery starts automatically and runs after the response (`syncAfter: false` to skip). The copy is readable through Zernio once it finishes, usually within a few minutes. Until then, calls that take a copied id return 404, so retry them.  TikTok: the ad group is read and recreated under the campaign with its targeting, bidding, budget and schedule (start reset to now); `deepCopy: true` recreates its ads too (default false). `startTime`, `endTime` and `renameStrategy` are ignored and `statusOption` must be PAUSED or absent. The copy appears on the next discovery sync. 
+Copies an ad set, optionally with its ads and into another campaign, created paused so you can review it before launch.  The copy is created paused so callers can review before launching. `campaignId` retargets the copy into another campaign; omitted = the source's own campaign.  **Meta:** ads and creatives are included by default (`deepCopy: true`).  - The ad set is copied with Meta's `/copies` endpoint, then each of its ads (DELETED and ARCHIVED ones are skipped) into the new ad set. - So an ad set with any number of ads copies: Meta refuses a single deep copy of 3 or more objects. - `statusOption` applies to the ad set and every ad. - If an ad copy fails, the partial ad set copy is deleted and the request fails with Meta's error. - A sync discovery starts automatically and runs after the response (`syncAfter: false` to skip). The copy is readable through Zernio once it finishes, usually within a few minutes. Until then, calls that take a copied id return 404, so retry them. - `websiteOnly: true` rebuilds each ad (new creative on `/adcreatives`, new ad) instead of copying it, so the creative carries `applink_treatment: web_only`.  TikTok: the ad group is read and recreated under the campaign with its targeting, bidding, budget and schedule (start reset to now); `deepCopy: true` recreates its ads too (default false). `startTime`, `endTime` and `renameStrategy` are ignored and `statusOption` must be PAUSED or absent. The copy appears on the next discovery sync. 
 
 ### Example
 ```csharp
@@ -2192,6 +2199,225 @@ catch (ApiException e)
 | **404** | Source ad set not found |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta puts a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes.  Creates here are every request that creates ad objects on the ad account: &#x60;POST /v1/ads/create&#x60;, &#x60;/boost&#x60;, &#x60;/campaigns&#x60;, &#x60;/messaging&#x60;, &#x60;/ctwa&#x60; and &#x60;/call&#x60; (each including &#x60;validateOnly&#x60;), the three duplicate routes, and a creative rebuilt by &#x60;PUT /v1/ads/{adId}&#x60; or &#x60;PATCH /v1/ads/{adId}/tracking-tags&#x60;. One request counts as one create, however many objects it writes.  To keep integrations out of that hold, Zernio:  - runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn); - allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included.  A 429 here means one of the two was hit. &#x60;details.adAccountId&#x60; names the ad account and &#x60;details.reason&#x60; says which:  - &#x60;ad_account_busy&#x60;: another create on the ad account was still running after the 60-second wait (&#x60;Retry-After: 15&#x60;); - &#x60;ad_account_write_cap&#x60;: the 30 creates in 5 minutes are used up (&#x60;Retry-After&#x60; counts down to the next free slot).  Wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) and TikTok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="editcampaignnegativekeywordlists"></a>
+# **EditCampaignNegativeKeywordLists**
+> ReplaceAdNegativeKeywordListKeywords200Response EditCampaignNegativeKeywordLists (string campaignId, EditCampaignNegativeKeywordListsRequest editCampaignNegativeKeywordListsRequest, string? idempotencyKey = null)
+
+Attach or detach campaign negative lists
+
+Attaches and detaches single shared negative keyword lists on a Google campaign without resending the full set. The lists and their keywords are not changed.  - `remove` wins over `add` for the same list. - A list already attached is not attached twice; a list not attached is skipped on remove. - Every list in `add` must belong to the campaign customer and have type NEGATIVE_KEYWORDS. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class EditCampaignNegativeKeywordListsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | 
+            var editCampaignNegativeKeywordListsRequest = new EditCampaignNegativeKeywordListsRequest(); // EditCampaignNegativeKeywordListsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Attach or detach campaign negative lists
+                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.EditCampaignNegativeKeywordLists(campaignId, editCampaignNegativeKeywordListsRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.EditCampaignNegativeKeywordLists: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EditCampaignNegativeKeywordListsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Attach or detach campaign negative lists
+    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.EditCampaignNegativeKeywordListsWithHttpInfo(campaignId, editCampaignNegativeKeywordListsRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.EditCampaignNegativeKeywordListsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** |  |  |
+| **editCampaignNegativeKeywordListsRequest** | [**EditCampaignNegativeKeywordListsRequest**](EditCampaignNegativeKeywordListsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegativeKeywordListKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful response. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access and permission to the selected account are required.  Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection), or use a connection that has it selected.  |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
+| **422** | Google Ads connection is missing or unavailable. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Available only on Google Ads. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="editcampaignnegativekeywords"></a>
+# **EditCampaignNegativeKeywords**
+> EditCampaignNegativeKeywords200Response EditCampaignNegativeKeywords (string campaignId, EditCampaignNegativeKeywordsRequest editCampaignNegativeKeywordsRequest, string? idempotencyKey = null)
+
+Add or remove campaign-level negative keywords
+
+Adds and removes single campaign-level negative keywords on a Google campaign without resending the full set.  - `remove` matches by text (any case) and match type, and wins over `add` for the same keyword. - Keywords already on the campaign are not added twice; keywords not on it are skipped on remove. - Changes go to Google in `create`/`remove` mutates of up to 5,000 operations, like the full replace.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not `platform` was sent. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class EditCampaignNegativeKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Platform campaign ID
+            var editCampaignNegativeKeywordsRequest = new EditCampaignNegativeKeywordsRequest(); // EditCampaignNegativeKeywordsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
+
+            try
+            {
+                // Add or remove campaign-level negative keywords
+                EditCampaignNegativeKeywords200Response result = apiInstance.EditCampaignNegativeKeywords(campaignId, editCampaignNegativeKeywordsRequest, idempotencyKey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.EditCampaignNegativeKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EditCampaignNegativeKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add or remove campaign-level negative keywords
+    ApiResponse<EditCampaignNegativeKeywords200Response> response = apiInstance.EditCampaignNegativeKeywordsWithHttpInfo(campaignId, editCampaignNegativeKeywordsRequest, idempotencyKey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.EditCampaignNegativeKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Platform campaign ID |  |
+| **editCampaignNegativeKeywordsRequest** | [**EditCampaignNegativeKeywordsRequest**](EditCampaignNegativeKeywordsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
+
+### Return type
+
+[**EditCampaignNegativeKeywords200Response**](EditCampaignNegativeKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign-level negative keywords changed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
+| **404** | Campaign not found |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **429** | Google Ads operations budget exhausted; retry later |  -  |
+| **501** | Only available on Google Ads campaigns |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2310,7 +2536,7 @@ catch (ApiException e)
 
 Get ad details
 
-Shows one ad with its creative, targeting, status and performance metrics.  ### Google Search ads  Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read.  RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  ### Accepted ad ids  The `{adId}` path segment accepts any identifier dialect Zernio indexes for the ad:  - the Zernio internal `_id` (24-char hex) - Meta's numeric `platformAdId` (the value shipped in `comment.received` webhooks as `comment.ad.id`) - the creative's `effective_object_story_id` (`{pageId}_{postId}` shape, Facebook side) - the creative's `effective_instagram_media_id` (Instagram side) - an Instagram media id an ad comment arrived on (`comment.platformPostId` of a `comment.received` carrying `comment.ad.id`), including the extra media Meta creates for placement variants  Any of these resolve to the same ad, so the caller doesn't need a translation step.  `creative.creativeFeatures` holds the stored requested settings, which do not confirm platform application.  ### Facebook ad dark posts  Meta gives an ad with per-placement assets one extra unpublished post per placement, and comments land on it. Meta exposes no link from that post to its ad.  - When exactly one ad on the Page, created before the dark post, carries the same copy as the post, the dark post id resolves to that ad. - Otherwise, when the id is a dark post Zernio has seen comments on and its Page is connected, the response is `ad: null` plus `darkPost`. It carries the Meta Ads account and the ad accounts running ads for that Page.  Read its comments with GET /v1/ads/{adId}/comments using the same id.  ### Status freshness  `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored.  Background sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often.  Zernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync.  Controllers that act on a switch should pass `live=true`. It reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned).  With `live=true` these are read live:  - the ad's own switch (`configuredStatus`) - its delivery status (`status`, `platformStatus`) - its ad set and campaign switches (`platformAdSetStatus`, `platformCampaignStatus`) - on TikTok, the creative TikTok holds now: `creative.body` (ad text), `creative.callToAction`, `creative.linkUrl` (landing page), `creative.videoId`, `creative.adFormat`, `creative.identityId`, `creative.identityType`, `creative.identityAuthorizedBcId` and, on a Spark ad, `creative.tiktokItemId`.  The TikTok creative comes from the same TikTok call as the switches. It replaces the stored values in the response only and is never stored. A key TikTok leaves empty keeps its stored value.  ### Meta ads that are not synced yet  Pass `accountId` with a Meta `platformAdId` to read an ad Zernio has not synced (for example one created in Ads Manager on an ad account reached only through a Facebook connection).  The ad is read live from Meta and mapped exactly like a synced row: name, `status`, `platformStatus`, `configuredStatus`, `platformAdSetId`, `platformCampaignId`, campaign and ad set names, budgets, and `creative` with its `id`, body, link, image and video.  It comes back with `synced: false`, no `id` (it has no Zernio row) and `statusReadAt` set to the time of the read. Synced ads answer `synced: true`.  Only a numeric id takes this path, so dark post ids (`{pageId}_{postId}`) keep the dark post lookup above. 
+Shows one ad with its creative, targeting, status and performance metrics.  ### Google Search ads  Google Search ads include current creative.headlines, creative.descriptions, creative.finalUrls and, when set, creative.path1 and creative.path2, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read.  RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  ### Accepted ad ids  The `{adId}` path segment accepts any identifier dialect Zernio indexes for the ad:  - the Zernio internal `_id` (24-char hex) - Meta's numeric `platformAdId` (the value shipped in `comment.received` webhooks as `comment.ad.id`) - the creative's `effective_object_story_id` (`{pageId}_{postId}` shape, Facebook side) - the creative's `effective_instagram_media_id` (Instagram side) - an Instagram media id an ad comment arrived on (`comment.platformPostId` of a `comment.received` carrying `comment.ad.id`), including the extra media Meta creates for placement variants  Any of these resolve to the same ad, so the caller doesn't need a translation step.  `creative.creativeFeatures` holds the stored requested settings, which do not confirm platform application.  ### Facebook ad dark posts  Meta gives an ad with per-placement assets one extra unpublished post per placement, and comments land on it. Meta exposes no link from that post to its ad.  - When exactly one ad on the Page, created before the dark post, carries the same copy as the post, the dark post id resolves to that ad. - Otherwise, when the id is a dark post Zernio has seen comments on and its Page is connected, the response is `ad: null` plus `darkPost`. It carries the Meta Ads account and the ad accounts running ads for that Page.  Read its comments with GET /v1/ads/{adId}/comments using the same id.  ### Status freshness  `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored.  Background sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often.  Zernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync.  Controllers that act on a switch should pass `live=true`. It reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned).  With `live=true` these are read live:  - the ad's own switch (`configuredStatus`) - its delivery status (`status`, `platformStatus`) - its ad set and campaign switches (`platformAdSetStatus`, `platformCampaignStatus`) - on TikTok, the creative TikTok holds now: `creative.body` (ad text), `creative.callToAction`, `creative.linkUrl` (landing page), `creative.videoId`, `creative.adFormat`, `creative.identityId`, `creative.identityType`, `creative.identityAuthorizedBcId` and, on a Spark ad, `creative.tiktokItemId`.  The TikTok creative comes from the same TikTok call as the switches. It replaces the stored values in the response only and is never stored. A key TikTok leaves empty keeps its stored value.  ### Meta ads that are not synced yet  Pass `accountId` with a Meta `platformAdId` to read an ad Zernio has not synced (for example one created in Ads Manager on an ad account reached only through a Facebook connection).  The ad is read live from Meta and mapped exactly like a synced row: name, `status`, `platformStatus`, `configuredStatus`, `platformAdSetId`, `platformCampaignId`, campaign and ad set names, budgets, and `creative` with its `id`, body, link, image and video.  It comes back with `synced: false`, no `id` (it has no Zernio row) and `statusReadAt` set to the time of the read. Synced ads answer `synced: true`.  Only a numeric id takes this path, so dark post ids (`{pageId}_{postId}`) keep the dark post lookup above. 
 
 ### Example
 ```csharp
@@ -2989,7 +3215,7 @@ catch (ApiException e)
 
 Get daily account metrics
 
-Returns an ads account's spend, results and other metrics day by day, ready for a daily performance chart.  The result is a single time series of daily aggregate metrics across all ads in a SocialAccount: one row per calendar day and currency in the requested range (one row per day unless the account's ad accounts bill in different currencies).  Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling `/v1/ads/tree` once per day.  ### Parameters  - `accountId` is required. The lookup is sibling-expanded, so passing the `metaads` ID also includes ads under the linked `facebook` / `instagram` posting account (and vice-versa), the same convention as `/v1/ads/tree` and `/v1/ads`. - Date range defaults to the last 90 days. Capped at 730 days. - With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day).  ### History  When an ad account connects, Zernio imports its last 90 days of metrics, so `rows` hold no data for days before that.  When `accountId` or `adAccountId` resolves to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part. The older days (up to 730 days back) are imported in the background; repeat the request until it returns 200.  Other platforms never return `202`. 
+Returns an ads account's spend, results and other metrics day by day, ready for a daily performance chart.  The result is a single time series of daily aggregate metrics across all ads in a SocialAccount: one row per calendar day and currency in the requested range (one row per day unless the account's ad accounts bill in different currencies).  Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling `/v1/ads/tree` once per day.  ### Parameters  - `accountId` is required. The lookup is sibling-expanded, so passing the `metaads` ID also includes ads under the linked `facebook` / `instagram` posting account (and vice-versa), the same convention as `/v1/ads/tree` and `/v1/ads`. - Without `adAccountId` the timeline sums only the ad accounts the connection reaches: its `scopedAdAccountIds` when it selects some, every reachable one otherwise. - Date range defaults to the last 90 days. Capped at 730 days. - With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day).  ### History  When an ad account connects, Zernio imports its last 90 days of metrics, so `rows` hold no data for days before that.  When `accountId` or `adAccountId` resolves to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part. The older days (up to 730 days back) are imported in the background; repeat the request until it returns 200.  Other platforms never return `202`. 
 
 ### Example
 ```csharp
@@ -5577,7 +5803,7 @@ catch (ApiException e)
 
 <a id="removeadkeyword"></a>
 # **RemoveAdKeyword**
-> RemoveAdKeyword200Response RemoveAdKeyword (string keywordId)
+> RemoveAdKeyword200Response RemoveAdKeyword (string keywordId, string? idempotencyKey = null)
 
 Remove a Search keyword
 
@@ -5608,11 +5834,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var keywordId = "keywordId_example";  // string | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Remove a Search keyword
-                RemoveAdKeyword200Response result = apiInstance.RemoveAdKeyword(keywordId);
+                RemoveAdKeyword200Response result = apiInstance.RemoveAdKeyword(keywordId, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5633,7 +5860,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a Search keyword
-    ApiResponse<RemoveAdKeyword200Response> response = apiInstance.RemoveAdKeywordWithHttpInfo(keywordId);
+    ApiResponse<RemoveAdKeyword200Response> response = apiInstance.RemoveAdKeywordWithHttpInfo(keywordId, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5651,6 +5878,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **keywordId** | **string** | Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -5904,7 +6132,7 @@ catch (ApiException e)
 
 <a id="replacecampaignnegativekeywordlists"></a>
 # **ReplaceCampaignNegativeKeywordLists**
-> ReplaceAdNegativeKeywordListKeywords200Response ReplaceCampaignNegativeKeywordLists (string campaignId, ReplaceCampaignNegativeKeywordListsRequest replaceCampaignNegativeKeywordListsRequest)
+> ReplaceAdNegativeKeywordListKeywords200Response ReplaceCampaignNegativeKeywordLists (string campaignId, ReplaceCampaignNegativeKeywordListsRequest replaceCampaignNegativeKeywordListsRequest, string? idempotencyKey = null)
 
 Replace campaign negative lists
 
@@ -5936,11 +6164,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | 
             var replaceCampaignNegativeKeywordListsRequest = new ReplaceCampaignNegativeKeywordListsRequest(); // ReplaceCampaignNegativeKeywordListsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Replace campaign negative lists
-                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.ReplaceCampaignNegativeKeywordLists(campaignId, replaceCampaignNegativeKeywordListsRequest);
+                ReplaceAdNegativeKeywordListKeywords200Response result = apiInstance.ReplaceCampaignNegativeKeywordLists(campaignId, replaceCampaignNegativeKeywordListsRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5961,7 +6190,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Replace campaign negative lists
-    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.ReplaceCampaignNegativeKeywordListsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordListsRequest);
+    ApiResponse<ReplaceAdNegativeKeywordListKeywords200Response> response = apiInstance.ReplaceCampaignNegativeKeywordListsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordListsRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5980,6 +6209,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** |  |  |
 | **replaceCampaignNegativeKeywordListsRequest** | [**ReplaceCampaignNegativeKeywordListsRequest**](ReplaceCampaignNegativeKeywordListsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6012,11 +6242,11 @@ catch (ApiException e)
 
 <a id="replacecampaignnegativekeywords"></a>
 # **ReplaceCampaignNegativeKeywords**
-> ReplaceCampaignNegativeKeywords200Response ReplaceCampaignNegativeKeywords (string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest)
+> ReplaceCampaignNegativeKeywords200Response ReplaceCampaignNegativeKeywords (string campaignId, ReplaceCampaignNegativeKeywordsRequest replaceCampaignNegativeKeywordsRequest, string? idempotencyKey = null)
 
 Replace campaign-level negative keywords
 
-Replaces a Google campaign's full list of campaign-level negative keywords, or clears it.  Replaces the FULL set of campaign-level negative keywords (C.270): the desired list is diffed against what Google already has, and the difference is applied as one `create`/`remove` mutate. Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not `platform` was sent. 
+Replaces a Google campaign's full list of campaign-level negative keywords, or clears it.  Replaces the FULL set of campaign-level negative keywords (C.270). The desired list is diffed against what Google already has, and the difference is applied in `create`/`remove` mutates of up to 5,000 operations.  - Creates run first, so a failed batch leaves extra negatives rather than missing ones. - When the old and new sets together would pass Google's 10,000 cap, removes run first. - Send the same request again to finish a failed replace. - Send an empty array to clear every campaign negative.  The platform is always discovered from the campaign itself; a non-Google campaign returns 501 rather than 404, whether or not `platform` was sent. 
 
 ### Example
 ```csharp
@@ -6044,11 +6274,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Platform campaign ID
             var replaceCampaignNegativeKeywordsRequest = new ReplaceCampaignNegativeKeywordsRequest(); // ReplaceCampaignNegativeKeywordsRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Replace campaign-level negative keywords
-                ReplaceCampaignNegativeKeywords200Response result = apiInstance.ReplaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest);
+                ReplaceCampaignNegativeKeywords200Response result = apiInstance.ReplaceCampaignNegativeKeywords(campaignId, replaceCampaignNegativeKeywordsRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6069,7 +6300,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Replace campaign-level negative keywords
-    ApiResponse<ReplaceCampaignNegativeKeywords200Response> response = apiInstance.ReplaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest);
+    ApiResponse<ReplaceCampaignNegativeKeywords200Response> response = apiInstance.ReplaceCampaignNegativeKeywordsWithHttpInfo(campaignId, replaceCampaignNegativeKeywordsRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6088,6 +6319,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Platform campaign ID |  |
 | **replaceCampaignNegativeKeywordsRequest** | [**ReplaceCampaignNegativeKeywordsRequest**](ReplaceCampaignNegativeKeywordsRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6111,6 +6343,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
 | **404** | Campaign not found |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
 
@@ -6227,11 +6460,11 @@ catch (ApiException e)
 
 <a id="updatead"></a>
 # **UpdateAd**
-> UpdateAd200Response UpdateAd (string adId, UpdateAdRequest updateAdRequest)
+> UpdateAd200Response UpdateAd (string adId, UpdateAdRequest updateAdRequest, string? idempotencyKey = null)
 
 Update ad
 
-Changes an ad's status, budget, targeting or creative and applies the change on the platform.  Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  ### Per-platform support  - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, `name` (renames the ad), targeting (via `/v2/adgroup/update/`), and creative (via `/v2/ad/update/` patch-style: `headline` is ignored, `body` becomes `ad_text`). - **Google**: see the Google sections below. - **LinkedIn**: status, budget, targeting and creative (details below). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending `targeting` or `creative` returns 501 with code `feature_not_available`. OpenAI Ads budget is the campaign's spend cap, daily or lifetime (see `budget.type` below). - **Reddit Ads**: status, budget, `name` (renames the ad) and targeting (details below).  ### Google  Supported: status, budget, and these targeting edits:  - KEYWORD edits via `targeting.keywords` / `targeting.negativeKeywords` - DEVICE bid adjustments via `targeting.devices` - LOCATION edits via `targeting.locations` (or the equivalent top-level `targeting.countries` / `regions` / `cities` / `zips` / `metros`) - LANGUAGE edits via `targeting.languages`  Each list you send becomes the FULL new set of its kind: criteria not in the list are removed. Devices are the exception: Google cannot remove them, so they are switched off with a bid modifier of 0 instead. A kind left out is untouched.  Any other `targeting` field returns 400: Google cannot mutate it post-create without recreating the campaign.  Creative edits are dispatched on the ad's `advertisingChannelType`. Every supported field replaces a whole set; a field you omit is preserved.  - **Search**: top-level `headlines`, `descriptions` and `finalUrls`. Use 3-15 headlines (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it; omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text. The legacy creative fields remain unsupported. - **Display**: top-level `headlines` (1-5, no pinnedField, display ads have no pinned positions), `descriptions` (1-5) and `finalUrls`, plus `creative.longHeadline`, `creative.businessName`, `creative.imageUrl` (the landscape marketing image) and `creative.squareImageUrl`. - **Performance Max**: top-level `assetGroup`, which swaps asset roles on the ad's asset group. The other creative fields return 422 for this channel, and `assetGroup` returns 422 on any other channel. - **Demand Gen**: top-level `demandGen` (see GoogleDemandGenUpdate): creative, channel and audience changes in one atomic Google request. The other creative fields return 422 for this channel.  For Display, each image URL is uploaded as a new Google asset and the ad is pointed at it.  Google assets are immutable, so the previous asset stays in the account's asset library. A new landscape image also updates `creative.assetResourceName` to the new asset, and each replaced image updates its own role in `creative.assets`.  For Demand Gen, `targeting` takes locations, languages, `locationTargetingType` and `devices`. Locations and languages are written to the ad's ad group, which Demand Gen requires, so they apply to every ad in that ad group. Campaigns migrated from Discovery that still target on the campaign keep being written there.  ### LinkedIn  - **Status and budget**: supported. - **Targeting**: countries or regions, excludedLocations (countries), the B2B facets, and audience segments. Applied to the LinkedIn Campaign via PARTIAL_UPDATE, and REPLACES the campaign's entire targetingCriteria, not a merge. - **Creative**: uploads new media, creates a replacement inline creative on the same campaign, and removes the old one (it is deleted, the ad's `platformAdId` and `creative.creativeId` move to the new creative, and the new creative keeps the old one's held-off state: `DRAFT` stays `DRAFT`). - **Name**: updating `name` returns 400 (LinkedIn does not support renaming an ad).  ### Reddit Ads  - `budget` goes to the ad's ad group, or to its campaign when the ad group spends a campaign budget. It keeps its daily or lifetime type (422 to switch). - `targeting` REPLACES the ad group's whole targeting (geo, communities, conversation keywords, interests, audiences, languages, gender), so it applies to every ad in the ad group. - `creative` returns 501: a Reddit ad runs a post, so create a new ad with the new creative instead.  ### Google location and language replacement  Locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad's campaign. Send the complete list you want to keep.  Zernio diffs it against the campaign's live criteria and sends the removes and the creates in ONE `googleAds:mutate`, so the campaign is never left with a half-applied set. Criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched.  - An empty location list returns 400. A Google campaign with no location criteria targets every country, which is never what \"remove my locations\" means, so omit the field instead. - Send either `targeting.locations` or the top-level geo fields, not both: mixing them returns 400.  ### Google radius targeting  `customLocations` is editable and is replaced the same way, but as its OWN set. Google models a place (LOCATION) and a point plus radius (PROXIMITY) as different criterion types, so the two are independent:  - Sending `customLocations` replaces every radius and leaves the cities and countries alone. - Sending places replaces those and leaves the radius alone. - Send `customLocations: []` to drop radius targeting entirely.  A circle you re-send unchanged keeps its criterion ID rather than being removed and recreated.  ### Google keyword replacement  These edits affect the ad's entire ad group, including sibling ads. Positive (`targeting.keywords`) and negative (`targeting.negativeKeywords`) sets are independent: omit a field to leave that set unchanged, or send `[]` to remove every keyword of that kind.  Zernio compares each supplied set with Google's live criteria by case-insensitive keyword text and match type. Text comparison does not trim whitespace.  A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally.  A bare string or an object without `matchType` means `broad`, not the existing criterion's match type. For example, resending an existing `{ \"text\": \"plumber\", \"matchType\": \"exact\" }` preserves it; sending `\"plumber\"` instead removes that EXACT criterion and requests a BROAD one.  Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria's bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  ### Other keyword endpoints  - To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). - Use `PATCH /v1/ads/keywords/{keywordId}` to pause/enable one keyword. - Use `DELETE /v1/ads/keywords/{keywordId}` to remove it. 
+Changes an ad's status, budget, targeting or creative and applies the change on the platform.  Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  ### Per-platform support  - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, `name` (renames the ad), targeting (via `/v2/adgroup/update/`), and creative (via `/v2/ad/update/` patch-style: `headline` is ignored, `body` becomes `ad_text`). - **Google**: see the Google sections below. - **LinkedIn**: status, budget, targeting and creative (details below). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending `targeting` or `creative` returns 501 with code `feature_not_available`. OpenAI Ads budget is the campaign's spend cap, daily or lifetime (see `budget.type` below). - **Reddit Ads**: status, budget, `name` (renames the ad) and targeting (details below).  ### Google  Supported: status, budget, and these targeting edits:  - KEYWORD edits via `targeting.keywords` / `targeting.negativeKeywords` - DEVICE bid adjustments via `targeting.devices` - LOCATION edits via `targeting.locations` (or the equivalent top-level `targeting.countries` / `regions` / `cities` / `zips` / `metros`) - LANGUAGE edits via `targeting.languages`  Each list you send becomes the FULL new set of its kind: criteria not in the list are removed. Devices are the exception: Google cannot remove them, so they are switched off with a bid modifier of 0 instead. A kind left out is untouched.  Any other `targeting` field returns 400: Google cannot mutate it post-create without recreating the campaign.  Creative edits are dispatched on the ad's `advertisingChannelType`. Every supported field replaces a whole set; a field you omit is preserved.  - **Search**: top-level `headlines`, `descriptions`, `finalUrls`, `path1` and `path2`. Use 3-15 headlines (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it; omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text. The legacy creative fields remain unsupported. - **Display**: top-level `headlines` (1-5, no pinnedField, display ads have no pinned positions), `descriptions` (1-5) and `finalUrls`, plus `creative.longHeadline`, `creative.businessName`, `creative.imageUrl` (the landscape marketing image) and `creative.squareImageUrl`. - **Performance Max**: top-level `assetGroup`, which swaps asset roles on the ad's asset group. The other creative fields return 422 for this channel, and `assetGroup` returns 422 on any other channel. - **Demand Gen**: top-level `demandGen` (see GoogleDemandGenUpdate): creative, channel and audience changes in one atomic Google request. The other creative fields return 422 for this channel.  For Display, each image URL is uploaded as a new Google asset and the ad is pointed at it.  Google assets are immutable, so the previous asset stays in the account's asset library. A new landscape image also updates `creative.assetResourceName` to the new asset, and each replaced image updates its own role in `creative.assets`.  For Demand Gen, `targeting` takes locations, languages, `locationTargetingType` and `devices`. Locations and languages are written to the ad's ad group, which Demand Gen requires, so they apply to every ad in that ad group. Campaigns migrated from Discovery that still target on the campaign keep being written there.  ### LinkedIn  - **Status and budget**: supported. - **Targeting**: countries or regions, excludedLocations (countries), the B2B facets, and audience segments. Applied to the LinkedIn Campaign via PARTIAL_UPDATE, and REPLACES the campaign's entire targetingCriteria, not a merge. - **Creative**: uploads new media, creates a replacement inline creative on the same campaign, and removes the old one (it is deleted, the ad's `platformAdId` and `creative.creativeId` move to the new creative, and the new creative keeps the old one's held-off state: `DRAFT` stays `DRAFT`). - **Name**: updating `name` returns 400 (LinkedIn does not support renaming an ad).  ### Reddit Ads  - `budget` goes to the ad's ad group, or to its campaign when the ad group spends a campaign budget. It keeps its daily or lifetime type (422 to switch). - `targeting` REPLACES the ad group's whole targeting (geo, communities, conversation keywords, interests, audiences, languages, gender), so it applies to every ad in the ad group. - `creative` returns 501: a Reddit ad runs a post, so create a new ad with the new creative instead.  ### Google location and language replacement  Locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad's campaign. Send the complete list you want to keep.  Zernio diffs it against the campaign's live criteria and sends the removes and the creates in ONE `googleAds:mutate`, so the campaign is never left with a half-applied set. Criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched.  - An empty location list returns 400. A Google campaign with no location criteria targets every country, which is never what \"remove my locations\" means, so omit the field instead. - Send either `targeting.locations` or the top-level geo fields, not both: mixing them returns 400.  ### Google radius targeting  `customLocations` is editable and is replaced the same way, but as its OWN set. Google models a place (LOCATION) and a point plus radius (PROXIMITY) as different criterion types, so the two are independent:  - Sending `customLocations` replaces every radius and leaves the cities and countries alone. - Sending places replaces those and leaves the radius alone. - Send `customLocations: []` to drop radius targeting entirely.  A circle you re-send unchanged keeps its criterion ID rather than being removed and recreated.  ### Google keyword replacement  These edits affect the ad's entire ad group, including sibling ads. Positive (`targeting.keywords`) and negative (`targeting.negativeKeywords`) sets are independent: omit a field to leave that set unchanged, or send `[]` to remove every keyword of that kind.  Zernio compares each supplied set with Google's live criteria by case-insensitive keyword text and match type. Text comparison does not trim whitespace.  A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally.  A bare string or an object without `matchType` means `broad`, not the existing criterion's match type. For example, resending an existing `{ \"text\": \"plumber\", \"matchType\": \"exact\" }` preserves it; sending `\"plumber\"` instead removes that EXACT criterion and requests a BROAD one.  Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria's bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  ### Other keyword endpoints  - To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). - Use `PATCH /v1/ads/keywords/{keywordId}` to pause/enable one keyword. - Use `DELETE /v1/ads/keywords/{keywordId}` to remove it. 
 
 ### Example
 ```csharp
@@ -6259,11 +6492,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | 
             var updateAdRequest = new UpdateAdRequest(); // UpdateAdRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Update ad
-                UpdateAd200Response result = apiInstance.UpdateAd(adId, updateAdRequest);
+                UpdateAd200Response result = apiInstance.UpdateAd(adId, updateAdRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6284,7 +6518,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update ad
-    ApiResponse<UpdateAd200Response> response = apiInstance.UpdateAdWithHttpInfo(adId, updateAdRequest);
+    ApiResponse<UpdateAd200Response> response = apiInstance.UpdateAdWithHttpInfo(adId, updateAdRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6303,6 +6537,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adId** | **string** |  |  |
 | **updateAdRequest** | [**UpdateAdRequest**](UpdateAdRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6322,10 +6557,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad updated |  -  |
-| **400** | Invalid update. Causes:  - Invalid status transition, or budget below minimum. - A LinkedIn creative update without imageUrl or videoUrl, or a LinkedIn targeting update without countries or regions. - A Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code. - Code &#x60;missing_required_field&#x60;: the body has none of the updatable fields (status, budget, targeting, name, creative, headlines, descriptions, finalUrls, assetGroup, demandGen), e.g. &#x60;{}&#x60; or only misspelled keys. Unknown keys are ignored, so such a body would otherwise change nothing.  |  -  |
+| **400** | Invalid update. Causes:  - Invalid status transition, or budget below minimum. - A LinkedIn creative update without imageUrl or videoUrl, or a LinkedIn targeting update without countries or regions. - A Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code. - Code &#x60;missing_required_field&#x60;: the body has none of the updatable fields (status, budget, targeting, name, creative, headlines, descriptions, finalUrls, path1, path2, assetGroup, demandGen), e.g. &#x60;{}&#x60; or only misspelled keys. Unknown keys are ignored, so such a body would otherwise change nothing.  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with one of these codes:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad not found (&#x60;ad_not_found&#x60;), or &#x60;account_not_found&#x60; when the ad&#39;s connection is on a profile this API key can&#39;t access. |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | The edit cannot be applied. One of:  - A Meta creative edit that cannot be applied in place: a partial edit of a SHARE / page-post / dark post creative, an image, video or call-to-action change that an asset_feed creative holds in its feed, or a text count that does not match the asset feed (&#x60;param&#x60; names the field). - The ad has no campaign or ad group on the platform yet. - The Google targeting edit asks for something that is create-only (&#x60;locations.customLocations&#x60;). - A creative field the ad&#39;s channel cannot carry: assetGroup on a non-Performance-Max ad, a Google Display field on a Search ad, a pinnedField on a Display headline, or any Google-only field on another platform. - A Google creative edit cannot reach Google at all (the ad has no &#x60;platformAdId&#x60;, or its ad account cannot be loaded). This returns 422 rather than a 200 that changed nothing. |  -  |
 | **429** | Two causes, both code &#x60;rate_limited&#x60;:  - Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds. - A Meta &#x60;creative&#x60; replace creates a new creative, so it takes the Meta ad account write guard (see &#x60;MetaAdAccountWriteLimited&#x60;): &#x60;details.reason&#x60; is &#x60;ad_account_busy&#x60; (another write held the ad account past a 60-second wait) or &#x60;ad_account_write_cap&#x60; (30 creates in 5 minutes), with &#x60;details.adAccountId&#x60;. Wait &#x60;Retry-After&#x60; seconds.  |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
@@ -6335,7 +6571,7 @@ catch (ApiException e)
 
 <a id="updateadcampaign"></a>
 # **UpdateAdCampaign**
-> UpdateAdCampaign200Response UpdateAdCampaign (string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest)
+> UpdateAdCampaign200Response UpdateAdCampaign (string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest, string? idempotencyKey = null)
 
 Update a campaign
 
@@ -6367,11 +6603,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Platform campaign ID
             var updateAdCampaignRequest = new UpdateAdCampaignRequest(); // UpdateAdCampaignRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Update a campaign
-                UpdateAdCampaign200Response result = apiInstance.UpdateAdCampaign(campaignId, updateAdCampaignRequest);
+                UpdateAdCampaign200Response result = apiInstance.UpdateAdCampaign(campaignId, updateAdCampaignRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6392,7 +6629,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update a campaign
-    ApiResponse<UpdateAdCampaign200Response> response = apiInstance.UpdateAdCampaignWithHttpInfo(campaignId, updateAdCampaignRequest);
+    ApiResponse<UpdateAdCampaign200Response> response = apiInstance.UpdateAdCampaignWithHttpInfo(campaignId, updateAdCampaignRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6411,6 +6648,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Platform campaign ID |  |
 | **updateAdCampaignRequest** | [**UpdateAdCampaignRequest**](UpdateAdCampaignRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6441,7 +6679,7 @@ catch (ApiException e)
 
 <a id="updateadcampaignstatus"></a>
 # **UpdateAdCampaignStatus**
-> UpdateAdCampaignStatus200Response UpdateAdCampaignStatus (string campaignId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest)
+> UpdateAdCampaignStatus200Response UpdateAdCampaignStatus (string campaignId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, string? idempotencyKey = null)
 
 Pause or resume a campaign
 
@@ -6473,11 +6711,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | Platform campaign ID
             var updateAdCampaignStatusRequest = new UpdateAdCampaignStatusRequest(); // UpdateAdCampaignStatusRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Pause or resume a campaign
-                UpdateAdCampaignStatus200Response result = apiInstance.UpdateAdCampaignStatus(campaignId, updateAdCampaignStatusRequest);
+                UpdateAdCampaignStatus200Response result = apiInstance.UpdateAdCampaignStatus(campaignId, updateAdCampaignStatusRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6498,7 +6737,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Pause or resume a campaign
-    ApiResponse<UpdateAdCampaignStatus200Response> response = apiInstance.UpdateAdCampaignStatusWithHttpInfo(campaignId, updateAdCampaignStatusRequest);
+    ApiResponse<UpdateAdCampaignStatus200Response> response = apiInstance.UpdateAdCampaignStatusWithHttpInfo(campaignId, updateAdCampaignStatusRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6517,6 +6756,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** | Platform campaign ID |  |
 | **updateAdCampaignStatusRequest** | [**UpdateAdCampaignStatusRequest**](UpdateAdCampaignStatusRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6540,6 +6780,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key (&#x60;missing_credentials&#x60; / &#x60;invalid_credentials&#x60;), or the platform no longer accepts the connection&#39;s token (&#x60;reconnect_required&#x60;): reconnect the account, then retry. |  -  |
 | **403** | Forbidden. Two codes:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | No ads found for this campaign |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | &#x60;ad_account_unusable&#x60;: the ad account&#39;s status does not allow edits. Resolve it in the platform, then retry. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6653,7 +6894,7 @@ catch (ApiException e)
 
 <a id="updateadkeyword"></a>
 # **UpdateAdKeyword**
-> UpdateAdKeyword200Response UpdateAdKeyword (string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest)
+> UpdateAdKeyword200Response UpdateAdKeyword (string keywordId, UpdateAdKeywordRequest updateAdKeywordRequest, string? idempotencyKey = null)
 
 Update a Search keyword
 
@@ -6685,11 +6926,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var keywordId = "keywordId_example";  // string | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
             var updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Update a Search keyword
-                UpdateAdKeyword200Response result = apiInstance.UpdateAdKeyword(keywordId, updateAdKeywordRequest);
+                UpdateAdKeyword200Response result = apiInstance.UpdateAdKeyword(keywordId, updateAdKeywordRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6710,7 +6952,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update a Search keyword
-    ApiResponse<UpdateAdKeyword200Response> response = apiInstance.UpdateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest);
+    ApiResponse<UpdateAdKeyword200Response> response = apiInstance.UpdateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6729,6 +6971,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **keywordId** | **string** | Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. |  |
 | **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6759,11 +7002,11 @@ catch (ApiException e)
 
 <a id="updateadset"></a>
 # **UpdateAdSet**
-> UpdateAdSet200Response UpdateAdSet (string adSetId, UpdateAdSetRequest updateAdSetRequest)
+> UpdateAdSet200Response UpdateAdSet (string adSetId, UpdateAdSetRequest updateAdSetRequest, string? idempotencyKey = null)
 
 Update an ad set
 
-Changes an ad set's settings, such as its budget, bid strategy, status or delivery options. At least one updatable field is required.  Use it for:  - ABO budget updates. - Ad-set-scoped pause/resume. - Bid-strategy edits. - Meta value-rule-set attach/detach. - Meta beneficiary and payer: `dsaBeneficiary` / `dsaPayor` for the EU, `regionalRegulatedCategories` / `regionalRegulationIdentities` for the regional regimes. - Meta-only post-launch delivery settings via `platformSpecificData`.  ### Value rule sets (Meta only)  See `/v1/ads/value-rule-sets`.  - ATTACH or REPLACE: send `valueRuleSetId`. Attachment is driven by the id's presence, so `valueRulesApplied: true` is optional. Sending a different id replaces the previous association; there is no separate replace call. - DETACH: send `valueRulesApplied: false` and OMIT `valueRuleSetId`. - Sending `valueRulesApplied: false` TOGETHER with `valueRuleSetId` returns 400 `mutually_exclusive_fields`. - Eligibility: only ad sets on `LOWEST_COST_WITHOUT_CAP` or `COST_CAP`. Meta rejects the rest server-side. - Read back with `GET /v1/ads/ad-sets/{adSetId}?fields=value_rule_set_id`. Meta does not document `value_rules_applied` as a readable ad-set field, so the boolean cannot be read back.  The `mutually_exclusive_fields` error is deliberate. Meta attaches the rule set whenever `value_rule_set_id` is present, even with `value_rules_applied` false, so echoing stored state while asking to detach would silently keep the bid adjustments live.  ### Bid strategy compatibility (per Meta's spec)  - `LOWEST_COST_WITHOUT_CAP`: no `bidAmount`, no `roasAverageFloor`. - `LOWEST_COST_WITH_BID_CAP` / `COST_CAP`: `bidAmount` REQUIRED (whole currency units). - `LOWEST_COST_WITH_MIN_ROAS`: `roasAverageFloor` REQUIRED (decimal multiplier, e.g. 2.0 = 2.0x ROAS).  Meta only: send `bidAmount` WITHOUT `bidStrategy` to change the cap amount on an ad set whose strategy (its own, or the campaign's under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP, leaving the strategy untouched.  Send `roasAverageFloor` WITHOUT `bidStrategy` the same way to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an incompatible current strategy is a 400.  Meta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only `bidAmount` or `roasAverageFloor` is written on the ad set. A `bidStrategy` equal to the campaign's is accepted; a different one is a 409 (change it with PUT /v1/ads/campaigns/{campaignId}).  ### Delivery settings and budget  Delivery settings are validated by Meta against the campaign objective. Incompatible combinations (e.g. a billingEvent the optimization goal doesn't allow) surface as 400s from Meta.  When updating `budget` on an ad set whose campaign holds the budget (CBO), the response is 409 with code `invalid_field_value`. Send it to PUT /v1/ads/campaigns/{campaignId} instead.  ### Status  `status` behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes. Only the ad set's own switch is written and its ads keep theirs. `statusUpdated` / `statusSkipped` report whether that switch was written or a live read showed it already in place.  ### Placements and targeting (Meta only)  `placements` and `targeting` take the same shapes as POST /v1/ads/create. Meta replaces an ad set's targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back.  Custom audiences, geo, age, interest groups and `targeting_automation` you do not send are kept.  - `placements` replaces the whole placement set. - `placements: null` returns the ad set to automatic placements. - Omitting it leaves placements as they are.  Other platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with `targeting` where that platform supports it).  The live read and the `incomeTier` lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged.  ### Reddit Ads: budget, name and bidding  - `budget` changes the ad group's amount. An ad group that spends its campaign budget returns 422 (update the campaign instead). - Reddit cannot switch a published budget between daily and lifetime, so `budget.type` must match the current one (422 otherwise). - `name` renames the ad group.  `bidStrategy` maps to the ad group's `bid_strategy`:  - LOWEST_COST_WITHOUT_CAP: automatic bidding (BIDLESS). - LOWEST_COST_WITH_BID_CAP: MANUAL_BIDDING with `bidAmount` as the bid. - COST_CAP: MAXIMIZE_VOLUME with `bidAmount` as the cap. - LOWEST_COST_WITH_MIN_ROAS: returns 422.  ### Reddit Ads: targeting and schedule  `targeting` (same shape as on create; `placements` is a 400) and `startDate` / `endDate` change the ad group with one PATCH to Reddit. Read the current values with GET /v1/ads/ad-sets/{adSetId}/targeting.  Zernio reads the live ad group first and replaces only the targeting groups the request names:  - The included locations (`countries`, `regions`, `metros`, `cities`, `zips`) are one list on Reddit, so sending any of them replaces all included locations. - Devices, platforms, carriers and automated expansion set in Reddit Ads Manager are kept.  The schedule is checked against the campaign before anything in the request is written. Each of these returns 400 naming `startDate` or `endDate`:  - The ad group starts before a campaign that starts in the future. - The ad group ends after the campaign's end. - Under campaign budget optimization, it must end by the campaign end (and has no end date when the campaign has none).  Zernio never resends the PATCH on its own, so after a 5xx read the ad group back before retrying. 
+Changes an ad set's settings, such as its budget, bid strategy, status or delivery options. At least one updatable field is required.  Use it for:  - ABO budget updates. - Ad-set-scoped pause/resume. - Bid-strategy edits. - Meta value-rule-set attach/detach. - Meta beneficiary and payer: `dsaBeneficiary` / `dsaPayor` for the EU, `regionalRegulatedCategories` / `regionalRegulationIdentities` for the regional regimes. - Meta-only post-launch delivery settings via `platformSpecificData`.  ### Value rule sets (Meta only)  See `/v1/ads/value-rule-sets`.  - ATTACH or REPLACE: send `valueRuleSetId`. Attachment is driven by the id's presence, so `valueRulesApplied: true` is optional. Sending a different id replaces the previous association; there is no separate replace call. - DETACH: send `valueRulesApplied: false` and OMIT `valueRuleSetId`. - Sending `valueRulesApplied: false` TOGETHER with `valueRuleSetId` returns 400 `mutually_exclusive_fields`. - Eligibility: only ad sets on `LOWEST_COST_WITHOUT_CAP` or `COST_CAP`. Meta rejects the rest server-side. - Read back with `GET /v1/ads/ad-sets/{adSetId}?fields=value_rule_set_id`. Meta does not document `value_rules_applied` as a readable ad-set field, so the boolean cannot be read back.  The `mutually_exclusive_fields` error is deliberate. Meta attaches the rule set whenever `value_rule_set_id` is present, even with `value_rules_applied` false, so echoing stored state while asking to detach would silently keep the bid adjustments live.  ### Bid strategy compatibility (per Meta's spec)  - `LOWEST_COST_WITHOUT_CAP`: no `bidAmount`, no `roasAverageFloor`. - `LOWEST_COST_WITH_BID_CAP` / `COST_CAP`: `bidAmount` REQUIRED (whole currency units). - `LOWEST_COST_WITH_MIN_ROAS`: `roasAverageFloor` REQUIRED (decimal multiplier, e.g. 2.0 = 2.0x ROAS).  Meta only: send `bidAmount` WITHOUT `bidStrategy` to change the cap amount on an ad set whose strategy (its own, or the campaign's under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP, leaving the strategy untouched.  Send `roasAverageFloor` WITHOUT `bidStrategy` the same way to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an incompatible current strategy is a 400.  Meta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only `bidAmount` or `roasAverageFloor` is written on the ad set. A `bidStrategy` equal to the campaign's is accepted; a different one is a 409 (change it with PUT /v1/ads/campaigns/{campaignId}).  ### Delivery settings and budget  Delivery settings are validated by Meta against the campaign objective. Incompatible combinations (e.g. a billingEvent the optimization goal doesn't allow) surface as 400s from Meta.  When updating `budget` on an ad set whose campaign holds the budget (CBO), the response is 409 with code `invalid_field_value`. Send it to PUT /v1/ads/campaigns/{campaignId} instead.  ### Status  `status` behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes. Only the ad set's own switch is written and its ads keep theirs. `statusUpdated` / `statusSkipped` report whether that switch was written or a live read showed it already in place.  ### Placements and targeting (Meta only)  `placements` and `targeting` take the same shapes as POST /v1/ads/create. Meta replaces an ad set's targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back.  Custom audiences, geo, age, interest groups and `targeting_automation` you do not send are kept.  Locations are replaced as a set: sending any location field (countries, countryGroups, regions, cities, zips, metros, customLocations, places, neighborhoods) replaces every included location on the ad set, because Meta ORs them together. Resend the ones to keep. Meta's `location_types` and other geo settings Zernio does not model are always kept.  - `placements` replaces the whole placement set. - `placements: null` returns the ad set to automatic placements. - Omitting it leaves placements as they are.  Other platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with `targeting` where that platform supports it).  The live read and the `incomeTier` lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged.  ### Reddit Ads: budget, name and bidding  - `budget` changes the ad group's amount. An ad group that spends its campaign budget returns 422 (update the campaign instead). - Reddit cannot switch a published budget between daily and lifetime, so `budget.type` must match the current one (422 otherwise). - `name` renames the ad group.  `bidStrategy` maps to the ad group's `bid_strategy`:  - LOWEST_COST_WITHOUT_CAP: automatic bidding (BIDLESS). - LOWEST_COST_WITH_BID_CAP: MANUAL_BIDDING with `bidAmount` as the bid. - COST_CAP: MAXIMIZE_VOLUME with `bidAmount` as the cap. - LOWEST_COST_WITH_MIN_ROAS: returns 422.  ### Reddit Ads: targeting and schedule  `targeting` (same shape as on create; `placements` is a 400) and `startDate` / `endDate` change the ad group with one PATCH to Reddit. Read the current values with GET /v1/ads/ad-sets/{adSetId}/targeting.  Zernio reads the live ad group first and replaces only the targeting groups the request names:  - The included locations (`countries`, `regions`, `metros`, `cities`, `zips`) are one list on Reddit, so sending any of them replaces all included locations. - Devices, platforms, carriers and automated expansion set in Reddit Ads Manager are kept.  The schedule is checked against the campaign before anything in the request is written. Each of these returns 400 naming `startDate` or `endDate`:  - The ad group starts before a campaign that starts in the future. - The ad group ends after the campaign's end. - Under campaign budget optimization, it must end by the campaign end (and has no end date when the campaign has none).  Zernio never resends the PATCH on its own, so after a 5xx read the ad group back before retrying. 
 
 ### Example
 ```csharp
@@ -6791,11 +7034,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Platform ad set ID
             var updateAdSetRequest = new UpdateAdSetRequest(); // UpdateAdSetRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Update an ad set
-                UpdateAdSet200Response result = apiInstance.UpdateAdSet(adSetId, updateAdSetRequest);
+                UpdateAdSet200Response result = apiInstance.UpdateAdSet(adSetId, updateAdSetRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6816,7 +7060,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update an ad set
-    ApiResponse<UpdateAdSet200Response> response = apiInstance.UpdateAdSetWithHttpInfo(adSetId, updateAdSetRequest);
+    ApiResponse<UpdateAdSet200Response> response = apiInstance.UpdateAdSetWithHttpInfo(adSetId, updateAdSetRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6835,6 +7079,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adSetId** | **string** | Platform ad set ID |  |
 | **updateAdSetRequest** | [**UpdateAdSetRequest**](UpdateAdSetRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6867,7 +7112,7 @@ catch (ApiException e)
 
 <a id="updateadsetstatus"></a>
 # **UpdateAdSetStatus**
-> UpdateAdSetStatus200Response UpdateAdSetStatus (string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest)
+> UpdateAdSetStatus200Response UpdateAdSetStatus (string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, string? idempotencyKey = null)
 
 Pause or resume a single ad set
 
@@ -6899,11 +7144,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Platform ad set ID
             var updateAdCampaignStatusRequest = new UpdateAdCampaignStatusRequest(); // UpdateAdCampaignStatusRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Pause or resume a single ad set
-                UpdateAdSetStatus200Response result = apiInstance.UpdateAdSetStatus(adSetId, updateAdCampaignStatusRequest);
+                UpdateAdSetStatus200Response result = apiInstance.UpdateAdSetStatus(adSetId, updateAdCampaignStatusRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6924,7 +7170,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Pause or resume a single ad set
-    ApiResponse<UpdateAdSetStatus200Response> response = apiInstance.UpdateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest);
+    ApiResponse<UpdateAdSetStatus200Response> response = apiInstance.UpdateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6943,6 +7189,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adSetId** | **string** | Platform ad set ID |  |
 | **updateAdCampaignStatusRequest** | [**UpdateAdCampaignStatusRequest**](UpdateAdCampaignStatusRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -6972,7 +7219,7 @@ catch (ApiException e)
 
 <a id="updateadstatus"></a>
 # **UpdateAdStatus**
-> UpdateAdStatus200Response UpdateAdStatus (string adId, UpdateAdStatusRequest updateAdStatusRequest)
+> UpdateAdStatus200Response UpdateAdStatus (string adId, UpdateAdStatusRequest updateAdStatusRequest, string? idempotencyKey = null)
 
 Pause or resume a single ad
 
@@ -7004,11 +7251,12 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
             var updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Pause or resume a single ad
-                UpdateAdStatus200Response result = apiInstance.UpdateAdStatus(adId, updateAdStatusRequest);
+                UpdateAdStatus200Response result = apiInstance.UpdateAdStatus(adId, updateAdStatusRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7029,7 +7277,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Pause or resume a single ad
-    ApiResponse<UpdateAdStatus200Response> response = apiInstance.UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
+    ApiResponse<UpdateAdStatus200Response> response = apiInstance.UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7048,6 +7296,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **adId** | **string** | Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. |  |
 | **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -7071,6 +7320,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. The code says why:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad not found (&#x60;ad_not_found&#x60;), or &#x60;account_not_found&#x60; when the ad&#39;s connection is on a profile this API key can&#39;t access. |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

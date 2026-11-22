@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Status** | **string** |  | 
+**Status** | **string** | Only a sequence or a flow can be a draft. | 
 **Trigger** | [**AutomationScheduleTrigger**](AutomationScheduleTrigger.md) |  | 
 **Subjects** | [**AutomationSubjects**](AutomationSubjects.md) |  | 
 **Conditions** | [**AdRuleConditions**](AdRuleConditions.md) |  | 
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Kind** | **string** |  | 
 **VarVersion** | **string** | Send it back as &#x60;If-Match&#x60; when editing, so an edit made after someone else saved is refused. | 
-**LastCheckAt** | **DateTime** | Null until an ad rule first checks. Always null for event and scheduled automations; their checks list when they ran. | 
-**NextCheckAt** | **DateTime** | Null while paused. Always null for event and scheduled automations. | 
+**LastCheckAt** | **DateTime** | Null until an ad rule first checks. Always null for every other kind; the checks of event and scheduled automations list when they ran. | 
+**NextCheckAt** | **DateTime** | Null while paused. Always null for every kind but ad rules. | 
 **CreatedAt** | **DateTime** |  | 
 **UpdatedAt** | **DateTime** |  | 
 **Template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  | [optional] 
