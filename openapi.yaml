@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.761.0",
+    "version": "1.762.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -2479,9 +2479,10 @@
                     "good",
                     "warn",
                     "missing",
-                    "not-firing"
+                    "not-firing",
+                    "configured"
                   ],
-                  "description": "`good` = server-side, `warn` = browser-only (the leak), `missing` = not tracked, `not-firing` = the tag is installed but sent nothing during a full visit."
+                  "description": "`good`: server-side. `warn`: browser-only (the leak). `missing`: not tracked. `not-firing`: installed but sent nothing during a full visit. `configured`: only in a Google Tag Manager container and not seen firing on a visit where silence proves nothing, so not counted as tracked."
                 },
                 "estimatedLossBrowserOnly": {
                   "type": "number",
@@ -2764,6 +2765,25 @@
           "otherNetworks": {
             "type": "array",
             "description": "Ad networks found that the score does not cover. `relaySupported` is true when Zernio can send them conversions.",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "relaySupported"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "relaySupported": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "otherNetworksConfigured": {
+            "type": "array",
+            "description": "Rendered scans: unscored ad networks found only in a Google Tag Manager container that the visit never saw load or send. Not counted in `otherNetworks`.",
             "items": {
               "type": "object",
               "required": [
