@@ -749,7 +749,9 @@ docs/ConversationAdAttribution.md
 docs/ConversionAction.md
 docs/ConversionActionTagSnippetsInner.md
 docs/ConversionAuditAnswer.md
+docs/ConversionAuditAnswerNetworksInner.md
 docs/ConversionAuditAnswerPublicReport.md
+docs/ConversionAuditAnswerTopFixesInner.md
 docs/ConversionAuditApi.md
 docs/ConversionAuditMonitor.md
 docs/ConversionAuditMonitorAnswer.md
@@ -5002,8 +5004,10 @@ src/Zernio.Test/Model/ContentRetentionResponseTests.cs
 src/Zernio.Test/Model/ConversationAdAttributionTests.cs
 src/Zernio.Test/Model/ConversionActionTagSnippetsInnerTests.cs
 src/Zernio.Test/Model/ConversionActionTests.cs
+src/Zernio.Test/Model/ConversionAuditAnswerNetworksInnerTests.cs
 src/Zernio.Test/Model/ConversionAuditAnswerPublicReportTests.cs
 src/Zernio.Test/Model/ConversionAuditAnswerTests.cs
+src/Zernio.Test/Model/ConversionAuditAnswerTopFixesInnerTests.cs
 src/Zernio.Test/Model/ConversionAuditMonitorAnswerTests.cs
 src/Zernio.Test/Model/ConversionAuditMonitorScoreHistoryInnerTests.cs
 src/Zernio.Test/Model/ConversionAuditMonitorTests.cs
@@ -9212,7 +9216,9 @@ src/Zernio/Model/ConversationAdAttribution.cs
 src/Zernio/Model/ConversionAction.cs
 src/Zernio/Model/ConversionActionTagSnippetsInner.cs
 src/Zernio/Model/ConversionAuditAnswer.cs
+src/Zernio/Model/ConversionAuditAnswerNetworksInner.cs
 src/Zernio/Model/ConversionAuditAnswerPublicReport.cs
+src/Zernio/Model/ConversionAuditAnswerTopFixesInner.cs
 src/Zernio/Model/ConversionAuditMonitor.cs
 src/Zernio/Model/ConversionAuditMonitorAnswer.cs
 src/Zernio/Model/ConversionAuditMonitorScoreHistoryInner.cs
