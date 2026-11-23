@@ -1879,7 +1879,7 @@ catch (ApiException e)
 
 Blind-transfer a live call
 
-Moves the call's current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
+Moves the call's current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is your own number unless you pass `callerId: \"caller\"` on an inbound call, which presents the original caller's number. 
 
 ### Example
 ```csharp
@@ -1970,9 +1970,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Transfer issued. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **409** | Call is not connected yet, or has already ended |  -  |
+| **422** | The carrier refused presenting the caller&#39;s number on this route. Retry with callerId business. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

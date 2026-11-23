@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.791.0",
+    "version": "1.792.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -142836,7 +142836,7 @@
           "Voice"
         ],
         "summary": "Blind-transfer a live call",
-        "description": "Moves the call's current leg to a new destination (a phone number or a SIP endpoint).\n\nThis is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number.\n",
+        "description": "Moves the call's current leg to a new destination (a phone number or a SIP endpoint).\n\nThis is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is your own number unless you pass `callerId: \"caller\"` on an inbound call, which presents the original caller's number.\n",
         "security": [
           {
             "bearerAuth": []
@@ -142865,6 +142865,15 @@
                   "to": {
                     "type": "string",
                     "description": "+E164 phone number (tel: prefix optional) or a sip: URI. wss:// is not a valid transfer target."
+                  },
+                  "callerId": {
+                    "type": "string",
+                    "enum": [
+                      "business",
+                      "caller"
+                    ],
+                    "default": "business",
+                    "description": "Caller ID shown on the transfer leg. `business` is your own number. `caller` is the original caller's number, for inbound calls only. The carrier may refuse `caller` on some routes: you get a 422, then retry with `business`."
                   }
                 }
               }
@@ -142893,6 +142902,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -142901,6 +142913,9 @@
           },
           "409": {
             "description": "Call is not connected yet, or has already ended"
+          },
+          "422": {
+            "description": "The carrier refused presenting the caller's number on this route. Retry with callerId business."
           }
         }
       }
