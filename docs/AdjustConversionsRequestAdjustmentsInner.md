@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **AdjustmentTime** | **decimal** | When the adjustment occurred, unix seconds. | 
 **OrderId** | **string** | Transaction ID of the original conversion (the &#x60;eventId&#x60; you sent). Recommended; required for ENHANCEMENT. | [optional] 
 **Gclid** | **string** | Alternative key. The original click ID. Pair with &#x60;conversionTime&#x60;. Not valid for ENHANCEMENT. | [optional] 
-**ConversionTime** | **decimal** | The original conversion&#39;s time, unix seconds. Required when identifying by &#x60;gclid&#x60;. | [optional] 
+**ConversionTime** | **decimal** | The original conversion&#39;s time, unix seconds. Required when identifying by &#x60;gclid&#x60; or &#x60;msclkid&#x60;. | [optional] 
+**Msclkid** | **string** | Microsoft Ads only, and required there. The click ID the conversion was sent with. Pair with &#x60;conversionTime&#x60;. | [optional] 
 **RestatementValue** | **decimal** | RESTATEMENT only. The corrected TOTAL conversion value. | [optional] 
 **Currency** | **string** | RESTATEMENT only. ISO 4217 currency for &#x60;restatementValue&#x60;. | [optional] 
 **User** | [**AdjustConversionsRequestAdjustmentsInnerUser**](AdjustConversionsRequestAdjustmentsInnerUser.md) |  | [optional] 
