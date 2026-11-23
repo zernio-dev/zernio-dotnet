@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.794.0",
+    "version": "1.795.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -95264,7 +95264,7 @@
                             "array",
                             "null"
                           ],
-                          "description": "The health_status entities that are not `AVAILABLE`, one item per Meta error, with calling-only signals (138024, 138025) removed. `null` when the read failed.",
+                          "description": "The reasons on health_status entities that are not `AVAILABLE`. `null` when the read failed.\n\n- One item per Meta error, with calling-only signals (138024, 138025) removed.\n- A `LIMITED` entity also gets one item per line of its `additional_info`, where Meta writes most reasons for a limit (for example a quality warning). These have `code` null.\n",
                           "items": {
                             "type": "object",
                             "properties": {
@@ -95273,7 +95273,7 @@
                                   "string",
                                   "null"
                                 ],
-                                "description": "Meta entity the error is on (for example WABA, BUSINESS)"
+                                "description": "Meta entity the reason is on (for example PHONE_NUMBER, WABA, BUSINESS)"
                               },
                               "canSendMessage": {
                                 "type": "string",
@@ -95284,11 +95284,11 @@
                                   "integer",
                                   "null"
                                 ],
-                                "description": "Meta error code"
+                                "description": "Meta error code. `null` for an `additional_info` line."
                               },
                               "description": {
                                 "type": "string",
-                                "description": "Meta's error description"
+                                "description": "Meta's error description, or the `additional_info` line as Meta wrote it"
                               },
                               "possibleSolution": {
                                 "type": [
