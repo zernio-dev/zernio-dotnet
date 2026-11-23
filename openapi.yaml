@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.770.0",
+    "version": "1.772.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -33438,6 +33438,678 @@
         },
         "description": "LinkedIn-specific options for POST /v1/ads/boost and POST /v1/ads/create: campaign bidding and delivery controls, plus the LinkedIn-only creative formats on /v1/ads/create. Unknown keys are rejected.\n"
       },
+      "AmazonSponsoredProductsCampaignData": {
+        "type": "object",
+        "required": [
+          "adProduct"
+        ],
+        "properties": {
+          "adProduct": {
+            "type": "string",
+            "enum": [
+              "SPONSORED_PRODUCTS"
+            ]
+          },
+          "targetingType": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "AUTO"
+            ],
+            "description": "Required for a new campaign. MANUAL targets keywords and productTargets; AUTO lets Amazon match searches and products (tune them with autoTargeting). Immutable."
+          },
+          "biddingStrategy": {
+            "type": "string",
+            "enum": [
+              "LEGACY_FOR_SALES",
+              "AUTO_FOR_SALES",
+              "MANUAL"
+            ],
+            "default": "LEGACY_FOR_SALES",
+            "description": "Dynamic bidding: LEGACY_FOR_SALES lowers bids when a sale is unlikely, AUTO_FOR_SALES raises and lowers them (up to +100%), MANUAL keeps them fixed."
+          },
+          "placementBidding": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "description": "Bid increase per placement, added on top of the bid (50 on a 1.00 bid gives 1.50 at the top of search).",
+            "items": {
+              "type": "object",
+              "required": [
+                "placement",
+                "percentage"
+              ],
+              "properties": {
+                "placement": {
+                  "type": "string",
+                  "enum": [
+                    "PLACEMENT_TOP",
+                    "PLACEMENT_PRODUCT_PAGE",
+                    "PLACEMENT_REST_OF_SEARCH"
+                  ]
+                },
+                "percentage": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 900
+                }
+              }
+            }
+          },
+          "portfolioId": {
+            "type": "string",
+            "pattern": "^\\d+$"
+          }
+        }
+      },
+      "AmazonSponsoredBrandsCampaignData": {
+        "type": "object",
+        "required": [
+          "adProduct"
+        ],
+        "properties": {
+          "adProduct": {
+            "type": "string",
+            "enum": [
+              "SPONSORED_BRANDS"
+            ]
+          },
+          "brandEntityId": {
+            "type": "string",
+            "description": "The brand (Brand Registry entity) the campaign advertises. Sellers need one."
+          },
+          "bidOptimization": {
+            "type": "boolean",
+            "default": true,
+            "description": "Amazon adjusts placement bids itself. Send false to set placementAdjustments."
+          },
+          "placementAdjustments": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "description": "Only with bidOptimization false (400 otherwise).",
+            "items": {
+              "type": "object",
+              "required": [
+                "placement",
+                "percentage"
+              ],
+              "properties": {
+                "placement": {
+                  "type": "string",
+                  "enum": [
+                    "TOP_OF_SEARCH",
+                    "DETAIL_PAGE",
+                    "HOME",
+                    "OTHER"
+                  ]
+                },
+                "percentage": {
+                  "type": "integer",
+                  "minimum": -99,
+                  "maximum": 900
+                }
+              }
+            }
+          },
+          "portfolioId": {
+            "type": "string",
+            "pattern": "^\\d+$"
+          }
+        }
+      },
+      "AmazonSponsoredDisplayCampaignData": {
+        "type": "object",
+        "required": [
+          "adProduct"
+        ],
+        "properties": {
+          "adProduct": {
+            "type": "string",
+            "enum": [
+              "SPONSORED_DISPLAY"
+            ]
+          },
+          "tactic": {
+            "type": "string",
+            "enum": [
+              "T00020",
+              "T00030"
+            ],
+            "description": "Required for a new campaign. T00020 targets products and categories; T00030 also targets audiences (views, purchases, audience)."
+          },
+          "portfolioId": {
+            "type": "string",
+            "pattern": "^\\d+$"
+          }
+        }
+      },
+      "AmazonAdsCampaignPlatformData": {
+        "description": "Amazon Ads: the ad product of the campaign and its settings. Unknown keys return a 400.\n\nThe unified `goal` maps onto the product: Sponsored Products takes `conversions`; Sponsored Brands takes `traffic` (PAGE_VISIT), `awareness` (BRAND_IMPRESSION_SHARE), `video_views` (AD_VIEWS) and `conversions` (ACQUIRE_NEW_CUSTOMERS); Sponsored Display takes `traffic` (optimizes for clicks), `conversions` and `awareness` (optimizes for reach and bills by viewable impressions).\n",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredProductsCampaignData"
+          },
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredBrandsCampaignData"
+          },
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredDisplayCampaignData"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "adProduct",
+          "mapping": {
+            "SPONSORED_PRODUCTS": "#/components/schemas/AmazonSponsoredProductsCampaignData",
+            "SPONSORED_BRANDS": "#/components/schemas/AmazonSponsoredBrandsCampaignData",
+            "SPONSORED_DISPLAY": "#/components/schemas/AmazonSponsoredDisplayCampaignData"
+          }
+        }
+      },
+      "AmazonAdvertisedProducts": {
+        "type": "object",
+        "properties": {
+          "asins": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9]{10}$"
+            },
+            "description": "Vendor profiles: the ASINs to advertise, one product ad each."
+          },
+          "skus": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "string"
+            },
+            "description": "Seller profiles: the SKUs to advertise, one product ad each. Sending the identifier the profile does not use returns a 400."
+          }
+        }
+      },
+      "AmazonSponsoredProductsAdData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredProductsCampaignData"
+          },
+          {
+            "$ref": "#/components/schemas/AmazonAdvertisedProducts"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "defaultBid": {
+                "type": "number",
+                "description": "Required for a new ad group. Whole currency units; keywords and targets without their own bid use it. US: 0.02 to 1000."
+              },
+              "productTargets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1000,
+                "description": "MANUAL campaigns. Each entry is one Amazon targeting clause: a product (ASIN_SAME_AS), a category (ASIN_CATEGORY_SAME_AS) optionally refined by brand, price, rating or Prime in the same expression.",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "expression"
+                  ],
+                  "properties": {
+                    "expression": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "type"
+                        ],
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "ASIN_SAME_AS",
+                              "ASIN_CATEGORY_SAME_AS",
+                              "ASIN_BRAND_SAME_AS",
+                              "ASIN_PRICE_LESS_THAN",
+                              "ASIN_PRICE_GREATER_THAN",
+                              "ASIN_PRICE_BETWEEN",
+                              "ASIN_REVIEW_RATING_LESS_THAN",
+                              "ASIN_REVIEW_RATING_GREATER_THAN",
+                              "ASIN_REVIEW_RATING_BETWEEN",
+                              "ASIN_IS_PRIME_SHIPPING_ELIGIBLE",
+                              "ASIN_AGE_RANGE_SAME_AS",
+                              "ASIN_GENRE_SAME_AS",
+                              "ASIN_EXPANDED_FROM"
+                            ]
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "Ranges use a hyphen, e.g. \"50-120\"."
+                          }
+                        }
+                      }
+                    },
+                    "bid": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "negativeProductTargets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1000,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "value"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "ASIN_SAME_AS",
+                        "ASIN_BRAND_SAME_AS"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "autoTargeting": {
+                "type": "object",
+                "description": "AUTO campaigns. Amazon adds the four auto target groups to the ad group itself; this switches them off or bids on them. A group Amazon had not added yet is reported in `warnings`.",
+                "properties": {
+                  "closeMatch": {
+                    "$ref": "#/components/schemas/AmazonAutoTargetGroup"
+                  },
+                  "looseMatch": {
+                    "$ref": "#/components/schemas/AmazonAutoTargetGroup"
+                  },
+                  "substitutes": {
+                    "$ref": "#/components/schemas/AmazonAutoTargetGroup"
+                  },
+                  "complements": {
+                    "$ref": "#/components/schemas/AmazonAutoTargetGroup"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AmazonAutoTargetGroup": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "bid": {
+            "type": "number"
+          }
+        }
+      },
+      "AmazonSponsoredBrandsAdData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredBrandsCampaignData"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "ad": {
+                "description": "Required. The ad, by format. Assets (logo, video) are Creative Asset Library ids. The product collection format is not offered: Amazon retires it in January 2027 (use manualCollection).",
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "required": [
+                      "format",
+                      "brandName",
+                      "asins"
+                    ],
+                    "properties": {
+                      "format": {
+                        "type": "string",
+                        "enum": [
+                          "manualCollection"
+                        ]
+                      },
+                      "brandName": {
+                        "type": "string",
+                        "maxLength": 30
+                      },
+                      "brandLogoAssetId": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "maxLength": 32
+                      },
+                      "asins": {
+                        "type": "array",
+                        "minItems": 3,
+                        "maxItems": 10,
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "landingPage": {
+                        "type": "object",
+                        "required": [
+                          "pageType"
+                        ],
+                        "properties": {
+                          "pageType": {
+                            "type": "string",
+                            "enum": [
+                              "PRODUCT_LIST",
+                              "STORE"
+                            ]
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "format",
+                      "brandName",
+                      "storeUrl",
+                      "subpages"
+                    ],
+                    "properties": {
+                      "format": {
+                        "type": "string",
+                        "enum": [
+                          "storeSpotlight"
+                        ]
+                      },
+                      "brandName": {
+                        "type": "string",
+                        "maxLength": 30
+                      },
+                      "brandLogoAssetId": {
+                        "type": "string"
+                      },
+                      "headline": {
+                        "type": "string",
+                        "maxLength": 50
+                      },
+                      "storeUrl": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "The Store home page the ad lands on."
+                      },
+                      "subpages": {
+                        "type": "array",
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "pageTitle",
+                            "asin",
+                            "url"
+                          ],
+                          "properties": {
+                            "pageTitle": {
+                              "type": "string"
+                            },
+                            "asin": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "format",
+                      "videoAssetId",
+                      "asin"
+                    ],
+                    "properties": {
+                      "format": {
+                        "type": "string",
+                        "enum": [
+                          "video"
+                        ]
+                      },
+                      "videoAssetId": {
+                        "type": "string"
+                      },
+                      "asin": {
+                        "type": "string"
+                      },
+                      "brandName": {
+                        "type": "string",
+                        "maxLength": 30
+                      },
+                      "brandLogoAssetId": {
+                        "type": "string"
+                      },
+                      "headline": {
+                        "type": "string",
+                        "maxLength": 50
+                      }
+                    }
+                  }
+                ]
+              },
+              "defaultBid": {
+                "type": "number",
+                "description": "Bid of the keywords and product targets without their own. With goal traffic (cost per click), US: 0.10 to 49, video 0.25 to 49."
+              },
+              "productTargets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "expressions"
+                  ],
+                  "properties": {
+                    "expressions": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "type",
+                          "value"
+                        ],
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "asinSameAs",
+                              "asinCategorySameAs",
+                              "asinBrandSameAs",
+                              "asinPriceLessThan",
+                              "asinPriceBetween",
+                              "asinPriceGreaterThan",
+                              "asinReviewRatingLessThan",
+                              "asinReviewRatingBetween",
+                              "asinReviewRatingGreaterThan"
+                            ]
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "bid": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "negativeProductTargets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "value"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "asinSameAs",
+                        "asinBrandSameAs"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AmazonSponsoredDisplayAdData": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredDisplayCampaignData"
+          },
+          {
+            "$ref": "#/components/schemas/AmazonAdvertisedProducts"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "defaultBid": {
+                "type": "number",
+                "description": "US: 0.02 to 1000 per click, 1 to 1000 per thousand viewable impressions (goal awareness)."
+              },
+              "targets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 200,
+                "description": "Required for a new ad group. Each entry is one Amazon targeting clause, in Amazon's own shape:\n\n- Contextual: `{ type: similarProduct }`, `{ type: asinSameAs, value: B0... }`, `{ type: asinCategorySameAs, value: \"12345\" }` with optional brand, price or rating refinements in the same expression, `{ type: contentCategorySameAs, value: \"amzn1.iab-content.325\" }`.\n- Audiences (tactic T00030 only): `{ type: views | purchases, value: [{ type: exactProduct | similarProduct | relatedProduct | asinCategorySameAs ... }, { type: lookback, value: \"30\" }] }`, or `{ type: audience, value: [{ type: audienceSameAs, value: \"<audience id>\" }] }` for in-market and lifestyle audiences.\n",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "expression"
+                  ],
+                  "properties": {
+                    "expression": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "type"
+                        ],
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "oneOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "type"
+                                  ],
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "bid": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "negativeTargets": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "value"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "asinSameAs",
+                        "asinBrandSameAs"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AmazonAdsPlatformData": {
+        "description": "Amazon Ads (required): the ad product and everything the unified fields do not cover. Unknown keys return a 400.\n\nUnified fields that apply:\n\n- `name`, `campaignName`, `adSetName`, `adName`, `goal` and the status fields.\n- `budgetAmount` / `budgetType`: the campaign budget in whole currency units; lifetime on Sponsored Brands only.\n- `startDate` / `endDate`: calendar days in the profile time zone.\n- `keywords` and `negativeKeywords` (Sponsored Products and Brands), `campaignNegativeKeywords` (Sponsored Products).\n- `existingCampaignId`: a new ad group under an existing campaign of the same product, which keeps its goal when `goal` is omitted.\n- `adSetId`: new ads in an existing ad group.\n\nCreative and audience fields (headline, body, linkUrl, imageUrl, countries, interests...) return a 400.\n\nGoals per product are listed on `AmazonAdsCampaignPlatformData`. If anything after the campaign fails, the campaign is archived (Amazon's delete) and the error names the refused item, e.g. `keywords[2]`.\n",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredProductsAdData"
+          },
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredBrandsAdData"
+          },
+          {
+            "$ref": "#/components/schemas/AmazonSponsoredDisplayAdData"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "adProduct",
+          "mapping": {
+            "SPONSORED_PRODUCTS": "#/components/schemas/AmazonSponsoredProductsAdData",
+            "SPONSORED_BRANDS": "#/components/schemas/AmazonSponsoredBrandsAdData",
+            "SPONSORED_DISPLAY": "#/components/schemas/AmazonSponsoredDisplayAdData"
+          }
+        }
+      },
       "PinterestPlatformData": {
         "type": "object",
         "properties": {
@@ -46877,7 +47549,8 @@
               "twitter",
               "openai",
               "reddit",
-              "microsoft"
+              "microsoft",
+              "amazon"
             ]
           },
           "profileId": {
@@ -47921,7 +48594,8 @@
               "twitter",
               "openai",
               "reddit",
-              "microsoft"
+              "microsoft",
+              "amazon"
             ]
           },
           "campaignName": {
@@ -48199,7 +48873,8 @@
               "twitter",
               "openai",
               "reddit",
-              "microsoft"
+              "microsoft",
+              "amazon"
             ]
           },
           "campaignName": {
@@ -97976,7 +98651,7 @@
           "amazonads"
         ],
         "summary": "Get Amazon Ads OAuth connect URL",
-        "description": "Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (`GET /v1/ads/conversions/destinations`).\n\nErrors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`.\n",
+        "description": "Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`.\n\nEvery seller and vendor advertiser profile it reaches, in the NA, EU and FE regions, is an ad account (`GET /v1/ads/accounts`) and a conversions destination (`GET /v1/ads/conversions/destinations`).\n\nPass `region` so the user signs in on their own region's Amazon consent page; the connection still reaches the profiles of every region.\n\nErrors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`.\n",
         "security": [
           {
             "bearerAuth": []
@@ -98010,6 +98685,20 @@
               "type": "string"
             },
             "description": "Zernio account ID of the Amazon Ads account being reconnected."
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NA",
+                "EU",
+                "FE"
+              ],
+              "default": "NA"
+            },
+            "description": "Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore)."
           }
         ],
         "responses": {
@@ -167995,7 +168684,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "List ads",
         "description": "Lists your ads with their performance over a date range, including ads created directly in each platform's ads manager.\n\nReturns a paginated list of ads with metrics computed over an optional date range. Use source=all to include externally-synced ads from platform ad managers.\n\nIf no date range is provided, it defaults to the last 90 days. The date range is capped at 730 days max.\n\n### History\n\nWhen an ad account connects, Zernio imports its last 90 days of metrics, so the metrics hold no data for days before that.\n\nWhen `accountId` or `adAccountId` resolves to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part. The older days (up to 730 days back) are imported in the background; repeat the request until it returns 200.\n\nA request scoped to no Meta account never returns `202`.\n\n### Finding the ad behind a comment\n\nTo find the Zernio ad behind a comment you see in Meta Business Manager:\n\n1. Filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram). Those are the post/media the ad's engagement lives on, and are also returned on each ad's `creative` object.\n2. Call GET /v1/ads/{adId}/comments with the returned ad id.\n",
@@ -168053,7 +168743,8 @@
                 "twitter",
                 "openai",
                 "reddit",
-                "microsoft"
+                "microsoft",
+                "amazon"
               ]
             }
           },
@@ -169880,10 +170571,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "List Search keywords",
-        "description": "Lists the keywords and negative keywords in your Google Search ad groups.\n\nReturns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword.\n\nCampaign-level negative keywords are not included; only ad-group-level criteria are.\n\n### Freshness\n\nKeywords are refreshed about once a day per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot). So keywords added on Google can take up to a day to appear.\n\n- A customer synced for the first time is populated on the next discovery pass rather than waiting for its daily slot.\n- Connecting an account or triggering a manual sync refreshes it immediately.\n",
+        "description": "Lists the keywords and negative keywords in your Google Search ad groups.\n\nReturns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword.\n\nCampaign-level negative keywords are not included; only ad-group-level criteria are.\n\n### Freshness\n\nKeywords are refreshed about once a day per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot). So keywords added on Google can take up to a day to appear.\n\n- A customer synced for the first time is populated on the next discovery pass rather than waiting for its daily slot.\n- Connecting an account or triggering a manual sync refreshes it immediately.\n\n### Amazon\n\nAmazon Sponsored Products and Sponsored Brands keywords and ad group negatives are listed too (`platform: amazon`), refreshed about every six hours with their trailing 30-day metrics from the targeting reports. `resourceName` is `{adGroupId}~{keywordId}` there. Campaign-level negatives are under `GET /v1/ads/campaigns/{campaignId}/negative-keywords`.\n",
         "security": [
           {
             "bearerAuth": []
@@ -170028,10 +170720,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "Add Search ad-group keywords",
-        "description": "Adds keywords, or negative keywords, to a Google Search ad group without replacing the ones already there.\n\nAdds one or more keyword criteria to an existing Google Search ad group,\nwithout touching the keywords already there (unlike the whole-set diff on\n`PUT /v1/ads/{adId}`, `keywords`/`negativeKeywords` in `platformSpecificData`,\nwhich replaces the set). Set `negative: true` to add ad-group-level negatives\ninstead of positive keywords.\n",
+        "description": "Adds keywords, or negative keywords, to a Google Search ad group without replacing the ones already there.\n\nAdds one or more keyword criteria to an existing Google Search ad group,\nwithout touching the keywords already there (unlike the whole-set diff on\n`PUT /v1/ads/{adId}`, `keywords`/`negativeKeywords` in `platformSpecificData`,\nwhich replaces the set). Set `negative: true` to add ad-group-level negatives\ninstead of positive keywords.\n\n### Amazon\n\nOn an Amazon Ads connection the keywords go to a Sponsored Products or Sponsored Brands ad group (a Sponsored Display ad group returns 422). Positives bid the ad group default. Negatives match exact or phrase: a negative sent without `matchType` is exact, and a broad negative returns 422.\n",
         "security": [
           {
             "bearerAuth": []
@@ -170154,10 +170847,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "Update a Search keyword",
-        "description": "Pauses, re-enables or sets the bid of a single Google Search keyword. Send `status`, `cpcBid` or both.\n\nChanges `ad_group_criterion.status` (M.140) and `ad_group_criterion.cpc_bid_micros` for one keyword criterion.\n\n`cpcBid` is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back `cpcBid: null` and uses its ad group bid.\n\nNegative keywords have no status or bid on Google and cannot be paused, enabled or given a bid.\n",
+        "description": "Pauses, re-enables or sets the bid of a single Google Search keyword. Send `status`, `cpcBid` or both.\n\nChanges `ad_group_criterion.status` (M.140) and `ad_group_criterion.cpc_bid_micros` for one keyword criterion.\n\n`cpcBid` is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back `cpcBid: null` and uses its ad group bid.\n\nNegative keywords have no status or bid on Google and cannot be paused, enabled or given a bid.\n\n### Amazon\n\nAmazon keywords take `status` and `cpcBid`. Amazon negative keywords take `status` only (a `cpcBid` on one returns 422), and a Sponsored Brands negative cannot be paused (422).\n",
         "security": [
           {
             "bearerAuth": []
@@ -170245,10 +170939,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "Remove a Search keyword",
-        "description": "Removes a single keyword or negative keyword from a Google Search ad group.\n\nRemoves one keyword criterion (positive or negative) from its ad group (M.140).\n",
+        "description": "Removes a single keyword or negative keyword from a Google Search ad group.\n\nRemoves one keyword criterion (positive or negative) from its ad group (M.140).\n\n### Amazon\n\nOn Amazon the keyword is archived, which is Amazon's delete: it stays in reports and can never be enabled again.\n",
         "security": [
           {
             "bearerAuth": []
@@ -175998,7 +176693,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "List campaigns",
         "description": "Lists your campaigns with spend, impressions and clicks summed across their ads, plus each campaign's status and budget.\n\nCampaigns are virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign.\n\nCampaign status is derived from child ad statuses: active > pending_review > paused > error > completed > cancelled > rejected.\n\nGoogle campaign budgets include amountMicros, explicitlyShared, resourceName and deliveryMethod after the next successful sync. This endpoint does not fetch Google live.\n\n**Status freshness.** `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored.\n\nBackground sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often.\n\nZernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync.\n\n### Live status reads\n\nControllers that act on a switch should pass `live=true`. It reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned).\n\n- `live=true` needs `limit` of 20 or less.\n- Each returned campaign's own switch (`platformCampaignStatus`) is read live.\n- Live reads cover TikTok, Meta, Google, OpenAI and Reddit.\n- The rolled-up `status` is not re-derived by a live read.\n\n**Budgets here are SYNCED**, never read live, including with `live=true`. To read the current budgets (and status) of every campaign and ad set of a Meta ad account live in one call, for example as a pre-write spend gate, use GET /v1/ads/accounts/live.\n",
@@ -176058,7 +176754,8 @@
                 "twitter",
                 "openai",
                 "reddit",
-                "microsoft"
+                "microsoft",
+                "amazon"
               ]
             }
           },
@@ -176239,10 +176936,11 @@
           "x",
           "pinterest",
           "openai",
-          "reddit"
+          "reddit",
+          "amazon"
         ],
         "summary": "Create a standalone campaign",
-        "description": "Creates an empty campaign, paused, so you can add ad sets and ads to it afterwards.\n\nCreates a campaign WITHOUT its first ad set / ad, on the platform of the given `accountId`. Ad sets join it later via `existingCampaignId` on the create endpoints.\n\nCreated `PAUSED` (TikTok `DISABLE`) unless `status: ACTIVE` where the platform supports it.\n\n**Idempotency:** send an `Idempotency-Key` header to make retries safe.\n\n### Field support\n\n- `specialAdCategories`: Meta-only (400 elsewhere).\n- `bidStrategy`: Meta and Google (400 elsewhere). Google also accepts `portfolioBidStrategyId` instead.\n- Budget: Google, X and OpenAI require one (422 without one). OpenAI accepts daily or lifetime, Google only `budgetType: daily`.\n\n### Platform notes\n\n- Meta: a budget here is campaign-level (CBO) by definition. Omit it for ABO (each ad set carries its own budget).\n- OpenAI: `goal` sets the campaign objective, and `conversions` needs an active standard conversion event on the account.\n- Reddit: see below.\n- LinkedIn: creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there. It comes back `status: DRAFT`.\n\n### Reddit\n\n`goal` is one of traffic, awareness, conversions, video_views or lead_generation (422 otherwise). The budget is optional.\n\n- With a budget, the campaign uses Reddit's campaign budget optimization and carries the pixel (see `promotedObject`, which then needs `customEventType` for `conversions`). The budget is daily or lifetime; a lifetime budget needs `endDate` (400 otherwise).\n- `startDate` / `endDate` set the campaign's schedule and need that campaign budget (400 without one).\n- Without a budget, each ad set carries its own budget and dates.\n",
+        "description": "Creates an empty campaign, paused, so you can add ad sets and ads to it afterwards.\n\nCreates a campaign WITHOUT its first ad set / ad, on the platform of the given `accountId`. Ad sets join it later via `existingCampaignId` on the create endpoints.\n\nCreated `PAUSED` (TikTok `DISABLE`) unless `status: ACTIVE` where the platform supports it.\n\n**Idempotency:** send an `Idempotency-Key` header to make retries safe.\n\n### Field support\n\n- `specialAdCategories`: Meta-only (400 elsewhere).\n- `bidStrategy`: Meta and Google (400 elsewhere). Google also accepts `portfolioBidStrategyId` instead.\n- Budget: Google, X and OpenAI require one (422 without one). OpenAI accepts daily or lifetime, Google only `budgetType: daily`.\n\n### Platform notes\n\n- Meta: a budget here is campaign-level (CBO) by definition. Omit it for ABO (each ad set carries its own budget).\n- OpenAI: `goal` sets the campaign objective, and `conversions` needs an active standard conversion event on the account.\n- Reddit: see below.\n- LinkedIn: creates the campaign GROUP (our campaign level) and rejects a budget, which lives on the campaign (ad set) level there. It comes back `status: DRAFT`.\n\n### Reddit\n\n`goal` is one of traffic, awareness, conversions, video_views or lead_generation (422 otherwise). The budget is optional.\n\n- With a budget, the campaign uses Reddit's campaign budget optimization and carries the pixel (see `promotedObject`, which then needs `customEventType` for `conversions`). The budget is daily or lifetime; a lifetime budget needs `endDate` (400 otherwise).\n- `startDate` / `endDate` set the campaign's schedule and need that campaign budget (400 without one).\n- Without a budget, each ad set carries its own budget and dates.\n\n### Amazon Ads\n\n`platformSpecificData` (required) names the ad product and its campaign settings (`AmazonAdsCampaignPlatformData`), and the campaign needs a budget. `goal` must fit the product. `startDate` / `endDate` are calendar days in the profile time zone. Ad groups join it with `existingCampaignId` on POST /v1/ads/create.\n",
         "security": [
           {
             "bearerAuth": []
@@ -176358,12 +177056,20 @@
                   "startDate": {
                     "type": "string",
                     "format": "date-time",
-                    "description": "Reddit only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (`budgetAmount` + `budgetType`, 400 otherwise). Defaults to now."
+                    "description": "Reddit and Amazon only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (`budgetAmount` + `budgetType`, 400 otherwise). Defaults to now."
                   },
                   "endDate": {
                     "type": "string",
                     "format": "date-time",
-                    "description": "Reddit only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for `budgetType: lifetime`."
+                    "description": "Reddit and Amazon only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for `budgetType: lifetime`."
+                  },
+                  "platformSpecificData": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/AmazonAdsCampaignPlatformData"
+                      }
+                    ],
+                    "description": "Amazon Ads only (400 elsewhere), and required there: the ad product and its campaign settings."
                   },
                   "locationTargetingType": {
                     "allOf": [
@@ -176539,7 +177245,8 @@
           "x",
           "openai",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Pause or resume a campaign",
         "description": "Pauses or resumes a campaign, leaving the on/off switches of its ad sets and ads as they are.\n\nIt writes the campaign's own on/off switch and nothing else, on every platform: Meta, TikTok, Google, LinkedIn campaign group, Pinterest, X, ChatGPT (OpenAI).\n\nIts ad sets and ads keep their own switches:\n\n- Pausing stops their delivery through the campaign.\n- Resuming lets each of them deliver again only if its own switch is on.\n\nAn ad set or ad you paused individually stays paused. Resume it with PUT /v1/ads/ad-sets/{adSetId}/status or PUT /v1/ads/{adId}/status. See the Status model in the Ad Campaigns tag.\n\n### Live read, then write\n\nThe campaign's switch is read from the platform first.\n\n- **Already in the requested state:** nothing is written (`updated: 0`, `skipped: 1`, with the reason).\n- **Otherwise:** the switch is written (`updated: 1`), read back and stored. The delivery status of the ads under it (up to 20) is re-read and stored, so an immediate GET returns what the platform now reports.\n\nWhen the campaign delivers in the requested state but some of its ads are stored in the other state, those ads are re-read and stored (up to 20, at most once every 10 minutes per campaign).\n\nAn example is ads switched on in the platform's own UI and still stored `paused`.\n\nA stored switch never skips a write, and when the platform cannot be read the write always goes out.\n\nOn Meta the check reads the campaign's own `status`, so a delivery status such as `IN_PROCESS` or `WITH_ISSUES` does not force a write.\n\n### Retrying\n\nRetrying the same request is safe: when the first call already switched the campaign, the live read answers `skipped: 1` and nothing is written twice. A call that timed out on your side may still have completed, so retry it instead of assuming it failed.\n\nThese errors fail the same way on every retry until something changes:\n\n- `401` `reconnect_required`: the platform no longer accepts the connection's token (on Meta, code 190: expired, revoked, password changed or security checkpoint). Reconnect the account, then retry.\n- `422` `ad_account_unusable`: the ad account's status does not allow edits. Resolve it in the platform, then retry.\n- `400` `platform_api_error` saying the campaign was deleted or archived (Meta subcodes 1487566 and 3858863): there is nothing left to switch.\n\nA Meta code 190 with subcode 464 means Meta considers the Facebook user unconfirmed. It answers `400` `platform_api_error` and retrying does not clear it: the user must log in to facebook.com and complete what Meta asks (usually confirming their email or phone), then retry.\n",
@@ -176592,7 +177299,8 @@
                       "twitter",
                       "openai",
                       "reddit",
-                      "microsoft"
+                      "microsoft",
+                      "amazon"
                     ]
                   }
                 }
@@ -177298,10 +178006,11 @@
           "x",
           "openai",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Update a campaign",
-        "description": "Changes a campaign's settings, such as its name, budget, bidding or tracking URLs.\n\nSend at least one of `budget`, `bidStrategy`, `portfolioBidStrategyId`, `targetImpressionShare`, `manualCpc`, `networkSettings`, `trackingUrlTemplate`, `finalUrlSuffix`, `sharedBudgetId`, `name` or `platformSpecificData`. An unsupported field is always an error, never a silent drop.\n\n| Body field | Meta | Google | Others |\n|---|---|---|---|\n| `bidStrategy` | Yes | Yes | 501 |\n| `bidAmount`, `roasAverageFloor` | 400 (ad-set level) | Yes | 400 |\n| `portfolioBidStrategyId` | 400 | Yes | 400 |\n| `targetImpressionShare` | 400 | Search only | 400 |\n| `manualCpc` | 400 | Search and Display | 400 |\n| `networkSettings` | 400 | Search only | 400 |\n| `trackingUrlTemplate`, `finalUrlSuffix` | 400 | Yes | 400 |\n| `sharedBudgetId` | 400 | Yes | 400 |\n| `budget` (CBO; ABO returns 409) | Yes | Daily only | OpenAI and Reddit: daily or lifetime; others 501 |\n| `name` | Yes | 501 | Reddit: Yes; others 501 |\n| `platformSpecificData.spendCap` | Yes | 400 | 400 |\n| `accountId` (empty campaigns) | Yes | - | - |\n\n### Meta\n\nMeta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.\n\n`accountId` forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404. The response then carries `updated: 0`.\n\n### Google bidding\n\n- `LOWEST_COST_WITHOUT_CAP` = Maximize Conversions\n- `COST_CAP` + `bidAmount` = Target CPA\n- `LOWEST_COST_WITH_MIN_ROAS` + `roasAverageFloor` = Target ROAS\n- `LOWEST_COST_WITH_BID_CAP` + `bidAmount` = Maximize Clicks with a CPC ceiling\n- `portfolioBidStrategyId` attaches a portfolio strategy instead (exclusive with `bidStrategy`)\n- `targetImpressionShare` switches the campaign to Target impression share\n- `manualCpc: { maxCpc }` switches to Manual CPC: every ad group of the campaign gets `maxCpc` as its bid, in the same mutate\n\n`targetImpressionShare` and `manualCpc` are each exclusive with every other strategy field.\n\nSetting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected. Detach it in Google Ads first, since it is shared across campaigns.\n\n### Google network and tracking URLs\n\n`networkSettings`, `trackingUrlTemplate` and `finalUrlSuffix` go out in one campaign update. Each field is sent written on its own leaf, so an omitted one keeps its current value. An empty string clears a URL field.\n\n### Google budgets\n\nGoogle budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate=true is explicitly supplied, because the change affects every campaign using that budget.\n\nA budget counts as shared when Google flags it as shared or when more than one campaign uses it (older budgets can serve several campaigns without the flag). Unknown sharing state also returns 409.\n\n### Google shared budgets (`sharedBudgetId`)\n\n- `sharedBudgetId` moves the campaign onto a shared budget from GET /v1/ads/shared-budgets. It also needs `allowSharedBudgetUpdate: true` (409 otherwise), because the campaign then splits that budget with every campaign on it. `budget` cannot ride along.\n- `sharedBudgetId: null` moves it back onto a new budget of its own, sized by `budget` (required, daily). The new budget and the switch go out in one atomic Google mutate.\n- A campaign that already has its own budget returns 409 for null.\n\nThe budget a campaign leaves is not removed. The response carries the budget the campaign now uses.\n\n### OpenAI Ads\n\nCampaigns carry exactly one spend cap. `budget.type` daily or lifetime replaces whichever cap the campaign had, with a minimum of 1 in the ad account's currency (422 below it).\n\nLifetime can switch to daily, but OpenAI never switches a daily cap back to lifetime (422).\n\n### Reddit Ads\n\n- `budget` changes the amount of a campaign budget (Reddit campaign budget optimization).\n- A campaign whose ad groups carry the budget returns 409 or 422; use PUT /v1/ads/ad-sets/{adSetId} there.\n- Reddit cannot switch a published budget between daily and lifetime, so `budget.type` must match the current one (422 otherwise).\n- `bidStrategy` is set per ad group on Reddit (PUT /v1/ads/ad-sets/{adSetId}).\n",
+        "description": "Changes a campaign's settings, such as its name, budget, bidding or tracking URLs.\n\nSend at least one of `budget`, `bidStrategy`, `portfolioBidStrategyId`, `targetImpressionShare`, `manualCpc`, `networkSettings`, `trackingUrlTemplate`, `finalUrlSuffix`, `sharedBudgetId`, `name` or `platformSpecificData`. An unsupported field is always an error, never a silent drop.\n\n| Body field | Meta | Google | Others |\n|---|---|---|---|\n| `bidStrategy` | Yes | Yes | 501 |\n| `bidAmount`, `roasAverageFloor` | 400 (ad-set level) | Yes | 400 |\n| `portfolioBidStrategyId` | 400 | Yes | 400 |\n| `targetImpressionShare` | 400 | Search only | 400 |\n| `manualCpc` | 400 | Search and Display | 400 |\n| `networkSettings` | 400 | Search only | 400 |\n| `trackingUrlTemplate`, `finalUrlSuffix` | 400 | Yes | 400 |\n| `sharedBudgetId` | 400 | Yes | 400 |\n| `budget` (CBO; ABO returns 409) | Yes | Daily only | OpenAI and Reddit: daily or lifetime; Amazon: daily, or the lifetime type a Sponsored Brands campaign was created with; others 501 |\n| `name` | Yes | 501 | Reddit and Amazon: Yes; others 501 |\n| `platformSpecificData.spendCap` | Yes | 400 | 400 |\n| `accountId` (empty campaigns) | Yes | - | - |\n\n### Meta\n\nMeta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.\n\n`accountId` forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404. The response then carries `updated: 0`.\n\n### Google bidding\n\n- `LOWEST_COST_WITHOUT_CAP` = Maximize Conversions\n- `COST_CAP` + `bidAmount` = Target CPA\n- `LOWEST_COST_WITH_MIN_ROAS` + `roasAverageFloor` = Target ROAS\n- `LOWEST_COST_WITH_BID_CAP` + `bidAmount` = Maximize Clicks with a CPC ceiling\n- `portfolioBidStrategyId` attaches a portfolio strategy instead (exclusive with `bidStrategy`)\n- `targetImpressionShare` switches the campaign to Target impression share\n- `manualCpc: { maxCpc }` switches to Manual CPC: every ad group of the campaign gets `maxCpc` as its bid, in the same mutate\n\n`targetImpressionShare` and `manualCpc` are each exclusive with every other strategy field.\n\nSetting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected. Detach it in Google Ads first, since it is shared across campaigns.\n\n### Google network and tracking URLs\n\n`networkSettings`, `trackingUrlTemplate` and `finalUrlSuffix` go out in one campaign update. Each field is sent written on its own leaf, so an omitted one keeps its current value. An empty string clears a URL field.\n\n### Google budgets\n\nGoogle budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate=true is explicitly supplied, because the change affects every campaign using that budget.\n\nA budget counts as shared when Google flags it as shared or when more than one campaign uses it (older budgets can serve several campaigns without the flag). Unknown sharing state also returns 409.\n\n### Google shared budgets (`sharedBudgetId`)\n\n- `sharedBudgetId` moves the campaign onto a shared budget from GET /v1/ads/shared-budgets. It also needs `allowSharedBudgetUpdate: true` (409 otherwise), because the campaign then splits that budget with every campaign on it. `budget` cannot ride along.\n- `sharedBudgetId: null` moves it back onto a new budget of its own, sized by `budget` (required, daily). The new budget and the switch go out in one atomic Google mutate.\n- A campaign that already has its own budget returns 409 for null.\n\nThe budget a campaign leaves is not removed. The response carries the budget the campaign now uses.\n\n### OpenAI Ads\n\nCampaigns carry exactly one spend cap. `budget.type` daily or lifetime replaces whichever cap the campaign had, with a minimum of 1 in the ad account's currency (422 below it).\n\nLifetime can switch to daily, but OpenAI never switches a daily cap back to lifetime (422).\n\n### Reddit Ads\n\n- `budget` changes the amount of a campaign budget (Reddit campaign budget optimization).\n- A campaign whose ad groups carry the budget returns 409 or 422; use PUT /v1/ads/ad-sets/{adSetId} there.\n- Reddit cannot switch a published budget between daily and lifetime, so `budget.type` must match the current one (422 otherwise).\n- `bidStrategy` is set per ad group on Reddit (PUT /v1/ads/ad-sets/{adSetId}).\n",
         "security": [
           {
             "bearerAuth": []
@@ -177343,7 +178052,8 @@
                       "twitter",
                       "openai",
                       "reddit",
-                      "microsoft"
+                      "microsoft",
+                      "amazon"
                     ],
                     "description": "Required: platform campaign IDs are not globally unique."
                   },
@@ -177560,10 +178270,11 @@
           "x",
           "openai",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Delete a campaign",
-        "description": "Deletes a campaign on its platform, including a campaign that never got any ads.\n\nOnly the campaign itself is sent to the platform:\n\n- Meta, Google, TikTok, LinkedIn and X delete it.\n- OpenAI, Reddit and Pinterest have no campaign delete and archive it instead (see below).\n\nLocally, all Ad documents for this campaign are marked `status: cancelled`.\n\n### Empty campaigns\n\nA campaign with zero ads has no local Ad documents to resolve, so it is invisible to `/v1/ads/tree` and this endpoint would 404. That state comes from the two-step create flow (campaign, then ads via `existingCampaignId`) whenever Meta rejects the ad step.\n\nTo delete such a shell, send `accountId` in the body or the query string. We skip the local lookup entirely and forward the delete to the platform of that connection. `accountId` is ignored when the campaign does have ads.\n\n### Google, TikTok, LinkedIn, Pinterest, Reddit and OpenAI\n\nGoogle, TikTok, LinkedIn, Pinterest and Reddit take the ad account from the synced campaign (OpenAI needs none). When the campaign was never synced (or is synced under several ad accounts), the answer is 409 `invalid_resource_state` on `campaignId` and nothing is deleted: sync the ad account and retry.\n\nBefore deleting on Google, TikTok, LinkedIn, Pinterest, OpenAI or Reddit, Zernio asks the platform whether the campaign still holds ad groups or ads. Google asset groups count; on LinkedIn, campaigns inside the campaign group count.\n\nIf it does, or the platform cannot confirm it has none (a TikTok Smart+ campaign), the answer is 409 `invalid_resource_state` on `campaignId` and nothing is deleted. Either:\n\n- sync the ad account and delete the campaign again so its ads are cancelled with it, or\n- delete them on the platform first.\n\n### X\n\nOn X the ad account comes from the synced campaign, which wins over `adAccountId`. When the campaign was never synced, send `adAccountId` too.\n\nBefore deleting, Zernio asks X whether the campaign still holds undeleted line items (ads not synced yet). If it does, the answer is 409 `invalid_field_value` on `campaignId` and nothing is deleted.\n\n- Line items that hold promoted posts: sync the ad account and retry.\n- Line items without promoted posts never sync, so delete them in X Ads Manager first.\n\n### Reddit Ads\n\nReddit Ads has no delete: the campaign is archived instead (`configured_status` ARCHIVED), which stops delivery for good. Its ad groups and ads keep their own switches but cannot deliver under an archived campaign.\n\n### OpenAI Ads\n\nOpenAI Ads has no delete either: the campaign is archived (state `archive`). Its ad groups and ads are not touched on OpenAI.\n",
+        "description": "Deletes a campaign on its platform, including a campaign that never got any ads.\n\nOnly the campaign itself is sent to the platform:\n\n- Meta, Google, TikTok, LinkedIn and X delete it.\n- OpenAI, Reddit and Pinterest have no campaign delete and archive it instead (see below).\n\n- Amazon archives the campaign: archiving is Amazon's delete, it is permanent, and the campaign stays in reports.\n\nLocally, all Ad documents for this campaign are marked `status: cancelled`.\n\n### Empty campaigns\n\nA campaign with zero ads has no local Ad documents to resolve, so it is invisible to `/v1/ads/tree` and this endpoint would 404. That state comes from the two-step create flow (campaign, then ads via `existingCampaignId`) whenever Meta rejects the ad step.\n\nTo delete such a shell, send `accountId` in the body or the query string. We skip the local lookup entirely and forward the delete to the platform of that connection. `accountId` is ignored when the campaign does have ads.\n\n### Google, TikTok, LinkedIn, Pinterest, Reddit and OpenAI\n\nGoogle, TikTok, LinkedIn, Pinterest and Reddit take the ad account from the synced campaign (OpenAI needs none). When the campaign was never synced (or is synced under several ad accounts), the answer is 409 `invalid_resource_state` on `campaignId` and nothing is deleted: sync the ad account and retry.\n\nBefore deleting on Google, TikTok, LinkedIn, Pinterest, OpenAI or Reddit, Zernio asks the platform whether the campaign still holds ad groups or ads. Google asset groups count; on LinkedIn, campaigns inside the campaign group count.\n\nIf it does, or the platform cannot confirm it has none (a TikTok Smart+ campaign), the answer is 409 `invalid_resource_state` on `campaignId` and nothing is deleted. Either:\n\n- sync the ad account and delete the campaign again so its ads are cancelled with it, or\n- delete them on the platform first.\n\n### X\n\nOn X the ad account comes from the synced campaign, which wins over `adAccountId`. When the campaign was never synced, send `adAccountId` too.\n\nBefore deleting, Zernio asks X whether the campaign still holds undeleted line items (ads not synced yet). If it does, the answer is 409 `invalid_field_value` on `campaignId` and nothing is deleted.\n\n- Line items that hold promoted posts: sync the ad account and retry.\n- Line items without promoted posts never sync, so delete them in X Ads Manager first.\n\n### Reddit Ads\n\nReddit Ads has no delete: the campaign is archived instead (`configured_status` ARCHIVED), which stops delivery for good. Its ad groups and ads keep their own switches but cannot deliver under an archived campaign.\n\n### OpenAI Ads\n\nOpenAI Ads has no delete either: the campaign is archived (state `archive`). Its ad groups and ads are not touched on OpenAI.\n",
         "security": [
           {
             "bearerAuth": []
@@ -177602,7 +178313,8 @@
                       "twitter",
                       "openai",
                       "reddit",
-                      "microsoft"
+                      "microsoft",
+                      "amazon"
                     ]
                   },
                   "accountId": {
@@ -177717,10 +178429,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "List campaign-level negative keywords",
-        "description": "Lists the negative keywords set on a whole Google campaign, separate from ad group negatives.\n\nIt returns the campaign-level negative keywords (`campaign_criterion.negative`), distinct from the ad-group-level negatives under `GET /v1/ads/keywords`.\n\n### Caching and quota\n\nResults are cached for the quota window (not synced to Postgres) and gated by the shared Google Ads operations budget, like every other on-demand Google surface.\n\nThe response carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to the last-good copy instead of a live read.\n\n### Platform\n\nThe platform is always discovered from the campaign itself. A non-Google campaign returns 501 rather than 404, whether or not `platform` was passed.\n",
+        "description": "Lists the negative keywords set on a whole Google campaign, separate from ad group negatives.\n\nIt returns the campaign-level negative keywords (`campaign_criterion.negative`), distinct from the ad-group-level negatives under `GET /v1/ads/keywords`.\n\n### Caching and quota\n\nResults are cached for the quota window (not synced to Postgres) and gated by the shared Google Ads operations budget, like every other on-demand Google surface.\n\nThe response carries `cachedAt` and `stale`, set when a quota-exhausted call falls back to the last-good copy instead of a live read.\n\n### Platform\n\nThe platform is always discovered from the campaign itself. A campaign on another platform than Google or Amazon returns 501 rather than 404, whether or not `platform` was passed.\n\n### Amazon\n\nAmazon Sponsored Products campaigns hold campaign-level negative keywords (exact or phrase), read live with no cache (`cachedAt` null). Sponsored Brands and Sponsored Display campaigns have none and return 422.\n",
         "security": [
           {
             "bearerAuth": []
@@ -177827,10 +178540,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "Replace campaign-level negative keywords",
-        "description": "Replaces a Google campaign's full list of campaign-level negative keywords, or clears it.\n\nReplaces the FULL set of campaign-level negative keywords (C.270). The desired\nlist is diffed against what Google already has, and the difference is applied\nin `create`/`remove` mutates of up to 5,000 operations.\n\n- Creates run first, so a failed batch leaves extra negatives rather than missing ones.\n- When the old and new sets together would pass Google's 10,000 cap, removes run first.\n- Send the same request again to finish a failed replace.\n- Send an empty array to clear every campaign negative.\n\nThe platform is always discovered from the campaign itself; a non-Google\ncampaign returns 501 rather than 404, whether or not `platform` was sent.\n",
+        "description": "Replaces a Google campaign's full list of campaign-level negative keywords, or clears it.\n\nReplaces the FULL set of campaign-level negative keywords (C.270). The desired\nlist is diffed against what Google already has, and the difference is applied\nin `create`/`remove` mutates of up to 5,000 operations.\n\n- Creates run first, so a failed batch leaves extra negatives rather than missing ones.\n- When the old and new sets together would pass Google's 10,000 cap, removes run first.\n- Send the same request again to finish a failed replace.\n- Send an empty array to clear every campaign negative.\n\nThe platform is always discovered from the campaign itself; a campaign on another\nplatform than Google or Amazon returns 501 rather than 404, whether or not `platform` was sent.\n\n### Amazon\n\nOn an Amazon Sponsored Products campaign the missing negatives are created and the rest archived. A negative without `matchType` is exact; broad returns 422.\n",
         "security": [
           {
             "bearerAuth": []
@@ -177961,10 +178675,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "amazon"
         ],
         "summary": "Add or remove campaign-level negative keywords",
-        "description": "Adds and removes single campaign-level negative keywords on a Google campaign without resending the full set.\n\n- `remove` matches by text (any case) and match type, and wins over `add` for the same keyword.\n- Keywords already on the campaign are not added twice; keywords not on it are skipped on remove.\n- Changes go to Google in `create`/`remove` mutates of up to 5,000 operations, like the full replace.\n\nThe platform is always discovered from the campaign itself; a non-Google\ncampaign returns 501 rather than 404, whether or not `platform` was sent.\n",
+        "description": "Adds and removes single campaign-level negative keywords on a Google campaign without resending the full set.\n\n- `remove` matches by text (any case) and match type, and wins over `add` for the same keyword.\n- Keywords already on the campaign are not added twice; keywords not on it are skipped on remove.\n- Changes go to Google in `create`/`remove` mutates of up to 5,000 operations, like the full replace.\n\nThe platform is always discovered from the campaign itself; a campaign on another\nplatform than Google or Amazon returns 501 rather than 404, whether or not `platform` was sent.\n\n### Amazon\n\nOn an Amazon Sponsored Products campaign `add` creates the missing negatives and `remove` archives the matching ones (text and match type, case-insensitive). A negative without `matchType` is exact; broad returns 422.\n",
         "security": [
           {
             "bearerAuth": []
@@ -178110,7 +178825,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Pause or resume many campaigns",
         "description": "Pauses or resumes up to 50 campaigns in one call, with a separate result per campaign so one failure does not block the rest.\n\nEach campaign is updated concurrently, and the response contains a per-campaign result so a single bad row does not fail the whole batch.\n\nEach campaign is read, written and re-read exactly as PUT /v1/ads/campaigns/{campaignId}/status describes: only the campaign's own switch is written, never its ad sets' or ads'.\n\n`updated` / `skipped` count campaigns.\n",
@@ -179258,7 +179974,8 @@
           "x",
           "openai",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "List ad sets",
         "description": "Lists ad sets (ad groups on Google) with their targeting, bidding and optimization settings, optionally for one campaign.\n\nReturns the ad sets (Google ad groups) synced for the connection, optionally filtered by platform and campaignId.\n\nIt reads the `ad_sets` table directly, independent of the `ads` rollup GET /v1/ads/tree uses. So a newly created standalone ad group with no ad yet (POST /v1/ads/ad-sets, Google only) is visible here. It stays invisible in the tree until an ad joins it via `adSetId` on POST /v1/ads/create.\n\n### Paging\n\nRows come newest first (by platform creation time, then id, so pages never overlap), 500 per page unless `limit` says otherwise. `pagination.total` counts every matching ad set and `page` reaches the rest.\n\n### Synced config\n\n**This list is SYNCED, not live** (refreshed by background sync, see below). Each row also carries the ad set's config: `targeting`, `bidStrategy`, `bidAmount`, `optimizationGoal`, `billingEvent`, `promotedObject`.\n\nSo `?accountId=...&adAccountId=act_...` returns the config of every ad set of an ad account in one call, without a `campaignId`.\n\nTo read budgets, status, targeting, promoted object and bid strategy of every campaign and ad set of a Meta ad account LIVE in one call (for example as a pre-write spend gate), use GET /v1/ads/accounts/live instead.\n\n### Status freshness\n\n`status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored.\n\nBackground sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours). Ended or long-paused objects may be refreshed less often. Zernio's own status writes re-read the switches they change.\n\nA change made in the platform's own ads manager therefore shows up here only after the next sync.\n\n### Live reads (`live=true`)\n\nControllers that act on a switch should pass `live=true`. It reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned).\n\n- `live=true` needs a `campaignId` or `adSetId` filter.\n- Each listed ad set's own switch (`platformAdSetStatus`) is read live for the first 20 rows of the page. Later rows keep their synced value with `statusReadAt: null`.\n- To read more ad sets live, page with `limit=20`.\n- Live reads cover TikTok, Meta, Google, OpenAI and Reddit.\n- The rolled-up `status` is not re-derived by a live read.\n\n### TikTok live reads\n\nOn TikTok the same live read also returns the ad group's applied `optimizationGoal` and `billingEvent`, as TikTok's adgroup/get reports them. So you can verify the goal TikTok applied rather than the one you requested.\n\nIt also returns `nativeSettings`: a fixed subset of TikTok's own adgroup/get record for the ad group, with TikTok's own values, read in that same call. It covers budget, budget_mode, schedule, placements, locations, ages, gender, languages, interests, actions, audiences and exclusions, plus the advertiser's currency and timezone.\n\nTikTok's `schedule_start_time` / `schedule_end_time` are UTC wall clocks (\"YYYY-MM-DD HH:MM:SS\", no offset); Ads Manager displays them in `advertiser_timezone`.\n\n`configReadAt` says when it was read. It is null on every row whose native settings were not read now, so never treat a null as a match.\n\nThese are read, not retained create payloads, and are not stored.\n",
@@ -180217,7 +180934,8 @@
           "pinterest",
           "x",
           "openai",
-          "reddit"
+          "reddit",
+          "amazon"
         ],
         "summary": "Update an ad set",
         "description": "Changes an ad set's settings, such as its budget, bid strategy, status or delivery options. At least one updatable field is required.\n\nUse it for:\n\n- ABO budget updates.\n- Ad-set-scoped pause/resume.\n- Bid-strategy edits.\n- Meta value-rule-set attach/detach.\n- Meta beneficiary and payer: `dsaBeneficiary` / `dsaPayor` for the EU, `regionalRegulatedCategories` / `regionalRegulationIdentities` for the regional regimes.\n- Meta-only post-launch delivery settings via `platformSpecificData`.\n\n### Value rule sets (Meta only)\n\nSee `/v1/ads/value-rule-sets`.\n\n- ATTACH or REPLACE: send `valueRuleSetId`. Attachment is driven by the id's presence, so `valueRulesApplied: true` is optional. Sending a different id replaces the previous association; there is no separate replace call.\n- DETACH: send `valueRulesApplied: false` and OMIT `valueRuleSetId`.\n- Sending `valueRulesApplied: false` TOGETHER with `valueRuleSetId` returns 400 `mutually_exclusive_fields`.\n- Eligibility: only ad sets on `LOWEST_COST_WITHOUT_CAP` or `COST_CAP`. Meta rejects the rest server-side.\n- Read back with `GET /v1/ads/ad-sets/{adSetId}?fields=value_rule_set_id`. Meta does not document `value_rules_applied` as a readable ad-set field, so the boolean cannot be read back.\n\nThe `mutually_exclusive_fields` error is deliberate. Meta attaches the rule set whenever `value_rule_set_id` is present, even with `value_rules_applied` false, so echoing stored state while asking to detach would silently keep the bid adjustments live.\n\n### Bid strategy compatibility (per Meta's spec)\n\n- `LOWEST_COST_WITHOUT_CAP`: no `bidAmount`, no `roasAverageFloor`.\n- `LOWEST_COST_WITH_BID_CAP` / `COST_CAP`: `bidAmount` REQUIRED (whole currency units).\n- `LOWEST_COST_WITH_MIN_ROAS`: `roasAverageFloor` REQUIRED (decimal multiplier, e.g. 2.0 = 2.0x ROAS).\n\nMeta only: send `bidAmount` WITHOUT `bidStrategy` to change the cap amount on an ad set whose strategy (its own, or the campaign's under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP, leaving the strategy untouched.\n\nSend `roasAverageFloor` WITHOUT `bidStrategy` the same way to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an incompatible current strategy is a 400.\n\nMeta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only `bidAmount` or `roasAverageFloor` is written on the ad set. A `bidStrategy` equal to the campaign's is accepted; a different one is a 409 (change it with PUT /v1/ads/campaigns/{campaignId}).\n\n### Delivery settings and budget\n\nDelivery settings are validated by Meta against the campaign objective. Incompatible combinations (e.g. a billingEvent the optimization goal doesn't allow) surface as 400s from Meta.\n\nWhen updating `budget` on an ad set whose campaign holds the budget (CBO), the response is 409 with code `invalid_field_value`. Send it to PUT /v1/ads/campaigns/{campaignId} instead.\n\n### Status\n\n`status` behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes. Only the ad set's own switch is written and its ads keep theirs. `statusUpdated` / `statusSkipped` report whether that switch was written or a live read showed it already in place.\n\n### Placements and targeting (Meta only)\n\n`placements` and `targeting` take the same shapes as POST /v1/ads/create. Meta replaces an ad set's targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back.\n\nCustom audiences, geo, age, interest groups and `targeting_automation` you do not send are kept.\n\nLocations are replaced as a set: sending any location field (countries, countryGroups, regions, cities, zips, metros, customLocations, places, neighborhoods) replaces every included location on the ad set, because Meta ORs them together. Resend the ones to keep. Meta's `location_types` and other geo settings Zernio does not model are always kept.\n\n- `placements` replaces the whole placement set.\n- `placements: null` returns the ad set to automatic placements.\n- Omitting it leaves placements as they are.\n\nOther platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with `targeting` where that platform supports it).\n\nThe live read and the `incomeTier` lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged.\n\n### Reddit Ads: budget, name and bidding\n\n- `budget` changes the ad group's amount. An ad group that spends its campaign budget returns 422 (update the campaign instead).\n- Reddit cannot switch a published budget between daily and lifetime, so `budget.type` must match the current one (422 otherwise).\n- `name` renames the ad group.\n\n`bidStrategy` maps to the ad group's `bid_strategy`:\n\n- LOWEST_COST_WITHOUT_CAP: automatic bidding (BIDLESS).\n- LOWEST_COST_WITH_BID_CAP: MANUAL_BIDDING with `bidAmount` as the bid.\n- COST_CAP: MAXIMIZE_VOLUME with `bidAmount` as the cap.\n- LOWEST_COST_WITH_MIN_ROAS: returns 422.\n\n### Reddit Ads: targeting and schedule\n\n`targeting` (same shape as on create; `placements` is a 400) and `startDate` / `endDate` change the ad group with one PATCH to Reddit. Read the current values with GET /v1/ads/ad-sets/{adSetId}/targeting.\n\nZernio reads the live ad group first and replaces only the targeting groups the request names:\n\n- The included locations (`countries`, `regions`, `metros`, `cities`, `zips`) are one list on Reddit, so sending any of them replaces all included locations.\n- Devices, platforms, carriers and automated expansion set in Reddit Ads Manager are kept.\n\nThe schedule is checked against the campaign before anything in the request is written. Each of these returns 400 naming `startDate` or `endDate`:\n\n- The ad group starts before a campaign that starts in the future.\n- The ad group ends after the campaign's end.\n- Under campaign budget optimization, it must end by the campaign end (and has no end date when the campaign has none).\n\nZernio never resends the PATCH on its own, so after a 5xx read the ad group back before retrying.\n",
@@ -180722,10 +181440,11 @@
           "linkedin",
           "pinterest",
           "x",
-          "reddit"
+          "reddit",
+          "amazon"
         ],
         "summary": "Delete an ad set",
-        "description": "Deletes an ad set and its ads while keeping the campaign, archiving it instead on platforms without a hard delete.\n\nLocally, every Ad document under the ad set is marked\n`status: cancelled`.\n\nDelete is soft on platforms that have no hard delete: LinkedIn moves the\ncampaign to `PENDING_DELETION`, Pinterest and Reddit archive the ad group, and X\nsoft-flags the line item. Google removes the ad group. All remain readable\nfor reporting.\n",
+        "description": "Deletes an ad set and its ads while keeping the campaign, archiving it instead on platforms without a hard delete.\n\nLocally, every Ad document under the ad set is marked\n`status: cancelled`.\n\nDelete is soft on platforms that have no hard delete: LinkedIn moves the\ncampaign to `PENDING_DELETION`, Pinterest, Reddit and Amazon archive the ad group (permanent on Amazon), and X\nsoft-flags the line item. Google removes the ad group. All remain readable\nfor reporting.\n",
         "security": [
           {
             "bearerAuth": []
@@ -180785,10 +181504,11 @@
           "Ad Campaigns"
         ],
         "x-platforms": [
-          "reddit"
+          "reddit",
+          "amazon"
         ],
-        "summary": "Read a Reddit ad group's targeting and schedule",
-        "description": "Shows a Reddit ad group's live targeting and schedule in the same shape PUT /v1/ads/ad-sets/{adSetId} takes, so you can prefill an editor.\n\nIt is read live from Reddit on every call. Reddit only; every other platform returns 501.\n\n### How fields come back\n\n- Location and interest names are resolved with Reddit's targeting taxonomy. When Reddit cannot resolve them the ids stand in as names, and a location that is not a two-letter country is listed under `regions`.\n- Excluded DMAs are listed under `excludedLocations.regions`, since excluded locations have no metro list.\n- Languages come back as lowercase ISO 639-1 codes.\n- Targeting Zernio cannot edit (devices, platforms, carriers, automated expansion) is left out and kept on every edit.\n",
+        "summary": "Read an ad group's targeting and schedule",
+        "description": "Shows a Reddit ad group's live targeting and schedule in the same shape PUT /v1/ads/ad-sets/{adSetId} takes, so you can prefill an editor.\n\nIt is read live from the platform on every call. Reddit and Amazon only; every other platform returns 501.\n\n### How fields come back\n\n- Location and interest names are resolved with Reddit's targeting taxonomy. When Reddit cannot resolve them the ids stand in as names, and a location that is not a two-letter country is listed under `regions`.\n- Excluded DMAs are listed under `excludedLocations.regions`, since excluded locations have no metro list.\n- Languages come back as lowercase ISO 639-1 codes.\n- Targeting Zernio cannot edit (devices, platforms, carriers, automated expansion) is left out and kept on every edit.\n\n### Amazon\n\nOn Amazon it reads the ad group's live targets and negative targets in Amazon's own expression shape: `targeting` is `{ product, targets, negativeTargets }`, each target with `targetId`, `state`, `expressionType`, `expression` and `bid`. Keywords are read through `GET /v1/ads/keywords`. Editing Amazon targets is not available yet.\n",
         "security": [
           {
             "bearerAuth": []
@@ -180810,7 +181530,8 @@
             "schema": {
               "type": "string",
               "enum": [
-                "reddit"
+                "reddit",
+                "amazon"
               ]
             },
             "description": "Disambiguates when the same adSetId string exists on more than one connected platform."
@@ -180864,7 +181585,7 @@
             "description": "Ad set not found"
           },
           "501": {
-            "description": "The platform has no ad set targeting read (every platform but Reddit)"
+            "description": "The platform has no ad set targeting read (every platform but Reddit and Amazon)"
           }
         }
       }
@@ -180885,7 +181606,8 @@
           "x",
           "openai",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Pause or resume a single ad set",
         "description": "Pauses or resumes one ad set without touching its campaign, its sibling ad sets or the switches of its ads.\n\nIt is a thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status.\n\n### What is written\n\nIt writes the ad set's own on/off switch and nothing else, on every platform:\n\n- Meta: `configured_status`\n- TikTok: ad group `operation_status`\n- Google: ad group status\n- LinkedIn: campaign\n- Pinterest: ad group\n- X: line item\n- ChatGPT (OpenAI): ad group\n- Reddit: ad group `configured_status`\n\nIts ads keep their own switches: an ad you paused individually stays paused when the ad set resumes.\n\nThe campaign above is not touched either, so an ad set resumed under a paused campaign reads `status: paused` until the campaign is resumed too. See the Status model in the Ad Campaigns tag.\n\n### Live read, then write\n\nThe ad set's switch is read from the platform first.\n\n- When that live read shows it already in the requested state, nothing is written (`updated: 0`, `skipped: 1`, with the reason).\n- In that case, when the ad set delivers in that state but some of its ads are stored in the other state, those ads (up to 20, at most once every 10 minutes per ad set) are re-read and stored.\n- Otherwise the switch is written (`updated: 1`), read back and stored. The delivery status of its ads (up to 20) is re-read and stored, so an immediate GET returns what the platform now reports.\n\nA stored switch never skips a write, and when the platform cannot be read the write always goes out.\n\nOn Meta the check reads the ad set's own switch (`status`). So a repeated request skips even while `platformAdSetStatus` reads `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`. On Reddit `platformAdSetStatus` is the ad group's own switch (`configured_status`), so a skipped request returns it as already in the requested state.\n",
@@ -180938,7 +181660,8 @@
                       "twitter",
                       "openai",
                       "reddit",
-                      "microsoft"
+                      "microsoft",
+                      "amazon"
                     ]
                   }
                 }
@@ -181047,7 +181770,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Get campaign tree",
         "description": "Shows your campaigns with their ad sets and ads nested inside, with spend and results rolled up at every level.\n\n### How it aggregates\n\nUses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels.\n\n- Pagination is at the campaign level.\n- Ads without a campaign or ad set ID are grouped into synthetic \"Ungrouped\" buckets.\n- If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.\n\n### History\n\nWhen an ad account connects, Zernio imports its last 90 days of metrics, so the metrics hold no data for days before that.\n\nWhen `accountId` or `adAccountId` resolves to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part.\n\nThe older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. A request scoped to no Meta account never returns `202`.\n\n### Daily breakdown\n\nPass `timeIncrement=1` to also get a daily breakdown: each node gains a `daily[]` array of per-day metrics (same fields as the aggregated `metrics`) in the same call.\n\nUse `dailyLevel` (`campaign` default, or `adset` / `ad`) to choose which levels carry the series. This replaces calling the tree once per day for per-campaign daily trends.\n\n### Deleted objects stay in the tree\n\nDeleting an ad or a campaign is a soft delete: the Ad documents move to `status: cancelled` and are kept indefinitely. Their historical spend still counts toward the metrics of any date range they fall in. There is no pruning job and no retention window.\n\nPass `status=not_deleted` if your view should hide them, but do that after reading the totals, not before.\n",
@@ -181099,7 +181823,8 @@
                 "twitter",
                 "openai",
                 "reddit",
-                "microsoft"
+                "microsoft",
+                "amazon"
               ]
             }
           },
@@ -181377,7 +182102,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Rank ads by performance",
         "description": "Returns an ads account's ads ranked by spend, impressions, clicks, results or ROAS over a date range, each with its creative (type, thumbnail, headline, body, link) and campaign.\n\nUse it to see which creatives perform best, and from `frequency` which ones the same people keep seeing. `accountId` is sibling-expanded like `/v1/ads/timeline`.\n\nMoney is ranked by its raw amount, so pass `adAccountId` when the connection's ad accounts bill in different currencies.\n\nA Meta range older than the imported history answers `202` with `backfillPending: true` and the covered part; repeat the request until it returns 200.\n",
@@ -181439,7 +182165,8 @@
                 "twitter",
                 "openai",
                 "reddit",
-                "microsoft"
+                "microsoft",
+                "amazon"
               ]
             },
             "description": "Restrict to one platform."
@@ -181550,7 +182277,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Get daily account metrics",
         "description": "Returns an ads account's spend, results and other metrics day by day, ready for a daily performance chart.\n\nThe result is a single time series of daily aggregate metrics across all ads in a SocialAccount: one row per calendar day and currency in the requested range (one row per day unless the account's ad accounts bill in different currencies).\n\nUse this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling `/v1/ads/tree` once per day.\n\n### Parameters\n\n- `accountId` is required. The lookup is sibling-expanded, so passing the `metaads` ID also includes ads under the linked `facebook` / `instagram` posting account (and vice-versa), the same convention as `/v1/ads/tree` and `/v1/ads`.\n- Without `adAccountId` the timeline sums only the ad accounts the connection reaches: its `scopedAdAccountIds` when it selects some, every reachable one otherwise.\n- Date range defaults to the last 90 days. Capped at 730 days.\n- With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day).\n\n### History\n\nWhen an ad account connects, Zernio imports its last 90 days of metrics, so `rows` hold no data for days before that.\n\nWhen `accountId` or `adAccountId` resolves to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part. The older days (up to 730 days back) are imported in the background; repeat the request until it returns 200.\n\nOther platforms never return `202`.\n",
@@ -181610,7 +182338,8 @@
                 "twitter",
                 "openai",
                 "reddit",
-                "microsoft"
+                "microsoft",
+                "amazon"
               ]
             },
             "description": "Restrict to one platform."
@@ -181705,7 +182434,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Get ad details",
         "description": "Shows one ad with its creative, targeting, status and performance metrics.\n\n### Google Search ads\n\nGoogle Search ads include current creative.headlines, creative.descriptions, creative.finalUrls and, when set, creative.path1 and creative.path2, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read.\n\nRSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.\n\n### Accepted ad ids\n\nThe `{adId}` path segment accepts any identifier dialect Zernio indexes for the ad:\n\n- the Zernio internal `_id` (24-char hex)\n- Meta's numeric `platformAdId` (the value shipped in `comment.received` webhooks as `comment.ad.id`)\n- the creative's `effective_object_story_id` (`{pageId}_{postId}` shape, Facebook side)\n- the creative's `effective_instagram_media_id` (Instagram side)\n- an Instagram media id an ad comment arrived on (`comment.platformPostId` of a `comment.received` carrying `comment.ad.id`), including the extra media Meta creates for placement variants\n\nAny of these resolve to the same ad, so the caller doesn't need a translation step.\n\n`creative.creativeFeatures` holds the stored requested settings, which do not confirm platform application.\n\n### Facebook ad dark posts\n\nMeta gives an ad with per-placement assets one extra unpublished post per placement, and comments land on it. Meta exposes no link from that post to its ad.\n\n- When exactly one ad on the Page, created before the dark post, carries the same copy as the post, the dark post id resolves to that ad.\n- Otherwise, when the id is a dark post Zernio has seen comments on and its Page is connected, the response is `ad: null` plus `darkPost`. It carries the Meta Ads account and the ad accounts running ads for that Page.\n\nRead its comments with GET /v1/ads/{adId}/comments using the same id.\n\n### Status freshness\n\n`status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus` and `platformCampaignStatus` are the values Zernio last stored.\n\nBackground sync refreshes them, typically within 15 to 60 minutes (Google up to about 3 hours), and ended or long-paused objects may be refreshed less often.\n\nZernio's own status writes re-read the switches they change. A change made in the platform's own ads manager therefore shows up here only after the next sync.\n\nControllers that act on a switch should pass `live=true`. It reads the switches from the platform now, stores them, and returns `statusReadAt` (null when the read failed and the stored values were returned).\n\nWith `live=true` these are read live:\n\n- the ad's own switch (`configuredStatus`)\n- its delivery status (`status`, `platformStatus`)\n- its ad set and campaign switches (`platformAdSetStatus`, `platformCampaignStatus`)\n- on TikTok, the creative TikTok holds now: `creative.body` (ad text), `creative.callToAction`, `creative.linkUrl` (landing page), `creative.videoId`, `creative.adFormat`, `creative.identityId`, `creative.identityType`, `creative.identityAuthorizedBcId` and, on a Spark ad, `creative.tiktokItemId`.\n\nThe TikTok creative comes from the same TikTok call as the switches. It replaces the stored values in the response only and is never stored. A key TikTok leaves empty keeps its stored value.\n\n### Meta ads that are not synced yet\n\nPass `accountId` with a Meta `platformAdId` to read an ad Zernio has not synced (for example one created in Ads Manager on an ad account reached only through a Facebook connection).\n\nThe ad is read live from Meta and mapped exactly like a synced row: name, `status`, `platformStatus`, `configuredStatus`, `platformAdSetId`, `platformCampaignId`, campaign and ad set names, budgets, and `creative` with its `id`, body, link, image and video.\n\nIt comes back with `synced: false`, no `id` (it has no Zernio row) and `statusReadAt` set to the time of the read. Synced ads answer `synced: true`.\n\nOnly a numeric id takes this path, so dark post ids (`{pageId}_{postId}`) keep the dark post lookup above.\n",
@@ -181887,7 +182617,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Update ad",
         "description": "Changes an ad's status, budget, targeting or creative and applies the change on the platform.\n\nPatch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.\n\n### Per-platform support\n\n- **Meta** (Facebook + Instagram): all fields supported.\n- **TikTok**: status, budget, `name` (renames the ad), targeting (via `/v2/adgroup/update/`), and creative (via `/v2/ad/update/` patch-style: `headline` is ignored, `body` becomes `ad_text`).\n- **Google**: see the Google sections below.\n- **LinkedIn**: status, budget, targeting and creative (details below).\n- **Pinterest / X / OpenAI Ads**: status + budget only. Sending `targeting` or `creative` returns 501 with code `feature_not_available`. OpenAI Ads budget is the campaign's spend cap, daily or lifetime (see `budget.type` below).\n- **Reddit Ads**: status, budget, `name` (renames the ad) and targeting (details below).\n\n### Google\n\nSupported: status, budget, and these targeting edits:\n\n- KEYWORD edits via `targeting.keywords` / `targeting.negativeKeywords`\n- DEVICE bid adjustments via `targeting.devices`\n- LOCATION edits via `targeting.locations` (or the equivalent top-level `targeting.countries` / `regions` / `cities` / `zips` / `metros`)\n- LANGUAGE edits via `targeting.languages`\n\nEach list you send becomes the FULL new set of its kind: criteria not in the list are removed. Devices are the exception: Google cannot remove them, so they are switched off with a bid modifier of 0 instead. A kind left out is untouched.\n\nAny other `targeting` field returns 400: Google cannot mutate it post-create without recreating the campaign.\n\nCreative edits are dispatched on the ad's `advertisingChannelType`. Every supported field replaces a whole set; a field you omit is preserved.\n\n- **Search**: top-level `headlines`, `descriptions`, `finalUrls`, `path1` and `path2`. Use 3-15 headlines (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it; omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text. The legacy creative fields remain unsupported.\n- **Display**: top-level `headlines` (1-5, no pinnedField, display ads have no pinned positions), `descriptions` (1-5) and `finalUrls`, plus `creative.longHeadline`, `creative.businessName`, `creative.imageUrl` (the landscape marketing image) and `creative.squareImageUrl`.\n- **Performance Max**: top-level `assetGroup`, which swaps asset roles on the ad's asset group. The other creative fields return 422 for this channel, and `assetGroup` returns 422 on any other channel.\n- **Demand Gen**: top-level `demandGen` (see GoogleDemandGenUpdate): creative, channel and audience changes in one atomic Google request. The other creative fields return 422 for this channel.\n\nFor Display, each image URL is uploaded as a new Google asset and the ad is pointed at it.\n\nGoogle assets are immutable, so the previous asset stays in the account's asset library. A new landscape image also updates `creative.assetResourceName` to the new asset, and each replaced image updates its own role in `creative.assets`.\n\nFor Demand Gen, `targeting` takes locations, languages, `locationTargetingType` and `devices`. Locations and languages are written to the ad's ad group, which Demand Gen requires, so they apply to every ad in that ad group. Campaigns migrated from Discovery that still target on the campaign keep being written there.\n\n### LinkedIn\n\n- **Status and budget**: supported.\n- **Targeting**: countries or regions, excludedLocations (countries), the B2B facets, and audience segments. Applied to the LinkedIn Campaign via PARTIAL_UPDATE, and REPLACES the campaign's entire targetingCriteria, not a merge.\n- **Creative**: uploads new media, creates a replacement inline creative on the same campaign, and removes the old one (it is deleted, the ad's `platformAdId` and `creative.creativeId` move to the new creative, and the new creative keeps the old one's held-off state: `DRAFT` stays `DRAFT`).\n- **Name**: updating `name` returns 400 (LinkedIn does not support renaming an ad).\n\n### Reddit Ads\n\n- `budget` goes to the ad's ad group, or to its campaign when the ad group spends a campaign budget. It keeps its daily or lifetime type (422 to switch).\n- `targeting` REPLACES the ad group's whole targeting (geo, communities, conversation keywords, interests, audiences, languages, gender), so it applies to every ad in the ad group.\n- `creative` returns 501: a Reddit ad runs a post, so create a new ad with the new creative instead.\n\n### Google location and language replacement\n\nLocations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad's campaign. Send the complete list you want to keep.\n\nZernio diffs it against the campaign's live criteria and sends the removes and the creates in ONE `googleAds:mutate`, so the campaign is never left with a half-applied set. Criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched.\n\n- An empty location list returns 400. A Google campaign with no location criteria targets every country, which is never what \"remove my locations\" means, so omit the field instead.\n- Send either `targeting.locations` or the top-level geo fields, not both: mixing them returns 400.\n\n### Google radius targeting\n\n`customLocations` is editable and is replaced the same way, but as its OWN set. Google models a place (LOCATION) and a point plus radius (PROXIMITY) as different criterion types, so the two are independent:\n\n- Sending `customLocations` replaces every radius and leaves the cities and countries alone.\n- Sending places replaces those and leaves the radius alone.\n- Send `customLocations: []` to drop radius targeting entirely.\n\nA circle you re-send unchanged keeps its criterion ID rather than being removed and recreated.\n\n### Google keyword replacement\n\nThese edits affect the ad's entire ad group, including sibling ads. Positive (`targeting.keywords`) and negative (`targeting.negativeKeywords`) sets are independent: omit a field to leave that set unchanged, or send `[]` to remove every keyword of that kind.\n\nZernio compares each supplied set with Google's live criteria by case-insensitive keyword text and match type. Text comparison does not trim whitespace.\n\nA matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally.\n\nA bare string or an object without `matchType` means `broad`, not the existing criterion's match type. For example, resending an existing `{ \"text\": \"plumber\", \"matchType\": \"exact\" }` preserves it; sending `\"plumber\"` instead removes that EXACT criterion and requests a BROAD one.\n\nChanging text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria's bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.\n\n### Other keyword endpoints\n\n- To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords).\n- Use `PATCH /v1/ads/keywords/{keywordId}` to pause/enable one keyword.\n- Use `DELETE /v1/ads/keywords/{keywordId}` to remove it.\n",
@@ -182559,10 +183290,11 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Cancel an ad",
-        "description": "Deletes an ad on the platform while keeping its history, and removes empty parents only when they were created through this API.\n\nThe ad is deleted on the platform and marked as cancelled in the database. It is preserved for history.\n\n- OpenAI Ads has no delete API: the ad is archived instead (a terminal state, the closest equivalent).\n- Reddit Ads has no delete either: the ad is archived (`configured_status` ARCHIVED).\n\nTo delete a whole campaign on purpose use `DELETE /v1/ads/campaigns/{campaignId}`.\n\n### Parents\n\nOnly the ad is deleted; a campaign or ad set is never deleted while it still holds another ad. Parents created outside Zernio, and the parents of an ad imported from the platform, are always kept.\n\n### Meta\n\nWhen the ad set and campaign were created by Zernio (by `POST /v1/ads/create` or `POST /v1/ads/boost`) and Meta lists no other ad in the ad set (archived ads count), the emptied ad set is deleted too. The campaign follows once it holds no other ad set.\n\n### LinkedIn\n\nThe ad is a creative inside a campaign inside a campaign group.\n\n- The creative is always removed.\n- The campaign is removed only when Zernio created it and LinkedIn lists no other creative in it that is not archived, canceled or deleted.\n- The campaign group is removed only when Zernio created it and LinkedIn lists no other campaign in it that is not canceled or deleted (archived campaigns count).\n\nIf the creative itself cannot be removed the request fails and no parent is touched.\n\n### X\n\nThe ad is a promoted post inside a line item inside a campaign.\n\n- The promoted post is always removed.\n- The line item is removed only when Zernio created it (by `POST /v1/ads/create` or `POST /v1/ads/boost`) and X lists no other undeleted promoted post in it.\n- The campaign is removed only when Zernio created it and X lists no other undeleted line item in it.\n\nIf X refuses the promoted post delete the request fails and no parent is touched.\n",
+        "description": "Deletes an ad on the platform while keeping its history, and removes empty parents only when they were created through this API.\n\nThe ad is deleted on the platform and marked as cancelled in the database. It is preserved for history.\n\n- OpenAI Ads has no delete API: the ad is archived instead (a terminal state, the closest equivalent).\n- Reddit Ads has no delete either: the ad is archived (`configured_status` ARCHIVED).\n\n- Amazon Ads archives the ad (state ARCHIVED). Archiving is permanent.\n\nTo delete a whole campaign on purpose use `DELETE /v1/ads/campaigns/{campaignId}`.\n\n### Parents\n\nOnly the ad is deleted; a campaign or ad set is never deleted while it still holds another ad. Parents created outside Zernio, and the parents of an ad imported from the platform, are always kept.\n\n### Meta\n\nWhen the ad set and campaign were created by Zernio (by `POST /v1/ads/create` or `POST /v1/ads/boost`) and Meta lists no other ad in the ad set (archived ads count), the emptied ad set is deleted too. The campaign follows once it holds no other ad set.\n\n### LinkedIn\n\nThe ad is a creative inside a campaign inside a campaign group.\n\n- The creative is always removed.\n- The campaign is removed only when Zernio created it and LinkedIn lists no other creative in it that is not archived, canceled or deleted.\n- The campaign group is removed only when Zernio created it and LinkedIn lists no other campaign in it that is not canceled or deleted (archived campaigns count).\n\nIf the creative itself cannot be removed the request fails and no parent is touched.\n\n### X\n\nThe ad is a promoted post inside a line item inside a campaign.\n\n- The promoted post is always removed.\n- The line item is removed only when Zernio created it (by `POST /v1/ads/create` or `POST /v1/ads/boost`) and X lists no other undeleted promoted post in it.\n- The campaign is removed only when Zernio created it and X lists no other undeleted line item in it.\n\nIf X refuses the promoted post delete the request fails and no parent is touched.\n",
         "security": [
           {
             "bearerAuth": []
@@ -182628,7 +183360,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Pause or resume a single ad",
         "description": "Pauses or resumes a single ad without touching its ad set, campaign or sibling ads.\n\n### What it flips\n\nAd-scoped pause/resume flips ONLY this ad's own switch, never its parent ad set or campaign, so sibling ads keep running:\n\n- Meta `configured_status`\n- TikTok `operation_status`\n- Google ad group ad status\n- LinkedIn creative\n- Pinterest ad\n- Reddit ad `configured_status`\n\nX is the exception: its smallest switch is the line item.\n\nIt is a thin wrapper over the `status` field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.\n\n### Own switch vs delivery status\n\nThe ad's own switch is independent of its delivery status.\n\n- An ad paused only because its campaign or ad set is off (`status: paused`, `configuredStatus: ACTIVE`) can still be switched off here.\n- Switching an ad on under a paused campaign leaves it `paused` until the campaign is resumed.\n\nAfter the write the switch is read back from the platform and returned as `configuredStatus`, together with the resulting delivery `status`.\n\n### Identifiers\n\n`{adId}` accepts the same identifier dialects as GET/PUT /v1/ads/{adId}: Zernio hex `_id`, Meta numeric `platformAdId`, or the creative's effective story/media IDs.\n\n`platform` is inferred from the ad, so it's not required in the body.\n\n### Skips\n\nThese requests are skipped:\n\n- Ads in terminal statuses (rejected, completed, cancelled).\n- A request whose target already matches the ad's own switch as read LIVE from the platform. A stored value is never trusted alone, since the switch may have been changed in the platform's own UI.\n\nA skip also returns that live read. The rolled-up `status` never decides a skip.\n",
@@ -184024,7 +184757,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Get campaign analytics",
         "description": "Returns a campaign's performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.\n\nOne call returns analytics for a whole campaign:\n\n- summary metrics\n- a daily timeline over the requested date range (summed across the campaign's ads)\n- optional demographic breakdowns\n\nBreakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out). So an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads.\n\n`campaignId` is the platform campaign id; pass `platform` when a campaign id could be ambiguous across platforms.\n\nIf no date range is provided, it defaults to the last 90 days. The date range is capped at 730 days max.\n\n### History\n\nWhen an ad account connects, Zernio imports its last 90 days of metrics. `summary` and `daily` come from those synced metrics, so they hold no data for days before that.\n\nBreakdowns and Google's impression share are read live from the platform over the requested range, so they are not limited by the import.\n\nWhen the campaign belongs to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part. The older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return `202`.\n\n### Google impression share\n\nGoogle adds these under analytics.summary for the requested inclusive range:\n\n- searchImpressionShare\n- searchBudgetLostImpressionShare\n- searchRankLostImpressionShare\n- searchTopImpressionShare\n- searchAbsoluteTopImpressionShare\n\nThese ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics.\n",
@@ -185910,7 +186644,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Get ad analytics",
         "description": "Returns one ad's performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.\n\nIt includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.\n\n### History\n\nWhen an ad account connects, Zernio imports its last 90 days of metrics.\n\n- `summary` and `daily` come from those synced metrics, so they hold no data for days before that.\n- Breakdowns are read live from the platform over the requested range, so they are not limited by the import.\n\nWhen the ad belongs to a Meta ad account, a range reaching further back answers `202` with `backfillPending: true` and the covered part, while the older days (up to 730 days back) are imported in the background. Repeat the request until it returns 200.\n\nOther platforms never return `202`.\n\nThe newer way to read this is `GET /v1/metrics/ads`, which reads up to 100 ads in one request, or one ad day by day with `granularity=day`.\n",
@@ -197360,7 +198095,8 @@
           "pinterest",
           "x",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "List ad accounts",
         "description": "Lists the ad accounts a connection can manage, such as Meta ad accounts, TikTok advertisers or Google Ads customers.\n\nReturns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).\n\n### Meta\n\nMeta business-login accounts use their own system-user token.\n\nFresh Meta discovery includes businessId and businessName from the owning Business Manager when available. Cached entries gain these fields after the next discovery refresh.\n\n### TikTok agencies\n\n1. Zernio enumerates every advertiser under every Business Center the token can read (paginated server-side).\n2. It then chunks the lookup against TikTok's `/advertiser/info/` endpoint (which has a per-call cap of ≤100 IDs).\n\nSolo advertisers without a BC fall back to the OAuth-time `advertiser_ids` list. The result is cached for 1h on the SocialAccount and lazy-refreshed on first call after expiry.\n\n### Google Ads\n\nResponds `429` when Google's API quota is temporarily exhausted (instead of an empty list). Retry after a delay.\n\n### Reddit Ads (`redditads`)\n\nEvery Reddit ad account the connected Reddit user can reach, with `businessId`, `approvalStatus` (Reddit's `admin_approval`), `timezone` and `type`.\n\n### Selection (`selected`)\n\nEvery listed ad account carries `selected`: whether it is in the connection's ad-account selection. That is the ad accounts picked at connect time or in the dashboard picker, the ones Zernio syncs. On a connection without a selection every ad account is `selected: true`.\n\nWrites through /v1/ads endpoints to an ad account with `selected: false` answer `403 ad_account_not_selected`. Add it to the selection first (dashboard picker, or `GET /v1/connect/{platform}/ads` with `adAccountIds`).\n\nThe list includes unselected ad accounts by default, except on a Meta or TikTok connection with a selection, which lists them only with `live=true`. Pass `inScopeOnly=true` to get only the ones this connection can use.\n",
@@ -199700,10 +200436,11 @@
           "x",
           "openai",
           "reddit",
-          "microsoft"
+          "microsoft",
+          "amazon"
         ],
         "summary": "Create standalone ad",
-        "description": "Creates a paid ad with your own creative, building the campaign and ad set it needs or adding it to existing ones.\n\nWorks across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads), Reddit Ads and Microsoft Ads. Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.\n\n### Request shapes\n\nThe body selects one of these mutually exclusive shapes:\n\n- Legacy single-creative shape (all platforms, the default).\n- Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting.\n- Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn).\n\nOn LinkedIn, adSetId in the attach shape is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted. `goal` may be omitted too (taken from the Campaign's objective), and the created ad's `targeting` echoes the Campaign's audience.\n\n### Google Performance Max\n\nSet `campaignType: \"pmax\"` and supply `assetGroup` with text, images by role, business name and finalUrl. This creates a daily budget, PAUSED campaign and asset group atomically.\n\n- `validateOnly: true` validates the complete request with Google without creating or persisting resources.\n- Read assets with `GET /v1/ads/campaigns/{campaignId}/asset-groups`.\n- The logo is required; video is optional via `assetGroup.youtubeVideoId`.\n- Brand guidelines are disabled at creation.\n- All supplied asset links are validated together against Google's minimum asset requirements.\n- PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes.\n- Geo and language targeting are supported; omitted geo targets all locations.\n- PMax does not require top-level goal, headline, body or linkUrl.\n- `merchantCenter` links the campaign to a Merchant Center feed and adds one all-products listing group to the asset group. Google rejects the whole create (nothing is created) when the ad account is not linked to that Merchant Center.\n\nSupported bidding:\n\n- Omitted or LOWEST_COST_WITHOUT_CAP: Maximize Conversions.\n- COST_CAP plus bidAmount: target CPA.\n- LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor: Maximize Conversion Value with target ROAS.\n\n### Google Demand Gen\n\nSet `campaignType: \"demand_gen\"` and supply `demandGen`. One atomic request creates a daily budget, PAUSED campaign, one ad group and one ad. The ad is:\n\n- a multi-asset image ad by default;\n- a video responsive ad when `demandGen.youtubeVideoIds` is sent;\n- a carousel ad (2 to 10 cards) when `demandGen.carouselCards` is sent.\n\nTargeting and validation:\n\n- Geo (countries, regions, cities, zips, metros) and languages go on the ad group, as Demand Gen requires.\n- `demandGen.channels` sets the ad group's channel controls.\n- `demandGen.audience` builds a Google Audience (user lists, interests, custom audiences, age ranges, genders) attached to the ad group, or `demandGen.audienceId` attaches an existing one.\n- `validateOnly: true` validates everything with Google without creating resources.\n\nSupported bidding:\n\n- Omitted or LOWEST_COST_WITHOUT_CAP: Maximize Conversions.\n- COST_CAP plus bidAmount: target CPA.\n- LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor: target ROAS.\n- LOWEST_COST_WITH_BID_CAP plus bidAmount: target CPC.\n\nThe created ad carries the native `platformCampaignId`, `platformAdSetId` (ad group) and `platformAdId`. After creation:\n\n- Activate with PUT /v1/ads/campaigns/{campaignId}/status.\n- Edit budget, bidding and name with the regular campaign endpoints.\n- Edit creative, channels, audience and ad group targeting with PUT /v1/ads/{adId} (`demandGen`, `targeting`).\n\nTo grow an existing Demand Gen campaign, send one of these (neither takes budget, bidding or schedule fields; both support `validateOnly`):\n\n- `existingCampaignId`: adds a PAUSED ad group, with its own geo, languages, channels and audience, plus its ad.\n- `adSetId`: adds a PAUSED ad to that ad group.\n\n### Meta creative options\n\nMeta accepts `creativeFeatures` on the single and attach shapes and as defaults for `creatives[]`; an item replaces the whole feature map.\n\n`promotion` is not supported on any shape, and any object is rejected with 400.\n\nReusing `existingCreativeId` uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.\n\n### Meta required fields per shape\n\nA missing field is a 400 naming it in `param`.\n\n- Every shape that builds a new ad set (no `adSetId`, `existingCampaignId` or `buyingType: \"RESERVED\"`): `budgetAmount`. `budgetType` defaults to daily, and a lifetime budget without `endDate` ends 7 days after it starts (see `appliedDefaults`).\n- Single image or video (the default), also with `adSetId`: `headline` (max 255), `body`, `callToAction`, and exactly one of `imageUrl` / `video`. A catalog template creative takes none, and ignores and does not upload any sent.\n- Single image or video also needs `linkUrl`, unless the goal is `lead_generation` or `page_visits` or `leadGenFormId` is set.\n- `bodies[]` / `headlines[]` text variations: `body`, one list with 2+ items, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.\n- `placementAssets`: `headline`, `body`, `callToAction`, and `linkUrl` with the same exemptions as the single shape; the media comes from `placementAssets`.\n- `carouselCards`, also with `adSetId`: `body`, `callToAction`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required. Each card takes `imageUrl` or `video`.\n- `creatives[]`: per entry `headline`, `body`, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation`. Top-level `body` is not required.\n- `dynamicCreative`: `imageUrls` or `videoUrls`, `callToActionTypes`, and `linkUrls` unless the goal is `lead_generation`. Top-level `body` is not required.\n- `existingCreativeId`: no creative fields.\n- Goal `page_likes`: `body` only.\n- Goal `lead_generation` always needs `leadGenFormId`, except with `existingCreativeId`.\n\n### Meta activation\n\nMeta builds the campaign, ad set and ads PAUSED and switches the requested levels to ACTIVE as the last step.\n\nWhen Meta refuses that switch, or the connection drops, after Zernio's retries, the request still answers 201 and nothing is deleted:\n\n- The refused level and every level below it stay PAUSED.\n- Levels above it that already went ACTIVE stay ACTIVE.\n- The ad comes back with `status: paused` and its `configuredStatus` as read back from Meta.\n- A switch Meta applied although its answer was lost counts as ACTIVE, since Zernio reads the status back first.\n\n`message` says not everything is ACTIVE. `warnings` carries one entry starting with `activation_failed:` that quotes Meta's code, subcode and message, and names what was kept PAUSED and what was switched ACTIVE.\n\nThat warning also lists the calls that switch the PAUSED ones on later, in this order, with status `active`:\n\n1. PUT /v1/ads/campaigns/{campaignId}/status\n2. PUT /v1/ads/ad-sets/{adSetId}/status\n3. PUT /v1/ads/{adId}/status\n\nOn the `creatives[]` shape, only the ads Meta refused stay PAUSED when the campaign and ad set went through. A Reach and Frequency ad is created ACTIVE and is never listed as kept PAUSED. With an `Idempotency-Key`, a retry replays this 201.\n\n### LinkedIn\n\nLinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \"dark post\" authored by a Company Page (see `organizationId`).\n\n- Supported goals: engagement, traffic, awareness, and video_views.\n- Video ads use the `video` field; video_views requires a video.\n- Traffic ads require `linkUrl`.\n\n### Reddit Ads\n\nUse the `accountId` of a `redditads` connection and an `adAccountId` like `a2_abc123`. Zernio creates a campaign, an ad group carrying the budget, schedule, targeting and pixel, and an ad running a new promoted post. The post is authored by the ad account's first profile (422 when it has none).\n\nThe creative format follows the body:\n\n- `carouselCards`: a carousel.\n- `video`: a video ad.\n- `imageUrl`: an image ad.\n- None of them: a text ad, which cannot link out (`linkUrl` is a 400 there; `body` is required).\n\n`creatives[]` and `validateOnly` are refused. `adSetId` adds the ad, in any of these formats, to an existing ad group, and `existingCampaignId` creates a new ad group in an existing campaign.\n\nReddit throttling surfaces as 429 `rate_limited` with `platform: reddit`; retry after a delay. To promote an existing Reddit post, use POST /v1/ads/boost.\n\n### Microsoft Ads\n\nUse the `accountId` of a `microsoftads` connection and its numeric `adAccountId`. Zernio creates a Search campaign carrying the daily budget and the countries, an ad group carrying the schedule, a responsive search ad and the `keywords`.\n\n- `goal` is `traffic`; `budgetType` must be `daily`.\n- `headline`, `body` and `linkUrl` are required. `additionalHeadlines` and `additionalDescriptions` complete the ad to 3 to 15 headlines (30 characters) and 2 to 4 descriptions (90 characters); missing ones are filled from `name` and the link's host.\n- `countries` (or `targeting.countries`) is required; no other targeting field applies.\n- Bid fields, `negativeKeywords`, `campaignNegativeKeywords`, sitelinks, callouts, structured snippets, `businessName`, `longHeadline` and a `campaignType` other than `search` return 422.\n\nWithout `status`, every level is switched on and the campaign spends once Microsoft approves the ad: send `status: PAUSED` to create it paused. A failed step deletes the campaign the call created.\n\n### Idempotency\n\nThis endpoint is not idempotent at the platform level: a blind retry creates a second campaign/ad set/ad. Send an `Idempotency-Key` header to make retries safe.\n\n- The first request with a given key creates the ad and we store the response.\n- A retry with the same key replays that exact response (with `Idempotent-Replayed: true`) instead of creating duplicates.\n- Reusing a key with a different body returns 422.\n- A key whose first request is still in flight returns 409 (retry after a short backoff).\n- If the first request is cut off mid-create (for example by a function timeout), its key can stay in progress and keep returning 409 until it expires. Use a new key to retry sooner, after checking whether the ad was created.\n- Keys are scoped to your credential and expire after 24h.\n",
+        "description": "Creates a paid ad with your own creative, building the campaign and ad set it needs or adding it to existing ones.\n\nWorks across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads), Reddit Ads, Microsoft Ads and Amazon Ads (Sponsored Products, Sponsored Brands and Sponsored Display, see `AmazonAdsPlatformData`). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.\n\n### Request shapes\n\nThe body selects one of these mutually exclusive shapes:\n\n- Legacy single-creative shape (all platforms, the default).\n- Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting.\n- Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn).\n\nOn LinkedIn, adSetId in the attach shape is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted. `goal` may be omitted too (taken from the Campaign's objective), and the created ad's `targeting` echoes the Campaign's audience.\n\n### Google Performance Max\n\nSet `campaignType: \"pmax\"` and supply `assetGroup` with text, images by role, business name and finalUrl. This creates a daily budget, PAUSED campaign and asset group atomically.\n\n- `validateOnly: true` validates the complete request with Google without creating or persisting resources.\n- Read assets with `GET /v1/ads/campaigns/{campaignId}/asset-groups`.\n- The logo is required; video is optional via `assetGroup.youtubeVideoId`.\n- Brand guidelines are disabled at creation.\n- All supplied asset links are validated together against Google's minimum asset requirements.\n- PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes.\n- Geo and language targeting are supported; omitted geo targets all locations.\n- PMax does not require top-level goal, headline, body or linkUrl.\n- `merchantCenter` links the campaign to a Merchant Center feed and adds one all-products listing group to the asset group. Google rejects the whole create (nothing is created) when the ad account is not linked to that Merchant Center.\n\nSupported bidding:\n\n- Omitted or LOWEST_COST_WITHOUT_CAP: Maximize Conversions.\n- COST_CAP plus bidAmount: target CPA.\n- LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor: Maximize Conversion Value with target ROAS.\n\n### Google Demand Gen\n\nSet `campaignType: \"demand_gen\"` and supply `demandGen`. One atomic request creates a daily budget, PAUSED campaign, one ad group and one ad. The ad is:\n\n- a multi-asset image ad by default;\n- a video responsive ad when `demandGen.youtubeVideoIds` is sent;\n- a carousel ad (2 to 10 cards) when `demandGen.carouselCards` is sent.\n\nTargeting and validation:\n\n- Geo (countries, regions, cities, zips, metros) and languages go on the ad group, as Demand Gen requires.\n- `demandGen.channels` sets the ad group's channel controls.\n- `demandGen.audience` builds a Google Audience (user lists, interests, custom audiences, age ranges, genders) attached to the ad group, or `demandGen.audienceId` attaches an existing one.\n- `validateOnly: true` validates everything with Google without creating resources.\n\nSupported bidding:\n\n- Omitted or LOWEST_COST_WITHOUT_CAP: Maximize Conversions.\n- COST_CAP plus bidAmount: target CPA.\n- LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor: target ROAS.\n- LOWEST_COST_WITH_BID_CAP plus bidAmount: target CPC.\n\nThe created ad carries the native `platformCampaignId`, `platformAdSetId` (ad group) and `platformAdId`. After creation:\n\n- Activate with PUT /v1/ads/campaigns/{campaignId}/status.\n- Edit budget, bidding and name with the regular campaign endpoints.\n- Edit creative, channels, audience and ad group targeting with PUT /v1/ads/{adId} (`demandGen`, `targeting`).\n\nTo grow an existing Demand Gen campaign, send one of these (neither takes budget, bidding or schedule fields; both support `validateOnly`):\n\n- `existingCampaignId`: adds a PAUSED ad group, with its own geo, languages, channels and audience, plus its ad.\n- `adSetId`: adds a PAUSED ad to that ad group.\n\n### Meta creative options\n\nMeta accepts `creativeFeatures` on the single and attach shapes and as defaults for `creatives[]`; an item replaces the whole feature map.\n\n`promotion` is not supported on any shape, and any object is rejected with 400.\n\nReusing `existingCreativeId` uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.\n\n### Meta required fields per shape\n\nA missing field is a 400 naming it in `param`.\n\n- Every shape that builds a new ad set (no `adSetId`, `existingCampaignId` or `buyingType: \"RESERVED\"`): `budgetAmount`. `budgetType` defaults to daily, and a lifetime budget without `endDate` ends 7 days after it starts (see `appliedDefaults`).\n- Single image or video (the default), also with `adSetId`: `headline` (max 255), `body`, `callToAction`, and exactly one of `imageUrl` / `video`. A catalog template creative takes none, and ignores and does not upload any sent.\n- Single image or video also needs `linkUrl`, unless the goal is `lead_generation` or `page_visits` or `leadGenFormId` is set.\n- `bodies[]` / `headlines[]` text variations: `body`, one list with 2+ items, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.\n- `placementAssets`: `headline`, `body`, `callToAction`, and `linkUrl` with the same exemptions as the single shape; the media comes from `placementAssets`.\n- `carouselCards`, also with `adSetId`: `body`, `callToAction`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required. Each card takes `imageUrl` or `video`.\n- `creatives[]`: per entry `headline`, `body`, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation`. Top-level `body` is not required.\n- `dynamicCreative`: `imageUrls` or `videoUrls`, `callToActionTypes`, and `linkUrls` unless the goal is `lead_generation`. Top-level `body` is not required.\n- `existingCreativeId`: no creative fields.\n- Goal `page_likes`: `body` only.\n- Goal `lead_generation` always needs `leadGenFormId`, except with `existingCreativeId`.\n\n### Meta activation\n\nMeta builds the campaign, ad set and ads PAUSED and switches the requested levels to ACTIVE as the last step.\n\nWhen Meta refuses that switch, or the connection drops, after Zernio's retries, the request still answers 201 and nothing is deleted:\n\n- The refused level and every level below it stay PAUSED.\n- Levels above it that already went ACTIVE stay ACTIVE.\n- The ad comes back with `status: paused` and its `configuredStatus` as read back from Meta.\n- A switch Meta applied although its answer was lost counts as ACTIVE, since Zernio reads the status back first.\n\n`message` says not everything is ACTIVE. `warnings` carries one entry starting with `activation_failed:` that quotes Meta's code, subcode and message, and names what was kept PAUSED and what was switched ACTIVE.\n\nThat warning also lists the calls that switch the PAUSED ones on later, in this order, with status `active`:\n\n1. PUT /v1/ads/campaigns/{campaignId}/status\n2. PUT /v1/ads/ad-sets/{adSetId}/status\n3. PUT /v1/ads/{adId}/status\n\nOn the `creatives[]` shape, only the ads Meta refused stay PAUSED when the campaign and ad set went through. A Reach and Frequency ad is created ACTIVE and is never listed as kept PAUSED. With an `Idempotency-Key`, a retry replays this 201.\n\n### LinkedIn\n\nLinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \"dark post\" authored by a Company Page (see `organizationId`).\n\n- Supported goals: engagement, traffic, awareness, and video_views.\n- Video ads use the `video` field; video_views requires a video.\n- Traffic ads require `linkUrl`.\n\n### Reddit Ads\n\nUse the `accountId` of a `redditads` connection and an `adAccountId` like `a2_abc123`. Zernio creates a campaign, an ad group carrying the budget, schedule, targeting and pixel, and an ad running a new promoted post. The post is authored by the ad account's first profile (422 when it has none).\n\nThe creative format follows the body:\n\n- `carouselCards`: a carousel.\n- `video`: a video ad.\n- `imageUrl`: an image ad.\n- None of them: a text ad, which cannot link out (`linkUrl` is a 400 there; `body` is required).\n\n`creatives[]` and `validateOnly` are refused. `adSetId` adds the ad, in any of these formats, to an existing ad group, and `existingCampaignId` creates a new ad group in an existing campaign.\n\nReddit throttling surfaces as 429 `rate_limited` with `platform: reddit`; retry after a delay. To promote an existing Reddit post, use POST /v1/ads/boost.\n\n### Microsoft Ads\n\nUse the `accountId` of a `microsoftads` connection and its numeric `adAccountId`. Zernio creates a Search campaign carrying the daily budget and the countries, an ad group carrying the schedule, a responsive search ad and the `keywords`.\n\n- `goal` is `traffic`; `budgetType` must be `daily`.\n- `headline`, `body` and `linkUrl` are required. `additionalHeadlines` and `additionalDescriptions` complete the ad to 3 to 15 headlines (30 characters) and 2 to 4 descriptions (90 characters); missing ones are filled from `name` and the link's host.\n- `countries` (or `targeting.countries`) is required; no other targeting field applies.\n- Bid fields, `negativeKeywords`, `campaignNegativeKeywords`, sitelinks, callouts, structured snippets, `businessName`, `longHeadline` and a `campaignType` other than `search` return 422.\n\nWithout `status`, every level is switched on and the campaign spends once Microsoft approves the ad: send `status: PAUSED` to create it paused. A failed step deletes the campaign the call created.\n\n### Idempotency\n\nThis endpoint is not idempotent at the platform level: a blind retry creates a second campaign/ad set/ad. Send an `Idempotency-Key` header to make retries safe.\n\n- The first request with a given key creates the ad and we store the response.\n- A retry with the same key replays that exact response (with `Idempotent-Replayed: true`) instead of creating duplicates.\n- Reusing a key with a different body returns 422.\n- A key whose first request is still in flight returns 409 (retry after a short backoff).\n- If the first request is cut off mid-create (for example by a function timeout), its key can stay in progress and keep returning 409 until it expires. Use a new key to retry sooner, after checking whether the ad was created.\n- Keys are scoped to your credential and expire after 24h.\n",
         "security": [
           {
             "bearerAuth": []
@@ -201257,7 +201994,7 @@
                     "items": {
                       "$ref": "#/components/schemas/KeywordEntry"
                     },
-                    "description": "Google Search only. Keywords on the new ad group; entries are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId} targeting.keywords."
+                    "description": "Google Search, Microsoft Ads, and Amazon Sponsored Products (MANUAL campaigns) and Sponsored Brands. Keywords on the new ad group; entries are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId} targeting.keywords."
                   },
                   "negativeKeywords": {
                     "type": "array",
@@ -201265,7 +202002,7 @@
                     "items": {
                       "$ref": "#/components/schemas/KeywordEntry"
                     },
-                    "description": "Google Search only; other platforms return 400. Ad-group-level negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords."
+                    "description": "Google Search and Amazon Sponsored Products and Sponsored Brands (EXACT or PHRASE only); other platforms return 400. Ad-group-level negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId} targeting.negativeKeywords."
                   },
                   "campaignNegativeKeywords": {
                     "type": "array",
@@ -201273,7 +202010,7 @@
                     "items": {
                       "$ref": "#/components/schemas/KeywordEntry"
                     },
-                    "description": "Google Search only; other platforms return 400. Campaign-level negative keywords (campaign_criterion.negative), created alongside the ad group. Editable later via PUT /v1/ads/campaigns/{campaignId}/negative-keywords."
+                    "description": "Google Search and Amazon Sponsored Products; other platforms return 400. Campaign-level negative keywords (campaign_criterion.negative on Google), created alongside the ad group. Editable later via PUT /v1/ads/campaigns/{campaignId}/negative-keywords."
                   },
                   "additionalHeadlines": {
                     "type": "array",
@@ -201516,13 +202253,16 @@
                     "description": "Meta only (facebook, instagram; other platforms return 400). Optional when\nattaching, and requires `valueRuleSetId`. `false` is REJECTED here with 400:\na newly created ad set has nothing to detach, so detaching lives on\n`PUT /v1/ads/ad-sets/{adSetId}`.\n"
                   },
                   "platformSpecificData": {
-                    "description": "Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls) and Meta (the bid trio) have options today.\n\n**Meta**\n\n- `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root (the preferred home going forward). Sending them in BOTH places returns a 400 (`mutually_exclusive_fields`).\n- Sending any bid field in `adSetId` attach mode is a 400 (the ad set already has its bid).\n- `dailyMinSpendTarget` / `lifetimeMinSpendTarget` set the new ad set's minimum spend and live here only; also rejected in `adSetId` attach mode.\n",
+                    "description": "Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) and Amazon Ads (required: the ad product, products, creative and targeting) have options today.\n\n**Amazon Ads**: see `AmazonAdsPlatformData`. Amazon has no dry run, so `validateOnly` returns a 501.\n\n**Meta**\n\n- `bidStrategy`, `bidAmount` and `roasAverageFloor` may be sent here instead of at the root (the preferred home going forward). Sending them in BOTH places returns a 400 (`mutually_exclusive_fields`).\n- Sending any bid field in `adSetId` attach mode is a 400 (the ad set already has its bid).\n- `dailyMinSpendTarget` / `lifetimeMinSpendTarget` set the new ad set's minimum spend and live here only; also rejected in `adSetId` attach mode.\n",
                     "oneOf": [
                       {
                         "$ref": "#/components/schemas/LinkedInAdsPlatformData"
                       },
                       {
                         "$ref": "#/components/schemas/MetaAdsPlatformData"
+                      },
+                      {
+                        "$ref": "#/components/schemas/AmazonAdsPlatformData"
                       }
                     ]
                   },
@@ -201610,6 +202350,118 @@
                 }
               },
               "examples": {
+                "amazonSponsoredProductsManual": {
+                  "summary": "Amazon Sponsored Products manual campaign for a vendor, with keywords and a negative.",
+                  "value": {
+                    "accountId": "69ce75d483e990e1c01ccfe4",
+                    "adAccountId": "888888888",
+                    "name": "Trail shoes",
+                    "goal": "conversions",
+                    "budgetAmount": 50,
+                    "budgetType": "daily",
+                    "keywords": [
+                      "trail running shoes",
+                      {
+                        "text": "running shoes",
+                        "matchType": "exact"
+                      }
+                    ],
+                    "negativeKeywords": [
+                      {
+                        "text": "cheap",
+                        "matchType": "phrase"
+                      }
+                    ],
+                    "platformSpecificData": {
+                      "adProduct": "SPONSORED_PRODUCTS",
+                      "targetingType": "MANUAL",
+                      "biddingStrategy": "AUTO_FOR_SALES",
+                      "placementBidding": [
+                        {
+                          "placement": "PLACEMENT_TOP",
+                          "percentage": 50
+                        }
+                      ],
+                      "defaultBid": 0.75,
+                      "asins": [
+                        "B0C1234567"
+                      ]
+                    }
+                  }
+                },
+                "amazonSponsoredBrandsCollection": {
+                  "summary": "Amazon Sponsored Brands manual collection ad on keywords.",
+                  "value": {
+                    "accountId": "69ce75d483e990e1c01ccfe4",
+                    "adAccountId": "888888888",
+                    "name": "Running collection",
+                    "goal": "traffic",
+                    "budgetAmount": 30,
+                    "budgetType": "daily",
+                    "keywords": [
+                      {
+                        "text": "trail running shoes",
+                        "matchType": "phrase"
+                      }
+                    ],
+                    "platformSpecificData": {
+                      "adProduct": "SPONSORED_BRANDS",
+                      "brandEntityId": "ENTITY1A2B3C4D5E6F",
+                      "defaultBid": 1.25,
+                      "ad": {
+                        "format": "manualCollection",
+                        "brandName": "Brand X",
+                        "brandLogoAssetId": "amzn1.assetlibrary.asset1.abc123",
+                        "title": "Run further",
+                        "asins": [
+                          "B0C1234567",
+                          "B0C1234568",
+                          "B0C1234569"
+                        ],
+                        "landingPage": {
+                          "pageType": "PRODUCT_LIST"
+                        }
+                      }
+                    }
+                  }
+                },
+                "amazonSponsoredDisplayRemarketing": {
+                  "summary": "Amazon Sponsored Display remarketing to shoppers who viewed similar products.",
+                  "value": {
+                    "accountId": "69ce75d483e990e1c01ccfe4",
+                    "adAccountId": "888888888",
+                    "name": "Shoe remarketing",
+                    "goal": "conversions",
+                    "budgetAmount": 40,
+                    "budgetType": "daily",
+                    "platformSpecificData": {
+                      "adProduct": "SPONSORED_DISPLAY",
+                      "tactic": "T00030",
+                      "defaultBid": 0.9,
+                      "asins": [
+                        "B0BLJ3LHCH"
+                      ],
+                      "targets": [
+                        {
+                          "expression": [
+                            {
+                              "type": "views",
+                              "value": [
+                                {
+                                  "type": "similarProduct"
+                                },
+                                {
+                                  "type": "lookback",
+                                  "value": "30"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                },
                 "googleSearchPresenceOnly": {
                   "summary": "Google Search campaign that reaches only people located in Lyon.",
                   "value": {

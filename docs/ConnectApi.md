@@ -3865,11 +3865,11 @@ catch (ApiException e)
 
 <a id="getamazonadsconnecturl"></a>
 # **GetAmazonAdsConnectUrl**
-> GetAmazonAdsConnectUrl200Response GetAmazonAdsConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
+> GetAmazonAdsConnectUrl200Response GetAmazonAdsConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null, string? region = null)
 
 Get Amazon Ads OAuth connect URL
 
-Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (`GET /v1/ads/conversions/destinations`).  Errors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`. 
+Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`.  Every seller and vendor advertiser profile it reaches, in the NA, EU and FE regions, is an ad account (`GET /v1/ads/accounts`) and a conversions destination (`GET /v1/ads/conversions/destinations`).  Pass `region` so the user signs in on their own region's Amazon consent page; the connection still reaches the profiles of every region.  Errors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`. 
 
 ### Example
 ```csharp
@@ -3902,11 +3902,12 @@ namespace Example
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. (optional) 
             var reconnectAccountId = "reconnectAccountId_example";  // string? | Zernio account ID of the Amazon Ads account being reconnected. (optional) 
+            var region = "NA";  // string? | Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore). (optional)  (default to NA)
 
             try
             {
                 // Get Amazon Ads OAuth connect URL
-                GetAmazonAdsConnectUrl200Response result = apiInstance.GetAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId);
+                GetAmazonAdsConnectUrl200Response result = apiInstance.GetAmazonAdsConnectUrl(profileId, redirectUrl, reconnectAccountId, region);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3927,7 +3928,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Amazon Ads OAuth connect URL
-    ApiResponse<GetAmazonAdsConnectUrl200Response> response = apiInstance.GetAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
+    ApiResponse<GetAmazonAdsConnectUrl200Response> response = apiInstance.GetAmazonAdsConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId, region);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3947,6 +3948,7 @@ catch (ApiException e)
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme. | [optional]  |
 | **reconnectAccountId** | **string?** | Zernio account ID of the Amazon Ads account being reconnected. | [optional]  |
+| **region** | **string?** | Amazon region whose consent page the user signs in on: NA (amazon.com), EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore). | [optional] [default to NA] |
 
 ### Return type
 

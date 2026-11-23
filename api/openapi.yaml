@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.770.0
+  version: 1.772.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -18696,7 +18696,11 @@ paths:
   /v1/connect/amazonads:
     get:
       description: |
-        Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`; every advertiser profile it reaches, in the NA, EU and FE regions, is a conversions destination (`GET /v1/ads/conversions/destinations`).
+        Starts Login with Amazon for Amazon Ads (scope `advertising::campaign_management`). The Amazon login becomes an account with platform `amazonads`.
+
+        Every seller and vendor advertiser profile it reaches, in the NA, EU and FE regions, is an ad account (`GET /v1/ads/accounts`) and a conversions destination (`GET /v1/ads/conversions/destinations`).
+
+        Pass `region` so the user signs in on their own region's Amazon consent page; the connection still reaches the profiles of every region.
 
         Errors on the redirect: `amazonads_no_profiles` (the login reaches no advertiser), `amazonads_no_refresh_token`.
       operationId: getAmazonAdsConnectUrl
@@ -18724,6 +18728,20 @@ paths:
         name: reconnectAccountId
         required: false
         schema:
+          type: string
+        style: form
+      - description: "Amazon region whose consent page the user signs in on: NA (amazon.com),\
+          \ EU (Europe, Middle East, India) or FE (Japan, Australia, Singapore)."
+        explode: true
+        in: query
+        name: region
+        required: false
+        schema:
+          default: NA
+          enum:
+          - NA
+          - EU
+          - FE
           type: string
         style: form
       responses:
@@ -52603,6 +52621,7 @@ paths:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         style: form
       - description: Account ID
@@ -52772,6 +52791,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/search-terms:
     get:
       description: |
@@ -53612,6 +53632,10 @@ paths:
 
         - A customer synced for the first time is populated on the next discovery pass rather than waiting for its daily slot.
         - Connecting an account or triggering a manual sync refreshes it immediately.
+
+        ### Amazon
+
+        Amazon Sponsored Products and Sponsored Brands keywords and ad group negatives are listed too (`platform: amazon`), refreshed about every six hours with their trailing 30-day metrics from the targeting reports. `resourceName` is `{adGroupId}~{keywordId}` there. Campaign-level negatives are under `GET /v1/ads/campaigns/{campaignId}/negative-keywords`.
       operationId: listAdKeywords
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -53732,6 +53756,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
     post:
       description: |
         Adds keywords, or negative keywords, to a Google Search ad group without replacing the ones already there.
@@ -53741,6 +53766,10 @@ paths:
         `PUT /v1/ads/{adId}`, `keywords`/`negativeKeywords` in `platformSpecificData`,
         which replaces the set). Set `negative: true` to add ad-group-level negatives
         instead of positive keywords.
+
+        ### Amazon
+
+        On an Amazon Ads connection the keywords go to a Sponsored Products or Sponsored Brands ad group (a Sponsored Display ad group returns 422). Positives bid the ad group default. Negatives match exact or phrase: a negative sent without `matchType` is exact, and a broad negative returns 422.
       operationId: addAdKeywords
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -53777,12 +53806,17 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
   /v1/ads/keywords/{keywordId}:
     delete:
       description: |
         Removes a single keyword or negative keyword from a Google Search ad group.
 
         Removes one keyword criterion (positive or negative) from its ad group (M.140).
+
+        ### Amazon
+
+        On Amazon the keyword is archived, which is Amazon's delete: it stays in reports and can never be enabled again.
       operationId: removeAdKeyword
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -53821,6 +53855,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
     patch:
       description: |
         Pauses, re-enables or sets the bid of a single Google Search keyword. Send `status`, `cpcBid` or both.
@@ -53830,6 +53865,10 @@ paths:
         `cpcBid` is in the ad account currency and takes effect only under Manual CPC bidding. A keyword with no bid of its own reads back `cpcBid: null` and uses its ad group bid.
 
         Negative keywords have no status or bid on Google and cannot be paused, enabled or given a bid.
+
+        ### Amazon
+
+        Amazon keywords take `status` and `cpcBid`. Amazon negative keywords take `status` only (a `cpcBid` on one returns 422), and a Sponsored Brands negative cannot be paused (422).
       operationId: updateAdKeyword
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -53877,6 +53916,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
   /v1/automations:
     get:
       description: |
@@ -57102,6 +57142,7 @@ paths:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         style: form
       - description: Filter by derived campaign status (post-aggregation). `not_deleted`
@@ -57264,6 +57305,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
     post:
       description: |
         Creates an empty campaign, paused, so you can add ad sets and ads to it afterwards.
@@ -57294,6 +57336,10 @@ paths:
         - With a budget, the campaign uses Reddit's campaign budget optimization and carries the pixel (see `promotedObject`, which then needs `customEventType` for `conversions`). The budget is daily or lifetime; a lifetime budget needs `endDate` (400 otherwise).
         - `startDate` / `endDate` set the campaign's schedule and need that campaign budget (400 without one).
         - Without a budget, each ad set carries its own budget and dates.
+
+        ### Amazon Ads
+
+        `platformSpecificData` (required) names the ad product and its campaign settings (`AmazonAdsCampaignPlatformData`), and the campaign needs a budget. `goal` must fit the product. `startDate` / `endDate` are calendar days in the profile time zone. Ad groups join it with `existingCampaignId` on POST /v1/ads/create.
       operationId: createAdCampaign
       parameters:
       - description: |
@@ -57381,6 +57427,7 @@ paths:
       - pinterest
       - openai
       - reddit
+      - amazon
   /v1/ads/campaigns/{campaignId}/status:
     put:
       description: |
@@ -57489,6 +57536,7 @@ paths:
       - openai
       - reddit
       - microsoft
+      - amazon
   /v1/ads/campaigns/{campaignId}/ad-schedule:
     get:
       description: |
@@ -57814,6 +57862,8 @@ paths:
         - Meta, Google, TikTok, LinkedIn and X delete it.
         - OpenAI, Reddit and Pinterest have no campaign delete and archive it instead (see below).
 
+        - Amazon archives the campaign: archiving is Amazon's delete, it is permanent, and the campaign stays in reports.
+
         Locally, all Ad documents for this campaign are marked `status: cancelled`.
 
         ### Empty campaigns
@@ -57957,6 +58007,7 @@ paths:
       - openai
       - reddit
       - microsoft
+      - amazon
     get:
       description: |
         Shows a Meta campaign's current settings straight from Meta, such as its objective, budget, bid strategy, schedule and delivery issues.
@@ -58041,8 +58092,8 @@ paths:
         | `networkSettings` | 400 | Search only | 400 |
         | `trackingUrlTemplate`, `finalUrlSuffix` | 400 | Yes | 400 |
         | `sharedBudgetId` | 400 | Yes | 400 |
-        | `budget` (CBO; ABO returns 409) | Yes | Daily only | OpenAI and Reddit: daily or lifetime; others 501 |
-        | `name` | Yes | 501 | Reddit: Yes; others 501 |
+        | `budget` (CBO; ABO returns 409) | Yes | Daily only | OpenAI and Reddit: daily or lifetime; Amazon: daily, or the lifetime type a Sponsored Brands campaign was created with; others 501 |
+        | `name` | Yes | 501 | Reddit and Amazon: Yes; others 501 |
         | `platformSpecificData.spendCap` | Yes | 400 | 400 |
         | `accountId` (empty campaigns) | Yes | - | - |
 
@@ -58166,6 +58217,7 @@ paths:
       - openai
       - reddit
       - microsoft
+      - amazon
   /v1/ads/campaigns/{campaignId}/negative-keywords:
     get:
       description: |
@@ -58181,7 +58233,11 @@ paths:
 
         ### Platform
 
-        The platform is always discovered from the campaign itself. A non-Google campaign returns 501 rather than 404, whether or not `platform` was passed.
+        The platform is always discovered from the campaign itself. A campaign on another platform than Google or Amazon returns 501 rather than 404, whether or not `platform` was passed.
+
+        ### Amazon
+
+        Amazon Sponsored Products campaigns hold campaign-level negative keywords (exact or phrase), read live with no cache (`cachedAt` null). Sponsored Brands and Sponsored Display campaigns have none and return 422.
       operationId: listCampaignNegativeKeywords
       parameters:
       - description: Platform campaign ID
@@ -58236,6 +58292,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
     patch:
       description: |
         Adds and removes single campaign-level negative keywords on a Google campaign without resending the full set.
@@ -58244,8 +58301,12 @@ paths:
         - Keywords already on the campaign are not added twice; keywords not on it are skipped on remove.
         - Changes go to Google in `create`/`remove` mutates of up to 5,000 operations, like the full replace.
 
-        The platform is always discovered from the campaign itself; a non-Google
-        campaign returns 501 rather than 404, whether or not `platform` was sent.
+        The platform is always discovered from the campaign itself; a campaign on another
+        platform than Google or Amazon returns 501 rather than 404, whether or not `platform` was sent.
+
+        ### Amazon
+
+        On an Amazon Sponsored Products campaign `add` creates the missing negatives and `remove` archives the matching ones (text and match type, case-insensitive). A negative without `matchType` is exact; broad returns 422.
       operationId: editCampaignNegativeKeywords
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -58292,6 +58353,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
     put:
       description: |
         Replaces a Google campaign's full list of campaign-level negative keywords, or clears it.
@@ -58305,8 +58367,12 @@ paths:
         - Send the same request again to finish a failed replace.
         - Send an empty array to clear every campaign negative.
 
-        The platform is always discovered from the campaign itself; a non-Google
-        campaign returns 501 rather than 404, whether or not `platform` was sent.
+        The platform is always discovered from the campaign itself; a campaign on another
+        platform than Google or Amazon returns 501 rather than 404, whether or not `platform` was sent.
+
+        ### Amazon
+
+        On an Amazon Sponsored Products campaign the missing negatives are created and the rest archived. A negative without `matchType` is exact; broad returns 422.
       operationId: replaceCampaignNegativeKeywords
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -58353,6 +58419,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - amazon
   /v1/ads/campaigns/bulk-status:
     post:
       description: |
@@ -58413,6 +58480,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/campaigns/{campaignId}/duplicate:
     post:
       description: |
@@ -58891,6 +58959,7 @@ paths:
       - openai
       - reddit
       - microsoft
+      - amazon
     post:
       description: |
         Creates an empty ad group under an existing campaign, ready for ads to be added later.
@@ -59181,7 +59250,7 @@ paths:
         `status: cancelled`.
 
         Delete is soft on platforms that have no hard delete: LinkedIn moves the
-        campaign to `PENDING_DELETION`, Pinterest and Reddit archive the ad group, and X
+        campaign to `PENDING_DELETION`, Pinterest, Reddit and Amazon archive the ad group (permanent on Amazon), and X
         soft-flags the line item. Google removes the ad group. All remain readable
         for reporting.
       operationId: deleteAdSet
@@ -59223,6 +59292,7 @@ paths:
       - pinterest
       - x
       - reddit
+      - amazon
     get:
       description: |
         Shows a Meta ad set's current settings straight from Meta, including its learning phase, budget, schedule and targeting.
@@ -59470,12 +59540,13 @@ paths:
       - x
       - openai
       - reddit
+      - amazon
   /v1/ads/ad-sets/{adSetId}/targeting:
     get:
       description: |
         Shows a Reddit ad group's live targeting and schedule in the same shape PUT /v1/ads/ad-sets/{adSetId} takes, so you can prefill an editor.
 
-        It is read live from Reddit on every call. Reddit only; every other platform returns 501.
+        It is read live from the platform on every call. Reddit and Amazon only; every other platform returns 501.
 
         ### How fields come back
 
@@ -59483,6 +59554,10 @@ paths:
         - Excluded DMAs are listed under `excludedLocations.regions`, since excluded locations have no metro list.
         - Languages come back as lowercase ISO 639-1 codes.
         - Targeting Zernio cannot edit (devices, platforms, carriers, automated expansion) is left out and kept on every edit.
+
+        ### Amazon
+
+        On Amazon it reads the ad group's live targets and negative targets in Amazon's own expression shape: `targeting` is `{ product, targets, negativeTargets }`, each target with `targetId`, `state`, `expressionType`, `expression` and `bid`. Keywords are read through `GET /v1/ads/keywords`. Editing Amazon targets is not available yet.
       operationId: getAdSetTargeting
       parameters:
       - description: Reddit ad group ID
@@ -59502,6 +59577,7 @@ paths:
         schema:
           enum:
           - reddit
+          - amazon
           type: string
         style: form
       responses:
@@ -59519,15 +59595,16 @@ paths:
           description: Ad set not found
         "501":
           description: The platform has no ad set targeting read (every platform but
-            Reddit)
+            Reddit and Amazon)
       security:
       - bearerAuth: []
-      summary: Read a Reddit ad group's targeting and schedule
+      summary: Read an ad group's targeting and schedule
       tags:
       - Ad Campaigns
       x-resource-group: ads
       x-platforms:
       - reddit
+      - amazon
   /v1/ads/ad-sets/{adSetId}/status:
     put:
       description: |
@@ -59625,6 +59702,7 @@ paths:
       - openai
       - reddit
       - microsoft
+      - amazon
   /v1/ads/tree:
     get:
       description: |
@@ -59702,6 +59780,7 @@ paths:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         style: form
       - description: Filter by derived campaign status (post-aggregation). `not_deleted`
@@ -60000,6 +60079,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/performance:
     get:
       description: |
@@ -60065,6 +60145,7 @@ paths:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         style: form
       - description: "Metric the ads are ranked by, highest first."
@@ -60143,6 +60224,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/timeline:
     get:
       description: |
@@ -60227,6 +60309,7 @@ paths:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         style: form
       - description: "Set to `previous` to also return `previousRows` for the period\
@@ -60292,6 +60375,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/{adId}:
     delete:
       description: |
@@ -60301,6 +60385,8 @@ paths:
 
         - OpenAI Ads has no delete API: the ad is archived instead (a terminal state, the closest equivalent).
         - Reddit Ads has no delete either: the ad is archived (`configured_status` ARCHIVED).
+
+        - Amazon Ads archives the ad (state ARCHIVED). Archiving is permanent.
 
         To delete a whole campaign on purpose use `DELETE /v1/ads/campaigns/{campaignId}`.
 
@@ -60373,6 +60459,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
     get:
       description: |
         Shows one ad with its creative, targeting, status and performance metrics.
@@ -60497,6 +60584,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
     put:
       description: |
         Changes an ad's status, budget, targeting or creative and applies the change on the platform.
@@ -60758,6 +60846,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/{adId}/status:
     put:
       description: |
@@ -60864,6 +60953,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/campaigns/{campaignId}/assets:
     delete:
       description: |
@@ -61688,6 +61778,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/preview:
     post:
       description: |
@@ -62787,6 +62878,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
   /v1/ads/{adId}/tracking-tags:
     get:
       description: |
@@ -69310,6 +69402,7 @@ paths:
       - x
       - reddit
       - microsoft
+      - amazon
     patch:
       description: |
         Changes a Meta ad account's name, spend cap or default EU DSA beneficiary and payor.
@@ -70372,7 +70465,7 @@ paths:
       description: |
         Creates a paid ad with your own creative, building the campaign and ad set it needs or adding it to existing ones.
 
-        Works across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads), Reddit Ads and Microsoft Ads. Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.
+        Works across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, OpenAI Ads (ChatGPT Ads), Reddit Ads, Microsoft Ads and Amazon Ads (Sponsored Products, Sponsored Brands and Sponsored Display, see `AmazonAdsPlatformData`). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.
 
         ### Request shapes
 
@@ -70533,6 +70626,83 @@ paths:
         content:
           application/json:
             examples:
+              amazonSponsoredProductsManual:
+                summary: "Amazon Sponsored Products manual campaign for a vendor,\
+                  \ with keywords and a negative."
+                value:
+                  accountId: 69ce75d483e990e1c01ccfe4
+                  adAccountId: "888888888"
+                  name: Trail shoes
+                  goal: conversions
+                  budgetAmount: 50
+                  budgetType: daily
+                  keywords:
+                  - trail running shoes
+                  - text: running shoes
+                    matchType: exact
+                  negativeKeywords:
+                  - text: cheap
+                    matchType: phrase
+                  platformSpecificData:
+                    adProduct: SPONSORED_PRODUCTS
+                    targetingType: MANUAL
+                    biddingStrategy: AUTO_FOR_SALES
+                    placementBidding:
+                    - placement: PLACEMENT_TOP
+                      percentage: 50
+                    defaultBid: 0.75
+                    asins:
+                    - B0C1234567
+              amazonSponsoredBrandsCollection:
+                summary: Amazon Sponsored Brands manual collection ad on keywords.
+                value:
+                  accountId: 69ce75d483e990e1c01ccfe4
+                  adAccountId: "888888888"
+                  name: Running collection
+                  goal: traffic
+                  budgetAmount: 30
+                  budgetType: daily
+                  keywords:
+                  - text: trail running shoes
+                    matchType: phrase
+                  platformSpecificData:
+                    adProduct: SPONSORED_BRANDS
+                    brandEntityId: ENTITY1A2B3C4D5E6F
+                    defaultBid: 1.25
+                    ad:
+                      format: manualCollection
+                      brandName: Brand X
+                      brandLogoAssetId: amzn1.assetlibrary.asset1.abc123
+                      title: Run further
+                      asins:
+                      - B0C1234567
+                      - B0C1234568
+                      - B0C1234569
+                      landingPage:
+                        pageType: PRODUCT_LIST
+              amazonSponsoredDisplayRemarketing:
+                summary: Amazon Sponsored Display remarketing to shoppers who viewed
+                  similar products.
+                value:
+                  accountId: 69ce75d483e990e1c01ccfe4
+                  adAccountId: "888888888"
+                  name: Shoe remarketing
+                  goal: conversions
+                  budgetAmount: 40
+                  budgetType: daily
+                  platformSpecificData:
+                    adProduct: SPONSORED_DISPLAY
+                    tactic: T00030
+                    defaultBid: 0.9
+                    asins:
+                    - B0BLJ3LHCH
+                    targets:
+                    - expression:
+                      - type: views
+                        value:
+                        - type: similarProduct
+                        - type: lookback
+                          value: "30"
               googleSearchPresenceOnly:
                 summary: Google Search campaign that reaches only people located in
                   Lyon.
@@ -70880,6 +71050,7 @@ paths:
       - openai
       - reddit
       - microsoft
+      - amazon
   /v1/ads/leads:
     get:
       description: |
@@ -117802,6 +117973,227 @@ components:
           $ref: "#/components/schemas/LinkedInAdsPlatformData_event"
         thoughtLeader:
           $ref: "#/components/schemas/LinkedInAdsPlatformData_thoughtLeader"
+    AmazonSponsoredProductsCampaignData:
+      properties:
+        adProduct:
+          enum:
+          - SPONSORED_PRODUCTS
+          type: string
+        targetingType:
+          description: Required for a new campaign. MANUAL targets keywords and productTargets;
+            AUTO lets Amazon match searches and products (tune them with autoTargeting).
+            Immutable.
+          enum:
+          - MANUAL
+          - AUTO
+          type: string
+        biddingStrategy:
+          default: LEGACY_FOR_SALES
+          description: "Dynamic bidding: LEGACY_FOR_SALES lowers bids when a sale\
+            \ is unlikely, AUTO_FOR_SALES raises and lowers them (up to +100%), MANUAL\
+            \ keeps them fixed."
+          enum:
+          - LEGACY_FOR_SALES
+          - AUTO_FOR_SALES
+          - MANUAL
+          type: string
+        placementBidding:
+          description: "Bid increase per placement, added on top of the bid (50 on\
+            \ a 1.00 bid gives 1.50 at the top of search)."
+          items:
+            $ref: "#/components/schemas/AmazonSponsoredProductsCampaignData_placementBidding_inner"
+          maxItems: 3
+          minItems: 1
+          type: array
+        portfolioId:
+          pattern: ^\d+$
+          type: string
+      required:
+      - adProduct
+    AmazonSponsoredBrandsCampaignData:
+      properties:
+        adProduct:
+          enum:
+          - SPONSORED_BRANDS
+          type: string
+        brandEntityId:
+          description: The brand (Brand Registry entity) the campaign advertises.
+            Sellers need one.
+          type: string
+        bidOptimization:
+          default: true
+          description: Amazon adjusts placement bids itself. Send false to set placementAdjustments.
+          type: boolean
+        placementAdjustments:
+          description: Only with bidOptimization false (400 otherwise).
+          items:
+            $ref: "#/components/schemas/AmazonSponsoredBrandsCampaignData_placementAdjustments_inner"
+          maxItems: 3
+          minItems: 1
+          type: array
+        portfolioId:
+          pattern: ^\d+$
+          type: string
+      required:
+      - adProduct
+    AmazonSponsoredDisplayCampaignData:
+      properties:
+        adProduct:
+          enum:
+          - SPONSORED_DISPLAY
+          type: string
+        tactic:
+          description: "Required for a new campaign. T00020 targets products and categories;\
+            \ T00030 also targets audiences (views, purchases, audience)."
+          enum:
+          - T00020
+          - T00030
+          type: string
+        portfolioId:
+          pattern: ^\d+$
+          type: string
+      required:
+      - adProduct
+    AmazonAdsCampaignPlatformData:
+      description: |
+        Amazon Ads: the ad product of the campaign and its settings. Unknown keys return a 400.
+
+        The unified `goal` maps onto the product: Sponsored Products takes `conversions`; Sponsored Brands takes `traffic` (PAGE_VISIT), `awareness` (BRAND_IMPRESSION_SHARE), `video_views` (AD_VIEWS) and `conversions` (ACQUIRE_NEW_CUSTOMERS); Sponsored Display takes `traffic` (optimizes for clicks), `conversions` and `awareness` (optimizes for reach and bills by viewable impressions).
+      discriminator:
+        mapping:
+          SPONSORED_PRODUCTS: "#/components/schemas/AmazonSponsoredProductsCampaignData"
+          SPONSORED_BRANDS: "#/components/schemas/AmazonSponsoredBrandsCampaignData"
+          SPONSORED_DISPLAY: "#/components/schemas/AmazonSponsoredDisplayCampaignData"
+        propertyName: adProduct
+      oneOf:
+      - $ref: "#/components/schemas/AmazonSponsoredProductsCampaignData"
+      - $ref: "#/components/schemas/AmazonSponsoredBrandsCampaignData"
+      - $ref: "#/components/schemas/AmazonSponsoredDisplayCampaignData"
+    AmazonAdvertisedProducts:
+      properties:
+        asins:
+          description: "Vendor profiles: the ASINs to advertise, one product ad each."
+          items:
+            pattern: "^[A-Za-z0-9]{10}$"
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        skus:
+          description: "Seller profiles: the SKUs to advertise, one product ad each.\
+            \ Sending the identifier the profile does not use returns a 400."
+          items:
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+    AmazonSponsoredProductsAdData:
+      allOf:
+      - $ref: "#/components/schemas/AmazonSponsoredProductsCampaignData"
+      - $ref: "#/components/schemas/AmazonAdvertisedProducts"
+      - properties:
+          defaultBid:
+            description: "Required for a new ad group. Whole currency units; keywords\
+              \ and targets without their own bid use it. US: 0.02 to 1000."
+            type: number
+          productTargets:
+            description: "MANUAL campaigns. Each entry is one Amazon targeting clause:\
+              \ a product (ASIN_SAME_AS), a category (ASIN_CATEGORY_SAME_AS) optionally\
+              \ refined by brand, price, rating or Prime in the same expression."
+            items:
+              $ref: "#/components/schemas/AmazonSponsoredProductsAdData_allOf_productTargets"
+            maxItems: 1000
+            minItems: 1
+            type: array
+          negativeProductTargets:
+            items:
+              $ref: "#/components/schemas/AmazonSponsoredProductsAdData_allOf_negativeProductTargets"
+            maxItems: 1000
+            minItems: 1
+            type: array
+          autoTargeting:
+            $ref: "#/components/schemas/AmazonSponsoredProductsAdData_allOf_autoTargeting"
+    AmazonAutoTargetGroup:
+      properties:
+        enabled:
+          type: boolean
+        bid:
+          type: number
+    AmazonSponsoredBrandsAdData:
+      allOf:
+      - $ref: "#/components/schemas/AmazonSponsoredBrandsCampaignData"
+      - properties:
+          ad:
+            $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_ad"
+          defaultBid:
+            description: "Bid of the keywords and product targets without their own.\
+              \ With goal traffic (cost per click), US: 0.10 to 49, video 0.25 to\
+              \ 49."
+            type: number
+          productTargets:
+            items:
+              $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_productTargets"
+            maxItems: 100
+            minItems: 1
+            type: array
+          negativeProductTargets:
+            items:
+              $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_negativeProductTargets"
+            maxItems: 100
+            minItems: 1
+            type: array
+    AmazonSponsoredDisplayAdData:
+      allOf:
+      - $ref: "#/components/schemas/AmazonSponsoredDisplayCampaignData"
+      - $ref: "#/components/schemas/AmazonAdvertisedProducts"
+      - properties:
+          defaultBid:
+            description: "US: 0.02 to 1000 per click, 1 to 1000 per thousand viewable\
+              \ impressions (goal awareness)."
+            type: number
+          targets:
+            description: |
+              Required for a new ad group. Each entry is one Amazon targeting clause, in Amazon's own shape:
+
+              - Contextual: `{ type: similarProduct }`, `{ type: asinSameAs, value: B0... }`, `{ type: asinCategorySameAs, value: "12345" }` with optional brand, price or rating refinements in the same expression, `{ type: contentCategorySameAs, value: "amzn1.iab-content.325" }`.
+              - Audiences (tactic T00030 only): `{ type: views | purchases, value: [{ type: exactProduct | similarProduct | relatedProduct | asinCategorySameAs ... }, { type: lookback, value: "30" }] }`, or `{ type: audience, value: [{ type: audienceSameAs, value: "<audience id>" }] }` for in-market and lifestyle audiences.
+            items:
+              $ref: "#/components/schemas/AmazonSponsoredDisplayAdData_allOf_targets"
+            maxItems: 200
+            minItems: 1
+            type: array
+          negativeTargets:
+            items:
+              $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_negativeProductTargets"
+            maxItems: 100
+            minItems: 1
+            type: array
+    AmazonAdsPlatformData:
+      description: |
+        Amazon Ads (required): the ad product and everything the unified fields do not cover. Unknown keys return a 400.
+
+        Unified fields that apply:
+
+        - `name`, `campaignName`, `adSetName`, `adName`, `goal` and the status fields.
+        - `budgetAmount` / `budgetType`: the campaign budget in whole currency units; lifetime on Sponsored Brands only.
+        - `startDate` / `endDate`: calendar days in the profile time zone.
+        - `keywords` and `negativeKeywords` (Sponsored Products and Brands), `campaignNegativeKeywords` (Sponsored Products).
+        - `existingCampaignId`: a new ad group under an existing campaign of the same product, which keeps its goal when `goal` is omitted.
+        - `adSetId`: new ads in an existing ad group.
+
+        Creative and audience fields (headline, body, linkUrl, imageUrl, countries, interests...) return a 400.
+
+        Goals per product are listed on `AmazonAdsCampaignPlatformData`. If anything after the campaign fails, the campaign is archived (Amazon's delete) and the error names the refused item, e.g. `keywords[2]`.
+      discriminator:
+        mapping:
+          SPONSORED_PRODUCTS: "#/components/schemas/AmazonSponsoredProductsAdData"
+          SPONSORED_BRANDS: "#/components/schemas/AmazonSponsoredBrandsAdData"
+          SPONSORED_DISPLAY: "#/components/schemas/AmazonSponsoredDisplayAdData"
+        propertyName: adProduct
+      oneOf:
+      - $ref: "#/components/schemas/AmazonSponsoredProductsAdData"
+      - $ref: "#/components/schemas/AmazonSponsoredBrandsAdData"
+      - $ref: "#/components/schemas/AmazonSponsoredDisplayAdData"
     PinterestPlatformData:
       properties:
         title:
@@ -134013,6 +134405,7 @@ components:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         profileId:
           description: "Profile the row belongs to: the profile of its owning connection\
@@ -136501,6 +136894,7 @@ components:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         campaignName:
           type: string
@@ -136780,6 +137174,7 @@ components:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         campaignName:
           type: string
@@ -196844,18 +197239,24 @@ components:
           - PAUSED
           type: string
         startDate:
-          description: "Reddit only (400 elsewhere). Campaign start (ISO 8601); a\
-            \ value without an offset is read in the ad account time zone. Requires\
-            \ a campaign budget (`budgetAmount` + `budgetType`, 400 otherwise). Defaults\
-            \ to now."
+          description: "Reddit and Amazon only (400 elsewhere). Campaign start (ISO\
+            \ 8601); a value without an offset is read in the ad account time zone.\
+            \ Requires a campaign budget (`budgetAmount` + `budgetType`, 400 otherwise).\
+            \ Defaults to now."
           format: date-time
           type: string
         endDate:
-          description: "Reddit only (400 elsewhere). Campaign end (ISO 8601); a value\
-            \ without an offset is read in the ad account time zone. Requires a campaign\
-            \ budget (400 otherwise), and is required for `budgetType: lifetime`."
+          description: "Reddit and Amazon only (400 elsewhere). Campaign end (ISO\
+            \ 8601); a value without an offset is read in the ad account time zone.\
+            \ Requires a campaign budget (400 otherwise), and is required for `budgetType:\
+            \ lifetime`."
           format: date-time
           type: string
+        platformSpecificData:
+          allOf:
+          - $ref: "#/components/schemas/AmazonAdsCampaignPlatformData"
+          description: "Amazon Ads only (400 elsewhere), and required there: the ad\
+            \ product and its campaign settings."
         locationTargetingType:
           allOf:
           - $ref: "#/components/schemas/GoogleLocationTargetingType"
@@ -196975,6 +197376,7 @@ components:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
       required:
       - platform
@@ -197344,6 +197746,7 @@ components:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         accountId:
           description: '**Meta only.** Zernio SocialAccount id owning the ad account.
@@ -197495,6 +197898,7 @@ components:
           - openai
           - reddit
           - microsoft
+          - amazon
           type: string
         accountId:
           description: "Zernio SocialAccount id owning the ad account. Required only\
@@ -213599,7 +214003,9 @@ components:
       - values
     createStandaloneAd_request_platformSpecificData:
       description: |
-        Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls) and Meta (the bid trio) have options today.
+        Platform-specific options. The platform is derived from `accountId`; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) and Amazon Ads (required: the ad product, products, creative and targeting) have options today.
+
+        **Amazon Ads**: see `AmazonAdsPlatformData`. Amazon has no dry run, so `validateOnly` returns a 501.
 
         **Meta**
 
@@ -213609,6 +214015,7 @@ components:
       oneOf:
       - $ref: "#/components/schemas/LinkedInAdsPlatformData"
       - $ref: "#/components/schemas/MetaAdsPlatformData"
+      - $ref: "#/components/schemas/AmazonAdsPlatformData"
     createStandaloneAd_request_brandIdentity:
       description: |
         TikTok only; non-TikTok platforms ignore this field. Synthetic Brand Identity used when the ad attributes to a CUSTOMIZED_USER (instead of a real TT_USER @username).
@@ -214719,15 +215126,17 @@ components:
         demandGen:
           $ref: "#/components/schemas/GoogleDemandGenInput"
         keywords:
-          description: "Google Search only. Keywords on the new ad group; entries\
-            \ are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId}\
-            \ targeting.keywords."
+          description: "Google Search, Microsoft Ads, and Amazon Sponsored Products\
+            \ (MANUAL campaigns) and Sponsored Brands. Keywords on the new ad group;\
+            \ entries are strings (BROAD) or { text, matchType }. Editable later via\
+            \ PUT /v1/ads/{adId} targeting.keywords."
           items:
             $ref: "#/components/schemas/KeywordEntry"
           maxItems: 1000
           type: array
         negativeKeywords:
-          description: "Google Search only; other platforms return 400. Ad-group-level\
+          description: "Google Search and Amazon Sponsored Products and Sponsored\
+            \ Brands (EXACT or PHRASE only); other platforms return 400. Ad-group-level\
             \ negative keywords on the new ad group. Editable later via PUT /v1/ads/{adId}\
             \ targeting.negativeKeywords."
           items:
@@ -214735,9 +215144,9 @@ components:
           maxItems: 1000
           type: array
         campaignNegativeKeywords:
-          description: "Google Search only; other platforms return 400. Campaign-level\
-            \ negative keywords (campaign_criterion.negative), created alongside the\
-            \ ad group. Editable later via PUT /v1/ads/campaigns/{campaignId}/negative-keywords."
+          description: "Google Search and Amazon Sponsored Products; other platforms\
+            \ return 400. Campaign-level negative keywords (campaign_criterion.negative\
+            \ on Google), created alongside the ad group. Editable later via PUT /v1/ads/campaigns/{campaignId}/negative-keywords."
           items:
             $ref: "#/components/schemas/KeywordEntry"
           maxItems: 1000
@@ -245489,6 +245898,281 @@ components:
           type: string
       required:
       - postUrn
+    AmazonSponsoredProductsCampaignData_placementBidding_inner:
+      properties:
+        placement:
+          enum:
+          - PLACEMENT_TOP
+          - PLACEMENT_PRODUCT_PAGE
+          - PLACEMENT_REST_OF_SEARCH
+          type: string
+        percentage:
+          maximum: 900
+          minimum: 0
+          type: integer
+      required:
+      - percentage
+      - placement
+    AmazonSponsoredBrandsCampaignData_placementAdjustments_inner:
+      properties:
+        placement:
+          enum:
+          - TOP_OF_SEARCH
+          - DETAIL_PAGE
+          - HOME
+          - OTHER
+          type: string
+        percentage:
+          maximum: 900
+          minimum: -99
+          type: integer
+      required:
+      - percentage
+      - placement
+    AmazonSponsoredProductsAdData_allOf_expression:
+      properties:
+        type:
+          enum:
+          - ASIN_SAME_AS
+          - ASIN_CATEGORY_SAME_AS
+          - ASIN_BRAND_SAME_AS
+          - ASIN_PRICE_LESS_THAN
+          - ASIN_PRICE_GREATER_THAN
+          - ASIN_PRICE_BETWEEN
+          - ASIN_REVIEW_RATING_LESS_THAN
+          - ASIN_REVIEW_RATING_GREATER_THAN
+          - ASIN_REVIEW_RATING_BETWEEN
+          - ASIN_IS_PRIME_SHIPPING_ELIGIBLE
+          - ASIN_AGE_RANGE_SAME_AS
+          - ASIN_GENRE_SAME_AS
+          - ASIN_EXPANDED_FROM
+          type: string
+        value:
+          description: "Ranges use a hyphen, e.g. \"50-120\"."
+          type: string
+      required:
+      - type
+    AmazonSponsoredProductsAdData_allOf_productTargets:
+      properties:
+        expression:
+          items:
+            $ref: "#/components/schemas/AmazonSponsoredProductsAdData_allOf_expression"
+          minItems: 1
+          type: array
+        bid:
+          type: number
+      required:
+      - expression
+    AmazonSponsoredProductsAdData_allOf_negativeProductTargets:
+      properties:
+        type:
+          enum:
+          - ASIN_SAME_AS
+          - ASIN_BRAND_SAME_AS
+          type: string
+        value:
+          type: string
+      required:
+      - type
+      - value
+    AmazonSponsoredProductsAdData_allOf_autoTargeting:
+      description: AUTO campaigns. Amazon adds the four auto target groups to the
+        ad group itself; this switches them off or bids on them. A group Amazon had
+        not added yet is reported in `warnings`.
+      properties:
+        closeMatch:
+          $ref: "#/components/schemas/AmazonAutoTargetGroup"
+        looseMatch:
+          $ref: "#/components/schemas/AmazonAutoTargetGroup"
+        substitutes:
+          $ref: "#/components/schemas/AmazonAutoTargetGroup"
+        complements:
+          $ref: "#/components/schemas/AmazonAutoTargetGroup"
+    AmazonSponsoredBrandsAdData_allOf_ad_oneOf_landingPage:
+      properties:
+        pageType:
+          enum:
+          - PRODUCT_LIST
+          - STORE
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - pageType
+    AmazonSponsoredBrandsAdData_allOf_ad_oneOf:
+      properties:
+        format:
+          enum:
+          - manualCollection
+          type: string
+        brandName:
+          maxLength: 30
+          type: string
+        brandLogoAssetId:
+          type: string
+        title:
+          maxLength: 32
+          type: string
+        asins:
+          items:
+            type: string
+          maxItems: 10
+          minItems: 3
+          type: array
+        landingPage:
+          $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_ad_oneOf_landingPage"
+      required:
+      - asins
+      - brandName
+      - format
+    AmazonSponsoredBrandsAdData_allOf_ad_oneOf_1_subpages_inner:
+      properties:
+        pageTitle:
+          type: string
+        asin:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - asin
+      - pageTitle
+      - url
+    AmazonSponsoredBrandsAdData_allOf_ad_oneOf_1:
+      properties:
+        format:
+          enum:
+          - storeSpotlight
+          type: string
+        brandName:
+          maxLength: 30
+          type: string
+        brandLogoAssetId:
+          type: string
+        headline:
+          maxLength: 50
+          type: string
+        storeUrl:
+          description: The Store home page the ad lands on.
+          format: uri
+          type: string
+        subpages:
+          items:
+            $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_ad_oneOf_1_subpages_inner"
+          maxItems: 3
+          minItems: 3
+          type: array
+      required:
+      - brandName
+      - format
+      - storeUrl
+      - subpages
+    AmazonSponsoredBrandsAdData_allOf_ad_oneOf_2:
+      properties:
+        format:
+          enum:
+          - video
+          type: string
+        videoAssetId:
+          type: string
+        asin:
+          type: string
+        brandName:
+          maxLength: 30
+          type: string
+        brandLogoAssetId:
+          type: string
+        headline:
+          maxLength: 50
+          type: string
+      required:
+      - asin
+      - format
+      - videoAssetId
+    AmazonSponsoredBrandsAdData_allOf_ad:
+      description: "Required. The ad, by format. Assets (logo, video) are Creative\
+        \ Asset Library ids. The product collection format is not offered: Amazon\
+        \ retires it in January 2027 (use manualCollection)."
+      oneOf:
+      - $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_ad_oneOf"
+      - $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_ad_oneOf_1"
+      - $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_ad_oneOf_2"
+    AmazonSponsoredBrandsAdData_allOf_expressions:
+      properties:
+        type:
+          enum:
+          - asinSameAs
+          - asinCategorySameAs
+          - asinBrandSameAs
+          - asinPriceLessThan
+          - asinPriceBetween
+          - asinPriceGreaterThan
+          - asinReviewRatingLessThan
+          - asinReviewRatingBetween
+          - asinReviewRatingGreaterThan
+          type: string
+        value:
+          type: string
+      required:
+      - type
+      - value
+    AmazonSponsoredBrandsAdData_allOf_productTargets:
+      properties:
+        expressions:
+          items:
+            $ref: "#/components/schemas/AmazonSponsoredBrandsAdData_allOf_expressions"
+          minItems: 1
+          type: array
+        bid:
+          type: number
+      required:
+      - expressions
+    AmazonSponsoredBrandsAdData_allOf_negativeProductTargets:
+      properties:
+        type:
+          enum:
+          - asinSameAs
+          - asinBrandSameAs
+          type: string
+        value:
+          type: string
+      required:
+      - type
+      - value
+    AmazonSponsoredDisplayAdData_allOf_value_oneOf_inner:
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - type
+    AmazonSponsoredDisplayAdData_allOf_value:
+      oneOf:
+      - type: string
+      - items:
+          $ref: "#/components/schemas/AmazonSponsoredDisplayAdData_allOf_value_oneOf_inner"
+        type: array
+    AmazonSponsoredDisplayAdData_allOf_expression:
+      properties:
+        type:
+          type: string
+        value:
+          $ref: "#/components/schemas/AmazonSponsoredDisplayAdData_allOf_value"
+      required:
+      - type
+    AmazonSponsoredDisplayAdData_allOf_targets:
+      properties:
+        expression:
+          items:
+            $ref: "#/components/schemas/AmazonSponsoredDisplayAdData_allOf_expression"
+          minItems: 1
+          type: array
+        bid:
+          type: number
+      required:
+      - expression
     GoogleBusinessPlatformData_callToAction:
       description: Optional call-to-action button displayed on the post
       properties:
