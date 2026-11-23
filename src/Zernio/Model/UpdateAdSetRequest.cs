@@ -91,7 +91,13 @@ namespace Zernio.Model
             /// Enum Reddit for value: reddit
             /// </summary>
             [EnumMember(Value = "reddit")]
-            Reddit = 9
+            Reddit = 9,
+
+            /// <summary>
+            /// Enum Snapchat for value: snapchat
+            /// </summary>
+            [EnumMember(Value = "snapchat")]
+            Snapchat = 10
         }
 
 

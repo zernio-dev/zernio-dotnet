@@ -134,7 +134,13 @@ namespace Zernio.Model
             /// Enum Tradedesk for value: tradedesk
             /// </summary>
             [EnumMember(Value = "tradedesk")]
-            Tradedesk = 12
+            Tradedesk = 12,
+
+            /// <summary>
+            /// Enum Snapchat for value: snapchat
+            /// </summary>
+            [EnumMember(Value = "snapchat")]
+            Snapchat = 13
         }
 
 

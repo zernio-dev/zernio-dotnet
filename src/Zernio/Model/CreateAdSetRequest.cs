@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class CreateAdSetRequest : IValidatableObject
     {
         /// <summary>
-        /// \&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501.
+        /// \&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501.
         /// </summary>
-        /// <value>\&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501.</value>
+        /// <value>\&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -92,14 +92,20 @@ namespace Zernio.Model
             /// Enum Reddit for value: reddit
             /// </summary>
             [EnumMember(Value = "reddit")]
-            Reddit = 9
+            Reddit = 9,
+
+            /// <summary>
+            /// Enum Snapchat for value: snapchat
+            /// </summary>
+            [EnumMember(Value = "snapchat")]
+            Snapchat = 10
         }
 
 
         /// <summary>
-        /// \&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501.
+        /// \&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501.
         /// </summary>
-        /// <value>\&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501.</value>
+        /// <value>\&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501.</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
@@ -196,7 +202,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateAdSetRequest" /> class.
         /// </summary>
         /// <param name="accountId">Zernio SocialAccount id owning the Google Ads or Reddit Ads connection. (required).</param>
-        /// <param name="platform">\&quot;google\&quot; and \&quot;reddit\&quot; are implemented; every other value returns 501. (required).</param>
+        /// <param name="platform">\&quot;google\&quot;, \&quot;reddit\&quot; and \&quot;snapchat\&quot; are implemented; every other value returns 501. (required).</param>
         /// <param name="campaignId">Platform campaign ID the ad group is created under (numeric on Google). (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="status">status (default to StatusEnum.PAUSED).</param>

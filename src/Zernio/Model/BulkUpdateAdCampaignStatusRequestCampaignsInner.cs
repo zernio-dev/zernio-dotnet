@@ -146,7 +146,19 @@ namespace Zernio.Model
             /// Enum Microsoftads for value: microsoftads
             /// </summary>
             [EnumMember(Value = "microsoftads")]
-            Microsoftads = 18
+            Microsoftads = 18,
+
+            /// <summary>
+            /// Enum Snapchat for value: snapchat
+            /// </summary>
+            [EnumMember(Value = "snapchat")]
+            Snapchat = 19,
+
+            /// <summary>
+            /// Enum Snapchatads for value: snapchatads
+            /// </summary>
+            [EnumMember(Value = "snapchatads")]
+            Snapchatads = 20
         }
 
 
