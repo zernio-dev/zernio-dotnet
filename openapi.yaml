@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.767.0",
+    "version": "1.768.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -2519,7 +2519,11 @@
             "type": "number",
             "minimum": 0,
             "maximum": 100,
-            "description": "Average share of conversions at risk on the networks with no visible server-side path, 0-100."
+            "description": "Share of the conversions across every network that fires which is at risk if the networks without a verified server path run browser-only, 0-100. A verified network counts as 0. Consent checks and tags that never fire are not counted here; `gradeReason` says how they affect the grade."
+          },
+          "gradeReason": {
+            "type": "string",
+            "description": "One plain line tying the grade to `estimatedSignalLossPct`: whether the grade comes mostly from the conversions at risk or from what that share leaves out (consent, tags not firing, matching), named. Absent when the score lost no points."
           },
           "platforms": {
             "type": "array",
