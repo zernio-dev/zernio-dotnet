@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.775.1",
+    "version": "1.776.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -5148,14 +5148,65 @@
             "additionalProperties": {
               "type": "number"
             },
-            "description": "Each uploaded result metric summed over the range, by metric key."
+            "description": "Without metrics, each uploaded result metric summed over the range, by metric key."
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "With metrics, the campaign name. null before its first sync."
+          },
+          "currency": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "With metrics, the ad account currency every money metric of this campaign is in. Campaigns of different ad accounts are never summed together."
+          },
+          "metrics": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdMetrics"
+              }
+            ],
+            "description": "With metrics, only the asked metrics, summed over every ad of the campaign with rates recomputed from the sums. reach is deduplicated across the range for Meta and TikTok when the platform returns it."
+          },
+          "daily": {
+            "type": "array",
+            "description": "With granularity=day, one point per day with delivery, each carrying date and the asked metrics.",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AdMetrics"
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "date"
+                  ],
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "format": "date"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "lastSyncedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "With metrics, when the newest daily row of the campaign was synced."
           }
         },
         "required": [
           "platform",
           "adAccountId",
-          "campaignId",
-          "results"
+          "campaignId"
         ]
       },
       "CampaignMetricsResponse": {
@@ -5189,6 +5240,13 @@
                   },
                   "toDate": {
                     "type": "string"
+                  },
+                  "missingIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "With metrics, asked campaignIds that are not campaigns the caller can see."
                   }
                 }
               },
@@ -74072,8 +74130,8 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Read the uploaded results of each campaign over a window",
-        "description": "Sums, per campaign, each result metric you uploaded (one key per metric, as `GET /v1/ads/campaign-results/metrics` lists them), with `cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale` and `qualified_rate` next to them, over `fromDate` to `toDate` (both required, at most 400 days).\n\nFilter with `campaignId` (platform campaign ids); pages with `cursor`.",
+        "summary": "Read the delivery metrics or the uploaded results of each campaign over a window",
+        "description": "Without `metrics`, sums per campaign each result metric you uploaded (one key per metric, as `GET /v1/ads/campaign-results/metrics` lists them), with `cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale` and `qualified_rate` next to them, over `fromDate` to `toDate` (both required, at most 400 days). Filter with `campaignId` (platform campaign ids); pages with `cursor`.\n\nWith `metrics` (for example `metrics=spend,impressions,clicks,ctr`), sums the delivery metrics of every ad of each campaign in `campaignId` (required, up to 100) from the stored daily rows. Every campaign comes on one page with its `currency`, and `granularity=day` adds one point per day.\n\nA query reads at most 9,200 campaign days (100 campaigns for 92 days, 23 for 400) and answers 422 `query_too_large` beyond that. Breakdowns stay live in the platform queries, such as `POST /v1/metrics/platform-queries/meta-ads`.",
         "parameters": [
           {
             "name": "limit",
@@ -74118,16 +74176,38 @@
           {
             "name": "campaignId",
             "in": "query",
-            "description": "Comma-separated platform campaign ids.",
+            "description": "Comma-separated platform campaign ids. Required with metrics, up to 100.",
             "schema": {
               "type": "string",
               "minLength": 1
+            }
+          },
+          {
+            "name": "metrics",
+            "in": "query",
+            "description": "Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity=campaigns lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas, actions, funnel, video counts...).",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "granularity",
+            "in": "query",
+            "description": "day adds one point per day to each campaign. Needs metrics.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "total",
+                "day"
+              ],
+              "default": "total"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "One row per campaign with results in the window.",
+            "description": "One row per campaign with results in the window, or with metrics one row per visible asked campaign.",
             "content": {
               "application/json": {
                 "schema": {
@@ -74162,6 +74242,16 @@
           },
           "403": {
             "$ref": "#/components/responses/MetricsAdsForbidden"
+          },
+          "422": {
+            "description": "More than 9,200 campaign days with metrics: split the range or the campaignIds.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           },
           "429": {
             "$ref": "#/components/responses/MetricsRateLimited"

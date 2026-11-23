@@ -7,7 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAccountMetrics**](MetricsApi.md#getaccountmetrics) | **GET** /v1/metrics/accounts | Read follower and post totals per account, platform or scope over time |
 | [**GetAdAccountMetrics**](MetricsApi.md#getadaccountmetrics) | **GET** /v1/metrics/ad-accounts | Read the uploaded results summed across ad accounts |
 | [**GetAdMetrics**](MetricsApi.md#getadmetrics) | **GET** /v1/metrics/ads | Read ad metrics by id, or one ad day by day with breakdowns |
-| [**GetCampaignMetrics**](MetricsApi.md#getcampaignmetrics) | **GET** /v1/metrics/campaigns | Read the uploaded results of each campaign over a window |
+| [**GetCampaignMetrics**](MetricsApi.md#getcampaignmetrics) | **GET** /v1/metrics/campaigns | Read the delivery metrics or the uploaded results of each campaign over a window |
 | [**GetInboxMetrics**](MetricsApi.md#getinboxmetrics) | **GET** /v1/metrics/inbox | Read message volume and response times |
 | [**GetInsightMetrics**](MetricsApi.md#getinsightmetrics) | **GET** /v1/metrics/insights | Read live account or post insights from the platform |
 | [**GetMetricsCatalog**](MetricsApi.md#getmetricscatalog) | **GET** /v1/metrics/catalog | List the metrics, groupings and limits of each metrics endpoint |
@@ -363,11 +363,11 @@ catch (ApiException e)
 
 <a id="getcampaignmetrics"></a>
 # **GetCampaignMetrics**
-> CampaignMetricsResponse GetCampaignMetrics (DateOnly fromDate, DateOnly toDate, int? limit = null, string? cursor = null, string? campaignId = null)
+> CampaignMetricsResponse GetCampaignMetrics (DateOnly fromDate, DateOnly toDate, int? limit = null, string? cursor = null, string? campaignId = null, string? metrics = null, string? granularity = null)
 
-Read the uploaded results of each campaign over a window
+Read the delivery metrics or the uploaded results of each campaign over a window
 
-Sums, per campaign, each result metric you uploaded (one key per metric, as `GET /v1/ads/campaign-results/metrics` lists them), with `cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale` and `qualified_rate` next to them, over `fromDate` to `toDate` (both required, at most 400 days).  Filter with `campaignId` (platform campaign ids); pages with `cursor`.
+Without `metrics`, sums per campaign each result metric you uploaded (one key per metric, as `GET /v1/ads/campaign-results/metrics` lists them), with `cac_percent`, `cost_per_sale`, `cost_per_qualified_lead`, `lead_to_sale` and `qualified_rate` next to them, over `fromDate` to `toDate` (both required, at most 400 days). Filter with `campaignId` (platform campaign ids); pages with `cursor`.  With `metrics` (for example `metrics=spend,impressions,clicks,ctr`), sums the delivery metrics of every ad of each campaign in `campaignId` (required, up to 100) from the stored daily rows. Every campaign comes on one page with its `currency`, and `granularity=day` adds one point per day.  A query reads at most 9,200 campaign days (100 campaigns for 92 days, 23 for 400) and answers 422 `query_too_large` beyond that. Breakdowns stay live in the platform queries, such as `POST /v1/metrics/platform-queries/meta-ads`.
 
 ### Example
 ```csharp
@@ -397,12 +397,14 @@ namespace Example
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly | Last day, inclusive. The range is at most 400 days.
             var limit = 50;  // int? | Rows per page, 50 by default, 100 at most. (optional)  (default to 50)
             var cursor = "cursor_example";  // string? | pagination.nextCursor of the previous page, sent with the same query. (optional) 
-            var campaignId = "campaignId_example";  // string? | Comma-separated platform campaign ids. (optional) 
+            var campaignId = "campaignId_example";  // string? | Comma-separated platform campaign ids. Required with metrics, up to 100. (optional) 
+            var metrics = "metrics_example";  // string? | Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity=campaigns lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas, actions, funnel, video counts...). (optional) 
+            var granularity = "total";  // string? | day adds one point per day to each campaign. Needs metrics. (optional)  (default to total)
 
             try
             {
-                // Read the uploaded results of each campaign over a window
-                CampaignMetricsResponse result = apiInstance.GetCampaignMetrics(fromDate, toDate, limit, cursor, campaignId);
+                // Read the delivery metrics or the uploaded results of each campaign over a window
+                CampaignMetricsResponse result = apiInstance.GetCampaignMetrics(fromDate, toDate, limit, cursor, campaignId, metrics, granularity);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -422,8 +424,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Read the uploaded results of each campaign over a window
-    ApiResponse<CampaignMetricsResponse> response = apiInstance.GetCampaignMetricsWithHttpInfo(fromDate, toDate, limit, cursor, campaignId);
+    // Read the delivery metrics or the uploaded results of each campaign over a window
+    ApiResponse<CampaignMetricsResponse> response = apiInstance.GetCampaignMetricsWithHttpInfo(fromDate, toDate, limit, cursor, campaignId, metrics, granularity);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -444,7 +446,9 @@ catch (ApiException e)
 | **toDate** | **DateOnly** | Last day, inclusive. The range is at most 400 days. |  |
 | **limit** | **int?** | Rows per page, 50 by default, 100 at most. | [optional] [default to 50] |
 | **cursor** | **string?** | pagination.nextCursor of the previous page, sent with the same query. | [optional]  |
-| **campaignId** | **string?** | Comma-separated platform campaign ids. | [optional]  |
+| **campaignId** | **string?** | Comma-separated platform campaign ids. Required with metrics, up to 100. | [optional]  |
+| **metrics** | **string?** | Comma-separated delivery metrics, as GET /v1/metrics/catalog?entity&#x3D;campaigns lists them (spend, impressions, reach, clicks, ctr, cpc, cpm, conversions, roas, actions, funnel, video counts...). | [optional]  |
+| **granularity** | **string?** | day adds one point per day to each campaign. Needs metrics. | [optional] [default to total] |
 
 ### Return type
 
@@ -463,10 +467,11 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | One row per campaign with results in the window. |  -  |
+| **200** | One row per campaign with results in the window, or with metrics one row per visible asked campaign. |  -  |
 | **400** | The query is invalid: an unknown or repeated parameter, a missing or second scope, a metric, groupBy, include or sort the entity does not have, or a window past its limit. &#x60;param&#x60; names the field. &#x60;GET /v1/metrics/catalog&#x60; lists what each entity accepts. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | &#x60;ads_addon_required&#x60;: the account has no ads access (included on usage-based plans). &#x60;insufficient_permissions&#x60;: the API key can read no profile. Also returned for a restricted key without the &#x60;ads&#x60; resource group. |  -  |
+| **422** | More than 9,200 campaign days with metrics: split the range or the campaignIds. |  -  |
 | **429** | A limit on your request rate was reached. &#x60;details.scope&#x60; says which one:  - absent: your plan&#39;s API limit. - &#x60;post-analytics&#x60;, &#x60;account-insights&#x60;, &#x60;ad-analytics&#x60; or &#x60;campaign-analytics&#x60;: the team&#39;s cap of 300 reads per 30 seconds for that group. - &#x60;account_route&#x60;: 120 reads per hour of one account on one account-level endpoint. - &#x60;team_budget&#x60;: the team spent its analytics compute budget of 24 seconds per 30-second window. &#x60;Retry-After&#x60; counts to the end of the window. - &#x60;in_flight&#x60;: too many of the team&#39;s analytics reads are running at once.  &#x60;team_budget&#x60; and &#x60;in_flight&#x60; apply to posts, accounts, ads, campaigns and ad accounts reads. |  * Retry-After - Seconds until card payments are tried again. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 

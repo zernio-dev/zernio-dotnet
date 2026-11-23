@@ -24,6 +24,7 @@ docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
 docs/Ad.md
 docs/AdAccountMetricsResponse.md
+docs/AdAccountMetricsResponseMeta.md
 docs/AdAccountsApi.md
 docs/AdActivationStatus.md
 docs/AdAnalyticsResponse.md
@@ -552,6 +553,7 @@ docs/CampaignDraftCommentsInner.md
 docs/CampaignDraftCounts.md
 docs/CampaignLedgerEntry.md
 docs/CampaignMetricRow.md
+docs/CampaignMetricRowDailyInner.md
 docs/CampaignMetricsResponse.md
 docs/CampaignMetricsResponseMeta.md
 docs/CampaignParticipant.md
@@ -4335,6 +4337,7 @@ src/Zernio.Test/Model/AccountsListResponseTests.cs
 src/Zernio.Test/Model/ActivateSequence200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseWorkflowTests.cs
+src/Zernio.Test/Model/AdAccountMetricsResponseMetaTests.cs
 src/Zernio.Test/Model/AdAccountMetricsResponseTests.cs
 src/Zernio.Test/Model/AdActivationStatusTests.cs
 src/Zernio.Test/Model/AdAnalyticsResponseAdTests.cs
@@ -4846,6 +4849,7 @@ src/Zernio.Test/Model/CampaignDraftCommentsInnerTests.cs
 src/Zernio.Test/Model/CampaignDraftCountsTests.cs
 src/Zernio.Test/Model/CampaignDraftTests.cs
 src/Zernio.Test/Model/CampaignLedgerEntryTests.cs
+src/Zernio.Test/Model/CampaignMetricRowDailyInnerTests.cs
 src/Zernio.Test/Model/CampaignMetricRowTests.cs
 src/Zernio.Test/Model/CampaignMetricsResponseMetaTests.cs
 src/Zernio.Test/Model/CampaignMetricsResponseTests.cs
@@ -8579,6 +8583,7 @@ src/Zernio/Model/ActivateWorkflow200Response.cs
 src/Zernio/Model/ActivateWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/Ad.cs
 src/Zernio/Model/AdAccountMetricsResponse.cs
+src/Zernio/Model/AdAccountMetricsResponseMeta.cs
 src/Zernio/Model/AdActivationStatus.cs
 src/Zernio/Model/AdAnalyticsResponse.cs
 src/Zernio/Model/AdAnalyticsResponseAd.cs
@@ -9089,6 +9094,7 @@ src/Zernio/Model/CampaignDraftCommentsInner.cs
 src/Zernio/Model/CampaignDraftCounts.cs
 src/Zernio/Model/CampaignLedgerEntry.cs
 src/Zernio/Model/CampaignMetricRow.cs
+src/Zernio/Model/CampaignMetricRowDailyInner.cs
 src/Zernio/Model/CampaignMetricsResponse.cs
 src/Zernio/Model/CampaignMetricsResponseMeta.cs
 src/Zernio/Model/CampaignParticipant.cs
