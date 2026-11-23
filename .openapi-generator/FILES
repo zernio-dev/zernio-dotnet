@@ -408,6 +408,9 @@ docs/AutomationTemplatePublisher.md
 docs/AutomationTemplateShare.md
 docs/AutomationTemplateTargetResult.md
 docs/AutomationTemplateTargetResultError.md
+docs/AutomationTestDecision.md
+docs/AutomationTestDecisionMatchedInner.md
+docs/AutomationTestDecisionPlannedStepsInner.md
 docs/AutomationTrigger.md
 docs/AutomationsApi.md
 docs/BalanceRequiredError.md
@@ -1601,6 +1604,8 @@ docs/GetAutomationCatalog200ResponseTriggersInner.md
 docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md
 docs/GetAutomationControls200Response.md
 docs/GetAutomationRun200Response.md
+docs/GetAutomationTestSample200Response.md
+docs/GetAutomationTestSample200ResponseSample.md
 docs/GetBalance200Response.md
 docs/GetBalance200ResponseHeld.md
 docs/GetBalance200ResponsePayoutLocksInner.md
@@ -3438,6 +3443,8 @@ docs/TargetingSpecCustomLocationsInner.md
 docs/TargetingSpecExcludedLocations.md
 docs/TargetingSpecExcludedLocationsCitiesInner.md
 docs/TelegramPlatformData.md
+docs/TestAutomation200Response.md
+docs/TestAutomationRequest.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokAdsPlatformQueryBody.md
@@ -4734,6 +4741,9 @@ src/Zernio.Test/Model/AutomationTemplateShareTests.cs
 src/Zernio.Test/Model/AutomationTemplateTargetResultErrorTests.cs
 src/Zernio.Test/Model/AutomationTemplateTargetResultTests.cs
 src/Zernio.Test/Model/AutomationTemplateTests.cs
+src/Zernio.Test/Model/AutomationTestDecisionMatchedInnerTests.cs
+src/Zernio.Test/Model/AutomationTestDecisionPlannedStepsInnerTests.cs
+src/Zernio.Test/Model/AutomationTestDecisionTests.cs
 src/Zernio.Test/Model/AutomationTests.cs
 src/Zernio.Test/Model/AutomationTriggerTests.cs
 src/Zernio.Test/Model/BalanceRequiredErrorTests.cs
@@ -5895,6 +5905,8 @@ src/Zernio.Test/Model/GetAutomationCatalog200ResponseTriggersInnerFactsInnerTest
 src/Zernio.Test/Model/GetAutomationCatalog200ResponseTriggersInnerTests.cs
 src/Zernio.Test/Model/GetAutomationControls200ResponseTests.cs
 src/Zernio.Test/Model/GetAutomationRun200ResponseTests.cs
+src/Zernio.Test/Model/GetAutomationTestSample200ResponseSampleTests.cs
+src/Zernio.Test/Model/GetAutomationTestSample200ResponseTests.cs
 src/Zernio.Test/Model/GetBalance200ResponseHeldTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePayoutLocksInnerTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePendingReleasesInnerTests.cs
@@ -7705,6 +7717,8 @@ src/Zernio.Test/Model/TargetingSpecExcludedLocationsCitiesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecExcludedLocationsTests.cs
 src/Zernio.Test/Model/TargetingSpecTests.cs
 src/Zernio.Test/Model/TelegramPlatformDataTests.cs
+src/Zernio.Test/Model/TestAutomation200ResponseTests.cs
+src/Zernio.Test/Model/TestAutomationRequestTests.cs
 src/Zernio.Test/Model/TestWebhookRequestTests.cs
 src/Zernio.Test/Model/ThreadsPlatformDataTests.cs
 src/Zernio.Test/Model/TikTokAdsPlatformQueryBodyTests.cs
@@ -9001,6 +9015,9 @@ src/Zernio/Model/AutomationTemplatePublisher.cs
 src/Zernio/Model/AutomationTemplateShare.cs
 src/Zernio/Model/AutomationTemplateTargetResult.cs
 src/Zernio/Model/AutomationTemplateTargetResultError.cs
+src/Zernio/Model/AutomationTestDecision.cs
+src/Zernio/Model/AutomationTestDecisionMatchedInner.cs
+src/Zernio/Model/AutomationTestDecisionPlannedStepsInner.cs
 src/Zernio/Model/AutomationTrigger.cs
 src/Zernio/Model/BalanceRequiredError.cs
 src/Zernio/Model/BatchAdCatalogProducts202Response.cs
@@ -10161,6 +10178,8 @@ src/Zernio/Model/GetAutomationCatalog200ResponseTriggersInner.cs
 src/Zernio/Model/GetAutomationCatalog200ResponseTriggersInnerFactsInner.cs
 src/Zernio/Model/GetAutomationControls200Response.cs
 src/Zernio/Model/GetAutomationRun200Response.cs
+src/Zernio/Model/GetAutomationTestSample200Response.cs
+src/Zernio/Model/GetAutomationTestSample200ResponseSample.cs
 src/Zernio/Model/GetBalance200Response.cs
 src/Zernio/Model/GetBalance200ResponseHeld.cs
 src/Zernio/Model/GetBalance200ResponsePayoutLocksInner.cs
@@ -11971,6 +11990,8 @@ src/Zernio/Model/TargetingSpecCustomLocationsInner.cs
 src/Zernio/Model/TargetingSpecExcludedLocations.cs
 src/Zernio/Model/TargetingSpecExcludedLocationsCitiesInner.cs
 src/Zernio/Model/TelegramPlatformData.cs
+src/Zernio/Model/TestAutomation200Response.cs
+src/Zernio/Model/TestAutomationRequest.cs
 src/Zernio/Model/TestWebhookRequest.cs
 src/Zernio/Model/ThreadsPlatformData.cs
 src/Zernio/Model/TikTokAdsPlatformQueryBody.cs

@@ -18,6 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAutomationControls**](AutomationsApi.md#getautomationcontrols) | **GET** /v1/automations/controls | Get automation controls |
 | [**GetAutomationRun**](AutomationsApi.md#getautomationrun) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation |
 | [**GetAutomationTemplate**](AutomationsApi.md#getautomationtemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template |
+| [**GetAutomationTestSample**](AutomationsApi.md#getautomationtestsample) | **GET** /v1/automations/{automationId}/test/sample | Get a sample test body for an automation |
 | [**GetSharedAutomationTemplate**](AutomationsApi.md#getsharedautomationtemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template |
 | [**GetZernioAutomationTemplate**](AutomationsApi.md#getzernioautomationtemplate) | **GET** /v1/automations/templates/zernio/{templateId} | Get a Zernio automation template |
 | [**InstallAutomationTemplate**](AutomationsApi.md#installautomationtemplate) | **POST** /v1/automations/templates/{templateId}/install | Install an automation template |
@@ -34,6 +35,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**PreviewAutomationDraft**](AutomationsApi.md#previewautomationdraft) | **POST** /v1/automations/preview | Preview an unsaved automation |
 | [**RejectAutomationApproval**](AutomationsApi.md#rejectautomationapproval) | **POST** /v1/automations/{automationId}/approvals/{approvalId}/reject | Reject an approval request |
 | [**TakeOverAutomation**](AutomationsApi.md#takeoverautomation) | **POST** /v1/automations/{automationId}/take-over | Take over an automation |
+| [**TestAutomation**](AutomationsApi.md#testautomation) | **POST** /v1/automations/{automationId}/test | Test an automation on a sample event |
 | [**UpdateAutomation**](AutomationsApi.md#updateautomation) | **PATCH** /v1/automations/{automationId} | Edit an automation |
 | [**UpdateAutomationAdAccountControls**](AutomationsApi.md#updateautomationadaccountcontrols) | **PATCH** /v1/automations/controls/ad-accounts | Update one ad account&#39;s controls |
 | [**UpdateAutomationControls**](AutomationsApi.md#updateautomationcontrols) | **PATCH** /v1/automations/controls | Turn every ad automation off or on |
@@ -1460,6 +1462,107 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No template with this id in your team. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getautomationtestsample"></a>
+# **GetAutomationTestSample**
+> GetAutomationTestSample200Response GetAutomationTestSample (string automationId)
+
+Get a sample test body for an automation
+
+A body `POST /v1/automations/{automationId}/test` accepts for this automation: a comment with its first keyword, an inbound event its flow's trigger takes, its event's webhook payload with sample values, or the contact a sequence enrolled last. Kinds that read live data instead take no event. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAutomationTestSampleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
+            var automationId = "automationId_example";  // string | 
+
+            try
+            {
+                // Get a sample test body for an automation
+                GetAutomationTestSample200Response result = apiInstance.GetAutomationTestSample(automationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AutomationsApi.GetAutomationTestSample: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAutomationTestSampleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a sample test body for an automation
+    ApiResponse<GetAutomationTestSample200Response> response = apiInstance.GetAutomationTestSampleWithHttpInfo(automationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AutomationsApi.GetAutomationTestSampleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **automationId** | **string** |  |  |
+
+### Return type
+
+[**GetAutomationTestSample200Response**](GetAutomationTestSample200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sample |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3149,6 +3252,110 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Not the owner or an admin of the active workspace (insufficient_permissions). |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="testautomation"></a>
+# **TestAutomation**
+> TestAutomation200Response TestAutomation (string automationId, TestAutomationRequest? testAutomationRequest = null)
+
+Test an automation on a sample event
+
+Runs one sample through the automation's own decision code and says whether it would run, what it matched and the steps it would take. Nothing is claimed, sent or written, whatever the automation does.  What each kind reads:  - Comment to DM: a comment (`event.text`, `event.platformPostId`). - Flow: an inbound event (`event.trigger`, `event.text`, `event.firstMessage`). - Event automation: the event's webhook payload, or the sample payload when `event` is left out. - Ad rule: the ad account as it is now, like a preview. `subjectId` narrows to one object. - Scheduled automation: the posts it would check now, and its next check. `subjectId` narrows to one post. - Sequence: the contact in `subjectId`.  A paused or draft automation is tested as if it were live, and answers `wouldRun: false` with its status as `reason`. Cooldowns, daily caps and a conversation's live run read history and are left out. `GET /v1/automations/{automationId}/test/sample` returns a body to start from. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class TestAutomationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
+            var automationId = "automationId_example";  // string | 
+            var testAutomationRequest = new TestAutomationRequest?(); // TestAutomationRequest? |  (optional) 
+
+            try
+            {
+                // Test an automation on a sample event
+                TestAutomation200Response result = apiInstance.TestAutomation(automationId, testAutomationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AutomationsApi.TestAutomation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the TestAutomationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Test an automation on a sample event
+    ApiResponse<TestAutomation200Response> response = apiInstance.TestAutomationWithHttpInfo(automationId, testAutomationRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AutomationsApi.TestAutomationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **automationId** | **string** |  |  |
+| **testAutomationRequest** | [**TestAutomationRequest?**](TestAutomationRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**TestAutomation200Response**](TestAutomation200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Decision |  -  |
+| **400** | The automation is invalid, or holds something its kind cannot: &#x60;details.problems&#x60; lists each problem with its JSON path. A few ad rule checks (an unsupported platform, step or metric, a cooldown shorter than the schedule, approvers not on the team) answer with &#x60;param&#x60; instead. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ad rules only: your account has no ads access (code &#x60;ads_addon_required&#x60;). Ads are included on usage-based plans. Event and scheduled automations never get this 403: a boost step without ads access is refused with a 400 at its path. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
