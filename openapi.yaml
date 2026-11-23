@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.776.1",
+    "version": "1.777.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -39939,6 +39939,7 @@
               "googlesearchconsole",
               "campaignmanager360",
               "tradedeskads",
+              "tradedeskdsp",
               "amazonads",
               "gohighlevel"
             ]
@@ -93049,6 +93050,7 @@
                 "stripe",
                 "campaignmanager360",
                 "tradedeskads",
+                "tradedeskdsp",
                 "amazonads"
               ]
             }
@@ -108209,6 +108211,147 @@
           },
           "403": {
             "description": "Ads add-on required."
+          }
+        }
+      }
+    },
+    "/v1/connect/tradedesk-ads/partner": {
+      "post": {
+        "x-resource-group": "accounts",
+        "operationId": "connectTradeDeskAdsPartner",
+        "x-platforms": [
+          "tradedeskdsp"
+        ],
+        "tags": [
+          "Connect"
+        ],
+        "summary": "Connect a Trade Desk partner for ads management",
+        "description": "Connects a Trade Desk partner with an API token for ads management. Sending conversions to a tracking tag is a separate connection: `POST /v1/connect/tradedesk-ads/credentials`.\n\nConnects a Trade Desk partner with an API token. The Trade Desk has no OAuth: your Trade Desk account manager enables API access for your user, who then creates a token in the Partner Portal under Manage API Tokens.\n\nZernio lists the partner's advertisers with the token before saving anything. Each advertiser becomes an ad account of the connection (`GET /v1/ads/accounts`), and `adAccountIds` keeps only some of them. The token is stored encrypted and never returned.\n\nRequires the Ads add-on.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "partnerId",
+                  "apiToken",
+                  "profileId"
+                ],
+                "properties": {
+                  "partnerId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9]{5,12}$",
+                    "description": "Trade Desk Partner ID, a short code such as `ptn1234`. Stored and echoed lowercased."
+                  },
+                  "apiToken": {
+                    "type": "string",
+                    "description": "API token of a Trade Desk user with API access to the partner."
+                  },
+                  "adAccountIds": {
+                    "type": "array",
+                    "maxItems": 500,
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9]{5,12}$"
+                    },
+                    "description": "Advertiser ids to keep. Left out or empty, a new connection keeps every advertiser and a reconnect keeps its saved selection."
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "description": "Optional display name for the account."
+                  },
+                  "profileId": {
+                    "type": "string",
+                    "description": "Your Zernio profile ID"
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "Optional state passthrough for the connect flow."
+                  },
+                  "redirect_url": {
+                    "type": "string",
+                    "description": "Optional URL to redirect to after a successful connection, echoed back as redirectUrl."
+                  }
+                }
+              },
+              "example": {
+                "partnerId": "ptn1234",
+                "apiToken": "YOUR_TTD_API_TOKEN",
+                "profileId": "6507a1b2c3d4e5f6a7b8c9d0"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Trade Desk partner connected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "partnerId": {
+                      "type": "string"
+                    },
+                    "accountName": {
+                      "type": "string"
+                    },
+                    "advertisers": {
+                      "type": "array",
+                      "description": "Every advertiser the token reaches under the partner, whatever adAccountIds keeps.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "redirectUrl": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "accountId": "6507a1b2c3d4e5f6a7b8c9d0",
+                  "partnerId": "ptn1234",
+                  "accountName": "Trade Desk partner ptn1234",
+                  "advertisers": [
+                    {
+                      "id": "abc1234",
+                      "name": "Acme"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized, or The Trade Desk refused the token or partner id (`invalid_credentials`)."
+          },
+          "402": {
+            "$ref": "#/components/responses/PaymentRequired"
+          },
+          "403": {
+            "description": "Ads add-on required."
+          },
+          "409": {
+            "description": "The profile already holds another Trade Desk partner."
+          },
+          "502": {
+            "description": "The Trade Desk could not be reached to check the token. Nothing was saved."
           }
         }
       }

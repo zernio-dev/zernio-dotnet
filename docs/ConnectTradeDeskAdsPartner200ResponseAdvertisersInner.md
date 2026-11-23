@@ -1,4 +1,4 @@
-# Zernio.Model.UpdateFacebookPage200ResponseSelectedPage
+# Zernio.Model.ConnectTradeDeskAdsPartner200ResponseAdvertisersInner
 
 ## Properties
 

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **LastMessage** | **string** |  | [optional] 
 **LastMessageAt** | **DateTime** |  | [optional] 
 **UpdatedTime** | **DateTime** |  | [optional] 
-**Participants** | [**List&lt;UpdateFacebookPage200ResponseSelectedPage&gt;**](UpdateFacebookPage200ResponseSelectedPage.md) |  | [optional] 
+**Participants** | [**List&lt;ConnectTradeDeskAdsPartner200ResponseAdvertisersInner&gt;**](ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.md) |  | [optional] 
 **InstagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  | [optional] 
 **Metadata** | [**InboxConversationAdMetadata**](InboxConversationAdMetadata.md) |  | [optional] 
 **AdAttribution** | [**ConversationAdAttribution**](ConversationAdAttribution.md) |  | [optional] 

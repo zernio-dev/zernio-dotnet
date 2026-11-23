@@ -748,6 +748,9 @@ docs/ConnectTaboolaAdsCredentials200Response.md
 docs/ConnectTaboolaAdsCredentialsRequest.md
 docs/ConnectTradeDeskAdsCredentials200Response.md
 docs/ConnectTradeDeskAdsCredentialsRequest.md
+docs/ConnectTradeDeskAdsPartner200Response.md
+docs/ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.md
+docs/ConnectTradeDeskAdsPartnerRequest.md
 docs/ConnectWebflowWithSiteToken200Response.md
 docs/ConnectWebflowWithSiteToken200ResponseAccount.md
 docs/ConnectWebflowWithSiteTokenRequest.md
@@ -3648,7 +3651,6 @@ docs/UpdateEmailDraftRequest.md
 docs/UpdateEmailSignatureRequest.md
 docs/UpdateEmailThread200Response.md
 docs/UpdateFacebookPage200Response.md
-docs/UpdateFacebookPage200ResponseSelectedPage.md
 docs/UpdateFacebookPageInfoRequest.md
 docs/UpdateFacebookPageRequest.md
 docs/UpdateFileRequest.md
@@ -5040,6 +5042,9 @@ src/Zernio.Test/Model/ConnectTaboolaAdsCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectTaboolaAdsCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectTradeDeskAdsCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectTradeDeskAdsCredentialsRequestTests.cs
+src/Zernio.Test/Model/ConnectTradeDeskAdsPartner200ResponseAdvertisersInnerTests.cs
+src/Zernio.Test/Model/ConnectTradeDeskAdsPartner200ResponseTests.cs
+src/Zernio.Test/Model/ConnectTradeDeskAdsPartnerRequestTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteToken200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteToken200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWebflowWithSiteTokenRequestTests.cs
@@ -7888,7 +7893,6 @@ src/Zernio.Test/Model/UpdateDiscordSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateEmailDraftRequestTests.cs
 src/Zernio.Test/Model/UpdateEmailSignatureRequestTests.cs
 src/Zernio.Test/Model/UpdateEmailThread200ResponseTests.cs
-src/Zernio.Test/Model/UpdateFacebookPage200ResponseSelectedPageTests.cs
 src/Zernio.Test/Model/UpdateFacebookPage200ResponseTests.cs
 src/Zernio.Test/Model/UpdateFacebookPageInfoRequestTests.cs
 src/Zernio.Test/Model/UpdateFacebookPageRequestTests.cs
@@ -9284,6 +9288,9 @@ src/Zernio/Model/ConnectTaboolaAdsCredentials200Response.cs
 src/Zernio/Model/ConnectTaboolaAdsCredentialsRequest.cs
 src/Zernio/Model/ConnectTradeDeskAdsCredentials200Response.cs
 src/Zernio/Model/ConnectTradeDeskAdsCredentialsRequest.cs
+src/Zernio/Model/ConnectTradeDeskAdsPartner200Response.cs
+src/Zernio/Model/ConnectTradeDeskAdsPartner200ResponseAdvertisersInner.cs
+src/Zernio/Model/ConnectTradeDeskAdsPartnerRequest.cs
 src/Zernio/Model/ConnectWebflowWithSiteToken200Response.cs
 src/Zernio/Model/ConnectWebflowWithSiteToken200ResponseAccount.cs
 src/Zernio/Model/ConnectWebflowWithSiteTokenRequest.cs
@@ -12133,7 +12140,6 @@ src/Zernio/Model/UpdateEmailDraftRequest.cs
 src/Zernio/Model/UpdateEmailSignatureRequest.cs
 src/Zernio/Model/UpdateEmailThread200Response.cs
 src/Zernio/Model/UpdateFacebookPage200Response.cs
-src/Zernio/Model/UpdateFacebookPage200ResponseSelectedPage.cs
 src/Zernio/Model/UpdateFacebookPageInfoRequest.cs
 src/Zernio/Model/UpdateFacebookPageRequest.cs
 src/Zernio/Model/UpdateFileRequest.cs
