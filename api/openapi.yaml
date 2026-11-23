@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.793.0
+  version: 1.793.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9379,9 +9379,10 @@ paths:
       summary: Get a post's authenticity score
       tags:
       - Analytics
-      x-resource-group: analytics
+      x-resource-group: publishing
       x-oauth-scopes:
-      - analytics:read
+      - posts:read
+      - posts:write
       x-platforms:
       - instagram
       - facebook
@@ -14351,10 +14352,7 @@ paths:
       summary: Remove member
       tags:
       - Users
-      x-resource-group: accounts
-      x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      x-resource-group: admin-plane
     get:
       description: "Returns a single user's details by ID, including name, email,\
         \ and role."
@@ -20008,6 +20006,10 @@ paths:
       summary: Get a hosted link to connect any mailbox
       tags:
       - Connect
+      x-resource-group: accounts
+      x-oauth-scopes:
+      - accounts:read
+      - accounts:write
       x-platforms:
       - google
       - microsoft
@@ -46206,10 +46208,9 @@ paths:
       summary: Clear ice breakers and commands
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      - messaging:write
     get:
       description: "Read the number's conversational automation (Meta's `conversational_automation`):\
         \ ice breaker prompts, slash commands and the welcome-message flag. A number\
@@ -46242,10 +46243,10 @@ paths:
       summary: Get ice breakers and commands
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      - messaging:write
+      - messaging:read
     post:
       description: "Set ice breaker prompts (up to 3, 80 characters each), slash commands\
         \ (up to 30) and the welcome-message flag on the number. Only the fields you\
@@ -46285,10 +46286,9 @@ paths:
       summary: Set ice breakers and commands
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-oauth-scopes:
-      - accounts:read
-      - accounts:write
+      - messaging:write
   /v1/whatsapp/business-profile:
     get:
       description: |
