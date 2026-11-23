@@ -4858,7 +4858,7 @@ catch (ApiException e)
 
 <a id="getgohighlevelconnecturl"></a>
 # **GetGohighlevelConnectUrl**
-> GetGohighlevelConnectUrl200Response GetGohighlevelConnectUrl (string profileId, string? redirectUrl = null)
+> GetGohighlevelConnectUrl200Response GetGohighlevelConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
 
 Get HighLevel OAuth connect URL
 
@@ -4894,11 +4894,12 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location. (optional) 
 
             try
             {
                 // Get HighLevel OAuth connect URL
-                GetGohighlevelConnectUrl200Response result = apiInstance.GetGohighlevelConnectUrl(profileId, redirectUrl);
+                GetGohighlevelConnectUrl200Response result = apiInstance.GetGohighlevelConnectUrl(profileId, redirectUrl, reconnectAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4919,7 +4920,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get HighLevel OAuth connect URL
-    ApiResponse<GetGohighlevelConnectUrl200Response> response = apiInstance.GetGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl);
+    ApiResponse<GetGohighlevelConnectUrl200Response> response = apiInstance.GetGohighlevelConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4938,6 +4939,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location. | [optional]  |
 
 ### Return type
 
@@ -5211,7 +5213,7 @@ catch (ApiException e)
 
 <a id="gethubspotconnecturl"></a>
 # **GetHubSpotConnectUrl**
-> GetHubSpotConnectUrl200Response GetHubSpotConnectUrl (string profileId, string? redirectUrl = null)
+> GetHubSpotConnectUrl200Response GetHubSpotConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
 
 Get HubSpot OAuth connect URL
 
@@ -5247,11 +5249,12 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal. (optional) 
 
             try
             {
                 // Get HubSpot OAuth connect URL
-                GetHubSpotConnectUrl200Response result = apiInstance.GetHubSpotConnectUrl(profileId, redirectUrl);
+                GetHubSpotConnectUrl200Response result = apiInstance.GetHubSpotConnectUrl(profileId, redirectUrl, reconnectAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5272,7 +5275,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get HubSpot OAuth connect URL
-    ApiResponse<GetHubSpotConnectUrl200Response> response = apiInstance.GetHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl);
+    ApiResponse<GetHubSpotConnectUrl200Response> response = apiInstance.GetHubSpotConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5291,6 +5294,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal. | [optional]  |
 
 ### Return type
 
@@ -6130,7 +6134,7 @@ catch (ApiException e)
 
 <a id="getsalesforceconnecturl"></a>
 # **GetSalesforceConnectUrl**
-> GetSalesforceConnectUrl200Response GetSalesforceConnectUrl (string profileId, string? environment = null, string? redirectUrl = null)
+> GetSalesforceConnectUrl200Response GetSalesforceConnectUrl (string profileId, string? environment = null, string? redirectUrl = null, string? reconnectAccountId = null)
 
 Get Salesforce OAuth connect URL
 
@@ -6167,11 +6171,12 @@ namespace Example
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var environment = "production";  // string? | Sign in at login.salesforce.com (`production`, also Developer Edition orgs) or test.salesforce.com (`sandbox`). (optional)  (default to production)
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org. (optional) 
 
             try
             {
                 // Get Salesforce OAuth connect URL
-                GetSalesforceConnectUrl200Response result = apiInstance.GetSalesforceConnectUrl(profileId, environment, redirectUrl);
+                GetSalesforceConnectUrl200Response result = apiInstance.GetSalesforceConnectUrl(profileId, environment, redirectUrl, reconnectAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6192,7 +6197,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Salesforce OAuth connect URL
-    ApiResponse<GetSalesforceConnectUrl200Response> response = apiInstance.GetSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl);
+    ApiResponse<GetSalesforceConnectUrl200Response> response = apiInstance.GetSalesforceConnectUrlWithHttpInfo(profileId, environment, redirectUrl, reconnectAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6212,6 +6217,7 @@ catch (ApiException e)
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **environment** | **string?** | Sign in at login.salesforce.com (&#x60;production&#x60;, also Developer Edition orgs) or test.salesforce.com (&#x60;sandbox&#x60;). | [optional] [default to production] |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org. | [optional]  |
 
 ### Return type
 
@@ -6672,7 +6678,7 @@ catch (ApiException e)
 
 <a id="getwebflowconnecturl"></a>
 # **GetWebflowConnectUrl**
-> GetWebflowConnectUrl200Response GetWebflowConnectUrl (string profileId, string? redirectUrl = null)
+> GetWebflowConnectUrl200Response GetWebflowConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
 
 Get Webflow OAuth URL
 
@@ -6708,11 +6714,12 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. (optional) 
 
             try
             {
                 // Get Webflow OAuth URL
-                GetWebflowConnectUrl200Response result = apiInstance.GetWebflowConnectUrl(profileId, redirectUrl);
+                GetWebflowConnectUrl200Response result = apiInstance.GetWebflowConnectUrl(profileId, redirectUrl, reconnectAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6733,7 +6740,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Webflow OAuth URL
-    ApiResponse<GetWebflowConnectUrl200Response> response = apiInstance.GetWebflowConnectUrlWithHttpInfo(profileId, redirectUrl);
+    ApiResponse<GetWebflowConnectUrl200Response> response = apiInstance.GetWebflowConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6752,6 +6759,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional]  |
 
 ### Return type
 
@@ -6977,7 +6985,7 @@ catch (ApiException e)
 
 <a id="getwixconnecturl"></a>
 # **GetWixConnectUrl**
-> GetWixConnectUrl200Response GetWixConnectUrl (string profileId, string? redirectUrl = null)
+> GetWixConnectUrl200Response GetWixConnectUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
 
 Get Wix site install URL
 
@@ -7013,11 +7021,12 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. (optional) 
 
             try
             {
                 // Get Wix site install URL
-                GetWixConnectUrl200Response result = apiInstance.GetWixConnectUrl(profileId, redirectUrl);
+                GetWixConnectUrl200Response result = apiInstance.GetWixConnectUrl(profileId, redirectUrl, reconnectAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7038,7 +7047,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Wix site install URL
-    ApiResponse<GetWixConnectUrl200Response> response = apiInstance.GetWixConnectUrlWithHttpInfo(profileId, redirectUrl);
+    ApiResponse<GetWixConnectUrl200Response> response = apiInstance.GetWixConnectUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7057,6 +7066,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional]  |
 
 ### Return type
 
@@ -7087,7 +7097,7 @@ catch (ApiException e)
 
 <a id="getwordpressauthurl"></a>
 # **GetWordPressAuthUrl**
-> GetWordPressAuthUrl200Response GetWordPressAuthUrl (string profileId, string? redirectUrl = null)
+> GetWordPressAuthUrl200Response GetWordPressAuthUrl (string profileId, string? redirectUrl = null, string? reconnectAccountId = null)
 
 Get WordPress.com OAuth connect URL
 
@@ -7123,11 +7133,12 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | Your Zernio profile ID (get from /v1/profiles).
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400. (optional) 
+            var reconnectAccountId = "reconnectAccountId_example";  // string? | The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. (optional) 
 
             try
             {
                 // Get WordPress.com OAuth connect URL
-                GetWordPressAuthUrl200Response result = apiInstance.GetWordPressAuthUrl(profileId, redirectUrl);
+                GetWordPressAuthUrl200Response result = apiInstance.GetWordPressAuthUrl(profileId, redirectUrl, reconnectAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7148,7 +7159,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get WordPress.com OAuth connect URL
-    ApiResponse<GetWordPressAuthUrl200Response> response = apiInstance.GetWordPressAuthUrlWithHttpInfo(profileId, redirectUrl);
+    ApiResponse<GetWordPressAuthUrl200Response> response = apiInstance.GetWordPressAuthUrlWithHttpInfo(profileId, redirectUrl, reconnectAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7167,6 +7178,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string** | Your Zernio profile ID (get from /v1/profiles). |  |
 | **redirectUrl** | **string?** | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional]  |
+| **reconnectAccountId** | **string?** | The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site. | [optional]  |
 
 ### Return type
 

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.779.0",
+    "version": "1.781.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -99102,6 +99102,14 @@
               "type": "string"
             },
             "description": "Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400."
+          },
+          {
+            "name": "reconnectAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The HubSpot portal connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same portal."
           }
         ],
         "responses": {
@@ -99188,6 +99196,14 @@
               "type": "string"
             },
             "description": "Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400."
+          },
+          {
+            "name": "reconnectAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The GoHighLevel location connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same location."
           }
         ],
         "responses": {
@@ -99284,6 +99300,14 @@
               "type": "string"
             },
             "description": "Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400."
+          },
+          {
+            "name": "reconnectAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Salesforce org connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same org."
           }
         ],
         "responses": {
@@ -99458,6 +99482,14 @@
               "type": "string"
             },
             "description": "Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400."
+          },
+          {
+            "name": "reconnectAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site."
           }
         ],
         "responses": {
@@ -99541,6 +99573,14 @@
               "type": "string"
             },
             "description": "Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400."
+          },
+          {
+            "name": "reconnectAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Wix site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site."
           }
         ],
         "responses": {
@@ -99624,6 +99664,14 @@
               "type": "string"
             },
             "description": "Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400."
+          },
+          {
+            "name": "reconnectAccountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site."
           }
         ],
         "responses": {
@@ -99712,6 +99760,10 @@
                     "maxLength": 512,
                     "writeOnly": true,
                     "description": "Webflow site API token with Sites read and CMS read and write access."
+                  },
+                  "reconnectAccountId": {
+                    "type": "string",
+                    "description": "The Webflow site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site."
                   }
                 }
               }
@@ -99933,6 +99985,10 @@
                     "maxLength": 1024,
                     "writeOnly": true,
                     "description": "Application password created for the WordPress user. Spaces in WordPress display formatting are accepted."
+                  },
+                  "reconnectAccountId": {
+                    "type": "string",
+                    "description": "The WordPress site connection being reconnected. In a workspace with no billing set up, the connect is allowed only when it returns to that same site."
                   }
                 }
               }
@@ -135909,7 +135965,7 @@
                   "attachmentUrl": {
                     "type": "string",
                     "format": "uri",
-                    "description": "(Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms."
+                    "description": "(Facebook, Bluesky and LinkedIn) URL of an image to attach to the comment or reply. The URL must be publicly fetchable. Returns 400 for other platforms."
                   },
                   "attachmentType": {
                     "type": "string",
@@ -135917,7 +135973,7 @@
                       "image",
                       "gif"
                     ],
-                    "description": "(Facebook only) How Facebook publishes `attachmentUrl`: `image` (default) as a photo comment, `gif` as an animated GIF comment. A GIF sent as `image` is stored as a still photo. Requires `attachmentUrl`."
+                    "description": "(Facebook only) How Facebook publishes `attachmentUrl`: `image` (default) as a photo comment, `gif` as an animated GIF comment. A GIF sent as `image` is stored as a still photo. Requires `attachmentUrl`. Returns 400 on other platforms."
                   },
                   "commentId": {
                     "type": "string",
@@ -135979,8 +136035,8 @@
             }
           },
           "400": {
-            "x-summary": "The request is invalid, for example an attachment URL on a non-Facebook platform or a LinkedIn mention that cannot be resolved.",
-            "description": "Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED).\n\n- LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.\n- `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.\n- `attachmentType` without `attachmentUrl` is rejected.\n- An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.\n",
+            "x-summary": "The request is invalid, for example an attachment URL on a platform other than Facebook, Bluesky and LinkedIn or a LinkedIn mention that cannot be resolved.",
+            "description": "Invalid request (e.g. attachmentUrl on a platform other than Facebook, Bluesky and LinkedIn, or attachmentType on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED).\n\n- LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.\n- `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.\n- `attachmentType` without `attachmentUrl` is rejected.\n- An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.\n",
             "content": {
               "application/json": {
                 "schema": {
