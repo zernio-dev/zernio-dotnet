@@ -733,7 +733,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**CompleteWhatsAppPhoneSelection**](docs/ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
 *ConnectApi* | [**ConfigureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
 *ConnectApi* | [**ConnectAds**](docs/ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
-*ConnectApi* | [**ConnectAppLovinAdsCredentials**](docs/ConnectApi.md#connectapplovinadscredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin Axon account
+*ConnectApi* | [**ConnectAppLovinAdsCredentials**](docs/ConnectApi.md#connectapplovinadscredentials) | **POST** /v1/connect/applovin-ads/credentials | Connect an AppLovin account
 *ConnectApi* | [**ConnectAttentiveCredentials**](docs/ConnectApi.md#connectattentivecredentials) | **POST** /v1/connect/attentive/credentials | Connect an Attentive company
 *ConnectApi* | [**ConnectAwinCredentials**](docs/ConnectApi.md#connectawincredentials) | **POST** /v1/connect/awin/credentials | Connect an Awin advertiser
 *ConnectApi* | [**ConnectBlueskyCredentials**](docs/ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
@@ -1770,6 +1770,11 @@ Class | Method | HTTP request | Description
  - [Model.ApiKey](docs/ApiKey.md)
  - [Model.ApiKeyCreatedBy](docs/ApiKeyCreatedBy.md)
  - [Model.ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
+ - [Model.AppLovinAdsPlatformData](docs/AppLovinAdsPlatformData.md)
+ - [Model.AppLovinAdsPlatformDataAssetsInner](docs/AppLovinAdsPlatformDataAssetsInner.md)
+ - [Model.AppLovinAdsPlatformDataAssetsInnerOneOf](docs/AppLovinAdsPlatformDataAssetsInnerOneOf.md)
+ - [Model.AppLovinAdsPlatformDataBrandInfo](docs/AppLovinAdsPlatformDataBrandInfo.md)
+ - [Model.AppLovinAdsPlatformDataTracking](docs/AppLovinAdsPlatformDataTracking.md)
  - [Model.AppealSmsRegistration200Response](docs/AppealSmsRegistration200Response.md)
  - [Model.AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
  - [Model.ApplyGoogleRecommendations200Response](docs/ApplyGoogleRecommendations200Response.md)
@@ -2323,6 +2328,9 @@ Class | Method | HTTP request | Description
  - [Model.CreateAdCampaign200Response](docs/CreateAdCampaign200Response.md)
  - [Model.CreateAdCampaign201Response](docs/CreateAdCampaign201Response.md)
  - [Model.CreateAdCampaignRequest](docs/CreateAdCampaignRequest.md)
+ - [Model.CreateAdCampaignRequestMetrosInner](docs/CreateAdCampaignRequestMetrosInner.md)
+ - [Model.CreateAdCampaignRequestPlatformSpecificData](docs/CreateAdCampaignRequestPlatformSpecificData.md)
+ - [Model.CreateAdCampaignRequestRegionsInner](docs/CreateAdCampaignRequestRegionsInner.md)
  - [Model.CreateAdCatalog201Response](docs/CreateAdCatalog201Response.md)
  - [Model.CreateAdCatalogFeed201Response](docs/CreateAdCatalogFeed201Response.md)
  - [Model.CreateAdCatalogFeedRequest](docs/CreateAdCatalogFeedRequest.md)

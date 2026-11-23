@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AxonAccountId'
+        /// </summary>
+        [Fact]
+        public void AxonAccountIdTest()
+        {
+            // TODO unit test for the property 'AxonAccountId'
+        }
+
+        /// <summary>
         /// Test the property 'AccountName'
         /// </summary>
         [Fact]

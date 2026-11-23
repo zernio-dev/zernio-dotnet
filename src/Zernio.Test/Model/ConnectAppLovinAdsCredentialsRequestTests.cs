@@ -74,6 +74,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CampaignApiKey'
+        /// </summary>
+        [Fact]
+        public void CampaignApiKeyTest()
+        {
+            // TODO unit test for the property 'CampaignApiKey'
+        }
+
+        /// <summary>
+        /// Test the property 'AccountId'
+        /// </summary>
+        [Fact]
+        public void AccountIdTest()
+        {
+            // TODO unit test for the property 'AccountId'
+        }
+
+        /// <summary>
+        /// Test the property 'ReconnectAccountId'
+        /// </summary>
+        [Fact]
+        public void ReconnectAccountIdTest()
+        {
+            // TODO unit test for the property 'ReconnectAccountId'
+        }
+
+        /// <summary>
         /// Test the property 'ReportKey'
         /// </summary>
         [Fact]

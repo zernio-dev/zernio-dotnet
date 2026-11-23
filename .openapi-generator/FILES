@@ -250,6 +250,11 @@ docs/ApiChangelogOperationRef.md
 docs/ApiKey.md
 docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
+docs/AppLovinAdsPlatformData.md
+docs/AppLovinAdsPlatformDataAssetsInner.md
+docs/AppLovinAdsPlatformDataAssetsInnerOneOf.md
+docs/AppLovinAdsPlatformDataBrandInfo.md
+docs/AppLovinAdsPlatformDataTracking.md
 docs/AppealSmsRegistration200Response.md
 docs/AppealSmsRegistrationRequest.md
 docs/ApplyGoogleRecommendations200Response.md
@@ -821,6 +826,9 @@ docs/CreateAdAudienceRequest.md
 docs/CreateAdCampaign200Response.md
 docs/CreateAdCampaign201Response.md
 docs/CreateAdCampaignRequest.md
+docs/CreateAdCampaignRequestMetrosInner.md
+docs/CreateAdCampaignRequestPlatformSpecificData.md
+docs/CreateAdCampaignRequestRegionsInner.md
 docs/CreateAdCatalog201Response.md
 docs/CreateAdCatalogFeed201Response.md
 docs/CreateAdCatalogFeedRequest.md
@@ -4558,6 +4566,11 @@ src/Zernio.Test/Model/ApiChangelogOperationRefTests.cs
 src/Zernio.Test/Model/ApiKeyCreatedByTests.cs
 src/Zernio.Test/Model/ApiKeyProfileIdsInnerTests.cs
 src/Zernio.Test/Model/ApiKeyTests.cs
+src/Zernio.Test/Model/AppLovinAdsPlatformDataAssetsInnerOneOfTests.cs
+src/Zernio.Test/Model/AppLovinAdsPlatformDataAssetsInnerTests.cs
+src/Zernio.Test/Model/AppLovinAdsPlatformDataBrandInfoTests.cs
+src/Zernio.Test/Model/AppLovinAdsPlatformDataTests.cs
+src/Zernio.Test/Model/AppLovinAdsPlatformDataTrackingTests.cs
 src/Zernio.Test/Model/AppealSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/AppealSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/ApplyGoogleRecommendations200ResponseTests.cs
@@ -5110,6 +5123,9 @@ src/Zernio.Test/Model/CreateAdAudience201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/CreateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCampaign201ResponseTests.cs
+src/Zernio.Test/Model/CreateAdCampaignRequestMetrosInnerTests.cs
+src/Zernio.Test/Model/CreateAdCampaignRequestPlatformSpecificDataTests.cs
+src/Zernio.Test/Model/CreateAdCampaignRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/CreateAdCatalog201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdCatalogFeed201ResponseTests.cs
@@ -8805,6 +8821,11 @@ src/Zernio/Model/ApiChangelogOperationRef.cs
 src/Zernio/Model/ApiKey.cs
 src/Zernio/Model/ApiKeyCreatedBy.cs
 src/Zernio/Model/ApiKeyProfileIdsInner.cs
+src/Zernio/Model/AppLovinAdsPlatformData.cs
+src/Zernio/Model/AppLovinAdsPlatformDataAssetsInner.cs
+src/Zernio/Model/AppLovinAdsPlatformDataAssetsInnerOneOf.cs
+src/Zernio/Model/AppLovinAdsPlatformDataBrandInfo.cs
+src/Zernio/Model/AppLovinAdsPlatformDataTracking.cs
 src/Zernio/Model/AppealSmsRegistration200Response.cs
 src/Zernio/Model/AppealSmsRegistrationRequest.cs
 src/Zernio/Model/ApplyGoogleRecommendations200Response.cs
@@ -9358,6 +9379,9 @@ src/Zernio/Model/CreateAdAudienceRequest.cs
 src/Zernio/Model/CreateAdCampaign200Response.cs
 src/Zernio/Model/CreateAdCampaign201Response.cs
 src/Zernio/Model/CreateAdCampaignRequest.cs
+src/Zernio/Model/CreateAdCampaignRequestMetrosInner.cs
+src/Zernio/Model/CreateAdCampaignRequestPlatformSpecificData.cs
+src/Zernio/Model/CreateAdCampaignRequestRegionsInner.cs
 src/Zernio/Model/CreateAdCatalog201Response.cs
 src/Zernio/Model/CreateAdCatalogFeed201Response.cs
 src/Zernio/Model/CreateAdCatalogFeedRequest.cs

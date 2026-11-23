@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ConnectAppLovinAdsCredentialsRequest
+    /// Send apiKey with eventKey, campaignApiKey with accountId, or all four. Each pair goes together (400 otherwise).
     /// </summary>
     [DataContract(Name = "connectAppLovinAdsCredentials_request")]
     public partial class ConnectAppLovinAdsCredentialsRequest : IValidatableObject
@@ -41,33 +41,29 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectAppLovinAdsCredentialsRequest" /> class.
         /// </summary>
-        /// <param name="apiKey">Conversion API key from the Keys page of Axon Ads Manager. (required).</param>
-        /// <param name="eventKey">Event Key from the Keys page of Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores. (required).</param>
+        /// <param name="apiKey">Conversion API key from the Keys page of AppLovin Axon Ads Manager. Sent with eventKey..</param>
+        /// <param name="eventKey">Event Key from the Keys page of AppLovin Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores. Sent with apiKey..</param>
+        /// <param name="campaignApiKey">Campaign Management API key from the Keys page of ads.axon.ai (visible to account Admins only). Sent with accountId. Lets Zernio read, create and manage campaigns and creative sets..</param>
+        /// <param name="accountId">Numeric AppLovin account id (Account menu, then Go to settings, in ads.axon.ai). Sent with campaignApiKey..</param>
+        /// <param name="reconnectAccountId">The Zernio id of the AppLovin connection being reconnected (a connection on this profile). The keys sent update that connection, which keeps its identity, instead of creating one: send it to add or replace keys on an existing connection..</param>
         /// <param name="reportKey">Optional Report Key from the Keys page of your AppLovin account. With it, Zernio syncs AppLovin spend per campaign..</param>
         /// <param name="name">Optional display name for the account..</param>
         /// <param name="profileId">Your Zernio profile ID (required).</param>
         /// <param name="state">Optional state passthrough for the connect flow..</param>
         /// <param name="redirectUrl">Optional URL to redirect to after a successful connection, echoed back as redirectUrl..</param>
-        public ConnectAppLovinAdsCredentialsRequest(string apiKey = default, string eventKey = default, string reportKey = default, string name = default, string profileId = default, string state = default, string redirectUrl = default)
+        public ConnectAppLovinAdsCredentialsRequest(string apiKey = default, string eventKey = default, string campaignApiKey = default, string accountId = default, string reconnectAccountId = default, string reportKey = default, string name = default, string profileId = default, string state = default, string redirectUrl = default)
         {
-            // to ensure "apiKey" is required (not null)
-            if (apiKey == null)
-            {
-                throw new ArgumentNullException("apiKey is a required property for ConnectAppLovinAdsCredentialsRequest and cannot be null");
-            }
-            this.ApiKey = apiKey;
-            // to ensure "eventKey" is required (not null)
-            if (eventKey == null)
-            {
-                throw new ArgumentNullException("eventKey is a required property for ConnectAppLovinAdsCredentialsRequest and cannot be null");
-            }
-            this.EventKey = eventKey;
             // to ensure "profileId" is required (not null)
             if (profileId == null)
             {
                 throw new ArgumentNullException("profileId is a required property for ConnectAppLovinAdsCredentialsRequest and cannot be null");
             }
             this.ProfileId = profileId;
+            this.ApiKey = apiKey;
+            this.EventKey = eventKey;
+            this.CampaignApiKey = campaignApiKey;
+            this.AccountId = accountId;
+            this.ReconnectAccountId = reconnectAccountId;
             this.ReportKey = reportKey;
             this.Name = name;
             this.State = state;
@@ -75,18 +71,39 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Conversion API key from the Keys page of Axon Ads Manager.
+        /// Conversion API key from the Keys page of AppLovin Axon Ads Manager. Sent with eventKey.
         /// </summary>
-        /// <value>Conversion API key from the Keys page of Axon Ads Manager.</value>
-        [DataMember(Name = "apiKey", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Conversion API key from the Keys page of AppLovin Axon Ads Manager. Sent with eventKey.</value>
+        [DataMember(Name = "apiKey", EmitDefaultValue = false)]
         public string ApiKey { get; set; }
 
         /// <summary>
-        /// Event Key from the Keys page of Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores.
+        /// Event Key from the Keys page of AppLovin Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores. Sent with apiKey.
         /// </summary>
-        /// <value>Event Key from the Keys page of Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores.</value>
-        [DataMember(Name = "eventKey", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Event Key from the Keys page of AppLovin Axon Ads Manager: 8 to 128 letters, digits, dots, dashes or underscores. Sent with apiKey.</value>
+        [DataMember(Name = "eventKey", EmitDefaultValue = false)]
         public string EventKey { get; set; }
+
+        /// <summary>
+        /// Campaign Management API key from the Keys page of ads.axon.ai (visible to account Admins only). Sent with accountId. Lets Zernio read, create and manage campaigns and creative sets.
+        /// </summary>
+        /// <value>Campaign Management API key from the Keys page of ads.axon.ai (visible to account Admins only). Sent with accountId. Lets Zernio read, create and manage campaigns and creative sets.</value>
+        [DataMember(Name = "campaignApiKey", EmitDefaultValue = false)]
+        public string CampaignApiKey { get; set; }
+
+        /// <summary>
+        /// Numeric AppLovin account id (Account menu, then Go to settings, in ads.axon.ai). Sent with campaignApiKey.
+        /// </summary>
+        /// <value>Numeric AppLovin account id (Account menu, then Go to settings, in ads.axon.ai). Sent with campaignApiKey.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
+
+        /// <summary>
+        /// The Zernio id of the AppLovin connection being reconnected (a connection on this profile). The keys sent update that connection, which keeps its identity, instead of creating one: send it to add or replace keys on an existing connection.
+        /// </summary>
+        /// <value>The Zernio id of the AppLovin connection being reconnected (a connection on this profile). The keys sent update that connection, which keeps its identity, instead of creating one: send it to add or replace keys on an existing connection.</value>
+        [DataMember(Name = "reconnectAccountId", EmitDefaultValue = false)]
+        public string ReconnectAccountId { get; set; }
 
         /// <summary>
         /// Optional Report Key from the Keys page of your AppLovin account. With it, Zernio syncs AppLovin spend per campaign.
@@ -133,6 +150,9 @@ namespace Zernio.Model
             sb.Append("class ConnectAppLovinAdsCredentialsRequest {\n");
             sb.Append("  ApiKey: ").Append(ApiKey).Append("\n");
             sb.Append("  EventKey: ").Append(EventKey).Append("\n");
+            sb.Append("  CampaignApiKey: ").Append(CampaignApiKey).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  ReconnectAccountId: ").Append(ReconnectAccountId).Append("\n");
             sb.Append("  ReportKey: ").Append(ReportKey).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
@@ -158,6 +178,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.AccountId != null) {
+                // AccountId (string) pattern
+                Regex regexAccountId = new Regex(@"^\d{1,20}$", RegexOptions.CultureInvariant);
+                if (!regexAccountId.Match(this.AccountId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountId, must match a pattern of " + regexAccountId, new [] { "AccountId" });
+                }
+            }
+
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 100)
             {

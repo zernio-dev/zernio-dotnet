@@ -306,9 +306,12 @@ namespace Zernio.Model
         /// <param name="budgetAmount">Campaign-level (CBO) budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Requires budgetType..</param>
         /// <param name="budgetType">budgetType.</param>
         /// <param name="status">status (default to StatusEnum.PAUSED).</param>
-        /// <param name="startDate">Reddit and Amazon only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). Defaults to now..</param>
-        /// <param name="endDate">Reddit and Amazon only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;..</param>
-        /// <param name="platformSpecificData">Amazon Ads only (400 elsewhere), and required there: the ad product and its campaign settings..</param>
+        /// <param name="startDate">Reddit, Amazon and AppLovin only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). AppLovin reads it in UTC and refuses a start before today. Defaults to now..</param>
+        /// <param name="endDate">Reddit, Amazon and AppLovin only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;. On AppLovin no endDate means continuous delivery..</param>
+        /// <param name="countries">AppLovin only (400 elsewhere), where the campaign carries the targeting: the countries it serves, at least one..</param>
+        /// <param name="regions">AppLovin only (400 elsewhere). US state codes (&#x60;CA&#x60; or &#x60;US-CA&#x60;), with &#x60;US&#x60; in countries. Never together with metros..</param>
+        /// <param name="metros">AppLovin only (400 elsewhere). AppLovin metro names, with &#x60;US&#x60; in countries. Never together with regions..</param>
+        /// <param name="platformSpecificData">platformSpecificData.</param>
         /// <param name="locationTargetingType">Google only (400 elsewhere). Written on the new campaign..</param>
         /// <param name="bidStrategy">Campaign bid strategy.  **Meta** stores &#x60;bid_strategy&#x60; alongside the budget, so this REQUIRES &#x60;budgetAmount&#x60; + &#x60;budgetType&#x60; on the same request (400 without a campaign budget).  A campaign carrying a strategy without its &#x60;bid_amount&#x60; makes every ad set under it fail (code 100, subcode 1815857), so that state is rejected up front. To bid at ad-set level, set the strategy there instead.  **Google:**  - LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions - COST_CAP + bidAmount &#x3D; Target CPA - LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS - LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling - portfolioBidStrategyId attaches a portfolio strategy instead. .</param>
         /// <param name="bidAmount">Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise.  - Meta: validated here but NOT stored, since the campaign object only has bid_strategy. The amount takes effect once an ad set joins this campaign (existingCampaignId on POST /v1/ads/create) and supplies its own bidAmount there. - Google: stored directly on the campaign&#39;s bidding strategy..</param>
@@ -317,7 +320,7 @@ namespace Zernio.Model
         /// <param name="targetImpressionShare">Google Search only. Target impression share bidding. Exclusive with bidStrategy, portfolioBidStrategyId and manualCpc; bidAmount is refused alongside it (the ceiling is maxCpc)..</param>
         /// <param name="manualCpc">manualCpc.</param>
         /// <param name="networkSettings">networkSettings.</param>
-        public CreateAdCampaignRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, bool isSkadnetworkAttribution = default, AdPromotedObject promotedObject = default, BuyingTypeEnum? buyingType = default, bool validateOnly = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = StatusEnum.PAUSED, DateTime startDate = default, DateTime endDate = default, AmazonAdsCampaignPlatformData platformSpecificData = default, GoogleLocationTargetingType? locationTargetingType = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, GoogleTargetImpressionShare targetImpressionShare = default, GoogleManualCpc manualCpc = default, GoogleNetworkSettings networkSettings = default)
+        public CreateAdCampaignRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, bool isSkadnetworkAttribution = default, AdPromotedObject promotedObject = default, BuyingTypeEnum? buyingType = default, bool validateOnly = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = StatusEnum.PAUSED, DateTime startDate = default, DateTime endDate = default, List<string> countries = default, List<CreateAdCampaignRequestRegionsInner> regions = default, List<CreateAdCampaignRequestMetrosInner> metros = default, CreateAdCampaignRequestPlatformSpecificData platformSpecificData = default, GoogleLocationTargetingType? locationTargetingType = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, GoogleTargetImpressionShare targetImpressionShare = default, GoogleManualCpc manualCpc = default, GoogleNetworkSettings networkSettings = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -348,6 +351,9 @@ namespace Zernio.Model
             this.Status = status;
             this.StartDate = startDate;
             this.EndDate = endDate;
+            this.Countries = countries;
+            this.Regions = regions;
+            this.Metros = metros;
             this.PlatformSpecificData = platformSpecificData;
             this.LocationTargetingType = locationTargetingType;
             this.BidStrategy = bidStrategy;
@@ -413,25 +419,48 @@ namespace Zernio.Model
         public decimal BudgetAmount { get; set; }
 
         /// <summary>
-        /// Reddit and Amazon only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). Defaults to now.
+        /// Reddit, Amazon and AppLovin only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). AppLovin reads it in UTC and refuses a start before today. Defaults to now.
         /// </summary>
-        /// <value>Reddit and Amazon only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). Defaults to now.</value>
+        /// <value>Reddit, Amazon and AppLovin only (400 elsewhere). Campaign start (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (&#x60;budgetAmount&#x60; + &#x60;budgetType&#x60;, 400 otherwise). AppLovin reads it in UTC and refuses a start before today. Defaults to now.</value>
         [DataMember(Name = "startDate", EmitDefaultValue = false)]
         public DateTime StartDate { get; set; }
 
         /// <summary>
-        /// Reddit and Amazon only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;.
+        /// Reddit, Amazon and AppLovin only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;. On AppLovin no endDate means continuous delivery.
         /// </summary>
-        /// <value>Reddit and Amazon only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;.</value>
+        /// <value>Reddit, Amazon and AppLovin only (400 elsewhere). Campaign end (ISO 8601); a value without an offset is read in the ad account time zone. Requires a campaign budget (400 otherwise), and is required for &#x60;budgetType: lifetime&#x60;. On AppLovin no endDate means continuous delivery.</value>
         [DataMember(Name = "endDate", EmitDefaultValue = false)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
-        /// Amazon Ads only (400 elsewhere), and required there: the ad product and its campaign settings.
+        /// AppLovin only (400 elsewhere), where the campaign carries the targeting: the countries it serves, at least one.
         /// </summary>
-        /// <value>Amazon Ads only (400 elsewhere), and required there: the ad product and its campaign settings.</value>
+        /// <value>AppLovin only (400 elsewhere), where the campaign carries the targeting: the countries it serves, at least one.</value>
+        /*
+        <example>[&quot;US&quot;,&quot;CA&quot;]</example>
+        */
+        [DataMember(Name = "countries", EmitDefaultValue = false)]
+        public List<string> Countries { get; set; }
+
+        /// <summary>
+        /// AppLovin only (400 elsewhere). US state codes (&#x60;CA&#x60; or &#x60;US-CA&#x60;), with &#x60;US&#x60; in countries. Never together with metros.
+        /// </summary>
+        /// <value>AppLovin only (400 elsewhere). US state codes (&#x60;CA&#x60; or &#x60;US-CA&#x60;), with &#x60;US&#x60; in countries. Never together with metros.</value>
+        [DataMember(Name = "regions", EmitDefaultValue = false)]
+        public List<CreateAdCampaignRequestRegionsInner> Regions { get; set; }
+
+        /// <summary>
+        /// AppLovin only (400 elsewhere). AppLovin metro names, with &#x60;US&#x60; in countries. Never together with regions.
+        /// </summary>
+        /// <value>AppLovin only (400 elsewhere). AppLovin metro names, with &#x60;US&#x60; in countries. Never together with regions.</value>
+        [DataMember(Name = "metros", EmitDefaultValue = false)]
+        public List<CreateAdCampaignRequestMetrosInner> Metros { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
         [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
-        public AmazonAdsCampaignPlatformData PlatformSpecificData { get; set; }
+        public CreateAdCampaignRequestPlatformSpecificData PlatformSpecificData { get; set; }
 
         /// <summary>
         /// Whole currency units (USD: 5 &#x3D; $5.00). Required for LOWEST_COST_WITH_BID_CAP and COST_CAP; ignored otherwise.  - Meta: validated here but NOT stored, since the campaign object only has bid_strategy. The amount takes effect once an ad set joins this campaign (existingCampaignId on POST /v1/ads/create) and supplies its own bidAmount there. - Google: stored directly on the campaign&#39;s bidding strategy.
@@ -495,6 +524,9 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
+            sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  Regions: ").Append(Regions).Append("\n");
+            sb.Append("  Metros: ").Append(Metros).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("  LocationTargetingType: ").Append(LocationTargetingType).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");

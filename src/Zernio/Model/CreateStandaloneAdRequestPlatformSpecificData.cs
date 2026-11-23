@@ -29,7 +29,7 @@ using System.Reflection;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Platform-specific options. The platform is derived from &#x60;accountId&#x60;; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) and Amazon Ads (required: the ad product, products, creative and targeting) have options today.  **Amazon Ads**: see &#x60;AmazonAdsPlatformData&#x60;. Amazon has no dry run, so &#x60;validateOnly&#x60; returns a 501.  **Meta**  - &#x60;bidStrategy&#x60;, &#x60;bidAmount&#x60; and &#x60;roasAverageFloor&#x60; may be sent here instead of at the root (the preferred home going forward). Sending them in BOTH places returns a 400 (&#x60;mutually_exclusive_fields&#x60;). - Sending any bid field in &#x60;adSetId&#x60; attach mode is a 400 (the ad set already has its bid). - &#x60;dailyMinSpendTarget&#x60; / &#x60;lifetimeMinSpendTarget&#x60; set the new ad set&#39;s minimum spend and live here only; also rejected in &#x60;adSetId&#x60; attach mode. 
+    /// Platform-specific options. The platform is derived from &#x60;accountId&#x60;; options for a different platform return a 400. LinkedIn (campaign bidding and delivery controls), Meta (the bid trio) Amazon Ads (required: the ad product, products, creative and targeting) and AppLovin (the campaign and creative set) have options today.  **Amazon Ads**: see &#x60;AmazonAdsPlatformData&#x60;. Amazon has no dry run, so &#x60;validateOnly&#x60; returns a 501.  **AppLovin**  - A new campaign needs &#x60;campaignType&#x60; (&#x60;APP&#x60; or &#x60;WEB&#x60;), the goal and, for an app, &#x60;os&#x60;, &#x60;packageName&#x60; and &#x60;tracking&#x60;. With &#x60;existingCampaignId&#x60;, only the creative set fields (&#x60;assets&#x60;, &#x60;languages&#x60;, &#x60;brandInfo&#x60;) apply. - Zernio checks every documented AppLovin rule (goal value limits, ROAS day targets, US-only regions and metros, the asset combination, brand info lengths) before calling AppLovin, because 100 refused calls in five minutes lock the AppLovin account for a day. &#x60;validateOnly&#x60; runs those checks and calls nothing.  **Meta**  - &#x60;bidStrategy&#x60;, &#x60;bidAmount&#x60; and &#x60;roasAverageFloor&#x60; may be sent here instead of at the root (the preferred home going forward). Sending them in BOTH places returns a 400 (&#x60;mutually_exclusive_fields&#x60;). - Sending any bid field in &#x60;adSetId&#x60; attach mode is a 400 (the ad set already has its bid). - &#x60;dailyMinSpendTarget&#x60; / &#x60;lifetimeMinSpendTarget&#x60; set the new ad set&#39;s minimum spend and live here only; also rejected in &#x60;adSetId&#x60; attach mode. 
     /// </summary>
     [JsonConverter(typeof(CreateStandaloneAdRequestPlatformSpecificDataJsonConverter))]
     [DataContract(Name = "createStandaloneAd_request_platformSpecificData")]
@@ -71,6 +71,18 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestPlatformSpecificData" /> class
+        /// with the <see cref="AppLovinAdsPlatformData" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of AppLovinAdsPlatformData.</param>
+        public CreateStandaloneAdRequestPlatformSpecificData(AppLovinAdsPlatformData actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -89,6 +101,10 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(AppLovinAdsPlatformData) || value is AppLovinAdsPlatformData)
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(LinkedInAdsPlatformData) || value is LinkedInAdsPlatformData)
                 {
                     this._actualInstance = value;
@@ -99,7 +115,7 @@ namespace Zernio.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AmazonAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AmazonAdsPlatformData, AppLovinAdsPlatformData, LinkedInAdsPlatformData, MetaAdsPlatformData");
                 }
             }
         }
@@ -132,6 +148,16 @@ namespace Zernio.Model
         public AmazonAdsPlatformData GetAmazonAdsPlatformData()
         {
             return (AmazonAdsPlatformData)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `AppLovinAdsPlatformData`. If the actual instance is not `AppLovinAdsPlatformData`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of AppLovinAdsPlatformData</returns>
+        public AppLovinAdsPlatformData GetAppLovinAdsPlatformData()
+        {
+            return (AppLovinAdsPlatformData)this.ActualInstance;
         }
 
         /// <summary>
@@ -190,6 +216,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AmazonAdsPlatformData: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(AppLovinAdsPlatformData).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateStandaloneAdRequestPlatformSpecificData = new CreateStandaloneAdRequestPlatformSpecificData(JsonConvert.DeserializeObject<AppLovinAdsPlatformData>(jsonString, CreateStandaloneAdRequestPlatformSpecificData.SerializerSettings));
+                }
+                else
+                {
+                    newCreateStandaloneAdRequestPlatformSpecificData = new CreateStandaloneAdRequestPlatformSpecificData(JsonConvert.DeserializeObject<AppLovinAdsPlatformData>(jsonString, CreateStandaloneAdRequestPlatformSpecificData.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("AppLovinAdsPlatformData");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into AppLovinAdsPlatformData: {1}", jsonString, exception.ToString()));
             }
 
             try

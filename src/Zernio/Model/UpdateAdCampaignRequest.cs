@@ -122,9 +122,9 @@ namespace Zernio.Model
         public PlatformEnum Platform { get; set; }
 
         /// <summary>
-        /// **Meta + Google.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. 
+        /// **Meta, Google and AppLovin.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. - AppLovin: sets the campaign goal value; the goal type itself cannot change. COST_CAP + bidAmount for a CPI, CPE or CPP goal, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor for a ROAS goal. - AppLovin app limits, checked before AppLovin is called: CPI below 200, CPE and CPP below 500, AD_ROAS at least 0.1, CHK_ROAS at least 0.01, BLD_ROAS at least 0.05. - AppLovin: a goal set per country, or the other goal family, is a 422. 
         /// </summary>
-        /// <value>**Meta + Google.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. </value>
+        /// <value>**Meta, Google and AppLovin.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. - AppLovin: sets the campaign goal value; the goal type itself cannot change. COST_CAP + bidAmount for a CPI, CPE or CPP goal, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor for a ROAS goal. - AppLovin app limits, checked before AppLovin is called: CPI below 200, CPE and CPP below 500, AD_ROAS at least 0.1, CHK_ROAS at least 0.01, BLD_ROAS at least 0.05. - AppLovin: a goal set per country, or the other goal family, is a 422. </value>
         [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
         public BidStrategy? BidStrategy { get; set; }
         /// <summary>
@@ -137,9 +137,9 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="platform">Required: platform campaign IDs are not globally unique. (required).</param>
         /// <param name="accountId">**Meta only.** Zernio SocialAccount id owning the ad account. Needed only for an EMPTY campaign (zero ads); ignored otherwise..</param>
-        /// <param name="bidStrategy">**Meta + Google.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. .</param>
-        /// <param name="bidAmount">**Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both..</param>
-        /// <param name="roasAverageFloor">**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS..</param>
+        /// <param name="bidStrategy">**Meta, Google and AppLovin.**  - Meta: the campaign default that ad sets inherit unless they override it. - Google: the campaign&#39;s own bidding strategy. LOWEST_COST_WITHOUT_CAP &#x3D; Maximize Conversions, COST_CAP + bidAmount &#x3D; Target CPA, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor &#x3D; Target ROAS, LOWEST_COST_WITH_BID_CAP + bidAmount &#x3D; Maximize Clicks with a CPC ceiling. - Google: portfolioBidStrategyId attaches a portfolio strategy instead. - AppLovin: sets the campaign goal value; the goal type itself cannot change. COST_CAP + bidAmount for a CPI, CPE or CPP goal, LOWEST_COST_WITH_MIN_ROAS + roasAverageFloor for a ROAS goal. - AppLovin app limits, checked before AppLovin is called: CPI below 200, CPE and CPP below 500, AD_ROAS at least 0.1, CHK_ROAS at least 0.01, BLD_ROAS at least 0.05. - AppLovin: a goal set per country, or the other goal family, is a 422. .</param>
+        /// <param name="bidAmount">**Google and AppLovin.** Whole currency units (USD: 12 &#x3D; $12.00). Google: max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both. AppLovin: the CPI, CPE or CPP goal value, with COST_CAP..</param>
+        /// <param name="roasAverageFloor">**Google and AppLovin.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS. AppLovin: the ROAS goal value..</param>
         /// <param name="portfolioBidStrategyId">**Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy..</param>
         /// <param name="allowSharedBudgetUpdate">Google only. Explicitly allow changing a shared campaign budget (flagged as shared by Google, or used by more than one campaign), affecting every campaign that uses it. Does not bypass an unknown sharing state. Also required to move a campaign onto a shared budget with sharedBudgetId. (default to false).</param>
         /// <param name="targetImpressionShare">Google Search only. Target impression share bidding. Exclusive with bidStrategy, portfolioBidStrategyId and manualCpc; bidAmount is refused alongside it (the ceiling is maxCpc)..</param>
@@ -149,7 +149,7 @@ namespace Zernio.Model
         /// <param name="finalUrlSuffix">**Google only.** campaign.final_url_suffix; an empty string clears it..</param>
         /// <param name="sharedBudgetId">**Google only.** Move the campaign onto this shared budget (id from GET /v1/ads/shared-budgets), or null to move it back onto a budget of its own sized by &#x60;budget&#x60;..</param>
         /// <param name="budget">budget.</param>
-        /// <param name="name">**Meta and Reddit.** Rename the campaign..</param>
+        /// <param name="name">**Meta, Reddit and AppLovin.** Rename the campaign..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
         public UpdateAdCampaignRequest(PlatformEnum platform = default, string accountId = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string portfolioBidStrategyId = default, bool allowSharedBudgetUpdate = false, GoogleTargetImpressionShare targetImpressionShare = default, GoogleManualCpc manualCpc = default, GoogleNetworkSettings networkSettings = default, string trackingUrlTemplate = default, string finalUrlSuffix = default, string sharedBudgetId = default, UpdateAdCampaignRequestBudget budget = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
         {
@@ -179,16 +179,16 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// **Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both.
+        /// **Google and AppLovin.** Whole currency units (USD: 12 &#x3D; $12.00). Google: max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both. AppLovin: the CPI, CPE or CPP goal value, with COST_CAP.
         /// </summary>
-        /// <value>**Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both.</value>
+        /// <value>**Google and AppLovin.** Whole currency units (USD: 12 &#x3D; $12.00). Google: max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both. AppLovin: the CPI, CPE or CPP goal value, with COST_CAP.</value>
         [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
         public decimal BidAmount { get; set; }
 
         /// <summary>
-        /// **Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.
+        /// **Google and AppLovin.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS. AppLovin: the ROAS goal value.
         /// </summary>
-        /// <value>**Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS.</value>
+        /// <value>**Google and AppLovin.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS. AppLovin: the ROAS goal value.</value>
         [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
         public decimal RoasAverageFloor { get; set; }
 
@@ -253,9 +253,9 @@ namespace Zernio.Model
         public UpdateAdCampaignRequestBudget Budget { get; set; }
 
         /// <summary>
-        /// **Meta and Reddit.** Rename the campaign.
+        /// **Meta, Reddit and AppLovin.** Rename the campaign.
         /// </summary>
-        /// <value>**Meta and Reddit.** Rename the campaign.</value>
+        /// <value>**Meta, Reddit and AppLovin.** Rename the campaign.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 

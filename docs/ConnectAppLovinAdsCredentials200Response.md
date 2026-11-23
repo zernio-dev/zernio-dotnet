@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **string** |  | [optional] 
-**EventKey** | **string** |  | [optional] 
+**EventKey** | **string** | Present when the request sent the conversion keys. | [optional] 
+**AxonAccountId** | **string** | The AppLovin account id. Present when the request sent the Campaign Management keys. | [optional] 
 **AccountName** | **string** |  | [optional] 
 **RedirectUrl** | **string** |  | [optional] 
 

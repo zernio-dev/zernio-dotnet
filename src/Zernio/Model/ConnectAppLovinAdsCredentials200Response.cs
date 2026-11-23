@@ -37,13 +37,15 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ConnectAppLovinAdsCredentials200Response" /> class.
         /// </summary>
         /// <param name="accountId">accountId.</param>
-        /// <param name="eventKey">eventKey.</param>
+        /// <param name="eventKey">Present when the request sent the conversion keys..</param>
+        /// <param name="axonAccountId">The AppLovin account id. Present when the request sent the Campaign Management keys..</param>
         /// <param name="accountName">accountName.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public ConnectAppLovinAdsCredentials200Response(string accountId = default, string eventKey = default, string accountName = default, string redirectUrl = default)
+        public ConnectAppLovinAdsCredentials200Response(string accountId = default, string eventKey = default, string axonAccountId = default, string accountName = default, string redirectUrl = default)
         {
             this.AccountId = accountId;
             this.EventKey = eventKey;
+            this.AxonAccountId = axonAccountId;
             this.AccountName = accountName;
             this.RedirectUrl = redirectUrl;
         }
@@ -55,10 +57,18 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets EventKey
+        /// Present when the request sent the conversion keys.
         /// </summary>
+        /// <value>Present when the request sent the conversion keys.</value>
         [DataMember(Name = "eventKey", EmitDefaultValue = false)]
         public string EventKey { get; set; }
+
+        /// <summary>
+        /// The AppLovin account id. Present when the request sent the Campaign Management keys.
+        /// </summary>
+        /// <value>The AppLovin account id. Present when the request sent the Campaign Management keys.</value>
+        [DataMember(Name = "axonAccountId", EmitDefaultValue = false)]
+        public string AxonAccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets AccountName
@@ -82,6 +92,7 @@ namespace Zernio.Model
             sb.Append("class ConnectAppLovinAdsCredentials200Response {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  EventKey: ").Append(EventKey).Append("\n");
+            sb.Append("  AxonAccountId: ").Append(AxonAccountId).Append("\n");
             sb.Append("  AccountName: ").Append(AccountName).Append("\n");
             sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("}\n");

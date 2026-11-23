@@ -261,5 +261,158 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AdSchedule'
         }
+
+        /// <summary>
+        /// Test the property 'CampaignType'
+        /// </summary>
+        [Fact]
+        public void CampaignTypeTest()
+        {
+            // TODO unit test for the property 'CampaignType'
+        }
+
+        /// <summary>
+        /// Test the property 'Os'
+        /// </summary>
+        [Fact]
+        public void OsTest()
+        {
+            // TODO unit test for the property 'Os'
+        }
+
+        /// <summary>
+        /// Test the property 'PackageName'
+        /// </summary>
+        [Fact]
+        public void PackageNameTest()
+        {
+            // TODO unit test for the property 'PackageName'
+        }
+
+        /// <summary>
+        /// Test the property 'ItunesId'
+        /// </summary>
+        [Fact]
+        public void ItunesIdTest()
+        {
+            // TODO unit test for the property 'ItunesId'
+        }
+
+        /// <summary>
+        /// Test the property 'WebsiteUrl'
+        /// </summary>
+        [Fact]
+        public void WebsiteUrlTest()
+        {
+            // TODO unit test for the property 'WebsiteUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'BiddingStrategy'
+        /// </summary>
+        [Fact]
+        public void BiddingStrategyTest()
+        {
+            // TODO unit test for the property 'BiddingStrategy'
+        }
+
+        /// <summary>
+        /// Test the property 'GoalType'
+        /// </summary>
+        [Fact]
+        public void GoalTypeTest()
+        {
+            // TODO unit test for the property 'GoalType'
+        }
+
+        /// <summary>
+        /// Test the property 'GoalValue'
+        /// </summary>
+        [Fact]
+        public void GoalValueTest()
+        {
+            // TODO unit test for the property 'GoalValue'
+        }
+
+        /// <summary>
+        /// Test the property 'CountryGoalValues'
+        /// </summary>
+        [Fact]
+        public void CountryGoalValuesTest()
+        {
+            // TODO unit test for the property 'CountryGoalValues'
+        }
+
+        /// <summary>
+        /// Test the property 'RoasDayTarget'
+        /// </summary>
+        [Fact]
+        public void RoasDayTargetTest()
+        {
+            // TODO unit test for the property 'RoasDayTarget'
+        }
+
+        /// <summary>
+        /// Test the property 'EventTarget'
+        /// </summary>
+        [Fact]
+        public void EventTargetTest()
+        {
+            // TODO unit test for the property 'EventTarget'
+        }
+
+        /// <summary>
+        /// Test the property 'CountryBudgets'
+        /// </summary>
+        [Fact]
+        public void CountryBudgetsTest()
+        {
+            // TODO unit test for the property 'CountryBudgets'
+        }
+
+        /// <summary>
+        /// Test the property 'Tracking'
+        /// </summary>
+        [Fact]
+        public void TrackingTest()
+        {
+            // TODO unit test for the property 'Tracking'
+        }
+
+        /// <summary>
+        /// Test the property 'AudienceStrategy'
+        /// </summary>
+        [Fact]
+        public void AudienceStrategyTest()
+        {
+            // TODO unit test for the property 'AudienceStrategy'
+        }
+
+        /// <summary>
+        /// Test the property 'Assets'
+        /// </summary>
+        [Fact]
+        public void AssetsTest()
+        {
+            // TODO unit test for the property 'Assets'
+        }
+
+        /// <summary>
+        /// Test the property 'Languages'
+        /// </summary>
+        [Fact]
+        public void LanguagesTest()
+        {
+            // TODO unit test for the property 'Languages'
+        }
+
+        /// <summary>
+        /// Test the property 'BrandInfo'
+        /// </summary>
+        [Fact]
+        public void BrandInfoTest()
+        {
+            // TODO unit test for the property 'BrandInfo'
+        }
     }
 }
