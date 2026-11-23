@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Platform** | **string** |  | [optional] 
-**AdjustmentsReceived** | **int** | Adjustments accepted by Google. | [optional] 
+**AdjustmentsReceived** | **int** | Adjustments accepted by the platform. | [optional] 
 **AdjustmentsFailed** | **int** | Adjustments rejected (see failures). | [optional] 
 **Failures** | [**List&lt;AdjustConversions200ResponseFailuresInner&gt;**](AdjustConversions200ResponseFailuresInner.md) |  | [optional] 
 **TraceId** | **string** |  | [optional] 

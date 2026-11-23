@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.785.0",
+    "version": "1.786.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -210742,10 +210742,11 @@
           "Conversions"
         ],
         "x-platforms": [
-          "google"
+          "google",
+          "impact"
         ],
         "summary": "Adjust uploaded conversions",
-        "description": "Retracts, restates the value of, or enhances conversions you already sent to Google Ads, for refunds or late customer data. To change Zernio's stored event too, and every platform at once, use `PATCH` or `DELETE /v1/events/{eventId}`.\n\nIt adjusts conversions previously uploaded via `POST /v1/ads/conversions`: retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.\n\n### Google Ads only\n\nGoogle handles adjustments through the classic Google Ads API (`ConversionAdjustmentUploadService`). The Data Manager `ingestEvents` path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns `405` for those platforms.\n\n### Adjustment types\n\n- `RETRACTION`: remove the conversion entirely (refund, chargeback, cancelled order, churn).\n- `RESTATEMENT`: change the conversion's value (upgrade / downgrade / partial refund). Send the corrected **total** value in `restatementValue` (not a delta).\n- `ENHANCEMENT`: attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).\n\n### Identifying the original conversion\n\nPer adjustment, send one of:\n\n- `orderId`: the transaction ID you sent as `eventId` on the original conversion. Recommended, and **required** for `ENHANCEMENT`.\n- `gclid` + `conversionTime`: the click ID and the original conversion's time (unix seconds). Not available for `ENHANCEMENT`.\n\n### Other fields\n\n- `destinationId` is the conversion action resource name, e.g. `customers/1234567890/conversionActions/987654321` (same value you send to `POST /v1/ads/conversions`).\n- PII in `user` is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.\n- Times are unix seconds; we convert to Google's required `yyyy-MM-dd HH:mm:ss+00:00` format.\n\n### Limits\n\nUp to 2000 adjustments per request. Partial failure is supported (inspect `adjustmentsFailed` / `failures[]`).\n",
+        "description": "Retracts, restates the value of, or enhances conversions you already sent to Google Ads or Impact, for refunds or late customer data. To change Zernio's stored event too, and every platform at once, use `PATCH` or `DELETE /v1/events/{eventId}`.\n\nIt adjusts conversions previously uploaded via `POST /v1/ads/conversions`: retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.\n\n### Google Ads and Impact only\n\nGoogle handles adjustments through the classic Google Ads API (`ConversionAdjustmentUploadService`). The Data Manager `ingestEvents` path used for sending conversions is ingest-only.\n\nOn Impact, the partner's commission follows the refund:\n\n- `RETRACTION` reverses the action and `RESTATEMENT` sets its sale amount. Impact has no `ENHANCEMENT`.\n- The action is found by the `destinationId` event type and `orderId`: the `platformData.order_id` the conversion was sent with, or its `eventId` when it had none.\n- Impact applies changes asynchronously and refuses them on its side past the action's locking date.\n\nOther platforms have no equivalent, so this endpoint returns `405` for them.\n\n### Adjustment types\n\n- `RETRACTION`: remove the conversion entirely (refund, chargeback, cancelled order, churn).\n- `RESTATEMENT`: change the conversion's value (upgrade / downgrade / partial refund). Send the corrected **total** value in `restatementValue` (not a delta).\n- `ENHANCEMENT`: attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).\n\n### Identifying the original conversion\n\nPer adjustment, send one of:\n\n- `orderId`: the transaction ID you sent as `eventId` on the original conversion. Recommended, and **required** for `ENHANCEMENT`.\n- `gclid` + `conversionTime`: the click ID and the original conversion's time (unix seconds). Not available for `ENHANCEMENT`.\n\n### Other fields\n\n- `destinationId` is the same value you send to `POST /v1/ads/conversions`: the conversion action resource name on Google, e.g. `customers/1234567890/conversionActions/987654321`, and `<program id>:<event type id>` on Impact.\n- PII in `user` is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.\n- Times are unix seconds; we convert to Google's required `yyyy-MM-dd HH:mm:ss+00:00` format.\n\n### Limits\n\nUp to 2000 adjustments per request. Partial failure is supported (inspect `adjustmentsFailed` / `failures[]`).\n",
         "security": [
           {
             "bearerAuth": []
@@ -210765,11 +210766,11 @@
                 "properties": {
                   "accountId": {
                     "type": "string",
-                    "description": "SocialAccount ID. Must be a `googleads` account."
+                    "description": "SocialAccount ID. Must be a `googleads` or `impact` account."
                   },
                   "destinationId": {
                     "type": "string",
-                    "description": "Conversion action resource name, e.g. `customers/1234567890/conversionActions/987654321`."
+                    "description": "Conversion action resource name on Google, e.g. `customers/1234567890/conversionActions/987654321`; `<program id>:<event type id>` on Impact."
                   },
                   "adjustments": {
                     "type": "array",
@@ -210850,12 +210851,13 @@
                     "platform": {
                       "type": "string",
                       "enum": [
-                        "googleads"
+                        "googleads",
+                        "impact"
                       ]
                     },
                     "adjustmentsReceived": {
                       "type": "integer",
-                      "description": "Adjustments accepted by Google."
+                      "description": "Adjustments accepted by the platform."
                     },
                     "adjustmentsFailed": {
                       "type": "integer",
