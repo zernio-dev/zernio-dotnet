@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.798.0",
+    "version": "1.799.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -40283,6 +40283,7 @@
               "applovinads",
               "snapchatads",
               "taboolaads",
+              "outbrainads",
               "klaviyo",
               "attentive",
               "impact",
@@ -57325,6 +57326,10 @@
                   "tblci": {
                     "type": "string",
                     "description": "Taboola click ID (the `tblci` URL param Taboola adds to ad clicks with its `{click_id}` macro). Sent to Taboola as `click-id`, not hashed."
+                  },
+                  "ob_click_id": {
+                    "type": "string",
+                    "description": "Outbrain click ID (the `ob_click_id` URL param, filled by the `{{ob_click_id}}` macro you add to the campaign's Track box). Sent to Outbrain as `ob_click_id`, not hashed."
                   },
                   "irclickid": {
                     "type": "string",
@@ -94228,6 +94233,7 @@
                 "applovinads",
                 "snapchatads",
                 "taboolaads",
+                "outbrainads",
                 "klaviyo",
                 "attentive",
                 "impact",
@@ -110103,6 +110109,108 @@
           },
           "409": {
             "description": "This profile already has another Taboola account connected (code profile_platform_conflict)."
+          }
+        }
+      }
+    },
+    "/v1/connect/outbrain-ads/credentials": {
+      "post": {
+        "x-resource-group": "accounts",
+        "x-oauth-scopes": [
+          "accounts:read",
+          "accounts:write"
+        ],
+        "operationId": "connectOutbrainAdsCredentials",
+        "tags": [
+          "Connect"
+        ],
+        "summary": "Connect an Outbrain marketer",
+        "description": "Connect an Outbrain marketer by its marketer id from Outbrain Amplify. Outbrain's server-to-server pixel takes no credential, so nothing secret is stored and nothing is checked with Outbrain.\n\nThe account then receives the conversion events you forward to it (`POST /v1/events`, forwarding rules). Each event needs the Outbrain click ID (`clickIds.ob_click_id`), which the campaign's Track box passes with `ob_click_id={{ob_click_id}}`.\n\nOutbrain counts an event only when its name equals the name of an Event-Based Conversion in Amplify, case included. Rename events in the forwarding rule when they differ.\n\nRequires the Ads add-on.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "outbrainMarketerId",
+                  "profileId"
+                ],
+                "properties": {
+                  "outbrainMarketerId": {
+                    "type": "string",
+                    "description": "Outbrain marketer id from Amplify, letters and digits."
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "description": "Optional display name for the marketer."
+                  },
+                  "profileId": {
+                    "type": "string",
+                    "description": "Your Zernio profile ID"
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "Optional state passthrough for the connect flow."
+                  },
+                  "redirect_url": {
+                    "type": "string",
+                    "description": "Optional URL to redirect to after a successful connection, echoed back as redirectUrl."
+                  }
+                }
+              },
+              "example": {
+                "outbrainMarketerId": "00f4b02153ee75f3c9dc4fc128ab0419ab",
+                "profileId": "6507a1b2c3d4e5f6a7b8c9d0"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Outbrain marketer connected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accountId": {
+                      "type": "string"
+                    },
+                    "outbrainMarketerId": {
+                      "type": "string"
+                    },
+                    "accountName": {
+                      "type": "string"
+                    },
+                    "redirectUrl": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "accountId": "6507a1b2c3d4e5f6a7b8c9d0",
+                  "outbrainMarketerId": "00f4b02153ee75f3c9dc4fc128ab0419ab",
+                  "accountName": "Outbrain marketer 00f4b02153ee75f3c9dc4fc128ab0419ab"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "402": {
+            "$ref": "#/components/responses/PaymentRequired"
+          },
+          "403": {
+            "description": "Ads add-on required."
+          },
+          "409": {
+            "description": "This profile already has another Outbrain marketer connected (code profile_platform_conflict)."
           }
         }
       }
@@ -214883,7 +214991,7 @@
           "reddit"
         ],
         "summary": "Send conversion events to one destination (legacy)",
-        "description": "Legacy: use [`POST /v1/events`](/conversions/send-events) instead. It sends each event once to every saved destination, retries failures, stores the event and reports what each platform answered. This endpoint keeps working and is not being removed.\n\nSends conversion events, such as purchases or leads, from your server to one ad platform destination so it can attribute and optimize ads.\n\nRelays one or more events to the target ad platform's native Conversions API. The platform is inferred from the provided `accountId`. Requires the Ads add-on.\n\n### Supported platforms\n\n- Meta (`metaads`) via Graph API\n- Google Ads (`googleads`) via Data Manager API `ingestEvents`\n- LinkedIn (`linkedinads`) via `/rest/conversionEvents`\n- TikTok (`tiktokads`) via the Offline Events API `/offline/batch/` (OFFLINE conversions only)\n- OpenAI Ads (`openaiads`) via its Conversions API (a separate host, `bzr.openai.com`)\n- Pinterest (`pinterestads`) via `POST /v5/ad_accounts/{id}/events`\n- Reddit (`redditads`) via the Reddit Conversions API (`POST /api/v3/pixels/{pixelId}/conversion_events`)\n- Microsoft Advertising (`microsoftads`) via offline conversion uploads (`ApplyOfflineConversions`) or the UET Conversions API (`POST https://capi.uet.microsoft.com/v1/{tagId}/events`)\n- X Ads (`xads`) via the X Conversion API (`POST /12/measurement/conversions/{pixelId}`)\n- Snapchat (`snapchatads`) via the Snapchat Conversions API (`POST https://tr.snapchat.com/v3/{pixelId}/events`)\n- Taboola (`taboolaads`) via its S2S postback (`GET https://trc.taboola.com/actions-handler/log/3/s2s-action`), one request per event\n- Klaviyo (`klaviyo`) via the Events API (`POST https://a.klaviyo.com/api/events`)\n- Attentive (`attentive`) via the eCommerce and Custom Events APIs\n- Impact (`impact`) via the Conversions API (`POST /Advertisers/{AccountSID}/Conversions`)\n- Awin (`awin`) via the Conversion API (`POST /s2s/advertiser/{advertiserId}/orders`)\n- Campaign Manager 360 (`campaignmanager360`, coming soon: pending Google's verification of the `dfatrafficking` permission) via the Data Manager API `ingestEvents`, to a Floodlight activity\n- The Trade Desk (`tradedeskads`) via the Real-Time Conversions API (`POST https://insight.adsrvr.org/track/realtimeconversion`)\n- Amazon Ads (`amazonads`) via the Amazon Ads Conversions API (`POST /adsApi/v1/create/events`)\n\n### `destinationId` per platform\n\n- Meta: pixel (dataset) ID, e.g. `123456789012345`\n- Google: conversion action resource name, e.g. `customers/1234567890/conversionActions/987654321`\n- LinkedIn: conversion rule ID or URN, e.g. `104012` or `urn:lla:llaPartnerConversion:104012`\n- TikTok: Offline Event Set ID, e.g. `7057103914977558530`. An Offline Event Set has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- OpenAI Ads: pixel wire id (numeric `pixel_id`, distinct from the internal pixel id), as returned by `GET /v1/ads/conversions/destinations`\n- Pinterest: numeric ad account id, e.g. `549755885175` (Pinterest attributes to the ad account, not to a tag)\n- Reddit: pixel id, e.g. `a2_abc123`, as returned by `GET /v1/ads/conversions/destinations` (any other shape returns 400)\n- Microsoft Advertising offline conversion goal, e.g. `accounts/123456789/conversionGoals/987654`. Each event needs `clickIds.msclkid`, an `email` or a `phone`; the goal decides the event type.\n- Microsoft Advertising UET tag, e.g. `accounts/123456789/uetTags/26012345`. Each event needs `clickIds.msclkid`, an `email` or a `phone`. `eventName` is the event action its goals match (a `PageView` with `sourceUrl` is a page load) and `eventId` dedups with the browser tag.\n- Microsoft has no test mode: with `testCode`, UET events are sent with ad storage denied, which Microsoft excludes from conversion attribution and retargeting.\n- X Ads: X Pixel event id, e.g. `tw-rbhhj-rcfms`. Each event needs `clickIds.twclid`, an `email`, a `phone`, or `ipAddress` plus `userAgent`; the event decides the type and `eventId` is sent as `conversion_id`.\n- Snapchat: the connection's Snap Pixel ID, e.g. `1a2b3c4d-5e6f-4a8b-9c0d-1e2f3a4b5c6d`. Each event needs an `email`, a `phone`, or `ipAddress` plus `userAgent`; website events also need `sourceUrl`. With `testCode`, events go to Snap's validate endpoint and are not recorded.\n- Taboola: the connection's numeric Taboola Account ID, e.g. `1234567`. Each event needs `clickIds.tblci`. `eventName` is sent as is and must equal the Event Name of a conversion rule in Realize (case-sensitive). Taboola has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Klaviyo: the connection's Klaviyo account id. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`; `eventId` is the `unique_id`. Klaviyo has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Klaviyo metrics: `Purchase` is `Placed Order`, `InitiateCheckout` `Started Checkout`, `ViewContent` `Viewed Product`, `AddToCart` `Added to Cart`; any other name is a metric of that name.\n- Attentive: the connection's Attentive company id. `Purchase`, `AddToCart` and `ViewContent` with priced `items` go to the eCommerce endpoints; every other event goes out as a custom event named `eventName`. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`. A `testCode` is refused.\n- Impact: `<program id>:<event type id>`, e.g. `12345:67890`. Each event needs `clickIds.irclickid`, an `externalId` (sent as `CustomerId`) or `platformData.promo_code`; the email is sent SHA-256 hashed. Priced `items` are sent as item lines, otherwise `value` as the order subtotal. A `testCode` is refused: credit a test partner instead.\n- Awin: the connection's advertiser id. Each event needs `clickIds.awc` (or `platformData.voucher`), `value` and `currency`; `value` is the order amount on the `DEFAULT` commission group (`platformData.commission_group` overrides it). With `testCode`, orders are sent with `isTest` and not tracked.\n- Attentive and Impact have no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Impact and Awin refuse browsing and funnel steps (`ViewContent`, `AddToCart`, `InitiateCheckout` and the like): they pay a partner for every conversion they get.\n- Campaign Manager 360: `<floodlightConfigurationId>:<floodlightActivityId>`, e.g. `1234567:7654321`. Each event needs `clickIds.gclid` or `clickIds.dclid` (a hashed email or phone only enhances it); `eventId` is the transaction id Google dedups on. With `testCode`, events are only validated (`validateOnly`) and not recorded.\n- The Trade Desk: the connection's tracking tag id, e.g. `abc1234`. Each event needs `clickIds.tdid`, `clickIds.uid2` or `clickIds.uid2Token`; `eventId` is sent as `order_id`. TTD has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Amazon Ads: `<region>:<profileId>:<accountId>:<country>`, e.g. `EU:42:ENTITY1ABC:DE`. Each event needs an `email` or a `phone` (sent hashed); `eventId` is Amazon's dedup key; standard event names keep their name and custom ones are sent as `Custom` (Amazon caps conversion definitions at 100). No test mode: an event with `testCode` is not sent.\n\nCallers can list valid destinations via `GET /v1/ads/conversions/destinations`.\n\n### Pinterest notes\n\n- Each event needs an `email`, or `ipAddress` plus `userAgent`. Others are listed in `failures` with code `INVALID_EVENT` and the rest are still sent.\n- `clickIds.epik` (the `_epik` cookie) is sent as `click_id`.\n- `actionSource` `web` stays `web`, offline sources become `offline`, and app events need `platformData.action_source` `app_android` or `app_ios`.\n- Pinterest answers per event, so one bad event does not fail its chunk (failures carry code `PINTEREST_EVENT_FAILED`).\n- `consent.adUserData: DENIED` sets `opt_out`.\n- The connected user needs a Business Access role on the ad account (403 otherwise).\n\n### Reddit notes\n\n- Each event needs a match key: `clickIds.rdt_cid`, `clickIds.rdt_uuid`, `email`, `phone`, `externalId`, or `ipAddress` plus `userAgent`.\n- Reddit accepts events up to 7 days old. `eventTime` is unix SECONDS (a value more than an hour in the future is refused as milliseconds).\n- Events failing these checks are listed in `failures` with code `INVALID_EVENT` and the rest are still sent.\n- Email (lowercased, dots and `+tags` stripped from the local part), phone (E.164 with the leading `+`) and `externalId` are SHA-256 hashed. IP and user agent go plaintext.\n- `consent.adUserData: DENIED` sends no user fields.\n- `actionSource` maps to WEBSITE (`web`), APP (`app`) or OTHER, overridable with `platformData.action_source`. `platformData.order_id` is forwarded.\n- `testCode` is sent as Reddit's `test_id`.\n\nReddit errors:\n\n- 403 `reconnect_required`: the connection was authorized without the `adsconversions` permission (reconnect via GET /v1/connect/redditads/ads).\n- 403 `insufficient_permissions`: the Reddit user has no role on the ad account that owns the pixel.\n- `REDDIT_REJECTED`: Reddit throttling and other rejections, reported per chunk in `failures`.\n\n### TikTok notes\n\nTwo kinds of destination. A TikTok pixel (`destinationId` `pixel:<pixelCode>`, as listed by the destinations endpoint) takes website events through the Events API and honours `testCode`. An offline event set (its numeric id) takes in-store, CRM and call-center conversions; each of those events must carry an email or phone.\n\nThe connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.\n\n### OpenAI Ads notes\n\nRequires a tracking tag (pixel) to already exist on the account. Returns 422 with code `TRACKING_TAG_REQUIRED` if `POST /v1/accounts/{accountId}/tracking-tags` hasn't been called yet.\n\n### Hashing\n\nAll PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform's normalization spec, including Google's Gmail-specific dot/plus-suffix stripping. Send plaintext.\n\nLinkedIn `externalIds` are passed through as plaintext per LinkedIn's spec; only emails and phones are hashed.\n\nFor LinkedIn, the connected account must have been authorized after the Conversions API rollout (the OAuth grant must include `rw_conversions`). Older accounts must reconnect.\n\n### Batching\n\nBatching is handled automatically. Per-platform caps:\n\n- Meta: 1000 events per request; rejects the entire batch if any event is malformed.\n- Google: 2000.\n- LinkedIn: 5000, all-or-nothing per chunk.\n- OpenAI Ads: 1000 per request. Larger submissions are split into 1000-event chunks, each all-or-nothing (a malformed event fails every event in that chunk, not the whole request).\n- Reddit: works the same way as OpenAI Ads, in chunks of 1000.\n- TikTok: 1000. Microsoft: its offline conversion cap per request. X: 500. Other destinations are sent in their platform's own batch size or one event at a time.\n- An event a platform would refuse (too old, no usable identifier) is listed in `failures` and the rest of its chunk is still sent, except on Google Ads and OpenAI Ads.\n\n### Dedup\n\nPass a stable `eventId` on every event:\n\n- Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events.\n- Google maps it to `transactionId`.\n- Reddit receives it as `conversion_id`, its dedup key against Reddit Pixel events.\n\n### `eventName` per platform\n\n- Meta: free-form. Standard names (Purchase, Lead, ...) match Meta's built-in events; custom strings are accepted.\n- Google: ignored. The conversion action's category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it.\n- LinkedIn: ignored. The conversion rule's `type` (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it.\n- OpenAI Ads: a fixed subset of standard names maps 1:1 onto OpenAI's own event-type enum: Purchase, Lead, AddToCart, ViewContent, InitiateCheckout, CompleteRegistration, Subscribe, StartTrial, Schedule. Any other standard name or custom string is sent as `type: custom` with the name preserved.\n- Pinterest: standard names map onto Pinterest's (see below). Any other string is sent as is, so it matches an advertiser defined event of that name.\n\nPinterest name mapping:\n\n- Purchase = `checkout`\n- AddToCart = `add_to_cart`\n- InitiateCheckout = `initiate_checkout`\n- AddPaymentInfo = `add_payment_info`\n- Lead = `lead`\n- CompleteRegistration = `signup`\n- Subscribe = `subscribe`\n- ViewContent = `view_content`\n- Search = `search`\n- PageView = `page_visit`\n",
+        "description": "Legacy: use [`POST /v1/events`](/conversions/send-events) instead. It sends each event once to every saved destination, retries failures, stores the event and reports what each platform answered. This endpoint keeps working and is not being removed.\n\nSends conversion events, such as purchases or leads, from your server to one ad platform destination so it can attribute and optimize ads.\n\nRelays one or more events to the target ad platform's native Conversions API. The platform is inferred from the provided `accountId`. Requires the Ads add-on.\n\n### Supported platforms\n\n- Meta (`metaads`) via Graph API\n- Google Ads (`googleads`) via Data Manager API `ingestEvents`\n- LinkedIn (`linkedinads`) via `/rest/conversionEvents`\n- TikTok (`tiktokads`) via the Offline Events API `/offline/batch/` (OFFLINE conversions only)\n- OpenAI Ads (`openaiads`) via its Conversions API (a separate host, `bzr.openai.com`)\n- Pinterest (`pinterestads`) via `POST /v5/ad_accounts/{id}/events`\n- Reddit (`redditads`) via the Reddit Conversions API (`POST /api/v3/pixels/{pixelId}/conversion_events`)\n- Microsoft Advertising (`microsoftads`) via offline conversion uploads (`ApplyOfflineConversions`) or the UET Conversions API (`POST https://capi.uet.microsoft.com/v1/{tagId}/events`)\n- X Ads (`xads`) via the X Conversion API (`POST /12/measurement/conversions/{pixelId}`)\n- Snapchat (`snapchatads`) via the Snapchat Conversions API (`POST https://tr.snapchat.com/v3/{pixelId}/events`)\n- Taboola (`taboolaads`) via its S2S postback (`GET https://trc.taboola.com/actions-handler/log/3/s2s-action`), one request per event\n- Outbrain (`outbrainads`) via its S2S pixel (`GET https://tr.outbrain.com/unifiedPixel`), one request per event\n- Klaviyo (`klaviyo`) via the Events API (`POST https://a.klaviyo.com/api/events`)\n- Attentive (`attentive`) via the eCommerce and Custom Events APIs\n- Impact (`impact`) via the Conversions API (`POST /Advertisers/{AccountSID}/Conversions`)\n- Awin (`awin`) via the Conversion API (`POST /s2s/advertiser/{advertiserId}/orders`)\n- Campaign Manager 360 (`campaignmanager360`, coming soon: pending Google's verification of the `dfatrafficking` permission) via the Data Manager API `ingestEvents`, to a Floodlight activity\n- The Trade Desk (`tradedeskads`) via the Real-Time Conversions API (`POST https://insight.adsrvr.org/track/realtimeconversion`)\n- Amazon Ads (`amazonads`) via the Amazon Ads Conversions API (`POST /adsApi/v1/create/events`)\n\n### `destinationId` per platform\n\n- Meta: pixel (dataset) ID, e.g. `123456789012345`\n- Google: conversion action resource name, e.g. `customers/1234567890/conversionActions/987654321`\n- LinkedIn: conversion rule ID or URN, e.g. `104012` or `urn:lla:llaPartnerConversion:104012`\n- TikTok: Offline Event Set ID, e.g. `7057103914977558530`. An Offline Event Set has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- OpenAI Ads: pixel wire id (numeric `pixel_id`, distinct from the internal pixel id), as returned by `GET /v1/ads/conversions/destinations`\n- Pinterest: numeric ad account id, e.g. `549755885175` (Pinterest attributes to the ad account, not to a tag)\n- Reddit: pixel id, e.g. `a2_abc123`, as returned by `GET /v1/ads/conversions/destinations` (any other shape returns 400)\n- Microsoft Advertising offline conversion goal, e.g. `accounts/123456789/conversionGoals/987654`. Each event needs `clickIds.msclkid`, an `email` or a `phone`; the goal decides the event type.\n- Microsoft Advertising UET tag, e.g. `accounts/123456789/uetTags/26012345`. Each event needs `clickIds.msclkid`, an `email` or a `phone`. `eventName` is the event action its goals match (a `PageView` with `sourceUrl` is a page load) and `eventId` dedups with the browser tag.\n- Microsoft has no test mode: with `testCode`, UET events are sent with ad storage denied, which Microsoft excludes from conversion attribution and retargeting.\n- X Ads: X Pixel event id, e.g. `tw-rbhhj-rcfms`. Each event needs `clickIds.twclid`, an `email`, a `phone`, or `ipAddress` plus `userAgent`; the event decides the type and `eventId` is sent as `conversion_id`.\n- Snapchat: the connection's Snap Pixel ID, e.g. `1a2b3c4d-5e6f-4a8b-9c0d-1e2f3a4b5c6d`. Each event needs an `email`, a `phone`, or `ipAddress` plus `userAgent`; website events also need `sourceUrl`. With `testCode`, events go to Snap's validate endpoint and are not recorded.\n- Taboola: the connection's numeric Taboola Account ID, e.g. `1234567`. Each event needs `clickIds.tblci`. `eventName` is sent as is and must equal the Event Name of a conversion rule in Realize (case-sensitive). Taboola has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Outbrain: the connection's Outbrain marketer id, e.g. `00f4b02153ee75f3c9dc4fc128ab0419ab`. Each event needs `clickIds.ob_click_id`. `eventName` is sent as is and must equal the name of an Event-Based Conversion in Amplify (case-sensitive). Outbrain has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Klaviyo: the connection's Klaviyo account id. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`; `eventId` is the `unique_id`. Klaviyo has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Klaviyo metrics: `Purchase` is `Placed Order`, `InitiateCheckout` `Started Checkout`, `ViewContent` `Viewed Product`, `AddToCart` `Added to Cart`; any other name is a metric of that name.\n- Attentive: the connection's Attentive company id. `Purchase`, `AddToCart` and `ViewContent` with priced `items` go to the eCommerce endpoints; every other event goes out as a custom event named `eventName`. Each event needs an unhashed `email`, a `phone` with its country code, or an `externalId`. A `testCode` is refused.\n- Impact: `<program id>:<event type id>`, e.g. `12345:67890`. Each event needs `clickIds.irclickid`, an `externalId` (sent as `CustomerId`) or `platformData.promo_code`; the email is sent SHA-256 hashed. Priced `items` are sent as item lines, otherwise `value` as the order subtotal. A `testCode` is refused: credit a test partner instead.\n- Awin: the connection's advertiser id. Each event needs `clickIds.awc` (or `platformData.voucher`), `value` and `currency`; `value` is the order amount on the `DEFAULT` commission group (`platformData.commission_group` overrides it). With `testCode`, orders are sent with `isTest` and not tracked.\n- Attentive and Impact have no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Impact and Awin refuse browsing and funnel steps (`ViewContent`, `AddToCart`, `InitiateCheckout` and the like): they pay a partner for every conversion they get.\n- Campaign Manager 360: `<floodlightConfigurationId>:<floodlightActivityId>`, e.g. `1234567:7654321`. Each event needs `clickIds.gclid` or `clickIds.dclid` (a hashed email or phone only enhances it); `eventId` is the transaction id Google dedups on. With `testCode`, events are only validated (`validateOnly`) and not recorded.\n- The Trade Desk: the connection's tracking tag id, e.g. `abc1234`. Each event needs `clickIds.tdid`, `clickIds.uid2` or `clickIds.uid2Token`; `eventId` is sent as `order_id`. TTD has no test mode, so an event with `testCode` is not sent (code `TEST_MODE_UNSUPPORTED`).\n- Amazon Ads: `<region>:<profileId>:<accountId>:<country>`, e.g. `EU:42:ENTITY1ABC:DE`. Each event needs an `email` or a `phone` (sent hashed); `eventId` is Amazon's dedup key; standard event names keep their name and custom ones are sent as `Custom` (Amazon caps conversion definitions at 100). No test mode: an event with `testCode` is not sent.\n\nCallers can list valid destinations via `GET /v1/ads/conversions/destinations`.\n\n### Pinterest notes\n\n- Each event needs an `email`, or `ipAddress` plus `userAgent`. Others are listed in `failures` with code `INVALID_EVENT` and the rest are still sent.\n- `clickIds.epik` (the `_epik` cookie) is sent as `click_id`.\n- `actionSource` `web` stays `web`, offline sources become `offline`, and app events need `platformData.action_source` `app_android` or `app_ios`.\n- Pinterest answers per event, so one bad event does not fail its chunk (failures carry code `PINTEREST_EVENT_FAILED`).\n- `consent.adUserData: DENIED` sets `opt_out`.\n- The connected user needs a Business Access role on the ad account (403 otherwise).\n\n### Reddit notes\n\n- Each event needs a match key: `clickIds.rdt_cid`, `clickIds.rdt_uuid`, `email`, `phone`, `externalId`, or `ipAddress` plus `userAgent`.\n- Reddit accepts events up to 7 days old. `eventTime` is unix SECONDS (a value more than an hour in the future is refused as milliseconds).\n- Events failing these checks are listed in `failures` with code `INVALID_EVENT` and the rest are still sent.\n- Email (lowercased, dots and `+tags` stripped from the local part), phone (E.164 with the leading `+`) and `externalId` are SHA-256 hashed. IP and user agent go plaintext.\n- `consent.adUserData: DENIED` sends no user fields.\n- `actionSource` maps to WEBSITE (`web`), APP (`app`) or OTHER, overridable with `platformData.action_source`. `platformData.order_id` is forwarded.\n- `testCode` is sent as Reddit's `test_id`.\n\nReddit errors:\n\n- 403 `reconnect_required`: the connection was authorized without the `adsconversions` permission (reconnect via GET /v1/connect/redditads/ads).\n- 403 `insufficient_permissions`: the Reddit user has no role on the ad account that owns the pixel.\n- `REDDIT_REJECTED`: Reddit throttling and other rejections, reported per chunk in `failures`.\n\n### TikTok notes\n\nTwo kinds of destination. A TikTok pixel (`destinationId` `pixel:<pixelCode>`, as listed by the destinations endpoint) takes website events through the Events API and honours `testCode`. An offline event set (its numeric id) takes in-store, CRM and call-center conversions; each of those events must carry an email or phone.\n\nThe connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.\n\n### OpenAI Ads notes\n\nRequires a tracking tag (pixel) to already exist on the account. Returns 422 with code `TRACKING_TAG_REQUIRED` if `POST /v1/accounts/{accountId}/tracking-tags` hasn't been called yet.\n\n### Hashing\n\nAll PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform's normalization spec, including Google's Gmail-specific dot/plus-suffix stripping. Send plaintext.\n\nLinkedIn `externalIds` are passed through as plaintext per LinkedIn's spec; only emails and phones are hashed.\n\nFor LinkedIn, the connected account must have been authorized after the Conversions API rollout (the OAuth grant must include `rw_conversions`). Older accounts must reconnect.\n\n### Batching\n\nBatching is handled automatically. Per-platform caps:\n\n- Meta: 1000 events per request; rejects the entire batch if any event is malformed.\n- Google: 2000.\n- LinkedIn: 5000, all-or-nothing per chunk.\n- OpenAI Ads: 1000 per request. Larger submissions are split into 1000-event chunks, each all-or-nothing (a malformed event fails every event in that chunk, not the whole request).\n- Reddit: works the same way as OpenAI Ads, in chunks of 1000.\n- TikTok: 1000. Microsoft: its offline conversion cap per request. X: 500. Other destinations are sent in their platform's own batch size or one event at a time.\n- An event a platform would refuse (too old, no usable identifier) is listed in `failures` and the rest of its chunk is still sent, except on Google Ads and OpenAI Ads.\n\n### Dedup\n\nPass a stable `eventId` on every event:\n\n- Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events.\n- Google maps it to `transactionId`.\n- Reddit receives it as `conversion_id`, its dedup key against Reddit Pixel events.\n\n### `eventName` per platform\n\n- Meta: free-form. Standard names (Purchase, Lead, ...) match Meta's built-in events; custom strings are accepted.\n- Google: ignored. The conversion action's category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it.\n- LinkedIn: ignored. The conversion rule's `type` (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it.\n- OpenAI Ads: a fixed subset of standard names maps 1:1 onto OpenAI's own event-type enum: Purchase, Lead, AddToCart, ViewContent, InitiateCheckout, CompleteRegistration, Subscribe, StartTrial, Schedule. Any other standard name or custom string is sent as `type: custom` with the name preserved.\n- Pinterest: standard names map onto Pinterest's (see below). Any other string is sent as is, so it matches an advertiser defined event of that name.\n\nPinterest name mapping:\n\n- Purchase = `checkout`\n- AddToCart = `add_to_cart`\n- InitiateCheckout = `initiate_checkout`\n- AddPaymentInfo = `add_payment_info`\n- Lead = `lead`\n- CompleteRegistration = `signup`\n- Subscribe = `subscribe`\n- ViewContent = `view_content`\n- Search = `search`\n- PageView = `page_visit`\n",
         "security": [
           {
             "bearerAuth": []
@@ -214958,6 +215066,7 @@
                         "xads",
                         "snapchatads",
                         "taboolaads",
+                        "outbrainads",
                         "googleanalytics",
                         "klaviyo",
                         "attentive",
@@ -216431,6 +216540,7 @@
           "applovinads",
           "snapchatads",
           "taboolaads",
+          "outbrainads",
           "klaviyo",
           "attentive",
           "impact",
@@ -216672,6 +216782,7 @@
           "applovinads",
           "snapchatads",
           "taboolaads",
+          "outbrainads",
           "klaviyo",
           "attentive",
           "impact",
@@ -216818,6 +216929,7 @@
                               "xads",
                               "snapchatads",
                               "taboolaads",
+                              "outbrainads",
                               "googleanalytics",
                               "klaviyo",
                               "attentive",
@@ -218423,6 +218535,7 @@
                               "xads",
                               "snapchatads",
                               "taboolaads",
+                              "outbrainads",
                               "googleanalytics",
                               "klaviyo",
                               "attentive",
@@ -219063,6 +219176,7 @@
           "applovinads",
           "snapchatads",
           "taboolaads",
+          "outbrainads",
           "klaviyo",
           "attentive",
           "impact",
@@ -220695,6 +220809,7 @@
                         "xads",
                         "snapchatads",
                         "taboolaads",
+                        "outbrainads",
                         "googleanalytics",
                         "klaviyo",
                         "attentive",
@@ -220712,7 +220827,7 @@
                         "properties": {
                           "id": {
                             "type": "string",
-                            "description": "Destination identifier. Meta: pixel ID. Google:\nconversion action resource name. LinkedIn:\nnumeric conversion rule ID. OpenAI Ads: pixel wire\nid. Reddit: pixel id (`a2_...`). Microsoft\nAdvertising: `accounts/{id}/conversionGoals/{id}`\nor `accounts/{id}/uetTags/{id}`.\nX Ads: pixel event id (`tw-...`). Snapchat:\nSnap Pixel ID (a UUID). Taboola: numeric\nAccount ID.\n"
+                            "description": "Destination identifier. Meta: pixel ID. Google:\nconversion action resource name. LinkedIn:\nnumeric conversion rule ID. OpenAI Ads: pixel wire\nid. Reddit: pixel id (`a2_...`). Microsoft\nAdvertising: `accounts/{id}/conversionGoals/{id}`\nor `accounts/{id}/uetTags/{id}`.\nX Ads: pixel event id (`tw-...`). Snapchat:\nSnap Pixel ID (a UUID). Taboola: numeric\nAccount ID. Outbrain: marketer id.\n"
                           },
                           "name": {
                             "type": "string"
@@ -222082,6 +222197,7 @@
                         "xads",
                         "snapchatads",
                         "taboolaads",
+                        "outbrainads",
                         "googleanalytics",
                         "klaviyo",
                         "attentive",
@@ -222099,7 +222215,7 @@
                         "properties": {
                           "id": {
                             "type": "string",
-                            "description": "Destination identifier. Meta: pixel ID. Google:\nconversion action resource name. LinkedIn:\nnumeric conversion rule ID. OpenAI Ads: pixel wire\nid. Reddit: pixel id (`a2_...`). Microsoft\nAdvertising: `accounts/{id}/conversionGoals/{id}`\nor `accounts/{id}/uetTags/{id}`.\nX Ads: pixel event id (`tw-...`). Snapchat:\nSnap Pixel ID (a UUID). Taboola: numeric\nAccount ID.\n"
+                            "description": "Destination identifier. Meta: pixel ID. Google:\nconversion action resource name. LinkedIn:\nnumeric conversion rule ID. OpenAI Ads: pixel wire\nid. Reddit: pixel id (`a2_...`). Microsoft\nAdvertising: `accounts/{id}/conversionGoals/{id}`\nor `accounts/{id}/uetTags/{id}`.\nX Ads: pixel event id (`tw-...`). Snapchat:\nSnap Pixel ID (a UUID). Taboola: numeric\nAccount ID. Outbrain: marketer id.\n"
                           },
                           "name": {
                             "type": "string"

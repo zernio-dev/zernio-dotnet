@@ -754,6 +754,8 @@ docs/ConnectLineCredentials200ResponseWebhook.md
 docs/ConnectLineCredentialsRequest.md
 docs/ConnectOpenAIAdsCredentials200Response.md
 docs/ConnectOpenAIAdsCredentialsRequest.md
+docs/ConnectOutbrainAdsCredentials200Response.md
+docs/ConnectOutbrainAdsCredentialsRequest.md
 docs/ConnectShopifyWithToken200Response.md
 docs/ConnectShopifyWithToken200ResponseAccount.md
 docs/ConnectShopifyWithTokenRequest.md
@@ -5075,6 +5077,8 @@ src/Zernio.Test/Model/ConnectLineCredentials200ResponseWebhookTests.cs
 src/Zernio.Test/Model/ConnectLineCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectOpenAIAdsCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectOpenAIAdsCredentialsRequestTests.cs
+src/Zernio.Test/Model/ConnectOutbrainAdsCredentials200ResponseTests.cs
+src/Zernio.Test/Model/ConnectOutbrainAdsCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseAccountTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithToken200ResponseTests.cs
 src/Zernio.Test/Model/ConnectShopifyWithTokenRequestTests.cs
@@ -9348,6 +9352,8 @@ src/Zernio/Model/ConnectLineCredentials200ResponseWebhook.cs
 src/Zernio/Model/ConnectLineCredentialsRequest.cs
 src/Zernio/Model/ConnectOpenAIAdsCredentials200Response.cs
 src/Zernio/Model/ConnectOpenAIAdsCredentialsRequest.cs
+src/Zernio/Model/ConnectOutbrainAdsCredentials200Response.cs
+src/Zernio/Model/ConnectOutbrainAdsCredentialsRequest.cs
 src/Zernio/Model/ConnectShopifyWithToken200Response.cs
 src/Zernio/Model/ConnectShopifyWithToken200ResponseAccount.cs
 src/Zernio/Model/ConnectShopifyWithTokenRequest.cs
