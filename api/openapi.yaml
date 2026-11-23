@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.793.1
+  version: 1.794.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53978,6 +53978,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54017,6 +54019,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54056,6 +54060,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54099,6 +54105,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54147,6 +54155,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54191,6 +54201,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54235,6 +54247,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54289,6 +54303,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54336,6 +54352,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -54409,6 +54427,8 @@ paths:
       - reddit
       - whatsapp
       - slack
+      - sms
+      - rcs
       - imessage
       - line
       - wechat
@@ -192874,6 +192894,9 @@ components:
           - tiktok
           - line
           - wechat
+          - sms
+          - rcs
+          - imessage
           type: string
         name:
           type: string
@@ -193915,6 +193938,8 @@ components:
           - reddit
           - whatsapp
           - slack
+          - sms
+          - rcs
           - imessage
           - line
           - wechat
