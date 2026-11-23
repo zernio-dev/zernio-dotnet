@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.784.0
+  version: 1.785.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -95824,6 +95824,9 @@ components:
             limit: 7
             posts: 4
           entity: posts
+          syncRequestedAccountIds:
+          - syncRequestedAccountIds
+          - syncRequestedAccountIds
           staleSince: staleSince
       properties:
         data:
@@ -236400,6 +236403,14 @@ components:
           total:
             nullable: true
             type: integer
+          syncRequestedAccountIds:
+            description: "On a list of posts: the accounts this read queued for a\
+              \ fresh sync, because they were never synced or their stored numbers\
+              \ are over 90 minutes old. The answer holds the stored numbers; the\
+              \ synced ones arrive within minutes."
+            items:
+              type: string
+            type: array
           metricsSample:
             $ref: "#/components/schemas/PostMetricsResponse_meta_allOf_metricsSample"
         required:
@@ -236423,6 +236434,9 @@ components:
           limit: 7
           posts: 4
         entity: posts
+        syncRequestedAccountIds:
+        - syncRequestedAccountIds
+        - syncRequestedAccountIds
         staleSince: staleSince
     AccountMetricsResponse_meta:
       allOf:
