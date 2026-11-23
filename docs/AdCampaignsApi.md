@@ -3211,7 +3211,7 @@ catch (ApiException e)
 
 <a id="getadstimeline"></a>
 # **GetAdsTimeline**
-> AdsTimelineResponse GetAdsTimeline (string accountId, string? adAccountId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? platform = null, string? compare = null)
+> AdsTimelineResponse GetAdsTimeline (string accountId, string? adAccountId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? platform = null, string? breakdown = null, string? compare = null)
 
 Get daily account metrics
 
@@ -3246,12 +3246,13 @@ namespace Example
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional) 
             var platform = "facebook";  // string? | Restrict to one platform. (optional) 
+            var breakdown = "adAccount";  // string? | Set to `adAccount` to keep one row per day and platform ad account, each carrying its `adAccountId`, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per `adAccountId` to count it once. (optional) 
             var compare = "previous";  // string? | Set to `previous` to also return `previousRows` for the period of the same length that ends the day before `fromDate`, with that period as `previousRange`. Needs a `fromDate` (sent or defaulted); `toDate` alone answers 400. (optional) 
 
             try
             {
                 // Get daily account metrics
-                AdsTimelineResponse result = apiInstance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, compare);
+                AdsTimelineResponse result = apiInstance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3272,7 +3273,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get daily account metrics
-    ApiResponse<AdsTimelineResponse> response = apiInstance.GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, compare);
+    ApiResponse<AdsTimelineResponse> response = apiInstance.GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3294,6 +3295,7 @@ catch (ApiException e)
 | **fromDate** | **DateOnly?** | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional]  |
 | **platform** | **string?** | Restrict to one platform. | [optional]  |
+| **breakdown** | **string?** | Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. | [optional]  |
 | **compare** | **string?** | Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. | [optional]  |
 
 ### Return type

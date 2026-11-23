@@ -753,9 +753,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <returns>AdsTimelineResponse</returns>
-        AdsTimelineResponse GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default);
+        AdsTimelineResponse GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default);
 
         /// <summary>
         /// Get daily account metrics
@@ -769,9 +770,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <returns>ApiResponse of AdsTimelineResponse</returns>
-        ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default);
+        ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default);
         /// <summary>
         /// Read a campaign&#39;s ad schedule (dayparting)
         /// </summary>
@@ -2710,10 +2712,11 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AdsTimelineResponse</returns>
-        System.Threading.Tasks.Task<AdsTimelineResponse> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<AdsTimelineResponse> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get daily account metrics
@@ -2727,10 +2730,11 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AdsTimelineResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Read a campaign&#39;s ad schedule (dayparting)
         /// </summary>
@@ -8546,11 +8550,12 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <returns>AdsTimelineResponse</returns>
-        public AdsTimelineResponse GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default)
+        public AdsTimelineResponse GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default)
         {
-            Zernio.Client.ApiResponse<AdsTimelineResponse> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, compare);
+            Zernio.Client.ApiResponse<AdsTimelineResponse> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare);
             return localVarResponse.Data;
         }
 
@@ -8563,9 +8568,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <returns>ApiResponse of AdsTimelineResponse</returns>
-        public Zernio.Client.ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default)
+        public Zernio.Client.ApiResponse<AdsTimelineResponse> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -8603,6 +8609,10 @@ namespace Zernio.Api
             if (platform != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (breakdown != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdown", breakdown));
             }
             if (compare != null)
             {
@@ -8637,12 +8647,13 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AdsTimelineResponse</returns>
-        public async System.Threading.Tasks.Task<AdsTimelineResponse> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<AdsTimelineResponse> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<AdsTimelineResponse> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, adAccountId, fromDate, toDate, platform, compare, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AdsTimelineResponse> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -8655,10 +8666,11 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="breakdown">Set to &#x60;adAccount&#x60; to keep one row per day and platform ad account, each carrying its &#x60;adAccountId&#x60;, instead of one row per day and currency. Two connections that reach the same ad account both return it: add their timelines per &#x60;adAccountId&#x60; to count it once. (optional)</param>
         /// <param name="compare">Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AdsTimelineResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AdsTimelineResponse>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, string? breakdown = default, string? compare = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -8698,6 +8710,10 @@ namespace Zernio.Api
             if (platform != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (breakdown != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdown", breakdown));
             }
             if (compare != null)
             {

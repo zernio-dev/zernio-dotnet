@@ -38,6 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="date">date.</param>
         /// <param name="currency">ISO 4217 currency of every money field in this row (spend, cpc, cpm, costPerConversion, purchaseValue, actionValues). Null when the currency of the row&#39;s ad accounts is unknown. Added 2026-10-23.  An account whose ad accounts bill in different currencies gets one row per currency for that day, never a sum across currencies..</param>
+        /// <param name="adAccountId">Only with &#x60;breakdown&#x3D;adAccount&#x60;. The platform ad account of this row (e.g. Meta &#x60;act_…&#x60;); null for rows ingested before 2026-05-13. Added 2026-11-23..</param>
         /// <param name="spend">Native currency units (matches /ads/tree convention), in &#x60;currency&#x60;..</param>
         /// <param name="impressions">impressions.</param>
         /// <param name="reach">Reach summed across the account&#39;s ads for this single day. A person seen by two ads the same day counts twice, and reach is de-duplicated per day only: do NOT sum it across days (people reached on multiple days would be double-counted)..</param>
@@ -54,10 +55,11 @@ namespace Zernio.Model
         /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60; in native currency..</param>
         /// <param name="purchaseValue">Sum of purchase-type action values on this day, native currency..</param>
         /// <param name="roas">Derived purchaseValue / spend..</param>
-        public AdsTimelineResponseRowsInner(DateOnly date = default, string currency = default, decimal spend = default, int impressions = default, int reach = default, int clicks = default, int engagement = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, decimal conversions = default, decimal allConversions = default, Dictionary<string, decimal> conversionsByType = default, decimal costPerConversion = default, Dictionary<string, decimal> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default)
+        public AdsTimelineResponseRowsInner(DateOnly date = default, string currency = default, string adAccountId = default, decimal spend = default, int impressions = default, int reach = default, int clicks = default, int engagement = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, decimal conversions = default, decimal allConversions = default, Dictionary<string, decimal> conversionsByType = default, decimal costPerConversion = default, Dictionary<string, decimal> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default)
         {
             this.Date = date;
             this.Currency = currency;
+            this.AdAccountId = adAccountId;
             this.Spend = spend;
             this.Impressions = impressions;
             this.Reach = reach;
@@ -88,6 +90,13 @@ namespace Zernio.Model
         /// <value>ISO 4217 currency of every money field in this row (spend, cpc, cpm, costPerConversion, purchaseValue, actionValues). Null when the currency of the row&#39;s ad accounts is unknown. Added 2026-10-23.  An account whose ad accounts bill in different currencies gets one row per currency for that day, never a sum across currencies.</value>
         [DataMember(Name = "currency", EmitDefaultValue = true)]
         public string Currency { get; set; }
+
+        /// <summary>
+        /// Only with &#x60;breakdown&#x3D;adAccount&#x60;. The platform ad account of this row (e.g. Meta &#x60;act_…&#x60;); null for rows ingested before 2026-05-13. Added 2026-11-23.
+        /// </summary>
+        /// <value>Only with &#x60;breakdown&#x3D;adAccount&#x60;. The platform ad account of this row (e.g. Meta &#x60;act_…&#x60;); null for rows ingested before 2026-05-13. Added 2026-11-23.</value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = true)]
+        public string AdAccountId { get; set; }
 
         /// <summary>
         /// Native currency units (matches /ads/tree convention), in &#x60;currency&#x60;.
@@ -207,6 +216,7 @@ namespace Zernio.Model
             sb.Append("class AdsTimelineResponseRowsInner {\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  Spend: ").Append(Spend).Append("\n");
             sb.Append("  Impressions: ").Append(Impressions).Append("\n");
             sb.Append("  Reach: ").Append(Reach).Append("\n");

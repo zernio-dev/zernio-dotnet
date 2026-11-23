@@ -466,8 +466,9 @@ namespace Zernio.Test.Api
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
             //string? platform = null;
+            //string? breakdown = null;
             //string? compare = null;
-            //var response = instance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, compare);
+            //var response = instance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, breakdown, compare);
             //Assert.IsType<AdsTimelineResponse>(response);
         }
 
