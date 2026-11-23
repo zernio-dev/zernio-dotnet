@@ -534,11 +534,11 @@ This endpoint does not need any parameter.
 
 <a id="deletesiptrunk"></a>
 # **DeleteSipTrunk**
-> DeleteSmsSenderId200Response DeleteSipTrunk (string id)
+> DeleteSipTrunk200Response DeleteSipTrunk (string id)
 
 Delete a SIP trunk
 
-Tears down the trunk and its carrier-side objects. Refused while any number is still attached: detach them first. 
+Detaches every number still attached to the trunk (their inbound calls go back to Zernio calling), then tears down the trunk and its carrier-side objects. Its credentials stop working immediately. 
 
 ### Example
 ```csharp
@@ -569,7 +569,7 @@ namespace Example
             try
             {
                 // Delete a SIP trunk
-                DeleteSmsSenderId200Response result = apiInstance.DeleteSipTrunk(id);
+                DeleteSipTrunk200Response result = apiInstance.DeleteSipTrunk(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -590,7 +590,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a SIP trunk
-    ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.DeleteSipTrunkWithHttpInfo(id);
+    ApiResponse<DeleteSipTrunk200Response> response = apiInstance.DeleteSipTrunkWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -611,7 +611,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+[**DeleteSipTrunk200Response**](DeleteSipTrunk200Response.md)
 
 ### Authorization
 
@@ -630,7 +630,6 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
-| **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

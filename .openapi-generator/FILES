@@ -1303,6 +1303,7 @@ docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteOAuthApp200Response.md
 docs/DeleteOrgConnection200Response.md
 docs/DeleteOrgConnection200ResponseData.md
+docs/DeleteSipTrunk200Response.md
 docs/DeleteSmsOptOut200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
@@ -5601,6 +5602,7 @@ src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
 src/Zernio.Test/Model/DeleteOAuthApp200ResponseTests.cs
 src/Zernio.Test/Model/DeleteOrgConnection200ResponseDataTests.cs
 src/Zernio.Test/Model/DeleteOrgConnection200ResponseTests.cs
+src/Zernio.Test/Model/DeleteSipTrunk200ResponseTests.cs
 src/Zernio.Test/Model/DeleteSmsOptOut200ResponseTests.cs
 src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteTestLead200ResponseTests.cs
@@ -9859,6 +9861,7 @@ src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
 src/Zernio/Model/DeleteOAuthApp200Response.cs
 src/Zernio/Model/DeleteOrgConnection200Response.cs
 src/Zernio/Model/DeleteOrgConnection200ResponseData.cs
+src/Zernio/Model/DeleteSipTrunk200Response.cs
 src/Zernio/Model/DeleteSmsOptOut200Response.cs
 src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteTestLead200Response.cs
