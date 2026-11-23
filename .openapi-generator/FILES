@@ -121,6 +121,9 @@ docs/AdRuleScheduleTimesInner.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
 docs/AdScheduleWindow.md
+docs/AdSetMetricRow.md
+docs/AdSetMetricsResponse.md
+docs/AdSetMetricsResponseMeta.md
 docs/AdStatus.md
 docs/AdTargetingApi.md
 docs/AdTracking.md
@@ -4438,6 +4441,9 @@ src/Zernio.Test/Model/AdRuleScheduleTimesInnerTests.cs
 src/Zernio.Test/Model/AdRuleTests.cs
 src/Zernio.Test/Model/AdScheduleTests.cs
 src/Zernio.Test/Model/AdScheduleWindowTests.cs
+src/Zernio.Test/Model/AdSetMetricRowTests.cs
+src/Zernio.Test/Model/AdSetMetricsResponseMetaTests.cs
+src/Zernio.Test/Model/AdSetMetricsResponseTests.cs
 src/Zernio.Test/Model/AdStatusTests.cs
 src/Zernio.Test/Model/AdTests.cs
 src/Zernio.Test/Model/AdTrackingTests.cs
@@ -8694,6 +8700,9 @@ src/Zernio/Model/AdRuleScheduleQuietHours.cs
 src/Zernio/Model/AdRuleScheduleTimesInner.cs
 src/Zernio/Model/AdSchedule.cs
 src/Zernio/Model/AdScheduleWindow.cs
+src/Zernio/Model/AdSetMetricRow.cs
+src/Zernio/Model/AdSetMetricsResponse.cs
+src/Zernio/Model/AdSetMetricsResponseMeta.cs
 src/Zernio/Model/AdStatus.cs
 src/Zernio/Model/AdTracking.cs
 src/Zernio/Model/AdTreeAdSet.cs
