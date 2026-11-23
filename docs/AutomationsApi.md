@@ -16,6 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAutomationApproval**](AutomationsApi.md#getautomationapproval) | **GET** /v1/automations/{automationId}/approvals/{approvalId} | Get an approval request |
 | [**GetAutomationCatalog**](AutomationsApi.md#getautomationcatalog) | **GET** /v1/automations/catalog | Get the automations catalog |
 | [**GetAutomationControls**](AutomationsApi.md#getautomationcontrols) | **GET** /v1/automations/controls | Get automation controls |
+| [**GetAutomationRun**](AutomationsApi.md#getautomationrun) | **GET** /v1/automations/{automationId}/runs/{runId} | Get one run of an automation |
 | [**GetAutomationTemplate**](AutomationsApi.md#getautomationtemplate) | **GET** /v1/automations/templates/{templateId} | Get an automation template |
 | [**GetSharedAutomationTemplate**](AutomationsApi.md#getsharedautomationtemplate) | **GET** /v1/automations/templates/shared/{shareToken} | Get a shared automation template |
 | [**GetZernioAutomationTemplate**](AutomationsApi.md#getzernioautomationtemplate) | **GET** /v1/automations/templates/zernio/{templateId} | Get a Zernio automation template |
@@ -25,6 +26,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAutomationActions**](AutomationsApi.md#listautomationactions) | **GET** /v1/automations/actions | List automation actions |
 | [**ListAutomationApprovals**](AutomationsApi.md#listautomationapprovals) | **GET** /v1/automations/{automationId}/approvals | List an automation&#39;s approval requests |
 | [**ListAutomationChecks**](AutomationsApi.md#listautomationchecks) | **GET** /v1/automations/{automationId}/checks | List an automation&#39;s checks |
+| [**ListAutomationRuns**](AutomationsApi.md#listautomationruns) | **GET** /v1/automations/{automationId}/runs | List an automation&#39;s runs |
 | [**ListAutomationTemplates**](AutomationsApi.md#listautomationtemplates) | **GET** /v1/automations/templates | List automation templates |
 | [**ListAutomations**](AutomationsApi.md#listautomations) | **GET** /v1/automations | List automations |
 | [**PauseAutomation**](AutomationsApi.md#pauseautomation) | **POST** /v1/automations/{automationId}/pause | Turn an automation off |
@@ -1257,6 +1259,109 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getautomationrun"></a>
+# **GetAutomationRun**
+> GetAutomationRun200Response GetAutomationRun (string automationId, string runId)
+
+Get one run of an automation
+
+The run with each step it took, where its store keeps them: a flow run's nodes, a comment to DM log's DM and public reply, an ad rule, event or scheduled check's actions. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAutomationRunExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
+            var automationId = "automationId_example";  // string | 
+            var runId = "runId_example";  // string | 
+
+            try
+            {
+                // Get one run of an automation
+                GetAutomationRun200Response result = apiInstance.GetAutomationRun(automationId, runId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AutomationsApi.GetAutomationRun: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAutomationRunWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get one run of an automation
+    ApiResponse<GetAutomationRun200Response> response = apiInstance.GetAutomationRunWithHttpInfo(automationId, runId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AutomationsApi.GetAutomationRunWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **automationId** | **string** |  |  |
+| **runId** | **string** |  |  |
+
+### Return type
+
+[**GetAutomationRun200Response**](GetAutomationRun200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Run |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getautomationtemplate"></a>
 # **GetAutomationTemplate**
 > CreateAutomationTemplate201Response GetAutomationTemplate (string templateId)
@@ -2204,6 +2309,115 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Checks |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listautomationruns"></a>
+# **ListAutomationRuns**
+> ListAutomationRuns200Response ListAutomationRuns (string automationId, string? status = null, DateTime? since = null, int? limit = null, string? cursor = null)
+
+List an automation's runs
+
+Every run of any kind of automation, newest first, in one shape. Flows read both their run stores, comment to DM reads its engine runs and its older trigger logs, and ad rules, event and scheduled automations list their checks that acted or tried to (`/checks` lists every check). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAutomationRunsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
+            var automationId = "automationId_example";  // string | 
+            var status = "live";  // string? |  (optional) 
+            var since = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Only runs started at or after this time. (optional) 
+            var limit = 20;  // int? |  (optional)  (default to 20)
+            var cursor = "cursor_example";  // string? | `nextCursor` from the previous page. (optional) 
+
+            try
+            {
+                // List an automation's runs
+                ListAutomationRuns200Response result = apiInstance.ListAutomationRuns(automationId, status, since, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AutomationsApi.ListAutomationRuns: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAutomationRunsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List an automation's runs
+    ApiResponse<ListAutomationRuns200Response> response = apiInstance.ListAutomationRunsWithHttpInfo(automationId, status, since, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AutomationsApi.ListAutomationRunsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **automationId** | **string** |  |  |
+| **status** | **string?** |  | [optional]  |
+| **since** | **DateTime?** | Only runs started at or after this time. | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 20] |
+| **cursor** | **string?** | &#x60;nextCursor&#x60; from the previous page. | [optional]  |
+
+### Return type
+
+[**ListAutomationRuns200Response**](ListAutomationRuns200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Runs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |

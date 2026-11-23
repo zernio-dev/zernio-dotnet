@@ -364,7 +364,12 @@ docs/AutomationProblems.md
 docs/AutomationProblemsProblemsInner.md
 docs/AutomationRecord.md
 docs/AutomationRecordTemplate.md
+docs/AutomationRun.md
+docs/AutomationRunDetail.md
+docs/AutomationRunDetailAllOfTrace.md
 docs/AutomationRunResult.md
+docs/AutomationRunSteps.md
+docs/AutomationRunSubject.md
 docs/AutomationScheduleTrigger.md
 docs/AutomationScheduleTriggerQuietHours.md
 docs/AutomationScheduleTriggerTimesInner.md
@@ -1595,6 +1600,7 @@ docs/GetAutomationCatalog200ResponseSubjectsInnerStepsInner.md
 docs/GetAutomationCatalog200ResponseTriggersInner.md
 docs/GetAutomationCatalog200ResponseTriggersInnerFactsInner.md
 docs/GetAutomationControls200Response.md
+docs/GetAutomationRun200Response.md
 docs/GetBalance200Response.md
 docs/GetBalance200ResponseHeld.md
 docs/GetBalance200ResponsePayoutLocksInner.md
@@ -2374,6 +2380,7 @@ docs/ListApiKeys200Response.md
 docs/ListAutomationActions200Response.md
 docs/ListAutomationApprovals200Response.md
 docs/ListAutomationChecks200Response.md
+docs/ListAutomationRuns200Response.md
 docs/ListAutomationTemplates200Response.md
 docs/ListAutomations200Response.md
 docs/ListBidStrategies200Response.md
@@ -4683,7 +4690,12 @@ src/Zernio.Test/Model/AutomationProblemsProblemsInnerTests.cs
 src/Zernio.Test/Model/AutomationProblemsTests.cs
 src/Zernio.Test/Model/AutomationRecordTemplateTests.cs
 src/Zernio.Test/Model/AutomationRecordTests.cs
+src/Zernio.Test/Model/AutomationRunDetailAllOfTraceTests.cs
+src/Zernio.Test/Model/AutomationRunDetailTests.cs
 src/Zernio.Test/Model/AutomationRunResultTests.cs
+src/Zernio.Test/Model/AutomationRunStepsTests.cs
+src/Zernio.Test/Model/AutomationRunSubjectTests.cs
+src/Zernio.Test/Model/AutomationRunTests.cs
 src/Zernio.Test/Model/AutomationScheduleTriggerQuietHoursTests.cs
 src/Zernio.Test/Model/AutomationScheduleTriggerTests.cs
 src/Zernio.Test/Model/AutomationScheduleTriggerTimesInnerTests.cs
@@ -5882,6 +5894,7 @@ src/Zernio.Test/Model/GetAutomationCatalog200ResponseTests.cs
 src/Zernio.Test/Model/GetAutomationCatalog200ResponseTriggersInnerFactsInnerTests.cs
 src/Zernio.Test/Model/GetAutomationCatalog200ResponseTriggersInnerTests.cs
 src/Zernio.Test/Model/GetAutomationControls200ResponseTests.cs
+src/Zernio.Test/Model/GetAutomationRun200ResponseTests.cs
 src/Zernio.Test/Model/GetBalance200ResponseHeldTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePayoutLocksInnerTests.cs
 src/Zernio.Test/Model/GetBalance200ResponsePendingReleasesInnerTests.cs
@@ -6654,6 +6667,7 @@ src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
 src/Zernio.Test/Model/ListAutomationActions200ResponseTests.cs
 src/Zernio.Test/Model/ListAutomationApprovals200ResponseTests.cs
 src/Zernio.Test/Model/ListAutomationChecks200ResponseTests.cs
+src/Zernio.Test/Model/ListAutomationRuns200ResponseTests.cs
 src/Zernio.Test/Model/ListAutomationTemplates200ResponseTests.cs
 src/Zernio.Test/Model/ListAutomations200ResponseTests.cs
 src/Zernio.Test/Model/ListBidStrategies200ResponseTests.cs
@@ -8943,7 +8957,12 @@ src/Zernio/Model/AutomationProblems.cs
 src/Zernio/Model/AutomationProblemsProblemsInner.cs
 src/Zernio/Model/AutomationRecord.cs
 src/Zernio/Model/AutomationRecordTemplate.cs
+src/Zernio/Model/AutomationRun.cs
+src/Zernio/Model/AutomationRunDetail.cs
+src/Zernio/Model/AutomationRunDetailAllOfTrace.cs
 src/Zernio/Model/AutomationRunResult.cs
+src/Zernio/Model/AutomationRunSteps.cs
+src/Zernio/Model/AutomationRunSubject.cs
 src/Zernio/Model/AutomationScheduleTrigger.cs
 src/Zernio/Model/AutomationScheduleTriggerQuietHours.cs
 src/Zernio/Model/AutomationScheduleTriggerTimesInner.cs
@@ -10141,6 +10160,7 @@ src/Zernio/Model/GetAutomationCatalog200ResponseSubjectsInnerStepsInner.cs
 src/Zernio/Model/GetAutomationCatalog200ResponseTriggersInner.cs
 src/Zernio/Model/GetAutomationCatalog200ResponseTriggersInnerFactsInner.cs
 src/Zernio/Model/GetAutomationControls200Response.cs
+src/Zernio/Model/GetAutomationRun200Response.cs
 src/Zernio/Model/GetBalance200Response.cs
 src/Zernio/Model/GetBalance200ResponseHeld.cs
 src/Zernio/Model/GetBalance200ResponsePayoutLocksInner.cs
@@ -10913,6 +10933,7 @@ src/Zernio/Model/ListApiKeys200Response.cs
 src/Zernio/Model/ListAutomationActions200Response.cs
 src/Zernio/Model/ListAutomationApprovals200Response.cs
 src/Zernio/Model/ListAutomationChecks200Response.cs
+src/Zernio/Model/ListAutomationRuns200Response.cs
 src/Zernio/Model/ListAutomationTemplates200Response.cs
 src/Zernio/Model/ListAutomations200Response.cs
 src/Zernio/Model/ListBidStrategies200Response.cs
