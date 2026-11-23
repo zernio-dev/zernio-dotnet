@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ConsentManager** | **string** | Consent manager found on the page, or null. | 
 **ActivePlatformCount** | **int** | How many ad platforms the scan found any tracking for. | 
 **Visibility** | **string** | &#x60;full&#x60; &#x3D; pixels were visible, &#x60;limited&#x60; &#x3D; tags load dynamically so not all are visible, &#x60;none&#x60; &#x3D; nothing found. | 
+**ScannerBlocked** | **bool** | Always &#x60;true&#x60; when present: set when the site served our page fetch a bot wall and showed no pixel. The report is a partial, source-only read, so &#x60;score&#x60; and &#x60;grade&#x60; are placeholders, not a verdict, and &#x60;networks&#x60; is empty. | [optional] 
 **SiteSignals** | **List&lt;string&gt;** | Site tech recognized (Shopify, WooCommerce, ...). | 
 **ScanMode** | **string** | &#x60;rendered&#x60; when a headless browser ran the page and its requests were checked, &#x60;static&#x60; for the page source only. | [optional] 
 **Limitations** | **List&lt;string&gt;** | What this scan could not see. | [optional] 
