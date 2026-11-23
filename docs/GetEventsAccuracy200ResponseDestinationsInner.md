@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Deliveries** | [**GetEventsAccuracy200ResponseDestinationsInnerDeliveries**](GetEventsAccuracy200ResponseDestinationsInnerDeliveries.md) |  | [optional] 
 **Match** | [**GetEventsAccuracy200ResponseDestinationsInnerMatch**](GetEventsAccuracy200ResponseDestinationsInnerMatch.md) |  | [optional] 
 **MatchRate** | **decimal?** | &#x60;match.identified / match.events&#x60;. &#x60;null&#x60; with nothing sent. | [optional] 
+**FailureReasons** | [**List&lt;GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInner&gt;**](GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInner.md) | Why the destination refused events in the period, by refusal code, most events first (at most 5). Empty when it refused none. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

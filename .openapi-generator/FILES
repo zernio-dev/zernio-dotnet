@@ -1671,6 +1671,7 @@ docs/GetEvent200ResponseTouchesInnerDetail.md
 docs/GetEventsAccuracy200Response.md
 docs/GetEventsAccuracy200ResponseDestinationsInner.md
 docs/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.md
+docs/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInner.md
 docs/GetEventsAccuracy200ResponseDestinationsInnerMatch.md
 docs/GetEventsOverview200Response.md
 docs/GetEventsOverview200ResponseEventNamesInner.md
@@ -5943,6 +5944,7 @@ src/Zernio.Test/Model/GetEvent200ResponseTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTouchesInnerDetailTests.cs
 src/Zernio.Test/Model/GetEvent200ResponseTouchesInnerTests.cs
 src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerDeliveriesTests.cs
+src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInnerTests.cs
 src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerMatchTests.cs
 src/Zernio.Test/Model/GetEventsAccuracy200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/GetEventsAccuracy200ResponseTests.cs
@@ -10191,6 +10193,7 @@ src/Zernio/Model/GetEvent200ResponseTouchesInnerDetail.cs
 src/Zernio/Model/GetEventsAccuracy200Response.cs
 src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInner.cs
 src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInnerDeliveries.cs
+src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInnerFailureReasonsInner.cs
 src/Zernio/Model/GetEventsAccuracy200ResponseDestinationsInnerMatch.cs
 src/Zernio/Model/GetEventsOverview200Response.cs
 src/Zernio/Model/GetEventsOverview200ResponseEventNamesInner.cs
