@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.769.0",
+    "version": "1.770.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -182403,7 +182403,7 @@
                       },
                       "body": {
                         "type": "string",
-                        "description": "Primary text. On a Meta asset_feed creative it replaces the feed's only body option (422 when it has several: send `bodies`)."
+                        "description": "Primary text. On a Meta asset_feed creative it replaces the feed's only body option and the story text (422 when it has several: send `bodies`). Sent with `bodies`, it sets the story's fallback primary text (`link_data.message` or `video_data.message`) while `bodies` replaces the options."
                       },
                       "bodies": {
                         "type": "array",
@@ -182413,7 +182413,7 @@
                           "type": "string",
                           "minLength": 1
                         },
-                        "description": "Meta only. The primary text options of an asset_feed creative, one text per option in the order GET /v1/ads/{adId} returns them. Each replaces the option in its position and keeps its rule. A different count returns 422, as does a single-text creative (send `body`). Not with `body`."
+                        "description": "Meta only. The primary text options of an asset_feed creative, one text per option in the order GET /v1/ads/{adId} returns them. Each replaces the option in its position and keeps its rule.\n\nA different count returns 422, as does a single-text creative (send `body`). Add `body` to set the story's fallback text as well."
                       },
                       "headlines": {
                         "type": "array",
@@ -182423,7 +182423,7 @@
                           "type": "string",
                           "minLength": 1
                         },
-                        "description": "Meta only. Same as `bodies`, for the headline options (Meta `asset_feed_spec.titles`). Cannot be sent with `headline`. Not the top-level Google `headlines`."
+                        "description": "Meta only. Same as `bodies`, for the headline options (Meta `asset_feed_spec.titles`). Add `headline` to set the story's fallback title. Not the top-level Google `headlines`."
                       },
                       "description": {
                         "type": "string",
@@ -182438,7 +182438,7 @@
                           "type": "string",
                           "minLength": 1
                         },
-                        "description": "Meta only. Same as `bodies`, for the description options. Cannot be sent with `description`. Not the top-level Google `descriptions`."
+                        "description": "Meta only. Same as `bodies`, for the description options. Add `description` to set the story's fallback description. Not the top-level Google `descriptions`."
                       },
                       "callToAction": {
                         "type": "string"
