@@ -334,6 +334,12 @@ docs/AutomationCheck.md
 docs/AutomationConditionResult.md
 docs/AutomationControls.md
 docs/AutomationDefinition.md
+docs/AutomationEventActionStep.md
+docs/AutomationEventActionStepOneOf.md
+docs/AutomationEventActionStepOneOf1.md
+docs/AutomationEventActionStepOneOf2.md
+docs/AutomationEventActionStepOneOf3.md
+docs/AutomationEventActionStepOneOf4.md
 docs/AutomationEventLimits.md
 docs/AutomationEventTrigger.md
 docs/AutomationFactCondition.md
@@ -1431,6 +1437,7 @@ docs/EstimateAdReachRequest.md
 docs/EventAutomationCheck.md
 docs/EventAutomationCheckSubject.md
 docs/EventAutomationDefinition.md
+docs/EventAutomationDefinitionStepsInner.md
 docs/EventConsent.md
 docs/EventCorrection.md
 docs/EventDestination.md
@@ -4669,6 +4676,12 @@ src/Zernio.Test/Model/AutomationCheckTests.cs
 src/Zernio.Test/Model/AutomationConditionResultTests.cs
 src/Zernio.Test/Model/AutomationControlsTests.cs
 src/Zernio.Test/Model/AutomationDefinitionTests.cs
+src/Zernio.Test/Model/AutomationEventActionStepOneOf1Tests.cs
+src/Zernio.Test/Model/AutomationEventActionStepOneOf2Tests.cs
+src/Zernio.Test/Model/AutomationEventActionStepOneOf3Tests.cs
+src/Zernio.Test/Model/AutomationEventActionStepOneOf4Tests.cs
+src/Zernio.Test/Model/AutomationEventActionStepOneOfTests.cs
+src/Zernio.Test/Model/AutomationEventActionStepTests.cs
 src/Zernio.Test/Model/AutomationEventLimitsTests.cs
 src/Zernio.Test/Model/AutomationEventTriggerTests.cs
 src/Zernio.Test/Model/AutomationFactConditionOneOf1Tests.cs
@@ -5743,6 +5756,7 @@ src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
 src/Zernio.Test/Model/EventAutomationCheckSubjectTests.cs
 src/Zernio.Test/Model/EventAutomationCheckTests.cs
+src/Zernio.Test/Model/EventAutomationDefinitionStepsInnerTests.cs
 src/Zernio.Test/Model/EventAutomationDefinitionTests.cs
 src/Zernio.Test/Model/EventConsentTests.cs
 src/Zernio.Test/Model/EventCorrectionTests.cs
@@ -8945,6 +8959,12 @@ src/Zernio/Model/AutomationCheck.cs
 src/Zernio/Model/AutomationConditionResult.cs
 src/Zernio/Model/AutomationControls.cs
 src/Zernio/Model/AutomationDefinition.cs
+src/Zernio/Model/AutomationEventActionStep.cs
+src/Zernio/Model/AutomationEventActionStepOneOf.cs
+src/Zernio/Model/AutomationEventActionStepOneOf1.cs
+src/Zernio/Model/AutomationEventActionStepOneOf2.cs
+src/Zernio/Model/AutomationEventActionStepOneOf3.cs
+src/Zernio/Model/AutomationEventActionStepOneOf4.cs
 src/Zernio/Model/AutomationEventLimits.cs
 src/Zernio/Model/AutomationEventTrigger.cs
 src/Zernio/Model/AutomationFactCondition.cs
@@ -10019,6 +10039,7 @@ src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/EventAutomationCheck.cs
 src/Zernio/Model/EventAutomationCheckSubject.cs
 src/Zernio/Model/EventAutomationDefinition.cs
+src/Zernio/Model/EventAutomationDefinitionStepsInner.cs
 src/Zernio/Model/EventConsent.cs
 src/Zernio/Model/EventCorrection.cs
 src/Zernio/Model/EventDestination.cs
