@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.773.0",
+    "version": "1.774.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -135434,6 +135434,14 @@
                     "format": "uri",
                     "description": "(Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms."
                   },
+                  "attachmentType": {
+                    "type": "string",
+                    "enum": [
+                      "image",
+                      "gif"
+                    ],
+                    "description": "(Facebook only) How Facebook publishes `attachmentUrl`: `image` (default) as a photo comment, `gif` as an animated GIF comment. A GIF sent as `image` is stored as a still photo. Requires `attachmentUrl`."
+                  },
                   "commentId": {
                     "type": "string",
                     "description": "Reply to specific comment (optional)"
@@ -135495,7 +135503,7 @@
           },
           "400": {
             "x-summary": "The request is invalid, for example an attachment URL on a non-Facebook platform or a LinkedIn mention that cannot be resolved.",
-            "description": "Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED).\n\n- LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.\n- `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.\n- An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.\n",
+            "description": "Invalid request (e.g. attachmentUrl on a platform other than Facebook, code PLATFORM_NOT_SUPPORTED).\n\n- LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.\n- `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.\n- `attachmentType` without `attachmentUrl` is rejected.\n- An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.\n",
             "content": {
               "application/json": {
                 "schema": {
