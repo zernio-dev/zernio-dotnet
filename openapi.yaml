@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.797.0",
+    "version": "1.798.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -138187,7 +138187,7 @@
                   "attachmentUrl": {
                     "type": "string",
                     "format": "uri",
-                    "description": "(Facebook, Bluesky, LinkedIn and Threads) URL of an image to attach to the comment or reply. The URL must be publicly fetchable. Returns 400 for other platforms."
+                    "description": "(Facebook, Bluesky, LinkedIn, Threads and X) URL of an image to attach to the comment or reply. The URL must be publicly fetchable. Returns 400 for other platforms."
                   },
                   "attachmentType": {
                     "type": "string",
@@ -138195,7 +138195,7 @@
                       "image",
                       "gif"
                     ],
-                    "description": "(Facebook and Threads, optional) How `attachmentUrl` is published. Requires `attachmentUrl`; returns 400 on other platforms.\n\n- Omitted: a GIF is detected and posted animated. Detection uses GIPHY links (page, media, embed, sticker; `gph.is` on Threads), `.gif` paths, and an `image/gif` response on Threads.\n- `image`: forces a still photo. Threads converts a GIF or WebP to JPEG or PNG.\n- `gif`: forces an animated GIF.\n- Threads GIFs must come from GIPHY, otherwise the request returns 400 `invalid_field_value`.\n- Facebook gets a GIPHY link as its direct GIF.\n"
+                    "description": "(Facebook, Threads and X, optional) How `attachmentUrl` is published. Requires `attachmentUrl`; returns 400 on other platforms.\n\n- Omitted: a GIF is detected and posted animated. Detection uses GIPHY links (page, media, embed, sticker; `gph.is` on Threads and X), `.gif` paths, and an `image/gif` response on Threads and X.\n- `image`: forces a still photo. Threads converts a GIF or WebP to JPEG or PNG.\n- `gif`: forces an animated GIF.\n- Threads GIFs must come from GIPHY, otherwise the request returns 400 `invalid_field_value`.\n- Facebook and X get a GIPHY link as their direct GIF.\n- X takes one image or GIF from any host, and returns 400 for video or HTML URLs.\n- On X, images over 5 MB are compressed and a GIF over 15 MB posts as a still image.\n- On X, a GIF always posts animated, even with `attachmentType: image`.\n"
                   },
                   "commentId": {
                     "type": "string",
@@ -138257,8 +138257,8 @@
             }
           },
           "400": {
-            "x-summary": "The request is invalid, for example an attachment URL on a platform other than Facebook, Bluesky, LinkedIn and Threads or a LinkedIn mention that cannot be resolved.",
-            "description": "Invalid request (e.g. attachmentUrl on a platform other than Facebook, Bluesky, LinkedIn and Threads, or attachmentType on a platform other than Facebook and Threads, code PLATFORM_NOT_SUPPORTED).\n\n- A Threads GIF that is not from GIPHY returns code `invalid_field_value` with `param: attachmentUrl`.\n\n- LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.\n- `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.\n- `attachmentType` without `attachmentUrl` is rejected.\n- An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.\n",
+            "x-summary": "The request is invalid, for example an attachment URL on a platform other than Facebook, Bluesky, LinkedIn, Threads and X or a LinkedIn mention that cannot be resolved.",
+            "description": "Invalid request (e.g. attachmentUrl on a platform other than Facebook, Bluesky, LinkedIn, Threads and X, or attachmentType on a platform other than Facebook, Threads and X, code PLATFORM_NOT_SUPPORTED).\n\n- A Threads GIF that is not from GIPHY returns code `invalid_field_value` with `param: attachmentUrl`.\n\n- LinkedIn: a profile or company URL mention that cannot be resolved returns `linkedin_mentions_invalid`, or `linkedin_mentions_limit_exceeded` for more than 10, with `details.mentions[]`.\n- `mentionAuthor` without `commentId`, or on a platform other than LinkedIn, is rejected.\n- `attachmentType` without `attachmentUrl` is rejected.\n- An author whose name LinkedIn does not return gives `linkedin_mention_name_unavailable` with `details.authorUrn`.\n",
             "content": {
               "application/json": {
                 "schema": {
