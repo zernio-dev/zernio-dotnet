@@ -38,6 +38,7 @@ docs/AdCampaignBudget.md
 docs/AdCampaignOptimizationGoal.md
 docs/AdCampaignResultsApi.md
 docs/AdCampaignsApi.md
+docs/AdChangesApi.md
 docs/AdCreative.md
 docs/AdCreativeAssetFeed.md
 docs/AdCreativeAssetFeedImagesInner.md
@@ -1559,6 +1560,7 @@ docs/GetAdCampaignDetails200Response.md
 docs/GetAdCatalogBatch200Response.md
 docs/GetAdCatalogBatch200ResponseBatch.md
 docs/GetAdCatalogBatch200ResponseBatchErrorsInner.md
+docs/GetAdChange200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
@@ -3392,6 +3394,9 @@ docs/SmsRegistrationReviewRequestPointsInner.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
+docs/StagedAdChange.md
+docs/StagedAdChangeDiffInner.md
+docs/StagedAdChangeError.md
 docs/StartBusinessAgentEvalRun202Response.md
 docs/StartBusinessAgentEvalRunRequest.md
 docs/StartCreatorConnect200Response.md
@@ -4280,6 +4285,7 @@ src/Zernio.Test/Api/AdAccountsApiTests.cs
 src/Zernio.Test/Api/AdAudiencesApiTests.cs
 src/Zernio.Test/Api/AdCampaignResultsApiTests.cs
 src/Zernio.Test/Api/AdCampaignsApiTests.cs
+src/Zernio.Test/Api/AdChangesApiTests.cs
 src/Zernio.Test/Api/AdCreativesApiTests.cs
 src/Zernio.Test/Api/AdInsightsApiTests.cs
 src/Zernio.Test/Api/AdLibraryApiTests.cs
@@ -5874,6 +5880,7 @@ src/Zernio.Test/Model/GetAdCampaignDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdCatalogBatch200ResponseBatchErrorsInnerTests.cs
 src/Zernio.Test/Model/GetAdCatalogBatch200ResponseBatchTests.cs
 src/Zernio.Test/Model/GetAdCatalogBatch200ResponseTests.cs
+src/Zernio.Test/Model/GetAdChange200ResponseTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
@@ -7681,6 +7688,9 @@ src/Zernio.Test/Model/SmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
 src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
+src/Zernio.Test/Model/StagedAdChangeDiffInnerTests.cs
+src/Zernio.Test/Model/StagedAdChangeErrorTests.cs
+src/Zernio.Test/Model/StagedAdChangeTests.cs
 src/Zernio.Test/Model/StartBusinessAgentEvalRun202ResponseTests.cs
 src/Zernio.Test/Model/StartBusinessAgentEvalRunRequestTests.cs
 src/Zernio.Test/Model/StartCreatorConnect200ResponseTests.cs
@@ -8549,6 +8559,7 @@ src/Zernio/Api/AdAccountsApi.cs
 src/Zernio/Api/AdAudiencesApi.cs
 src/Zernio/Api/AdCampaignResultsApi.cs
 src/Zernio/Api/AdCampaignsApi.cs
+src/Zernio/Api/AdChangesApi.cs
 src/Zernio/Api/AdCreativesApi.cs
 src/Zernio/Api/AdInsightsApi.cs
 src/Zernio/Api/AdLibraryApi.cs
@@ -10161,6 +10172,7 @@ src/Zernio/Model/GetAdCampaignDetails200Response.cs
 src/Zernio/Model/GetAdCatalogBatch200Response.cs
 src/Zernio/Model/GetAdCatalogBatch200ResponseBatch.cs
 src/Zernio/Model/GetAdCatalogBatch200ResponseBatchErrorsInner.cs
+src/Zernio/Model/GetAdChange200Response.cs
 src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
 src/Zernio/Model/GetAdComments200ResponsePagination.cs
@@ -11968,6 +11980,9 @@ src/Zernio/Model/SmsRegistrationReviewRequestPointsInner.cs
 src/Zernio/Model/SnapchatPlatformData.cs
 src/Zernio/Model/SocialAccount.cs
 src/Zernio/Model/SocialAccountProfileId.cs
+src/Zernio/Model/StagedAdChange.cs
+src/Zernio/Model/StagedAdChangeDiffInner.cs
+src/Zernio/Model/StagedAdChangeError.cs
 src/Zernio/Model/StartBusinessAgentEvalRun202Response.cs
 src/Zernio/Model/StartBusinessAgentEvalRunRequest.cs
 src/Zernio/Model/StartCreatorConnect200Response.cs

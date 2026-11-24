@@ -1,0 +1,23 @@
+# Zernio.Model.StagedAdChange
+An ad write that was validated and stored with `stage: true`, waiting to be confirmed or discarded.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Id** | **string** | The change id, used in /v1/ads/changes/{changeId}. | 
+**Type** | **string** | Which write was staged. | 
+**Platform** | **string** | The ad platform of the object, as the write route names it. | 
+**AccountId** | **string** | The connected account the write goes through. | 
+**AdAccountId** | **string** | The ad account id on the platform. | 
+**TargetId** | **string** | The object the change applies to: the platform campaign id, the platform ad set id, or the Zernio ad id. | 
+**Status** | **string** | - &#x60;staged&#x60;: waiting to be confirmed or discarded. - &#x60;confirming&#x60;: a confirm is running. A change that stays here has an unknown outcome and is never applied again automatically. - &#x60;confirmed&#x60;: applied. &#x60;result&#x60; holds what the write returned. - &#x60;failed&#x60;: not applied. &#x60;error&#x60; says why.  | 
+**Diff** | [**List&lt;StagedAdChangeDiffInner&gt;**](StagedAdChangeDiffInner.md) | One entry per field of the staged request. | 
+**CreatedBy** | **string** | The user who staged the change. | 
+**CreatedAt** | **DateTime** |  | 
+**FinishedAt** | **DateTime?** | When the confirm ended, as &#x60;confirmed&#x60; or &#x60;failed&#x60;. A finished change is deleted 7 days later. | 
+**Result** | **Dictionary&lt;string, Object&gt;** | Present once &#x60;confirmed&#x60;: the response body of the write. | [optional] 
+**Error** | [**StagedAdChangeError**](StagedAdChangeError.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

@@ -6778,6 +6778,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign status updated |  -  |
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **400** | Invalid input, campaign spans multiple accounts, or the platform refused the write (&#x60;platform_api_error&#x60;, see Retrying above) |  -  |
 | **401** | Missing or invalid API key (&#x60;missing_credentials&#x60; / &#x60;invalid_credentials&#x60;), or the platform no longer accepts the connection&#39;s token (&#x60;reconnect_required&#x60;): reconnect the account, then retry. |  -  |
 | **403** | Forbidden. Two codes:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the targeted ad account is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
@@ -7211,6 +7212,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad set status updated |  -  |
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | One of two refusals:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
@@ -7318,6 +7320,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
+| **202** | Sent with &#x60;stage: true&#x60;. The change was validated and stored, and nothing was written to the ad network. |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. The code says why:  - &#x60;ads_allowance_exceeded&#x60;: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume. - &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the ad account this request targets is not among them. &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;.  To fix &#x60;ad_account_not_selected&#x60;, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
