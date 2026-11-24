@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.800.3",
+    "version": "1.802.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -25385,7 +25385,7 @@
       },
       "WebhookPayloadMessageDeliveryStatus": {
         "type": "object",
-        "description": "Shared payload for message.delivered, message.read, message.played and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.\n\n**Platform support:**\n\n- message.delivered: WhatsApp, Facebook Messenger, SMS, RCS.\n- message.read: WhatsApp, Facebook Messenger, Instagram, RCS. Not SMS (carriers report delivery, never read).\n- message.played: WhatsApp only, voice messages.\n- message.failed: WhatsApp, SMS and RCS (other platforms don't expose per-message failure via webhook). On SMS, `error.code` is the carrier's numeric code and `error.message` its reason.\n",
+        "description": "Shared payload for message.delivered, message.read, message.played and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.\n\n**Platform support:**\n\n- message.delivered: WhatsApp, Facebook Messenger, SMS, RCS, iMessage.\n- message.read: WhatsApp, Facebook Messenger, Instagram, RCS. Not SMS (carriers report delivery, never read).\n- message.played: WhatsApp only, voice messages.\n- message.failed: WhatsApp, SMS, RCS and iMessage (other platforms don't expose per-message failure via webhook). On SMS, `error.code` is the carrier's numeric code and `error.message` its reason.\n- On iMessage, message.failed can follow message.delivered for the same message: the provider delivered it on iMessage, then reported its SMS or RCS fallback failed. The failure is final.\n",
         "required": [
           "id",
           "event",
@@ -133348,7 +133348,7 @@
                           },
                           "metadata": {
                             "type": "object",
-                            "description": "Platform-specific extras. Free-form, but commonly includes:\n\n- `quotedMessageId`: the `id` of the message this one replies to (delivered as `message.platformMessageId` on webhooks).\n- `waInteractive`: a compact descriptor of WhatsApp interactive content sent (buttons / list / cta_url / flow / location_request).\n- `metaInteractive`: outgoing Instagram/Facebook buttons, quickReplies and template, as sent.\n- `interactiveType` / `interactiveId`: for inbound interactive taps.\n- `source`: where the message reached us from, not who produced it (read `sentVia` for that). `whatsapp_business_app` / `coexistence_history` on a WhatsApp Coexistence number, `bulk-api` on a POST /v1/whatsapp/bulk send.\n",
+                            "description": "Platform-specific extras. Free-form, but commonly includes:\n\n- `quotedMessageId`: the `id` of the message this one replies to (delivered as `message.platformMessageId` on webhooks).\n- `waInteractive`: a compact descriptor of WhatsApp interactive content sent (buttons / list / cta_url / flow / location_request).\n- `metaInteractive`: outgoing Instagram/Facebook buttons, quickReplies and template, as sent.\n- `interactiveType` / `interactiveId`: for inbound interactive taps.\n- `source`: where the message reached us from, not who produced it (read `sentVia` for that). `whatsapp_business_app` / `coexistence_history` on a WhatsApp Coexistence number, `bulk-api` on a POST /v1/whatsapp/bulk send.\n- `deliveryChannel`: on an outgoing iMessage, the channel of the latest delivery status (`imessage`, `sms`, `rcs` or `whatsapp`). A message delivered on `imessage` turns `failed` when the provider then reports its `sms` fallback failed.\n",
                             "additionalProperties": true
                           },
                           "sentVia": {
