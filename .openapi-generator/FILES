@@ -641,6 +641,7 @@ docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
 docs/CheckWhatsAppNumberAvailability200Response.md
 docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md
+docs/CoexistenceHistorySync.md
 docs/CommentAttachment.md
 docs/CommentAutomationActions.md
 docs/CommentAutomationAudience.md
@@ -1511,7 +1512,6 @@ docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccount200Response.md
 docs/GetAccountHealth200Response.md
-docs/GetAccountHealth200ResponseCoexistenceHistorySync.md
 docs/GetAccountHealth200ResponseLineWebhook.md
 docs/GetAccountHealth200ResponseMailbox.md
 docs/GetAccountHealth200ResponseMessagingRestriction.md
@@ -4976,6 +4976,7 @@ src/Zernio.Test/Model/CheckVerification200ResponseTests.cs
 src/Zernio.Test/Model/CheckVerificationRequestTests.cs
 src/Zernio.Test/Model/CheckWhatsAppNumberAvailability200ResponseAreaAvailabilityTests.cs
 src/Zernio.Test/Model/CheckWhatsAppNumberAvailability200ResponseTests.cs
+src/Zernio.Test/Model/CoexistenceHistorySyncTests.cs
 src/Zernio.Test/Model/CommentAttachmentTests.cs
 src/Zernio.Test/Model/CommentAutomationActionsTests.cs
 src/Zernio.Test/Model/CommentAutomationAudienceTests.cs
@@ -5821,7 +5822,6 @@ src/Zernio.Test/Model/GenerateKeywordIdeas200ResponseTests.cs
 src/Zernio.Test/Model/GenerateKeywordIdeasRequestTests.cs
 src/Zernio.Test/Model/GeoRestrictionTests.cs
 src/Zernio.Test/Model/GetAccount200ResponseTests.cs
-src/Zernio.Test/Model/GetAccountHealth200ResponseCoexistenceHistorySyncTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseLineWebhookTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseMailboxTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseMessagingRestrictionTests.cs
@@ -9259,6 +9259,7 @@ src/Zernio/Model/CheckVerification200Response.cs
 src/Zernio/Model/CheckVerificationRequest.cs
 src/Zernio/Model/CheckWhatsAppNumberAvailability200Response.cs
 src/Zernio/Model/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.cs
+src/Zernio/Model/CoexistenceHistorySync.cs
 src/Zernio/Model/CommentAttachment.cs
 src/Zernio/Model/CommentAutomationActions.cs
 src/Zernio/Model/CommentAutomationAudience.cs
@@ -10105,7 +10106,6 @@ src/Zernio/Model/GenerateKeywordIdeasRequest.cs
 src/Zernio/Model/GeoRestriction.cs
 src/Zernio/Model/GetAccount200Response.cs
 src/Zernio/Model/GetAccountHealth200Response.cs
-src/Zernio/Model/GetAccountHealth200ResponseCoexistenceHistorySync.cs
 src/Zernio/Model/GetAccountHealth200ResponseLineWebhook.cs
 src/Zernio/Model/GetAccountHealth200ResponseMailbox.cs
 src/Zernio/Model/GetAccountHealth200ResponseMessagingRestriction.cs
