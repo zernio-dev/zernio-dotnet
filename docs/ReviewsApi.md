@@ -118,7 +118,7 @@ catch (ApiException e)
 
 List reviews
 
-Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account's reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account's listing is cached for up to 60 seconds. 
+Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account's reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated; those accounts are listed in meta.truncatedAccounts. Each account's listing is cached for up to 60 seconds. 
 
 ### Example
 ```csharp
@@ -153,7 +153,7 @@ namespace Example
             var sortOrder = "asc";  // string? |  (optional)  (default to desc)
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? |  (optional) 
-            var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
+            var accountId = "accountId_example";  // string? | One account id, or several comma-separated. (optional) 
 
             try
             {
@@ -205,7 +205,7 @@ catch (ApiException e)
 | **sortOrder** | **string?** |  | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** |  | [optional]  |
-| **accountId** | **string?** | Filter by specific account ID | [optional]  |
+| **accountId** | **string?** | One account id, or several comma-separated. | [optional]  |
 
 ### Return type
 
@@ -225,6 +225,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated reviews |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 

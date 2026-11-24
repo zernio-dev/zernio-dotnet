@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | [optional] 
 **Data** | [**List&lt;ListInboxReviews200ResponseDataInner&gt;**](ListInboxReviews200ResponseDataInner.md) |  | [optional] 
 **Pagination** | [**ListCalendarEventInstances200ResponsePagination**](ListCalendarEventInstances200ResponsePagination.md) |  | [optional] 
-**Meta** | [**ListInboxConversations200ResponseMeta**](ListInboxConversations200ResponseMeta.md) |  | [optional] 
+**Meta** | [**ListInboxReviews200ResponseMeta**](ListInboxReviews200ResponseMeta.md) |  | [optional] 
 **Summary** | [**ListInboxReviews200ResponseSummary**](ListInboxReviews200ResponseSummary.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

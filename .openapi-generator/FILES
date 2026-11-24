@@ -2578,6 +2578,7 @@ docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerPhotosInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
+docs/ListInboxReviews200ResponseMeta.md
 docs/ListInboxReviews200ResponseSummary.md
 docs/ListInstagramLiveMedia200Response.md
 docs/ListInstagramMediaCollaborators200Response.md
@@ -6895,6 +6896,7 @@ src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerPhotosInnerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerReplyTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerReviewerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/ListInboxReviews200ResponseMetaTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramLiveMedia200ResponseTests.cs
@@ -11193,6 +11195,7 @@ src/Zernio/Model/ListInboxReviews200ResponseDataInner.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerPhotosInner.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReply.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReviewer.cs
+src/Zernio/Model/ListInboxReviews200ResponseMeta.cs
 src/Zernio/Model/ListInboxReviews200ResponseSummary.cs
 src/Zernio/Model/ListInstagramLiveMedia200Response.cs
 src/Zernio/Model/ListInstagramMediaCollaborators200Response.cs
