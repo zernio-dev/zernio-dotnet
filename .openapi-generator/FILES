@@ -2524,6 +2524,7 @@ docs/ListFiles200Response.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
+docs/ListFormLeads200ResponsePagination.md
 docs/ListForwardingRules200Response.md
 docs/ListGoogleAnalyticsProperties200Response.md
 docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md
@@ -6840,6 +6841,7 @@ src/Zernio.Test/Model/ListFacebookVisitorPosts200ResponseTests.cs
 src/Zernio.Test/Model/ListFiles200ResponseTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseMetaTests.cs
+src/Zernio.Test/Model/ListFormLeads200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListFormLeads200ResponseTests.cs
 src/Zernio.Test/Model/ListForwardingRules200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleAnalyticsProperties200ResponsePropertiesInnerTests.cs
@@ -11137,6 +11139,7 @@ src/Zernio/Model/ListFiles200Response.cs
 src/Zernio/Model/ListFormLeads200Response.cs
 src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListFormLeads200ResponseMeta.cs
+src/Zernio/Model/ListFormLeads200ResponsePagination.cs
 src/Zernio/Model/ListForwardingRules200Response.cs
 src/Zernio/Model/ListGoogleAnalyticsProperties200Response.cs
 src/Zernio/Model/ListGoogleAnalyticsProperties200ResponsePropertiesInner.cs
