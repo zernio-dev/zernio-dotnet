@@ -57781,6 +57781,14 @@
                     "type": "string",
                     "description": "LinkedIn first-party ad tracking click ID. Captured by\nparsing `li_fat_id` from landing-page URLs after the\nadvertiser enables enhanced conversion tracking on the\nLinkedIn Insight Tag. Sent to LinkedIn as the\nLINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque\ntoken, not hashed.\n"
                   },
+                  "ttclid": {
+                    "type": "string",
+                    "description": "TikTok click ID (the `ttclid` URL param TikTok adds to ad clicks). Sent to TikTok pixel destinations as `user.ttclid`, not hashed."
+                  },
+                  "ttp": {
+                    "type": "string",
+                    "description": "TikTok Pixel browser id (the `_ttp` cookie). Sent to TikTok pixel destinations as `user.ttp`, not hashed. Offline Event Sets match on email and phone only."
+                  },
                   "epik": {
                     "type": "string",
                     "description": "Pinterest click ID (the `epik` URL param or `_epik` cookie). Sent to Pinterest as `click_id`, not hashed."

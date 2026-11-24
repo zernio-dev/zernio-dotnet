@@ -42,6 +42,8 @@ namespace Zernio.Model
         /// <param name="gbraid">Google iOS 14.5+ app attribution ID..</param>
         /// <param name="wbraid">Google iOS 14.5+ web-to-app attribution ID..</param>
         /// <param name="liFatId">LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed. .</param>
+        /// <param name="ttclid">TikTok click ID (the &#x60;ttclid&#x60; URL param TikTok adds to ad clicks). Sent to TikTok pixel destinations as &#x60;user.ttclid&#x60;, not hashed..</param>
+        /// <param name="ttp">TikTok Pixel browser id (the &#x60;_ttp&#x60; cookie). Sent to TikTok pixel destinations as &#x60;user.ttp&#x60;, not hashed. Offline Event Sets match on email and phone only..</param>
         /// <param name="epik">Pinterest click ID (the &#x60;epik&#x60; URL param or &#x60;_epik&#x60; cookie). Sent to Pinterest as &#x60;click_id&#x60;, not hashed..</param>
         /// <param name="rdtCid">Reddit click ID (the &#x60;rdt_cid&#x60; URL param Reddit adds to ad clicks). Sent to Reddit as &#x60;click_id&#x60;, not hashed..</param>
         /// <param name="rdtUuid">Reddit Pixel browser id (the &#x60;_rdt_uuid&#x60; first-party cookie). Sent to Reddit as &#x60;user.uuid&#x60;, not hashed..</param>
@@ -60,7 +62,7 @@ namespace Zernio.Model
         /// <param name="tdid">The Trade Desk browser id (TDID) from a TTD cookie sync. Sent to The Trade Desk as &#x60;adid&#x60; of type &#x60;TDID&#x60;..</param>
         /// <param name="uid2">A raw UID2 for the person, from your UID2 integration. Sent to The Trade Desk as &#x60;adid&#x60; of type &#x60;UID2&#x60;..</param>
         /// <param name="uid2Token">A UID2 token (encrypted, from the UID2 SDK on your site). Sent to The Trade Desk as &#x60;uid2_token&#x60;..</param>
-        public ConversionEventUserClickIds(string fbc = default, string fbp = default, string gclid = default, string gbraid = default, string wbraid = default, string liFatId = default, string epik = default, string rdtCid = default, string rdtUuid = default, string aleid = default, string alart = default, string axwrt = default, string twclid = default, string msclkid = default, string sccid = default, string scid = default, string tblci = default, string obClickId = default, string irclickid = default, string awc = default, string dclid = default, string tdid = default, string uid2 = default, string uid2Token = default)
+        public ConversionEventUserClickIds(string fbc = default, string fbp = default, string gclid = default, string gbraid = default, string wbraid = default, string liFatId = default, string ttclid = default, string ttp = default, string epik = default, string rdtCid = default, string rdtUuid = default, string aleid = default, string alart = default, string axwrt = default, string twclid = default, string msclkid = default, string sccid = default, string scid = default, string tblci = default, string obClickId = default, string irclickid = default, string awc = default, string dclid = default, string tdid = default, string uid2 = default, string uid2Token = default)
         {
             this.Fbc = fbc;
             this.Fbp = fbp;
@@ -68,6 +70,8 @@ namespace Zernio.Model
             this.Gbraid = gbraid;
             this.Wbraid = wbraid;
             this.LiFatId = liFatId;
+            this.Ttclid = ttclid;
+            this.Ttp = ttp;
             this.Epik = epik;
             this.RdtCid = rdtCid;
             this.RdtUuid = rdtUuid;
@@ -129,6 +133,20 @@ namespace Zernio.Model
         /// <value>LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed. </value>
         [DataMember(Name = "li_fat_id", EmitDefaultValue = false)]
         public string LiFatId { get; set; }
+
+        /// <summary>
+        /// TikTok click ID (the &#x60;ttclid&#x60; URL param TikTok adds to ad clicks). Sent to TikTok pixel destinations as &#x60;user.ttclid&#x60;, not hashed.
+        /// </summary>
+        /// <value>TikTok click ID (the &#x60;ttclid&#x60; URL param TikTok adds to ad clicks). Sent to TikTok pixel destinations as &#x60;user.ttclid&#x60;, not hashed.</value>
+        [DataMember(Name = "ttclid", EmitDefaultValue = false)]
+        public string Ttclid { get; set; }
+
+        /// <summary>
+        /// TikTok Pixel browser id (the &#x60;_ttp&#x60; cookie). Sent to TikTok pixel destinations as &#x60;user.ttp&#x60;, not hashed. Offline Event Sets match on email and phone only.
+        /// </summary>
+        /// <value>TikTok Pixel browser id (the &#x60;_ttp&#x60; cookie). Sent to TikTok pixel destinations as &#x60;user.ttp&#x60;, not hashed. Offline Event Sets match on email and phone only.</value>
+        [DataMember(Name = "ttp", EmitDefaultValue = false)]
+        public string Ttp { get; set; }
 
         /// <summary>
         /// Pinterest click ID (the &#x60;epik&#x60; URL param or &#x60;_epik&#x60; cookie). Sent to Pinterest as &#x60;click_id&#x60;, not hashed.
@@ -270,6 +288,8 @@ namespace Zernio.Model
             sb.Append("  Gbraid: ").Append(Gbraid).Append("\n");
             sb.Append("  Wbraid: ").Append(Wbraid).Append("\n");
             sb.Append("  LiFatId: ").Append(LiFatId).Append("\n");
+            sb.Append("  Ttclid: ").Append(Ttclid).Append("\n");
+            sb.Append("  Ttp: ").Append(Ttp).Append("\n");
             sb.Append("  Epik: ").Append(Epik).Append("\n");
             sb.Append("  RdtCid: ").Append(RdtCid).Append("\n");
             sb.Append("  RdtUuid: ").Append(RdtUuid).Append("\n");

@@ -110,6 +110,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Ttclid'
+        /// </summary>
+        [Fact]
+        public void TtclidTest()
+        {
+            // TODO unit test for the property 'Ttclid'
+        }
+
+        /// <summary>
+        /// Test the property 'Ttp'
+        /// </summary>
+        [Fact]
+        public void TtpTest()
+        {
+            // TODO unit test for the property 'Ttp'
+        }
+
+        /// <summary>
         /// Test the property 'Epik'
         /// </summary>
         [Fact]
