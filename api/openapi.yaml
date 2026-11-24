@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.807.0
+  version: 1.808.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -147851,7 +147851,9 @@ components:
         eventIndex: 5
       properties:
         eventIndex:
-          description: Index into the events sent to this destination.
+          description: "Position of the event in the request's `events` array, counted\
+            \ from 0, also when repeats or events this destination does not take were\
+            \ left out."
           type: integer
         eventId:
           type: string
@@ -225849,7 +225851,9 @@ components:
         message: message
       properties:
         eventIndex:
-          description: Index into the events sent to this destination.
+          description: "Position of the event in the request's `events` array, counted\
+            \ from 0, also when repeats or events this destination does not take were\
+            \ left out."
           type: integer
         eventId:
           type: string
