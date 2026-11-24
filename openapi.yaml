@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.809.0",
+    "version": "1.809.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -87508,7 +87508,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createAccountGroup",
@@ -87614,7 +87613,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateAccountGroup",
@@ -87710,7 +87708,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteAccountGroup",
@@ -87764,7 +87761,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "getMediaPresignedUrl",
@@ -89606,7 +89602,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "createPost",
@@ -90838,7 +90833,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "syncExternalPosts",
@@ -91184,7 +91178,6 @@
       "put": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "updatePost",
@@ -91466,7 +91459,6 @@
       "delete": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "deletePost",
@@ -91532,7 +91524,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "bulkUploadPosts",
@@ -91684,7 +91675,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "retryPost",
@@ -91878,7 +91868,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "reviewPost",
@@ -91970,7 +91959,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "x-platforms": [
@@ -92111,7 +92099,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "x-platforms": [
@@ -92210,7 +92197,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "x-platforms": [
@@ -92309,7 +92295,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "x-platforms": [
@@ -92451,7 +92436,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "x-platforms": [
@@ -93222,7 +93206,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createProfile",
@@ -93405,7 +93388,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateProfile",
@@ -93553,7 +93535,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteProfile",
@@ -94225,7 +94206,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateAccount",
@@ -94351,7 +94331,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "moveAccountToProfile",
@@ -94432,7 +94411,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteAccount",
@@ -94896,7 +94874,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "registerWhatsAppNumber",
@@ -94978,7 +94955,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "requestWhatsAppVerificationCode",
@@ -95111,7 +95087,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "verifyWhatsAppNumber",
@@ -96730,7 +96705,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "submitFeedback",
@@ -97871,7 +97845,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateContentRetention",
@@ -98238,7 +98211,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createPlatformInvite",
@@ -98727,7 +98699,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "x-platforms": [
@@ -99322,7 +99293,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectShopifyWithToken",
@@ -99648,7 +99618,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectGoogleAnalyticsProperty",
@@ -99979,7 +99948,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectGoogleSearchConsoleSite",
@@ -100270,7 +100238,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectCampaignManagerProfile",
@@ -101171,7 +101138,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectWebflowWithSiteToken",
@@ -101390,7 +101356,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectWordPressWithApplicationPassword",
@@ -101531,7 +101496,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "configureTikTokAdsBrandIdentity",
@@ -101800,7 +101764,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectFacebookPage",
@@ -102230,7 +102193,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectInstagramAccount",
@@ -102617,7 +102579,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectGoogleBusinessLocation",
@@ -103209,7 +103170,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "startGoogleBusinessVerification",
@@ -103377,7 +103337,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "fetchGoogleBusinessVerificationOptions",
@@ -103512,7 +103471,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "completeGoogleBusinessVerification",
@@ -103828,7 +103786,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGoogleBusinessFoodMenus",
@@ -104408,7 +104365,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGoogleBusinessLocationDetails",
@@ -105108,7 +105064,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createGoogleBusinessMedia",
@@ -105248,7 +105203,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteGoogleBusinessMedia",
@@ -105841,7 +105795,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGoogleBusinessAttributes",
@@ -106174,7 +106127,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createGoogleBusinessPlaceAction",
@@ -106295,7 +106247,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteGoogleBusinessPlaceAction",
@@ -106383,7 +106334,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGoogleBusinessPlaceAction",
@@ -106641,7 +106591,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGoogleBusinessServices",
@@ -107437,7 +107386,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateConnectWelcomeScreen",
@@ -107612,7 +107560,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createOAuthApp",
@@ -107795,7 +107742,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateOAuthApp",
@@ -107898,7 +107844,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteOAuthApp",
@@ -107963,7 +107908,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "testOAuthApp",
@@ -108293,7 +108237,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectLinkedInOrganization",
@@ -108708,7 +108651,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectPinterestBoard",
@@ -109004,7 +108946,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "selectSnapchatProfile",
@@ -109231,7 +109172,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectBlueskyCredentials",
@@ -109335,7 +109275,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectOpenAIAdsCredentials",
@@ -109433,7 +109372,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectAppLovinAdsCredentials",
@@ -109564,7 +109502,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectSnapchatAdsCredentials",
@@ -109672,7 +109609,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectKlaviyoCredentials",
@@ -109772,7 +109708,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectAttentiveCredentials",
@@ -109869,7 +109804,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectImpactCredentials",
@@ -109984,7 +109918,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectAwinCredentials",
@@ -110087,7 +110020,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectTradeDeskAdsCredentials",
@@ -110199,7 +110131,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectTradeDeskAdsPartner",
@@ -110344,7 +110275,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectTaboolaAdsCredentials",
@@ -110446,7 +110376,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectOutbrainAdsCredentials",
@@ -110548,7 +110477,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectWhopAdsCredentials",
@@ -110648,7 +110576,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectWhatsAppCredentials",
@@ -110965,7 +110892,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "completeWhatsAppPhoneSelection",
@@ -111157,7 +111083,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectWhatsAppEmbeddedSignup",
@@ -111383,7 +111308,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectDiscordChannel",
@@ -111675,7 +111599,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectSlackChannel",
@@ -111765,7 +111688,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectLineCredentials",
@@ -111930,7 +111852,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "connectWechatCredentials",
@@ -112259,7 +112180,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "initiateTelegramConnect",
@@ -112382,7 +112302,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "completeTelegramConnect",
@@ -112639,7 +112558,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "resyncPageWebhookSubscription",
@@ -112822,7 +112740,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "grantBusinessPartner",
@@ -113003,7 +112920,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "revokeBusinessPartner",
@@ -113220,7 +113136,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateFacebookPage",
@@ -113409,7 +113324,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateFacebookPageInfo",
@@ -114439,7 +114353,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateLinkedInOrganization",
@@ -115997,7 +115910,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updatePinterestBoards",
@@ -116084,7 +115996,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createPinterestBoard",
@@ -116526,7 +116437,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createYoutubePlaylist",
@@ -116669,7 +116579,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateYoutubeDefaultPlaylist",
@@ -116882,7 +116791,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGmbLocation",
@@ -116987,7 +116895,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createGoogleBusinessLocation",
@@ -117245,7 +117152,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "searchGoogleBusinessLocations",
@@ -117415,7 +117321,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "assignGoogleBusinessLocation",
@@ -118046,7 +117951,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateRedditSubreddits",
@@ -118440,7 +118344,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setRedditPostFlair",
@@ -118595,7 +118498,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateHubSpotSettings",
@@ -118832,7 +118734,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateGohighlevelSettings",
@@ -119432,7 +119333,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateSalesforceSettings",
@@ -120496,7 +120396,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateStripeSettings",
@@ -120676,7 +120575,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateSlackSettings",
@@ -120799,7 +120697,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateBlueskySettings",
@@ -120982,7 +120879,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateDiscordSettings",
@@ -123543,7 +123439,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "createQueueSlot",
@@ -123652,7 +123547,6 @@
       "put": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "updateQueueSlot",
@@ -123788,7 +123682,6 @@
       "delete": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "deleteQueueSlot",
@@ -130750,7 +130643,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createGoogleOrgConnection",
@@ -130846,7 +130738,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createMicrosoftOrgConnection",
@@ -131051,7 +130942,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "x-platforms": [
@@ -131127,7 +131017,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "x-platforms": [
@@ -131185,7 +131074,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "x-platforms": [
@@ -131363,7 +131251,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "x-platforms": [
@@ -136364,7 +136251,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "uploadMediaDirect",
@@ -136498,7 +136384,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setMessengerMenu",
@@ -136563,7 +136448,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteMessengerMenu",
@@ -136667,7 +136551,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setMessengerGetStarted",
@@ -136745,7 +136628,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteMessengerGetStarted",
@@ -136862,7 +136744,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setMessengerGreeting",
@@ -136951,7 +136832,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteMessengerGreeting",
@@ -137064,7 +136944,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setMessengerIceBreakers",
@@ -137158,7 +137037,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteMessengerIceBreakers",
@@ -137268,7 +137146,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setInstagramIceBreakers",
@@ -137345,7 +137222,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteInstagramIceBreakers",
@@ -137453,7 +137329,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setTelegramCommands",
@@ -137533,7 +137408,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteTelegramCommands",
@@ -142287,7 +142161,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createWhatsAppTemplate",
@@ -142691,7 +142564,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateWhatsAppTemplate",
@@ -142881,7 +142753,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteWhatsAppTemplate",
@@ -143131,7 +143002,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateWhatsAppTemplateById",
@@ -143243,7 +143113,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteWhatsAppTemplateById",
@@ -152777,7 +152646,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateWhatsAppBusinessProfile",
@@ -152894,7 +152762,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "uploadWhatsAppProfilePhoto",
@@ -153069,7 +152936,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateWhatsAppDisplayName",
@@ -153233,7 +153099,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setWhatsappBusinessUsername",
@@ -153336,7 +153201,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteWhatsappBusinessUsername",
@@ -154388,7 +154252,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createWhatsAppDataset",
@@ -163751,7 +163614,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createWhatsAppFlow",
@@ -164004,7 +163866,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateWhatsAppFlow",
@@ -164105,7 +163966,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteWhatsAppFlow",
@@ -164252,7 +164112,6 @@
       "put": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "uploadWhatsAppFlowJson",
@@ -164596,7 +164455,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "publishWhatsAppFlow",
@@ -164672,7 +164530,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deprecateWhatsAppFlow",
@@ -164828,7 +164685,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "setWhatsAppFlowsEncryptionKey",
@@ -166620,7 +166476,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createCustomField",
@@ -166739,7 +166594,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateCustomField",
@@ -166832,7 +166686,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteCustomField",
@@ -168751,7 +168604,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createWorkflow",
@@ -168998,7 +168850,6 @@
       "patch": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "updateWorkflow",
@@ -169119,7 +168970,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteWorkflow",
@@ -169155,7 +169005,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "activateWorkflow",
@@ -169220,7 +169069,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "pauseWorkflow",
@@ -169282,7 +169130,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "takeOverWorkflow",
@@ -169839,7 +169686,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "duplicateWorkflow",
@@ -170155,7 +170001,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "restoreWorkflowVersion",
@@ -176441,7 +176286,8 @@
       "post": {
         "x-resource-group": "ads",
         "x-oauth-scopes": [
-          "ads:write"
+          "ads:write",
+          "ads:read"
         ],
         "operationId": "previewAutomationDraft",
         "tags": [
@@ -176969,7 +176815,8 @@
       "post": {
         "x-resource-group": "ads",
         "x-oauth-scopes": [
-          "ads:write"
+          "ads:write",
+          "ads:read"
         ],
         "operationId": "previewAutomation",
         "tags": [
@@ -178695,7 +178542,8 @@
       "post": {
         "x-resource-group": "ads",
         "x-oauth-scopes": [
-          "ads:write"
+          "ads:write",
+          "ads:read"
         ],
         "operationId": "backtestAutomationDraft",
         "tags": [
@@ -178750,7 +178598,8 @@
       "post": {
         "x-resource-group": "ads",
         "x-oauth-scopes": [
-          "ads:write"
+          "ads:write",
+          "ads:read"
         ],
         "operationId": "backtestAutomation",
         "tags": [
@@ -224626,7 +224475,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createCustomConversion",
@@ -230741,7 +230589,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "createBlog",
@@ -230934,7 +230781,6 @@
       "patch": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "updateBlog",
@@ -231040,7 +230886,6 @@
       "delete": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "deleteBlog",
@@ -231243,7 +231088,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "createBlogArticle",
@@ -231538,7 +231382,6 @@
       "patch": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "updateBlogArticle",
@@ -231727,7 +231570,6 @@
       "delete": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "deleteBlogArticle",
@@ -241559,7 +241401,6 @@
       "post": {
         "x-resource-group": "publishing",
         "x-oauth-scopes": [
-          "posts:read",
           "posts:write"
         ],
         "operationId": "prepareMedia",
@@ -241973,7 +241814,6 @@
       "post": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "createConversionAuditMonitor",
@@ -242047,7 +241887,6 @@
       "delete": {
         "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "accounts:read",
           "accounts:write"
         ],
         "operationId": "deleteConversionAuditMonitor",
