@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **PlatformPostUrl** | **string** |  | [optional] 
 **IsExternal** | **bool** |  | [optional] 
 **SyncStatus** | **string** | Overall sync state across all platforms | [optional] 
-**Message** | **string** | Human-readable status message for pending, partial, or failed states | [optional] 
+**Message** | **string** | Human-readable status message for pending, partial, or failed states. When a pending X entry waits on an account in analyticsOff, it gives the reason and, when X analytics is not enabled, how to turn it on. | [optional] 
 **AnalyticsOff** | [**List&lt;AnalyticsOffAccount&gt;**](AnalyticsOffAccount.md) | The X accounts of this post whose analytics sync does not run: synced numbers stay as of the last read, and a pending X entry stays pending. Absent when there are none. | [optional] 
 **ThumbnailUrl** | **string** | Cover image URL. A Facebook, Instagram or TikTok cover whose signed CDN link is still valid is served as that link, which expires (Meta &#x60;oe&#x3D;&#x60;, TikTok &#x60;x-expires&#x3D;&#x60;): download the image rather than storing the link.  Once the link expires, Zernio re-reads the cover from the platform and serves it from Zernio storage, a URL that does not expire.  Null while that re-read is pending (read again shortly) or when the platform no longer returns the post, never an expired link. | [optional] 
 **MediaType** | **string** |  | [optional] 

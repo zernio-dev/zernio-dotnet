@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.818.0",
+    "version": "1.818.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -41949,7 +41949,8 @@
             "description": "- X_ANALYTICS_NOT_ENABLED: `xCapabilities.analytics` is off on the account. It is opt-in on usage-based billing. Turn it on with `PUT /v1/accounts/{accountId}`, or in the account's X settings in the dashboard.\n- X_ANALYTICS_PAUSED: it was on, and the monthly X spend cap turned it off.\n- PAYMENT_REQUIRED: X access is paused because billing on this account failed.\n\nNew values may be added.\n"
           },
           "message": {
-            "type": "string"
+            "type": "string",
+            "description": "The reason in words. X_ANALYTICS_NOT_ENABLED also says how to turn it on."
           }
         }
       },
@@ -42089,7 +42090,7 @@
               "string",
               "null"
             ],
-            "description": "Human-readable status message for pending, partial, or failed states"
+            "description": "Human-readable status message for pending, partial, or failed states. When a pending X entry waits on an account in analyticsOff, it gives the reason and, when X analytics is not enabled, how to turn it on."
           },
           "analyticsOff": {
             "type": "array",
@@ -76668,8 +76669,8 @@
             }
           },
           "202": {
-            "x-summary": "Analytics are still syncing or the post has not finished publishing everywhere: retry later to get the full results.",
-            "description": "Analytics are being synced from the platform, or (single post lookup only) the post has not finished publishing on every platform yet.\n\nThe body matches AnalyticsSinglePostResponse with syncStatus \"pending\" and a message.\n\n- While a platform has not published, status is the post's own status (for example scheduled or publishing).\n- A post with one failed platform returns 202 rather than 424 until the others finish.\n- Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so.\n",
+            "x-summary": "Analytics are still syncing or the post has not finished publishing everywhere: retry later to get the full results, except for X accounts in analyticsOff.",
+            "description": "Analytics are being synced from the platform, or (single post lookup only) the post has not finished publishing on every platform yet.\n\nThe body matches AnalyticsSinglePostResponse with syncStatus \"pending\" and a message.\n\n- While a platform has not published, status is the post's own status (for example scheduled or publishing).\n- A post with one failed platform returns 202 rather than 424 until the others finish.\n- Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so.\n- A pending X entry whose account is in analyticsOff stays pending however often you retry: the message gives the reason.\n",
             "content": {
               "application/json": {
                 "schema": {
