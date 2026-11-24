@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.800.1",
+    "version": "1.800.2",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -30847,7 +30847,7 @@
               "system_error",
               "unknown"
             ],
-            "description": "Error category for programmatic handling:\n\n- `auth_expired`: token expired/revoked\n- `user_content`: wrong format/too long\n- `user_abuse`: rate limits/spam\n- `account_issue`: config problems\n- `platform_rejected`: policy violation\n- `platform_error`: 5xx/maintenance\n- `platform_rate_limit`: platform throttling, retried automatically\n- `quota_exhausted`: a shared quota pool the integration draws on is empty, including our own capacity gate in front of one. Not caused by your content or account, and safe to retry once the pool frees up.\n- `system_error`: Zernio infra\n- `unknown`\n"
+            "description": "Error category for programmatic handling:\n\n- `auth_expired`: token expired/revoked\n- `user_content`: wrong format/too long\n- `user_abuse`: rate limits/spam\n- `account_issue`: config problems\n- `platform_rejected`: policy violation\n- `platform_error`: 5xx/maintenance\n- `platform_rate_limit`: platform throttling. Retried for a few minutes before the entry fails, except Facebook's Page anti-spam block (code 368, subcode 1390008), which fails at once. Retry a failed entry later.\n- `quota_exhausted`: a shared quota pool the integration draws on is empty, including our own capacity gate in front of one. Not caused by your content or account, and safe to retry once the pool frees up.\n- `system_error`: Zernio infra\n- `unknown`\n"
           },
           "errorSource": {
             "type": "string",
