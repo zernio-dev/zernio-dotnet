@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **LocationId** | **string** | Bare Google Business Profile location id the review belongs to. Google Business Profile only; absent for other platforms. | [optional] 
 **LocationName** | **string** | Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms. | [optional] 
 **Reviewer** | [**ListInboxReviews200ResponseDataInnerReviewer**](ListInboxReviews200ResponseDataInnerReviewer.md) |  | [optional] 
-**Rating** | **int** |  | [optional] 
+**Rating** | **int?** | Star rating the reviewer gave, 1 to 5. Null for a Facebook recommendation without stars (see recommendationType). | [optional] 
 **RecommendationType** | **string** | Facebook recommendation: positive means recommends, negative means does not recommend. Null or absent when unavailable; absent for other platforms. Independent of the numeric rating. | [optional] 
 **Text** | **string** |  | [optional] 
 **Created** | **DateTime** |  | [optional] 

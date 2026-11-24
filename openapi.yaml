@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.820.0",
+    "version": "1.821.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -40363,7 +40363,7 @@
           },
           "platformUserId": {
             "type": "string",
-            "description": "The account's id on its platform, as the platform reports it to Zernio. Stable across reconnects, so use it to match an account against your own records.\n\n- **Instagram Login accounts:** the app-scoped user id (the professional account id is in `metadata.instagramScopedId`).\n- **Instagram via Facebook Login:** the professional account id (`17841...`).\n- **TikTok:** the open_id of Zernio's TikTok app, which differs from the open_id any other app sees for the same user.\n\nEither value can be passed back as `expectedPlatformUserId` on GET /v1/connect/{platform}.\n"
+            "description": "The account's id on its platform, as the platform reports it to Zernio. Stable across reconnects, so use it to match an account against your own records.\n\n- **Instagram Login accounts:** the app-scoped user id (the professional account id is in `metadata.instagramScopedId`).\n- **Instagram via Facebook Login:** the professional account id (`17841...`).\n- **TikTok:** the open_id of Zernio's TikTok app, which differs from the open_id any other app sees for the same user.\n- **Google Business Profile:** `<googleUserId>:location:<locationId>`, the Google user that connected it and the selected location. The location part is empty until a location is selected.\n\nEither value can be passed back as `expectedPlatformUserId` on GET /v1/connect/{platform}.\n"
           },
           "scopeAreas": {
             "type": [
@@ -141900,7 +141900,8 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 5
-            }
+            },
+            "description": "Reviews without a star rating (Facebook recommendations) never match."
           },
           {
             "name": "maxRating",
@@ -141909,7 +141910,8 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 5
-            }
+            },
+            "description": "Reviews without a star rating (Facebook recommendations) never match."
           },
           {
             "name": "hasReply",
@@ -141929,7 +141931,8 @@
                 "rating"
               ],
               "default": "date"
-            }
+            },
+            "description": "rating puts reviews without a star rating last in both orders."
           },
           {
             "name": "sortOrder",
@@ -142030,7 +142033,11 @@
                             }
                           },
                           "rating": {
-                            "type": "integer"
+                            "type": [
+                              "integer",
+                              "null"
+                            ],
+                            "description": "Star rating the reviewer gave, 1 to 5. Null for a Facebook recommendation without stars (see recommendationType)."
                           },
                           "recommendationType": {
                             "type": [
@@ -142076,20 +142083,21 @@
                             }
                           },
                           "reply": {
-                            "type": [
-                              "object",
-                              "null"
-                            ],
+                            "type": "object",
+                            "description": "The reply from the Page or business. Absent when hasReply is false.",
                             "properties": {
                               "id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Reply id. On Google Business Profile it is the review id."
                               },
                               "text": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Reply text."
                               },
                               "created": {
                                 "type": "string",
-                                "format": "date-time"
+                                "format": "date-time",
+                                "description": "When the reply was written (on Google Business Profile, last updated)."
                               }
                             }
                           },
@@ -142200,15 +142208,18 @@
                     },
                     "summary": {
                       "type": "object",
+                      "description": "Computed over every review matching the filters, before pagination. A Facebook Page contributes the Page-wide count and average Facebook reports, which ignore the filters. Google Business Profile locations are computed over the reviews read, partial for accounts in meta.truncatedAccounts.",
                       "properties": {
                         "totalReviews": {
-                          "type": "integer"
+                          "type": "integer",
+                          "description": "Includes reviews without a star rating."
                         },
                         "averageRating": {
                           "type": [
                             "number",
                             "null"
-                          ]
+                          ],
+                          "description": "Mean star rating rounded to one decimal, leaving out reviews without a star rating. Null when none has one."
                         }
                       }
                     }

@@ -146,10 +146,10 @@ namespace Example
             var apiInstance = new ReviewsApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string? |  (optional) 
             var platform = "facebook";  // string? |  (optional) 
-            var minRating = 56;  // int? |  (optional) 
-            var maxRating = 56;  // int? |  (optional) 
+            var minRating = 56;  // int? | Reviews without a star rating (Facebook recommendations) never match. (optional) 
+            var maxRating = 56;  // int? | Reviews without a star rating (Facebook recommendations) never match. (optional) 
             var hasReply = true;  // bool? | Filter by reply status (optional) 
-            var sortBy = "date";  // string? |  (optional)  (default to date)
+            var sortBy = "date";  // string? | rating puts reviews without a star rating last in both orders. (optional)  (default to date)
             var sortOrder = "asc";  // string? |  (optional)  (default to desc)
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? |  (optional) 
@@ -198,10 +198,10 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
-| **minRating** | **int?** |  | [optional]  |
-| **maxRating** | **int?** |  | [optional]  |
+| **minRating** | **int?** | Reviews without a star rating (Facebook recommendations) never match. | [optional]  |
+| **maxRating** | **int?** | Reviews without a star rating (Facebook recommendations) never match. | [optional]  |
 | **hasReply** | **bool?** | Filter by reply status | [optional]  |
-| **sortBy** | **string?** |  | [optional] [default to date] |
+| **sortBy** | **string?** | rating puts reviews without a star rating last in both orders. | [optional] [default to date] |
 | **sortOrder** | **string?** |  | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** |  | [optional]  |
