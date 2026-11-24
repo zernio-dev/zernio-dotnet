@@ -750,6 +750,8 @@ docs/ConnectAwinCredentials200Response.md
 docs/ConnectAwinCredentialsRequest.md
 docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
+docs/ConnectCustomDomain.md
+docs/ConnectCustomDomainRecordsInner.md
 docs/ConnectDiscordChannelRequest.md
 docs/ConnectHandoff.md
 docs/ConnectHandoffAccountsInner.md
@@ -963,6 +965,8 @@ docs/CreateCommerceRedirectRequest.md
 docs/CreateCommerceRefund200Response.md
 docs/CreateCommerceRefund201Response.md
 docs/CreateCommerceRefundRequest.md
+docs/CreateConnectCustomDomain201Response.md
+docs/CreateConnectCustomDomainRequest.md
 docs/CreateContact200Response.md
 docs/CreateContact200ResponseChannel.md
 docs/CreateContact200ResponseContact.md
@@ -2479,6 +2483,7 @@ docs/ListCommercePriceLists200Response.md
 docs/ListCommerceProductMetafields200Response.md
 docs/ListCommerceProducts200Response.md
 docs/ListCommerceRedirects200Response.md
+docs/ListConnectCustomDomains200Response.md
 docs/ListConnectedApps200Response.md
 docs/ListContactGroups200Response.md
 docs/ListContactGroups200ResponseDataInner.md
@@ -3680,6 +3685,7 @@ docs/UpdateCommerceProductPricesRequestVariantsInner.md
 docs/UpdateCommerceProductPricesRequestVariantsInnerPrice.md
 docs/UpdateCommerceProductRequest.md
 docs/UpdateCommerceRedirectRequest.md
+docs/UpdateConnectCustomDomainRequest.md
 docs/UpdateConnectWelcomeScreenRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
@@ -5097,6 +5103,8 @@ src/Zernio.Test/Model/ConnectAwinCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectAwinCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectBlueskyCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectBlueskyCredentialsRequestTests.cs
+src/Zernio.Test/Model/ConnectCustomDomainRecordsInnerTests.cs
+src/Zernio.Test/Model/ConnectCustomDomainTests.cs
 src/Zernio.Test/Model/ConnectDiscordChannelRequestTests.cs
 src/Zernio.Test/Model/ConnectHandoffAccountsInnerTests.cs
 src/Zernio.Test/Model/ConnectHandoffErrorTests.cs
@@ -5305,6 +5313,8 @@ src/Zernio.Test/Model/CreateCommerceRedirectRequestTests.cs
 src/Zernio.Test/Model/CreateCommerceRefund200ResponseTests.cs
 src/Zernio.Test/Model/CreateCommerceRefund201ResponseTests.cs
 src/Zernio.Test/Model/CreateCommerceRefundRequestTests.cs
+src/Zernio.Test/Model/CreateConnectCustomDomain201ResponseTests.cs
+src/Zernio.Test/Model/CreateConnectCustomDomainRequestTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseChannelTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseTests.cs
@@ -6799,6 +6809,7 @@ src/Zernio.Test/Model/ListCommercePriceLists200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceProductMetafields200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListCommerceRedirects200ResponseTests.cs
+src/Zernio.Test/Model/ListConnectCustomDomains200ResponseTests.cs
 src/Zernio.Test/Model/ListConnectedApps200ResponseTests.cs
 src/Zernio.Test/Model/ListContactGroups200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListContactGroups200ResponseMetaTests.cs
@@ -7976,6 +7987,7 @@ src/Zernio.Test/Model/UpdateCommerceProductPricesRequestVariantsInnerPriceTests.
 src/Zernio.Test/Model/UpdateCommerceProductPricesRequestVariantsInnerTests.cs
 src/Zernio.Test/Model/UpdateCommerceProductRequestTests.cs
 src/Zernio.Test/Model/UpdateCommerceRedirectRequestTests.cs
+src/Zernio.Test/Model/UpdateConnectCustomDomainRequestTests.cs
 src/Zernio.Test/Model/UpdateConnectWelcomeScreenRequestTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseTests.cs
@@ -9396,6 +9408,8 @@ src/Zernio/Model/ConnectAwinCredentials200Response.cs
 src/Zernio/Model/ConnectAwinCredentialsRequest.cs
 src/Zernio/Model/ConnectBlueskyCredentials200Response.cs
 src/Zernio/Model/ConnectBlueskyCredentialsRequest.cs
+src/Zernio/Model/ConnectCustomDomain.cs
+src/Zernio/Model/ConnectCustomDomainRecordsInner.cs
 src/Zernio/Model/ConnectDiscordChannelRequest.cs
 src/Zernio/Model/ConnectHandoff.cs
 src/Zernio/Model/ConnectHandoffAccountsInner.cs
@@ -9604,6 +9618,8 @@ src/Zernio/Model/CreateCommerceRedirectRequest.cs
 src/Zernio/Model/CreateCommerceRefund200Response.cs
 src/Zernio/Model/CreateCommerceRefund201Response.cs
 src/Zernio/Model/CreateCommerceRefundRequest.cs
+src/Zernio/Model/CreateConnectCustomDomain201Response.cs
+src/Zernio/Model/CreateConnectCustomDomainRequest.cs
 src/Zernio/Model/CreateContact200Response.cs
 src/Zernio/Model/CreateContact200ResponseChannel.cs
 src/Zernio/Model/CreateContact200ResponseContact.cs
@@ -11098,6 +11114,7 @@ src/Zernio/Model/ListCommercePriceLists200Response.cs
 src/Zernio/Model/ListCommerceProductMetafields200Response.cs
 src/Zernio/Model/ListCommerceProducts200Response.cs
 src/Zernio/Model/ListCommerceRedirects200Response.cs
+src/Zernio/Model/ListConnectCustomDomains200Response.cs
 src/Zernio/Model/ListConnectedApps200Response.cs
 src/Zernio/Model/ListContactGroups200Response.cs
 src/Zernio/Model/ListContactGroups200ResponseDataInner.cs
@@ -12275,6 +12292,7 @@ src/Zernio/Model/UpdateCommerceProductPricesRequestVariantsInner.cs
 src/Zernio/Model/UpdateCommerceProductPricesRequestVariantsInnerPrice.cs
 src/Zernio/Model/UpdateCommerceProductRequest.cs
 src/Zernio/Model/UpdateCommerceRedirectRequest.cs
+src/Zernio/Model/UpdateConnectCustomDomainRequest.cs
 src/Zernio/Model/UpdateConnectWelcomeScreenRequest.cs
 src/Zernio/Model/UpdateContact200Response.cs
 src/Zernio/Model/UpdateContact200ResponseContact.cs

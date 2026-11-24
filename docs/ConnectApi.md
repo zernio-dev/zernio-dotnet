@@ -33,6 +33,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConnectWhatsAppEmbeddedSignup**](ConnectApi.md#connectwhatsappembeddedsignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
 | [**ConnectWhopAdsCredentials**](ConnectApi.md#connectwhopadscredentials) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account |
 | [**ConnectWordPressWithApplicationPassword**](ConnectApi.md#connectwordpresswithapplicationpassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
+| [**CreateConnectCustomDomain**](ConnectApi.md#createconnectcustomdomain) | **POST** /v1/connect/custom-domains | Add a custom domain |
 | [**CreateGoogleBusinessLocation**](ConnectApi.md#creategooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations | Create Google Business Profile location |
 | [**CreateGoogleOrgConnection**](ConnectApi.md#creategoogleorgconnection) | **POST** /v1/connect/google/org | Start a Google Workspace organization connection |
 | [**CreateMicrosoftOrgConnection**](ConnectApi.md#createmicrosoftorgconnection) | **POST** /v1/connect/microsoft/org | Start a Microsoft 365 organization connection |
@@ -40,10 +41,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreatePinterestBoard**](ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**CreatePlatformInvite**](ConnectApi.md#createplatforminvite) | **POST** /v1/platform-invites | Create a connect link |
 | [**CreateYoutubePlaylist**](ConnectApi.md#createyoutubeplaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
+| [**DeleteConnectCustomDomain**](ConnectApi.md#deleteconnectcustomdomain) | **DELETE** /v1/connect/custom-domains/{domainId} | Remove a custom domain |
 | [**DeleteOAuthApp**](ConnectApi.md#deleteoauthapp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app |
 | [**DeleteOrgConnection**](ConnectApi.md#deleteorgconnection) | **DELETE** /v1/org-connections/{orgConnectionId} | Delete an organization connection |
 | [**GetAmazonAdsConnectUrl**](ConnectApi.md#getamazonadsconnecturl) | **GET** /v1/connect/amazonads | Get Amazon Ads OAuth connect URL |
 | [**GetCampaignManagerConnectUrl**](ConnectApi.md#getcampaignmanagerconnecturl) | **GET** /v1/connect/campaignmanager360 | Get Campaign Manager 360 OAuth connect URL |
+| [**GetConnectCustomDomain**](ConnectApi.md#getconnectcustomdomain) | **GET** /v1/connect/custom-domains/{domainId} | Get a custom domain |
 | [**GetConnectHandoff**](ConnectApi.md#getconnecthandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**GetConnectUrl**](ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**GetConnectWelcomeScreen**](ConnectApi.md#getconnectwelcomescreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
@@ -77,6 +80,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**HandleOAuthCallback**](ConnectApi.md#handleoauthcallback) | **POST** /v1/connect/{platform} | Complete OAuth callback |
 | [**InitiateTelegramConnect**](ConnectApi.md#initiatetelegramconnect) | **POST** /v1/connect/telegram | Connect Telegram directly |
 | [**ListCampaignManagerProfiles**](ConnectApi.md#listcampaignmanagerprofiles) | **GET** /v1/connect/campaignmanager360/profiles | List Campaign Manager 360 profiles for a pending connect |
+| [**ListConnectCustomDomains**](ConnectApi.md#listconnectcustomdomains) | **GET** /v1/connect/custom-domains | List the workspace&#39;s custom domains |
 | [**ListFacebookPages**](ConnectApi.md#listfacebookpages) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**ListGoogleAnalyticsProperties**](ConnectApi.md#listgoogleanalyticsproperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
 | [**ListGoogleBusinessCategories**](ConnectApi.md#listgooglebusinesscategories) | **GET** /v1/accounts/{accountId}/gmb-categories | List Google Business Profile categories |
@@ -105,6 +109,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SetRedditPostFlair**](ConnectApi.md#setredditpostflair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair |
 | [**StartMicrosoftAdminConsent**](ConnectApi.md#startmicrosoftadminconsent) | **GET** /v1/connect/microsoft/admin-consent | Admin-consent link for a Microsoft tenant |
 | [**TestOAuthApp**](ConnectApi.md#testoauthapp) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys |
+| [**UpdateConnectCustomDomain**](ConnectApi.md#updateconnectcustomdomain) | **PATCH** /v1/connect/custom-domains/{domainId} | Turn a custom domain on or off for connect |
 | [**UpdateConnectWelcomeScreen**](ConnectApi.md#updateconnectwelcomescreen) | **PUT** /v1/connect/welcome-screen | Save the welcome screen |
 | [**UpdateFacebookPage**](ConnectApi.md#updatefacebookpage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page |
 | [**UpdateGmbLocation**](ConnectApi.md#updategmblocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update Google Business Profile location |
@@ -114,6 +119,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdatePinterestBoards**](ConnectApi.md#updatepinterestboards) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board |
 | [**UpdateRedditSubreddits**](ConnectApi.md#updateredditsubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**UpdateYoutubeDefaultPlaylist**](ConnectApi.md#updateyoutubedefaultplaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
+| [**VerifyConnectCustomDomain**](ConnectApi.md#verifyconnectcustomdomain) | **POST** /v1/connect/custom-domains/{domainId}/verify | Check a custom domain&#39;s DNS records now |
 | [**VerifyOrgConnection**](ConnectApi.md#verifyorgconnection) | **POST** /v1/org-connections/{orgConnectionId}/verify | Verify an organization connection |
 | [**VoteRedditThing**](ConnectApi.md#voteredditthing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
 
@@ -3142,6 +3148,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createconnectcustomdomain"></a>
+# **CreateConnectCustomDomain**
+> CreateConnectCustomDomain201Response CreateConnectCustomDomain (CreateConnectCustomDomainRequest createConnectCustomDomainRequest)
+
+Add a custom domain
+
+Adds a subdomain you control. The answer lists the two DNS records to add at your DNS provider: a CNAME that points the subdomain at Zernio and a TXT record that proves it is yours.  Nothing is registered until the TXT record is found; then the certificate is issued and `status` turns `active`, usually within minutes.  Connect links only move to the domain once it is active and `connectEnabled` is true. Requires the workspace settings permission (owner or admin).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateConnectCustomDomainExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var createConnectCustomDomainRequest = new CreateConnectCustomDomainRequest(); // CreateConnectCustomDomainRequest | 
+
+            try
+            {
+                // Add a custom domain
+                CreateConnectCustomDomain201Response result = apiInstance.CreateConnectCustomDomain(createConnectCustomDomainRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.CreateConnectCustomDomain: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateConnectCustomDomainWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Add a custom domain
+    ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.CreateConnectCustomDomainWithHttpInfo(createConnectCustomDomainRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.CreateConnectCustomDomainWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createConnectCustomDomainRequest** | [**CreateConnectCustomDomainRequest**](CreateConnectCustomDomainRequest.md) |  |  |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The domain, with the DNS records to add. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **409** | The workspace already has a custom domain, or another workspace verified this hostname (&#x60;custom_hostname_taken&#x60;). |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted. Behavior per platform:  - **Reddit:** rate-limits per connected Reddit user (1000 requests per 10-minute window), shared by every operation on that account. Retry after the window resets; repeated calls while exhausted do not succeed and keep the budget spent. - **Google Ads:** writes and reports run on one developer token shared by every Google Ads account on Zernio. It holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. - **Google Ads envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **YouTube Analytics:** reads (channel-insights, demographics, daily-views, video-retention) use the \&quot;Queries per day\&quot; quota of the Google Cloud project the account is connected through, shared with other Zernio customers, so a 429 is not your own volume. Resets at midnight Pacific Time. - **YouTube Analytics envelope:** &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaExhausted: true&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60;, &#x60;details.resetsAt&#x60; and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed. - **Meta ads:** every Meta throttle (codes 4, 17, 32, 613 and business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when sent, else Meta&#39;s 60-second minimum (30 seconds for the one-write-per-30-seconds limit on one object). - **Pinterest ads:** limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when sent, otherwise 60 seconds. - **TikTok ads:** limits per app and per endpoint (per second, minute and day), answering overage with code 40100 or code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (e.g. one ad at a time per advertiser) instead of retrying at once.  **TikTok Smart+ review read** (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has its own stricter TikTok quota. After an overage, Zernio answers 429 for that advertiser and connection without calling TikTok for about 60 seconds, then 120, up to 240 while TikTok keeps refusing, each with up to 10% random jitter.  A successful call holds nothing back; the next overage pauses about 60 seconds again. &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;retryAfterSeconds&#x60; and &#x60;refreshState&#x60; instead. Keep one request in flight per advertiser there.  |  * Retry-After - Seconds until card payments are tried again. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="creategooglebusinesslocation"></a>
 # **CreateGoogleBusinessLocation**
 > CreateGoogleBusinessLocation200Response CreateGoogleBusinessLocation (string accountId, CreateGoogleBusinessLocationRequest createGoogleBusinessLocationRequest, string? idempotencyKey = null)
@@ -3868,6 +3977,105 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="deleteconnectcustomdomain"></a>
+# **DeleteConnectCustomDomain**
+> void DeleteConnectCustomDomain (string domainId)
+
+Remove a custom domain
+
+Removes the domain and its certificate. New connect links open on zernio.com again and links already sent on the domain stop working; you can then delete both DNS records. Requires the workspace settings permission (owner or admin).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteConnectCustomDomainExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var domainId = "domainId_example";  // string | The custom domain's id.
+
+            try
+            {
+                // Remove a custom domain
+                apiInstance.DeleteConnectCustomDomain(domainId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.DeleteConnectCustomDomain: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteConnectCustomDomainWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove a custom domain
+    apiInstance.DeleteConnectCustomDomainWithHttpInfo(domainId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.DeleteConnectCustomDomainWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **domainId** | **string** | The custom domain&#39;s id. |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | The custom domain was removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteoauthapp"></a>
 # **DeleteOAuthApp**
 > DeleteOAuthApp200Response DeleteOAuthApp (string appId, bool? confirm = null)
@@ -4296,6 +4504,107 @@ catch (ApiException e)
 | **403** | API key does not have access to this profile, or the key is read-only. |  -  |
 | **404** | Profile not found or access denied. |  -  |
 | **503** | Campaign Manager 360 OAuth is not configured. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getconnectcustomdomain"></a>
+# **GetConnectCustomDomain**
+> CreateConnectCustomDomain201Response GetConnectCustomDomain (string domainId)
+
+Get a custom domain
+
+The custom domain with its status and DNS records.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetConnectCustomDomainExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var domainId = "domainId_example";  // string | The custom domain's id.
+
+            try
+            {
+                // Get a custom domain
+                CreateConnectCustomDomain201Response result = apiInstance.GetConnectCustomDomain(domainId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.GetConnectCustomDomain: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetConnectCustomDomainWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a custom domain
+    ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.GetConnectCustomDomainWithHttpInfo(domainId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.GetConnectCustomDomainWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **domainId** | **string** | The custom domain&#39;s id. |  |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The custom domain. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -7835,6 +8144,100 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listconnectcustomdomains"></a>
+# **ListConnectCustomDomains**
+> ListConnectCustomDomains200Response ListConnectCustomDomains ()
+
+List the workspace's custom domains
+
+The custom domains of the workspace the request acts in. A custom domain puts the hosted connect screens (the welcome screen and the result screen) on your own subdomain, such as `connect.yourbrand.com`, instead of zernio.com.  A workspace has at most one today; the list leaves room for more. Guide: [Use your own domain for connect](https://docs.zernio.com/guides/custom-domains).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListConnectCustomDomainsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // List the workspace's custom domains
+                ListConnectCustomDomains200Response result = apiInstance.ListConnectCustomDomains();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ListConnectCustomDomains: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListConnectCustomDomainsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the workspace's custom domains
+    ApiResponse<ListConnectCustomDomains200Response> response = apiInstance.ListConnectCustomDomainsWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ListConnectCustomDomainsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ListConnectCustomDomains200Response**](ListConnectCustomDomains200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s custom domains. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listfacebookpages"></a>
 # **ListFacebookPages**
 > ListFacebookPages200Response ListFacebookPages (string? profileId = null, string? tempToken = null, string? xTempToken = null, string? connectFlow = null, string? selectionToken = null)
@@ -10810,6 +11213,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="updateconnectcustomdomain"></a>
+# **UpdateConnectCustomDomain**
+> CreateConnectCustomDomain201Response UpdateConnectCustomDomain (string domainId, UpdateConnectCustomDomainRequest updateConnectCustomDomainRequest)
+
+Turn a custom domain on or off for connect
+
+With `connectEnabled` true, new connect links open on the domain once it is active; with false they open on zernio.com again. Links already sent keep working. Requires the workspace settings permission (owner or admin).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateConnectCustomDomainExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var domainId = "domainId_example";  // string | The custom domain's id.
+            var updateConnectCustomDomainRequest = new UpdateConnectCustomDomainRequest(); // UpdateConnectCustomDomainRequest | 
+
+            try
+            {
+                // Turn a custom domain on or off for connect
+                CreateConnectCustomDomain201Response result = apiInstance.UpdateConnectCustomDomain(domainId, updateConnectCustomDomainRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.UpdateConnectCustomDomain: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateConnectCustomDomainWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Turn a custom domain on or off for connect
+    ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.UpdateConnectCustomDomainWithHttpInfo(domainId, updateConnectCustomDomainRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.UpdateConnectCustomDomainWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **domainId** | **string** | The custom domain&#39;s id. |  |
+| **updateConnectCustomDomainRequest** | [**UpdateConnectCustomDomainRequest**](UpdateConnectCustomDomainRequest.md) |  |  |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated custom domain. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller cannot change workspace settings. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updateconnectwelcomescreen"></a>
 # **UpdateConnectWelcomeScreen**
 > ConnectWelcomeScreen UpdateConnectWelcomeScreen (UpdateConnectWelcomeScreenRequest updateConnectWelcomeScreenRequest)
@@ -11737,6 +12244,108 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="verifyconnectcustomdomain"></a>
+# **VerifyConnectCustomDomain**
+> CreateConnectCustomDomain201Response VerifyConnectCustomDomain (string domainId)
+
+Check a custom domain's DNS records now
+
+Looks for the DNS records right away instead of waiting for the hourly check, and asks the certificate authority to validate again. Calls within 30 seconds of the last check answer that check.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class VerifyConnectCustomDomainExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var domainId = "domainId_example";  // string | The custom domain's id.
+
+            try
+            {
+                // Check a custom domain's DNS records now
+                CreateConnectCustomDomain201Response result = apiInstance.VerifyConnectCustomDomain(domainId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.VerifyConnectCustomDomain: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the VerifyConnectCustomDomainWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Check a custom domain's DNS records now
+    ApiResponse<CreateConnectCustomDomain201Response> response = apiInstance.VerifyConnectCustomDomainWithHttpInfo(domainId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.VerifyConnectCustomDomainWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **domainId** | **string** | The custom domain&#39;s id. |  |
+
+### Return type
+
+[**CreateConnectCustomDomain201Response**](CreateConnectCustomDomain201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The custom domain after the check. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
