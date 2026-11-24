@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.812.1
+  version: 1.813.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58707,6 +58707,8 @@ paths:
         ### Retrying
 
         A change is applied at most once. Confirming a change that is already `confirmed` returns its stored result again. A change that failed answers `409` `change_not_staged`: stage a new one.
+
+        A refusal before anything is written leaves the change `staged`, so the confirm can be sent again: `403` `ads_allowance_exceeded`, or on a one-field change a `429` from Zernio's own limits. Any other failed write ends the change as `failed`.
       operationId: confirmAdChange
       parameters:
       - description: The id of the staged change.
@@ -58742,8 +58744,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "The refusals of the staged write: `ads_addon_required`, `ads_allowance_exceeded`\
-            \ or `ad_account_not_selected`. An allowance refusal ends the change as\
-            \ `failed`."
+            \ or `ad_account_not_selected`. None of them writes anything, and the\
+            \ change stays `staged`."
           x-summary: "Ads access is missing, the free live ads limit is reached without\
             \ a card, or the ad account is not selected."
         "404":
@@ -58761,6 +58763,17 @@ paths:
             - `change_outcome_unknown`: another confirm of this change is running, or one started and never recorded how it ended. Read the change, and check the object on the ad network before staging a new one.
           x-summary: "The object changed on the ad network since staging, or the change\
             \ is no longer staged."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `rate_limited`. A refusal by Zernio's own limit (`details.reason`\
+            \ on Meta, `details.budgetScope` on Google) on a change of one field wrote\
+            \ nothing and leaves the change `staged`. Any other `429`, including one\
+            \ from the ad network, ends the change as `failed`."
+          x-summary: "A rate limit refused the write: retry after the Retry-After\
+            \ delay if the change is still staged."
       security:
       - bearerAuth: []
       summary: Confirm a staged ad change
@@ -60981,6 +60994,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateAdCampaign_200_response"
           description: Campaign updated
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "400":
           description: "Invalid input, or a field the resolved platform does not support\
             \ at the campaign level (see the support table)"
@@ -62330,6 +62350,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateAdSet_200_response"
           description: Ad set updated
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "400":
           description: |-
             Invalid input, including:
@@ -63684,6 +63711,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateAd_200_response"
           description: Ad updated
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdChange_200_response"
+          description: "Sent with `stage: true`. The change was validated and stored,\
+            \ and nothing was written to the ad network."
         "400":
           description: |
             Invalid update. Causes:
@@ -146411,16 +146445,32 @@ components:
         \ waiting to be confirmed or discarded."
       example:
         id: 6790a1b2c3d4e5f6a7b8c9d0
-        type: campaign_status
+        type: ad_set_update
         platform: facebook
         accountId: 665f1c2ab3d4e5f6a7b8c9d0
         adAccountId: act_757082720485182
         targetId: "120214567890123456"
         status: staged
         diff:
-        - field: status
-          before: active
-          after: paused
+        - field: budget.amount
+          before: 20
+          after: 30
+          beforeAvailable: true
+        - field: targeting.countries
+          before:
+          - ES
+          - PT
+          after:
+          - ES
+          - FR
+          beforeAvailable: true
+          added:
+          - FR
+          removed:
+          - PT
+        - field: targeting.ageMax
+          before: 65
+          after: 45
           beforeAvailable: true
         createdBy: 665f1c2ab3d4e5f6a7b8c9d1
         createdAt: 2026-11-20T10:00:00.000Z
@@ -146430,11 +146480,15 @@ components:
           description: "The change id, used in /v1/ads/changes/{changeId}."
           type: string
         type:
-          description: Which write was staged.
+          description: "Which write was staged: a status route, or the update route\
+            \ of a campaign, an ad set or an ad."
           enum:
           - campaign_status
           - ad_set_status
           - ad_status
+          - campaign_update
+          - ad_set_update
+          - ad_update
           type: string
         platform:
           description: "The ad platform of the object, as the write route names it."
@@ -146464,7 +146518,13 @@ components:
           - failed
           type: string
         diff:
-          description: One entry per field of the staged request.
+          description: |
+            One entry per value of the staged request that the write would change.
+
+            - A nested field is flattened: each leaf is one entry under its dotted path (`budget.amount`, `targeting.ageMin`, `creative.headline`).
+            - A list is one entry.
+            - A leaf whose value on the ad network already equals the requested value is left out, so the list can be empty.
+            - `stage` and other flags that only steer the write are never listed.
           items:
             $ref: "#/components/schemas/StagedAdChange_diff_inner"
           type: array
@@ -202012,16 +202072,32 @@ components:
       example:
         change:
           id: 6790a1b2c3d4e5f6a7b8c9d0
-          type: campaign_status
+          type: ad_set_update
           platform: facebook
           accountId: 665f1c2ab3d4e5f6a7b8c9d0
           adAccountId: act_757082720485182
           targetId: "120214567890123456"
           status: staged
           diff:
-          - field: status
-            before: active
-            after: paused
+          - field: budget.amount
+            before: 20
+            after: 30
+            beforeAvailable: true
+          - field: targeting.countries
+            before:
+            - ES
+            - PT
+            after:
+            - ES
+            - FR
+            beforeAvailable: true
+            added:
+            - FR
+            removed:
+            - PT
+          - field: targeting.ageMax
+            before: 65
+            after: 45
             beforeAvailable: true
           createdBy: 665f1c2ab3d4e5f6a7b8c9d1
           createdAt: 2026-11-20T10:00:00.000Z
@@ -203787,6 +203863,12 @@ components:
           type: number
     updateAdCampaign_request:
       properties:
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+          type: boolean
         platform:
           description: "Required: platform campaign IDs are not globally unique."
           enum:
@@ -205677,6 +205759,12 @@ components:
           $ref: "#/components/schemas/updateAdSet_request_platformSpecificData_promotedObject"
     updateAdSet_request:
       properties:
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+          type: boolean
         platform:
           enum:
           - facebook
@@ -209723,6 +209811,12 @@ components:
             - Required with `callToAction: GET_DIRECTIONS` on a full image creative (headline, body, callToAction, linkUrl, imageUrl), and on a partial edit of an image ad whose button has no location yet. Without it the request is a 400, and no other field of it reaches Meta.
     updateAd_request:
       properties:
+        stage:
+          description: "Send true to stage this change instead of applying it. Nothing\
+            \ is written to the ad network; the response is `202` with the staged\
+            \ change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm.\
+            \ Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+          type: boolean
         headlines:
           description: "Google Search and Display only. Replaces the complete headline\
             \ list. Search takes 3-15, Display 1-5 and rejects pinnedField; the count\
@@ -261449,14 +261543,25 @@ components:
     StagedAdChange_diff_inner:
       properties:
         field:
-          example: status
+          description: The dotted path of the value in the request body.
+          example: budget.amount
           type: string
         before: {}
         after: {}
         beforeAvailable:
           description: "False when the live read of the object does not return this\
-            \ field, so `before` is unknown."
+            \ field, so `before` is unknown. The field is still staged."
           type: boolean
+        added:
+          description: "Only on a list of plain values (strings or numbers) with `beforeAvailable`\
+            \ true: the values in `after` that are not in `before`. Order is ignored."
+          items: {}
+          type: array
+        removed:
+          description: "Only on a list of plain values (strings or numbers) with `beforeAvailable`\
+            \ true: the values in `before` that are not in `after`. Order is ignored."
+          items: {}
+          type: array
       required:
       - after
       - before
