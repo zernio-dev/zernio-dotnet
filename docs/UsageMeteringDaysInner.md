@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Accounts** | **decimal** |  | [optional] 
 **Numbers** | **decimal** |  | [optional] 
 **Imessage** | **decimal** | iMessage sender fees. | [optional] 
+**Rcs** | **decimal** | RCS agent and message fees. | [optional] 
 **Calls** | **decimal** |  | [optional] 
 **Sms** | **decimal** |  | [optional] 
 **Messages** | **decimal** | Managed outbound message fees. | [optional] 
@@ -15,6 +16,8 @@ Name | Type | Description | Notes
 **Dlc** | **decimal** | 10DLC registration (brand + campaign) fees. | [optional] 
 **XApi** | **decimal** |  | [optional] 
 **Ads** | **decimal** | Managed ads fees. | [optional] 
+**Automations** | **decimal** | Automation run and ad automation fees. | [optional] 
+**WebsiteEvents** | **decimal** | Website event fees. | [optional] 
 **Credits** | **decimal** | Applied credits/discounts (negative). | [optional] 
 **Other** | **decimal** |  | [optional] 
 

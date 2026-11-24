@@ -1,0 +1,12 @@
+# Zernio.Model.AnalyticsOff
+X only: why no analytics sync runs for the account, so its numbers stay as of the last read (one read is made when the account connects).
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Code** | **string** | - X_ANALYTICS_NOT_ENABLED: &#x60;xCapabilities.analytics&#x60; is off on the account. It is opt-in on usage-based billing. Turn it on with &#x60;PUT /v1/accounts/{accountId}&#x60;, or in the account&#39;s X settings in the dashboard. - X_ANALYTICS_PAUSED: it was on, and the monthly X spend cap turned it off. - PAYMENT_REQUIRED: X access is paused because billing on this account failed.  New values may be added.  | 
+**Message** | **string** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

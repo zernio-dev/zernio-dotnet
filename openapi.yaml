@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.813.1",
+    "version": "1.814.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -4549,6 +4549,13 @@
                       "type": "string"
                     },
                     "description": "On a list of posts: the accounts this read queued for a fresh sync, because they were never synced or their stored numbers are over 90 minutes old. The answer holds the stored numbers; the synced ones arrive within minutes."
+                  },
+                  "analyticsOff": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AnalyticsOffAccount"
+                    },
+                    "description": "The X accounts read whose analytics sync does not run: their stored numbers are not refreshed, and their posts without any stay pending. On a list, on the first page. Absent when there are none, and on the groupBy and changedSince reads other than groupBy=post."
                   },
                   "metricsSample": {
                     "description": "With groupBy=format: how many of the newest posts the metrics sum, and the most it reads. Below limit, every post of the range is counted.",
@@ -40925,6 +40932,10 @@
                   "type": "number",
                   "description": "iMessage sender fees."
                 },
+                "rcs": {
+                  "type": "number",
+                  "description": "RCS agent and message fees."
+                },
                 "calls": {
                   "type": "number"
                 },
@@ -40950,6 +40961,14 @@
                   "type": "number",
                   "description": "Managed ads fees."
                 },
+                "automations": {
+                  "type": "number",
+                  "description": "Automation run and ad automation fees."
+                },
+                "websiteEvents": {
+                  "type": "number",
+                  "description": "Website event fees."
+                },
                 "credits": {
                   "type": "number",
                   "description": "Applied credits/discounts (negative)."
@@ -40973,6 +40992,9 @@
               "imessage": {
                 "type": "number"
               },
+              "rcs": {
+                "type": "number"
+              },
               "calls": {
                 "type": "number"
               },
@@ -40992,6 +41014,12 @@
                 "type": "number"
               },
               "ads": {
+                "type": "number"
+              },
+              "automations": {
+                "type": "number"
+              },
+              "websiteEvents": {
                 "type": "number"
               },
               "credits": {
@@ -41020,6 +41048,7 @@
                     "accounts",
                     "numbers",
                     "imessage",
+                    "rcs",
                     "calls",
                     "sms",
                     "messages",
@@ -41027,6 +41056,8 @@
                     "dlc",
                     "xApi",
                     "ads",
+                    "automations",
+                    "websiteEvents",
                     "credits",
                     "other"
                   ]
@@ -41164,7 +41195,7 @@
               },
               "unattributed": {
                 "$ref": "#/components/schemas/UsageAttributionSlice",
-                "description": "Spend no profile/account of your workspace can claim: credits, 10DLC fees, Verify, usage whose record no longer resolves to an account, and the share measured outside your workspace. Zero for a restricted principal."
+                "description": "Spend no profile/account of your workspace can claim: credits, managed messages, RCS messages, ad automations, Verify, website events, 10DLC registrations that name no profile, usage whose record no longer resolves, and the share measured outside your workspace. Zero for a restricted principal."
               },
               "totals": {
                 "$ref": "#/components/schemas/UsageAttributionSlice",
@@ -41262,6 +41293,9 @@
               "imessage": {
                 "type": "number"
               },
+              "rcs": {
+                "type": "number"
+              },
               "calls": {
                 "type": "number"
               },
@@ -41281,6 +41315,12 @@
                 "type": "number"
               },
               "ads": {
+                "type": "number"
+              },
+              "automations": {
+                "type": "number"
+              },
+              "websiteEvents": {
                 "type": "number"
               },
               "credits": {
@@ -41867,6 +41907,46 @@
           }
         }
       },
+      "AnalyticsOff": {
+        "type": "object",
+        "description": "X only: why no analytics sync runs for the account, so its numbers stay as of the last read (one read is made when the account connects).",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "X_ANALYTICS_NOT_ENABLED",
+              "X_ANALYTICS_PAUSED",
+              "PAYMENT_REQUIRED"
+            ],
+            "description": "- X_ANALYTICS_NOT_ENABLED: `xCapabilities.analytics` is off on the account. It is opt-in on usage-based billing. Turn it on with `PUT /v1/accounts/{accountId}`, or in the account's X settings in the dashboard.\n- X_ANALYTICS_PAUSED: it was on, and the monthly X spend cap turned it off.\n- PAYMENT_REQUIRED: X access is paused because billing on this account failed.\n\nNew values may be added.\n"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "AnalyticsOffAccount": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "accountId"
+            ],
+            "properties": {
+              "accountId": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/AnalyticsOff"
+          }
+        ]
+      },
       "AnalyticsOverview": {
         "type": "object",
         "properties": {
@@ -41986,6 +42066,13 @@
               "null"
             ],
             "description": "Human-readable status message for pending, partial, or failed states"
+          },
+          "analyticsOff": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticsOffAccount"
+            },
+            "description": "The X accounts of this post whose analytics sync does not run: synced numbers stay as of the last read, and a pending X entry stays pending. Absent when there are none."
           },
           "thumbnailUrl": {
             "type": [
@@ -42244,6 +42331,13 @@
           "hasAnalyticsAccess": {
             "type": "boolean",
             "description": "Whether user has analytics add-on access"
+          },
+          "analyticsOff": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticsOffAccount"
+            },
+            "description": "The X accounts this list covers (after its platform, profile and account filters) whose analytics sync does not run: their numbers stay as of the last read. Also sent with `view=summary`. Absent when there are none."
           }
         }
       },
@@ -83913,6 +84007,13 @@
                           }
                         }
                       }
+                    },
+                    "analyticsOff": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AnalyticsOffAccount"
+                      },
+                      "description": "The X accounts of this post whose analytics sync does not run, so their rows stop at the last read. Absent when there are none."
                     }
                   }
                 },
@@ -88761,7 +88862,7 @@
           "Usage"
         ],
         "summary": "Usage snapshot (default) or billed-spend metering (with params)",
-        "description": "Dual-mode endpoint, selected by query params, and fully backward compatible.\n\n### Without metering params (the default)\n\nReturns the plan / quota / usage snapshot: plan name, billing period, limits, usage counts, access state. Identical to `GET /v1/usage-stats`. Existing integrations keep working unchanged.\n\n### With `range`, `granularity`, `from`, or `to`\n\nReturns usage METERING: billed spend (USD) by product family over the window, at `day` / `month` / `total` granularity. Product families: `accounts`, `numbers`, `imessage`, `calls`, `sms`, `messages`, `verify`, `dlc`, `xApi`, `ads`, `credits`, `other`.\n\nData comes from the usage-based invoice breakdown (the CHARGE view, which always reconciles with what gets billed). Also served at `GET /v1/usage/daily`.\n\nUsage-based accounts only: legacy Stripe accounts get `{ \"supported\": false, \"days\": [] }`.\n\n### Attribution (metering mode)\n\n`groupBy=profile|account` adds an `attribution` breakdown of the window's spend per profile or account. It is assembled from your own records and pro-rated against the invoice so `sum(groups) + unattributed` equals `totals` exactly.\n\n`profileId` / `accountId` instead project the whole payload (`days`, `totals`, `lineItems`) onto that one group:\n\n- `peaks`, `callUsage` and `tax` are then `null` (team-level facts).\n- Projected `days` spread the group's period share over each day (usage is attributed per period, not per day).\n- `profileId` / `accountId` on their own do not select metering mode: pair them with `range`.\n- `externalId` names the profile by the id you set on it (`POST /v1/profiles`), so you can bill a tenant without storing our profile id.\n\nWith `groupBy=profile`, each group also carries `profileId` and `externalId`.\n\nProfile-scoped API keys and members only see their profiles' groups (`attribution.restricted: true`, with `totals` summing the visible groups). Credits, 10DLC fees and Verify are always unattributed.\n\nA caller that sees the whole workspace gets `restricted: false` and the same `totals` as without `groupBy`. Shares are measured over everything the bill and its members carry, so `unattributed` can include spend outside the workspace, never named.\n\nSince 1.630.0 a profile-scoped key or member never gets the team payload in metering mode: without `groupBy` or a filter, `days`, `totals` and `lineItems` are projected onto its visible profiles, `peaks`, `callUsage` and `tax` are `null`, and no `attribution` is returned. Full-access keys and sessions keep the team payload.\n\n### Related endpoints\n\n- Per-domain consumption *volumes*: `GET /v1/usage/calls` and `GET /v1/usage/sms`.\n- The billing statement (balance, credits, caps, payment status): `GET /v1/billing`.\n",
+        "description": "Dual-mode endpoint, selected by query params, and fully backward compatible.\n\n### Without metering params (the default)\n\nReturns the plan / quota / usage snapshot: plan name, billing period, limits, usage counts, access state. Identical to `GET /v1/usage-stats`. Existing integrations keep working unchanged.\n\n### With `range`, `granularity`, `from`, or `to`\n\nReturns usage METERING: billed spend (USD) by product family over the window, at `day` / `month` / `total` granularity. Product families: `accounts`, `numbers`, `imessage`, `rcs`, `calls`, `sms`, `messages`, `verify`, `dlc`, `xApi`, `ads`, `automations`, `websiteEvents`, `credits`, `other`.\n\nData comes from the usage-based invoice breakdown (the CHARGE view, which always reconciles with what gets billed). Also served at `GET /v1/usage/daily`.\n\nUsage-based accounts only: legacy Stripe accounts get `{ \"supported\": false, \"days\": [] }`.\n\n### Attribution (metering mode)\n\n`groupBy=profile|account` adds an `attribution` breakdown of the window's spend per profile or account. It is assembled from your own records and pro-rated against the invoice so `sum(groups) + unattributed` equals `totals` exactly.\n\n`profileId` / `accountId` instead project the whole payload (`days`, `totals`, `lineItems`) onto that one group:\n\n- `peaks`, `callUsage` and `tax` are then `null` (team-level facts).\n- Projected `days` spread the group's period share over each day (usage is attributed per period, not per day).\n- `profileId` / `accountId` on their own do not select metering mode: pair them with `range`.\n- `externalId` names the profile by the id you set on it (`POST /v1/profiles`), so you can bill a tenant without storing our profile id.\n\nWith `groupBy=profile`, each group also carries `profileId` and `externalId`.\n\nProfile-scoped API keys and members only see their profiles' groups (`attribution.restricted: true`, with `totals` summing the visible groups).\n\nCredits, managed messages, RCS messages, ad automations, Verify and website events are always unattributed.\n\niMessage sender and RCS agent fees go to the profile of the sender or agent. Automation runs split each day's fee by that day's runs.\n\nA 10DLC fee goes to a profile only when its registration names one. Registrations filed by API or dashboard belong to the owner and stay unattributed.\n\nA caller that sees the whole workspace gets `restricted: false` and the same `totals` as without `groupBy`. Shares are measured over everything the bill and its members carry, so `unattributed` can include spend outside the workspace, never named.\n\nSince 1.630.0 a profile-scoped key or member never gets the team payload in metering mode: without `groupBy` or a filter, `days`, `totals` and `lineItems` are projected onto its visible profiles, `peaks`, `callUsage` and `tax` are `null`, and no `attribution` is returned. Full-access keys and sessions keep the team payload.\n\n### Related endpoints\n\n- Per-domain consumption *volumes*: `GET /v1/usage/calls` and `GET /v1/usage/sms`.\n- The billing statement (balance, credits, caps, payment status): `GET /v1/billing`.\n",
         "parameters": [
           {
             "name": "reconcile",
@@ -88932,7 +89033,7 @@
         ],
         "summary": "Get plan and usage snapshot (plan, limits, payment status)",
         "deprecated": true,
-        "description": "The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state.\n\nIdentical to a bare `GET /v1/usage` call (this path is its deprecated alias).\n\n### Related endpoints\n\n- Billed spend by product: call `GET /v1/usage` with `range` / `granularity` params.\n- The statement view (balance, credits, caps, payment status) lives at `GET /v1/billing`.\n\n### Response shape\n\nThe response shape depends on the account's `billingSystem`:\n\n- Stripe users: per-period `usage.uploads` / `usage.profiles` counters.\n- Usage-based billing users: `usage.connectedAccounts`, `usage.xApiCallsByOperation` (per-operation X API call counts; resolve keys via `GET /v1/billing/x-pricing`), plus a `spend` block with `currentPeriodCents`, `xSpendCents`, and `xSpendLimitCents`.\n\nThe legacy `usage.xApiCalls` 3-tier aggregate is still emitted for back-compat. It excludes the $0.200 URL tier and any future tiers, so new clients should consume `xApiCallsByOperation` only.\n\n### Per profile\n\n`profileId` or `externalId` adds a `profile` block with the counters that are meaningful per profile (`usage.connectedAccounts`). Everything else (plan, limits, uploads, X usage, spend, payment state) stays team-level. These filters work on this path only: a bare `GET /v1/usage` ignores them.\n\nSince 1.630.0 a profile-scoped API key or member gets a `profiles` array with one block per profile it can see (or the single `profile` block when it filters), and `usage.connectedAccounts` / `usage.profiles` count only those profiles.\n\nPlan, billing and payment fields are unchanged. Full-access keys and sessions keep the team counts and get no `profiles` array.\n",
+        "description": "The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state.\n\nIdentical to a bare `GET /v1/usage` call (this path is its deprecated alias).\n\n### Related endpoints\n\n- Billed spend by product: call `GET /v1/usage` with `range` / `granularity` params.\n- Billed spend per profile, by your own `externalId`: `GET /v1/usage?range=cycle&groupBy=profile` ([what each customer costs you](/multi-tenant)).\n- The statement view (balance, credits, caps, payment status) lives at `GET /v1/billing`.\n\n### Response shape\n\nThe response shape depends on the account's `billingSystem`:\n\n- Stripe users: per-period `usage.uploads` / `usage.profiles` counters.\n- Usage-based billing users: `usage.connectedAccounts`, `usage.xApiCallsByOperation` (per-operation X API call counts; resolve keys via `GET /v1/billing/x-pricing`), plus a `spend` block with `currentPeriodCents`, `xSpendCents`, and `xSpendLimitCents`.\n\nThe legacy `usage.xApiCalls` 3-tier aggregate is still emitted for back-compat. It excludes the $0.200 URL tier and any future tiers, so new clients should consume `xApiCallsByOperation` only.\n\n### Per profile\n\n`profileId` or `externalId` adds a `profile` block with the counters that are meaningful per profile (`usage.connectedAccounts`). Everything else (plan, limits, uploads, X usage, spend, payment state) stays team-level. These filters work on this path only: a bare `GET /v1/usage` ignores them.\n\nSince 1.630.0 a profile-scoped API key or member gets a `profiles` array with one block per profile it can see (or the single `profile` block when it filters), and `usage.connectedAccounts` / `usage.profiles` count only those profiles.\n\nPlan, billing and payment fields are unchanged. Full-access keys and sessions keep the team counts and get no `profiles` array.\n",
         "parameters": [
           {
             "name": "reconcile",
@@ -94668,7 +94769,7 @@
           "Accounts"
         ],
         "summary": "Check accounts health",
-        "description": "Returns health status of all connected accounts including token validity, permissions, and issues needing attention. A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least warning.\n\nAn account the platform has restricted or banned (for example a WhatsApp number Meta reports as BANNED) is `error`, with the platform's reason in `issues`. `needsReconnect` stays false, since reconnecting does not lift it.\n",
+        "description": "Returns health status of all connected accounts including token validity, permissions, and issues needing attention. A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least warning.\n\nAn X account whose analytics is off has `analyticsOff` with the reason. It never changes `status`: `analyticsSync` then keeps the date of the last read.\n\nAn account the platform has restricted or banned (for example a WhatsApp number Meta reports as BANNED) is `error`, with the platform's reason in `issues`. `needsReconnect` stays false, since reconnecting does not lift it.\n",
         "parameters": [
           {
             "name": "profileId",
@@ -94906,6 +95007,9 @@
                                 "description": "Last successful sync. Null when never synced or the latest attempt failed."
                               }
                             }
+                          },
+                          "analyticsOff": {
+                            "$ref": "#/components/schemas/AnalyticsOff"
                           },
                           "inboundActivity": {
                             "anyOf": [
@@ -95376,7 +95480,7 @@
           "Accounts"
         ],
         "summary": "Check account health",
-        "description": "Returns detailed health info for a specific account including token status, permissions, and recommendations.\n\nA failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.\n\nAn account the platform has restricted or banned is `error`, with the platform's reason in `issues` and a recommendation that says reconnecting does not lift it.\n\n### Facebook, Instagram and Threads\n\nThe token is also probed live. A probe Meta refuses with a dead-token error sets `tokenStatus.valid` to `false` and names Meta's code, subcode and fbtrace in `issues`.\n\nThe exception: if an analytics sync succeeded with that token in the last six hours, the token stays `valid` and `issues` reports the probe as inconclusive, since Meta answers a transient 190 to live tokens now and then.\n\nNeither verdict disconnects the account. That happens only when a real operation fails, and `account.disconnected` is sent.\n\n### WhatsApp\n\nThe response also includes `platformConnection`, a live probe of the Meta link behind the channel (the same read as `GET /v1/whatsapp/number-info`).\n\nThe OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect). So `tokenStatus` alone is not a liveness signal for WhatsApp.\n\n- When the Meta link is dead, `platformConnection.status` is `disconnected` and the overall `status` is `error`.\n- When Meta reports that the number's inbound message webhook does not reach Zernio, or subscribing the number's WhatsApp Business Account to Zernio's webhooks failed at connect, `platformConnection.inboundWebhookSubscribed` is `false`, an entry is added to `issues`, and the overall `status` is at least `warning`.\n- When `platformConnection.phoneStatus` is anything other than `CONNECTED`, an entry is added to `issues` and the overall `status` is at least `warning`; `BANNED` makes it `error`. `disconnectReason` stays null, since reconnecting does not lift a Meta status.\n- When Meta reports `platformConnection.canSendMessage` as `BLOCKED` (for example a payment-method error on the WhatsApp Business Account), an entry is added to `issues` with Meta's own reason, the recommendation is Meta's suggested fix, and the overall `status` is at least `warning`. `LIMITED` does not change `status`. Reconnecting does not lift it.\n- When sends to one country keep failing with error 130497 (3 failures within 7 days, none delivered there since), an entry naming the country is added to `issues` and `status` is at least `warning`. The recommendation says how Meta lifts it. A delivered send there clears it.\n- `coexistenceHistorySync` reports the latest chat history request of a coexistence number. Meta shares a number's chat history only once until the number is disconnected inside the WhatsApp Business app.\n- When Meta refused because an earlier connection already used it (Meta error 135000, or 4 after rapid reconnects) and this account holds no imported history, `coexistenceHistorySync.status` is `already_synced` and an entry is added to `issues`. It never changes the overall `status`.\n- The recommendation then gives the steps that get a new import: disconnect inside the WhatsApp Business app (Settings > Account > Business Platform), then connect the number again. Removing the account in Zernio and connecting it again does not.\n\n### LINE\n\nThe response also includes `lineWebhook`, a live read of the channel's webhook settings at LINE. It is one LINE call per request, given up after a few seconds, and skipped while the account is inactive or needs reconnecting.\n\nIf LINE rejects the channel credentials during that read, the account is flagged for reconnection and the overall `status` is `error`.\n\n- `active: false` means Webhooks are turned off in LINE Official Account Manager, so LINE sends nothing to Zernio. An entry is added to `issues` with the fix (Settings > Response settings > Webhooks) and the overall `status` is at least `warning`.\n- `destination` is `other` when the channel's webhook URL points at another integration, `another_zernio_account` when the same channel is connected to another Zernio account that now receives its events, and `missing` when none is set. Each adds an entry to `issues` and makes the overall `status` at least `warning`.\n- Both are `null` when LINE could not be read; nothing is added to `issues` then.\n\n### Standalone ads connections (`googleads`, `redditads`, `microsoftads`)\n\nA connection that cannot serve requests until a fresh OAuth repairs it adds an entry to `issues`. It also adds a recommendation to call `GET /v1/connect/{platform}/ads`, whose `authUrl` reconnects the same account.\n\nOn `redditads` this is a connection authorized before Zernio needed a Reddit permission it now uses (for example `adsconversions`). Reddit refuses those requests until the user reconnects and allows every permission on Reddit's consent screen.\n",
+        "description": "Returns detailed health info for a specific account including token status, permissions, and recommendations.\n\nA failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.\n\nAn X account whose analytics is off has `analyticsOff` with the reason. It never changes `status`: `analyticsSync` then keeps the date of the last read.\n\nAn account the platform has restricted or banned is `error`, with the platform's reason in `issues` and a recommendation that says reconnecting does not lift it.\n\n### Facebook, Instagram and Threads\n\nThe token is also probed live. A probe Meta refuses with a dead-token error sets `tokenStatus.valid` to `false` and names Meta's code, subcode and fbtrace in `issues`.\n\nThe exception: if an analytics sync succeeded with that token in the last six hours, the token stays `valid` and `issues` reports the probe as inconclusive, since Meta answers a transient 190 to live tokens now and then.\n\nNeither verdict disconnects the account. That happens only when a real operation fails, and `account.disconnected` is sent.\n\n### WhatsApp\n\nThe response also includes `platformConnection`, a live probe of the Meta link behind the channel (the same read as `GET /v1/whatsapp/number-info`).\n\nThe OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect). So `tokenStatus` alone is not a liveness signal for WhatsApp.\n\n- When the Meta link is dead, `platformConnection.status` is `disconnected` and the overall `status` is `error`.\n- When Meta reports that the number's inbound message webhook does not reach Zernio, or subscribing the number's WhatsApp Business Account to Zernio's webhooks failed at connect, `platformConnection.inboundWebhookSubscribed` is `false`, an entry is added to `issues`, and the overall `status` is at least `warning`.\n- When `platformConnection.phoneStatus` is anything other than `CONNECTED`, an entry is added to `issues` and the overall `status` is at least `warning`; `BANNED` makes it `error`. `disconnectReason` stays null, since reconnecting does not lift a Meta status.\n- When Meta reports `platformConnection.canSendMessage` as `BLOCKED` (for example a payment-method error on the WhatsApp Business Account), an entry is added to `issues` with Meta's own reason, the recommendation is Meta's suggested fix, and the overall `status` is at least `warning`. `LIMITED` does not change `status`. Reconnecting does not lift it.\n- When sends to one country keep failing with error 130497 (3 failures within 7 days, none delivered there since), an entry naming the country is added to `issues` and `status` is at least `warning`. The recommendation says how Meta lifts it. A delivered send there clears it.\n- `coexistenceHistorySync` reports the latest chat history request of a coexistence number. Meta shares a number's chat history only once until the number is disconnected inside the WhatsApp Business app.\n- When Meta refused because an earlier connection already used it (Meta error 135000, or 4 after rapid reconnects) and this account holds no imported history, `coexistenceHistorySync.status` is `already_synced` and an entry is added to `issues`. It never changes the overall `status`.\n- The recommendation then gives the steps that get a new import: disconnect inside the WhatsApp Business app (Settings > Account > Business Platform), then connect the number again. Removing the account in Zernio and connecting it again does not.\n\n### LINE\n\nThe response also includes `lineWebhook`, a live read of the channel's webhook settings at LINE. It is one LINE call per request, given up after a few seconds, and skipped while the account is inactive or needs reconnecting.\n\nIf LINE rejects the channel credentials during that read, the account is flagged for reconnection and the overall `status` is `error`.\n\n- `active: false` means Webhooks are turned off in LINE Official Account Manager, so LINE sends nothing to Zernio. An entry is added to `issues` with the fix (Settings > Response settings > Webhooks) and the overall `status` is at least `warning`.\n- `destination` is `other` when the channel's webhook URL points at another integration, `another_zernio_account` when the same channel is connected to another Zernio account that now receives its events, and `missing` when none is set. Each adds an entry to `issues` and makes the overall `status` at least `warning`.\n- Both are `null` when LINE could not be read; nothing is added to `issues` then.\n\n### Standalone ads connections (`googleads`, `redditads`, `microsoftads`)\n\nA connection that cannot serve requests until a fresh OAuth repairs it adds an entry to `issues`. It also adds a recommendation to call `GET /v1/connect/{platform}/ads`, whose `authUrl` reconnects the same account.\n\nOn `redditads` this is a connection authorized before Zernio needed a Reddit permission it now uses (for example `adsconversions`). Reddit refuses those requests until the user reconnects and allows every permission on Reddit's consent screen.\n",
         "parameters": [
           {
             "name": "accountId",
@@ -95674,6 +95778,9 @@
                           "description": "Last successful sync. Null when never synced or the latest attempt failed."
                         }
                       }
+                    },
+                    "analyticsOff": {
+                      "$ref": "#/components/schemas/AnalyticsOff"
                     },
                     "inboundActivity": {
                       "anyOf": [

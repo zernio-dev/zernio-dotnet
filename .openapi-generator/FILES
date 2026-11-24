@@ -241,6 +241,8 @@ docs/AnalyticsDeltaResponse.md
 docs/AnalyticsListResponse.md
 docs/AnalyticsListResponsePostsInner.md
 docs/AnalyticsListResponsePostsInnerMediaItemsInner.md
+docs/AnalyticsOff.md
+docs/AnalyticsOffAccount.md
 docs/AnalyticsOverview.md
 docs/AnalyticsOverviewDataStaleness.md
 docs/AnalyticsSinglePostResponse.md
@@ -4594,6 +4596,8 @@ src/Zernio.Test/Model/AnalyticsDeltaResponseTests.cs
 src/Zernio.Test/Model/AnalyticsListResponsePostsInnerMediaItemsInnerTests.cs
 src/Zernio.Test/Model/AnalyticsListResponsePostsInnerTests.cs
 src/Zernio.Test/Model/AnalyticsListResponseTests.cs
+src/Zernio.Test/Model/AnalyticsOffAccountTests.cs
+src/Zernio.Test/Model/AnalyticsOffTests.cs
 src/Zernio.Test/Model/AnalyticsOverviewDataStalenessTests.cs
 src/Zernio.Test/Model/AnalyticsOverviewTests.cs
 src/Zernio.Test/Model/AnalyticsSinglePostResponseMediaItemsInnerTests.cs
@@ -8886,6 +8890,8 @@ src/Zernio/Model/AnalyticsDeltaResponse.cs
 src/Zernio/Model/AnalyticsListResponse.cs
 src/Zernio/Model/AnalyticsListResponsePostsInner.cs
 src/Zernio/Model/AnalyticsListResponsePostsInnerMediaItemsInner.cs
+src/Zernio/Model/AnalyticsOff.cs
+src/Zernio/Model/AnalyticsOffAccount.cs
 src/Zernio/Model/AnalyticsOverview.cs
 src/Zernio/Model/AnalyticsOverviewDataStaleness.cs
 src/Zernio/Model/AnalyticsSinglePostResponse.cs
