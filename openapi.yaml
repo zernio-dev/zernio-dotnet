@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.805.0",
+    "version": "1.807.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -56698,10 +56698,113 @@
             ],
             "description": "Forwards only events whose value matches; null forwards whatever the value."
           },
+          "eventValues": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ForwardingRuleEventValues"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The value each listed event is sent with; null sends every event with the value `valueOverride` gives it."
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
           }
+        }
+      },
+      "ForwardingRuleEventValues": {
+        "type": "object",
+        "maxProperties": 50,
+        "additionalProperties": {
+          "$ref": "#/components/schemas/ForwardingRuleEventValue"
+        },
+        "description": "The value this destination gets for each event name, keyed by the name as received (before `eventNameMap` renames it), such as a `Lead` worth 20 EUR and a `QualifiedLead` worth 150 EUR. An event listed here ignores `valueOverride`; events not listed keep it.\n\nThe dashboard's Value sent section (Ads, Conversions, a destination) sets this map.",
+        "example": {
+          "Lead": {
+            "mode": "fixed",
+            "amount": 20,
+            "currency": "EUR"
+          },
+          "QualifiedLead": {
+            "mode": "fixed",
+            "amount": 150,
+            "currency": "EUR"
+          },
+          "Purchase": {
+            "mode": "original"
+          }
+        }
+      },
+      "ForwardingRuleEventValue": {
+        "description": "How one event is valued. `original` sends its own value. `fixed` sends `amount` in `currency`, even when the event came without a value. `percent` sends `amount` percent of its own value (10 sends 10%, rounded to cents) in its own currency, and leaves an event without a value without one.",
+        "oneOf": [
+          {
+            "type": "object",
+            "title": "Original",
+            "required": [
+              "mode"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "type": "string",
+                "const": "original"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Fixed",
+            "required": [
+              "mode",
+              "amount",
+              "currency"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "type": "string",
+                "const": "fixed"
+              },
+              "amount": {
+                "type": "number",
+                "minimum": 0
+              },
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Za-z]{3}$",
+                "description": "ISO 4217 code, saved in capitals."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Percent",
+            "required": [
+              "mode",
+              "amount"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "type": "string",
+                "const": "percent"
+              },
+              "amount": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000
+              }
+            }
+          }
+        ],
+        "example": {
+          "mode": "fixed",
+          "amount": 20,
+          "currency": "EUR"
         }
       },
       "ForwardingRuleEventNameMap": {
@@ -218803,6 +218906,20 @@
                           "sentAt": {
                             "type": "string",
                             "format": "date-time"
+                          },
+                          "valueSent": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "The value this destination got, after its forwarding rule's `eventValues` or `valueOverride`. Null when it got none, and on sends before 2026-11-24."
+                          },
+                          "currencySent": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "The currency sent with `valueSent`."
                           }
                         }
                       }
@@ -219420,7 +219537,7 @@
           "Conversions"
         ],
         "summary": "Add a forwarding rule",
-        "description": "Saves where a profile's events go: every event sent to `POST /v1/events` for that profile is then forwarded to this destination.\n\nPick `destinationId` from `GET /v1/ads/conversions/destinations`. Set `eventNames` to forward only those events, such as only `Purchase`; leave it out to forward every event.\n\n- `eventNameMap` renames events for this destination (send your `Lead` as its `Purchase`).\n- `valueOverride` changes the value it gets (a fixed amount or a percent of the event's value).\n- `valueCondition` forwards only events above, below or equal to a value.\n\nEach applies to this rule only: the event is stored, and sent to other rules, as received.\n",
+        "description": "Saves where a profile's events go: every event sent to `POST /v1/events` for that profile is then forwarded to this destination.\n\nPick `destinationId` from `GET /v1/ads/conversions/destinations`. Set `eventNames` to forward only those events, such as only `Purchase`; leave it out to forward every event.\n\n- `eventNameMap` renames events for this destination (send your `Lead` as its `Purchase`).\n- `valueOverride` changes the value it gets (a fixed amount or a percent of the event's value).\n- `valueCondition` forwards only events above, below or equal to a value.\n- `eventValues` sets the value of each event name (a `Lead` worth 20 EUR, a `QualifiedLead` worth 150 EUR) and wins over `valueOverride` for the names it lists.\n\nEach applies to this rule only: the event is stored, and sent to other rules, as received.\n",
         "security": [
           {
             "bearerAuth": []
@@ -219492,6 +219609,9 @@
                   "valueCondition": {
                     "$ref": "#/components/schemas/ForwardingRuleValueCondition"
                   },
+                  "eventValues": {
+                    "$ref": "#/components/schemas/ForwardingRuleEventValues"
+                  },
                   "apiSecret": {
                     "type": "string",
                     "writeOnly": true,
@@ -219552,7 +219672,7 @@
           "Conversions"
         ],
         "summary": "Update a forwarding rule",
-        "description": "Changes the fields you send and keeps the others. Send `eventNameMap: null` to stop renaming, `valueOverride: { \"mode\": \"original\" }` to send the event's own value again, and `valueCondition: null` to forward whatever the value.\n\n`apiSecret` replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.\n",
+        "description": "Changes the fields you send and keeps the others. Send `eventNameMap: null` to stop renaming, `valueOverride: { \"mode\": \"original\" }` to send the event's own value again, and `valueCondition: null` to forward whatever the value. `eventValues` replaces the whole map; `null` or `{}` clears it.\n\n`apiSecret` replaces the secret of a rule whose destination needs one, such as a Google Analytics data stream's Measurement Protocol API secret. Before saving, Zernio sends one hit to Google's validation server; Google does not confirm the secret itself, so check GA4 Realtime after the next events.\n",
         "security": [
           {
             "bearerAuth": []
@@ -219605,20 +219725,34 @@
                         "type": "null"
                       }
                     ]
+                  },
+                  "eventValues": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/ForwardingRuleEventValues"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   }
                 }
               },
               "example": {
-                "eventNameMap": {
-                  "Lead": "Purchase"
-                },
-                "valueOverride": {
-                  "mode": "percent",
-                  "amount": 30
-                },
-                "valueCondition": {
-                  "operator": "gt",
-                  "amount": 10
+                "eventValues": {
+                  "Lead": {
+                    "mode": "fixed",
+                    "amount": 20,
+                    "currency": "EUR"
+                  },
+                  "QualifiedLead": {
+                    "mode": "fixed",
+                    "amount": 150,
+                    "currency": "EUR"
+                  },
+                  "Purchase": {
+                    "mode": "original"
+                  }
                 }
               }
             }

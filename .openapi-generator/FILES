@@ -1471,6 +1471,7 @@ docs/FileItem.md
 docs/FilePickerSession.md
 docs/FileShareLink.md
 docs/FilesApi.md
+docs/Fixed.md
 docs/FlowAutomationDefinition.md
 docs/FlowAutomationDefinitionGraph.md
 docs/FlowAutomationDefinitionTrigger.md
@@ -1487,6 +1488,7 @@ docs/FoodMenuLabel.md
 docs/FoodMenuSection.md
 docs/ForwardEmailRequest.md
 docs/ForwardingRule.md
+docs/ForwardingRuleEventValue.md
 docs/ForwardingRuleValueCondition.md
 docs/ForwardingRuleValueOverride.md
 docs/FreeBusyError.md
@@ -2851,6 +2853,7 @@ docs/OrderImessageSenderRequestContact.md
 docs/OrgConnection.md
 docs/OrgConnectionSetup.md
 docs/OrgConnectionSetupDnsRecord.md
+docs/Original.md
 docs/OwnedPhoneNumber.md
 docs/OwnedPhoneNumberFeatures.md
 docs/OwnedPhoneNumberProfileId.md
@@ -2862,6 +2865,7 @@ docs/PayoutBatchItem.md
 docs/PayoutBatchItemCreator.md
 docs/Pending.md
 docs/PerPost.md
+docs/Percent.md
 docs/PhoneNumberStockWatch.md
 docs/PhoneNumbersApi.md
 docs/PinDiscordMessage200Response.md
@@ -5790,6 +5794,7 @@ src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptionsRequestTests.cs
 src/Zernio.Test/Model/FileItemTests.cs
 src/Zernio.Test/Model/FilePickerSessionTests.cs
 src/Zernio.Test/Model/FileShareLinkTests.cs
+src/Zernio.Test/Model/FixedTests.cs
 src/Zernio.Test/Model/FlowAutomationDefinitionGraphTests.cs
 src/Zernio.Test/Model/FlowAutomationDefinitionTests.cs
 src/Zernio.Test/Model/FlowAutomationDefinitionTriggerTests.cs
@@ -5805,6 +5810,7 @@ src/Zernio.Test/Model/FoodMenuLabelTests.cs
 src/Zernio.Test/Model/FoodMenuSectionTests.cs
 src/Zernio.Test/Model/FoodMenuTests.cs
 src/Zernio.Test/Model/ForwardEmailRequestTests.cs
+src/Zernio.Test/Model/ForwardingRuleEventValueTests.cs
 src/Zernio.Test/Model/ForwardingRuleTests.cs
 src/Zernio.Test/Model/ForwardingRuleValueConditionTests.cs
 src/Zernio.Test/Model/ForwardingRuleValueOverrideTests.cs
@@ -7149,6 +7155,7 @@ src/Zernio.Test/Model/OrderImessageSenderRequestTests.cs
 src/Zernio.Test/Model/OrgConnectionSetupDnsRecordTests.cs
 src/Zernio.Test/Model/OrgConnectionSetupTests.cs
 src/Zernio.Test/Model/OrgConnectionTests.cs
+src/Zernio.Test/Model/OriginalTests.cs
 src/Zernio.Test/Model/OwnedPhoneNumberFeaturesTests.cs
 src/Zernio.Test/Model/OwnedPhoneNumberProfileIdOneOfTests.cs
 src/Zernio.Test/Model/OwnedPhoneNumberProfileIdTests.cs
@@ -7160,6 +7167,7 @@ src/Zernio.Test/Model/PayoutBatchItemTests.cs
 src/Zernio.Test/Model/PayoutBatchTests.cs
 src/Zernio.Test/Model/PendingTests.cs
 src/Zernio.Test/Model/PerPostTests.cs
+src/Zernio.Test/Model/PercentTests.cs
 src/Zernio.Test/Model/PhoneNumberStockWatchTests.cs
 src/Zernio.Test/Model/PinDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/PinInboxComment200ResponseTests.cs
@@ -10073,6 +10081,7 @@ src/Zernio/Model/FetchGoogleBusinessVerificationOptionsRequest.cs
 src/Zernio/Model/FileItem.cs
 src/Zernio/Model/FilePickerSession.cs
 src/Zernio/Model/FileShareLink.cs
+src/Zernio/Model/Fixed.cs
 src/Zernio/Model/FlowAutomationDefinition.cs
 src/Zernio/Model/FlowAutomationDefinitionGraph.cs
 src/Zernio/Model/FlowAutomationDefinitionTrigger.cs
@@ -10089,6 +10098,7 @@ src/Zernio/Model/FoodMenuLabel.cs
 src/Zernio/Model/FoodMenuSection.cs
 src/Zernio/Model/ForwardEmailRequest.cs
 src/Zernio/Model/ForwardingRule.cs
+src/Zernio/Model/ForwardingRuleEventValue.cs
 src/Zernio/Model/ForwardingRuleValueCondition.cs
 src/Zernio/Model/ForwardingRuleValueOverride.cs
 src/Zernio/Model/FreeBusyError.cs
@@ -11432,6 +11442,7 @@ src/Zernio/Model/OrderImessageSenderRequestContact.cs
 src/Zernio/Model/OrgConnection.cs
 src/Zernio/Model/OrgConnectionSetup.cs
 src/Zernio/Model/OrgConnectionSetupDnsRecord.cs
+src/Zernio/Model/Original.cs
 src/Zernio/Model/OwnedPhoneNumber.cs
 src/Zernio/Model/OwnedPhoneNumberFeatures.cs
 src/Zernio/Model/OwnedPhoneNumberProfileId.cs
@@ -11443,6 +11454,7 @@ src/Zernio/Model/PayoutBatchItem.cs
 src/Zernio/Model/PayoutBatchItemCreator.cs
 src/Zernio/Model/Pending.cs
 src/Zernio/Model/PerPost.cs
+src/Zernio/Model/Percent.cs
 src/Zernio/Model/PhoneNumberStockWatch.cs
 src/Zernio/Model/PinDiscordMessage200Response.cs
 src/Zernio/Model/PinInboxComment200Response.cs
