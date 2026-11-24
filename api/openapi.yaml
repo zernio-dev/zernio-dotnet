@@ -42972,6 +42972,10 @@ paths:
       summary: List iMessage senders
       tags:
       - iMessage
+      x-resource-group: telephony
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
     post:
       description: |
         Registers a provider-provisioned iMessage sender (a phone number or an email handle) that YOU already own on a profile. It creates an `imessage` account that sends and receives through the inbox conversation endpoints.
@@ -43054,6 +43058,10 @@ paths:
       summary: List iMessage sender orders
       tags:
       - iMessage
+      x-resource-group: telephony
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
     post:
       description: |
         Orders a NEW dedicated iMessage sender from the delivery provider. Compare with POST /v1/imessage/senders, which registers a sender you already own.
@@ -43195,6 +43203,10 @@ paths:
       summary: Get iMessage sender status
       tags:
       - iMessage
+      x-resource-group: telephony
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
     patch:
       description: Display name (inbox and API responses) and the contact card (vCard)
         recipients see when they save the sender. The contact card is what a contactCard
@@ -43301,6 +43313,10 @@ paths:
       summary: List iMessage audience
       tags:
       - iMessage
+      x-resource-group: messages
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
   /v1/imessage/sandbox/contacts:
     get:
       description: |
@@ -43335,6 +43351,10 @@ paths:
       summary: List iMessage sandbox contacts
       tags:
       - iMessage
+      x-resource-group: messages
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
     post:
       description: Adds your own phone (E.164) or Apple ID email. The contact starts
         as pending; it becomes active when its joinText arrives at the sandbox line
@@ -43528,6 +43548,10 @@ paths:
       summary: List instantly available iMessage numbers
       tags:
       - iMessage
+      x-resource-group: telephony
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
   /v1/imessage/senders/available-numbers/{numberId}/reserve:
     post:
       description: Holds the number for 3 minutes so nobody else can order it while
@@ -43637,6 +43661,10 @@ paths:
       summary: Get an iMessage group
       tags:
       - iMessage
+      x-resource-group: messages
+      x-oauth-scopes:
+      - messaging:write
+      - messaging:read
     patch:
       description: "One change per call: either `name` or `photoUrl` (an empty `photoUrl`\
         \ removes the photo). Applied asynchronously by the provider; a rename is\
