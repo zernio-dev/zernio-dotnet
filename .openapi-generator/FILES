@@ -2348,6 +2348,7 @@ docs/ListAdCatalogProductSets200Response.md
 docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
 docs/ListAdCatalogProducts200Response.md
 docs/ListAdCatalogs200Response.md
+docs/ListAdChanges200Response.md
 docs/ListAdConversionAssociations200Response.md
 docs/ListAdConversionAssociations200ResponseAssociationsInner.md
 docs/ListAdConversionDestinations200Response.md
@@ -3399,6 +3400,7 @@ docs/SocialAccountProfileId.md
 docs/StagedAdChange.md
 docs/StagedAdChangeDiffInner.md
 docs/StagedAdChangeError.md
+docs/StagedAdChangeSummary.md
 docs/StartBusinessAgentEvalRun202Response.md
 docs/StartBusinessAgentEvalRunRequest.md
 docs/StartCreatorConnect200Response.md
@@ -6663,6 +6665,7 @@ src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseProductSetsInnerTests.c
 src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogProducts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
+src/Zernio.Test/Model/ListAdChanges200ResponseTests.cs
 src/Zernio.Test/Model/ListAdConversionAssociations200ResponseAssociationsInnerTests.cs
 src/Zernio.Test/Model/ListAdConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/ListAdConversionDestinations200ResponseDestinationsInnerConversionEventsInnerTests.cs
@@ -7694,6 +7697,7 @@ src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
 src/Zernio.Test/Model/StagedAdChangeDiffInnerTests.cs
 src/Zernio.Test/Model/StagedAdChangeErrorTests.cs
+src/Zernio.Test/Model/StagedAdChangeSummaryTests.cs
 src/Zernio.Test/Model/StagedAdChangeTests.cs
 src/Zernio.Test/Model/StartBusinessAgentEvalRun202ResponseTests.cs
 src/Zernio.Test/Model/StartBusinessAgentEvalRunRequestTests.cs
@@ -10957,6 +10961,7 @@ src/Zernio/Model/ListAdCatalogProductSets200Response.cs
 src/Zernio/Model/ListAdCatalogProductSets200ResponseProductSetsInner.cs
 src/Zernio/Model/ListAdCatalogProducts200Response.cs
 src/Zernio/Model/ListAdCatalogs200Response.cs
+src/Zernio/Model/ListAdChanges200Response.cs
 src/Zernio/Model/ListAdConversionAssociations200Response.cs
 src/Zernio/Model/ListAdConversionAssociations200ResponseAssociationsInner.cs
 src/Zernio/Model/ListAdConversionDestinations200Response.cs
@@ -11989,6 +11994,7 @@ src/Zernio/Model/SocialAccountProfileId.cs
 src/Zernio/Model/StagedAdChange.cs
 src/Zernio/Model/StagedAdChangeDiffInner.cs
 src/Zernio/Model/StagedAdChangeError.cs
+src/Zernio/Model/StagedAdChangeSummary.cs
 src/Zernio/Model/StartBusinessAgentEvalRun202Response.cs
 src/Zernio/Model/StartBusinessAgentEvalRunRequest.cs
 src/Zernio/Model/StartCreatorConnect200Response.cs

@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ConfirmAdChange**](AdChangesApi.md#confirmadchange) | **POST** /v1/ads/changes/{changeId}/confirm | Confirm a staged ad change |
 | [**DiscardAdChange**](AdChangesApi.md#discardadchange) | **DELETE** /v1/ads/changes/{changeId} | Discard a staged ad change |
 | [**GetAdChange**](AdChangesApi.md#getadchange) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change |
+| [**ListAdChanges**](AdChangesApi.md#listadchanges) | **GET** /v1/ads/changes | List staged ad changes |
 
 <a id="confirmadchange"></a>
 # **ConfirmAdChange**
@@ -310,6 +311,109 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadchanges"></a>
+# **ListAdChanges**
+> ListAdChanges200Response ListAdChanges (int? limit = null, string? cursor = null)
+
+List staged ad changes
+
+Lists the ad changes waiting to be confirmed or discarded, newest first. A confirmed or failed change is not listed; read it by id.  Each item is a summary without the diff. Read one change to get its before/after values. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdChangesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdChangesApi(httpClient, config, httpClientHandler);
+            var limit = 50;  // int? | How many changes to return. (optional)  (default to 50)
+            var cursor = "cursor_example";  // string? | The `nextCursor` of the previous page, unchanged. (optional) 
+
+            try
+            {
+                // List staged ad changes
+                ListAdChanges200Response result = apiInstance.ListAdChanges(limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdChangesApi.ListAdChanges: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdChangesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List staged ad changes
+    ApiResponse<ListAdChanges200Response> response = apiInstance.ListAdChangesWithHttpInfo(limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdChangesApi.ListAdChangesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **limit** | **int?** | How many changes to return. | [optional] [default to 50] |
+| **cursor** | **string?** | The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional]  |
+
+### Return type
+
+[**ListAdChanges200Response**](ListAdChanges200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of staged changes |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
