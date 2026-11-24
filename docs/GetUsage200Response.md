@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **Period** | [**UsageMeteringPeriod**](UsageMeteringPeriod.md) |  | [optional] 
 **Tax** | [**UsageMeteringTax**](UsageMeteringTax.md) |  | [optional] 
 **Attribution** | [**UsageMeteringAttribution**](UsageMeteringAttribution.md) |  | [optional] 
+**Incomplete** | **bool** | Check it before rebilling. Present and true when a read behind the split failed: a group&#39;s spend can then be lower than the real one (it is &#x60;unattributed&#x60; in a full breakdown, missing from a view of some profiles or accounts). Retry in a minute. | [optional] 
 **Scope** | [**UsageMeteringScope**](UsageMeteringScope.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
