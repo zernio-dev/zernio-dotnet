@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class ReviewWebhookReview : IValidatableObject
     {
         /// <summary>
-        /// Platform the review originated on. Currently Google Business Profile only.
+        /// Platform the review originated on (Google Business Profile or Facebook Pages).
         /// </summary>
-        /// <value>Platform the review originated on. Currently Google Business Profile only.</value>
+        /// <value>Platform the review originated on (Google Business Profile or Facebook Pages).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -44,16 +44,49 @@ namespace Zernio.Model
             /// Enum Googlebusiness for value: googlebusiness
             /// </summary>
             [EnumMember(Value = "googlebusiness")]
-            Googlebusiness = 1
+            Googlebusiness = 1,
+
+            /// <summary>
+            /// Enum Facebook for value: facebook
+            /// </summary>
+            [EnumMember(Value = "facebook")]
+            Facebook = 2
         }
 
 
         /// <summary>
-        /// Platform the review originated on. Currently Google Business Profile only.
+        /// Platform the review originated on (Google Business Profile or Facebook Pages).
         /// </summary>
-        /// <value>Platform the review originated on. Currently Google Business Profile only.</value>
+        /// <value>Platform the review originated on (Google Business Profile or Facebook Pages).</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
+        /// <summary>
+        /// Facebook only. Whether the reviewer recommended the Page.
+        /// </summary>
+        /// <value>Facebook only. Whether the reviewer recommended the Page.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RecommendationTypeEnum
+        {
+            /// <summary>
+            /// Enum Positive for value: positive
+            /// </summary>
+            [EnumMember(Value = "positive")]
+            Positive = 1,
+
+            /// <summary>
+            /// Enum Negative for value: negative
+            /// </summary>
+            [EnumMember(Value = "negative")]
+            Negative = 2
+        }
+
+
+        /// <summary>
+        /// Facebook only. Whether the reviewer recommended the Page.
+        /// </summary>
+        /// <value>Facebook only. Whether the reviewer recommended the Page.</value>
+        [DataMember(Name = "recommendationType", EmitDefaultValue = false)]
+        public RecommendationTypeEnum? RecommendationType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ReviewWebhookReview" /> class.
         /// </summary>
@@ -63,14 +96,15 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ReviewWebhookReview" /> class.
         /// </summary>
         /// <param name="id">Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business Profile). (required).</param>
-        /// <param name="platform">Platform the review originated on. Currently Google Business Profile only. (required).</param>
-        /// <param name="rating">Star rating the reviewer gave. (required).</param>
+        /// <param name="platform">Platform the review originated on (Google Business Profile or Facebook Pages). (required).</param>
+        /// <param name="rating">Star rating the reviewer gave. Null for a Facebook recommendation without stars. (required).</param>
+        /// <param name="recommendationType">Facebook only. Whether the reviewer recommended the Page..</param>
         /// <param name="text">Review text content. May be empty if the reviewer left only a rating. (required).</param>
         /// <param name="reviewer">reviewer (required).</param>
         /// <param name="createdAt">createdAt (required).</param>
         /// <param name="hasReply">Whether the connected account has replied to this review. (required).</param>
         /// <param name="reply">reply.</param>
-        public ReviewWebhookReview(string id = default, PlatformEnum platform = default, int rating = default, string text = default, ReviewWebhookReviewReviewer reviewer = default, DateTime createdAt = default, bool hasReply = default, ReviewWebhookReviewReply reply = default)
+        public ReviewWebhookReview(string id = default, PlatformEnum platform = default, int? rating = default, RecommendationTypeEnum? recommendationType = default, string text = default, ReviewWebhookReviewReviewer reviewer = default, DateTime createdAt = default, bool hasReply = default, ReviewWebhookReviewReply reply = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -79,6 +113,11 @@ namespace Zernio.Model
             }
             this.Id = id;
             this.Platform = platform;
+            // to ensure "rating" is required (not null)
+            if (rating == null)
+            {
+                throw new ArgumentNullException("rating is a required property for ReviewWebhookReview and cannot be null");
+            }
             this.Rating = rating;
             // to ensure "text" is required (not null)
             if (text == null)
@@ -94,6 +133,7 @@ namespace Zernio.Model
             this.Reviewer = reviewer;
             this.CreatedAt = createdAt;
             this.HasReply = hasReply;
+            this.RecommendationType = recommendationType;
             this.Reply = reply;
         }
 
@@ -105,11 +145,11 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Star rating the reviewer gave.
+        /// Star rating the reviewer gave. Null for a Facebook recommendation without stars.
         /// </summary>
-        /// <value>Star rating the reviewer gave.</value>
+        /// <value>Star rating the reviewer gave. Null for a Facebook recommendation without stars.</value>
         [DataMember(Name = "rating", IsRequired = true, EmitDefaultValue = true)]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         /// <summary>
         /// Review text content. May be empty if the reviewer left only a rating.
@@ -154,6 +194,7 @@ namespace Zernio.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Rating: ").Append(Rating).Append("\n");
+            sb.Append("  RecommendationType: ").Append(RecommendationType).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  Reviewer: ").Append(Reviewer).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
@@ -179,14 +220,14 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Rating (int) maximum
-            if (this.Rating > (int)5)
+            // Rating (int?) maximum
+            if (this.Rating > (int?)5)
             {
                 yield return new ValidationResult("Invalid value for Rating, must be a value less than or equal to 5.", new [] { "Rating" });
             }
 
-            // Rating (int) minimum
-            if (this.Rating < (int)1)
+            // Rating (int?) minimum
+            if (this.Rating < (int?)1)
             {
                 yield return new ValidationResult("Invalid value for Rating, must be a value greater than or equal to 1.", new [] { "Rating" });
             }

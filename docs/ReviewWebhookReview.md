@@ -6,8 +6,9 @@ Review data shared by review.new, review.updated and review.restored payloads.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Platform review ID (e.g. \&quot;accounts/123/locations/456/reviews/789\&quot; for Google Business Profile). | 
-**Platform** | **string** | Platform the review originated on. Currently Google Business Profile only. | 
-**Rating** | **int** | Star rating the reviewer gave. | 
+**Platform** | **string** | Platform the review originated on (Google Business Profile or Facebook Pages). | 
+**Rating** | **int?** | Star rating the reviewer gave. Null for a Facebook recommendation without stars. | 
+**RecommendationType** | **string** | Facebook only. Whether the reviewer recommended the Page. | [optional] 
 **Text** | **string** | Review text content. May be empty if the reviewer left only a rating. | 
 **Reviewer** | [**ReviewWebhookReviewReviewer**](ReviewWebhookReviewReviewer.md) |  | 
 **CreatedAt** | **DateTime** |  | 

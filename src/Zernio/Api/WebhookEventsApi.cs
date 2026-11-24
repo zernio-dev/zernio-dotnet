@@ -2825,7 +2825,7 @@ namespace Zernio.Api
         /// Review new event
         /// </summary>
         /// <remarks>
-        /// A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -2836,7 +2836,7 @@ namespace Zernio.Api
         /// Review new event
         /// </summary>
         /// <remarks>
-        /// A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -6565,7 +6565,7 @@ namespace Zernio.Api
         /// Review new event
         /// </summary>
         /// <remarks>
-        /// A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -6577,7 +6577,7 @@ namespace Zernio.Api
         /// Review new event
         /// </summary>
         /// <remarks>
-        /// A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -24136,7 +24136,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review new event A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// Review new event A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -24147,7 +24147,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review new event A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// Review new event A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -24196,7 +24196,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review new event A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// Review new event A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>
@@ -24208,7 +24208,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review new event A new review was posted on a connected Google Business Profile account, in real time through Pub/Sub. 
+        /// Review new event A new review was posted on a connected Google Business Profile account (in real time through Pub/Sub) or Facebook Page (from the Page ratings webhook). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewNew"></param>

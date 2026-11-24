@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RecommendationType'
+        /// </summary>
+        [Fact]
+        public void RecommendationTypeTest()
+        {
+            // TODO unit test for the property 'RecommendationType'
+        }
+
+        /// <summary>
         /// Test the property 'Text'
         /// </summary>
         [Fact]
