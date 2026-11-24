@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **InboundActivity** | [**InboundActivity**](InboundActivity.md) |  | [optional] 
 **PublishingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerPublishingRestriction.md) |  | [optional] 
 **MessagingRestriction** | [**GetAccountHealth200ResponseMessagingRestriction**](GetAccountHealth200ResponseMessagingRestriction.md) |  | [optional] 
+**CoexistenceHistorySync** | [**GetAccountHealth200ResponseCoexistenceHistorySync**](GetAccountHealth200ResponseCoexistenceHistorySync.md) |  | [optional] 
 **PlatformConnection** | [**GetAccountHealth200ResponsePlatformConnection**](GetAccountHealth200ResponsePlatformConnection.md) |  | [optional] 
 **LineWebhook** | [**GetAccountHealth200ResponseLineWebhook**](GetAccountHealth200ResponseLineWebhook.md) |  | [optional] 
 
