@@ -152,7 +152,7 @@ namespace Example
             var sortBy = "date";  // string? | rating puts reviews without a star rating last in both orders. (optional)  (default to date)
             var sortOrder = "asc";  // string? |  (optional)  (default to desc)
             var limit = 25;  // int? |  (optional)  (default to 25)
-            var cursor = "cursor_example";  // string? |  (optional) 
+            var cursor = "cursor_example";  // string? | Pass back pagination.nextCursor of the previous page unchanged, with the same sortBy and sortOrder. (optional) 
             var accountId = "accountId_example";  // string? | One account id, or several comma-separated. (optional) 
 
             try
@@ -204,7 +204,7 @@ catch (ApiException e)
 | **sortBy** | **string?** | rating puts reviews without a star rating last in both orders. | [optional] [default to date] |
 | **sortOrder** | **string?** |  | [optional] [default to desc] |
 | **limit** | **int?** |  | [optional] [default to 25] |
-| **cursor** | **string?** |  | [optional]  |
+| **cursor** | **string?** | Pass back pagination.nextCursor of the previous page unchanged, with the same sortBy and sortOrder. | [optional]  |
 | **accountId** | **string?** | One account id, or several comma-separated. | [optional]  |
 
 ### Return type
