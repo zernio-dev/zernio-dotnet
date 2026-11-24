@@ -127,7 +127,7 @@ Name | Type | Description | Notes
 **UserOs** | **List&lt;string&gt;** | Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above or Android. Emitted as user_os. May also be supplied inside targeting. | [optional] 
 **UserDevice** | **List&lt;string&gt;** | Meta only. Device models such as iPhone. Emitted as user_device. May also be supplied inside targeting. | [optional] 
 **IsSkadnetworkAttribution** | **bool** | Meta app promotion only. Immutable campaign flag. Set true for iOS 14+ SKAdNetwork campaigns and supply promotedObject.applicationId plus promotedObject.objectStoreUrl. The campaign receives promotedObject only when this flag is true. Cannot be changed on an existing campaign. | [optional] 
-**CampaignAttribution** | **string** | Meta ad-set attribution. Required as SKADNETWORK for iOS 14+ app promotion or a SKAdNetwork campaign. Requires AUCTION buying. Standalone Meta ad-set creation is not supported; use this field on /v1/ads/create. | [optional] 
+**CampaignAttribution** | **string** | Meta ad-set attribution. SKADNETWORK for a SKAdNetwork campaign, AEM for an iOS 14+ AEM campaign without isSkadnetworkAttribution. With existingCampaignId, omit it to follow the campaign; a value that conflicts with the campaign is rejected. Requires AUCTION buying. Use this field on /v1/ads/create. | [optional] 
 **PromotedObject** | [**AdPromotedObject**](AdPromotedObject.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
