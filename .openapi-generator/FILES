@@ -3262,6 +3262,7 @@ docs/SendEmailRequestAttachmentsInner.md
 docs/SendEvents200Response.md
 docs/SendEvents200ResponseDestinationsInner.md
 docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
+docs/SendEvents200ResponseDestinationsInnerSkippedInner.md
 docs/SendEvents202Response.md
 docs/SendEventsRequest.md
 docs/SendEventsRequestDestinationsInner.md
@@ -7562,6 +7563,7 @@ src/Zernio.Test/Model/SendEmailMessage202ResponseTests.cs
 src/Zernio.Test/Model/SendEmailRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/SendEmailRequestTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerFailuresInnerTests.cs
+src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerSkippedInnerTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/SendEvents200ResponseTests.cs
 src/Zernio.Test/Model/SendEvents202ResponseTests.cs
@@ -11862,6 +11864,7 @@ src/Zernio/Model/SendEmailRequestAttachmentsInner.cs
 src/Zernio/Model/SendEvents200Response.cs
 src/Zernio/Model/SendEvents200ResponseDestinationsInner.cs
 src/Zernio/Model/SendEvents200ResponseDestinationsInnerFailuresInner.cs
+src/Zernio/Model/SendEvents200ResponseDestinationsInnerSkippedInner.cs
 src/Zernio/Model/SendEvents202Response.cs
 src/Zernio/Model/SendEventsRequest.cs
 src/Zernio/Model/SendEventsRequestDestinationsInner.cs
