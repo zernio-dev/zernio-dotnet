@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.823.0",
+    "version": "1.824.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -55777,11 +55777,12 @@
               "campaign_update",
               "ad_set_update",
               "ad_update",
+              "campaign_targeting",
               "ad_create",
               "campaign_create",
               "ad_set_create"
             ],
-            "description": "Which write was staged: a status route, the update route of a campaign, an ad set or an ad, or one of the create routes (POST /v1/ads/create, POST /v1/ads/campaigns, POST /v1/ads/ad-sets)."
+            "description": "Which write was staged: a status route, the update route of a campaign, an ad set or an ad, the campaign targeting route, or one of the create routes (POST /v1/ads/create, POST /v1/ads/campaigns, POST /v1/ads/ad-sets)."
           },
           "platform": {
             "type": "string",
@@ -55974,6 +55975,7 @@
               "campaign_update",
               "ad_set_update",
               "ad_update",
+              "campaign_targeting",
               "ad_create",
               "campaign_create",
               "ad_set_create"
@@ -185143,7 +185145,7 @@
           "google"
         ],
         "summary": "Edit a Google campaign's device, location, excluded location, or language targeting",
-        "description": "Changes a Google campaign's device, location, excluded location or language targeting after it was created. Google only; every other platform returns 501.\n\nGoogle Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards.\n\nSend at least one of `devices`, `locations`, `excludedLocations`, `languages`, `locationTargetingType`. Each provided field REPLACES that field's existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched.\n\n### Fields\n\n- `devices`: the full set of device bid modifiers. A supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign's channel does not carry, and a set that switches every device off, both return 422.\n- `locations`: see below.\n- `excludedLocations`: see below.\n- `languages`: an array of Google's language codes (ISO 639-1, plus variants such as `zh_CN`). An unknown code returns 400.\n- `locationTargetingType`: switches who the location targeting reaches. `presence` (people in or regularly in the locations) or `presence_or_interest` (also people searching for or interested in them). Example: `{ \"platform\": \"google\", \"targeting\": { \"locationTargetingType\": \"presence\" } }`.\n\n### Locations\n\n`locations` accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with `countries`/`regions`/`cities`/`zips`/`metros` key lists (`key` from GET /v1/ads/targeting/search?dimension=geo).\n\nExcluded locations are left untouched by `locations`. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit `locations` to leave targeting alone.\n\n### Excluded locations\n\n`excludedLocations` takes the same two shapes and replaces the campaign's negative location criteria (the places it never serves in), leaving the targeted `locations` untouched.\n\n- An empty list (or `{}`) removes every exclusion.\n- Radius exclusions are not supported.\n- A place cannot be both targeted and excluded: a request whose result would leave one on both sides returns 400 before anything is written.\n- Moving a place from one side to the other in the same request is applied atomically.\n\nExample: `{ \"platform\": \"google\", \"targeting\": { \"excludedLocations\": { \"countries\": [\"CA\"], \"regions\": [\"21137\"] } } }`.\n\n### Atomic writes and response\n\nThe removes and the creates go out in ONE Google `googleAds:mutate`, so a failed edit leaves the campaign's previous set intact rather than a half-applied one.\n\nThe response includes the refreshed `devices`/`locations`/`excludedLocations`/`languages` state read back from Google after the edit. It also invalidates the cached copy `GET` on this campaign would otherwise keep serving.\n\n### Demand Gen\n\nGoogle keeps a Demand Gen campaign's locations and languages on its ad groups and refuses them on the campaign.\n\n- With one ad group, they are written there and the response carries its `adGroupId` (the campaign-level `locations`/`languages` read back then stay empty).\n- With several ad groups, the call returns 400 naming them. Edit each one with PUT /v1/ads/{adId} `targeting` on an ad of that ad group.\n- Campaigns migrated from Discovery that still target on the campaign keep being written there.\n- `devices` and `locationTargetingType` stay campaign-level.\n- `excludedLocations` is not available on Demand Gen yet and returns 400.\n",
+        "description": "Changes a Google campaign's device, location, excluded location or language targeting after it was created. Google only; every other platform returns 501.\n\nGoogle Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards.\n\nSend at least one of `devices`, `locations`, `excludedLocations`, `languages`, `locationTargetingType`. Each provided field REPLACES that field's existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched.\n\n### Fields\n\n- `devices`: the full set of device bid modifiers. A supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign's channel does not carry, and a set that switches every device off, both return 422.\n- `locations`: see below.\n- `excludedLocations`: see below.\n- `languages`: an array of Google's language codes (ISO 639-1, plus variants such as `zh_CN`). An unknown code returns 400.\n- `locationTargetingType`: switches who the location targeting reaches. `presence` (people in or regularly in the locations) or `presence_or_interest` (also people searching for or interested in them). Example: `{ \"platform\": \"google\", \"targeting\": { \"locationTargetingType\": \"presence\" } }`.\n\n### Locations\n\n`locations` accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with `countries`/`regions`/`cities`/`zips`/`metros` key lists (`key` from GET /v1/ads/targeting/search?dimension=geo).\n\nExcluded locations are left untouched by `locations`. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit `locations` to leave targeting alone.\n\n### Excluded locations\n\n`excludedLocations` takes the same two shapes and replaces the campaign's negative location criteria (the places it never serves in), leaving the targeted `locations` untouched.\n\n- An empty list (or `{}`) removes every exclusion.\n- Radius exclusions are not supported.\n- A place cannot be both targeted and excluded: a request whose result would leave one on both sides returns 400 before anything is written.\n- Moving a place from one side to the other in the same request is applied atomically.\n\nExample: `{ \"platform\": \"google\", \"targeting\": { \"excludedLocations\": { \"countries\": [\"CA\"], \"regions\": [\"21137\"] } } }`.\n\n### Atomic writes and response\n\nThe removes and the creates go out in ONE Google `googleAds:mutate`, so a failed edit leaves the campaign's previous set intact rather than a half-applied one.\n\nThe response includes the refreshed `devices`/`locations`/`excludedLocations`/`languages` state read back from Google after the edit. It also invalidates the cached copy `GET` on this campaign would otherwise keep serving.\n\n### Demand Gen\n\nGoogle keeps a Demand Gen campaign's locations and languages on its ad groups and refuses them on the campaign.\n\n- With one ad group, they are written there and the response carries its `adGroupId` (the campaign-level `locations`/`languages` read back then stay empty).\n- With several ad groups, the call returns 400 naming them. Edit each one with PUT /v1/ads/{adId} `targeting` on an ad of that ad group.\n- Campaigns migrated from Discovery that still target on the campaign keep being written there.\n- `devices` and `locationTargetingType` stay campaign-level.\n- `excludedLocations` is not available on Demand Gen yet and returns 400.\n\n### Staging\n\nSend `stage: true` to store the edit as an ad change of type `campaign_targeting` instead of applying it. The answer is `202` with the change.\n\nIts diff has one entry per value under `targeting`. `before` comes from the campaign's devices, locations, excluded locations, languages and location targeting type, read live from Google.\n\nConfirm reads them again and answers `409` if any of them changed.\n\nA Demand Gen campaign's targeting cannot be staged yet: its locations and languages live on its ad groups, which that read does not cover. `stage: true` on one returns `400` with code `staging_not_supported` before anything is stored.\n",
         "security": [
           {
             "bearerAuth": []
@@ -185171,6 +185173,10 @@
                   "targeting"
                 ],
                 "properties": {
+                  "stage": {
+                    "type": "boolean",
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Cannot be combined with `validateOnly` or `dryRun`."
+                  },
                   "platform": {
                     "type": "string",
                     "enum": [
@@ -185651,6 +185657,24 @@
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Sent with `stage: true`. The change was validated and stored, and nothing was written to the ad network.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "change"
+                  ],
+                  "properties": {
+                    "change": {
+                      "$ref": "#/components/schemas/StagedAdChange"
                     }
                   }
                 }

@@ -6,7 +6,7 @@ An ad write that was validated and stored with `stage: true`, waiting to be conf
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The change id, used in /v1/ads/changes/{changeId}. | 
-**Type** | **string** | Which write was staged: a status route, the update route of a campaign, an ad set or an ad, or one of the create routes (POST /v1/ads/create, POST /v1/ads/campaigns, POST /v1/ads/ad-sets). | 
+**Type** | **string** | Which write was staged: a status route, the update route of a campaign, an ad set or an ad, the campaign targeting route, or one of the create routes (POST /v1/ads/create, POST /v1/ads/campaigns, POST /v1/ads/ad-sets). | 
 **Platform** | **string** | The ad platform of the object, as the write route names it. | 
 **AccountId** | **string** | The connected account the write goes through. | 
 **AdAccountId** | **string** | The ad account id on the platform. | 
