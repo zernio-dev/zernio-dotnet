@@ -5,7 +5,7 @@ Platform-specific post-launch delivery settings. The platform is implied by the 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OptimizationGoal** | **string** | Meta ad-set optimization_goal (e.g. OFFSITE_CONVERSIONS, LANDING_PAGE_VIEWS). | [optional] 
+**OptimizationGoal** | **string** | Meta ad-set optimization_goal (e.g. OFFSITE_CONVERSIONS, LANDING_PAGE_VIEWS).  Meta fixes an ad set&#39;s attribution window (&#x60;attribution_spec&#x60;) at creation. A goal that needs another window cannot be set here:  - OFFSITE_CONVERSIONS to LANDING_PAGE_VIEWS needs a 1-day click window. - Meta answers subcode 1885560, and this returns 400 with &#x60;param: platformSpecificData.optimizationGoal&#x60;. - Instead, create a new ad set with POST /v1/ads/create, sending the new &#x60;optimizationGoal&#x60; and its &#x60;attributionSpec&#x60;, and pause this one.  &#x60;attributionSpec&#x60; is not accepted here for the same reason (400 with &#x60;param: platformSpecificData.attributionSpec&#x60;).  | [optional] 
 **BillingEvent** | **string** | Meta ad-set billing_event (e.g. IMPRESSIONS, LINK_CLICKS, THRUPLAY). | [optional] 
 **StartDate** | **string** | Ad set start_time (ISO 8601). A value without an offset (&#x60;YYYY-MM-DD&#x60;, &#x60;YYYY-MM-DD HH:MM:SS&#x60; or &#x60;YYYY-MM-DDTHH:MM:SS&#x60;) is read in the ad account timezone. | [optional] 
 **EndDate** | **string** | Ad set end_time (ISO 8601). A value without an offset (&#x60;YYYY-MM-DD&#x60;, &#x60;YYYY-MM-DD HH:MM:SS&#x60; or &#x60;YYYY-MM-DDTHH:MM:SS&#x60;) is read in the ad account timezone. | [optional] 
