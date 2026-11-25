@@ -1,4 +1,4 @@
-# Zernio.Model.BusinessAgentConnectorAllOfConnectionStatus
+# Zernio.Model.BusinessAgentConnectorConnectionStatus
 
 ## Properties
 
