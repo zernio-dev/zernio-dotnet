@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.827.1",
+    "version": "1.828.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -188270,11 +188270,15 @@
                 "newest",
                 "oldest",
                 "spend_desc",
-                "spend_asc"
+                "spend_asc",
+                "results_desc",
+                "results_asc",
+                "cost_per_result_asc",
+                "cost_per_result_desc"
               ],
               "default": "newest"
             },
-            "description": "Campaign-level sort order. `newest` (default) / `oldest` order by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order by aggregated spend in the requested date range; campaigns with no spend land at the end."
+            "description": "Campaign order. `newest` (default) / `oldest`: by the newest ad's createdAt. `spend_*`: by spend in the date range. `results_*` / `cost_per_result_*`: by results, or spend per result, for each campaign's objective (reach summed across its ads); no-result campaigns end a cost order."
           },
           {
             "name": "timeIncrement",
