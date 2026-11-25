@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.832.2",
+    "version": "1.833.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -55918,6 +55918,13 @@
             ],
             "description": "The object the change applies to: the platform campaign id, the platform ad set id, or the Zernio ad id. Null for a create, whose object does not exist yet."
           },
+          "targetName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The name of the object when the change was staged, or the name a create will give it. Null when it is not known."
+          },
           "creates": {
             "type": "boolean",
             "description": "Present and true when the change creates a new object. Every diff entry then has `before: null` and `beforeAvailable: false`."
@@ -55930,7 +55937,7 @@
               "confirmed",
               "failed"
             ],
-            "description": "- `staged`: waiting to be confirmed or discarded.\n- `confirming`: a confirm is running. A change that stays here has an unknown outcome and is never applied again automatically.\n- `confirmed`: applied. `result` holds what the write returned.\n- `failed`: not applied. `error` says why.\n"
+            "description": "- `staged`: waiting to be confirmed or discarded.\n- `confirming`: a confirm is running. A change left here for 15 minutes ends as `failed` with error code `change_outcome_unknown`, and is never applied again automatically.\n- `confirmed`: applied. `result` holds what the write returned.\n- `failed`: not applied. `error` says why.\n"
           },
           "diff": {
             "type": "array",
@@ -55976,6 +55983,17 @@
             "type": "string",
             "description": "The user who staged the change."
           },
+          "confirmedBy": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The user who confirmed the change. Null while nobody has, and after a confirm that left the change staged."
+          },
+          "stale": {
+            "type": "boolean",
+            "description": "Present and true on a staged change whose last confirm was refused with `change_target_changed`. `error` then says why. Discard it and stage it again from the current values."
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -55986,7 +56004,7 @@
               "null"
             ],
             "format": "date-time",
-            "description": "When the confirm ended, as `confirmed` or `failed`. A finished change is deleted 7 days later."
+            "description": "When the confirm ended, as `confirmed` or `failed`. A finished change is deleted 7 days later, a failed create 30 days later."
           },
           "result": {
             "type": "object",
@@ -55995,7 +56013,7 @@
           },
           "error": {
             "type": "object",
-            "description": "Present once `failed`.",
+            "description": "Present once `failed`, and on a staged change marked `stale`.",
             "properties": {
               "code": {
                 "type": "string",
@@ -56022,6 +56040,7 @@
           "accountId": "665f1c2ab3d4e5f6a7b8c9d0",
           "adAccountId": "act_757082720485182",
           "targetId": "120214567890123456",
+          "targetName": "Autumn sale",
           "status": "staged",
           "diff": [
             {
@@ -56056,6 +56075,7 @@
             }
           ],
           "createdBy": "665f1c2ab3d4e5f6a7b8c9d1",
+          "confirmedBy": null,
           "createdAt": "2026-11-20T10:00:00.000Z",
           "finishedAt": null
         }
@@ -180537,7 +180557,7 @@
           "google"
         ],
         "summary": "Get a staged ad change",
-        "description": "Returns one ad change with its before/after diff. A change is created by sending a supported ad write with `stage: true`.\n\nA staged change does not expire. A confirmed or failed change stays readable for 7 days.\n",
+        "description": "Returns one ad change with its before/after diff. A change is created by sending a supported ad write with `stage: true`.\n\nA staged change does not expire. A confirmed or failed change stays readable for 7 days, a failed create for 30 days. Disconnecting the connection of a staged change deletes it.\n",
         "security": [
           {
             "bearerAuth": []
@@ -180657,7 +180677,7 @@
           "google"
         ],
         "summary": "Confirm a staged ad change",
-        "description": "Applies a staged change and returns what the direct write returns: the response body of the route the change was staged on.\n\nThe caller needs the same access to the object as for the direct write, and the checks of that write run here, including the live ads allowance.\n\n### Changed since staging\n\nBefore writing, the object is read from the ad network again and compared with what it held when the change was staged.\n\nIf it changed in between, nothing is written, the change ends as `failed` and the answer is `409` `change_target_changed` with the current values in `details.current`. Stage the change again from those values.\n\n### Retrying\n\nA change is applied at most once. Confirming a change that is already `confirmed` returns its stored result again. A change that failed answers `409` `change_not_staged`: stage a new one.\n\nA refusal before anything is written leaves the change `staged`, so the confirm can be sent again: `403` `ads_allowance_exceeded`, or on a one-field change a `429` from Zernio's own limits. Any other failed write ends the change as `failed`.\n\n### Creates\n\nA staged create is sent once. The ad network checks at confirm whatever it did not check at staging, and media is fetched here. A create that fails ends as `failed` and is not retried: `error.details` keeps what the create reported about objects it had already made.\n",
+        "description": "Applies a staged change and returns what the direct write returns: the response body of the route the change was staged on.\n\nThe caller needs the same access to the object as for the direct write, and the checks of that write run here, including the live ads allowance.\n\n### Changed since staging\n\nBefore writing, the object is read from the ad network again and compared with what it held when the change was staged.\n\nIf it changed in between, nothing is written and the answer is `409` `change_target_changed` with the current values in `details.current`. The change stays `staged` and reads `stale: true`. Discard it and stage the change again from those values.\n\nAfter a confirm, the other staged changes on the same object are read again, so confirming one of two changes on an object does not refuse the other.\n\n### Retrying\n\nA change is applied at most once. Confirming a change that is already `confirmed` returns its stored result again. A change that failed answers `409` `change_not_staged`: stage a new one.\n\nA refusal before anything is written leaves the change `staged`, so the confirm can be sent again: `403` `ads_allowance_exceeded`, or on a one-field change a `429` from Zernio's own limits. Any other failed write ends the change as `failed`.\n\n### Creates\n\nA staged create is sent once. The ad network checks at confirm whatever it did not check at staging, and media is fetched here. A create that fails ends as `failed` and is not retried: `error.details` keeps what the create reported about objects it had already made.\n",
         "security": [
           {
             "bearerAuth": []

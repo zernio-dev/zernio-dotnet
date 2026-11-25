@@ -1,5 +1,5 @@
 # Zernio.Model.StagedAdChangeError
-Present once `failed`.
+Present once `failed`, and on a staged change marked `stale`.
 
 ## Properties
 
