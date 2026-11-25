@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.830.0
+  version: 1.831.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -56511,10 +56511,10 @@ paths:
       summary: List automations
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
     post:
       description: |
         Creates an automation. Its trigger picks the kind:
@@ -56640,9 +56640,9 @@ paths:
       summary: Create an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/catalog:
     get:
       description: |
@@ -56673,10 +56673,10 @@ paths:
       summary: Get the automations catalog
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/actions:
     get:
       description: |
@@ -56819,10 +56819,10 @@ paths:
       summary: List an automation's checks
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/{automationId}/runs:
     get:
       description: |
@@ -56894,10 +56894,10 @@ paths:
       summary: List an automation's runs
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/{automationId}/runs/{runId}:
     get:
       description: |
@@ -56936,10 +56936,10 @@ paths:
       summary: Get one run of an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/{automationId}/test:
     post:
       description: |
@@ -56989,9 +56989,9 @@ paths:
       summary: Test an automation on a sample event
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/{automationId}/test/sample:
     get:
       description: |
@@ -57023,10 +57023,10 @@ paths:
       summary: Get a sample test body for an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/preview:
     post:
       description: |
@@ -57113,9 +57113,9 @@ paths:
       summary: Delete an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
     get:
       description: An automation installed from a template also carries `template`.
       operationId: getAutomation
@@ -57145,10 +57145,10 @@ paths:
       summary: Get an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
     parameters:
     - explode: false
       in: path
@@ -57215,9 +57215,9 @@ paths:
       summary: Edit an automation
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/{automationId}/activate:
     post:
       description: An ad rule's first check runs right away.
@@ -57250,9 +57250,9 @@ paths:
       summary: Turn an automation on
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/{automationId}/pause:
     post:
       description: Pausing never needs ads access.
@@ -57283,9 +57283,9 @@ paths:
       summary: Turn an automation off
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/{automationId}/take-over:
     post:
       description: |
@@ -57415,10 +57415,10 @@ paths:
       summary: List automation templates
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
     post:
       description: |
         Saves a reusable setup of one or more automations (up to 20) that your team, or anyone you share it with, can install. Start from your own automations, one of Zernio's templates, a shared template, or definitions sent as they are.
@@ -57485,9 +57485,9 @@ paths:
       summary: Create an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/templates/{templateId}:
     delete:
       description: |
@@ -57525,9 +57525,9 @@ paths:
       summary: Delete an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
     get:
       description: |
         Returns one of your team's templates, with its inputs and automations.
@@ -57564,10 +57564,10 @@ paths:
       summary: Get an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
     patch:
       description: |
         Renames a template, turns its share link on or off, or replaces its automations. Send at least one field.
@@ -57617,9 +57617,9 @@ paths:
       summary: Update an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/templates/{templateId}/install:
     post:
       description: |
@@ -57711,9 +57711,9 @@ paths:
       summary: Install an automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/templates/shared/{shareToken}:
     get:
       description: |
@@ -57753,10 +57753,10 @@ paths:
       summary: Get a shared automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/templates/shared/{shareToken}/install:
     post:
       description: |
@@ -57850,13 +57850,15 @@ paths:
       summary: Install a shared automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/templates/zernio/{templateId}:
     get:
       description: |
-        Returns one of Zernio's ready-made ad rule templates in the same shape as your own. Each threshold and budget or bid amount is an input with the template's own value as its default, so an install can change it or leave it.
+        Returns one of Zernio's ready-made templates in the same shape as your own: an ad rule (like `stop_losers`), a comment to DM (`comment-keyword-dm`, `comment-keyword-dm-follow-gate`) or a sequence (`sequence-welcome-series`, `sequence-nurture`).
+
+        In an ad rule, each threshold and budget or bid amount is an input with the template's own value as its default, so an install can change it or leave it. A comment to DM or a sequence asks for a profile and one account of it.
       operationId: getZernioAutomationTemplate
       parameters:
       - description: "The id of one of Zernio's templates, for example `stop_losers`."
@@ -57892,10 +57894,10 @@ paths:
       summary: Get a Zernio automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
-      - ads:read
+      - accounts:read
+      - accounts:write
   /v1/automations/templates/zernio/{templateId}/install:
     post:
       description: |
@@ -57989,9 +57991,9 @@ paths:
       summary: Install a Zernio automation template
       tags:
       - Automations
-      x-resource-group: ads
+      x-resource-group: accounts
       x-oauth-scopes:
-      - ads:write
+      - accounts:write
   /v1/automations/controls:
     get:
       description: |
@@ -145505,14 +145507,14 @@ components:
           example: adAccount
           type: string
         type:
-          description: "What the value is. `ad_account`: `{ accountId, adAccountId\
-            \ }`. `profile`: a profile id. `social_accounts`: an array of social account\
-            \ ids. `notify_destination`: an array of `{ accountId, to?, channelId?\
-            \ }`. `number`, `money` (in the ad account's currency) and `percent`:\
-            \ a number within the bounds below. `choice`: one of `options[].value`."
+          description: |-
+            What the value is. `ad_account`: `{ accountId, adAccountId }`. `profile`: a profile id. `social_account`: one social account id of that profile (a comment to DM or a sequence).
+
+            `social_accounts`: an array of social account ids. `notify_destination`: an array of `{ accountId, to?, channelId? }`. `number`, `money` (in the ad account's currency) and `percent`: a number within the bounds below. `choice`: one of `options[].value`.
           enum:
           - ad_account
           - profile
+          - social_account
           - social_accounts
           - notify_destination
           - number

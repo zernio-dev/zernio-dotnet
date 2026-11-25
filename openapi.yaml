@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.830.0",
+    "version": "1.831.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -54874,6 +54874,7 @@
             "enum": [
               "ad_account",
               "profile",
+              "social_account",
               "social_accounts",
               "notify_destination",
               "number",
@@ -54881,7 +54882,7 @@
               "percent",
               "choice"
             ],
-            "description": "What the value is. `ad_account`: `{ accountId, adAccountId }`. `profile`: a profile id. `social_accounts`: an array of social account ids. `notify_destination`: an array of `{ accountId, to?, channelId? }`. `number`, `money` (in the ad account's currency) and `percent`: a number within the bounds below. `choice`: one of `options[].value`."
+            "description": "What the value is. `ad_account`: `{ accountId, adAccountId }`. `profile`: a profile id. `social_account`: one social account id of that profile (a comment to DM or a sequence).\n\n`social_accounts`: an array of social account ids. `notify_destination`: an array of `{ accountId, to?, channelId? }`. `number`, `money` (in the ad account's currency) and `percent`: a number within the bounds below. `choice`: one of `options[].value`."
           },
           "label": {
             "type": "string",
@@ -176146,10 +176147,10 @@
     },
     "/v1/automations": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "listAutomations",
         "tags": [
@@ -176257,9 +176258,9 @@
         }
       },
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "createAutomation",
         "tags": [
@@ -176454,10 +176455,10 @@
     },
     "/v1/automations/catalog": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getAutomationCatalog",
         "tags": [
@@ -176834,10 +176835,10 @@
     },
     "/v1/automations/{automationId}/checks": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "listAutomationChecks",
         "tags": [
@@ -176922,10 +176923,10 @@
     },
     "/v1/automations/{automationId}/runs": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "listAutomationRuns",
         "tags": [
@@ -177033,10 +177034,10 @@
     },
     "/v1/automations/{automationId}/runs/{runId}": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getAutomationRun",
         "tags": [
@@ -177100,9 +177101,9 @@
     },
     "/v1/automations/{automationId}/test": {
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "testAutomation",
         "tags": [
@@ -177181,10 +177182,10 @@
     },
     "/v1/automations/{automationId}/test/sample": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getAutomationTestSample",
         "tags": [
@@ -177351,10 +177352,10 @@
         }
       ],
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getAutomation",
         "tags": [
@@ -177398,9 +177399,9 @@
         }
       },
       "patch": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "updateAutomation",
         "tags": [
@@ -177563,9 +177564,9 @@
         }
       },
       "delete": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "deleteAutomation",
         "tags": [
@@ -177607,9 +177608,9 @@
     },
     "/v1/automations/{automationId}/activate": {
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "activateAutomation",
         "tags": [
@@ -177668,9 +177669,9 @@
     },
     "/v1/automations/{automationId}/pause": {
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "pauseAutomation",
         "tags": [
@@ -177871,10 +177872,10 @@
     },
     "/v1/automations/templates": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "listAutomationTemplates",
         "tags": [
@@ -177932,9 +177933,9 @@
         }
       },
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "createAutomationTemplate",
         "tags": [
@@ -178060,10 +178061,10 @@
     },
     "/v1/automations/templates/{templateId}": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getAutomationTemplate",
         "tags": [
@@ -178126,9 +178127,9 @@
         }
       },
       "patch": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "updateAutomationTemplate",
         "tags": [
@@ -178230,9 +178231,9 @@
         }
       },
       "delete": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "deleteAutomationTemplate",
         "tags": [
@@ -178298,9 +178299,9 @@
     },
     "/v1/automations/templates/{templateId}/install": {
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "installAutomationTemplate",
         "tags": [
@@ -178464,10 +178465,10 @@
     },
     "/v1/automations/templates/shared/{shareToken}": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getSharedAutomationTemplate",
         "tags": [
@@ -178533,9 +178534,9 @@
     },
     "/v1/automations/templates/shared/{shareToken}/install": {
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "installSharedAutomationTemplate",
         "tags": [
@@ -178700,17 +178701,17 @@
     },
     "/v1/automations/templates/zernio/{templateId}": {
       "get": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write",
-          "ads:read"
+          "accounts:read",
+          "accounts:write"
         ],
         "operationId": "getZernioAutomationTemplate",
         "tags": [
           "Automations"
         ],
         "summary": "Get a Zernio automation template",
-        "description": "Returns one of Zernio's ready-made ad rule templates in the same shape as your own. Each threshold and budget or bid amount is an input with the template's own value as its default, so an install can change it or leave it.\n",
+        "description": "Returns one of Zernio's ready-made templates in the same shape as your own: an ad rule (like `stop_losers`), a comment to DM (`comment-keyword-dm`, `comment-keyword-dm-follow-gate`) or a sequence (`sequence-welcome-series`, `sequence-nurture`).\n\nIn an ad rule, each threshold and budget or bid amount is an input with the template's own value as its default, so an install can change it or leave it. A comment to DM or a sequence asks for a profile and one account of it.\n",
         "security": [
           {
             "bearerAuth": []
@@ -178770,9 +178771,9 @@
     },
     "/v1/automations/templates/zernio/{templateId}/install": {
       "post": {
-        "x-resource-group": "ads",
+        "x-resource-group": "accounts",
         "x-oauth-scopes": [
-          "ads:write"
+          "accounts:write"
         ],
         "operationId": "installZernioAutomationTemplate",
         "tags": [
