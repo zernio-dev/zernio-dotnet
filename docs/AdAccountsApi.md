@@ -1377,7 +1377,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad ID.
-            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing.
+            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
             var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date of the comment lookup window. Defaults to 30 days before until. (optional) 
             var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date of the comment lookup window. Defaults to today in UTC. (optional) 
 
@@ -1423,7 +1423,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Internal Zernio ad ID or indexed platform ad ID. |  |
-| **commentId** | **string** | TikTok comment ID from the ad comment listing. |  |
+| **commentId** | **string** | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. |  |
 | **since** | **DateOnly?** | Start date of the comment lookup window. Defaults to 30 days before until. | [optional]  |
 | **until** | **DateOnly?** | End date of the comment lookup window. Defaults to today in UTC. | [optional]  |
 
@@ -3243,7 +3243,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad ID.
-            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing.
+            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
             var hideAdCommentRequest = new HideAdCommentRequest(); // HideAdCommentRequest | 
             var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date of the comment lookup window. Defaults to 30 days before until. (optional) 
             var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date of the comment lookup window. Defaults to today in UTC. (optional) 
@@ -3290,7 +3290,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Internal Zernio ad ID or indexed platform ad ID. |  |
-| **commentId** | **string** | TikTok comment ID from the ad comment listing. |  |
+| **commentId** | **string** | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. |  |
 | **hideAdCommentRequest** | [**HideAdCommentRequest**](HideAdCommentRequest.md) |  |  |
 | **since** | **DateOnly?** | Start date of the comment lookup window. Defaults to 30 days before until. | [optional]  |
 | **until** | **DateOnly?** | End date of the comment lookup window. Defaults to today in UTC. | [optional]  |
@@ -6625,7 +6625,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Internal Zernio ad ID or indexed platform ad ID.
-            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing.
+            var commentId = "commentId_example";  // string | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use.
             var replyToAdCommentRequest = new ReplyToAdCommentRequest(); // ReplyToAdCommentRequest | 
             var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date of the comment lookup window. Defaults to 30 days before until. (optional) 
             var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End date of the comment lookup window. Defaults to today in UTC. (optional) 
@@ -6672,7 +6672,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Internal Zernio ad ID or indexed platform ad ID. |  |
-| **commentId** | **string** | TikTok comment ID from the ad comment listing. |  |
+| **commentId** | **string** | TikTok comment ID from the ad comment listing. A Meta comment ID (post_comment) answers 501 with the inbox comment endpoints to use. |  |
 | **replyToAdCommentRequest** | [**ReplyToAdCommentRequest**](ReplyToAdCommentRequest.md) |  |  |
 | **since** | **DateOnly?** | Start date of the comment lookup window. Defaults to 30 days before until. | [optional]  |
 | **until** | **DateOnly?** | End date of the comment lookup window. Defaults to today in UTC. | [optional]  |
