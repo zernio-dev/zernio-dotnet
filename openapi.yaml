@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.837.0",
+    "version": "1.837.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -25205,7 +25205,7 @@
                 "required": [
                   "id"
                 ],
-                "description": "**On this event the sender is your own business, not the person you\nare talking to.** `id` is the Zernio account id and `name`,\n`username` and `picture` are that connected account's own profile.\n\nDo not read these to name or update a contact: doing so on an echo\nrelabels the customer's record with your business name. The other\nparty is `conversation.participantId` / `participantName` /\n`participantUsername`, which are populated in both directions.\n",
+                "description": "**On this event the sender is your own business, not the person you\nare talking to.** `id` is the Zernio account id and `name`,\n`username` and `picture` are that connected account's own profile.\n\nDo not read these to name or update a contact: doing so on an echo\nrelabels the customer's record with your business name. The other\nparty is `conversation.participantId` / `participantName` /\n`participantUsername`.\n\n`participantId` is always set. On a thread the business started,\n`participantUsername` and `participantName` can be empty on the\nfirst events; Zernio fills them shortly after when Meta returns the\ncontact (`participantName` then holds the @username until the\ncontact writes and their profile is read).\n",
                 "properties": {
                   "id": {
                     "type": "string",
