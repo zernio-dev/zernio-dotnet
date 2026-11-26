@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Subject** | [**AutomationRunSubject**](AutomationRunSubject.md) |  | 
 **StartedAt** | **DateTime** |  | 
 **EndedAt** | **DateTime?** |  | 
-**ExitReason** | **string** | Why an exited or failed run stopped, for example &#x60;replied&#x60;, &#x60;unsubscribed&#x60; or &#x60;skipped&#x60;. | 
+**ExitReason** | **string** | Why an exited or failed run stopped, for example &#x60;handoff&#x60; (a flow handed the conversation to a person), &#x60;wait_expired&#x60;, &#x60;superseded&#x60;, &#x60;replied&#x60;, &#x60;unsubscribed&#x60; or &#x60;skipped&#x60;. | 
 **Error** | **string** |  | 
 **Steps** | [**AutomationRunSteps**](AutomationRunSteps.md) |  | 
 
