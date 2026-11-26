@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **DateTime** |  | 
 **UpdatedAt** | **DateTime** |  | 
 **Template** | [**AutomationRecordTemplate**](AutomationRecordTemplate.md) |  | [optional] 
+**Graph** | [**AutomationGraph**](AutomationGraph.md) |  | [optional] 
 **Platform** | **string** | The account&#39;s platform. On &#x60;whatsapp&#x60; every step sends a template. | 
 **Enrollments** | [**AutomationOneOf3AllOfEnrollments**](AutomationOneOf3AllOfEnrollments.md) |  | 
 
