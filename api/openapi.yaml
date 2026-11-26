@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.843.0
+  version: 1.844.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6858,6 +6858,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/ledger/entries:
     get:
       description: |
@@ -6958,6 +6959,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/balance:
     get:
       description: |
@@ -6990,6 +6992,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/balance/auto-recharge:
     get:
       description: |
@@ -7025,6 +7028,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
     patch:
       description: |
         Changes the auto top-up rule. Omitted fields keep their value.
@@ -7118,6 +7122,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
     post:
       description: |
         Charges the billing owner's saved card (the default one, or `paymentMethodId`) `amountCents` plus tax, while the payer is present, and credits your balance `amountCents`. There is no card fee.
@@ -7268,6 +7273,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/balance/top-ups/{topupId}/invoice:
     get:
       description: |
@@ -7309,6 +7315,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/balance/top-ups/{topupId}/statement:
     get:
       deprecated: true
@@ -7353,6 +7360,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/balance/top-ups/{topupId}/confirm:
     post:
       description: |
@@ -7462,6 +7470,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/payees/{payeeId}/onboarding-link:
     post:
       description: |
@@ -7549,6 +7558,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
     post:
       deprecated: true
       description: |
@@ -7614,6 +7624,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /public/creator-campaigns/recover-link:
     post:
       description: |
@@ -8385,6 +8396,7 @@ paths:
       x-resource-group: money
       x-oauth-scopes:
       - money:write
+      - money:read
   /v1/payout-batches/{batchId}/confirm:
     post:
       description: |
@@ -29660,6 +29672,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -29762,6 +29775,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -29938,6 +29952,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -29980,6 +29995,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -30080,6 +30096,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - hubspot
       - salesforce
@@ -30497,6 +30514,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/discord/dms:
     post:
       description: |
@@ -30883,6 +30901,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/discord/guilds/{guildId}/members/search:
     get:
       description: |
@@ -30947,6 +30966,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/discord/guilds/{guildId}/members/{userId}:
     get:
       description: |
@@ -30999,6 +31019,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}:
     delete:
       description: |
@@ -32196,6 +32217,7 @@ paths:
       x-resource-group: webhooks
       x-oauth-scopes:
       - automations:write
+      - automations:read
     post:
       description: |
         Create a new webhook configuration. Maximum 50 webhooks per user.
@@ -32509,6 +32531,7 @@ paths:
       x-resource-group: webhooks
       x-oauth-scopes:
       - automations:write
+      - automations:read
   /v1/webhooks/logs/redeliver:
     post:
       description: |
@@ -34783,6 +34806,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
   /v1/calendar/events:
     get:
       description: |
@@ -34932,6 +34956,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
     post:
       description: |
         Creates a calendar event. Conferencing and recurrence behave differently on Microsoft and Google accounts.
@@ -35108,6 +35133,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
     patch:
       operationId: updateCalendarEvent
       parameters:
@@ -35242,6 +35268,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
   /v1/calendar/events/{eventId}/rsvp:
     post:
       description: "Accepts, declines or tentatively accepts on behalf of the mailbox\
@@ -35322,6 +35349,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
   /v1/calendar/availability:
     post:
       description: Slots of `durationMinutes` every `intervalMinutes` between `from`
@@ -35357,6 +35385,7 @@ paths:
       x-resource-group: calendar
       x-oauth-scopes:
       - calendar:write
+      - calendar:read
   /v1/files:
     get:
       description: |
@@ -35425,6 +35454,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
     post:
       description: "Either `multipart/form-data` with the file under `file` plus `accountId`,\
         \ `name` (defaults to the file name) and `parentId`, or JSON with a public\
@@ -35629,6 +35659,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
     patch:
       description: '`parentId` moves the item into another folder; `name` renames
         it. At least one is required.'
@@ -35709,6 +35740,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
   /v1/files/{fileId}/share-link:
     get:
       description: "Grants read access to anyone holding the link (Drive `anyone`\
@@ -35747,6 +35779,7 @@ paths:
       x-resource-group: files
       x-oauth-scopes:
       - files:write
+      - files:read
   /v1/connect/microsoft/admin-consent:
     get:
       description: |
@@ -42157,6 +42190,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/whatsapp/calls:
     get:
       description: |
@@ -44831,6 +44865,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
     post:
       description: |
         Marks a recipient as opted out on one of your SMS numbers. Use it for
@@ -46985,6 +47020,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/whatsapp/pricing-analytics:
     get:
       description: |
@@ -47179,6 +47215,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/whatsapp/block-users:
     delete:
       description: |
@@ -47264,6 +47301,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
     post:
       description: |
         Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.
@@ -52187,6 +52225,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
     post:
       description: "Create a new contact. Optionally create a platform channel in\
         \ the same request by providing accountId, platform, and platformIdentifier."
@@ -52277,6 +52316,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/contacts/autocomplete:
     get:
       description: |-
@@ -52355,6 +52395,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/contacts/{contactId}:
     delete:
       description: Permanently deletes a contact and all associated channels.
@@ -52413,6 +52454,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
     patch:
       description: Update one or more fields on a contact. Only provided fields are
         changed.
@@ -52482,6 +52524,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
   /v1/contacts/bulk:
     post:
       description: |
@@ -75118,6 +75161,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - meta
       - google
@@ -75166,6 +75210,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - meta
   /v1/ads/leads/{id}:
@@ -75647,6 +75692,7 @@ paths:
       x-oauth-scopes:
       - automations:write
       - contacts:read
+      - automations:read
       x-platforms:
       - meta
   /v1/ads/lead-forms/{formId}/test-leads:
@@ -88651,6 +88697,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/accounts/{accountId}/products/{productId}:
@@ -88714,6 +88761,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     patch:
@@ -88849,6 +88897,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -88986,6 +89035,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -89042,6 +89092,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -89421,6 +89472,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/draft-orders/{draftOrderId}/invoice:
@@ -89563,6 +89615,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/customers/{customerId}:
@@ -89619,6 +89672,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/products:
@@ -89712,6 +89766,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -89848,6 +89903,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -90023,6 +90079,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -90177,6 +90234,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -90874,6 +90932,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -91104,6 +91163,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     put:
@@ -91386,6 +91446,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -91542,6 +91603,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -91645,6 +91707,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -91701,6 +91764,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -91805,6 +91869,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/discounts:
@@ -91881,6 +91946,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -92041,6 +92107,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -92280,6 +92347,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     post:
@@ -92482,6 +92550,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     post:
@@ -92636,6 +92705,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     put:
@@ -92737,6 +92807,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/metaobjects:
@@ -92810,6 +92881,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     post:
@@ -92965,6 +93037,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
     patch:
@@ -93066,6 +93139,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/price-lists:
@@ -93114,6 +93188,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
   /v1/commerce/price-lists/{priceListId}/prices:
@@ -93422,6 +93497,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -93547,6 +93623,7 @@ paths:
       x-resource-group: commerce
       x-oauth-scopes:
       - commerce:write
+      - commerce:read
       x-platforms:
       - shopify
       - woocommerce
@@ -94587,6 +94664,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
     post:
       description: |
         Creates a campaign in `draft`. Creators are paid for verified performance of the posts they
@@ -94668,6 +94746,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
     patch:
       description: |
         Updates any subset of the campaign's settings. `economics` (and with it the campaign type)
@@ -94963,6 +95042,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
     post:
       description: |
         Invites one creator and returns their personal invite URL.
@@ -95067,6 +95147,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/participants/{participantId}/approve:
     post:
       description: |
@@ -95550,6 +95631,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
     parameters:
     - description: Campaign ID.
       explode: false
@@ -95907,6 +95989,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/submissions/{submissionId}:
     get:
       description: |
@@ -95952,6 +96035,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/approve:
     post:
       description: |
@@ -96223,6 +96307,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/drafts/{draftId}:
     get:
       description: |
@@ -96268,6 +96353,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/drafts/{draftId}/approve:
     post:
       description: |
@@ -96515,6 +96601,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/samples/{sampleId}/approve:
     post:
       description: |
@@ -96734,6 +96821,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/adjustments:
     post:
       description: |
@@ -96876,6 +96964,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/orders:
     get:
       description: |
@@ -96956,6 +97045,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/report:
     get:
       description: |
@@ -96994,6 +97084,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
   /v1/creator-campaigns/{campaignId}/ads/launch:
     post:
       description: |
@@ -97138,6 +97229,7 @@ paths:
       x-resource-group: creator_campaigns
       x-oauth-scopes:
       - campaigns:write
+      - campaigns:read
 components:
   headers:
     BackfillRetryAfter:

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.843.0",
+    "version": "1.844.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -81665,7 +81665,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getLedgerBalances",
         "tags": [
@@ -81744,7 +81745,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "listLedgerEntries",
         "tags": [
@@ -81941,7 +81943,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getBalance",
         "tags": [
@@ -82119,7 +82122,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getAutoRecharge",
         "tags": [
@@ -82397,7 +82401,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "listTopups",
         "tags": [
@@ -82555,7 +82560,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getTopupReceipt",
         "tags": [
@@ -82673,7 +82679,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getTopupInvoice",
         "tags": [
@@ -82771,7 +82778,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getTopupStatement",
         "tags": [
@@ -82976,7 +82984,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "listPayees",
         "tags": [
@@ -83160,7 +83169,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "listTransfers",
         "tags": [
@@ -83223,7 +83233,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getTransfer",
         "tags": [
@@ -84447,7 +84458,8 @@
       "get": {
         "x-resource-group": "money",
         "x-oauth-scopes": [
-          "money:write"
+          "money:write",
+          "money:read"
         ],
         "operationId": "getPayoutBatch",
         "tags": [
@@ -120904,7 +120916,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "searchCrmContacts",
         "tags": [
@@ -121143,7 +121156,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getCrmContact",
         "tags": [
@@ -121433,7 +121447,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listCrmDeals",
         "tags": [
@@ -121540,7 +121555,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getCrmDeal",
         "tags": [
@@ -121736,7 +121752,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listCrmOwners",
         "tags": [
@@ -122575,7 +122592,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listSlackMembers",
         "tags": [
@@ -123267,7 +123285,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listDiscordGuildMembers",
         "tags": [
@@ -123368,7 +123387,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "searchDiscordGuildMembers",
         "tags": [
@@ -123452,7 +123472,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getDiscordGuildMember",
         "tags": [
@@ -125356,7 +125377,8 @@
       "get": {
         "x-resource-group": "webhooks",
         "x-oauth-scopes": [
-          "automations:write"
+          "automations:write",
+          "automations:read"
         ],
         "operationId": "getWebhookSettings",
         "tags": [
@@ -126162,7 +126184,8 @@
       "get": {
         "x-resource-group": "webhooks",
         "x-oauth-scopes": [
-          "automations:write"
+          "automations:write",
+          "automations:read"
         ],
         "operationId": "getWebhookLogs",
         "tags": [
@@ -130179,7 +130202,8 @@
       "get": {
         "x-resource-group": "calendar",
         "x-oauth-scopes": [
-          "calendar:write"
+          "calendar:write",
+          "calendar:read"
         ],
         "operationId": "listCalendars",
         "tags": [
@@ -130232,7 +130256,8 @@
       "get": {
         "x-resource-group": "calendar",
         "x-oauth-scopes": [
-          "calendar:write"
+          "calendar:write",
+          "calendar:read"
         ],
         "operationId": "listCalendarEvents",
         "tags": [
@@ -130501,7 +130526,8 @@
       "get": {
         "x-resource-group": "calendar",
         "x-oauth-scopes": [
-          "calendar:write"
+          "calendar:write",
+          "calendar:read"
         ],
         "operationId": "getCalendarEvent",
         "tags": [
@@ -130748,7 +130774,8 @@
       "get": {
         "x-resource-group": "calendar",
         "x-oauth-scopes": [
-          "calendar:write"
+          "calendar:write",
+          "calendar:read"
         ],
         "operationId": "listCalendarEventInstances",
         "tags": [
@@ -130981,7 +131008,8 @@
       "post": {
         "x-resource-group": "calendar",
         "x-oauth-scopes": [
-          "calendar:write"
+          "calendar:write",
+          "calendar:read"
         ],
         "operationId": "calendarFreeBusy",
         "tags": [
@@ -131163,7 +131191,8 @@
       "post": {
         "x-resource-group": "calendar",
         "x-oauth-scopes": [
-          "calendar:write"
+          "calendar:write",
+          "calendar:read"
         ],
         "operationId": "calendarAvailability",
         "tags": [
@@ -131323,7 +131352,8 @@
       "get": {
         "x-resource-group": "files",
         "x-oauth-scopes": [
-          "files:write"
+          "files:write",
+          "files:read"
         ],
         "operationId": "listFiles",
         "tags": [
@@ -131718,7 +131748,8 @@
       "get": {
         "x-resource-group": "files",
         "x-oauth-scopes": [
-          "files:write"
+          "files:write",
+          "files:read"
         ],
         "operationId": "getFile",
         "tags": [
@@ -131928,7 +131959,8 @@
       "get": {
         "x-resource-group": "files",
         "x-oauth-scopes": [
-          "files:write"
+          "files:write",
+          "files:read"
         ],
         "operationId": "downloadFile",
         "tags": [
@@ -131985,7 +132017,8 @@
       "get": {
         "x-resource-group": "files",
         "x-oauth-scopes": [
-          "files:write"
+          "files:write",
+          "files:read"
         ],
         "operationId": "getFileShareLink",
         "tags": [
@@ -145122,7 +145155,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getWhatsAppCallPermissions",
         "tags": [
@@ -149957,7 +149991,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listSmsOptOuts",
         "tags": [
@@ -154881,7 +154916,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getWhatsAppNumberInfo",
         "tags": [
@@ -155276,7 +155312,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getWhatsAppBlockStatus",
         "tags": [
@@ -155338,7 +155375,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getWhatsAppBlockedUsers",
         "tags": [
@@ -166589,7 +166627,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listContacts",
         "summary": "List contacts",
@@ -166998,7 +167037,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listContactGroups",
         "summary": "List contact groups",
@@ -167113,7 +167153,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "autocompleteContacts",
         "summary": "Search people",
@@ -167305,7 +167346,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getContact",
         "summary": "Get contact",
@@ -167634,7 +167676,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "getContactChannels",
         "summary": "List channels for a contact",
@@ -210667,7 +210710,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listLeads",
         "tags": [
@@ -210864,7 +210908,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "countLeads",
         "tags": [
@@ -212015,7 +212060,8 @@
         "x-resource-group": "contacts",
         "x-oauth-scopes": [
           "automations:write",
-          "contacts:read"
+          "contacts:read",
+          "automations:read"
         ],
         "operationId": "listFormLeads",
         "tags": [
@@ -234017,7 +234063,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listProducts",
         "deprecated": true,
@@ -234146,7 +234193,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getProduct",
         "deprecated": true,
@@ -234420,7 +234468,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceStore",
         "tags": [
@@ -234488,7 +234537,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceOrders",
         "tags": [
@@ -234640,7 +234690,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceOrder",
         "tags": [
@@ -235542,7 +235593,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceDraftOrder",
         "tags": [
@@ -235717,7 +235769,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceCustomers",
         "tags": [
@@ -235837,7 +235890,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceCustomer",
         "tags": [
@@ -235913,7 +235967,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceProducts",
         "tags": [
@@ -236381,7 +236436,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceProduct",
         "tags": [
@@ -236696,7 +236752,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceCollections",
         "tags": [
@@ -236934,7 +236991,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceCollection",
         "tags": [
@@ -238144,7 +238202,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceProductMetafields",
         "tags": [
@@ -238516,7 +238575,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceCollectionMetafields",
         "tags": [
@@ -239107,7 +239167,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommercePages",
         "tags": [
@@ -239300,7 +239361,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommercePage",
         "tags": [
@@ -239552,7 +239614,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceLocations",
         "tags": [
@@ -239623,7 +239686,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceInventory",
         "tags": [
@@ -239824,7 +239888,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceChannels",
         "tags": [
@@ -239894,7 +239959,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceDiscounts",
         "tags": [
@@ -240173,7 +240239,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceDiscount",
         "tags": [
@@ -240655,7 +240722,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceRedirects",
         "tags": [
@@ -241010,7 +241078,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceMenus",
         "tags": [
@@ -241168,7 +241237,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceMenu",
         "tags": [
@@ -241419,7 +241489,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceMetaobjectDefinitions",
         "tags": [
@@ -241489,7 +241560,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceMetaobjects",
         "tags": [
@@ -241693,7 +241765,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceMetaobject",
         "tags": [
@@ -241953,7 +242026,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceMarkets",
         "tags": [
@@ -242023,7 +242097,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommercePriceLists",
         "tags": [
@@ -242682,7 +242757,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "listCommerceCatalogSyncs",
         "tags": [
@@ -242827,7 +242903,8 @@
       "get": {
         "x-resource-group": "commerce",
         "x-oauth-scopes": [
-          "commerce:write"
+          "commerce:write",
+          "commerce:read"
         ],
         "operationId": "getCommerceCatalogSync",
         "tags": [
@@ -244501,7 +244578,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCreatorCampaigns",
         "tags": [
@@ -244611,7 +244689,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "getCreatorCampaign",
         "tags": [
@@ -245131,7 +245210,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignParticipants",
         "tags": [
@@ -245234,7 +245314,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "getCampaignParticipant",
         "tags": [
@@ -246113,7 +246194,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignPayoutBatches",
         "tags": [
@@ -246381,7 +246463,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignSubmissions",
         "tags": [
@@ -246585,7 +246668,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "getCampaignSubmission",
         "tags": [
@@ -246924,7 +247008,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignDrafts",
         "tags": [
@@ -247034,7 +247119,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "getCampaignDraft",
         "tags": [
@@ -247416,7 +247502,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignSamples",
         "tags": [
@@ -247817,7 +247904,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignPayables",
         "tags": [
@@ -247982,7 +248070,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignLedger",
         "tags": [
@@ -248115,7 +248204,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "listCampaignOrders",
         "tags": [
@@ -248381,7 +248471,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "getCampaignReport",
         "tags": [
@@ -248666,7 +248757,8 @@
       "get": {
         "x-resource-group": "creator_campaigns",
         "x-oauth-scopes": [
-          "campaigns:write"
+          "campaigns:write",
+          "campaigns:read"
         ],
         "operationId": "getCampaignAdResults",
         "tags": [
