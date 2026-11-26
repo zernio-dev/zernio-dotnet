@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.838.0
+  version: 1.839.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -57051,6 +57051,8 @@ paths:
         Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.
 
         Event and scheduled automations cannot be previewed yet (400, `not_supported`).
+
+        The draft can instead be sent as `name` and an automation `graph` (`AutomationGraph`), previewed exactly as its own shape would be. A comment to DM or flow graph is refused (`not_supported`).
       operationId: previewAutomationDraft
       parameters:
       - description: "How many subjects to list, matches first. `evaluated` and `matched`\
@@ -57069,7 +57071,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AutomationDefinition"
+              $ref: "#/components/schemas/createAutomation_request"
         required: true
       responses:
         "200":
@@ -58380,6 +58382,8 @@ paths:
         Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. `notes` says what the replay could not know.
 
         Only ad automations can be backtested, on at most 5,000 ads.
+
+        The draft can instead be sent as `name` and an automation `graph` (`AutomationGraph`), replayed exactly as its own shape would be. A comment to DM or flow graph is refused (`not_supported`).
       operationId: backtestAutomationDraft
       parameters:
       - $ref: "#/components/parameters/AutomationBacktestDays"
@@ -58387,7 +58391,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AutomationDefinition"
+              $ref: "#/components/schemas/createAutomation_request"
         required: true
       responses:
         "200":

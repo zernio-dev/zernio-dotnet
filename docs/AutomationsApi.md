@@ -356,11 +356,11 @@ catch (ApiException e)
 
 <a id="backtestautomationdraft"></a>
 # **BacktestAutomationDraft**
-> AutomationBacktest BacktestAutomationDraft (AutomationDefinition automationDefinition, int? days = null)
+> AutomationBacktest BacktestAutomationDraft (CreateAutomationRequest createAutomationRequest, int? days = null)
 
 Backtest an unsaved automation
 
-Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.  Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. `notes` says what the replay could not know.  Only ad automations can be backtested, on at most 5,000 ads. 
+Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.  Each day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. `notes` says what the replay could not know.  Only ad automations can be backtested, on at most 5,000 ads.  The draft can instead be sent as `name` and an automation `graph` (`AutomationGraph`), replayed exactly as its own shape would be. A comment to DM or flow graph is refused (`not_supported`). 
 
 ### Example
 ```csharp
@@ -386,13 +386,13 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
-            var automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+            var createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
             var days = 30;  // int? | How many whole days before today to replay. Today is not replayed. (optional)  (default to 30)
 
             try
             {
                 // Backtest an unsaved automation
-                AutomationBacktest result = apiInstance.BacktestAutomationDraft(automationDefinition, days);
+                AutomationBacktest result = apiInstance.BacktestAutomationDraft(createAutomationRequest, days);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -413,7 +413,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Backtest an unsaved automation
-    ApiResponse<AutomationBacktest> response = apiInstance.BacktestAutomationDraftWithHttpInfo(automationDefinition, days);
+    ApiResponse<AutomationBacktest> response = apiInstance.BacktestAutomationDraftWithHttpInfo(createAutomationRequest, days);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -430,7 +430,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md) |  |  |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md) |  |  |
 | **days** | **int?** | How many whole days before today to replay. Today is not replayed. | [optional] [default to 30] |
 
 ### Return type
@@ -2945,11 +2945,11 @@ catch (ApiException e)
 
 <a id="previewautomationdraft"></a>
 # **PreviewAutomationDraft**
-> AutomationPreview PreviewAutomationDraft (AutomationDefinition automationDefinition, int? limit = null)
+> AutomationPreview PreviewAutomationDraft (CreateAutomationRequest createAutomationRequest, int? limit = null)
 
 Preview an unsaved automation
 
-Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.  Event and scheduled automations cannot be previewed yet (400, `not_supported`). 
+Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.  Event and scheduled automations cannot be previewed yet (400, `not_supported`).  The draft can instead be sent as `name` and an automation `graph` (`AutomationGraph`), previewed exactly as its own shape would be. A comment to DM or flow graph is refused (`not_supported`). 
 
 ### Example
 ```csharp
@@ -2975,13 +2975,13 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AutomationsApi(httpClient, config, httpClientHandler);
-            var automationDefinition = new AutomationDefinition(); // AutomationDefinition | 
+            var createAutomationRequest = new CreateAutomationRequest(); // CreateAutomationRequest | 
             var limit = 100;  // int? | How many subjects to list, matches first. `evaluated` and `matched` always count them all. (optional)  (default to 100)
 
             try
             {
                 // Preview an unsaved automation
-                AutomationPreview result = apiInstance.PreviewAutomationDraft(automationDefinition, limit);
+                AutomationPreview result = apiInstance.PreviewAutomationDraft(createAutomationRequest, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3002,7 +3002,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Preview an unsaved automation
-    ApiResponse<AutomationPreview> response = apiInstance.PreviewAutomationDraftWithHttpInfo(automationDefinition, limit);
+    ApiResponse<AutomationPreview> response = apiInstance.PreviewAutomationDraftWithHttpInfo(createAutomationRequest, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3019,7 +3019,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **automationDefinition** | [**AutomationDefinition**](AutomationDefinition.md) |  |  |
+| **createAutomationRequest** | [**CreateAutomationRequest**](CreateAutomationRequest.md) |  |  |
 | **limit** | **int?** | How many subjects to list, matches first. &#x60;evaluated&#x60; and &#x60;matched&#x60; always count them all. | [optional] [default to 100] |
 
 ### Return type

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.838.0",
+    "version": "1.839.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -177621,7 +177621,7 @@
           "Automations"
         ],
         "summary": "Preview an unsaved automation",
-        "description": "Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.\n\nEvent and scheduled automations cannot be previewed yet (400, `not_supported`).\n",
+        "description": "Shows what an ad rule would do if it ran now, without saving it or changing anything: every object it checks, each condition with its actual value, and the steps a match would run. It refuses what saving would refuse.\n\nEvent and scheduled automations cannot be previewed yet (400, `not_supported`).\n\nThe draft can instead be sent as `name` and an automation `graph` (`AutomationGraph`), previewed exactly as its own shape would be. A comment to DM or flow graph is refused (`not_supported`).\n",
         "security": [
           {
             "bearerAuth": []
@@ -177645,7 +177645,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AutomationDefinition"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AutomationDefinition"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GraphAutomationDefinition"
+                  }
+                ]
               }
             }
           }
@@ -179877,7 +179884,7 @@
           "Automations"
         ],
         "summary": "Backtest an unsaved automation",
-        "description": "Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.\n\nEach day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. `notes` says what the replay could not know.\n\nOnly ad automations can be backtested, on at most 5,000 ads.\n",
+        "description": "Replays an automation over past days on stored daily metrics, without saving it or changing anything. It refuses what saving would refuse.\n\nEach day lists what it would have done. Its own changes carry into later days, but the metrics stay what really happened. `notes` says what the replay could not know.\n\nOnly ad automations can be backtested, on at most 5,000 ads.\n\nThe draft can instead be sent as `name` and an automation `graph` (`AutomationGraph`), replayed exactly as its own shape would be. A comment to DM or flow graph is refused (`not_supported`).\n",
         "security": [
           {
             "bearerAuth": []
@@ -179893,7 +179900,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AutomationDefinition"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AutomationDefinition"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GraphAutomationDefinition"
+                  }
+                ]
               }
             }
           }
