@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.840.0",
+    "version": "1.841.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -183773,6 +183773,10 @@
                       "snapchat"
                     ]
                   },
+                  "accountId": {
+                    "type": "string",
+                    "description": "A Zernio Meta Ads or Facebook connection id (also accepted in the query). Changes the status of a campaign created in Ads Manager that Zernio has not synced, by numeric Meta id. Ignored when Zernio has the campaign. It echoes the requested status; `stage: true` answers 400."
+                  },
                   "stage": {
                     "type": "boolean",
                     "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
@@ -183860,7 +183864,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, campaign spans multiple accounts, or the platform refused the write (`platform_api_error`, see Retrying above)"
+            "description": "Invalid input (including an invalid `accountId`, or `stage: true` with `accountId` on a campaign Zernio has not synced), campaign spans multiple accounts, or the platform refused the write (`platform_api_error`, see Retrying above)"
           },
           "401": {
             "x-summary": "The API key is invalid or the platform rejected the connection token: send a valid key or reconnect the account, then retry.",
@@ -188346,6 +188350,10 @@
                       "snapchat"
                     ]
                   },
+                  "accountId": {
+                    "type": "string",
+                    "description": "A Zernio Meta Ads or Facebook connection id (also accepted in the query). Changes the status of an ad set created in Ads Manager that Zernio has not synced, by numeric Meta id. Ignored when Zernio has the ad set. It echoes the requested status; `stage: true` answers 400."
+                  },
                   "stage": {
                     "type": "boolean",
                     "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
@@ -188440,7 +188448,7 @@
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Invalid input, including an invalid `accountId` or `stage: true` with `accountId` on an ad set Zernio has not synced"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -190186,6 +190194,10 @@
                       "paused"
                     ]
                   },
+                  "accountId": {
+                    "type": "string",
+                    "description": "A Zernio Meta Ads or Facebook connection id (also accepted in the query). Changes the status of an ad created in Ads Manager that Zernio has not synced, by numeric Meta id. Ignored when Zernio has the ad. It echoes the requested status; `stage: true` answers 400."
+                  },
                   "stage": {
                     "type": "boolean",
                     "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
@@ -190250,7 +190262,7 @@
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Invalid input, including an invalid `accountId` or `stage: true` with `accountId` on an ad Zernio has not synced"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"

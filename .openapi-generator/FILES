@@ -3626,6 +3626,7 @@ docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetRequestRegionalRegulationIdentitiesValue.md
 docs/UpdateAdSetRequestSmartTargeting.md
 docs/UpdateAdSetStatus200Response.md
+docs/UpdateAdSetStatusRequest.md
 docs/UpdateAdStatus200Response.md
 docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTags200Response.md
@@ -7941,6 +7942,7 @@ src/Zernio.Test/Model/UpdateAdSetRequestRegionalRegulationIdentitiesValueTests.c
 src/Zernio.Test/Model/UpdateAdSetRequestSmartTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdSetStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTags200ResponseTests.cs
@@ -12259,6 +12261,7 @@ src/Zernio/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.cs
 src/Zernio/Model/UpdateAdSetRequestRegionalRegulationIdentitiesValue.cs
 src/Zernio/Model/UpdateAdSetRequestSmartTargeting.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
+src/Zernio/Model/UpdateAdSetStatusRequest.cs
 src/Zernio/Model/UpdateAdStatus200Response.cs
 src/Zernio/Model/UpdateAdStatusRequest.cs
 src/Zernio/Model/UpdateAdTrackingTags200Response.cs
