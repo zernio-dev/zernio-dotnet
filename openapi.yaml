@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.847.0",
+    "version": "1.848.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -55254,7 +55254,7 @@
             "description": "A `POST /v1/automations` body without `status`, in which every value tied to one account is an input reference such as `{ \"$input\": \"adAccount\" }`. Campaign ids, id filters, start and end dates and approval steps are not kept."
           },
           "graph": {
-            "description": "The same automation as the graph the editor opens and saves, input references kept in place. Read only: always present in responses, null only for a definition whose kind cannot be told.",
+            "description": "The same automation as the graph the editor opens and saves, input references kept in place. Read only: always present in responses, null only for an automation that cannot be read as a graph.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/AutomationGraph"
