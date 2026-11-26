@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.834.0",
+    "version": "1.834.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -82547,7 +82547,7 @@
           "Treasury"
         ],
         "summary": "Create a payee onboarding link",
-        "description": "Returns a Stripe-hosted link where the payee completes identity and bank details so they can receive payouts.",
+        "description": "Returns a Stripe-hosted link where the payee completes identity and bank details so they can receive payouts.\n\nOnly for a payee that has not submitted their details yet: after that, only the payee changes them, from their own payouts page.\n\nNeeds an owner, admin or billing admin, signed in or through a full-access key they created.\n",
         "parameters": [
           {
             "name": "payeeId",
@@ -82586,10 +82586,20 @@
             "$ref": "#/components/responses/PaymentRequired"
           },
           "403": {
-            "$ref": "#/components/responses/ResourceGroupForbidden"
+            "$ref": "#/components/responses/MoneyForbidden"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "The payee has already submitted their payout details (code `invalid_resource_state`). Only the payee can change them.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       }
