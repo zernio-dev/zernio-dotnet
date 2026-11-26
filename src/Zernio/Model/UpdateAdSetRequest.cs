@@ -148,7 +148,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdSetRequest" /> class.
         /// </summary>
-        /// <param name="stage">Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is &#x60;202&#x60; with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with &#x60;validateOnly&#x60; or &#x60;dryRun&#x60;..</param>
+        /// <param name="stage">Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is &#x60;202&#x60; with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with &#x60;validateOnly&#x60; or &#x60;dryRun&#x60;..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="budget">budget.</param>
         /// <param name="status">Writes the ad set&#39;s own on/off switch (Meta: &#x60;configured_status&#x60;; X: the line item&#39;s &#x60;entity_status&#x60; ACTIVE / PAUSED), whatever delivery status its ads report. Omit if not toggling delivery state..</param>
@@ -193,9 +193,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is &#x60;202&#x60; with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with &#x60;validateOnly&#x60; or &#x60;dryRun&#x60;.
+        /// Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is &#x60;202&#x60; with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with &#x60;validateOnly&#x60; or &#x60;dryRun&#x60;.
         /// </summary>
-        /// <value>Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is &#x60;202&#x60; with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with &#x60;validateOnly&#x60; or &#x60;dryRun&#x60;.</value>
+        /// <value>Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is &#x60;202&#x60; with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with &#x60;validateOnly&#x60; or &#x60;dryRun&#x60;.</value>
         [DataMember(Name = "stage", EmitDefaultValue = true)]
         public bool Stage { get; set; }
 

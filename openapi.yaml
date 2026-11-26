@@ -301,7 +301,7 @@
     },
     {
       "name": "Ad Changes",
-      "description": "Staged ad changes. Send a supported ad write with `stage: true` and it is validated and stored instead of applied. Read the change to see its before/after diff, confirm it to apply it, or discard it. A staged change does not expire. Meta and Google only. Requires the Ads add-on.\n"
+      "description": "Staged ad changes. Send a supported ad write with `stage: true` and it is validated and stored instead of applied. Read the change to see its before/after diff, confirm it to apply it, or discard it. A staged change does not expire. Requires the Ads add-on.\n\nEdits of campaigns, ad sets and ads can be staged on Meta, Google, TikTok, X, Snapchat and Reddit. Creates can be staged on Meta and Google only.\n"
     },
     {
       "name": "Automations",
@@ -183747,7 +183747,7 @@
                   },
                   "stage": {
                     "type": "boolean",
-                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
                   }
                 }
               }
@@ -184526,7 +184526,7 @@
                 "properties": {
                   "stage": {
                     "type": "boolean",
-                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
                   },
                   "platform": {
                     "type": "string",
@@ -187583,7 +187583,7 @@
                 "properties": {
                   "stage": {
                     "type": "boolean",
-                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
                   },
                   "platform": {
                     "type": "string",
@@ -188320,7 +188320,7 @@
                   },
                   "stage": {
                     "type": "boolean",
-                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
                   }
                 }
               }
@@ -189487,7 +189487,7 @@
                 "properties": {
                   "stage": {
                     "type": "boolean",
-                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
                   },
                   "headlines": {
                     "type": "array",
@@ -190160,7 +190160,7 @@
                   },
                   "stage": {
                     "type": "boolean",
-                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta and Google only; cannot be combined with `validateOnly` or `dryRun`."
+                    "description": "Send true to stage this change instead of applying it. Nothing is written to the ad network; the response is `202` with the staged change and its diff. Apply it with POST /v1/ads/changes/{changeId}/confirm. Meta, Google, TikTok, X, Snapchat and Reddit; cannot be combined with `validateOnly` or `dryRun`."
                   }
                 }
               }
