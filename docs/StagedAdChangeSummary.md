@@ -1,12 +1,16 @@
 # Zernio.Model.StagedAdChangeSummary
-A staged ad change as the list returns it: what it targets and who staged it, without the diff.
+A staged or failed ad change as the list returns it: what it targets and who staged it, without the diff.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The change id, used in /v1/ads/changes/{changeId}. | 
-**Type** | **string** | Which write was staged. | 
+**Type** | **string** | Which write was staged. &#x60;operation&#x60; is a write staged as its request, named by &#x60;request&#x60;. | 
+**Request** | [**StagedAdChangeSummaryRequest**](StagedAdChangeSummaryRequest.md) |  | [optional] 
+**Status** | **string** | The status the list was asked for. | 
+**Stale** | **bool** | Present and true on a staged change whose object was edited on the ad network after staging. Refresh it with PATCH /v1/ads/changes/{changeId}. | [optional] 
+**Error** | [**StagedAdChangeSummaryError**](StagedAdChangeSummaryError.md) |  | [optional] 
 **Platform** | **string** | The ad platform of the object, as the write route names it. | 
 **AccountId** | **string** | The connected account the write goes through. | 
 **AdAccountId** | **string** | The ad account id on the platform. | 

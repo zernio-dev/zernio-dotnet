@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**DiscardAdChange**](AdChangesApi.md#discardadchange) | **DELETE** /v1/ads/changes/{changeId} | Discard a staged ad change |
 | [**GetAdChange**](AdChangesApi.md#getadchange) | **GET** /v1/ads/changes/{changeId} | Get a staged ad change |
 | [**ListAdChanges**](AdChangesApi.md#listadchanges) | **GET** /v1/ads/changes | List staged ad changes |
+| [**RestageAdChange**](AdChangesApi.md#restageadchange) | **POST** /v1/ads/changes/{changeId}/restage | Stage a failed ad change again |
+| [**UpdateAdChange**](AdChangesApi.md#updateadchange) | **PATCH** /v1/ads/changes/{changeId} | Edit or refresh a staged ad change |
 
 <a id="confirmadchange"></a>
 # **ConfirmAdChange**
@@ -15,7 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Confirm a staged ad change
 
-Applies a staged change and returns what the direct write returns: the response body of the route the change was staged on.  The caller needs the same access to the object as for the direct write, and the checks of that write run here, including the live ads allowance.  ### Changed since staging  Before writing, the object is read from the ad network again and compared with what it held when the change was staged.  If it changed in between, nothing is written and the answer is `409` `change_target_changed` with the current values in `details.current`. The change stays `staged` and reads `stale: true`. Discard it and stage the change again from those values.  After a confirm, the other staged changes on the same object are read again, so confirming one of two changes on an object does not refuse the other.  ### Retrying  A change is applied at most once. Confirming a change that is already `confirmed` returns its stored result again. A change that failed answers `409` `change_not_staged`: stage a new one.  A refusal before anything is written leaves the change `staged`, so the confirm can be sent again: `403` `ads_allowance_exceeded`, or on a one-field change a `429` from Zernio's own limits. Any other failed write ends the change as `failed`.  ### Creates  A staged create is sent once. The ad network checks at confirm whatever it did not check at staging, and media is fetched here. A create that fails ends as `failed` and is not retried: `error.details` keeps what the create reported about objects it had already made. 
+Applies a staged change and returns what the direct write returns: the response body of the route the change was staged on.  The caller needs the same access to the object as for the direct write, and the checks of that write run here, including the live ads allowance.  ### Changed since staging  Before writing, the object is read from the ad network again and compared with what it held when the change was staged.  If it changed in between, nothing is written and the answer is `409` `change_target_changed` with the current values in `details.current`. The change stays `staged` and reads `stale: true`. Refresh it with PATCH /v1/ads/changes/{changeId}, or discard it and stage the change again from those values.  A change of type `operation` has no such check: its request is sent through its own route as it was stored.  After a confirm, the other staged changes on the same object are read again, so confirming one of two changes on an object does not refuse the other.  ### Retrying  A change is applied at most once. Confirming a change that is already `confirmed` returns its stored result again. A change that failed answers `409` `change_not_staged`: stage a new one.  A refusal before anything is written leaves the change `staged`, so the confirm can be sent again: `403` `ads_allowance_exceeded`, or on a one-field change a `429` from Zernio's own limits. Any other failed write ends the change as `failed`.  ### Creates  A staged create is sent once. The ad network checks at confirm whatever it did not check at staging, and media is fetched here. A create that fails ends as `failed` and is not retried: `error.details` keeps what the create reported about objects it had already made. 
 
 ### Example
 ```csharp
@@ -218,7 +220,7 @@ void (empty response body)
 
 Get a staged ad change
 
-Returns one ad change with its before/after diff. A change is created by sending a supported ad write with `stage: true`.  A staged change does not expire. A confirmed or failed change stays readable for 7 days, a failed create for 30 days. Disconnecting the connection of a staged change deletes it. 
+Returns one ad change with its before/after diff. A change is created by sending a supported ad write with `stage: true`.  Campaign, ad set and ad edits, status changes and creates stage with a live read and a diff against the current values.  Every other write listed under `request.operation` stages as its request. Send `stage: true` in its body, or `?stage=true` on a write without a body. The answer is `202` with the change.  A staged change does not expire. A confirmed or failed change stays readable for 7 days, a failed create for 30 days. Disconnecting the connection of a staged change deletes it. 
 
 ### Example
 ```csharp
@@ -316,11 +318,11 @@ catch (ApiException e)
 
 <a id="listadchanges"></a>
 # **ListAdChanges**
-> ListAdChanges200Response ListAdChanges (int? limit = null, string? cursor = null)
+> ListAdChanges200Response ListAdChanges (string? status = null, string? accountId = null, string? platform = null, string? type = null, string? createdBy = null, int? limit = null, string? cursor = null)
 
 List staged ad changes
 
-Lists the ad changes waiting to be confirmed or discarded, newest first. A confirmed or failed change is not listed; read it by id.  Each item is a summary without the diff. Read one change to get its before/after values. 
+Lists the ad changes waiting to be confirmed or discarded, newest first. With `status=failed` it lists the changes a confirm could not apply, each with its error, until they are deleted (7 days, 30 for a failed create). A confirmed change is not listed; read it by id.  Each item is a summary without the diff. Read one change to get its before/after values. 
 
 ### Example
 ```csharp
@@ -346,13 +348,18 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdChangesApi(httpClient, config, httpClientHandler);
+            var status = "staged";  // string? | Which changes to list. (optional)  (default to staged)
+            var accountId = "accountId_example";  // string? | Only the changes of this connected account. (optional) 
+            var platform = "platform_example";  // string? | Only the changes on this ad platform, as the change names it (for example `facebook` or `google`). (optional) 
+            var type = "campaign_status";  // string? | Only the changes of this type. (optional) 
+            var createdBy = "createdBy_example";  // string? | Only the changes this user staged. (optional) 
             var limit = 50;  // int? | How many changes to return. (optional)  (default to 50)
             var cursor = "cursor_example";  // string? | The `nextCursor` of the previous page, unchanged. (optional) 
 
             try
             {
                 // List staged ad changes
-                ListAdChanges200Response result = apiInstance.ListAdChanges(limit, cursor);
+                ListAdChanges200Response result = apiInstance.ListAdChanges(status, accountId, platform, type, createdBy, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -373,7 +380,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List staged ad changes
-    ApiResponse<ListAdChanges200Response> response = apiInstance.ListAdChangesWithHttpInfo(limit, cursor);
+    ApiResponse<ListAdChanges200Response> response = apiInstance.ListAdChangesWithHttpInfo(status, accountId, platform, type, createdBy, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -390,6 +397,11 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **status** | **string?** | Which changes to list. | [optional] [default to staged] |
+| **accountId** | **string?** | Only the changes of this connected account. | [optional]  |
+| **platform** | **string?** | Only the changes on this ad platform, as the change names it (for example &#x60;facebook&#x60; or &#x60;google&#x60;). | [optional]  |
+| **type** | **string?** | Only the changes of this type. | [optional]  |
+| **createdBy** | **string?** | Only the changes this user staged. | [optional]  |
 | **limit** | **int?** | How many changes to return. | [optional] [default to 50] |
 | **cursor** | **string?** | The &#x60;nextCursor&#x60; of the previous page, unchanged. | [optional]  |
 
@@ -414,6 +426,214 @@ catch (ApiException e)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="restageadchange"></a>
+# **RestageAdChange**
+> GetAdChange200Response RestageAdChange (string changeId)
+
+Stage a failed ad change again
+
+Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (`409`): it may have made part of its objects on the ad network, which its `error.details` lists. Stage a new create instead. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RestageAdChangeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdChangesApi(httpClient, config, httpClientHandler);
+            var changeId = "changeId_example";  // string | The id of the failed change.
+
+            try
+            {
+                // Stage a failed ad change again
+                GetAdChange200Response result = apiInstance.RestageAdChange(changeId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdChangesApi.RestageAdChange: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RestageAdChangeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Stage a failed ad change again
+    ApiResponse<GetAdChange200Response> response = apiInstance.RestageAdChangeWithHttpInfo(changeId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdChangesApi.RestageAdChangeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **changeId** | **string** | The id of the failed change. |  |
+
+### Return type
+
+[**GetAdChange200Response**](GetAdChange200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | The new staged change |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The change did not fail, or it is a failed create (&#x60;invalid_resource_state&#x60;). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadchange"></a>
+# **UpdateAdChange**
+> GetAdChange200Response UpdateAdChange (string changeId, Dictionary<string, Object>? requestBody = null)
+
+Edit or refresh a staged ad change
+
+Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without `stage`. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type `operation` stores a whole request and cannot be edited in place (`409`): discard it and stage the request again.  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads `stale: true` after a confirm answered `409` `change_target_changed`: once refreshed it can be confirmed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdChangeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdChangesApi(httpClient, config, httpClientHandler);
+            var changeId = "changeId_example";  // string | The id of the staged change.
+            var requestBody = new Dictionary<string, Object>?(); // Dictionary<string, Object>? |  (optional) 
+
+            try
+            {
+                // Edit or refresh a staged ad change
+                GetAdChange200Response result = apiInstance.UpdateAdChange(changeId, requestBody);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdChangesApi.UpdateAdChange: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdChangeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Edit or refresh a staged ad change
+    ApiResponse<GetAdChange200Response> response = apiInstance.UpdateAdChangeWithHttpInfo(changeId, requestBody);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdChangesApi.UpdateAdChangeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **changeId** | **string** | The id of the staged change. |  |
+| **requestBody** | [**Dictionary&lt;string, Object&gt;?**](Object.md) |  | [optional]  |
+
+### Return type
+
+[**GetAdChange200Response**](GetAdChange200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The change as it is now |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running), or it is a write staged as its request and a body was sent (&#x60;invalid_resource_state&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
