@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.835.0",
+    "version": "1.835.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -48802,7 +48802,7 @@
                   "string",
                   "null"
                 ],
-                "description": "Meta `effective_instagram_media_id`, the Instagram media ID of the boosted post the ad's engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId= to map a Business-Manager-visible IG post back to this ad."
+                "description": "Meta `effective_instagram_media_id`, the Instagram media the ad's engagement lives on. For a boosted reel it can differ from the reel you boosted: Meta's promoted rendition, not a duplicate. Pass to GET /v1/ads?effectiveInstagramMediaId= to map a Business-Manager-visible IG post back to this ad."
               },
               "instagramUserId": {
                 "type": [
@@ -173998,7 +173998,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Instagram media ID of the boosted post (Meta `effective_instagram_media_id`). Use to map a Business-Manager-visible IG post back to the Zernio ad."
+            "description": "Instagram media ID of the boosted post (Meta `effective_instagram_media_id`). Use to map a Business-Manager-visible IG post back to the Zernio ad. For a boosted reel it can differ from the media ID you boosted (`platformPostId`), so filter by the ID shown on the ad, not the original reel ID."
           },
           {
             "name": "fromDate",
