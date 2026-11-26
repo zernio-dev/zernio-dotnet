@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.836.0",
+    "version": "1.837.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -162692,7 +162692,7 @@
           },
           "409": {
             "x-summary": "The number cannot be verified for WhatsApp right now, for example because Meta disallows it: buy a new number for WhatsApp.",
-            "description": "The number cannot be verified for WhatsApp right now. `code` says why:\n\n- `number_not_whatsapp_eligible`: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp.\n- `whatsapp_number_in_use`: Meta reports the number is registered to another WhatsApp account.\n- `META_INVALID_NUMBER`: Meta refused a never-live number and no replacement could be sourced.\n- `PENDING_REGULATORY`: the number is still in carrier regulatory review.\n",
+            "description": "The number cannot be verified for WhatsApp right now. `code` says why:\n\n- `number_not_whatsapp_eligible`: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp.\n- `whatsapp_number_in_use`: Meta reports the number is registered to another WhatsApp account.\n- `META_INVALID_NUMBER`: Meta refused a never-live number and no replacement could be sourced.\n- `PENDING_REGULATORY`: the number is still in carrier regulatory review.\n- `whatsapp_number_already_connected`: the number is already connected to WhatsApp, so there is no code to request.\n",
             "content": {
               "application/json": {
                 "schema": {
