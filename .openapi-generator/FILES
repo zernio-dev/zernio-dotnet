@@ -4141,6 +4141,7 @@ docs/WebhookPayloadMessageSentMessageAttachmentsInner.md
 docs/WebhookPayloadMessageSentMessageSender.md
 docs/WebhookPayloadMessageSentMetadata.md
 docs/WebhookPayloadMessageSentMetadataLocation.md
+docs/WebhookPayloadMessageSentMetadataUnsupported.md
 docs/WebhookPayloadNotificationSent.md
 docs/WebhookPayloadNotificationSentNotification.md
 docs/WebhookPayloadNotificationSentNotificationActionsInner.md
@@ -8436,6 +8437,7 @@ src/Zernio.Test/Model/WebhookPayloadMessageSentMessageSenderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMetadataLocationTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMetadataTests.cs
+src/Zernio.Test/Model/WebhookPayloadMessageSentMetadataUnsupportedTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadNotificationSentNotificationActionsInnerTests.cs
@@ -12746,6 +12748,7 @@ src/Zernio/Model/WebhookPayloadMessageSentMessageAttachmentsInner.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessageSender.cs
 src/Zernio/Model/WebhookPayloadMessageSentMetadata.cs
 src/Zernio/Model/WebhookPayloadMessageSentMetadataLocation.cs
+src/Zernio/Model/WebhookPayloadMessageSentMetadataUnsupported.cs
 src/Zernio/Model/WebhookPayloadNotificationSent.cs
 src/Zernio/Model/WebhookPayloadNotificationSentNotification.cs
 src/Zernio/Model/WebhookPayloadNotificationSentNotificationActionsInner.cs

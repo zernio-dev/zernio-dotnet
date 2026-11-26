@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.834.1",
+    "version": "1.835.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -25314,8 +25314,30 @@
           },
           "metadata": {
             "type": "object",
-            "description": "Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin, WhatsApp contact cards, the TikTok message type, or outgoing Instagram/Facebook buttons, quick replies and template.\n\nThe key is present only when the send carried some context: it is never null and never an empty object. Read it to tell a location or contact-card message from a text one without a GET on the message.\n",
+            "description": "Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin, WhatsApp contact cards, Meta's reason a WhatsApp Business app echo has no renderable body, the TikTok message type, or outgoing Instagram/Facebook buttons, quick replies and template.\n\nThe key is present only when the send carried some context: it is never null and never an empty object. Read it to tell a location or contact-card message from a text one without a GET on the message.\n",
             "properties": {
+              "unsupported": {
+                "type": "object",
+                "description": "WhatsApp only. Meta's own reason this message has no renderable body. Present on Coexistence echoes of a message sent from the WhatsApp Business app that Meta could not render (for example an album, code 131051: message type currently not supported). Absent otherwise.\n",
+                "properties": {
+                  "code": {
+                    "type": "integer",
+                    "description": "Meta's numeric error code (e.g. 131051)."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Meta's short error title."
+                  },
+                  "details": {
+                    "type": "string",
+                    "description": "Meta's human-readable error detail string."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Meta's name for the content WhatsApp could not deliver, e.g. unknown or album. Absent when Meta sends none."
+                  }
+                }
+              },
               "metaInteractive": {
                 "type": "object",
                 "description": "Instagram/Facebook only. The buttons, quickReplies and/or template this outgoing message carried, as sent (tracked urls included when link tracking wrapped a button). Absent when the send carried none.",
