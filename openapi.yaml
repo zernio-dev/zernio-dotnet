@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.855.0",
+    "version": "1.856.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -177119,7 +177119,7 @@
           "Automations"
         ],
         "summary": "Get the automations catalog",
-        "description": "What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.\n\n- `schema`: the JSON Schema of the body of `POST /v1/automations`.\n- `triggers`: every trigger, tagged with its `kind`. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts.\n- The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval.\n",
+        "description": "What an automation can contain and where each part works, built from the same checks that validate a save, so it never offers what saving refuses.\n\n- `schema`: the JSON Schema of the body of `POST /v1/automations`.\n- `triggers`: every trigger, tagged with its `kind`, with the `label`, `description`, picker `group`, `resourceGroup` and allowed `steps` a trigger picker shows. Ad rule and scheduled triggers list their intervals; event triggers list each event with its facts.\n- The other sections describe ad rules: per subject (campaign, ad set, ad) its metrics and steps with the platforms that accept them, plus filters, groups, alerts, conditions, limits and approval.\n",
         "security": [
           {
             "bearerAuth": []
@@ -177162,7 +177162,12 @@
                         "type": "object",
                         "required": [
                           "kind",
-                          "type"
+                          "group",
+                          "resourceGroup",
+                          "type",
+                          "label",
+                          "description",
+                          "steps"
                         ],
                         "properties": {
                           "kind": {
@@ -177176,6 +177181,27 @@
                               "workflow"
                             ]
                           },
+                          "group": {
+                            "type": "string",
+                            "enum": [
+                              "social",
+                              "messaging",
+                              "ads"
+                            ],
+                            "description": "Where a trigger picker files it: the same groups as the template marketplace."
+                          },
+                          "resourceGroup": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "enum": [
+                              "messages",
+                              "ads",
+                              null
+                            ],
+                            "description": "The API key resource group its kind needs to create one."
+                          },
                           "type": {
                             "type": "string",
                             "description": "`schedule`, `enrollment`, a comment door such as `comment.keyword` (comment to DM), a flow trigger such as `inbound_message`, or the Zernio event name.",
@@ -177183,7 +177209,11 @@
                           },
                           "label": {
                             "type": "string",
-                            "description": "Event triggers only."
+                            "description": "Its short name, such as `Ad rule schedule`."
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "One line on when it starts and what the automation does then."
                           },
                           "subject": {
                             "type": "string",
@@ -177251,7 +177281,7 @@
                             "items": {
                               "type": "string"
                             },
-                            "description": "The step types the trigger takes. For an event, only those its subject can reach."
+                            "description": "The step types allowed after the trigger. For an event, only those its subject can reach."
                           },
                           "boost": {
                             "type": "object",
