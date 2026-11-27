@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.854.3",
+    "version": "1.854.4",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -136239,7 +136239,7 @@
           },
           "409": {
             "x-summary": "The same Idempotency-Key is still processing, or another app owns the thread: retry later, or take thread control and resend.",
-            "description": "Conflict. One of:\n\n- The same Idempotency-Key is still processing. Retry after a short backoff.\n- On Facebook and Instagram, another app owns the thread under Meta's conversation routing (code not_thread_owner, Meta subcode 2534037 in platformError). `details.ownerAppId` names the owner when Meta reports it.\n\nOn accounts connected through a Facebook Page, Zernio already tried take_thread_control once before answering not_thread_owner, so Meta refused it. Make Zernio the default app in the account's conversation routing settings and allow it to take control of conversations, or wait for the owning app to pass the thread.\n\nAn Instagram Login connection cannot take; only the owner can pass the thread back.\n",
+            "description": "Conflict. One of:\n\n- The same Idempotency-Key is still processing. Retry after a short backoff.\n- On Facebook and Instagram, another app owns the thread under Meta's conversation routing (code not_thread_owner, Meta subcode 2534037, or 2018300 on Messenger, in platformError). `details.ownerAppId` names the owner when Meta reports it.\n\nOn accounts connected through a Facebook Page, Zernio already tried take_thread_control once before answering not_thread_owner, so Meta refused it. Make Zernio the default app in the account's conversation routing settings and allow it to take control of conversations, or wait for the owning app to pass the thread.\n\nAn Instagram Login connection cannot take; only the owner can pass the thread back.\n",
             "content": {
               "application/json": {
                 "schema": {
