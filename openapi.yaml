@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.853.0",
+    "version": "1.853.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -226393,7 +226393,7 @@
                           "CONVERSATIONS",
                           "LEAD_GENERATION"
                         ],
-                        "description": "What the ad set optimizes for. Defaults to `CONVERSATIONS`. Cannot be combined with `adSetId` (the existing ad set owns its goal).\n\n- `LEAD_GENERATION` needs a single `destination: whatsapp` (a 400 with `destinations` or another destination) and runs the campaign under `OUTCOME_LEADS`.\n- `objective`, when sent with `LEAD_GENERATION`, must be `OUTCOME_LEADS`.\n- With `existingCampaignId` the campaign must be `OUTCOME_LEADS` (a 400 otherwise).\n"
+                        "description": "What the ad set optimizes for. Defaults to `CONVERSATIONS`. Cannot be combined with `adSetId` (the existing ad set owns its goal).\n\n- `LEAD_GENERATION` needs a single `destination: whatsapp` (a 400 with `destinations` or another destination) and runs the campaign under `OUTCOME_LEADS`.\n- `objective`, when sent with `LEAD_GENERATION`, must be `OUTCOME_LEADS`.\n- With `existingCampaignId` the campaign must be `OUTCOME_LEADS` (a 400 otherwise).\n- Meta enables `LEAD_GENERATION` for WhatsApp per ad account and has no API to check it in advance.\n- On an ad account without it, Meta refuses the ad set with subcode 2490408: a 400 `platform_api_error` with `param: optimizationGoal`. `validateOnly` reports it without creating anything.\n- Use `CONVERSATIONS` there (with `objective: OUTCOME_LEADS` for a Leads campaign).\n"
                       },
                       "placementAssets": {
                         "allOf": [
