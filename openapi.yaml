@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.864.1",
+    "version": "1.864.2",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -17894,7 +17894,7 @@
       },
       "WebhookPayloadAccountAdsSyncFailed": {
         "type": "object",
-        "description": "Webhook payload for `account.ads.sync_failed` events. Fired once per ad account when its ads stop syncing: no successful sync for 24 hours, or every live ad in it at the retry cap.\n\nIt does not fire again for the same ad account until `account.ads.sync_recovered`. Metrics for the ad account are stale meanwhile.\n",
+        "description": "Webhook payload for `account.ads.sync_failed` events. Fired once per ad account when its ads stop syncing: no successful sync for 24 hours, or every live ad in it at the retry cap.\n\nIt does not fire again for the same ad account until `account.ads.sync_recovered`. Metrics for the ad account are stale meanwhile.\n\nIt does not fire while another active connection of the same user that does not need a reconnect has synced the ad account in the last 24 hours. It fires once none has, so `sync.lastSuccessfulSyncAt` can then be older than 3 days.\n",
         "required": [
           "id",
           "event",
