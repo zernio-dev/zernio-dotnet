@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.852.0",
+    "version": "1.853.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -208269,7 +208269,7 @@
                   },
                   "optimizationGoal": {
                     "type": "string",
-                    "description": "Explicit optimization goal. Supported on:\n\n- **TikTok** with goal video_views: ENGAGED_VIEW (the 6-second default) or ENGAGED_VIEW_FIFTEEN; both bill per view.\n- **Reddit** with goal video_views: VIDEO_VIEW_6S (default) or VIDEO_VIEW_15S; other values return 400.\n- **Meta:** the ad-set `optimization_goal` (e.g. `LANDING_PAGE_VIEWS`, `LINK_CLICKS`, `REACH`, `IMPRESSIONS`, `OFFSITE_CONVERSIONS`, `THRUPLAY`, `LEAD_GENERATION`).\n\nOn Meta it overrides the default derived from `goal` (e.g. `traffic` defaults to `LINK_CLICKS`). It is forwarded verbatim; Meta validates compatibility with the campaign objective and rejects incompatible combinations."
+                    "description": "Explicit optimization goal. Supported on:\n\n- **TikTok** with goal video_views: ENGAGED_VIEW (the 6-second default) or ENGAGED_VIEW_FIFTEEN; both bill per view.\n- **Reddit** with goal video_views: VIDEO_VIEW_6S (default) or VIDEO_VIEW_15S; other values return 400.\n- **Meta:** the ad-set `optimization_goal` (e.g. `LANDING_PAGE_VIEWS`, `LINK_CLICKS`, `REACH`, `IMPRESSIONS`, `OFFSITE_CONVERSIONS`, `THRUPLAY`, `LEAD_GENERATION`).\n\nOn Meta it overrides the default derived from `goal` (e.g. `traffic` defaults to `LINK_CLICKS`). It is forwarded verbatim; Meta validates compatibility with the campaign objective and rejects incompatible combinations.\n\nWith `goal: engagement`, `POST_ENGAGEMENT` also sets the ad set's destination to `ON_POST` (Ads Manager's Engagement, On your ad, Post engagement), as POST /v1/ads/boost does."
                   },
                   "billingEvent": {
                     "type": "string",
