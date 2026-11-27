@@ -25,7 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="createadcreative"></a>
 # **CreateAdCreative**
-> CreateAdCreative201Response CreateAdCreative (CreateAdCreativeRequest createAdCreativeRequest)
+> AdWriteValidation CreateAdCreative (CreateAdCreativeRequest createAdCreativeRequest)
 
 Create a standalone creative
 
@@ -60,7 +60,7 @@ namespace Example
             try
             {
                 // Create a standalone creative
-                CreateAdCreative201Response result = apiInstance.CreateAdCreative(createAdCreativeRequest);
+                AdWriteValidation result = apiInstance.CreateAdCreative(createAdCreativeRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -81,7 +81,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a standalone creative
-    ApiResponse<CreateAdCreative201Response> response = apiInstance.CreateAdCreativeWithHttpInfo(createAdCreativeRequest);
+    ApiResponse<AdWriteValidation> response = apiInstance.CreateAdCreativeWithHttpInfo(createAdCreativeRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -102,7 +102,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateAdCreative201Response**](CreateAdCreative201Response.md)
+[**AdWriteValidation**](AdWriteValidation.md)
 
 ### Authorization
 
@@ -117,6 +117,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | Sent with &#x60;validateOnly: true&#x60;. Meta validated the creative and nothing was created or uploaded. |  -  |
 | **201** | Creative created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |

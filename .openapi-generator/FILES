@@ -142,6 +142,8 @@ docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeCampaignSchedule.md
 docs/AdTreeResponse.md
 docs/AdTreeResponsePreviousRange.md
+docs/AdWriteValidation.md
+docs/AdWriteValidationResult.md
 docs/AddAccountCallouts201Response.md
 docs/AddAccountCallouts201ResponseCalloutsInner.md
 docs/AddAccountCalloutsRequest.md
@@ -4538,6 +4540,8 @@ src/Zernio.Test/Model/AdTreeCampaignScheduleTests.cs
 src/Zernio.Test/Model/AdTreeCampaignTests.cs
 src/Zernio.Test/Model/AdTreeResponsePreviousRangeTests.cs
 src/Zernio.Test/Model/AdTreeResponseTests.cs
+src/Zernio.Test/Model/AdWriteValidationResultTests.cs
+src/Zernio.Test/Model/AdWriteValidationTests.cs
 src/Zernio.Test/Model/AddAccountCallouts201ResponseCalloutsInnerTests.cs
 src/Zernio.Test/Model/AddAccountCallouts201ResponseTests.cs
 src/Zernio.Test/Model/AddAccountCalloutsRequestTests.cs
@@ -8872,6 +8876,8 @@ src/Zernio/Model/AdTreeCampaignPromotedObject.cs
 src/Zernio/Model/AdTreeCampaignSchedule.cs
 src/Zernio/Model/AdTreeResponse.cs
 src/Zernio/Model/AdTreeResponsePreviousRange.cs
+src/Zernio/Model/AdWriteValidation.cs
+src/Zernio/Model/AdWriteValidationResult.cs
 src/Zernio/Model/AddAccountCallouts201Response.cs
 src/Zernio/Model/AddAccountCallouts201ResponseCalloutsInner.cs
 src/Zernio/Model/AddAccountCalloutsRequest.cs
