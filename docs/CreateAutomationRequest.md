@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Steps** | [**List&lt;AutomationSequenceStep&gt;**](AutomationSequenceStep.md) | At least one step for an active sequence. Steps change only while it is a draft or paused. | 
 **Limits** | [**CommentAutomationDefinitionLimits**](CommentAutomationDefinitionLimits.md) |  | 
 **Filter** | [**AutomationFactCondition**](AutomationFactCondition.md) |  | [optional] 
-**Description** | **string** | Sequences. | [optional] 
+**Description** | **string** | Sequences and flows. | [optional] 
 **OrTriggers** | [**List&lt;CommentAutomationDefinitionOrTriggersInner&gt;**](CommentAutomationDefinitionOrTriggersInner.md) | A DM with the same keywords also starts it (&#x60;dm.keyword&#x60;), at the decision and with no comment to act on. Comment triggers with keywords only. | [optional] 
 **Graph** | [**AutomationGraph**](AutomationGraph.md) |  | 
 

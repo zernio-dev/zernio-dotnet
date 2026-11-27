@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.856.2",
+    "version": "1.857.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -13376,12 +13376,19 @@
             "description": "Countries the special ad category applies to. Requires specialAdCategories."
           },
           "advantageAudience": {
-            "type": "integer",
-            "enum": [
-              0,
-              1
+            "oneOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "type": "boolean"
+              }
             ],
-            "description": "Meta's Advantage+ audience expansion. `0` (default) keeps\ntargeting strict; `1` lets Meta expand beyond the supplied\ntargeting when its delivery system finds better matches.\nAlways sent on CREATE (Meta requires it).\n"
+            "description": "Meta's Advantage+ audience expansion. `0` or `false` (default) keeps\ntargeting strict; `1` or `true` lets Meta expand beyond the supplied\ntargeting when its delivery system finds better matches.\nBooleans are sent to Meta as 1/0. Always sent on CREATE (Meta requires it).\n"
           },
           "objective": {
             "type": "string",
@@ -53789,7 +53796,7 @@
       },
       "GraphAutomationDefinition": {
         "type": "object",
-        "description": "An ad rule, event or scheduled automation or sequence sent as an automation graph. It is saved as its own shape would be.",
+        "description": "Any automation sent as an automation graph. It is saved as its own shape would be.\n\n- A comment to DM keeps its fixed node ids (`dm`, `reply`, `like`, `hide`, `delay`, ...) and may carry its DM door as a second trigger with its own `entry`.\n- A flow's trigger settings go on its trigger node, added when the graph has none.\n",
         "required": [
           "name",
           "graph"
@@ -53803,7 +53810,7 @@
           },
           "description": {
             "type": "string",
-            "description": "Sequences."
+            "description": "Sequences and flows."
           },
           "status": {
             "type": "string",
@@ -57982,7 +57989,8 @@
               "active",
               "paused",
               "removing"
-            ]
+            ],
+            "description": "`paused` while the workspace is over its free website events for the month with no payment method: the site records nothing until one is added."
           },
           "install": {
             "type": "object",
@@ -176914,7 +176922,7 @@
           "Automations"
         ],
         "summary": "Create an automation",
-        "description": "Creates an automation. Its trigger picks the kind:\n\n- **Ad rule**: a `schedule` over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. It stays paused unless `status` is `active`; preview it first with `POST /v1/automations/preview`.\n- **Event**: a Zernio event in `trigger.type`, such as `post.failed`, with notify steps. It is on unless `status` is `paused`.\n- **Scheduled**: a `schedule` over a profile's posts, with notify steps and an optional boost. It is on unless `status` is `paused`.\n- **Sequence**: an `enrollment` trigger on one messaging account, with message steps sent over time. It is on unless `status` is `draft`. It needs what `/v1/sequences` needs: the inbox add-on and a key with the `messages` group.\n- **Comment to DM**: a comment door in `trigger.type`, such as `comment.keyword`, with a `graph` of the shapes `/v1/comment-automations` holds. It is on unless `status` is `paused`, and needs what `/v1/comment-automations` needs. A post that already has an active automation is a 409.\n- **Flow** (`kind` is `workflow`): a flow trigger such as `inbound_message` (or a `graph` whose trigger node names it) on one account, with the builder's `graph`. It is a draft unless `status` is `active`, which needs a complete graph; `paused` is refused. It needs the inbox add-on and a full-access key.\n\nAn ad rule, event, scheduled automation or sequence can instead be sent as `name`, `status` and an automation `graph` (`AutomationGraph`, the one its response carries). The graph's trigger picks the kind, and it is saved exactly as its own shape would be.\n\nA comment to DM or flow sent as an automation graph is refused (`not_supported`).\n\nEverything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`.\n",
+        "description": "Creates an automation. Its trigger picks the kind:\n\n- **Ad rule**: a `schedule` over campaigns, ad sets, ads, Google keywords or Google search terms, with metric `conditions` and ad `steps`. It stays paused unless `status` is `active`; preview it first with `POST /v1/automations/preview`.\n- **Event**: a Zernio event in `trigger.type`, such as `post.failed`, with notify steps. It is on unless `status` is `paused`.\n- **Scheduled**: a `schedule` over a profile's posts, with notify steps and an optional boost. It is on unless `status` is `paused`.\n- **Sequence**: an `enrollment` trigger on one messaging account, with message steps sent over time. It is on unless `status` is `draft`. It needs what `/v1/sequences` needs: the inbox add-on and a key with the `messages` group.\n- **Comment to DM**: a comment door in `trigger.type`, such as `comment.keyword`, with a `graph` of the shapes `/v1/comment-automations` holds. It is on unless `status` is `paused`, and needs what `/v1/comment-automations` needs. A post that already has an active automation is a 409.\n- **Flow** (`kind` is `workflow`): a flow trigger such as `inbound_message` (or a `graph` whose trigger node names it) on one account, with the builder's `graph`. It is a draft unless `status` is `active`, which needs a complete graph; `paused` is refused. It needs the inbox add-on and a full-access key.\n\nAny automation can instead be sent as `name`, `status` and an automation `graph` (`AutomationGraph`; ad rules, event and scheduled automations and sequences answer with it too). The graph's trigger picks the kind, and it is saved exactly as its own shape would be.\n\nA comment to DM or flow sent as an automation graph is refused (`not_supported`).\n\nEverything an automation cannot hold is refused at once: the 400 lists every problem with its JSON path in `details.problems`.\n",
         "security": [
           {
             "bearerAuth": []
@@ -178156,7 +178164,7 @@
                   },
                   "graph": {
                     "type": "object",
-                    "description": "Comment to DM and flows: the whole graph, as read. Ad rules, event and scheduled automations and sequences: an `AutomationGraph` that replaces the whole definition, sent without `trigger`, `subjects`, `filter`, `conditions`, `alert`, `steps` or `limits`."
+                    "description": "An `AutomationGraph` (with `triggers`) replaces the whole definition of any kind, sent without `trigger`, `orTriggers`, `subjects`, `filter`, `conditions`, `alert`, `steps` or `limits`. Comment to DM and flows also take their own graph, as read."
                   },
                   "subjects": {
                     "oneOf": [
@@ -188387,7 +188395,7 @@
                         "$ref": "#/components/schemas/TargetingSpec"
                       }
                     ],
-                    "description": "Targeting fields to change. Meta and Reddit (400 elsewhere).\n\n**Reddit** (see the description above):\n\n- `languages` must be among Reddit's ISO 639-1 codes (AR, CS, DA, DE, EL, EN, ES, FI, FR, HU, IT, JA, KO, NL, NO, PL, PT, RO, SV, VI, ZH, any case).\n- Emptying every included location is a 400 with `param: targeting.countries`.\n- Fields Reddit ad groups cannot take (age, income, devices, behaviors, B2B, `places`) return 400 with `param: targeting.<field>`.\n\n**Meta**: same shape as the `targeting` object on POST /v1/ads/create.\n\n- Only the keys you send change. Zernio reads the ad set's live targeting, merges your keys over it and writes the full spec back, so everything else (custom audiences, geo, age, interest groups, `targeting_automation`) is kept.\n- Setting any location replaces every location list. An empty list or `gender: all` clears that key.\n- `incomeTier` is resolved to Meta's income segment first (422 when Meta has none).\n- Fields Meta cannot target (LinkedIn B2B, Google `devices`, Reddit communities and keywords) return 400 with `param: targeting.<field>`.\n- An empty object is a 400, as is a `targeting.placements` object with no non-empty list (`param: targeting.placements`).\n- When the live targeting cannot be read, the request returns 502 and nothing is written.\n"
+                    "description": "Targeting fields to change. Meta and Reddit (400 elsewhere).\n\n**Reddit** (see the description above):\n\n- `languages` must be among Reddit's ISO 639-1 codes (AR, CS, DA, DE, EL, EN, ES, FI, FR, HU, IT, JA, KO, NL, NO, PL, PT, RO, SV, VI, ZH, any case).\n- Emptying every included location is a 400 with `param: targeting.countries`.\n- Fields Reddit ad groups cannot take (age, income, devices, behaviors, B2B, `places`) return 400 with `param: targeting.<field>`.\n\n**Meta**: same shape as the `targeting` object on POST /v1/ads/create.\n\n- Only the keys you send change. Zernio reads the ad set's live targeting, merges your keys over it and writes the full spec back, so everything else (custom audiences, geo, age, interest groups, `targeting_automation`) is kept.\n- Setting any location replaces every location list. An empty list or `gender: all` clears that key.\n- `incomeTier` is resolved to Meta's income segment first (422 when Meta has none).\n- `advantage_audience` (or `advantageAudience`) takes `0`/`1` or `false`/`true` and is written as Meta's `targeting_automation.advantage_audience` 0/1. Omit it to keep the live setting.\n- Fields Meta cannot target (LinkedIn B2B, Google `devices`, Reddit communities and keywords) return 400 with `param: targeting.<field>`.\n- An empty object is a 400, as is a `targeting.placements` object with no non-empty list (`param: targeting.placements`).\n- When the live targeting cannot be read, the request returns 502 and nothing is written.\n"
                   },
                   "bidAmount": {
                     "type": "number",
@@ -190394,12 +190402,19 @@
                         }
                       },
                       "advantage_audience": {
-                        "type": "integer",
-                        "enum": [
-                          0,
-                          1
+                        "oneOf": [
+                          {
+                            "type": "integer",
+                            "enum": [
+                              0,
+                              1
+                            ]
+                          },
+                          {
+                            "type": "boolean"
+                          }
                         ],
-                        "description": "Meta only. Omit to preserve the existing setting on update. 0 = disabled, 1 = enabled."
+                        "description": "Meta only. Omit to preserve the existing setting on update. 0 or false = disabled, 1 or true = enabled (booleans are sent to Meta as 1/0). Also accepted as `advantageAudience`."
                       }
                     }
                   },
@@ -206803,12 +206818,19 @@
                         }
                       },
                       "advantage_audience": {
-                        "type": "integer",
-                        "enum": [
-                          0,
-                          1
+                        "oneOf": [
+                          {
+                            "type": "integer",
+                            "enum": [
+                              0,
+                              1
+                            ]
+                          },
+                          {
+                            "type": "boolean"
+                          }
                         ],
-                        "description": "Meta only. 0 = disabled (default), 1 = enabled."
+                        "description": "Meta only. 0 or false = disabled (default), 1 or true = enabled (booleans are sent to Meta as 1/0)."
                       }
                     }
                   },
@@ -206823,7 +206845,7 @@
                   "rawTargeting": {
                     "type": "object",
                     "additionalProperties": true,
-                    "description": "Meta only. A Meta-native targeting spec (e.g. `{ \"geo_locations\": { \"cities\": [{ \"key\": \"...\", \"radius\": 15, \"distance_unit\": \"kilometer\" }] } }`). Sent alone, it is forwarded unchanged. Use it for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places, user_os, wireless_carrier).\n\n**With `targeting`:** rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key (camelCase wins on collision).\n\n- The merge goes one level deep inside `geo_locations` and `excluded_geo_locations` (built sub-keys win; raw-only sub-keys such as `location_types` survive).\n- Array values (`flexible_spec`, ...) are replaced as a whole key, never element-merged.\n\n**`targeting_automation`.** When `rawTargeting` is present, Zernio no longer emits its usual `advantage_audience: 0` default, so it cannot clobber a `targeting_automation` in the raw spec. Meta requires `targeting_automation` on ad set creation: include it in the raw spec, or send `targeting.advantage_audience` (0 or 1), merged over raw as `targeting_automation`.\n"
+                    "description": "Meta only. A Meta-native targeting spec (e.g. `{ \"geo_locations\": { \"cities\": [{ \"key\": \"...\", \"radius\": 15, \"distance_unit\": \"kilometer\" }] } }`). Sent alone, it is forwarded unchanged. Use it for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places, user_os, wireless_carrier).\n\n**With `targeting`:** rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key (camelCase wins on collision).\n\n- The merge goes one level deep inside `geo_locations` and `excluded_geo_locations` (built sub-keys win; raw-only sub-keys such as `location_types` survive).\n- Array values (`flexible_spec`, ...) are replaced as a whole key, never element-merged.\n\n**`targeting_automation`.** When `rawTargeting` is present, Zernio no longer emits its usual `advantage_audience: 0` default, so it cannot clobber a `targeting_automation` in the raw spec. Meta requires `targeting_automation` on ad set creation: include it in the raw spec, or send `targeting.advantage_audience` (0/1 or false/true), merged over raw as `targeting_automation`.\n"
                   },
                   "bidStrategy": {
                     "allOf": [
@@ -209946,12 +209968,19 @@
                     }
                   },
                   "advantageAudience": {
-                    "type": "integer",
-                    "enum": [
-                      0,
-                      1
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          1
+                        ]
+                      },
+                      {
+                        "type": "boolean"
+                      }
                     ],
-                    "description": "Meta only. Controls the Advantage audience feature (targeting_automation). 0 = disabled (default), 1 = enabled. Meta Marketing API requires this field on all ad set creation requests."
+                    "description": "Meta only. Controls the Advantage audience feature (targeting_automation). 0 or false = disabled (default), 1 or true = enabled (booleans are sent to Meta as 1/0). Meta Marketing API requires this field on all ad set creation requests."
                   },
                   "attributionSpec": {
                     "type": "array",
