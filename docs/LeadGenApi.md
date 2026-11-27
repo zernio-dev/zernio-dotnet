@@ -18,7 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="archiveleadform"></a>
 # **ArchiveLeadForm**
-> ArchiveLeadForm200Response ArchiveLeadForm (string formId, string accountId)
+> ArchiveLeadForm200Response ArchiveLeadForm (string formId, string accountId, bool? stage = null)
 
 Archive a lead form
 
@@ -50,11 +50,12 @@ namespace Example
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
             var formId = "formId_example";  // string | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
             var accountId = "accountId_example";  // string | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Archive a lead form
-                ArchiveLeadForm200Response result = apiInstance.ArchiveLeadForm(formId, accountId);
+                ArchiveLeadForm200Response result = apiInstance.ArchiveLeadForm(formId, accountId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -75,7 +76,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Archive a lead form
-    ApiResponse<ArchiveLeadForm200Response> response = apiInstance.ArchiveLeadFormWithHttpInfo(formId, accountId);
+    ApiResponse<ArchiveLeadForm200Response> response = apiInstance.ArchiveLeadFormWithHttpInfo(formId, accountId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -94,6 +95,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **formId** | **string** | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). |  |
 | **accountId** | **string** | Connected Meta ads, facebook, instagram or linkedin ads account id (selects the platform).  - A Meta ads connection resolves its Page through the Facebook account linked to the same profile. - An Instagram account uses the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 

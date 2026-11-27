@@ -223,7 +223,7 @@ catch (ApiException e)
 
 <a id="deleteadaudience"></a>
 # **DeleteAdAudience**
-> DeleteAccountGroup200Response DeleteAdAudience (string audienceId)
+> DeleteAccountGroup200Response DeleteAdAudience (string audienceId, bool? stage = null)
 
 Delete custom audience
 
@@ -254,11 +254,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
             var audienceId = "audienceId_example";  // string | 
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Delete custom audience
-                DeleteAccountGroup200Response result = apiInstance.DeleteAdAudience(audienceId);
+                DeleteAccountGroup200Response result = apiInstance.DeleteAdAudience(audienceId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -279,7 +280,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete custom audience
-    ApiResponse<DeleteAccountGroup200Response> response = apiInstance.DeleteAdAudienceWithHttpInfo(audienceId);
+    ApiResponse<DeleteAccountGroup200Response> response = apiInstance.DeleteAdAudienceWithHttpInfo(audienceId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -297,6 +298,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **audienceId** | **string** |  |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 

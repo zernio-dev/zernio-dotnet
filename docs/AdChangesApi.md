@@ -431,11 +431,11 @@ catch (ApiException e)
 
 <a id="restageadchange"></a>
 # **RestageAdChange**
-> GetAdChange200Response RestageAdChange (string changeId)
+> GetAdChange200Response RestageAdChange (string changeId, RestageAdChangeRequest? restageAdChangeRequest = null)
 
 Stage a failed ad change again
 
-Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted.  A failed create cannot be staged again (`409`): it may have made part of its objects on the ad network, which its `error.details` lists. Stage a new create instead. This covers every change with `creates: true`.  Also refused with `409`: a change that failed as `change_outcome_unknown`, and a change whose kept uploads were deleted or moved to an earlier restage. 
+Makes a new staged change from a change that failed at confirm. Nothing is written to the ad network.  The new change holds the same request. It is checked for the calling user, and an edit is read against the current values of its object. The failed change stays readable until it is deleted, with `restaged: true`.  ### A change that may have made objects  The new change sends the same request again at confirm. A failed create may have made part of its objects on the ad network, and they would be made a second time.  Such a change answers `409` with `param: \"acknowledge\"`. `details.leftBehind` lists the objects the failure left, and `details.outcomeUnknown` is true when nothing tells what was made. Send `acknowledge: true` to stage it again anyway.  A failed create that left nothing behind is staged again without it.  ### Refused  A change that did not fail, a failed change that was already staged again, and a change whose kept uploads were deleted or moved to an earlier restage answer `409`. 
 
 ### Example
 ```csharp
@@ -462,11 +462,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdChangesApi(httpClient, config, httpClientHandler);
             var changeId = "changeId_example";  // string | The id of the failed change.
+            var restageAdChangeRequest = new RestageAdChangeRequest?(); // RestageAdChangeRequest? |  (optional) 
 
             try
             {
                 // Stage a failed ad change again
-                GetAdChange200Response result = apiInstance.RestageAdChange(changeId);
+                GetAdChange200Response result = apiInstance.RestageAdChange(changeId, restageAdChangeRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -487,7 +488,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Stage a failed ad change again
-    ApiResponse<GetAdChange200Response> response = apiInstance.RestageAdChangeWithHttpInfo(changeId);
+    ApiResponse<GetAdChange200Response> response = apiInstance.RestageAdChangeWithHttpInfo(changeId, restageAdChangeRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -505,6 +506,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **changeId** | **string** | The id of the failed change. |  |
+| **restageAdChangeRequest** | [**RestageAdChangeRequest?**](RestageAdChangeRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -516,7 +518,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -528,7 +530,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | Code &#x60;invalid_resource_state&#x60;. The change did not fail, it creates an object, nobody knows how it ended, or its kept uploads are gone. |  -  |
+| **409** | Code &#x60;invalid_resource_state&#x60;. With &#x60;param: \&quot;acknowledge\&quot;&#x60; the change may have made objects on the ad network: &#x60;details.leftBehind&#x60; lists them and &#x60;details.outcomeUnknown&#x60; says when nothing is known; send &#x60;acknowledge: true&#x60;. Without it: the change did not fail, was already staged again, or its kept uploads are gone. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -538,7 +540,7 @@ catch (ApiException e)
 
 Edit or refresh a staged ad change
 
-Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without `stage`. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type `operation` stores a whole request and cannot be edited in place (`409`): discard it and stage the request again.  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads `stale: true` after a confirm answered `409` `change_target_changed`: once refreshed it can be confirmed. 
+Replaces the request body of a staged change, or reads its object again when no body is sent. The change keeps its id. Nothing is written to the ad network.  ### Edit  Send the new body: the same kind of body as the route the change was staged on, without `stage`. It passes the checks of staging again for the calling user. The object is read again, so the diff and the changed-since check start from its current values.  A change of type `operation` stores a whole request. Its new body goes through the route of that write, which checks it as a new staged request. The path and the query stay as they were staged.  Such an edit answers what that route answers when it refuses the body, and the change stays as it was. A request without a body has nothing to edit (`409`).  ### Refresh  Send no body. The object is read again with the body the change already holds. Use it on a change that reads `stale: true` after a confirm answered `409` `change_target_changed`: once refreshed it can be confirmed. 
 
 ### Example
 ```csharp
@@ -633,7 +635,7 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running), or it is a write staged as its request and a body was sent (&#x60;invalid_resource_state&#x60;). |  -  |
+| **409** | The change is no longer staged (&#x60;change_not_staged&#x60;, or &#x60;change_outcome_unknown&#x60; while a confirm is running). Or code &#x60;invalid_resource_state&#x60;: the change stores a request without a body, or the new body points at another connection or another object. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

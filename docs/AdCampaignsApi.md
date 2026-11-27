@@ -1365,7 +1365,7 @@ catch (ApiException e)
 
 <a id="deletead"></a>
 # **DeleteAd**
-> DeleteAccountGroup200Response DeleteAd (string adId)
+> DeleteAccountGroup200Response DeleteAd (string adId, bool? stage = null)
 
 Cancel an ad
 
@@ -1396,11 +1396,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | 
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Cancel an ad
-                DeleteAccountGroup200Response result = apiInstance.DeleteAd(adId);
+                DeleteAccountGroup200Response result = apiInstance.DeleteAd(adId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1421,7 +1422,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Cancel an ad
-    ApiResponse<DeleteAccountGroup200Response> response = apiInstance.DeleteAdWithHttpInfo(adId);
+    ApiResponse<DeleteAccountGroup200Response> response = apiInstance.DeleteAdWithHttpInfo(adId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1439,6 +1440,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** |  |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -1572,7 +1574,7 @@ catch (ApiException e)
 
 <a id="deleteadset"></a>
 # **DeleteAdSet**
-> DeleteAdSet200Response DeleteAdSet (string adSetId)
+> DeleteAdSet200Response DeleteAdSet (string adSetId, bool? stage = null)
 
 Delete an ad set
 
@@ -1603,11 +1605,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var adSetId = "adSetId_example";  // string | Platform ad set ID
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Delete an ad set
-                DeleteAdSet200Response result = apiInstance.DeleteAdSet(adSetId);
+                DeleteAdSet200Response result = apiInstance.DeleteAdSet(adSetId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1628,7 +1631,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete an ad set
-    ApiResponse<DeleteAdSet200Response> response = apiInstance.DeleteAdSetWithHttpInfo(adSetId);
+    ApiResponse<DeleteAdSet200Response> response = apiInstance.DeleteAdSetWithHttpInfo(adSetId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1646,6 +1649,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adSetId** | **string** | Platform ad set ID |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -5693,7 +5697,7 @@ catch (ApiException e)
 
 <a id="removeadgroupassets"></a>
 # **RemoveAdGroupAssets**
-> RemoveCampaignAssets200Response RemoveAdGroupAssets (string adSetId, string accountId, List<string> assetResourceNames, List<string> adGroupAssetResourceNames, string? adAccountId = null, string? customerId = null)
+> RemoveCampaignAssets200Response RemoveAdGroupAssets (string adSetId, string accountId, List<string> assetResourceNames, List<string> adGroupAssetResourceNames, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove ad-group assets
 
@@ -5727,13 +5731,14 @@ namespace Example
             var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
             var assetResourceNames = new List<string>(); // List<string> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
             var adGroupAssetResourceNames = new List<string>(); // List<string> | ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove ad-group assets
-                RemoveCampaignAssets200Response result = apiInstance.RemoveAdGroupAssets(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId);
+                RemoveCampaignAssets200Response result = apiInstance.RemoveAdGroupAssets(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5754,7 +5759,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove ad-group assets
-    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveAdGroupAssetsWithHttpInfo(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId);
+    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveAdGroupAssetsWithHttpInfo(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5775,6 +5780,7 @@ catch (ApiException e)
 | **accountId** | **string** | Zernio Google Ads connection id. |  |
 | **assetResourceNames** | [**List&lt;string&gt;**](string.md) | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. |  |
 | **adGroupAssetResourceNames** | [**List&lt;string&gt;**](string.md) | ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
@@ -5808,7 +5814,7 @@ catch (ApiException e)
 
 <a id="removeadkeyword"></a>
 # **RemoveAdKeyword**
-> RemoveAdKeyword200Response RemoveAdKeyword (string keywordId, string? idempotencyKey = null)
+> RemoveAdKeyword200Response RemoveAdKeyword (string keywordId, bool? stage = null, string? idempotencyKey = null)
 
 Remove a Search keyword
 
@@ -5839,12 +5845,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var keywordId = "keywordId_example";  // string | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Remove a Search keyword
-                RemoveAdKeyword200Response result = apiInstance.RemoveAdKeyword(keywordId, idempotencyKey);
+                RemoveAdKeyword200Response result = apiInstance.RemoveAdKeyword(keywordId, stage, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5865,7 +5872,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a Search keyword
-    ApiResponse<RemoveAdKeyword200Response> response = apiInstance.RemoveAdKeywordWithHttpInfo(keywordId, idempotencyKey);
+    ApiResponse<RemoveAdKeyword200Response> response = apiInstance.RemoveAdKeywordWithHttpInfo(keywordId, stage, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5883,6 +5890,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **keywordId** | **string** | Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
@@ -5913,7 +5921,7 @@ catch (ApiException e)
 
 <a id="removecampaignassets"></a>
 # **RemoveCampaignAssets**
-> RemoveCampaignAssets200Response RemoveCampaignAssets (string campaignId, string accountId, List<string> assetResourceNames, List<string> campaignAssetResourceNames, string? adAccountId = null, string? customerId = null)
+> RemoveCampaignAssets200Response RemoveCampaignAssets (string campaignId, string accountId, List<string> assetResourceNames, List<string> campaignAssetResourceNames, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove campaign assets
 
@@ -5947,13 +5955,14 @@ namespace Example
             var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
             var assetResourceNames = new List<string>(); // List<string> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
             var campaignAssetResourceNames = new List<string>(); // List<string> | campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove campaign assets
-                RemoveCampaignAssets200Response result = apiInstance.RemoveCampaignAssets(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId);
+                RemoveCampaignAssets200Response result = apiInstance.RemoveCampaignAssets(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5974,7 +5983,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove campaign assets
-    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveCampaignAssetsWithHttpInfo(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId);
+    ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.RemoveCampaignAssetsWithHttpInfo(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5995,6 +6004,7 @@ catch (ApiException e)
 | **accountId** | **string** | Zernio Google Ads connection id. |  |
 | **assetResourceNames** | [**List&lt;string&gt;**](string.md) | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. |  |
 | **campaignAssetResourceNames** | [**List&lt;string&gt;**](string.md) | campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
@@ -6028,7 +6038,7 @@ catch (ApiException e)
 
 <a id="removegoogleassetgroup"></a>
 # **RemoveGoogleAssetGroup**
-> RemoveGoogleAssetGroup200Response RemoveGoogleAssetGroup (string campaignId, string assetGroupId, bool? validateOnly = null)
+> RemoveGoogleAssetGroup200Response RemoveGoogleAssetGroup (string campaignId, string assetGroupId, bool? stage = null, bool? validateOnly = null)
 
 Remove a Performance Max asset group
 
@@ -6060,12 +6070,13 @@ namespace Example
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var campaignId = "campaignId_example";  // string | 
             var assetGroupId = "assetGroupId_example";  // string | 
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var validateOnly = false;  // bool? |  (optional)  (default to false)
 
             try
             {
                 // Remove a Performance Max asset group
-                RemoveGoogleAssetGroup200Response result = apiInstance.RemoveGoogleAssetGroup(campaignId, assetGroupId, validateOnly);
+                RemoveGoogleAssetGroup200Response result = apiInstance.RemoveGoogleAssetGroup(campaignId, assetGroupId, stage, validateOnly);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6086,7 +6097,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a Performance Max asset group
-    ApiResponse<RemoveGoogleAssetGroup200Response> response = apiInstance.RemoveGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, validateOnly);
+    ApiResponse<RemoveGoogleAssetGroup200Response> response = apiInstance.RemoveGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, stage, validateOnly);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6105,6 +6116,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **campaignId** | **string** |  |  |
 | **assetGroupId** | **string** |  |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **validateOnly** | **bool?** |  | [optional] [default to false] |
 
 ### Return type

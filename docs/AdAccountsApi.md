@@ -1457,7 +1457,7 @@ catch (ApiException e)
 
 <a id="deleteadnegativekeywordlist"></a>
 # **DeleteAdNegativeKeywordList**
-> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, string? idempotencyKey = null, string? adAccountId = null, string? customerId = null, string? platform = null)
+> DeleteAdNegativeKeywordList200Response DeleteAdNegativeKeywordList (string listId, string accountId, bool? stage = null, string? idempotencyKey = null, string? adAccountId = null, string? customerId = null, string? platform = null)
 
 Delete a negative keyword list
 
@@ -1489,6 +1489,7 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var listId = "listId_example";  // string | 
             var accountId = "accountId_example";  // string | 
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
             var adAccountId = "adAccountId_example";  // string? |  (optional) 
             var customerId = "customerId_example";  // string? |  (optional) 
@@ -1497,7 +1498,7 @@ namespace Example
             try
             {
                 // Delete a negative keyword list
-                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
+                DeleteAdNegativeKeywordList200Response result = apiInstance.DeleteAdNegativeKeywordList(listId, accountId, stage, idempotencyKey, adAccountId, customerId, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1518,7 +1519,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a negative keyword list
-    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, idempotencyKey, adAccountId, customerId, platform);
+    ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.DeleteAdNegativeKeywordListWithHttpInfo(listId, accountId, stage, idempotencyKey, adAccountId, customerId, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1537,6 +1538,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **listId** | **string** |  |  |
 | **accountId** | **string** |  |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 | **adAccountId** | **string?** |  | [optional]  |
 | **customerId** | **string?** |  | [optional]  |
@@ -1573,7 +1575,7 @@ catch (ApiException e)
 
 <a id="deletevalueruleset"></a>
 # **DeleteValueRuleSet**
-> DeleteValueRuleSet200Response DeleteValueRuleSet (string valueRuleSetId, string accountId)
+> DeleteValueRuleSet200Response DeleteValueRuleSet (string valueRuleSetId, string accountId, bool? stage = null)
 
 Delete a value rule set
 
@@ -1605,11 +1607,12 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var valueRuleSetId = "valueRuleSetId_example";  // string | Platform value rule set id.
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Delete a value rule set
-                DeleteValueRuleSet200Response result = apiInstance.DeleteValueRuleSet(valueRuleSetId, accountId);
+                DeleteValueRuleSet200Response result = apiInstance.DeleteValueRuleSet(valueRuleSetId, accountId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1630,7 +1633,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a value rule set
-    ApiResponse<DeleteValueRuleSet200Response> response = apiInstance.DeleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId);
+    ApiResponse<DeleteValueRuleSet200Response> response = apiInstance.DeleteValueRuleSetWithHttpInfo(valueRuleSetId, accountId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1649,6 +1652,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **valueRuleSetId** | **string** | Platform value rule set id. |  |
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -1678,7 +1682,7 @@ catch (ApiException e)
 
 <a id="detachadlabel"></a>
 # **DetachAdLabel**
-> DetachAdLabel200Response DetachAdLabel (string labelId, string accountId, string? adAccountId = null, string? customerId = null, List<string>? campaignIds = null, List<string>? adSetIds = null, List<string>? adIds = null, List<string>? keywordIds = null)
+> DetachAdLabel200Response DetachAdLabel (string labelId, string accountId, bool? stage = null, string? adAccountId = null, string? customerId = null, List<string>? campaignIds = null, List<string>? adSetIds = null, List<string>? adIds = null, List<string>? keywordIds = null)
 
 Detach a Google Ads label
 
@@ -1710,6 +1714,7 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var labelId = "labelId_example";  // string | Google label id
             var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
             var campaignIds = new List<string>?(); // List<string>? | Google campaign ids. Repeat the parameter or pass a comma-separated list. (optional) 
@@ -1720,7 +1725,7 @@ namespace Example
             try
             {
                 // Detach a Google Ads label
-                DetachAdLabel200Response result = apiInstance.DetachAdLabel(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
+                DetachAdLabel200Response result = apiInstance.DetachAdLabel(labelId, accountId, stage, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1741,7 +1746,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Detach a Google Ads label
-    ApiResponse<DetachAdLabel200Response> response = apiInstance.DetachAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
+    ApiResponse<DetachAdLabel200Response> response = apiInstance.DetachAdLabelWithHttpInfo(labelId, accountId, stage, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1760,6 +1765,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **labelId** | **string** | Google label id |  |
 | **accountId** | **string** | Zernio Google Ads connection id. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 | **campaignIds** | [**List&lt;string&gt;?**](string.md) | Google campaign ids. Repeat the parameter or pass a comma-separated list. | [optional]  |
@@ -5823,7 +5829,7 @@ catch (ApiException e)
 
 <a id="removeaccountcallout"></a>
 # **RemoveAccountCallout**
-> RemoveAccountCallout200Response RemoveAccountCallout (string accountId, string assetId, string? adAccountId = null, string? customerId = null)
+> RemoveAccountCallout200Response RemoveAccountCallout (string accountId, string assetId, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove account callout
 
@@ -5855,13 +5861,14 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
             var assetId = "assetId_example";  // string | Numeric Google Ads asset id.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove account callout
-                RemoveAccountCallout200Response result = apiInstance.RemoveAccountCallout(accountId, assetId, adAccountId, customerId);
+                RemoveAccountCallout200Response result = apiInstance.RemoveAccountCallout(accountId, assetId, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5882,7 +5889,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove account callout
-    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountCalloutWithHttpInfo(accountId, assetId, adAccountId, customerId);
+    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountCalloutWithHttpInfo(accountId, assetId, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -5901,6 +5908,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | Zernio Google Ads connection id. |  |
 | **assetId** | **string** | Numeric Google Ads asset id. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
@@ -5934,7 +5942,7 @@ catch (ApiException e)
 
 <a id="removeaccountsitelink"></a>
 # **RemoveAccountSitelink**
-> RemoveAccountCallout200Response RemoveAccountSitelink (string accountId, string assetId, string? adAccountId = null, string? customerId = null)
+> RemoveAccountCallout200Response RemoveAccountSitelink (string accountId, string assetId, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove account sitelink
 
@@ -5966,13 +5974,14 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
             var assetId = "assetId_example";  // string | Numeric Google Ads asset id.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove account sitelink
-                RemoveAccountCallout200Response result = apiInstance.RemoveAccountSitelink(accountId, assetId, adAccountId, customerId);
+                RemoveAccountCallout200Response result = apiInstance.RemoveAccountSitelink(accountId, assetId, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -5993,7 +6002,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove account sitelink
-    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountSitelinkWithHttpInfo(accountId, assetId, adAccountId, customerId);
+    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountSitelinkWithHttpInfo(accountId, assetId, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6012,6 +6021,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | Zernio Google Ads connection id. |  |
 | **assetId** | **string** | Numeric Google Ads asset id. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
@@ -6045,7 +6055,7 @@ catch (ApiException e)
 
 <a id="removeaccountstructuredsnippet"></a>
 # **RemoveAccountStructuredSnippet**
-> RemoveAccountCallout200Response RemoveAccountStructuredSnippet (string accountId, string assetId, string? adAccountId = null, string? customerId = null)
+> RemoveAccountCallout200Response RemoveAccountStructuredSnippet (string accountId, string assetId, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove account snippet
 
@@ -6077,13 +6087,14 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Zernio Google Ads connection id.
             var assetId = "assetId_example";  // string | Numeric Google Ads asset id.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId, kept for existing callers (optional) 
 
             try
             {
                 // Remove account snippet
-                RemoveAccountCallout200Response result = apiInstance.RemoveAccountStructuredSnippet(accountId, assetId, adAccountId, customerId);
+                RemoveAccountCallout200Response result = apiInstance.RemoveAccountStructuredSnippet(accountId, assetId, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6104,7 +6115,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove account snippet
-    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountStructuredSnippetWithHttpInfo(accountId, assetId, adAccountId, customerId);
+    ApiResponse<RemoveAccountCallout200Response> response = apiInstance.RemoveAccountStructuredSnippetWithHttpInfo(accountId, assetId, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6123,6 +6134,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | Zernio Google Ads connection id. |  |
 | **assetId** | **string** | Numeric Google Ads asset id. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId, kept for existing callers | [optional]  |
 
@@ -6156,7 +6168,7 @@ catch (ApiException e)
 
 <a id="removeadaccountuser"></a>
 # **RemoveAdAccountUser**
-> RemoveAdAccountUser200Response RemoveAdAccountUser (string accountId, string adAccountId, string userId)
+> RemoveAdAccountUser200Response RemoveAdAccountUser (string accountId, string adAccountId, string userId, bool? stage = null)
 
 Remove a user from an ad account
 
@@ -6189,11 +6201,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Zernio SocialAccount id used to resolve the Meta token.
             var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
             var userId = "userId_example";  // string | Business-scoped user id.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Remove a user from an ad account
-                RemoveAdAccountUser200Response result = apiInstance.RemoveAdAccountUser(accountId, adAccountId, userId);
+                RemoveAdAccountUser200Response result = apiInstance.RemoveAdAccountUser(accountId, adAccountId, userId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6214,7 +6227,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a user from an ad account
-    ApiResponse<RemoveAdAccountUser200Response> response = apiInstance.RemoveAdAccountUserWithHttpInfo(accountId, adAccountId, userId);
+    ApiResponse<RemoveAdAccountUser200Response> response = apiInstance.RemoveAdAccountUserWithHttpInfo(accountId, adAccountId, userId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6234,6 +6247,7 @@ catch (ApiException e)
 | **accountId** | **string** | Zernio SocialAccount id used to resolve the Meta token. |  |
 | **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
 | **userId** | **string** | Business-scoped user id. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -6265,7 +6279,7 @@ catch (ApiException e)
 
 <a id="removeadlabel"></a>
 # **RemoveAdLabel**
-> RemoveAdLabel200Response RemoveAdLabel (string labelId, string accountId, string? adAccountId = null, string? customerId = null)
+> RemoveAdLabel200Response RemoveAdLabel (string labelId, string accountId, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove a Google Ads label
 
@@ -6297,13 +6311,14 @@ namespace Example
             var apiInstance = new AdAccountsApi(httpClient, config, httpClientHandler);
             var labelId = "labelId_example";  // string | Google label id
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (Google Ads)
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Google customer id. Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId (optional) 
 
             try
             {
                 // Remove a Google Ads label
-                RemoveAdLabel200Response result = apiInstance.RemoveAdLabel(labelId, accountId, adAccountId, customerId);
+                RemoveAdLabel200Response result = apiInstance.RemoveAdLabel(labelId, accountId, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6324,7 +6339,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a Google Ads label
-    ApiResponse<RemoveAdLabel200Response> response = apiInstance.RemoveAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId);
+    ApiResponse<RemoveAdLabel200Response> response = apiInstance.RemoveAdLabelWithHttpInfo(labelId, accountId, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6343,6 +6358,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **labelId** | **string** | Google label id |  |
 | **accountId** | **string** | Zernio SocialAccount id (Google Ads) |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Google customer id. Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId | [optional]  |
 
@@ -6375,7 +6391,7 @@ catch (ApiException e)
 
 <a id="removepageuser"></a>
 # **RemovePageUser**
-> RemovePageUser200Response RemovePageUser (string accountId, string pageId, string userId)
+> RemovePageUser200Response RemovePageUser (string accountId, string pageId, string userId, bool? stage = null)
 
 Remove a user from a Page
 
@@ -6408,11 +6424,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Zernio SocialAccount id used to resolve the Meta token.
             var pageId = "pageId_example";  // string | Facebook Page id.
             var userId = "userId_example";  // string | Business-scoped user id.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Remove a user from a Page
-                RemovePageUser200Response result = apiInstance.RemovePageUser(accountId, pageId, userId);
+                RemovePageUser200Response result = apiInstance.RemovePageUser(accountId, pageId, userId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6433,7 +6450,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a user from a Page
-    ApiResponse<RemovePageUser200Response> response = apiInstance.RemovePageUserWithHttpInfo(accountId, pageId, userId);
+    ApiResponse<RemovePageUser200Response> response = apiInstance.RemovePageUserWithHttpInfo(accountId, pageId, userId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6453,6 +6470,7 @@ catch (ApiException e)
 | **accountId** | **string** | Zernio SocialAccount id used to resolve the Meta token. |  |
 | **pageId** | **string** | Facebook Page id. |  |
 | **userId** | **string** | Business-scoped user id. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -6707,7 +6725,7 @@ catch (ApiException e)
 
 <a id="revokeadaccountuserinvitation"></a>
 # **RevokeAdAccountUserInvitation**
-> RevokeAdAccountUserInvitation200Response RevokeAdAccountUserInvitation (string accountId, string adAccountId, string invitationId)
+> RevokeAdAccountUserInvitation200Response RevokeAdAccountUserInvitation (string accountId, string adAccountId, string invitationId, bool? stage = null)
 
 Revoke a user access invitation
 
@@ -6740,11 +6758,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Google ads SocialAccount id.
             var adAccountId = "adAccountId_example";  // string | Google Ads customer id, digits only.
             var invitationId = "invitationId_example";  // string | Numeric invitation id from GET /v1/ads/accounts/user-invitations.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Revoke a user access invitation
-                RevokeAdAccountUserInvitation200Response result = apiInstance.RevokeAdAccountUserInvitation(accountId, adAccountId, invitationId);
+                RevokeAdAccountUserInvitation200Response result = apiInstance.RevokeAdAccountUserInvitation(accountId, adAccountId, invitationId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -6765,7 +6784,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Revoke a user access invitation
-    ApiResponse<RevokeAdAccountUserInvitation200Response> response = apiInstance.RevokeAdAccountUserInvitationWithHttpInfo(accountId, adAccountId, invitationId);
+    ApiResponse<RevokeAdAccountUserInvitation200Response> response = apiInstance.RevokeAdAccountUserInvitationWithHttpInfo(accountId, adAccountId, invitationId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -6785,6 +6804,7 @@ catch (ApiException e)
 | **accountId** | **string** | Google ads SocialAccount id. |  |
 | **adAccountId** | **string** | Google Ads customer id, digits only. |  |
 | **invitationId** | **string** | Numeric invitation id from GET /v1/ads/accounts/user-invitations. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -7768,7 +7788,7 @@ catch (ApiException e)
 
 <a id="withdrawadaccountuserinvitationapproval"></a>
 # **WithdrawAdAccountUserInvitationApproval**
-> WithdrawAdAccountUserInvitationApproval200Response WithdrawAdAccountUserInvitationApproval (string accountId, string adAccountId, string multiPartyAuthReviewId)
+> WithdrawAdAccountUserInvitationApproval200Response WithdrawAdAccountUserInvitationApproval (string accountId, string adAccountId, string multiPartyAuthReviewId, bool? stage = null)
 
 Withdraw an invitation awaiting multi-party approval
 
@@ -7801,11 +7821,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Google ads SocialAccount id.
             var adAccountId = "adAccountId_example";  // string | Google Ads customer id, digits only.
             var multiPartyAuthReviewId = "multiPartyAuthReviewId_example";  // string | Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Withdraw an invitation awaiting multi-party approval
-                WithdrawAdAccountUserInvitationApproval200Response result = apiInstance.WithdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId);
+                WithdrawAdAccountUserInvitationApproval200Response result = apiInstance.WithdrawAdAccountUserInvitationApproval(accountId, adAccountId, multiPartyAuthReviewId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -7826,7 +7847,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Withdraw an invitation awaiting multi-party approval
-    ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> response = apiInstance.WithdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId);
+    ApiResponse<WithdrawAdAccountUserInvitationApproval200Response> response = apiInstance.WithdrawAdAccountUserInvitationApprovalWithHttpInfo(accountId, adAccountId, multiPartyAuthReviewId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -7846,6 +7867,7 @@ catch (ApiException e)
 | **accountId** | **string** | Google ads SocialAccount id. |  |
 | **adAccountId** | **string** | Google Ads customer id, digits only. |  |
 | **multiPartyAuthReviewId** | **string** | Numeric review id from POST /v1/ads/accounts/user-invitations or GET /v1/ads/accounts/user-invitations/pending-approvals. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 

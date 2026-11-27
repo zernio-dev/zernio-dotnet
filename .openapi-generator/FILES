@@ -3142,6 +3142,7 @@ docs/RespondToSmsRegistrationReview200Response.md
 docs/RespondToSmsRegistrationReviewRequest.md
 docs/RespondToSmsRegistrationReviewRequestAnswersInner.md
 docs/ResponseTimeBucket.md
+docs/RestageAdChangeRequest.md
 docs/RestateEvent200Response.md
 docs/RestateEventRequest.md
 docs/RestoreWorkflowVersion200Response.md
@@ -3421,6 +3422,7 @@ docs/SocialAccountProfileId.md
 docs/StagedAdChange.md
 docs/StagedAdChangeDiffInner.md
 docs/StagedAdChangeError.md
+docs/StagedAdChangeLeftBehindInner.md
 docs/StagedAdChangeRequest.md
 docs/StagedAdChangeRequestQueryValue.md
 docs/StagedAdChangeSummary.md
@@ -7476,6 +7478,7 @@ src/Zernio.Test/Model/RespondToSmsRegistrationReview200ResponseTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestAnswersInnerTests.cs
 src/Zernio.Test/Model/RespondToSmsRegistrationReviewRequestTests.cs
 src/Zernio.Test/Model/ResponseTimeBucketTests.cs
+src/Zernio.Test/Model/RestageAdChangeRequestTests.cs
 src/Zernio.Test/Model/RestateEvent200ResponseTests.cs
 src/Zernio.Test/Model/RestateEventRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
@@ -7750,6 +7753,7 @@ src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
 src/Zernio.Test/Model/StagedAdChangeDiffInnerTests.cs
 src/Zernio.Test/Model/StagedAdChangeErrorTests.cs
+src/Zernio.Test/Model/StagedAdChangeLeftBehindInnerTests.cs
 src/Zernio.Test/Model/StagedAdChangeRequestQueryValueTests.cs
 src/Zernio.Test/Model/StagedAdChangeRequestTests.cs
 src/Zernio.Test/Model/StagedAdChangeSummaryErrorTests.cs
@@ -11804,6 +11808,7 @@ src/Zernio/Model/RespondToSmsRegistrationReview200Response.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequest.cs
 src/Zernio/Model/RespondToSmsRegistrationReviewRequestAnswersInner.cs
 src/Zernio/Model/ResponseTimeBucket.cs
+src/Zernio/Model/RestageAdChangeRequest.cs
 src/Zernio/Model/RestateEvent200Response.cs
 src/Zernio/Model/RestateEventRequest.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
@@ -12079,6 +12084,7 @@ src/Zernio/Model/SocialAccountProfileId.cs
 src/Zernio/Model/StagedAdChange.cs
 src/Zernio/Model/StagedAdChangeDiffInner.cs
 src/Zernio/Model/StagedAdChangeError.cs
+src/Zernio/Model/StagedAdChangeLeftBehindInner.cs
 src/Zernio/Model/StagedAdChangeRequest.cs
 src/Zernio/Model/StagedAdChangeRequestQueryValue.cs
 src/Zernio/Model/StagedAdChangeSummary.cs

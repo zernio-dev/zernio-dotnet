@@ -131,7 +131,7 @@ catch (ApiException e)
 
 <a id="deleteadcreative"></a>
 # **DeleteAdCreative**
-> DeleteAdCreative200Response DeleteAdCreative (string creativeId, string accountId)
+> DeleteAdCreative200Response DeleteAdCreative (string creativeId, string accountId, bool? stage = null)
 
 Delete a creative
 
@@ -163,11 +163,12 @@ namespace Example
             var apiInstance = new AdCreativesApi(httpClient, config, httpClientHandler);
             var creativeId = "creativeId_example";  // string | Platform creative id
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Delete a creative
-                DeleteAdCreative200Response result = apiInstance.DeleteAdCreative(creativeId, accountId);
+                DeleteAdCreative200Response result = apiInstance.DeleteAdCreative(creativeId, accountId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -188,7 +189,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a creative
-    ApiResponse<DeleteAdCreative200Response> response = apiInstance.DeleteAdCreativeWithHttpInfo(creativeId, accountId);
+    ApiResponse<DeleteAdCreative200Response> response = apiInstance.DeleteAdCreativeWithHttpInfo(creativeId, accountId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -207,6 +208,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **creativeId** | **string** | Platform creative id |  |
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 
@@ -237,7 +239,7 @@ catch (ApiException e)
 
 <a id="deleteadvideo"></a>
 # **DeleteAdVideo**
-> DeleteAdVideo200Response DeleteAdVideo (string videoId, string accountId, string adAccountId)
+> DeleteAdVideo200Response DeleteAdVideo (string videoId, string accountId, string adAccountId, bool? stage = null)
 
 Delete an ad video
 
@@ -270,11 +272,12 @@ namespace Example
             var videoId = "videoId_example";  // string | Meta ad video id (numeric).
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
             var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>) that owns the video.
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
 
             try
             {
                 // Delete an ad video
-                DeleteAdVideo200Response result = apiInstance.DeleteAdVideo(videoId, accountId, adAccountId);
+                DeleteAdVideo200Response result = apiInstance.DeleteAdVideo(videoId, accountId, adAccountId, stage);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -295,7 +298,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete an ad video
-    ApiResponse<DeleteAdVideo200Response> response = apiInstance.DeleteAdVideoWithHttpInfo(videoId, accountId, adAccountId);
+    ApiResponse<DeleteAdVideo200Response> response = apiInstance.DeleteAdVideoWithHttpInfo(videoId, accountId, adAccountId, stage);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -315,6 +318,7 @@ catch (ApiException e)
 | **videoId** | **string** | Meta ad video id (numeric). |  |
 | **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
 | **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;) that owns the video. |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 
 ### Return type
 

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Stage** | **bool** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. Cannot be combined with &#x60;validateOnly&#x60;. | [optional] 
 **AccountId** | **string** | Account ID (metaads, or a facebook/instagram posting account) | 
 **AdAccountId** | **string** | Meta ad account ID (act_...) | 
 **Name** | **string** | New ad account name. | [optional] 

@@ -4822,7 +4822,7 @@ catch (ApiException e)
 
 <a id="removecustomconversiongoal"></a>
 # **RemoveCustomConversionGoal**
-> RemoveCustomConversionGoal200Response RemoveCustomConversionGoal (string goalId, string accountId, string? adAccountId = null, string? customerId = null)
+> RemoveCustomConversionGoal200Response RemoveCustomConversionGoal (string goalId, string accountId, bool? stage = null, string? adAccountId = null, string? customerId = null)
 
 Remove a custom conversion goal
 
@@ -4854,13 +4854,14 @@ namespace Example
             var apiInstance = new ConversionsApi(httpClient, config, httpClientHandler);
             var goalId = "goalId_example";  // string | Google custom conversion goal id
             var accountId = "accountId_example";  // string | Zernio SocialAccount id (Google Ads)
+            var stage = true;  // bool? | Send true to store this write as a staged change instead of applying it. The response is `202` with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. (optional) 
             var adAccountId = "adAccountId_example";  // string? | Google customer id. Required when the connection has multiple customers. (optional) 
             var customerId = "customerId_example";  // string? | Alias of adAccountId (optional) 
 
             try
             {
                 // Remove a custom conversion goal
-                RemoveCustomConversionGoal200Response result = apiInstance.RemoveCustomConversionGoal(goalId, accountId, adAccountId, customerId);
+                RemoveCustomConversionGoal200Response result = apiInstance.RemoveCustomConversionGoal(goalId, accountId, stage, adAccountId, customerId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4881,7 +4882,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove a custom conversion goal
-    ApiResponse<RemoveCustomConversionGoal200Response> response = apiInstance.RemoveCustomConversionGoalWithHttpInfo(goalId, accountId, adAccountId, customerId);
+    ApiResponse<RemoveCustomConversionGoal200Response> response = apiInstance.RemoveCustomConversionGoalWithHttpInfo(goalId, accountId, stage, adAccountId, customerId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4900,6 +4901,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **goalId** | **string** | Google custom conversion goal id |  |
 | **accountId** | **string** | Zernio SocialAccount id (Google Ads) |  |
+| **stage** | **bool?** | Send true to store this write as a staged change instead of applying it. The response is &#x60;202&#x60; with the change, and POST /v1/ads/changes/{changeId}/confirm applies it later. | [optional]  |
 | **adAccountId** | **string?** | Google customer id. Required when the connection has multiple customers. | [optional]  |
 | **customerId** | **string?** | Alias of adAccountId | [optional]  |
 
