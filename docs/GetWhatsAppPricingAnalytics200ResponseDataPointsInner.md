@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **PricingType** | **string** | Set when dimensions includes PRICING_TYPE. | 
 **PricingCategory** | **string** | Set when dimensions includes PRICING_CATEGORY. | 
 **Volume** | **int?** | Messages delivered. | 
-**Cost** | **decimal?** | Approximate charge, in the currency of the WABA&#39;s payment method. | 
+**Cost** | **decimal?** | Approximate charge, in the currency given by &#x60;currency&#x60;. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

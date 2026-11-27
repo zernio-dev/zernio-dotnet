@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.854.0",
+    "version": "1.854.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -154953,7 +154953,7 @@
           "WhatsApp Phone Numbers"
         ],
         "summary": "Get number status",
-        "description": "Live snapshot of a connected number straight from Meta.\n\n### Phone-number node\n\n- display number\n- display name + approval\n- quality rating\n- messaging-limit tier\n- throughput\n- official-business badge\n- connection status\n- health_status\n\n### Owning WhatsApp Business Account\n\n- name\n- business verification\n- timezone\n- health_status\n\n### Why live\n\nIt is fetched live because Meta updates quality/tier/name/health over time. The call also refreshes the cached values shown on the connection card.\n",
+        "description": "Live snapshot of a connected number straight from Meta.\n\n### Phone-number node\n\n- display number\n- display name + approval\n- quality rating\n- messaging-limit tier\n- throughput\n- official-business badge\n- connection status\n- health_status\n\n### Owning WhatsApp Business Account\n\n- name\n- business verification\n- timezone\n- billing currency\n- health_status\n\n### Why live\n\nIt is fetched live because Meta updates quality/tier/name/health over time. The call also refreshes the cached values shown on the connection card.\n",
         "security": [
           {
             "bearerAuth": []
@@ -155041,6 +155041,13 @@
                         "timezone_id": {
                           "type": "string",
                           "description": "Meta integer timezone-enum id"
+                        },
+                        "currency": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "ISO 4217 currency of the WABA's payment method (for example USD or BRL). Null when Meta does not return it."
                         },
                         "health_status": {
                           "type": "object"
@@ -155189,6 +155196,7 @@
                     "granularity",
                     "start",
                     "end",
+                    "currency",
                     "dataPoints"
                   ],
                   "properties": {
@@ -155214,6 +155222,13 @@
                     "end": {
                       "type": "string",
                       "format": "date-time"
+                    },
+                    "currency": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "ISO 4217 currency every `cost` is in, from the WABA's payment method (for example USD or BRL). Null when Meta does not return it."
                     },
                     "dataPoints": {
                       "type": "array",
@@ -155286,7 +155301,7 @@
                               "number",
                               "null"
                             ],
-                            "description": "Approximate charge, in the currency of the WABA's payment method."
+                            "description": "Approximate charge, in the currency given by `currency`."
                           }
                         }
                       }
@@ -155299,6 +155314,7 @@
                   "granularity": "DAILY",
                   "start": "2026-09-01T00:00:00.000Z",
                   "end": "2026-09-30T00:00:00.000Z",
+                  "currency": "USD",
                   "dataPoints": [
                     {
                       "start": "2026-09-01T00:00:00.000Z",
