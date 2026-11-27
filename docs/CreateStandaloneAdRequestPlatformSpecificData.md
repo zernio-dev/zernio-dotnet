@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **AudienceExpansionEnabled** | **bool** | Enable LinkedIn audience expansion. Defaults to false. | [optional] 
 **OffsiteDeliveryEnabled** | **bool** | Deliver on the LinkedIn Audience Network. Defaults to false. | [optional] 
 **ConnectedTelevisionOnly** | **bool** | Restrict delivery to Connected TV inventory. | [optional] 
+**ImageLinkFormat** | **string** | LinkedIn shape of an &#x60;imageUrl&#x60; with &#x60;linkUrl&#x60; ad on POST /v1/ads/create.  - &#x60;article&#x60; (default): an article link ad (&#x60;content.article&#x60;, image as the thumbnail). - &#x60;single_image&#x60;: a Single Image Ad (the image as the post media, &#x60;linkUrl&#x60; as the landing page, &#x60;callToAction&#x60; as the button).  &#x60;single_image&#x60; works only with &#x60;imageUrl&#x60;, returns 400 with &#x60;longHeadline&#x60; (LinkedIn does not show it on this format), and is rejected on boost.  | [optional] [default to ImageLinkFormatEnum.Article]
 **Carousel** | [**LinkedInAdsPlatformDataCarousel**](LinkedInAdsPlatformDataCarousel.md) |  | [optional] 
 **Document** | [**LinkedInAdsPlatformDataDocument**](LinkedInAdsPlatformDataDocument.md) |  | [optional] 
 **Spotlight** | [**LinkedInAdsPlatformDataSpotlight**](LinkedInAdsPlatformDataSpotlight.md) |  | [optional] 
