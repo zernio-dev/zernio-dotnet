@@ -2272,6 +2272,9 @@ docs/InstagramBusinessDiscoveryMediaInnerChildrenInner.md
 docs/InstagramBusinessDiscoveryProfile.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
+docs/InstagramHashtagMedia.md
+docs/InstagramHashtagResearch.md
+docs/InstagramHashtagResearchHashtag.md
 docs/InstagramLiveMedia.md
 docs/InstagramMediaCollaborator.md
 docs/InstagramMentionedComment.md
@@ -6633,6 +6636,9 @@ src/Zernio.Test/Model/InstagramBusinessDiscoveryProfileTests.cs
 src/Zernio.Test/Model/InstagramBusinessDiscoveryTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseDemographicsValueInnerTests.cs
 src/Zernio.Test/Model/InstagramDemographicsResponseTests.cs
+src/Zernio.Test/Model/InstagramHashtagMediaTests.cs
+src/Zernio.Test/Model/InstagramHashtagResearchHashtagTests.cs
+src/Zernio.Test/Model/InstagramHashtagResearchTests.cs
 src/Zernio.Test/Model/InstagramLiveMediaTests.cs
 src/Zernio.Test/Model/InstagramMediaCollaboratorTests.cs
 src/Zernio.Test/Model/InstagramMentionedCommentMediaTests.cs
@@ -10969,6 +10975,9 @@ src/Zernio/Model/InstagramBusinessDiscoveryMediaInnerChildrenInner.cs
 src/Zernio/Model/InstagramBusinessDiscoveryProfile.cs
 src/Zernio/Model/InstagramDemographicsResponse.cs
 src/Zernio/Model/InstagramDemographicsResponseDemographicsValueInner.cs
+src/Zernio/Model/InstagramHashtagMedia.cs
+src/Zernio/Model/InstagramHashtagResearch.cs
+src/Zernio/Model/InstagramHashtagResearchHashtag.cs
 src/Zernio/Model/InstagramLiveMedia.cs
 src/Zernio/Model/InstagramMediaCollaborator.cs
 src/Zernio/Model/InstagramMentionedComment.cs
