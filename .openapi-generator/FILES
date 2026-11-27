@@ -186,6 +186,7 @@ docs/AddUsersToAdAudienceRequest.md
 docs/AddWhatsAppGroupParticipantsRequest.md
 docs/AdjustConversions200Response.md
 docs/AdjustConversions200ResponseFailuresInner.md
+docs/AdjustConversions200ResponseFailuresInnerCode.md
 docs/AdjustConversionsRequest.md
 docs/AdjustConversionsRequestAdjustmentsInner.md
 docs/AdjustConversionsRequestAdjustmentsInnerUser.md
@@ -4579,6 +4580,7 @@ src/Zernio.Test/Model/AddTrackingTagSharedAccountRequestTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudienceRequestTests.cs
 src/Zernio.Test/Model/AddWhatsAppGroupParticipantsRequestTests.cs
+src/Zernio.Test/Model/AdjustConversions200ResponseFailuresInnerCodeTests.cs
 src/Zernio.Test/Model/AdjustConversions200ResponseFailuresInnerTests.cs
 src/Zernio.Test/Model/AdjustConversions200ResponseTests.cs
 src/Zernio.Test/Model/AdjustConversionsRequestAdjustmentsInnerTests.cs
@@ -8914,6 +8916,7 @@ src/Zernio/Model/AddUsersToAdAudienceRequest.cs
 src/Zernio/Model/AddWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/AdjustConversions200Response.cs
 src/Zernio/Model/AdjustConversions200ResponseFailuresInner.cs
+src/Zernio/Model/AdjustConversions200ResponseFailuresInnerCode.cs
 src/Zernio/Model/AdjustConversionsRequest.cs
 src/Zernio/Model/AdjustConversionsRequestAdjustmentsInner.cs
 src/Zernio/Model/AdjustConversionsRequestAdjustmentsInnerUser.cs

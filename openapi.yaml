@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.861.1",
+    "version": "1.862.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -218445,7 +218445,21 @@
                               {
                                 "type": "integer"
                               }
-                            ]
+                            ],
+                            "description": "The platform's error code. For Google Ads and Campaign Manager 360, Google's reason for this event (`EVENT_TIME_INVALID`, `REQUIRED_FIELD_MISSING`...) when Google named this event with one."
+                          },
+                          "field": {
+                            "type": "string",
+                            "description": "Google Ads and Campaign Manager 360 only: the event field Google refused (`event_timestamp`, `currency`...), without the `events.events[N].` prefix. Absent when Google named the event but no field."
+                          },
+                          "scope": {
+                            "type": "string",
+                            "enum": [
+                              "event",
+                              "batch",
+                              "batch_rejected"
+                            ],
+                            "description": "Google Ads and Campaign Manager 360 only, when Google refused the request. Absent for other platforms.\n\n- `event`: Google named this event, and `message` is its own violation.\n- `batch`: the refusal is about the whole request (destination, account, an outage) and is copied to every event of it.\n- `batch_rejected`: Google did not name this event, but its resend without the named events failed too. `message` is that resend's error."
                           },
                           "platformError": {
                             "type": "object",
@@ -220372,7 +220386,21 @@
                                     {
                                       "type": "integer"
                                     }
-                                  ]
+                                  ],
+                                  "description": "The platform's error code. For Google Ads and Campaign Manager 360, Google's reason for this event (`EVENT_TIME_INVALID`, `REQUIRED_FIELD_MISSING`...) when Google named this event with one."
+                                },
+                                "field": {
+                                  "type": "string",
+                                  "description": "Google Ads and Campaign Manager 360 only: the event field Google refused (`event_timestamp`, `currency`...), without the `events.events[N].` prefix. Absent when Google named the event but no field."
+                                },
+                                "scope": {
+                                  "type": "string",
+                                  "enum": [
+                                    "event",
+                                    "batch",
+                                    "batch_rejected"
+                                  ],
+                                  "description": "Google Ads and Campaign Manager 360 only, when Google refused the request. Absent for other platforms.\n\n- `event`: Google named this event, and `message` is its own violation.\n- `batch`: the refusal is about the whole request (destination, account, an outage) and is copied to every event of it.\n- `batch_rejected`: Google did not name this event, but its resend without the named events failed too. `message` is that resend's error."
                                 }
                               }
                             }

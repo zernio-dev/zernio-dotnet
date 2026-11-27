@@ -1,4 +1,5 @@
 # Zernio.Model.SendConversions200ResponseFailuresInnerCode
+The platform's error code. For Google Ads and Campaign Manager 360, Google's reason for this event (`EVENT_TIME_INVALID`, `REQUIRED_FIELD_MISSING`...) when Google named this event with one.
 
 ## Properties
 
