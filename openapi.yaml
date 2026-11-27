@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.860.0",
+    "version": "1.861.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -133062,6 +133062,14 @@
               "type": "string"
             },
             "description": "Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder=requests."
+          },
+          {
+            "name": "unread",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "`true` returns only conversations holding at least one unread incoming message.\n\nRead state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:\n\n- POST /v1/inbox/conversations/{conversationId}/read.\n- On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.\n\nMessages you send never count, and replayed Meta history is stored as already read.\n\n- On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet (it pulls them when the thread is opened or when background polling reaches it) has no local read state and is not returned.\n- Cannot be combined with `folder=requests` or `updatedSince`.\n\nTo render a badge without paging, use GET /v1/inbox/unread-count.\n"
           }
         ],
         "responses": {
@@ -133913,6 +133921,155 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/v1/inbox/unread-count": {
+      "get": {
+        "x-resource-group": "messages",
+        "x-oauth-scopes": [
+          "messaging:write",
+          "messaging:read"
+        ],
+        "operationId": "getInboxUnreadCount",
+        "summary": "Count unread conversations",
+        "description": "Count the conversations holding at least one unread incoming message, across the connected messaging accounts. Use it for an unread badge instead of paging GET /v1/inbox/conversations?unread=true, which lists the same conversations.\n\nRead state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:\n\n- POST /v1/inbox/conversations/{conversationId}/read.\n- On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.\n\nMessages you send never count, and replayed Meta history is stored as already read.\n\n- The count stops at 1000. `capped: true` means there are at least that many.\n- Read from a replica, so it can trail a conversation you just marked read by about a second.\n- On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet has no local read state and is not counted.\n- In the shared WhatsApp and iMessage sandboxes, only your own test conversations count.\n",
+        "tags": [
+          "Messages"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Count only accounts in this profile"
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "facebook",
+                "instagram",
+                "twitter",
+                "bluesky",
+                "reddit",
+                "telegram",
+                "whatsapp",
+                "sms",
+                "rcs",
+                "slack",
+                "tiktok",
+                "imessage",
+                "line",
+                "wechat",
+                "google",
+                "microsoft",
+                "imap"
+              ]
+            },
+            "description": "Count only accounts on this platform"
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Count only this account"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "archived"
+              ]
+            },
+            "description": "Count only conversations with this status. Both are counted when omitted, as GET /v1/inbox/conversations lists both."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Unread conversation count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "unreadConversations": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000,
+                          "description": "Conversations with at least one unread incoming message, capped at 1000."
+                        },
+                        "capped": {
+                          "type": "boolean",
+                          "description": "true when the count reached the cap: there are at least 1000."
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "accountsQueried": {
+                          "type": "integer",
+                          "description": "Connected messaging accounts the count covers"
+                        },
+                        "accountsSkipped": {
+                          "type": "array",
+                          "description": "Connected accounts that were not counted: their platform does not support direct messages, or the account is not enabled for them",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "accountId": {
+                                "type": "string"
+                              },
+                              "platform": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "data": {
+                    "unreadConversations": 12,
+                    "capped": false
+                  },
+                  "meta": {
+                    "accountsQueried": 3,
+                    "accountsSkipped": []
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "description": "Inbox addon required"
           }
         }
       }

@@ -1848,6 +1848,9 @@ docs/GetInboxSourceBreakdown200ResponseSourcesInner.md
 docs/GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.md
 docs/GetInboxTopAccounts200Response.md
 docs/GetInboxTopAccounts200ResponseAccountsInner.md
+docs/GetInboxUnreadCount200Response.md
+docs/GetInboxUnreadCount200ResponseData.md
+docs/GetInboxUnreadCount200ResponseMeta.md
 docs/GetInboxVolume200Response.md
 docs/GetInboxVolume200ResponseByPlatformInner.md
 docs/GetInboxVolume200ResponseSummary.md
@@ -6206,6 +6209,9 @@ src/Zernio.Test/Model/GetInboxSourceBreakdown200ResponseSourcesInnerTests.cs
 src/Zernio.Test/Model/GetInboxSourceBreakdown200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxTopAccounts200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/GetInboxTopAccounts200ResponseTests.cs
+src/Zernio.Test/Model/GetInboxUnreadCount200ResponseDataTests.cs
+src/Zernio.Test/Model/GetInboxUnreadCount200ResponseMetaTests.cs
+src/Zernio.Test/Model/GetInboxUnreadCount200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxVolume200ResponseByPlatformInnerTests.cs
 src/Zernio.Test/Model/GetInboxVolume200ResponseSummaryTests.cs
 src/Zernio.Test/Model/GetInboxVolume200ResponseTests.cs
@@ -10536,6 +10542,9 @@ src/Zernio/Model/GetInboxSourceBreakdown200ResponseSourcesInner.cs
 src/Zernio/Model/GetInboxSourceBreakdown200ResponseSourcesInnerByPlatformInner.cs
 src/Zernio/Model/GetInboxTopAccounts200Response.cs
 src/Zernio/Model/GetInboxTopAccounts200ResponseAccountsInner.cs
+src/Zernio/Model/GetInboxUnreadCount200Response.cs
+src/Zernio/Model/GetInboxUnreadCount200ResponseData.cs
+src/Zernio/Model/GetInboxUnreadCount200ResponseMeta.cs
 src/Zernio/Model/GetInboxVolume200Response.cs
 src/Zernio/Model/GetInboxVolume200ResponseByPlatformInner.cs
 src/Zernio/Model/GetInboxVolume200ResponseSummary.cs

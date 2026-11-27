@@ -15,6 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**EditInboxMessage**](MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message |
 | [**GetInboxConversation**](MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation |
 | [**GetInboxConversationMessages**](MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
+| [**GetInboxUnreadCount**](MessagesApi.md#getinboxunreadcount) | **GET** /v1/inbox/unread-count | Count unread conversations |
 | [**GetMessageAttachment**](MessagesApi.md#getmessageattachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
 | [**ListConversationLabels**](MessagesApi.md#listconversationlabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation |
 | [**ListInboxConversations**](MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations |
@@ -1190,6 +1191,113 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getinboxunreadcount"></a>
+# **GetInboxUnreadCount**
+> GetInboxUnreadCount200Response GetInboxUnreadCount (string? profileId = null, string? platform = null, string? accountId = null, string? status = null)
+
+Count unread conversations
+
+Count the conversations holding at least one unread incoming message, across the connected messaging accounts. Use it for an unread badge instead of paging GET /v1/inbox/conversations?unread=true, which lists the same conversations.  Read state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:  - POST /v1/inbox/conversations/{conversationId}/read. - On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.  Messages you send never count, and replayed Meta history is stored as already read.  - The count stops at 1000. `capped: true` means there are at least that many. - Read from a replica, so it can trail a conversation you just marked read by about a second. - On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet has no local read state and is not counted. - In the shared WhatsApp and iMessage sandboxes, only your own test conversations count. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetInboxUnreadCountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string? | Count only accounts in this profile (optional) 
+            var platform = "facebook";  // string? | Count only accounts on this platform (optional) 
+            var accountId = "accountId_example";  // string? | Count only this account (optional) 
+            var status = "active";  // string? | Count only conversations with this status. Both are counted when omitted, as GET /v1/inbox/conversations lists both. (optional) 
+
+            try
+            {
+                // Count unread conversations
+                GetInboxUnreadCount200Response result = apiInstance.GetInboxUnreadCount(profileId, platform, accountId, status);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.GetInboxUnreadCount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetInboxUnreadCountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Count unread conversations
+    ApiResponse<GetInboxUnreadCount200Response> response = apiInstance.GetInboxUnreadCountWithHttpInfo(profileId, platform, accountId, status);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.GetInboxUnreadCountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string?** | Count only accounts in this profile | [optional]  |
+| **platform** | **string?** | Count only accounts on this platform | [optional]  |
+| **accountId** | **string?** | Count only this account | [optional]  |
+| **status** | **string?** | Count only conversations with this status. Both are counted when omitted, as GET /v1/inbox/conversations lists both. | [optional]  |
+
+### Return type
+
+[**GetInboxUnreadCount200Response**](GetInboxUnreadCount200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unread conversation count |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getmessageattachment"></a>
 # **GetMessageAttachment**
 > GetMessageAttachment200Response GetMessageAttachment (string conversationId, string messageId, int index, string accountId, string? format = null)
@@ -1408,7 +1516,7 @@ catch (ApiException e)
 
 <a id="listinboxconversations"></a>
 # **ListInboxConversations**
-> ListInboxConversations200Response ListInboxConversations (string? profileId = null, string? platform = null, DateTime? updatedSince = null, string? status = null, string? folder = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null, string? tags = null)
+> ListInboxConversations200Response ListInboxConversations (string? profileId = null, string? platform = null, DateTime? updatedSince = null, string? status = null, string? folder = null, string? sortOrder = null, int? limit = null, string? cursor = null, string? accountId = null, string? tags = null, bool? unread = null)
 
 List conversations
 
@@ -1448,11 +1556,12 @@ namespace Example
             var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
             var accountId = "accountId_example";  // string? | Filter by specific account ID (optional) 
             var tags = "tags_example";  // string? | Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder=requests. (optional) 
+            var unread = true;  // bool? | `true` returns only conversations holding at least one unread incoming message.  Read state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:  - POST /v1/inbox/conversations/{conversationId}/read. - On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.  Messages you send never count, and replayed Meta history is stored as already read.  - On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet (it pulls them when the thread is opened or when background polling reaches it) has no local read state and is not returned. - Cannot be combined with `folder=requests` or `updatedSince`.  To render a badge without paging, use GET /v1/inbox/unread-count.  (optional) 
 
             try
             {
                 // List conversations
-                ListInboxConversations200Response result = apiInstance.ListInboxConversations(profileId, platform, updatedSince, status, folder, sortOrder, limit, cursor, accountId, tags);
+                ListInboxConversations200Response result = apiInstance.ListInboxConversations(profileId, platform, updatedSince, status, folder, sortOrder, limit, cursor, accountId, tags, unread);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1473,7 +1582,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List conversations
-    ApiResponse<ListInboxConversations200Response> response = apiInstance.ListInboxConversationsWithHttpInfo(profileId, platform, updatedSince, status, folder, sortOrder, limit, cursor, accountId, tags);
+    ApiResponse<ListInboxConversations200Response> response = apiInstance.ListInboxConversationsWithHttpInfo(profileId, platform, updatedSince, status, folder, sortOrder, limit, cursor, accountId, tags, unread);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1500,6 +1609,7 @@ catch (ApiException e)
 | **cursor** | **string?** | Pagination cursor for next page | [optional]  |
 | **accountId** | **string?** | Filter by specific account ID | [optional]  |
 | **tags** | **string?** | Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder&#x3D;requests. | [optional]  |
+| **unread** | **bool?** | &#x60;true&#x60; returns only conversations holding at least one unread incoming message.  Read state is kept by Zernio, not by the platform. An incoming message stays unread until its conversation is marked read, in one of two ways:  - POST /v1/inbox/conversations/{conversationId}/read. - On Telegram, Slack, SMS, RCS, iMessage, email and TikTok, reading its messages with GET /v1/inbox/conversations/{conversationId}/messages.  Messages you send never count, and replayed Meta history is stored as already read.  - On Bluesky and Reddit, a listed thread whose messages Zernio has not pulled yet (it pulls them when the thread is opened or when background polling reaches it) has no local read state and is not returned. - Cannot be combined with &#x60;folder&#x3D;requests&#x60; or &#x60;updatedSince&#x60;.  To render a badge without paging, use GET /v1/inbox/unread-count.  | [optional]  |
 
 ### Return type
 
