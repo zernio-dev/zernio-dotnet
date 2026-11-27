@@ -17,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInboxConversationMessages**](MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
 | [**GetInboxUnreadCount**](MessagesApi.md#getinboxunreadcount) | **GET** /v1/inbox/unread-count | Count unread conversations |
 | [**GetMessageAttachment**](MessagesApi.md#getmessageattachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
+| [**GetMessengerContact**](MessagesApi.md#getmessengercontact) | **GET** /v1/inbox/conversations/{conversationId}/messenger-contact | Get a Messenger contact&#39;s language, time zone and gender |
 | [**ListConversationLabels**](MessagesApi.md#listconversationlabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation |
 | [**ListInboxConversations**](MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations |
 | [**ListInboxLabels**](MessagesApi.md#listinboxlabels) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels |
@@ -1406,6 +1407,111 @@ catch (ApiException e)
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getmessengercontact"></a>
+# **GetMessengerContact**
+> GetMessengerContact200Response GetMessengerContact (string conversationId, string accountId)
+
+Get a Messenger contact's language, time zone and gender
+
+Reads the language, time zone and gender of the person in a Facebook Messenger conversation, live from Meta with the Page token.  Available on Facebook Page conversations only. Instagram and every other platform answer 400 `platform_not_supported`.  Meta shares each field only when the person made it available, so any field can be `null`. A null field is not an error. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetMessengerContactExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var conversationId = "conversationId_example";  // string | The conversation ID
+            var accountId = "accountId_example";  // string | The Facebook social account ID
+
+            try
+            {
+                // Get a Messenger contact's language, time zone and gender
+                GetMessengerContact200Response result = apiInstance.GetMessengerContact(conversationId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.GetMessengerContact: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetMessengerContactWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a Messenger contact's language, time zone and gender
+    ApiResponse<GetMessengerContact200Response> response = apiInstance.GetMessengerContactWithHttpInfo(conversationId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.GetMessengerContactWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **conversationId** | **string** | The conversation ID |  |
+| **accountId** | **string** | The Facebook social account ID |  |
+
+### Return type
+
+[**GetMessengerContact200Response**](GetMessengerContact200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The contact&#39;s details |  -  |
+| **400** | Invalid accountId, a conversation that is not on Facebook (code platform_not_supported), or Meta refused the read (code platform_api_error) |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+| **502** | Meta did not name the person in the thread, or Meta failed (code platform_api_error) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

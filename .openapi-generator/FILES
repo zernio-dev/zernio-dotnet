@@ -1909,6 +1909,8 @@ docs/GetLtvCohorts200ResponseCohortsInnerRevenue.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
+docs/GetMessengerContact200Response.md
+docs/GetMessengerContact200ResponseData.md
 docs/GetMessengerGetStarted200Response.md
 docs/GetMessengerGetStarted200ResponseData.md
 docs/GetMessengerGreeting200Response.md
@@ -6276,6 +6278,8 @@ src/Zernio.Test/Model/GetLtvCohorts200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
 src/Zernio.Test/Model/GetMessageAttachment200ResponseTests.cs
+src/Zernio.Test/Model/GetMessengerContact200ResponseDataTests.cs
+src/Zernio.Test/Model/GetMessengerContact200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerGetStarted200ResponseDataTests.cs
 src/Zernio.Test/Model/GetMessengerGetStarted200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerGreeting200ResponseTests.cs
@@ -10615,6 +10619,8 @@ src/Zernio/Model/GetLtvCohorts200ResponseCohortsInnerRevenue.cs
 src/Zernio/Model/GetMediaPresignedUrl200Response.cs
 src/Zernio/Model/GetMediaPresignedUrlRequest.cs
 src/Zernio/Model/GetMessageAttachment200Response.cs
+src/Zernio/Model/GetMessengerContact200Response.cs
+src/Zernio/Model/GetMessengerContact200ResponseData.cs
 src/Zernio/Model/GetMessengerGetStarted200Response.cs
 src/Zernio/Model/GetMessengerGetStarted200ResponseData.cs
 src/Zernio/Model/GetMessengerGreeting200Response.cs
