@@ -1944,7 +1944,7 @@ catch (ApiException e)
 
 Get attribution metrics
 
-Shows a LinkedIn conversion rule's attributed conversions, value, leads and cost over time.  LinkedIn-only today. Returns conversion-attribution metrics (`externalWebsiteConversions`, `externalWebsitePostClickConversions`, `externalWebsitePostViewConversions`, `conversionValueInLocalCurrency`, `qualifiedLeads`, `costInLocalCurrency`) bucketed by date.  Date-range constraints (passed through from LinkedIn): - `granularity=DAILY` is retained for ~6 months only - `granularity=ALL` with a range > 6 months auto-rounds to month boundaries - `granularity=MONTHLY`/`YEARLY` retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+Shows the conversions an ad network credited to a destination over time, bucketed by date.  **LinkedIn** (a conversion rule): `externalWebsiteConversions`, `externalWebsitePostClickConversions`, `externalWebsitePostViewConversions`, `conversionValueInLocalCurrency`, `qualifiedLeads`, `costInLocalCurrency`.  **Google Ads** (a conversion action, `destinationId` as `customers/{customerId}/conversionActions/{id}` or the bare id; `adAccountId` is the customer id): `conversions`, `conversionsValue`, `allConversions`, `allConversionsValue`. Dates are in the Google Ads account's time zone, days with no conversions have no row, and month and year buckets are cut to the asked range.  Other platforms answer 405.  Date-range constraints on LinkedIn: - `granularity=DAILY` is retained for ~6 months only - `granularity=ALL` with a range > 6 months auto-rounds to month boundaries - `granularity=MONTHLY`/`YEARLY` retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
 
 ### Example
 ```csharp
@@ -2045,11 +2045,11 @@ catch (ApiException e)
 | **200** | Metrics rows |  -  |
 | **400** | Validation error or invalid date range. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **403** | Ads add-on or reconnect required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | LinkedIn analytics rate limit hit. |  -  |
+| **429** | Platform analytics rate limit hit. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2269,11 +2269,11 @@ catch (ApiException e)
 | **200** | Metrics rows |  -  |
 | **400** | Validation error or invalid date range. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **403** | Ads add-on or reconnect required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | LinkedIn analytics rate limit hit. |  -  |
+| **429** | Platform analytics rate limit hit. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

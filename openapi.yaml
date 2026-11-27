@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.854.4",
+    "version": "1.855.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -224478,10 +224478,11 @@
           "Conversions"
         ],
         "x-platforms": [
-          "linkedin"
+          "linkedin",
+          "google"
         ],
         "summary": "Get attribution metrics",
-        "description": "Shows a LinkedIn conversion rule's attributed conversions, value, leads and cost over time.\n\nLinkedIn-only today. Returns conversion-attribution metrics\n(`externalWebsiteConversions`, `externalWebsitePostClickConversions`,\n`externalWebsitePostViewConversions`, `conversionValueInLocalCurrency`,\n`qualifiedLeads`, `costInLocalCurrency`) bucketed by date.\n\nDate-range constraints (passed through from LinkedIn):\n- `granularity=DAILY` is retained for ~6 months only\n- `granularity=ALL` with a range > 6 months auto-rounds to month boundaries\n- `granularity=MONTHLY`/`YEARLY` retains 24 months\n\nThrottle: LinkedIn caps adAnalytics at 45M metric values per 5-minute\nwindow across the calling token. Single-rule queries are well within\nthat limit; surfaces as 429 if hit.\n",
+        "description": "Shows the conversions an ad network credited to a destination over time, bucketed by date.\n\n**LinkedIn** (a conversion rule): `externalWebsiteConversions`, `externalWebsitePostClickConversions`,\n`externalWebsitePostViewConversions`, `conversionValueInLocalCurrency`, `qualifiedLeads`, `costInLocalCurrency`.\n\n**Google Ads** (a conversion action, `destinationId` as `customers/{customerId}/conversionActions/{id}` or the bare id; `adAccountId` is the customer id):\n`conversions`, `conversionsValue`, `allConversions`, `allConversionsValue`. Dates are in the Google Ads account's time zone,\ndays with no conversions have no row, and month and year buckets are cut to the asked range.\n\nOther platforms answer 405.\n\nDate-range constraints on LinkedIn:\n- `granularity=DAILY` is retained for ~6 months only\n- `granularity=ALL` with a range > 6 months auto-rounds to month boundaries\n- `granularity=MONTHLY`/`YEARLY` retains 24 months\n\nThrottle: LinkedIn caps adAnalytics at 45M metric values per 5-minute\nwindow across the calling token. Single-rule queries are well within\nthat limit; surfaces as 429 if hit.\n",
         "security": [
           {
             "bearerAuth": []
@@ -224556,7 +224557,8 @@
                     "platform": {
                       "type": "string",
                       "enum": [
-                        "linkedinads"
+                        "linkedinads",
+                        "googleads"
                       ]
                     },
                     "granularity": {
@@ -224609,7 +224611,7 @@
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
-            "description": "Ads add-on or LinkedIn reconnect required."
+            "description": "Ads add-on or reconnect required."
           },
           "404": {
             "$ref": "#/components/responses/AccountUnavailable"
@@ -224621,7 +224623,7 @@
             "$ref": "#/components/responses/AccountConnectionRequired"
           },
           "429": {
-            "description": "LinkedIn analytics rate limit hit."
+            "description": "Platform analytics rate limit hit."
           }
         }
       }
@@ -225882,7 +225884,8 @@
           "Conversions"
         ],
         "x-platforms": [
-          "linkedin"
+          "linkedin",
+          "google"
         ],
         "summary": "Get attribution metrics",
         "description": "The first path of `GET /v1/ads/conversions/destinations/{destinationId}/metrics` (`getAdConversionMetrics`), which does the same with `accountId` as a parameter. It keeps working.\n",
@@ -225959,7 +225962,8 @@
                     "platform": {
                       "type": "string",
                       "enum": [
-                        "linkedinads"
+                        "linkedinads",
+                        "googleads"
                       ]
                     },
                     "granularity": {
@@ -226012,7 +226016,7 @@
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
-            "description": "Ads add-on or LinkedIn reconnect required."
+            "description": "Ads add-on or reconnect required."
           },
           "404": {
             "$ref": "#/components/responses/AccountUnavailable"
@@ -226024,7 +226028,7 @@
             "$ref": "#/components/responses/AccountConnectionRequired"
           },
           "429": {
-            "description": "LinkedIn analytics rate limit hit."
+            "description": "Platform analytics rate limit hit."
           }
         }
       }
