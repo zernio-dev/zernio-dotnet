@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.862.0",
+    "version": "1.862.1",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -103776,13 +103776,23 @@
             }
           },
           "400": {
-            "description": "Missing required parameters (profileId or tempToken)"
+            "description": "Missing required parameters (profileId or tempToken), or Google rejected the filter or search expression. In the second case `code` is `invalid_field_value`, `param` is `filter` (or `search` when only search was sent) and `error` quotes Google's reason.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "description": "The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS)."
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
           },
           "500": {
             "description": "Failed to fetch locations (e.g., invalid token, insufficient permissions)",
@@ -118339,9 +118349,6 @@
                     },
                     "selectedLocationId": {
                       "type": "string"
-                    },
-                    "cached": {
-                      "type": "boolean"
                     }
                   }
                 },
@@ -118357,20 +118364,42 @@
                       "websiteUrl": "https://mybusiness.com"
                     }
                   ],
-                  "selectedLocationId": "12345678901234567890",
-                  "cached": true
+                  "selectedLocationId": "12345678901234567890"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid query parameter (e.g. limit out of range)"
+            "description": "Invalid query parameter (e.g. limit out of range), or Google rejected the filter or search expression. In the second case `code` is `invalid_field_value`, `param` is `filter` (or `search` when only search was sent) and `error` quotes Google's reason.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
+          "403": {
+            "description": "Google refused access to one of the Business Profile accounts the connection can see (`code` is `platform_api_error`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Account not found"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          },
+          "503": {
+            "$ref": "#/components/responses/TemporarilyUnavailable"
           }
         }
       },
@@ -190915,7 +190944,7 @@
             "description": "Returned with one of these codes:\n\n- `ads_allowance_exceeded`: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume.\n- `ad_account_not_selected`: the connection has selected ad accounts and the targeted ad account is not among them. `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\n\nTo fix `ad_account_not_selected`, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.\n"
           },
           "404": {
-            "description": "Ad not found (`ad_not_found`), or `account_not_found` when the ad's connection is on a profile this API key can't access.",
+            "description": "Ad not found (`ad_not_found`), or `account_not_found` when the ad's connection is on a profile this API key can't access and no active connection of the same user on the key's profiles reaches the ad account. With one, the write acts through it; with several, the answer is 409 `ambiguous_account`.",
             "content": {
               "application/json": {
                 "schema": {
@@ -191015,7 +191044,7 @@
             "$ref": "#/components/responses/AdAccountNotSelected"
           },
           "404": {
-            "description": "Ad not found (`ad_not_found`), or `account_not_found` when the ad's connection is on a profile this API key can't access.",
+            "description": "Ad not found (`ad_not_found`), or `account_not_found` when the ad's connection is on a profile this API key can't access and no active connection of the same user on the key's profiles reaches the ad account. With one, the write acts through it; with several, the answer is 409 `ambiguous_account`.",
             "content": {
               "application/json": {
                 "schema": {
@@ -191165,7 +191194,7 @@
             "description": "Forbidden. The code says why:\n\n- `ads_allowance_exceeded`: the team has no payment method on file and has reached the 500 free live ads. Add a card to resume.\n- `ad_account_not_selected`: the connection has selected ad accounts and the ad account this request targets is not among them. `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\n\nTo fix `ad_account_not_selected`, add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.\n"
           },
           "404": {
-            "description": "Ad not found (`ad_not_found`), or `account_not_found` when the ad's connection is on a profile this API key can't access.",
+            "description": "Ad not found (`ad_not_found`), or `account_not_found` when the ad's connection is on a profile this API key can't access and no active connection of the same user on the key's profiles reaches the ad account. With one, the write acts through it; with several, the answer is 409 `ambiguous_account`.",
             "content": {
               "application/json": {
                 "schema": {
