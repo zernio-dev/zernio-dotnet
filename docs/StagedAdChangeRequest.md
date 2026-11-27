@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Method** | **string** |  | 
 **Path** | **string** | The path of the write, for example /v1/ads/keywords. | 
 **Params** | **Dictionary&lt;string, string&gt;** | The path values of the staged request, by the names in &#x60;path&#x60;. | [optional] 
-**Query** | **Dictionary&lt;string, string&gt;** | The query values of the staged request, without &#x60;stage&#x60;. | [optional] 
+**Query** | [**Dictionary&lt;string, StagedAdChangeRequestQueryValue&gt;**](StagedAdChangeRequestQueryValue.md) | The query values of the staged request, without &#x60;stage&#x60;. A key that was sent more than once holds every value, in the order sent. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

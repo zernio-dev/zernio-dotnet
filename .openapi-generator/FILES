@@ -3421,6 +3421,7 @@ docs/StagedAdChange.md
 docs/StagedAdChangeDiffInner.md
 docs/StagedAdChangeError.md
 docs/StagedAdChangeRequest.md
+docs/StagedAdChangeRequestQueryValue.md
 docs/StagedAdChangeSummary.md
 docs/StagedAdChangeSummaryError.md
 docs/StagedAdChangeSummaryRequest.md
@@ -7747,6 +7748,7 @@ src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
 src/Zernio.Test/Model/StagedAdChangeDiffInnerTests.cs
 src/Zernio.Test/Model/StagedAdChangeErrorTests.cs
+src/Zernio.Test/Model/StagedAdChangeRequestQueryValueTests.cs
 src/Zernio.Test/Model/StagedAdChangeRequestTests.cs
 src/Zernio.Test/Model/StagedAdChangeSummaryErrorTests.cs
 src/Zernio.Test/Model/StagedAdChangeSummaryRequestTests.cs
@@ -12075,6 +12077,7 @@ src/Zernio/Model/StagedAdChange.cs
 src/Zernio/Model/StagedAdChangeDiffInner.cs
 src/Zernio/Model/StagedAdChangeError.cs
 src/Zernio/Model/StagedAdChangeRequest.cs
+src/Zernio/Model/StagedAdChangeRequestQueryValue.cs
 src/Zernio/Model/StagedAdChangeSummary.cs
 src/Zernio/Model/StagedAdChangeSummaryError.cs
 src/Zernio/Model/StagedAdChangeSummaryRequest.cs
