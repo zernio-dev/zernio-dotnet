@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**PinPost**](PostsApi.md#pinpost) | **POST** /v1/posts/{postId}/pin | Pin post |
 | [**RetryPost**](PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post |
 | [**ReviewPost**](PostsApi.md#reviewpost) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
+| [**SetPostCommentsEnabled**](PostsApi.md#setpostcommentsenabled) | **POST** /v1/posts/{postId}/comments-enabled | Turn comments on or off |
 | [**UnpinPost**](PostsApi.md#unpinpost) | **POST** /v1/posts/{postId}/unpin | Unpin post |
 | [**UnpublishPost**](PostsApi.md#unpublishpost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**UpdatePost**](PostsApi.md#updatepost) | **PUT** /v1/posts/{postId} | Update post |
@@ -1008,6 +1009,112 @@ catch (ApiException e)
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="setpostcommentsenabled"></a>
+# **SetPostCommentsEnabled**
+> SetPostCommentsEnabledResponse SetPostCommentsEnabled (string postId, SetPostCommentsEnabledRequest setPostCommentsEnabledRequest)
+
+Turn comments on or off
+
+Turns comments on or off on a published Instagram post, Reel or carousel, after publishing. Works for accounts connected through Instagram Login and through Facebook Login.  Only Instagram posts are supported; any other platform answers 400 `platform_not_supported`. To turn comments off at publish time instead, send `commentsEnabled: false` in the Instagram platform options when creating the post. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SetPostCommentsEnabledExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var setPostCommentsEnabledRequest = new SetPostCommentsEnabledRequest(); // SetPostCommentsEnabledRequest | 
+
+            try
+            {
+                // Turn comments on or off
+                SetPostCommentsEnabledResponse result = apiInstance.SetPostCommentsEnabled(postId, setPostCommentsEnabledRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PostsApi.SetPostCommentsEnabled: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SetPostCommentsEnabledWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Turn comments on or off
+    ApiResponse<SetPostCommentsEnabledResponse> response = apiInstance.SetPostCommentsEnabledWithHttpInfo(postId, setPostCommentsEnabledRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PostsApi.SetPostCommentsEnabledWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **setPostCommentsEnabledRequest** | [**SetPostCommentsEnabledRequest**](SetPostCommentsEnabledRequest.md) |  |  |
+
+### Return type
+
+[**SetPostCommentsEnabledResponse**](SetPostCommentsEnabledResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comments setting applied on Instagram |  -  |
+| **400** | Invalid request: invalid postId, accountId or enabled, the post or the chosen account is not on Instagram (&#x60;platform_not_supported&#x60;), the Instagram entry is not published or has no platform post ID, no access token, or Instagram rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Instagram accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Instagram API call failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

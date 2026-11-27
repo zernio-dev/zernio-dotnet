@@ -3402,6 +3402,8 @@ docs/SetMessengerIceBreakersRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
+docs/SetPostCommentsEnabledRequest.md
+docs/SetPostCommentsEnabledResponse.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTagNewAds200Response.md
 docs/SetTagNewAdsRequest.md
@@ -7746,6 +7748,8 @@ src/Zernio.Test/Model/SetMessengerIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermission200ResponseTests.cs
 src/Zernio.Test/Model/SetPartnershipAdPermissionRequestTests.cs
+src/Zernio.Test/Model/SetPostCommentsEnabledRequestTests.cs
+src/Zernio.Test/Model/SetPostCommentsEnabledResponseTests.cs
 src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTagNewAds200ResponseTests.cs
 src/Zernio.Test/Model/SetTagNewAdsRequestTests.cs
@@ -12087,6 +12091,8 @@ src/Zernio/Model/SetMessengerIceBreakersRequest.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetPartnershipAdPermission200Response.cs
 src/Zernio/Model/SetPartnershipAdPermissionRequest.cs
+src/Zernio/Model/SetPostCommentsEnabledRequest.cs
+src/Zernio/Model/SetPostCommentsEnabledResponse.cs
 src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTagNewAds200Response.cs
 src/Zernio/Model/SetTagNewAdsRequest.cs
