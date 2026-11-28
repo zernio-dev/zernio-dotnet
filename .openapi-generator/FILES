@@ -448,6 +448,7 @@ docs/BillingSnapshotLegacyLimits.md
 docs/BillingSnapshotPeriod.md
 docs/BillingSnapshotPlan.md
 docs/BillingSnapshotStatus.md
+docs/BlockFacebookUser200Response.md
 docs/BlockWhatsAppUsers200Response.md
 docs/BlockWhatsAppUsers200ResponseBlockedInner.md
 docs/BlockWhatsAppUsers200ResponseFailedInner.md
@@ -1468,6 +1469,8 @@ docs/ExternalPostMediaItem.md
 docs/ExternalPostSummary.md
 docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
+docs/FacebookBlockedUser.md
+docs/FacebookBlockedUserRef.md
 docs/FacebookOrInstagramPost.md
 docs/FacebookPageInfo.md
 docs/FacebookPlatformData.md
@@ -2544,6 +2547,7 @@ docs/ListEventNames200ResponseNamesInner.md
 docs/ListEvents200Response.md
 docs/ListEvents200ResponseEventsInner.md
 docs/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.md
+docs/ListFacebookBlockedUsers200Response.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -3572,6 +3576,7 @@ docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
 docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
+docs/UnblockFacebookUser200Response.md
 docs/UnblockWhatsAppUsers200Response.md
 docs/UnblockWhatsAppUsersRequest.md
 docs/UndoAdRuleActivity200Response.md
@@ -4851,6 +4856,7 @@ src/Zernio.Test/Model/BillingSnapshotPeriodTests.cs
 src/Zernio.Test/Model/BillingSnapshotPlanTests.cs
 src/Zernio.Test/Model/BillingSnapshotStatusTests.cs
 src/Zernio.Test/Model/BillingSnapshotTests.cs
+src/Zernio.Test/Model/BlockFacebookUser200ResponseTests.cs
 src/Zernio.Test/Model/BlockWhatsAppUsers200ResponseBlockedInnerTests.cs
 src/Zernio.Test/Model/BlockWhatsAppUsers200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/BlockWhatsAppUsers200ResponseTests.cs
@@ -5849,6 +5855,8 @@ src/Zernio.Test/Model/ExternalPostMediaItemTests.cs
 src/Zernio.Test/Model/ExternalPostSummaryAnalyticsTests.cs
 src/Zernio.Test/Model/ExternalPostSummaryTests.cs
 src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
+src/Zernio.Test/Model/FacebookBlockedUserRefTests.cs
+src/Zernio.Test/Model/FacebookBlockedUserTests.cs
 src/Zernio.Test/Model/FacebookOrInstagramPostTests.cs
 src/Zernio.Test/Model/FacebookPageInfoTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataFailedCollaboratorsInnerTests.cs
@@ -6908,6 +6916,7 @@ src/Zernio.Test/Model/ListEventNames200ResponseTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseEventsInnerAllOfDeliveriesInnerTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseEventsInnerTests.cs
 src/Zernio.Test/Model/ListEvents200ResponseTests.cs
+src/Zernio.Test/Model/ListFacebookBlockedUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookTaggedPosts200ResponseTests.cs
@@ -7912,6 +7921,7 @@ src/Zernio.Test/Model/TwitterPlatformDataPollTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataSensitiveMediaTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataThreadItemsInnerTests.cs
+src/Zernio.Test/Model/UnblockFacebookUser200ResponseTests.cs
 src/Zernio.Test/Model/UnblockWhatsAppUsers200ResponseTests.cs
 src/Zernio.Test/Model/UnblockWhatsAppUsersRequestTests.cs
 src/Zernio.Test/Model/UndoAdRuleActivity200ResponseTests.cs
@@ -9194,6 +9204,7 @@ src/Zernio/Model/BillingSnapshotLegacyLimits.cs
 src/Zernio/Model/BillingSnapshotPeriod.cs
 src/Zernio/Model/BillingSnapshotPlan.cs
 src/Zernio/Model/BillingSnapshotStatus.cs
+src/Zernio/Model/BlockFacebookUser200Response.cs
 src/Zernio/Model/BlockWhatsAppUsers200Response.cs
 src/Zernio/Model/BlockWhatsAppUsers200ResponseBlockedInner.cs
 src/Zernio/Model/BlockWhatsAppUsers200ResponseFailedInner.cs
@@ -10192,6 +10203,8 @@ src/Zernio/Model/ExternalPostMediaItem.cs
 src/Zernio/Model/ExternalPostSummary.cs
 src/Zernio/Model/ExternalPostSummaryAnalytics.cs
 src/Zernio/Model/ExternalPostWebhookPost.cs
+src/Zernio/Model/FacebookBlockedUser.cs
+src/Zernio/Model/FacebookBlockedUserRef.cs
 src/Zernio/Model/FacebookOrInstagramPost.cs
 src/Zernio/Model/FacebookPageInfo.cs
 src/Zernio/Model/FacebookPlatformData.cs
@@ -11251,6 +11264,7 @@ src/Zernio/Model/ListEventNames200ResponseNamesInner.cs
 src/Zernio/Model/ListEvents200Response.cs
 src/Zernio/Model/ListEvents200ResponseEventsInner.cs
 src/Zernio/Model/ListEvents200ResponseEventsInnerAllOfDeliveriesInner.cs
+src/Zernio/Model/ListFacebookBlockedUsers200Response.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/ListFacebookTaggedPosts200Response.cs
@@ -12255,6 +12269,7 @@ src/Zernio/Model/TwitterPlatformData.cs
 src/Zernio/Model/TwitterPlatformDataPoll.cs
 src/Zernio/Model/TwitterPlatformDataSensitiveMedia.cs
 src/Zernio/Model/TwitterPlatformDataThreadItemsInner.cs
+src/Zernio/Model/UnblockFacebookUser200Response.cs
 src/Zernio/Model/UnblockWhatsAppUsers200Response.cs
 src/Zernio/Model/UnblockWhatsAppUsersRequest.cs
 src/Zernio/Model/UndoAdRuleActivity200Response.cs

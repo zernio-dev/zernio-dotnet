@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**BlockFacebookUser**](AccountSettingsApi.md#blockfacebookuser) | **POST** /v1/accounts/{accountId}/facebook-blocked-users | Block a person on a Facebook Page |
 | [**DeleteInstagramIceBreakers**](AccountSettingsApi.md#deleteinstagramicebreakers) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers |
 | [**DeleteMessengerGetStarted**](AccountSettingsApi.md#deletemessengergetstarted) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button |
 | [**DeleteMessengerGreeting**](AccountSettingsApi.md#deletemessengergreeting) | **DELETE** /v1/accounts/{accountId}/messenger-greeting | Delete FB greeting text |
@@ -18,13 +19,121 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetMessengerMenu**](AccountSettingsApi.md#getmessengermenu) | **GET** /v1/accounts/{accountId}/messenger-menu | Get persistent menu |
 | [**GetTelegramCommands**](AccountSettingsApi.md#gettelegramcommands) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands |
 | [**GetWechatServerConfig**](AccountSettingsApi.md#getwechatserverconfig) | **GET** /v1/accounts/{accountId}/wechat-server-config | Get WeChat server config |
+| [**ListFacebookBlockedUsers**](AccountSettingsApi.md#listfacebookblockedusers) | **GET** /v1/accounts/{accountId}/facebook-blocked-users | List the people blocked on a Facebook Page |
 | [**SetInstagramIceBreakers**](AccountSettingsApi.md#setinstagramicebreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers |
 | [**SetMessengerGetStarted**](AccountSettingsApi.md#setmessengergetstarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button |
 | [**SetMessengerGreeting**](AccountSettingsApi.md#setmessengergreeting) | **PUT** /v1/accounts/{accountId}/messenger-greeting | Set FB greeting text |
 | [**SetMessengerIceBreakers**](AccountSettingsApi.md#setmessengericebreakers) | **PUT** /v1/accounts/{accountId}/messenger-ice-breakers | Set FB ice breakers |
 | [**SetMessengerMenu**](AccountSettingsApi.md#setmessengermenu) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu |
 | [**SetTelegramCommands**](AccountSettingsApi.md#settelegramcommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands |
+| [**UnblockFacebookUser**](AccountSettingsApi.md#unblockfacebookuser) | **DELETE** /v1/accounts/{accountId}/facebook-blocked-users | Unblock a person on a Facebook Page |
 | [**UpdateFacebookPageInfo**](AccountSettingsApi.md#updatefacebookpageinfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info |
+
+<a id="blockfacebookuser"></a>
+# **BlockFacebookUser**
+> BlockFacebookUser200Response BlockFacebookUser (string accountId, FacebookBlockedUserRef facebookBlockedUserRef)
+
+Block a person on a Facebook Page
+
+Blocks one person on the Page selected on a `facebook` account. Send `psid` for a Messenger contact (the participant id of a Facebook inbox conversation) or `userId` for a page-scoped user id or a Page id, never both.  `blocked` is Meta's answer for the id. Meta refuses to block someone again too soon after unblocking them, and caps how many people a Page can block: both come back as `platform_api_error`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class BlockFacebookUserExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountSettingsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Facebook account.
+            var facebookBlockedUserRef = new FacebookBlockedUserRef(); // FacebookBlockedUserRef | 
+
+            try
+            {
+                // Block a person on a Facebook Page
+                BlockFacebookUser200Response result = apiInstance.BlockFacebookUser(accountId, facebookBlockedUserRef);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountSettingsApi.BlockFacebookUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the BlockFacebookUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Block a person on a Facebook Page
+    ApiResponse<BlockFacebookUser200Response> response = apiInstance.BlockFacebookUserWithHttpInfo(accountId, facebookBlockedUserRef);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountSettingsApi.BlockFacebookUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Facebook account. |  |
+| **facebookBlockedUserRef** | [**FacebookBlockedUserRef**](FacebookBlockedUserRef.md) |  |  |
+
+### Return type
+
+[**BlockFacebookUser200Response**](BlockFacebookUser200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Meta&#39;s answer for the person |  -  |
+| **400** | Invalid accountId, a body without exactly one numeric &#x60;psid&#x60; or &#x60;userId&#x60;, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the block (&#x60;platform_api_error&#x60;, for example a reblock too soon after unblocking or the block limit). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the block (&#x60;platform_api_error&#x60;, for example a missing Page permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deleteinstagramicebreakers"></a>
 # **DeleteInstagramIceBreakers**
@@ -1427,6 +1536,114 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listfacebookblockedusers"></a>
+# **ListFacebookBlockedUsers**
+> ListFacebookBlockedUsers200Response ListFacebookBlockedUsers (string accountId, int? limit = null, string? cursor = null)
+
+List the people blocked on a Facebook Page
+
+Returns the people blocked on the Page selected on a `facebook` account, as Meta returns them from the Page's `blocked` edge.  Cursor-paginated: pass `nextCursor` from the previous response as `cursor` to read the next page. `nextCursor` is null when there are no more pages. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListFacebookBlockedUsersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountSettingsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Facebook account.
+            var limit = 25;  // int? | Page size. (optional)  (default to 25)
+            var cursor = "cursor_example";  // string? | The `nextCursor` of the previous page. (optional) 
+
+            try
+            {
+                // List the people blocked on a Facebook Page
+                ListFacebookBlockedUsers200Response result = apiInstance.ListFacebookBlockedUsers(accountId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountSettingsApi.ListFacebookBlockedUsers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListFacebookBlockedUsersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List the people blocked on a Facebook Page
+    ApiResponse<ListFacebookBlockedUsers200Response> response = apiInstance.ListFacebookBlockedUsersWithHttpInfo(accountId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountSettingsApi.ListFacebookBlockedUsersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Facebook account. |  |
+| **limit** | **int?** | Page size. | [optional] [default to 25] |
+| **cursor** | **string?** | The &#x60;nextCursor&#x60; of the previous page. | [optional]  |
+
+### Return type
+
+[**ListFacebookBlockedUsers200Response**](ListFacebookBlockedUsers200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of blocked people |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the read (&#x60;platform_api_error&#x60;, for example a missing Page permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="setinstagramicebreakers"></a>
 # **SetInstagramIceBreakers**
 > void SetInstagramIceBreakers (string accountId, SetInstagramIceBreakersRequest setInstagramIceBreakersRequest)
@@ -2028,6 +2245,114 @@ void (empty response body)
 | **200** | Commands set successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="unblockfacebookuser"></a>
+# **UnblockFacebookUser**
+> UnblockFacebookUser200Response UnblockFacebookUser (string accountId, string? psid = null, string? userId = null)
+
+Unblock a person on a Facebook Page
+
+Unblocks one person on the Page selected on a `facebook` account. Pass `psid` for a Messenger contact or `userId` for a page-scoped user id or a Page id, never both. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UnblockFacebookUserExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountSettingsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of a connected Facebook account.
+            var psid = "psid_example";  // string? | Page-scoped id of a Messenger contact. Set this or `userId`. (optional) 
+            var userId = "userId_example";  // string? | A page-scoped Facebook user id or a Page id. Set this or `psid`. (optional) 
+
+            try
+            {
+                // Unblock a person on a Facebook Page
+                UnblockFacebookUser200Response result = apiInstance.UnblockFacebookUser(accountId, psid, userId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountSettingsApi.UnblockFacebookUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UnblockFacebookUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Unblock a person on a Facebook Page
+    ApiResponse<UnblockFacebookUser200Response> response = apiInstance.UnblockFacebookUserWithHttpInfo(accountId, psid, userId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountSettingsApi.UnblockFacebookUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of a connected Facebook account. |  |
+| **psid** | **string?** | Page-scoped id of a Messenger contact. Set this or &#x60;userId&#x60;. | [optional]  |
+| **userId** | **string?** | A page-scoped Facebook user id or a Page id. Set this or &#x60;psid&#x60;. | [optional]  |
+
+### Return type
+
+[**UnblockFacebookUser200Response**](UnblockFacebookUser200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Meta&#39;s answer for the person |  -  |
+| **400** | Invalid accountId, not exactly one numeric &#x60;psid&#x60; or &#x60;userId&#x60;, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the unblock (&#x60;platform_api_error&#x60;, for example an unknown id). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
