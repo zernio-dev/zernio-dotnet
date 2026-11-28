@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.871.0
+  version: 1.872.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -222598,6 +222598,15 @@ components:
             - Array values (`flexible_spec`, ...) are replaced as a whole key, never element-merged.
 
             **`targeting_automation`.** When `rawTargeting` is present, Zernio no longer emits its usual `advantage_audience: 0` default, so it cannot clobber a `targeting_automation` in the raw spec. Meta requires `targeting_automation` on ad set creation: include it in the raw spec, or send `targeting.advantage_audience` (0/1 or false/true), merged over raw as `targeting_automation`.
+        metaSavedAudienceId:
+          description: |
+            Meta only. The id of a Meta saved audience on `adAccountId` (made in Ads Manager, listed by `GET /v1/ads/saved-audiences`).
+
+            Its targeting is read live from Meta and used as `rawTargeting` for the ad set the boost creates, so `targeting` merges on top of it exactly as it does on `rawTargeting`. Also applied with `validateOnly`.
+
+            Returns 404 when the id is not on the ad account, 400 `mutually_exclusive_fields` with `rawTargeting`, and 400 with `adSetId` (an existing ad set keeps its targeting) or on another network. Meta requires `targeting_automation` on create: send `targeting.advantage_audience` when the saved audience does not carry it.
+          pattern: ^\d+$
+          type: string
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
