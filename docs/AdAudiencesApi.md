@@ -8,7 +8,9 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateAdAudience**](AdAudiencesApi.md#createadaudience) | **POST** /v1/ads/audiences | Create custom audience |
 | [**DeleteAdAudience**](AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience |
 | [**GetAdAudience**](AdAudiencesApi.md#getadaudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details |
+| [**GetMetaSavedAudience**](AdAudiencesApi.md#getmetasavedaudience) | **GET** /v1/ads/saved-audiences/{savedAudienceId} | Read a Meta saved audience |
 | [**ListAdAudiences**](AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences |
+| [**ListMetaSavedAudiences**](AdAudiencesApi.md#listmetasavedaudiences) | **GET** /v1/ads/saved-audiences | List Meta saved audiences |
 | [**RemoveUsersFromAdAudience**](AdAudiencesApi.md#removeusersfromadaudience) | **DELETE** /v1/ads/audiences/{audienceId}/users | Remove users from audience |
 | [**ReplaceAdAudienceCompanies**](AdAudiencesApi.md#replaceadaudiencecompanies) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies |
 | [**UpdateAdAudience**](AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience |
@@ -426,6 +428,114 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getmetasavedaudience"></a>
+# **GetMetaSavedAudience**
+> GetMetaSavedAudience200Response GetMetaSavedAudience (string savedAudienceId, string accountId, string adAccountId)
+
+Read a Meta saved audience
+
+Reads one saved audience of a Meta ad account, including the targeting spec it holds.  Meta's SavedAudience node does not say which ad account owns it, so the audience is looked up in the named ad account's `GET /act_X/saved_audiences` (up to 1,000 saved audiences). An id that is not on that ad account answers 404.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetMetaSavedAudienceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
+            var savedAudienceId = "savedAudienceId_example";  // string | Meta saved audience id.
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>) that holds the saved audience.
+
+            try
+            {
+                // Read a Meta saved audience
+                GetMetaSavedAudience200Response result = apiInstance.GetMetaSavedAudience(savedAudienceId, accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAudiencesApi.GetMetaSavedAudience: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetMetaSavedAudienceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Read a Meta saved audience
+    ApiResponse<GetMetaSavedAudience200Response> response = apiInstance.GetMetaSavedAudienceWithHttpInfo(savedAudienceId, accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAudiencesApi.GetMetaSavedAudienceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **savedAudienceId** | **string** | Meta saved audience id. |  |
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;) that holds the saved audience. |  |
+
+### Return type
+
+[**GetMetaSavedAudience200Response**](GetMetaSavedAudience200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Saved audience |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
+| **404** | The connection is unavailable, or the saved audience is not on this ad account (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only supported on Meta ad accounts (facebook/instagram). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadaudiences"></a>
 # **ListAdAudiences**
 > ListAdAudiences200Response ListAdAudiences (string accountId, string adAccountId, string? platform = null, string? type = null)
@@ -532,6 +642,116 @@ catch (ApiException e)
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listmetasavedaudiences"></a>
+# **ListMetaSavedAudiences**
+> ListMetaSavedAudiences200Response ListMetaSavedAudiences (string accountId, string adAccountId, int? limit = null, string? after = null)
+
+List Meta saved audiences
+
+Lists the saved audiences of a Meta ad account, read live from Meta (`GET /act_X/saved_audiences`).  These are Meta's own saved audiences, the ones made in Ads Manager, not the Zernio `saved_targeting` audiences of `/v1/ads/audiences`. Meta's Marketing API exposes saved audiences read-only: they are created, edited and deleted in Ads Manager.  To target an ad set at a saved audience, send its `targeting` as `rawTargeting` on `POST /v1/ads/create`.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListMetaSavedAudiencesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // List Meta saved audiences
+                ListMetaSavedAudiences200Response result = apiInstance.ListMetaSavedAudiences(accountId, adAccountId, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAudiencesApi.ListMetaSavedAudiences: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListMetaSavedAudiencesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Meta saved audiences
+    ApiResponse<ListMetaSavedAudiences200Response> response = apiInstance.ListMetaSavedAudiencesWithHttpInfo(accountId, adAccountId, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAudiencesApi.ListMetaSavedAudiencesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListMetaSavedAudiences200Response**](ListMetaSavedAudiences200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Saved audiences |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Code &#x60;ad_account_not_selected&#x60;. The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the targeted ad account is not among them. The connection may not act on it, even though its token can reach it.  &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;.  Fix: add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage.  |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only supported on Meta ad accounts (facebook/instagram). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

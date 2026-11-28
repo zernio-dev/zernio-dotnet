@@ -1919,6 +1919,7 @@ docs/GetMessengerGetStarted200ResponseData.md
 docs/GetMessengerGreeting200Response.md
 docs/GetMessengerIceBreakers200Response.md
 docs/GetMessengerMenu200Response.md
+docs/GetMetaSavedAudience200Response.md
 docs/GetPageWebhookSubscription200Response.md
 docs/GetPayoutBatch200Response.md
 docs/GetPendingOAuthData200Response.md
@@ -2641,6 +2642,8 @@ docs/ListLogs200ResponseLogsInner.md
 docs/ListLogs200ResponsePagination.md
 docs/ListMetaBusinessUsers200Response.md
 docs/ListMetaBusinesses200Response.md
+docs/ListMetaSavedAudiences200Response.md
+docs/ListMetaSavedAudiences200ResponsePaging.md
 docs/ListOAuthApps200Response.md
 docs/ListOAuthApps200ResponsePagination.md
 docs/ListOrgConnectionUsers200Response.md
@@ -2827,6 +2830,7 @@ docs/MetaProductFeed.md
 docs/MetaProductFeedSchedule.md
 docs/MetaProductSet.md
 docs/MetaRecoveredWritesInner.md
+docs/MetaSavedAudience.md
 docs/MetricDefinition.md
 docs/MetricEntity.md
 docs/MetricEntityAttributionsInner.md
@@ -6295,6 +6299,7 @@ src/Zernio.Test/Model/GetMessengerGetStarted200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerGreeting200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerIceBreakers200ResponseTests.cs
 src/Zernio.Test/Model/GetMessengerMenu200ResponseTests.cs
+src/Zernio.Test/Model/GetMetaSavedAudience200ResponseTests.cs
 src/Zernio.Test/Model/GetPageWebhookSubscription200ResponseTests.cs
 src/Zernio.Test/Model/GetPayoutBatch200ResponseTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
@@ -7010,6 +7015,8 @@ src/Zernio.Test/Model/ListLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinessUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListMetaBusinesses200ResponseTests.cs
+src/Zernio.Test/Model/ListMetaSavedAudiences200ResponsePagingTests.cs
+src/Zernio.Test/Model/ListMetaSavedAudiences200ResponseTests.cs
 src/Zernio.Test/Model/ListOAuthApps200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListOAuthApps200ResponseTests.cs
 src/Zernio.Test/Model/ListOrgConnectionUsers200ResponseDataInnerTests.cs
@@ -7191,6 +7198,7 @@ src/Zernio.Test/Model/MetaProductFeedScheduleTests.cs
 src/Zernio.Test/Model/MetaProductFeedTests.cs
 src/Zernio.Test/Model/MetaProductSetTests.cs
 src/Zernio.Test/Model/MetaRecoveredWritesInnerTests.cs
+src/Zernio.Test/Model/MetaSavedAudienceTests.cs
 src/Zernio.Test/Model/MetricDefinitionTests.cs
 src/Zernio.Test/Model/MetricEntityAttributionsInnerTests.cs
 src/Zernio.Test/Model/MetricEntityGroupByInnerTests.cs
@@ -10643,6 +10651,7 @@ src/Zernio/Model/GetMessengerGetStarted200ResponseData.cs
 src/Zernio/Model/GetMessengerGreeting200Response.cs
 src/Zernio/Model/GetMessengerIceBreakers200Response.cs
 src/Zernio/Model/GetMessengerMenu200Response.cs
+src/Zernio/Model/GetMetaSavedAudience200Response.cs
 src/Zernio/Model/GetPageWebhookSubscription200Response.cs
 src/Zernio/Model/GetPayoutBatch200Response.cs
 src/Zernio/Model/GetPendingOAuthData200Response.cs
@@ -11358,6 +11367,8 @@ src/Zernio/Model/ListLogs200ResponseLogsInner.cs
 src/Zernio/Model/ListLogs200ResponsePagination.cs
 src/Zernio/Model/ListMetaBusinessUsers200Response.cs
 src/Zernio/Model/ListMetaBusinesses200Response.cs
+src/Zernio/Model/ListMetaSavedAudiences200Response.cs
+src/Zernio/Model/ListMetaSavedAudiences200ResponsePaging.cs
 src/Zernio/Model/ListOAuthApps200Response.cs
 src/Zernio/Model/ListOAuthApps200ResponsePagination.cs
 src/Zernio/Model/ListOrgConnectionUsers200Response.cs
@@ -11539,6 +11550,7 @@ src/Zernio/Model/MetaProductFeed.cs
 src/Zernio/Model/MetaProductFeedSchedule.cs
 src/Zernio/Model/MetaProductSet.cs
 src/Zernio/Model/MetaRecoveredWritesInner.cs
+src/Zernio/Model/MetaSavedAudience.cs
 src/Zernio/Model/MetricDefinition.cs
 src/Zernio/Model/MetricEntity.cs
 src/Zernio/Model/MetricEntityAttributionsInner.cs
