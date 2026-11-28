@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.872.0
+  version: 1.873.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -84309,13 +84309,15 @@ paths:
 
         - `metaCapiDatasetId`: the Meta dataset ID linked to the WABA. Provision one with `POST /v1/whatsapp/dataset`.
 
-        The WABA ID (already set automatically at connect time) is forwarded as `user_data.whatsapp_business_account_id`, the per-channel attribution identifier Meta requires for WhatsApp events. No Facebook Page ID is needed (that field is the Messenger-branch identifier).
+        The WABA ID (already set automatically at connect time) is forwarded as `user_data.whatsapp_business_account_id`, the per-channel attribution identifier Meta requires for WhatsApp events. When the conversation has no `ctwa_clid`, send `pageId` (the Facebook Page linked to the WABA); it is forwarded as `user_data.page_id`.
 
         ### Identifying the conversation
 
         Identify the conversation by either `conversationId` (preferred) or `phoneE164` (digits only, no `+`). At least one is required.
 
-        If the conversation has no captured `ctwa_clid`, the request returns 422 because there is nothing to attribute.
+        If the conversation has no captured `ctwa_clid` and no `pageId` is sent, the request returns 422.
+
+        With `pageId` the event is sent without a click id. Meta then matches on the hashed phone and may still not attribute it. With `phoneE164`, a missing CTWA conversation is also accepted when `pageId` is sent.
 
         ### Token and dataset coupling
 
@@ -234280,7 +234282,8 @@ components:
             Zernio Conversation `_id` (preferred lookup). The
             conversation must have a captured `ctwa_clid` in metadata
             (set automatically by the WhatsApp webhook on the first
-            inbound message after a CTWA ad click).
+            inbound message after a CTWA ad click), unless `pageId`
+            is sent.
           minLength: 1
           type: string
         phoneE164:
@@ -234288,8 +234291,21 @@ components:
             Contact phone number, digits only with no '+'. When used
             in lieu of `conversationId`, the handler resolves to the
             most recent CTWA-attributed conversation for this phone
-            on the supplied account.
+            on the supplied account. When `pageId` is sent and no such
+            conversation exists, the event is sent without a click id.
           minLength: 1
+          type: string
+        pageId:
+          description: |
+            Numeric id of the Facebook Page linked to the WABA. Needed
+            when the conversation has no `ctwa_clid`, and sent to Meta
+            only then.
+
+            Meta matches on the hashed phone or `email` (one is
+            required, 422 otherwise) and may still not attribute the
+            event. Zernio does not check that the Page is the one
+            linked to the WABA.
+          pattern: ^\d+$
           type: string
         value:
           description: Conversion value (e.g. order total).
@@ -267674,11 +267690,10 @@ components:
             \ message referral, sent as `ctwa_clid`."
           type: string
         pageId:
-          description: "Messenger: Facebook Page id, sent as `page_id`. Instagram\
-            \ Direct: when `instagramBusinessAccountId` is absent, Zernio reads the\
-            \ Instagram professional account linked to this Page and sends its id\
-            \ as `ig_account_id`; if none is linked or the lookup fails, `page_id`\
-            \ is sent instead."
+          description: |
+            WhatsApp: sent as `page_id` next to `whatsapp_business_account_id` only when `ctwaClid` is absent, which Meta then needs together with at least one hashed identifier in `user`.
+
+            Messenger: Facebook Page id, sent as `page_id`. Instagram Direct: when `instagramBusinessAccountId` is absent, Zernio reads the Instagram professional account linked to this Page and sends its id as `ig_account_id`; if none is linked or the lookup fails, `page_id` is sent instead.
           type: string
         instagramBusinessAccountId:
           description: "Instagram Direct only. Instagram professional account id (`instagram_business_account`\

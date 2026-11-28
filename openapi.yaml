@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.872.0",
+    "version": "1.873.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -59271,7 +59271,7 @@
               },
               "pageId": {
                 "type": "string",
-                "description": "Messenger: Facebook Page id, sent as `page_id`. Instagram Direct: when `instagramBusinessAccountId` is absent, Zernio reads the Instagram professional account linked to this Page and sends its id as `ig_account_id`; if none is linked or the lookup fails, `page_id` is sent instead."
+                "description": "WhatsApp: sent as `page_id` next to `whatsapp_business_account_id` only when `ctwaClid` is absent, which Meta then needs together with at least one hashed identifier in `user`.\n\nMessenger: Facebook Page id, sent as `page_id`. Instagram Direct: when `instagramBusinessAccountId` is absent, Zernio reads the Instagram professional account linked to this Page and sends its id as `ig_account_id`; if none is linked or the lookup fails, `page_id` is sent instead.\n"
               },
               "instagramBusinessAccountId": {
                 "type": "string",
@@ -228443,7 +228443,7 @@
           "WhatsApp"
         ],
         "summary": "Send WhatsApp conversion event",
-        "description": "Forward a WhatsApp Business Messaging conversion event to Meta's Conversions API with `action_source = business_messaging` and `messaging_channel = whatsapp`.\n\nSupported events:\n\n- `LeadSubmitted`\n- `QualifiedLead`\n- `Purchase`\n- `AddToCart`\n- `InitiateCheckout`\n- `ViewContent`\n- `OrderCreated`\n- `OrderCanceled`\n- `OrderReturned`\n\nThe endpoint looks up the originating CTWA click ID (`ctwa_clid`) captured on the first inbound message of the conversation. It replays it on every event so Meta can attribute the conversion back to the Click-to-WhatsApp ad that drove the chat.\n\n### Configuration prerequisite\n\nOn the WhatsApp account metadata:\n\n- `metaCapiDatasetId`: the Meta dataset ID linked to the WABA. Provision one with `POST /v1/whatsapp/dataset`.\n\nThe WABA ID (already set automatically at connect time) is forwarded as `user_data.whatsapp_business_account_id`, the per-channel attribution identifier Meta requires for WhatsApp events. No Facebook Page ID is needed (that field is the Messenger-branch identifier).\n\n### Identifying the conversation\n\nIdentify the conversation by either `conversationId` (preferred) or `phoneE164` (digits only, no `+`). At least one is required.\n\nIf the conversation has no captured `ctwa_clid`, the request returns 422 because there is nothing to attribute.\n\n### Token and dataset coupling\n\nThe WhatsApp account's accessToken must have access to the configured `metaCapiDatasetId`. By default a WABA's system-user token is scoped to the WABA's own Business Manager and cannot post to a pixel owned by a different Business; Meta returns code 100 in that case.\n\nTo fix it, either:\n\n- share the dataset with the WhatsApp app's Business in BM, or\n- use a dataset already in the same Business as the WABA.\n",
+        "description": "Forward a WhatsApp Business Messaging conversion event to Meta's Conversions API with `action_source = business_messaging` and `messaging_channel = whatsapp`.\n\nSupported events:\n\n- `LeadSubmitted`\n- `QualifiedLead`\n- `Purchase`\n- `AddToCart`\n- `InitiateCheckout`\n- `ViewContent`\n- `OrderCreated`\n- `OrderCanceled`\n- `OrderReturned`\n\nThe endpoint looks up the originating CTWA click ID (`ctwa_clid`) captured on the first inbound message of the conversation. It replays it on every event so Meta can attribute the conversion back to the Click-to-WhatsApp ad that drove the chat.\n\n### Configuration prerequisite\n\nOn the WhatsApp account metadata:\n\n- `metaCapiDatasetId`: the Meta dataset ID linked to the WABA. Provision one with `POST /v1/whatsapp/dataset`.\n\nThe WABA ID (already set automatically at connect time) is forwarded as `user_data.whatsapp_business_account_id`, the per-channel attribution identifier Meta requires for WhatsApp events. When the conversation has no `ctwa_clid`, send `pageId` (the Facebook Page linked to the WABA); it is forwarded as `user_data.page_id`.\n\n### Identifying the conversation\n\nIdentify the conversation by either `conversationId` (preferred) or `phoneE164` (digits only, no `+`). At least one is required.\n\nIf the conversation has no captured `ctwa_clid` and no `pageId` is sent, the request returns 422.\n\nWith `pageId` the event is sent without a click id. Meta then matches on the hashed phone and may still not attribute it. With `phoneE164`, a missing CTWA conversation is also accepted when `pageId` is sent.\n\n### Token and dataset coupling\n\nThe WhatsApp account's accessToken must have access to the configured `metaCapiDatasetId`. By default a WABA's system-user token is scoped to the WABA's own Business Manager and cannot post to a pixel owned by a different Business; Meta returns code 100 in that case.\n\nTo fix it, either:\n\n- share the dataset with the WhatsApp app's Business in BM, or\n- use a dataset already in the same Business as the WABA.\n",
         "security": [
           {
             "bearerAuth": []
@@ -228494,12 +228494,17 @@
                   "conversationId": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "Zernio Conversation `_id` (preferred lookup). The\nconversation must have a captured `ctwa_clid` in metadata\n(set automatically by the WhatsApp webhook on the first\ninbound message after a CTWA ad click).\n"
+                    "description": "Zernio Conversation `_id` (preferred lookup). The\nconversation must have a captured `ctwa_clid` in metadata\n(set automatically by the WhatsApp webhook on the first\ninbound message after a CTWA ad click), unless `pageId`\nis sent.\n"
                   },
                   "phoneE164": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "Contact phone number, digits only with no '+'. When used\nin lieu of `conversationId`, the handler resolves to the\nmost recent CTWA-attributed conversation for this phone\non the supplied account.\n"
+                    "description": "Contact phone number, digits only with no '+'. When used\nin lieu of `conversationId`, the handler resolves to the\nmost recent CTWA-attributed conversation for this phone\non the supplied account. When `pageId` is sent and no such\nconversation exists, the event is sent without a click id.\n"
+                  },
+                  "pageId": {
+                    "type": "string",
+                    "pattern": "^\\d+$",
+                    "description": "Numeric id of the Facebook Page linked to the WABA. Needed\nwhen the conversation has no `ctwa_clid`, and sent to Meta\nonly then.\n\nMeta matches on the hashed phone or `email` (one is\nrequired, 422 otherwise) and may still not attribute the\nevent. Zernio does not check that the Page is the one\nlinked to the WABA.\n"
                   },
                   "value": {
                     "type": "number",
