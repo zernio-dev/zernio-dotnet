@@ -1974,6 +1974,7 @@ docs/GetSmsRegistration200ResponseCampaignContent.md
 docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
+docs/GetStoreSettings200Response.md
 docs/GetStripeConnectUrl200Response.md
 docs/GetStripeSettings200Response.md
 docs/GetSubredditRules200Response.md
@@ -3474,6 +3475,7 @@ docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/StorePixelInstall.md
 docs/StorePixelInstallTagsInner.md
+docs/StoreSettings.md
 docs/StoredEvent.md
 docs/StoredEventAd.md
 docs/StoredEventCampaign.md
@@ -3838,6 +3840,8 @@ docs/UpdateSequenceRequest.md
 docs/UpdateSequenceRequestStepsInner.md
 docs/UpdateSequenceRequestStepsInnerTemplate.md
 docs/UpdateSlackSettingsRequest.md
+docs/UpdateStoreSettings200Response.md
+docs/UpdateStoreSettingsRequest.md
 docs/UpdateStripeSettings200Response.md
 docs/UpdateStripeSettingsRequest.md
 docs/UpdateTrackingLinkRequest.md
@@ -6354,6 +6358,7 @@ src/Zernio.Test/Model/GetSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTotalsTests.cs
+src/Zernio.Test/Model/GetStoreSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetStripeConnectUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetStripeSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSubredditRules200ResponseRulesInnerTests.cs
@@ -7828,6 +7833,7 @@ src/Zernio.Test/Model/StartWhatsAppCallerIdVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
 src/Zernio.Test/Model/StorePixelInstallTagsInnerTests.cs
 src/Zernio.Test/Model/StorePixelInstallTests.cs
+src/Zernio.Test/Model/StoreSettingsTests.cs
 src/Zernio.Test/Model/StoredEventAdTests.cs
 src/Zernio.Test/Model/StoredEventCampaignTests.cs
 src/Zernio.Test/Model/StoredEventClickIdsTests.cs
@@ -8187,6 +8193,8 @@ src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestTests.cs
 src/Zernio.Test/Model/UpdateSlackSettingsRequestTests.cs
+src/Zernio.Test/Model/UpdateStoreSettings200ResponseTests.cs
+src/Zernio.Test/Model/UpdateStoreSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateStripeSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateStripeSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingLinkRequestTests.cs
@@ -10706,6 +10714,7 @@ src/Zernio/Model/GetSmsRegistration200ResponseCampaignContent.cs
 src/Zernio/Model/GetSmsUsage200Response.cs
 src/Zernio/Model/GetSmsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetSmsUsage200ResponseTotals.cs
+src/Zernio/Model/GetStoreSettings200Response.cs
 src/Zernio/Model/GetStripeConnectUrl200Response.cs
 src/Zernio/Model/GetStripeSettings200Response.cs
 src/Zernio/Model/GetSubredditRules200Response.cs
@@ -12180,6 +12189,7 @@ src/Zernio/Model/StartWhatsAppCallerIdVerification200Response.cs
 src/Zernio/Model/StartWhatsAppCallerIdVerificationRequest.cs
 src/Zernio/Model/StorePixelInstall.cs
 src/Zernio/Model/StorePixelInstallTagsInner.cs
+src/Zernio/Model/StoreSettings.cs
 src/Zernio/Model/StoredEvent.cs
 src/Zernio/Model/StoredEventAd.cs
 src/Zernio/Model/StoredEventCampaign.cs
@@ -12539,6 +12549,8 @@ src/Zernio/Model/UpdateSequenceRequest.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInner.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/UpdateSlackSettingsRequest.cs
+src/Zernio/Model/UpdateStoreSettings200Response.cs
+src/Zernio/Model/UpdateStoreSettingsRequest.cs
 src/Zernio/Model/UpdateStripeSettings200Response.cs
 src/Zernio/Model/UpdateStripeSettingsRequest.cs
 src/Zernio/Model/UpdateTrackingLinkRequest.cs

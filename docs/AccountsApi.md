@@ -17,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInstagramFollowStatus**](AccountsApi.md#getinstagramfollowstatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account |
 | [**GetSalesforceSettings**](AccountsApi.md#getsalesforcesettings) | **GET** /v1/accounts/{accountId}/salesforce-settings | Get Salesforce account settings |
 | [**GetSlackSettings**](AccountsApi.md#getslacksettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
+| [**GetStoreSettings**](AccountsApi.md#getstoresettings) | **GET** /v1/accounts/{accountId}/store-settings | Get Shopify or WooCommerce store settings |
 | [**GetStripeSettings**](AccountsApi.md#getstripesettings) | **GET** /v1/accounts/{accountId}/stripe-settings | Get Stripe account settings |
 | [**GetTikTokCreatorInfo**](AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**GrantBusinessPartner**](AccountsApi.md#grantbusinesspartner) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business |
@@ -37,6 +38,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateHubSpotSettings**](AccountsApi.md#updatehubspotsettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings |
 | [**UpdateSalesforceSettings**](AccountsApi.md#updatesalesforcesettings) | **PATCH** /v1/accounts/{accountId}/salesforce-settings | Update Salesforce account settings |
 | [**UpdateSlackSettings**](AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings |
+| [**UpdateStoreSettings**](AccountsApi.md#updatestoresettings) | **PATCH** /v1/accounts/{accountId}/store-settings | Update Shopify or WooCommerce store settings |
 | [**UpdateStripeSettings**](AccountsApi.md#updatestripesettings) | **PATCH** /v1/accounts/{accountId}/stripe-settings | Update Stripe account settings |
 | [**VerifyGohighlevelFunnelTracking**](AccountsApi.md#verifygohighlevelfunneltracking) | **POST** /v1/accounts/{accountId}/gohighlevel-funnel-tracking/verify | Check the Zernio tag on a HighLevel funnel page |
 
@@ -1373,6 +1375,107 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Slack account settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getstoresettings"></a>
+# **GetStoreSettings**
+> GetStoreSettings200Response GetStoreSettings (string accountId)
+
+Get Shopify or WooCommerce store settings
+
+Read whether a connected Shopify store's or WordPress (WooCommerce) site's orders go to the ad platforms.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetStoreSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Get Shopify or WooCommerce store settings
+                GetStoreSettings200Response result = apiInstance.GetStoreSettings(accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.GetStoreSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetStoreSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Shopify or WooCommerce store settings
+    ApiResponse<GetStoreSettings200Response> response = apiInstance.GetStoreSettingsWithHttpInfo(accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.GetStoreSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**GetStoreSettings200Response**](GetStoreSettings200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Store settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
@@ -3451,6 +3554,109 @@ catch (ApiException e)
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatestoresettings"></a>
+# **UpdateStoreSettings**
+> UpdateStoreSettings200Response UpdateStoreSettings (string accountId, UpdateStoreSettingsRequest updateStoreSettingsRequest)
+
+Update Shopify or WooCommerce store settings
+
+Turn sending a store's paid orders to the ad platforms on or off. Orders are always stored and counted in campaign results; this only decides whether they are also forwarded. Meta and TikTok get them only from a forwarding rule whose sources list the store (`shopify` or `woocommerce`).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateStoreSettingsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var updateStoreSettingsRequest = new UpdateStoreSettingsRequest(); // UpdateStoreSettingsRequest | 
+
+            try
+            {
+                // Update Shopify or WooCommerce store settings
+                UpdateStoreSettings200Response result = apiInstance.UpdateStoreSettings(accountId, updateStoreSettingsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.UpdateStoreSettings: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateStoreSettingsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update Shopify or WooCommerce store settings
+    ApiResponse<UpdateStoreSettings200Response> response = apiInstance.UpdateStoreSettingsWithHttpInfo(accountId, updateStoreSettingsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.UpdateStoreSettingsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **updateStoreSettingsRequest** | [**UpdateStoreSettingsRequest**](UpdateStoreSettingsRequest.md) |  |  |
+
+### Return type
+
+[**UpdateStoreSettings200Response**](UpdateStoreSettings200Response.md)
 
 ### Authorization
 
