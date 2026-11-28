@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Zernio API",
-    "version": "1.873.0",
+    "version": "1.874.0",
     "description": "API reference for Zernio. Authenticate with a Bearer API key.\nBase URL: https://zernio.com/api\n\nVersioning and deprecation: all endpoints are versioned in the URL path\n(current version: /v1). Breaking changes only ship in a new path version;\nexisting versions keep working. Deprecated operations are marked\n'deprecated: true' in this spec and announced in the changelog\n(https://zernio.com/changelog) before removal.\n\nErrors: every 4xx/5xx response is application/json with a machine-readable\n'code' and a human-readable 'error' message (see the ErrorResponse schema).\n\nRequest ids: responses carry an X-Request-Id header with the id we log the\nrequest under. Quote it when reporting a problem. A valid x-request-id you\nsend is reused as that id.\n",
     "termsOfService": "https://zernio.com/tos",
     "contact": {
@@ -24172,7 +24172,7 @@
           "object",
           "null"
         ],
-        "description": "Click attribution for a conversation that started from a Meta ad or a ref-tagged ig.me / m.me link, as Meta sent it. Absent when the conversation did not come from an attributable click. For the ad name, campaign and ad set, read `adAttribution`.\n\n**First referral wins.** Values come from the referral Meta delivers for the click. If the same person later arrives through another ad or link, the original values are kept. For the fresh referral per click, read the `message.received` / `referral.received` webhooks.\n\nOn Instagram Click-to-Direct, Meta usually delivers the ad post first as an attachment-only `share` / `ig_post` message with no referral, then attaches the referral to the next message.\n\nWhatsApp exception: when Meta omits `ctwa_clid` from the referral, a later Meta automatic event can supply it and refresh `ctwa_captured_at`. Treat `ctwa_captured_at` as when Zernio stored the value, not when the click happened.\n\n**Two key families, one per surface, never together:**\n\n- `ctwa_*`: WhatsApp Click-to-WhatsApp. The ad ID is `ctwa_source_id`. There is no `meta_ad_id` on WhatsApp.\n- `meta_ad_*`: Instagram Click-to-Direct, Facebook Messenger Click-to-Message, and ig.me / m.me ref links. The ad ID is `meta_ad_id` (ad clicks only; a link capture carries `meta_ad_ref` without it). `ctwa_clid` never appears here.\n\nEvery key is optional and only keys Meta supplied are returned, so read defensively. Meta sends no campaign or ad set ID; those are resolved from your synced ads in `adAttribution`. More keys may be added; treat unknown keys as opaque strings.\n\nKey names differ from the `message.received` webhook on purpose. The webhook forwards Meta's referral verbatim (`ad_id`, `source`, `type`), while the stored conversation uses the prefixed names. Renaming either side would break existing integrations, so both spellings stay.\n",
+        "description": "Click attribution for a conversation that started from a Meta ad or a ref-tagged ig.me / m.me link, as Meta sent it. Absent when the conversation did not come from an attributable click. For the ad name, campaign and ad set, read `adAttribution`.\n\n**First referral wins.** Values come from the referral Meta delivers for the click. If the same person later arrives through another ad or link, the original values are kept. For the fresh referral per click, read the `message.received` / `referral.received` webhooks.\n\nOn Instagram Click-to-Direct, Meta usually delivers the ad post first as an attachment-only `share` / `ig_post` message with no referral, then attaches the referral to the next message.\n\nWhatsApp exception: when Meta omits `ctwa_clid` from the referral, a later Meta automatic event can supply it; `ctwa_captured_at` keeps the time the referral was stored.\n\n**Two key families, one per surface, never together:**\n\n- `ctwa_*`: WhatsApp Click-to-WhatsApp. The ad ID is `ctwa_source_id`. There is no `meta_ad_id` on WhatsApp.\n- `meta_ad_*`: Instagram Click-to-Direct, Facebook Messenger Click-to-Message, and ig.me / m.me ref links. The ad ID is `meta_ad_id` (ad clicks only; a link capture carries `meta_ad_ref` without it). `ctwa_clid` never appears here.\n\nEvery key is optional and only keys Meta supplied are returned, so read defensively. Meta sends no campaign or ad set ID; those are resolved from your synced ads in `adAttribution`. More keys may be added; treat unknown keys as opaque strings.\n\nKey names differ from the `message.received` webhook on purpose. The webhook forwards Meta's referral verbatim (`ad_id`, `source`, `type`), while the stored conversation uses the prefixed names. Renaming either side would break existing integrations, so both spellings stay.\n",
         "properties": {
           "ctwa_clid": {
             "type": "string",
@@ -24218,6 +24218,10 @@
             "type": "string",
             "format": "date-time",
             "description": "WhatsApp only. When Zernio stored this referral. Always present when a WhatsApp referral was captured."
+          },
+          "ctwa_message_id": {
+            "type": "string",
+            "description": "WhatsApp only. The wamid of the inbound message the referral arrived on, the `id` of that message in the messages list. When only a Meta automatic event supplied the click id, the message Meta flagged."
           },
           "meta_ad_id": {
             "type": "string",
@@ -228333,7 +228337,7 @@
           "WhatsApp"
         ],
         "summary": "List conversion events",
-        "description": "Returns the most recent conversion events sent through `POST /v1/whatsapp/conversions` for the given WhatsApp account.\n\nIt is sourced from delivery logs (Axiom `late` dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \"recent activity\" panel on the conversions setup tab without standing up a parallel persistence layer.\n\n### Per-event payload\n\nIt mirrors the structured log we write on every successful send:\n\n- `eventName`\n- `conversationId`\n- `eventsReceived`\n- `eventsFailed`\n- `traceId`\n- `durationMs`\n- the wall-clock `timestamp`\n",
+        "description": "Returns the most recent conversion events sent through `POST /v1/whatsapp/conversions` for the given WhatsApp account.\n\nIt is sourced from delivery logs (Axiom `late` dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \"recent activity\" panel on the conversions setup tab without standing up a parallel persistence layer.\n\n### Per-event payload\n\nIt mirrors the structured log we write on every successful send:\n\n- `eventName`\n- `eventId`\n- `hasClickId`\n- `conversationId`\n- `eventsReceived`\n- `eventsFailed`\n- `traceId`\n- `durationMs`\n- the wall-clock `timestamp`\n",
         "security": [
           {
             "bearerAuth": []
@@ -228383,6 +228387,20 @@
                           "eventName": {
                             "type": "string",
                             "description": "One of LeadSubmitted, QualifiedLead, Purchase, AddToCart, InitiateCheckout, ViewContent, OrderCreated, OrderCanceled, OrderReturned."
+                          },
+                          "eventId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "The eventId sent on the POST. Null for events sent before it was recorded."
+                          },
+                          "hasClickId": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ],
+                            "description": "Whether the event carried a ctwa_clid. Null for events sent before it was recorded."
                           },
                           "conversationId": {
                             "type": [
@@ -228447,6 +228465,11 @@
         "security": [
           {
             "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKeyHeader"
           }
         ],
         "requestBody": {
@@ -228544,7 +228567,7 @@
         "responses": {
           "200": {
             "x-summary": "The event reached Meta but acceptance is not guaranteed: inspect `failures` for partial failures.",
-            "description": "Event submitted to Meta. Inspect `eventsFailed` and `failures[]`\nto detect partial failures. A 200 does not mean Meta accepted the\nevent; the status reflects \"request reached Meta\" only.\n",
+            "description": "Event submitted to Meta. Inspect `eventsFailed` and `failures[]`\nto detect partial failures. A 200 does not mean Meta accepted the\nevent; the status reflects \"request reached Meta\" only.\n\nA retry with the same `Idempotency-Key` replays the first answer, failed events included, so send a new key to resend. A cut-off request's key can be used again after 15 minutes.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -228632,9 +228655,12 @@
           "404": {
             "description": "Conversation not found."
           },
+          "409": {
+            "$ref": "#/components/responses/IdempotencyKeyInFlight"
+          },
           "422": {
-            "x-summary": "The account has no Meta dataset or the conversation has no click ID: set the dataset or use another conversation.",
-            "description": "Configuration missing (no `metaCapiDatasetId` on the account, set\nit via POST /v1/whatsapp/dataset) OR the resolved conversation has\nno captured `ctwa_clid`.\n"
+            "x-summary": "The account has no Meta dataset, the conversation has no click ID, or the Idempotency-Key was reused with a different body: fix the request or use a new key.",
+            "description": "Configuration missing (no `metaCapiDatasetId` on the account, set\nit via POST /v1/whatsapp/dataset) OR the resolved conversation has\nno captured `ctwa_clid`, OR the `Idempotency-Key` was reused with a\ndifferent body.\n"
           }
         }
       }

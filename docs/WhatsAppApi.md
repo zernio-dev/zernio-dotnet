@@ -3042,7 +3042,7 @@ catch (ApiException e)
 
 List conversion events
 
-Returns the most recent conversion events sent through `POST /v1/whatsapp/conversions` for the given WhatsApp account.  It is sourced from delivery logs (Axiom `late` dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \"recent activity\" panel on the conversions setup tab without standing up a parallel persistence layer.  ### Per-event payload  It mirrors the structured log we write on every successful send:  - `eventName` - `conversationId` - `eventsReceived` - `eventsFailed` - `traceId` - `durationMs` - the wall-clock `timestamp` 
+Returns the most recent conversion events sent through `POST /v1/whatsapp/conversions` for the given WhatsApp account.  It is sourced from delivery logs (Axiom `late` dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \"recent activity\" panel on the conversions setup tab without standing up a parallel persistence layer.  ### Per-event payload  It mirrors the structured log we write on every successful send:  - `eventName` - `eventId` - `hasClickId` - `conversationId` - `eventsReceived` - `eventsFailed` - `traceId` - `durationMs` - the wall-clock `timestamp` 
 
 ### Example
 ```csharp
@@ -3765,7 +3765,7 @@ catch (ApiException e)
 
 <a id="sendwhatsappconversion"></a>
 # **SendWhatsAppConversion**
-> SendWhatsAppConversion200Response SendWhatsAppConversion (SendWhatsAppConversionRequest sendWhatsAppConversionRequest)
+> SendWhatsAppConversion200Response SendWhatsAppConversion (SendWhatsAppConversionRequest sendWhatsAppConversionRequest, string? idempotencyKey = null)
 
 Send WhatsApp conversion event
 
@@ -3796,11 +3796,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
             var sendWhatsAppConversionRequest = new SendWhatsAppConversionRequest(); // SendWhatsAppConversionRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  (optional) 
 
             try
             {
                 // Send WhatsApp conversion event
-                SendWhatsAppConversion200Response result = apiInstance.SendWhatsAppConversion(sendWhatsAppConversionRequest);
+                SendWhatsAppConversion200Response result = apiInstance.SendWhatsAppConversion(sendWhatsAppConversionRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3821,7 +3822,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send WhatsApp conversion event
-    ApiResponse<SendWhatsAppConversion200Response> response = apiInstance.SendWhatsAppConversionWithHttpInfo(sendWhatsAppConversionRequest);
+    ApiResponse<SendWhatsAppConversion200Response> response = apiInstance.SendWhatsAppConversionWithHttpInfo(sendWhatsAppConversionRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3839,6 +3840,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **sendWhatsAppConversionRequest** | [**SendWhatsAppConversionRequest**](SendWhatsAppConversionRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  On the Ads create, boost and duplicate endpoints, a same-body retry runs again once the cut-off request started more than 15 minutes ago.  | [optional]  |
 
 ### Return type
 
@@ -3857,11 +3859,12 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Event submitted to Meta. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failures. A 200 does not mean Meta accepted the event; the status reflects \&quot;request reached Meta\&quot; only.  |  -  |
+| **200** | Event submitted to Meta. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failures. A 200 does not mean Meta accepted the event; the status reflects \&quot;request reached Meta\&quot; only.  A retry with the same &#x60;Idempotency-Key&#x60; replays the first answer, failed events included, so send a new key to resend. A cut-off request&#39;s key can be used again after 15 minutes.  |  -  |
 | **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
-| **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;, OR the &#x60;Idempotency-Key&#x60; was reused with a different body.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

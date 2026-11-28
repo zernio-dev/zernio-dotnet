@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.873.0
+  version: 1.874.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -84238,6 +84238,8 @@ paths:
         It mirrors the structured log we write on every successful send:
 
         - `eventName`
+        - `eventId`
+        - `hasClickId`
         - `conversationId`
         - `eventsReceived`
         - `eventsFailed`
@@ -84328,6 +84330,8 @@ paths:
         - share the dataset with the WhatsApp app's Business in BM, or
         - use a dataset already in the same Business as the WABA.
       operationId: sendWhatsAppConversion
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -84344,6 +84348,8 @@ paths:
             Event submitted to Meta. Inspect `eventsFailed` and `failures[]`
             to detect partial failures. A 200 does not mean Meta accepted the
             event; the status reflects "request reached Meta" only.
+
+            A retry with the same `Idempotency-Key` replays the first answer, failed events included, so send a new key to resend. A cut-off request's key can be used again after 15 minutes.
           x-summary: "The event reached Meta but acceptance is not guaranteed: inspect\
             \ `failures` for partial failures."
         "400":
@@ -84356,13 +84362,17 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Conversation not found.
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
           description: |
             Configuration missing (no `metaCapiDatasetId` on the account, set
             it via POST /v1/whatsapp/dataset) OR the resolved conversation has
-            no captured `ctwa_clid`.
-          x-summary: "The account has no Meta dataset or the conversation has no click\
-            \ ID: set the dataset or use another conversation."
+            no captured `ctwa_clid`, OR the `Idempotency-Key` was reused with a
+            different body.
+          x-summary: "The account has no Meta dataset, the conversation has no click\
+            \ ID, or the Idempotency-Key was reused with a different body: fix the\
+            \ request or use a new key."
       security:
       - bearerAuth: []
       summary: Send WhatsApp conversion event
@@ -118261,7 +118271,7 @@ components:
 
         On Instagram Click-to-Direct, Meta usually delivers the ad post first as an attachment-only `share` / `ig_post` message with no referral, then attaches the referral to the next message.
 
-        WhatsApp exception: when Meta omits `ctwa_clid` from the referral, a later Meta automatic event can supply it and refresh `ctwa_captured_at`. Treat `ctwa_captured_at` as when Zernio stored the value, not when the click happened.
+        WhatsApp exception: when Meta omits `ctwa_clid` from the referral, a later Meta automatic event can supply it; `ctwa_captured_at` keeps the time the referral was stored.
 
         **Two key families, one per surface, never together:**
 
@@ -118291,6 +118301,7 @@ components:
         ctwa_clid: ctwa_clid
         meta_ad_title: meta_ad_title
         meta_ad_product_id: meta_ad_product_id
+        ctwa_message_id: ctwa_message_id
         ctwa_source_id: ctwa_source_id
         ctwa_video_url: ctwa_video_url
         meta_ad_post_id: meta_ad_post_id
@@ -118338,6 +118349,11 @@ components:
           description: WhatsApp only. When Zernio stored this referral. Always present
             when a WhatsApp referral was captured.
           format: date-time
+          type: string
+        ctwa_message_id:
+          description: "WhatsApp only. The wamid of the inbound message the referral\
+            \ arrived on, the `id` of that message in the messages list. When only\
+            \ a Meta automatic event supplied the click id, the message Meta flagged."
           type: string
         meta_ad_id:
           description: Instagram and Facebook only. The Meta ad ID the user clicked.
@@ -119514,6 +119530,7 @@ components:
             ctwa_clid: ctwa_clid
             meta_ad_title: meta_ad_title
             meta_ad_product_id: meta_ad_product_id
+            ctwa_message_id: ctwa_message_id
             ctwa_source_id: ctwa_source_id
             ctwa_video_url: ctwa_video_url
             meta_ad_post_id: meta_ad_post_id
@@ -178566,6 +178583,7 @@ components:
           ctwa_clid: ctwa_clid
           meta_ad_title: meta_ad_title
           meta_ad_product_id: meta_ad_product_id
+          ctwa_message_id: ctwa_message_id
           ctwa_source_id: ctwa_source_id
           ctwa_video_url: ctwa_video_url
           meta_ad_post_id: meta_ad_post_id
@@ -178825,6 +178843,7 @@ components:
             ctwa_clid: ctwa_clid
             meta_ad_title: meta_ad_title
             meta_ad_product_id: meta_ad_product_id
+            ctwa_message_id: ctwa_message_id
             ctwa_source_id: ctwa_source_id
             ctwa_video_url: ctwa_video_url
             meta_ad_post_id: meta_ad_post_id
@@ -178887,6 +178906,7 @@ components:
             ctwa_clid: ctwa_clid
             meta_ad_title: meta_ad_title
             meta_ad_product_id: meta_ad_product_id
+            ctwa_message_id: ctwa_message_id
             ctwa_source_id: ctwa_source_id
             ctwa_video_url: ctwa_video_url
             meta_ad_post_id: meta_ad_post_id
@@ -179713,6 +179733,7 @@ components:
           ctwa_clid: ctwa_clid
           meta_ad_title: meta_ad_title
           meta_ad_product_id: meta_ad_product_id
+          ctwa_message_id: ctwa_message_id
           ctwa_source_id: ctwa_source_id
           ctwa_video_url: ctwa_video_url
           meta_ad_post_id: meta_ad_post_id
@@ -179844,6 +179865,7 @@ components:
             ctwa_clid: ctwa_clid
             meta_ad_title: meta_ad_title
             meta_ad_product_id: meta_ad_product_id
+            ctwa_message_id: ctwa_message_id
             ctwa_source_id: ctwa_source_id
             ctwa_video_url: ctwa_video_url
             meta_ad_post_id: meta_ad_post_id
@@ -234171,9 +234193,11 @@ components:
     listWhatsAppConversions_200_response_events_inner:
       example:
         traceId: traceId
+        eventId: eventId
         eventsFailed: 6
         conversationId: conversationId
         eventsReceived: 0
+        hasClickId: true
         eventName: eventName
         durationMs: 1
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -234186,6 +234210,16 @@ components:
           description: "One of LeadSubmitted, QualifiedLead, Purchase, AddToCart,\
             \ InitiateCheckout, ViewContent, OrderCreated, OrderCanceled, OrderReturned."
           type: string
+        eventId:
+          description: The eventId sent on the POST. Null for events sent before it
+            was recorded.
+          nullable: true
+          type: string
+        hasClickId:
+          description: Whether the event carried a ctwa_clid. Null for events sent
+            before it was recorded.
+          nullable: true
+          type: boolean
         conversationId:
           nullable: true
           type: string
@@ -234208,16 +234242,20 @@ components:
       example:
         events:
         - traceId: traceId
+          eventId: eventId
           eventsFailed: 6
           conversationId: conversationId
           eventsReceived: 0
+          hasClickId: true
           eventName: eventName
           durationMs: 1
           timestamp: 2000-01-23T04:56:07.000+00:00
         - traceId: traceId
+          eventId: eventId
           eventsFailed: 6
           conversationId: conversationId
           eventsReceived: 0
+          hasClickId: true
           eventName: eventName
           durationMs: 1
           timestamp: 2000-01-23T04:56:07.000+00:00
@@ -253653,6 +253691,7 @@ components:
           ctwa_clid: ctwa_clid
           meta_ad_title: meta_ad_title
           meta_ad_product_id: meta_ad_product_id
+          ctwa_message_id: ctwa_message_id
           ctwa_source_id: ctwa_source_id
           ctwa_video_url: ctwa_video_url
           meta_ad_post_id: meta_ad_post_id
