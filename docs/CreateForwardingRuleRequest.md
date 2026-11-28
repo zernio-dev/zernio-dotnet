@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProfileId** | **string** |  | 
 **AccountId** | **string** | Connected ads account ID that owns the destination. | 
-**DestinationId** | **string** | The platform destination: a pixel, a conversion action, a conversion rule, or a GA4 web stream measurement id (&#x60;G-…&#x60;). | 
+**DestinationId** | **string** | The platform destination: a pixel, a conversion action, a conversion rule, a GA4 web stream measurement id (&#x60;G-…&#x60;), a HubSpot portal id or a Salesforce org id. | 
 **EventNames** | **List&lt;string&gt;** |  | [optional] 
 **Sources** | **List&lt;CreateForwardingRuleRequest.SourcesEnum&gt;** | Forward only events from these sources, such as only &#x60;web&#x60; for a tracked website. Leave it out to forward events from every source. | [optional] 
 **EventNameMap** | **Dictionary&lt;string, string&gt;** | Your event name to the name this destination gets, such as &#x60;{ \&quot;Lead\&quot;: \&quot;Purchase\&quot; }&#x60;. Names not in the map are sent unchanged.  A target spelled like a standard event in another case or form (&#x60;purchase&#x60;, &#x60;generate_lead&#x60;) is saved as the standard name (&#x60;Purchase&#x60;, &#x60;Lead&#x60;), so each platform gets its own standard event.  &#x60;eventNames&#x60; and &#x60;valueCondition&#x60; are checked against the name and value as received, before renaming. The event id is never changed, so deduplication still works. | [optional] 
